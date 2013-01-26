@@ -352,6 +352,7 @@ public class Home {
 		
 		barra_ricerca.add(cerca);
 
+		
 		prenota_digitalizzazione_2.setBounds(1080, 5, 195, 28);
 		prenota_digitalizzazione_2.setFocusPainted(false);
 		//prenota_digitalizzazione_2.setBorderPainted(false);
