@@ -130,7 +130,7 @@ public class Home {
 				System.out.println("released");
 			}
 		});
-		logo.setIcon(new ImageIcon("C:\\Users\\Fabiano\\workspace\\campus\\image\\resized_campus.png"));
+		logo.setIcon(new ImageIcon("./image/resized_campus.png"));
 		logo.setOpaque(true);
 		logo.setBackground(blueButtonUnpressed);
 		home.addActionListener(new ActionListener() {
@@ -148,12 +148,12 @@ public class Home {
 		
 		//HOME BUTTON
 		home.setBounds(163, 0, 93, 57);
-		home.setIcon(new ImageIcon("C:\\Users\\Fabiano\\workspace\\campus\\image\\resized_home.png"));
+		home.setIcon(new ImageIcon("./image/resized_home.png"));
 		home.setBackground(blueButtonUnpressed);
 		home.setFocusPainted(false);
 		home.setBorderPainted(false);
 		barra_menu_principale.add(home);
-		corsi_seguiti.setIcon(new ImageIcon("C:\\Users\\Fabiano\\workspace\\campus\\image\\resized_corsi_seguiti.png"));
+		corsi_seguiti.setIcon(new ImageIcon("./image/resized_corsi_seguiti.png"));
 
 		
 		corsi_seguiti.setBounds(258, 0, 161, 57);
@@ -161,7 +161,7 @@ public class Home {
 		corsi_seguiti.setFocusPainted(false);
 		corsi_seguiti.setBorderPainted(false);
 		barra_menu_principale.add(corsi_seguiti);
-		preferiti.setIcon(new ImageIcon("C:\\Users\\Fabiano\\workspace\\campus\\image\\resized_preferiti.png"));
+		preferiti.setIcon(new ImageIcon("./image/resized_preferiti.png"));
 
 		
 		//PREFERITI
@@ -180,7 +180,7 @@ public class Home {
 		miei_documenti.setBackground(blueButtonUnpressed);
 		
 		
-		servizi_esterni.setIcon(new ImageIcon("C:\\Users\\Fabiano\\workspace\\campus\\image\\resized_servizi_esterni.png"));
+		servizi_esterni.setIcon(new ImageIcon("./image/resized_servizi_esterni.png"));
 		servizi_esterni.setBounds(728, 0, 185, 57);
 		barra_menu_principale.add(servizi_esterni);
 		
@@ -188,7 +188,7 @@ public class Home {
 		servizi_esterni.setFocusPainted(false);
 		servizi_esterni.setBorderPainted(false);
 		servizi_esterni.setBackground(blueButtonUnpressed);
-		separatore.setIcon(new ImageIcon("C:\\Users\\Fabiano\\workspace\\campus\\image\\resized_separatore.png"));
+		separatore.setIcon(new ImageIcon("./image/resized_separatore.png"));
 		separatore.setBounds(913, 0, 11, 57);
 		barra_menu_principale.add(separatore);
 		
@@ -344,7 +344,7 @@ public class Home {
 		ricerca_testuale.setBounds(5, 5, 386, 28);
 		barra_ricerca.add(ricerca_testuale);
 		ricerca_testuale.setColumns(10);
-		cerca.setIcon(new ImageIcon("C:\\Users\\Fabiano\\workspace\\campus\\image\\search.png"));
+		cerca.setIcon(new ImageIcon("./image/search.png"));
 		cerca.setBounds(396, 5, 28, 28);
 		cerca.setFocusPainted(false);
 		cerca.setBorderPainted(false);
