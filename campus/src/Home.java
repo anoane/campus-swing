@@ -91,10 +91,13 @@ public class Home {
 	private void initialize() {
 		frame = new JFrame();
 		//distanza x avvio, distanza y avvio, dimensione x, dimensione y
-		frame.setBounds(50, 50, 1282, 802);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//solo se undecorated è false
+		//frame.setBounds(50, 50, 1298, 802);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//toglie la barra dei comandi (close, maximize, minimize)
-		//frame.setUndecorated(true);
+		frame.setUndecorated(true);
+		frame.setBounds(50, 50, 1282, 802);
 		
 		JPanel pannello_intero = new JPanel();
 		pannello_intero.setBorder(new LineBorder(Color.BLACK));
@@ -112,7 +115,7 @@ public class Home {
 		
 		JPanel barra_menu_principale = new JPanel();
 		barra_menu_principale.setBackground(blueButtonUnpressed);
-		barra_menu_principale.setBounds(1, 1, 2560, 57);
+		barra_menu_principale.setBounds(1, 1, 1280, 57);
 		pannello_intero.add(barra_menu_principale);
 		barra_menu_principale.setLayout(null);
 		
@@ -216,9 +219,57 @@ public class Home {
 		impostazioni.setFocusPainted(false);
 		impostazioni.setBorderPainted(false);
 		impostazioni.setBackground(blueButtonUnpressed);
+		
+		
+		
+		barra_ricerca.setBackground(blueSearchBar);
+		barra_ricerca.setBounds(1, 58, 1280, 38);
+		pannello_intero.add(barra_ricerca);
+		barra_ricerca.setLayout(null);
+		
+		ricerca_testuale.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (ricerca_testuale.getText().equals(" Cerca")) {
+					ricerca_testuale.setText(" ");
+				}
+			}
+			/*
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				if (ricerca_testuale.getText().equals("") || ricerca_testuale.getText().equals(" ")) {
+					ricerca_testuale.setText(" Cerca");
+				}
+			}
+			*/
+		});
+		ricerca_testuale.setText(" Cerca");
+		ricerca_testuale.setFont(new Font("Arial", Font.BOLD, 14));
+		ricerca_testuale.setBackground(blueSearchBar);
+		ricerca_testuale.setForeground(Color.WHITE);
+		ricerca_testuale.setBorder(new LineBorder(Color.WHITE, 2));
+		ricerca_testuale.setBounds(5, 5, 386, 28);
+		barra_ricerca.add(ricerca_testuale);
+		ricerca_testuale.setColumns(10);
+		cerca.setIcon(new ImageIcon("./image/search.png"));
+		cerca.setBounds(396, 5, 28, 28);
+		cerca.setFocusPainted(false);
+		cerca.setBorderPainted(false);
+		cerca.setBackground(blueSearchBar);
+		
+		barra_ricerca.add(cerca);
+
+		
+		prenota_digitalizzazione_2.setBounds(1080, 5, 195, 28);
+		prenota_digitalizzazione_2.setFocusPainted(false);
+		//prenota_digitalizzazione_2.setBorderPainted(false);
+		prenota_digitalizzazione_2.setBackground(blueButtonUnpressed);
+		prenota_digitalizzazione_2.setBorder(new LineBorder(Color.BLACK, 1));
+		
+		barra_ricerca.add(prenota_digitalizzazione_2);
 		barra_servizi_esterni.setLayout(null);
 		barra_servizi_esterni.setBackground(blueButtonUnpressed);
-		barra_servizi_esterni.setBounds(1, 58, 2560, 38);
+		barra_servizi_esterni.setBounds(1, 58, 1280, 38);
 		barra_servizi_esterni.setVisible(false);
 		pannello_intero.add(barra_servizi_esterni);
 		
@@ -312,54 +363,6 @@ public class Home {
 			}
 		});
 		barra_servizi_esterni.add(prenotazione_libri);
-		
-		
-		
-		barra_ricerca.setBackground(blueSearchBar);
-		barra_ricerca.setBounds(1, 58, 2560, 38);
-		pannello_intero.add(barra_ricerca);
-		barra_ricerca.setLayout(null);
-		
-		ricerca_testuale.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (ricerca_testuale.getText().equals(" Cerca")) {
-					ricerca_testuale.setText(" ");
-				}
-			}
-			/*
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				if (ricerca_testuale.getText().equals("") || ricerca_testuale.getText().equals(" ")) {
-					ricerca_testuale.setText(" Cerca");
-				}
-			}
-			*/
-		});
-		ricerca_testuale.setText(" Cerca");
-		ricerca_testuale.setFont(new Font("Arial", Font.BOLD, 14));
-		ricerca_testuale.setBackground(blueSearchBar);
-		ricerca_testuale.setForeground(Color.WHITE);
-		ricerca_testuale.setBorder(new LineBorder(Color.WHITE, 2));
-		ricerca_testuale.setBounds(5, 5, 386, 28);
-		barra_ricerca.add(ricerca_testuale);
-		ricerca_testuale.setColumns(10);
-		cerca.setIcon(new ImageIcon("./image/search.png"));
-		cerca.setBounds(396, 5, 28, 28);
-		cerca.setFocusPainted(false);
-		cerca.setBorderPainted(false);
-		cerca.setBackground(blueSearchBar);
-		
-		barra_ricerca.add(cerca);
-
-		
-		prenota_digitalizzazione_2.setBounds(1080, 5, 195, 28);
-		prenota_digitalizzazione_2.setFocusPainted(false);
-		//prenota_digitalizzazione_2.setBorderPainted(false);
-		prenota_digitalizzazione_2.setBackground(blueButtonUnpressed);
-		prenota_digitalizzazione_2.setBorder(new LineBorder(Color.BLACK, 1));
-		
-		barra_ricerca.add(prenota_digitalizzazione_2);
 		impostazioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -379,7 +382,7 @@ public class Home {
 				impostazioni.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 58, 2560, 38);
+				barra_ricerca.setBounds(1, 58, 1280, 38);
 			}
 		});
 		profilo.addMouseListener(new MouseAdapter() {
@@ -401,7 +404,7 @@ public class Home {
 				profilo.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 58, 2560, 38);
+				barra_ricerca.setBounds(1, 58, 1280, 38);
 			}
 		});
 		notifiche.addMouseListener(new MouseAdapter() {
@@ -423,7 +426,7 @@ public class Home {
 				notifiche.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 58, 2560, 38);
+				barra_ricerca.setBounds(1, 58, 1280, 38);
 			}
 		});
 		servizi_esterni.addMouseListener(new MouseAdapter() {
@@ -445,7 +448,7 @@ public class Home {
 				servizi_esterni.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(true);
-				barra_ricerca.setBounds(1, 96, 2560, 38);		
+				barra_ricerca.setBounds(1, 96, 1280, 38);		
 			}
 		});
 		miei_documenti.addMouseListener(new MouseAdapter() {
@@ -467,7 +470,7 @@ public class Home {
 				miei_documenti.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 58, 2560, 38);
+				barra_ricerca.setBounds(1, 58, 1280, 38);
 			}
 		});
 		preferiti.addMouseListener(new MouseAdapter() {
@@ -489,7 +492,7 @@ public class Home {
 				preferiti.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 58, 2560, 38);
+				barra_ricerca.setBounds(1, 58, 1280, 38);
 			}
 		});
 		corsi_seguiti.addMouseListener(new MouseAdapter() {
@@ -511,7 +514,7 @@ public class Home {
 				corsi_seguiti.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 58, 2560, 38);
+				barra_ricerca.setBounds(1, 58, 1280, 38);
 			}
 		});
 		home.addMouseListener(new MouseAdapter() {
@@ -533,7 +536,7 @@ public class Home {
 				home.setBackground(blueButtonPressed);
 				
 				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 58, 2560, 38);	
+				barra_ricerca.setBounds(1, 58, 1280, 38);	
 			}
 		});
 		
