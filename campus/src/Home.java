@@ -92,12 +92,19 @@ public class Home {
 		frame = new JFrame();
 		//distanza x avvio, distanza y avvio, dimensione x, dimensione y
 		
-		//solo se undecorated è false
+		//solo se undecorated è false - resizable
 		//frame.setBounds(50, 50, 1298, 802);
+		
+		//unresizable
+		frame.setResizable(false);
+		//rimangono 1280x720 pixel escludendo i bordi
+		frame.setBounds(50, 50, 1288, 751);
+		
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		//toglie la barra dei comandi (close, maximize, minimize)
-		frame.setUndecorated(true);
-		frame.setBounds(50, 50, 1282, 802);
+		//frame.setUndecorated(true);
+		//frame.setBounds(50, 50, 1282, 802);
 		
 		JPanel pannello_intero = new JPanel();
 		pannello_intero.setBorder(new LineBorder(Color.BLACK));
