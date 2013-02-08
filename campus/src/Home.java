@@ -259,21 +259,21 @@ public class Home {
 				servizi_esterni.setFocusPainted(false);
 				servizi_esterni.setBorderPainted(false);
 				servizi_esterni.setBackground(blueButtonUnpressed);
-				separatore.setBounds(765, 0, 9, 52);
+				separatore.setBounds(763, 0, 9, 52);
 				pannello_interno_menu_principale.add(separatore);
 				separatore.setIcon(new ImageIcon("./image/resized_separatore.png"));
 				
 				//SERPARATORE
 				separatore.setOpaque(true);
 				separatore.setBackground(blueButtonUnpressed);
-				notifiche.setBounds(776, 0, 52, 52);
+				notifiche.setBounds(774, 0, 52, 52);
 				pannello_interno_menu_principale.add(notifiche);
 				
 				//NOTIFICHE
 				notifiche.setFocusPainted(false);
 				notifiche.setBorderPainted(false);
 				notifiche.setBackground(blueButtonUnpressed);
-				profilo.setBounds(830, 0, 180, 52);
+				profilo.setBounds(828, 0, 182, 52);
 				pannello_interno_menu_principale.add(profilo);
 				
 				//PROFILO
