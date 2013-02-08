@@ -23,7 +23,6 @@ import java.awt.Canvas;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-//test reiss pull git
 public class Home {
 
 	//TODO: parametrizzare TUTTO
