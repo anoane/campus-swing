@@ -207,12 +207,12 @@ public class Home {
 		
 		//LOGO LABEL
 		JLabel logo = new JLabel();
-		logo.setBounds(0, 0, 163, 52);
+		logo.setBounds(4, 0, 133, 52);
 		pannello_interno_menu_principale.add(logo);
 		logo.setIcon(new ImageIcon("./image/resized_campus.png"));
 		logo.setOpaque(true);
 		logo.setBackground(blueButtonUnpressed);
-		home.setBounds(163, 0, 93, 52);
+		home.setBounds(138, 0, 75, 52);
 		pannello_interno_menu_principale.add(home);
 		home.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -222,13 +222,13 @@ public class Home {
 		home.setBackground(blueButtonUnpressed);
 		home.setFocusPainted(false);
 		home.setBorderPainted(false);
-		corsi_seguiti.setBounds(248, 0, 161, 52);
+		corsi_seguiti.setBounds(215, 0, 129, 52);
 		pannello_interno_menu_principale.add(corsi_seguiti);
 		corsi_seguiti.setIcon(new ImageIcon("./image/resized_corsi_seguiti.png"));
 		corsi_seguiti.setBackground(blueButtonUnpressed);
 		corsi_seguiti.setFocusPainted(false);
 		corsi_seguiti.setBorderPainted(false);
-		preferiti.setBounds(401, 0, 119, 52);
+		preferiti.setBounds(346, 0, 95, 52);
 		pannello_interno_menu_principale.add(preferiti);
 		preferiti.setIcon(new ImageIcon("./image/resized_preferiti.png"));
 		
@@ -237,7 +237,7 @@ public class Home {
 				preferiti.setBackground(blueButtonUnpressed);
 				preferiti.setFocusPainted(false);
 				preferiti.setBorderPainted(false);
-				miei_documenti.setBounds(512, 0, 184, 52);
+				miei_documenti.setBounds(443, 0, 163, 52);
 				pannello_interno_menu_principale.add(miei_documenti);
 				miei_documenti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -249,7 +249,7 @@ public class Home {
 				miei_documenti.setFocusPainted(false);
 				miei_documenti.setBorderPainted(false);
 				miei_documenti.setBackground(blueButtonUnpressed);
-				servizi_esterni.setBounds(688, 0, 185, 52);
+				servizi_esterni.setBounds(608, 0, 155, 52);
 				pannello_interno_menu_principale.add(servizi_esterni);
 				
 				
@@ -259,28 +259,28 @@ public class Home {
 				servizi_esterni.setFocusPainted(false);
 				servizi_esterni.setBorderPainted(false);
 				servizi_esterni.setBackground(blueButtonUnpressed);
-				separatore.setBounds(900, 0, 11, 52);
+				separatore.setBounds(765, 0, 9, 52);
 				pannello_interno_menu_principale.add(separatore);
 				separatore.setIcon(new ImageIcon("./image/resized_separatore.png"));
 				
 				//SERPARATORE
 				separatore.setOpaque(true);
 				separatore.setBackground(blueButtonUnpressed);
-				notifiche.setBounds(914, 0, 70, 52);
+				notifiche.setBounds(776, 0, 52, 52);
 				pannello_interno_menu_principale.add(notifiche);
 				
 				//NOTIFICHE
 				notifiche.setFocusPainted(false);
 				notifiche.setBorderPainted(false);
 				notifiche.setBackground(blueButtonUnpressed);
-				profilo.setBounds(916, 0, 149, 52);
+				profilo.setBounds(830, 0, 180, 52);
 				pannello_interno_menu_principale.add(profilo);
 				
 				//PROFILO
 				profilo.setFocusPainted(false);
 				profilo.setBorderPainted(false);
 				profilo.setBackground(blueButtonUnpressed);
-				impostazioni.setBounds(3000, 0, 133, 52);
+				impostazioni.setBounds(3000, 0, 110, 52);
 				pannello_interno_menu_principale.add(impostazioni);
 				
 				//IMPOSTAZIONI
