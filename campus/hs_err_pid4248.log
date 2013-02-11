@@ -1,0 +1,107 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 700416 bytes for object start array expansion
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (objectStartArray.cpp:96), pid=4248, tid=1764
+#
+# JRE version: 7.0_11-b21
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (23.6-b04 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000008ed800):  JavaThread "Unknown thread" [_thread_in_vm, id=1764, stack(0x0000000002170000,0x0000000002270000)]
+
+Stack: [0x0000000002170000,0x0000000002270000]
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000008ed800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=1764, stack(0x0000000002170000,0x0000000002270000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x000007f6ed620000 - 0x000007f6ed653000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x000007f8dfd20000 - 0x000007f8dfede000 	C:\Windows\SYSTEM32\ntdll.dll
+0x000007f8df5c0000 - 0x000007f8df6f6000 	C:\Windows\system32\KERNEL32.DLL
+0x000007f8dcf50000 - 0x000007f8dd043000 	C:\Windows\system32\KERNELBASE.dll
+0x000007f8dda60000 - 0x000007f8ddb3e000 	C:\Windows\system32\ADVAPI32.dll
+0x000007f8df430000 - 0x000007f8df57c000 	C:\Windows\system32\USER32.dll
+0x000007f8da740000 - 0x000007f8da9a9000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9200.16384_none_418c2a697189c07f\COMCTL32.dll
+0x000007f8dfab0000 - 0x000007f8dfb55000 	C:\Windows\system32\msvcrt.dll
+0x000007f8ddca0000 - 0x000007f8ddce8000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007f8dd6f0000 - 0x000007f8dd830000 	C:\Windows\system32\RPCRT4.dll
+0x000007f8dd190000 - 0x000007f8dd2d0000 	C:\Windows\system32\GDI32.dll
+0x000007f8df580000 - 0x000007f8df5b9000 	C:\Windows\system32\IMM32.DLL
+0x000007f8dd4f0000 - 0x000007f8dd605000 	C:\Windows\system32\MSCTF.dll
+0x0000000059a60000 - 0x0000000059b31000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x0000000058e40000 - 0x000000005955f000 	C:\Program Files\Java\jre7\bin\server\jvm.dll
+0x000007f8cb070000 - 0x000007f8cb079000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x000007f8da0e0000 - 0x000007f8da100000 	C:\Windows\SYSTEM32\WINMM.dll
+0x000007f8ddd60000 - 0x000007f8ddd67000 	C:\Windows\system32\PSAPI.DLL
+0x000007f8ddd00000 - 0x000007f8ddd58000 	C:\Windows\system32\WS2_32.dll
+0x000007f8da1e0000 - 0x000007f8da212000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x000007f8ddcf0000 - 0x000007f8ddcf9000 	C:\Windows\system32\NSI.dll
+0x0000000059cd0000 - 0x0000000059cdf000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x0000000059a30000 - 0x0000000059a58000 	C:\Program Files\Java\jre7\bin\java.dll
+0x0000000059a10000 - 0x0000000059a25000 	C:\Program Files\Java\jre7\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 
+java_command: Home
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\Adobe\AGL;C:\Program Files (x86)\MiKTeX 2.9\miktex\bin\
+USERNAME=Fabiano
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8 , 64 bit Build 9200 
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, ht, tsc, tscinvbit, tscinv
+
+Memory: 4k page, physical 33512956k(11198896k free), swap 39747956k(5780k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (23.6-b04) for windows-amd64 JRE (1.7.0_11-b21), built on Jan 12 2013 02:38:42 by "java_re" with unknown MS VC++:1600
+
+time: Mon Feb 11 13:59:03 2013
+elapsed time: 0 seconds
+

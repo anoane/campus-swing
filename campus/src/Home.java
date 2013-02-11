@@ -27,6 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JTextPane;
+import javax.swing.JComboBox;
 
 public class Home {
 
@@ -75,7 +77,7 @@ public class Home {
 	
 	private final static JPanel pannello_contenuti = new JPanel();
 	
-	private final static JScrollPane pannello_home = new JScrollPane();
+	private final static JPanel pannello_verticale = new JPanel();
 	
 	
 	
@@ -168,7 +170,7 @@ public class Home {
 		        	pannello_contenuti.setBounds(1, 129, pannello_intero.getWidth()-2, pannello_intero.getHeight()-130);
 		        	pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, 38);
 		        	pannello_interno_ricerca.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, 38);
-		        	pannello_home.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, pannello_intero.getHeight()-130);
+		        	pannello_verticale.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, pannello_intero.getHeight()-130);
 		        	
 		        	//pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, pannello_intero.getWidth()+2, 38);
 	        	} else {
@@ -176,7 +178,7 @@ public class Home {
 	        		pannello_contenuti.setBounds(1, 91, pannello_intero.getWidth()-2, pannello_intero.getHeight()-92);
 	        		pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, 38);	
 		        	pannello_interno_ricerca.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, 38);
-		        	pannello_home.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, pannello_intero.getHeight()-92);
+		        	pannello_verticale.setBounds(dimensione_fill_centro, 0, MIN_DIMENSION_X - 18, pannello_intero.getHeight()-92);
 		        	
 	        	}
 	        }
@@ -566,13 +568,16 @@ public class Home {
 		prenotazione_libri.setBorderPainted(false);
 		prenotazione_libri.setBackground(BLUE_BUTTON_UNPRESSED);
 		
-		pannello_contenuti.setBackground(Color.WHITE);
+		pannello_contenuti.setBackground(Color.LIGHT_GRAY);
 		pannello_contenuti.setBounds(0, 130, MIN_DIMENSION_X - 8, 386);
 		pannello_intero.add(pannello_contenuti);
 		pannello_contenuti.setLayout(null);
-		pannello_home.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		pannello_home.setBounds(50, 50, 50, 50);
-		pannello_contenuti.add(pannello_home);
+		pannello_verticale.setBackground(Color.WHITE);
+		
+		pannello_verticale.setForeground(Color.BLACK);
+		pannello_verticale.setBounds(0, 0, 1006, 386);
+		pannello_contenuti.add(pannello_verticale);
+		pannello_verticale.setLayout(null);
 		prenotazione_libri.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -642,7 +647,7 @@ public class Home {
 		barra_servizi_esterni.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
 		barra_ricerca.setBounds(1, 91, pannello_intero.getWidth()-2, 38);		
 		pannello_contenuti.setBounds(1, 129, pannello_intero.getWidth()-2, pannello_intero.getHeight()-130);
-		pannello_home.setBounds(pannello_home.getBounds().x, pannello_home.getBounds().y, pannello_home.getBounds().width, pannello_intero.getHeight()-130);
+		pannello_verticale.setBounds(pannello_verticale.getBounds().x, pannello_verticale.getBounds().y, pannello_verticale.getBounds().width, pannello_intero.getHeight()-130);
     	
 		
 	}
@@ -655,7 +660,7 @@ public class Home {
 		barra_servizi_esterni.setVisible(false);
 		barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
 		pannello_contenuti.setBounds(1, 91, pannello_intero.getWidth()-2, pannello_intero.getHeight()-92);
-		pannello_home.setBounds(pannello_home.getBounds().x, pannello_home.getBounds().y, pannello_home.getBounds().width, pannello_intero.getHeight()-92);
+		pannello_verticale.setBounds(pannello_verticale.getBounds().x, pannello_verticale.getBounds().y, pannello_verticale.getBounds().width, pannello_intero.getHeight()-92);
 	}
 	
 	protected static Color getOldButtonColor(String nome_pulsante) {
