@@ -20,6 +20,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import java.awt.Canvas;
+import java.util.TreeMap;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -48,19 +50,8 @@ public class Home {
 	private final static Color blueButtonUnpressed = new Color(67, 136, 204);
 	private final static Color blueButtonPressed = new Color(46, 93, 140);
 	private final static Color blueSearchBar = new Color(97, 180, 207);
-	
-	private final static Color[] oldColorState_home = new Color[1];
-	private final static Color[] oldColorState_corsi_seguiti = new Color[1];
-	private final static Color[] oldColorState_preferiti = new Color[1];
-	private final static Color[] oldColorState_miei_documenti = new Color[1];
-	private final static Color[] oldColorState_servizi_esterni = new Color[1];
-	private final static Color[] oldColorState_notifiche = new Color[1];
-	private final static Color[] oldColorState_profilo = new Color[1];
-	private final static Color[] oldColorState_impostazioni = new Color[1];
-	
-	private final static Color[] oldColorState_gestione_stampa = new Color[1];
-	private final static Color[] oldColorState_prenotazione_digitalizzazione = new Color[1];
-	private final static Color[] oldColorState_prenotazione_libri = new Color[1];
+
+	private final static TreeMap<String,Color> oldColorState = new TreeMap<String,Color>();
 	
 	private final static JPanel barra_ricerca = new JPanel();
 	private final static JPanel barra_servizi_esterni = new JPanel();
@@ -72,7 +63,7 @@ public class Home {
 	private final static JButton carica_materiale = new JButton();
 	private final static JPanel barra_menu_principale = new JPanel();
 
-	private final static int scaglione_resize = 1;
+	//private final static int scaglione_resize = 1;
 	
 	private final static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private final static JPanel pannello_interno_ricerca = new JPanel();
@@ -198,15 +189,21 @@ public class Home {
 	        public void componentShown(ComponentEvent arg0) {}
 	    });
 		
+		//inizializzo i colori
+		oldColorState.put("home", blueButtonUnpressed);
+		oldColorState.put("corsi_seguiti", blueButtonUnpressed);
+		oldColorState.put("preferiti", blueButtonUnpressed);
+		oldColorState.put("miei_documenti", blueButtonUnpressed);
+		oldColorState.put("servizi_esterni", blueButtonUnpressed);
+		oldColorState.put("notifiche", blueButtonUnpressed);
+		oldColorState.put("profilo", blueButtonUnpressed);
+		oldColorState.put("impostazioni", blueButtonUnpressed);
+		oldColorState.put("home", blueButtonUnpressed);
 		
-		oldColorState_home[0] = blueButtonUnpressed;
-		oldColorState_corsi_seguiti[0] = blueButtonUnpressed;
-		oldColorState_preferiti[0] = blueButtonUnpressed;
-		oldColorState_miei_documenti[0] = blueButtonUnpressed;
-		oldColorState_servizi_esterni[0] = blueButtonUnpressed;
-		oldColorState_notifiche[0] = blueButtonUnpressed;
-		oldColorState_profilo[0] = blueButtonUnpressed;
-		oldColorState_impostazioni[0] = blueButtonUnpressed;
+		oldColorState.put("gestione_stampa", blueButtonUnpressed);
+		oldColorState.put("prenotazione_digitalizzazione", blueButtonUnpressed);
+		oldColorState.put("prenotazione_libri", blueButtonUnpressed);
+				
 		barra_menu_principale.setBounds(0, 0, 1016, 52);
 		pannello_intero.add(barra_menu_principale);
 		
@@ -309,15 +306,18 @@ public class Home {
 					}
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						impostazioni.setBackground(oldColorState_impostazioni[0]);
+						impostazioni.setBackground(getOldButtonColor("impostazioni"));
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//assegna il colore di pulsante selezionato
-						oldColorState_impostazioni[0] = blueButtonPressed;
-						impostazioni.setBackground(blueButtonPressed);
 						
 						Home.pulsantiNormali();
+						
+						//assegna il colore di pulsante selezionato
+						setOldButtonColor("impostazioni",blueButtonPressed);
+						impostazioni.setBackground(blueButtonPressed);
+						
+						
 		        		
 					}
 				});
@@ -328,16 +328,18 @@ public class Home {
 					}
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						profilo.setBackground(oldColorState_profilo[0]);
+						profilo.setBackground(getOldButtonColor("profilo"));
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						
-						//assegna il colore di pulsante selezionato
-						oldColorState_profilo[0] = blueButtonPressed;
-						profilo.setBackground(blueButtonPressed);
 						
 						Home.pulsantiNormali();
+						
+						//assegna il colore di pulsante selezionato
+						setOldButtonColor("profilo",blueButtonPressed);
+						profilo.setBackground(blueButtonPressed);
+						
 		        		
 					}
 				});
@@ -348,15 +350,18 @@ public class Home {
 					}
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						notifiche.setBackground(oldColorState_notifiche[0]);
+						notifiche.setBackground(getOldButtonColor("notifiche"));
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//assegna il colore di pulsante selezionato
-						oldColorState_notifiche[0] = blueButtonPressed;
-						notifiche.setBackground(blueButtonPressed);
 						
 						Home.pulsantiNormali();
+						
+						//assegna il colore di pulsante selezionato
+						setOldButtonColor("notifiche",blueButtonPressed);
+						notifiche.setBackground(blueButtonPressed);
+						
+						
 		        		
 					}
 				});
@@ -367,15 +372,18 @@ public class Home {
 					}
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						servizi_esterni.setBackground(oldColorState_servizi_esterni[0]);
+						servizi_esterni.setBackground(getOldButtonColor("servizi_esterni"));
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//assegna il colore di pulsante selezionato
-						oldColorState_servizi_esterni[0] = blueButtonPressed;
-						servizi_esterni.setBackground(blueButtonPressed);
 						
 						Home.pulsanteServiziEsterni();
+						
+						//assegna il colore di pulsante selezionato
+						setOldButtonColor("servizi_esterni",blueButtonPressed);
+						servizi_esterni.setBackground(blueButtonPressed);
+						
+						
 					}
 				});
 				miei_documenti.addMouseListener(new MouseAdapter() {
@@ -385,15 +393,18 @@ public class Home {
 					}
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						miei_documenti.setBackground(oldColorState_miei_documenti[0]);
+						miei_documenti.setBackground(getOldButtonColor("miei_documenti"));
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//assegna il colore di pulsante selezionato
-						oldColorState_miei_documenti[0] = blueButtonPressed;
-						miei_documenti.setBackground(blueButtonPressed);
 						
 						Home.pulsantiNormali();
+						
+						//assegna il colore di pulsante selezionato
+						setOldButtonColor("miei_documenti",blueButtonPressed);
+						miei_documenti.setBackground(blueButtonPressed);
+						
+						
 		        		
 					}
 				});
@@ -404,15 +415,18 @@ public class Home {
 					}
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						preferiti.setBackground(oldColorState_preferiti[0]);
+						preferiti.setBackground(getOldButtonColor("preferiti"));
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//assegna il colore di pulsante selezionato
-						oldColorState_preferiti[0] = blueButtonPressed;
-						preferiti.setBackground(blueButtonPressed);
 						
 						Home.pulsantiNormali();
+						
+						//assegna il colore di pulsante selezionato
+						setOldButtonColor("preferiti",blueButtonPressed);
+						preferiti.setBackground(blueButtonPressed);
+						
+						
 		        		
 					}
 				});
@@ -423,15 +437,18 @@ public class Home {
 			}
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				corsi_seguiti.setBackground(oldColorState_corsi_seguiti[0]);
+				corsi_seguiti.setBackground(getOldButtonColor("corsi_seguiti"));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//assegna il colore di pulsante selezionato
-				oldColorState_corsi_seguiti[0] = blueButtonPressed;
-				corsi_seguiti.setBackground(blueButtonPressed);
 				
 				Home.pulsantiNormali();
+				
+				//assegna il colore di pulsante selezionato
+				setOldButtonColor("corsi_seguiti",blueButtonPressed);
+				corsi_seguiti.setBackground(blueButtonPressed);
+				
+				
         		
 			}
 		});
@@ -442,15 +459,18 @@ public class Home {
 			}
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				home.setBackground(oldColorState_home[0]);
+				home.setBackground(getOldButtonColor("home"));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//assegna il colore di pulsante selezionato
-				oldColorState_home[0] = blueButtonPressed;
-				home.setBackground(blueButtonPressed);
 				
 				Home.pulsantiNormali();
+				
+				//assegna il colore di pulsante selezionato
+				setOldButtonColor("home",blueButtonPressed);
+				home.setBackground(blueButtonPressed);
+				
+				
         		
 			}
 		});
@@ -564,7 +584,7 @@ public class Home {
 			}
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				prenotazione_libri.setBackground(oldColorState_prenotazione_libri[0]);
+				prenotazione_libri.setBackground(getOldButtonColor("prenotazione_libri"));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -572,7 +592,7 @@ public class Home {
 				Home.resetMenu2Colors();
 				
 				//assegna il colore di pulsante selezionato
-				oldColorState_prenotazione_libri[0] = blueButtonPressed;
+				setOldButtonColor("prenotazione_libri",blueButtonPressed);
 				prenotazione_libri.setBackground(blueButtonPressed);
 			}
 		});
@@ -583,7 +603,7 @@ public class Home {
 			}
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				prenotazione_digitalizzazione.setBackground(oldColorState_prenotazione_digitalizzazione[0]);
+				prenotazione_digitalizzazione.setBackground(getOldButtonColor("prenotazione_digitalizzazione"));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -591,7 +611,7 @@ public class Home {
 				Home.resetMenu2Colors();
 				
 				//assegna il colore di pulsante selezionato
-				oldColorState_prenotazione_digitalizzazione[0] = blueButtonPressed;
+				setOldButtonColor("prenotazione_digitalizzazione",blueButtonPressed);
 				prenotazione_digitalizzazione.setBackground(blueButtonPressed);
 			}
 		});
@@ -602,7 +622,7 @@ public class Home {
 			}
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				gestione_stampa.setBackground(oldColorState_gestione_stampa[0]);
+				gestione_stampa.setBackground(getOldButtonColor("gestione_stampa"));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -610,7 +630,7 @@ public class Home {
 				Home.resetMenu2Colors();
 				
 				//assegna il colore di pulsante selezionato
-				oldColorState_gestione_stampa[0] = blueButtonPressed;
+				setOldButtonColor("gestione_stampa",blueButtonPressed);
 				gestione_stampa.setBackground(blueButtonPressed);
 			}
 		});
@@ -641,41 +661,50 @@ public class Home {
 		pannello_contenuti.setBounds(1, 91, pannello_intero.getWidth()-2, pannello_intero.getHeight()-92);
 		pannello_home.setBounds(pannello_home.getBounds().x, pannello_home.getBounds().y, pannello_home.getBounds().width, pannello_intero.getHeight()-92);
 	}
+	
+	protected static Color getOldButtonColor(String nome_pulsante) {
+		return oldColorState.get(nome_pulsante);
+	}
+	
+	protected static void setOldButtonColor(String nome_pulsante, Color colore) {
+		oldColorState.put(nome_pulsante, colore);
+	}
 
 	protected static void resetMenuColors() {
 		home.setBackground(blueButtonUnpressed);
-		oldColorState_home[0] = blueButtonUnpressed;
+		setOldButtonColor("home",blueButtonUnpressed);
 		
 		corsi_seguiti.setBackground(blueButtonUnpressed);
-		oldColorState_corsi_seguiti[0] = blueButtonUnpressed;
+		setOldButtonColor("corsi_seguiti",blueButtonUnpressed);
 		
 		preferiti.setBackground(blueButtonUnpressed);
-		oldColorState_preferiti[0] = blueButtonUnpressed;
+		setOldButtonColor("preferiti",blueButtonUnpressed);
 		
 		miei_documenti.setBackground(blueButtonUnpressed);
-		oldColorState_miei_documenti[0] = blueButtonUnpressed;
+		setOldButtonColor("miei_documenti",blueButtonUnpressed);
 		
 		servizi_esterni.setBackground(blueButtonUnpressed);
-		oldColorState_servizi_esterni[0] = blueButtonUnpressed;
+		setOldButtonColor("servizi_esterni",blueButtonUnpressed);
 		
 		notifiche.setBackground(blueButtonUnpressed);
-		oldColorState_notifiche[0] = blueButtonUnpressed;
+		setOldButtonColor("notifiche",blueButtonUnpressed);
 		
 		profilo.setBackground(blueButtonUnpressed);
-		oldColorState_profilo[0] = blueButtonUnpressed;
+		setOldButtonColor("profilo",blueButtonUnpressed);
 		
 		impostazioni.setBackground(blueButtonUnpressed);
-		oldColorState_impostazioni[0] = blueButtonUnpressed;
+		setOldButtonColor("impostazioni",blueButtonUnpressed);
+		
 	}
 	
 	protected static void resetMenu2Colors() {
 		gestione_stampa.setBackground(blueButtonUnpressed);
-		oldColorState_gestione_stampa[0] = blueButtonUnpressed;
+		setOldButtonColor("gestione_stampa",blueButtonUnpressed);
 		
 		prenotazione_digitalizzazione.setBackground(blueButtonUnpressed);
-		oldColorState_prenotazione_digitalizzazione[0] = blueButtonUnpressed;
+		setOldButtonColor("prenotazione_digitalizzazione",blueButtonUnpressed);
 		
 		prenotazione_libri.setBackground(blueButtonUnpressed);
-		oldColorState_prenotazione_libri[0] = blueButtonUnpressed;
+		setOldButtonColor("prenotazione_libri",blueButtonUnpressed);
 	}
 }
