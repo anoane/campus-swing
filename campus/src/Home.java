@@ -22,6 +22,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Canvas;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.ScrollPaneConstants;
 
 public class Home {
 
@@ -74,6 +77,11 @@ public class Home {
 	private final static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private final static JPanel pannello_interno_ricerca = new JPanel();
 	private final static JPanel pannello_interno_servizi_esterni = new JPanel();
+	
+	private final static JPanel pannello_contenuti = new JPanel();
+	
+	private final static JScrollPane pannello_home = new JScrollPane();
+	
 	
 	
 	/**
@@ -132,10 +140,9 @@ public class Home {
 		//dimensione minima 1024x600 (600-40 perchè c'è la barra)
 		frame.setMinimumSize(new Dimension(1024,560));
 		
-		//TODO: 0,0, NO centra invece di 0 0!
-		//utilizzabili sono 1006x519
-		//TODO: riabilitare una volta finito lo sviluppo base a 1024x560
-		frame.setBounds(0, 0, screenSize.width, screenSize.height-40);
+		
+		//frame.setBounds(0, 0, screenSize.width, screenSize.height-40);
+		frame.setBounds(0, 0, 1024, screenSize.height-40);
 		
 		//TODO: disabilitare una volta finito lo sviluppo
 		//utilizzabili sono 1006x519
@@ -165,19 +172,25 @@ public class Home {
 	        	
 	        	//int screenWidth = ((pannello_intero.getWidth() + scaglione_resize) / scaglione_resize) * scaglione_resize;
 	        	//barra_menu_principale.setBounds(1, 1, screenWidth-3, 52);
-	        	int dimensione_fill_centro = (pannello_intero.getWidth() - 1016) / 2;
+	        	int dimensione_fill_centro = ((pannello_intero.getWidth() - 1016) / 2) +4;
 	        	barra_menu_principale.setBounds(1, 1, pannello_intero.getWidth()-2, 52);
 	        	pannello_interno_menu_principale.setBounds(dimensione_fill_centro, 0, pannello_intero.getWidth()+2, 52);
 	        	if (barra_servizi_esterni.isVisible()) {
 	        		barra_ricerca.setBounds(1, 91, pannello_intero.getWidth()-2, 38);
 		        	barra_servizi_esterni.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
-		        	pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, pannello_intero.getWidth()+2, 38);
-		        	pannello_interno_ricerca.setBounds(dimensione_fill_centro, 0, pannello_intero.getWidth()+2, 38);
+		        	pannello_contenuti.setBounds(1, 129, pannello_intero.getWidth()-2, pannello_intero.getHeight()-130);
+		        	pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, 1006, 38);
+		        	pannello_interno_ricerca.setBounds(dimensione_fill_centro, 0, 1006, 38);
+		        	pannello_home.setBounds(dimensione_fill_centro, 0, 1006, pannello_intero.getHeight()-130);
+		        	
 		        	//pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, pannello_intero.getWidth()+2, 38);
 	        	} else {
 	        		barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
-	        		pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, pannello_intero.getWidth()+2, 38);	
-		        	pannello_interno_ricerca.setBounds(dimensione_fill_centro, 0, pannello_intero.getWidth()+2, 38);
+	        		pannello_contenuti.setBounds(1, 91, pannello_intero.getWidth()-2, pannello_intero.getHeight()-92);
+	        		pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro, 0, 1006, 38);	
+		        	pannello_interno_ricerca.setBounds(dimensione_fill_centro, 0, 1006, 38);
+		        	pannello_home.setBounds(dimensione_fill_centro, 0, 1006, pannello_intero.getHeight()-92);
+		        	
 	        	}
 	        }
 	        public void componentHidden(ComponentEvent arg0) {}
@@ -207,73 +220,75 @@ public class Home {
 		
 		//LOGO LABEL
 		JLabel logo = new JLabel();
-		logo.setBounds(4, 0, 133, 52);
+		logo.setBounds(0, 0, 133, 52);
 		pannello_interno_menu_principale.add(logo);
-		logo.setIcon(new ImageIcon("./image/resized_campus.png"));
+		logo.setIcon(new ImageIcon("./newimage/logo.png"));
 		logo.setOpaque(true);
 		logo.setBackground(blueButtonUnpressed);
-		home.setBounds(138, 0, 75, 52);
+		home.setBounds(134, 0, 75, 52);
 		pannello_interno_menu_principale.add(home);
 		home.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		home.setIcon(new ImageIcon("./image/resized_home.png"));
+		home.setIcon(new ImageIcon("./newimage/home.png"));
 		home.setBackground(blueButtonUnpressed);
 		home.setFocusPainted(false);
 		home.setBorderPainted(false);
-		corsi_seguiti.setBounds(215, 0, 129, 52);
+		corsi_seguiti.setBounds(211, 0, 129, 52);
 		pannello_interno_menu_principale.add(corsi_seguiti);
-		corsi_seguiti.setIcon(new ImageIcon("./image/resized_corsi_seguiti.png"));
+		corsi_seguiti.setIcon(new ImageIcon("./newimage/corsi_seguiti.png"));
 		corsi_seguiti.setBackground(blueButtonUnpressed);
 		corsi_seguiti.setFocusPainted(false);
 		corsi_seguiti.setBorderPainted(false);
-		preferiti.setBounds(346, 0, 95, 52);
+		preferiti.setBounds(342, 0, 95, 52);
 		pannello_interno_menu_principale.add(preferiti);
-		preferiti.setIcon(new ImageIcon("./image/resized_preferiti.png"));
+		preferiti.setIcon(new ImageIcon("./newimage/preferiti.png"));
 		
 				
 				//PREFERITI
 				preferiti.setBackground(blueButtonUnpressed);
 				preferiti.setFocusPainted(false);
 				preferiti.setBorderPainted(false);
-				miei_documenti.setBounds(443, 0, 163, 52);
+				miei_documenti.setBounds(439, 0, 163, 52);
 				pannello_interno_menu_principale.add(miei_documenti);
 				miei_documenti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 					}
 				});
-				miei_documenti.setIcon(new ImageIcon("./image/resized_miei_documenti.png"));
+				miei_documenti.setIcon(new ImageIcon("./newimage/i_miei_documenti.png"));
 				
 				//MIEI DOCUMENTI
 				miei_documenti.setFocusPainted(false);
 				miei_documenti.setBorderPainted(false);
 				miei_documenti.setBackground(blueButtonUnpressed);
-				servizi_esterni.setBounds(608, 0, 155, 52);
+				servizi_esterni.setBounds(604, 0, 155, 52);
 				pannello_interno_menu_principale.add(servizi_esterni);
 				
 				
-				servizi_esterni.setIcon(new ImageIcon("./image/resized_servizi_esterni.png"));
+				servizi_esterni.setIcon(new ImageIcon("./newimage/servizi_esterni.png"));
 				
 				//SERVIZI ESTERNI
 				servizi_esterni.setFocusPainted(false);
 				servizi_esterni.setBorderPainted(false);
 				servizi_esterni.setBackground(blueButtonUnpressed);
-				separatore.setBounds(763, 0, 9, 52);
+				separatore.setBounds(760, 0, 9, 52);
 				pannello_interno_menu_principale.add(separatore);
-				separatore.setIcon(new ImageIcon("./image/resized_separatore.png"));
+				separatore.setIcon(new ImageIcon("./newimage/separatore.png"));
 				
 				//SERPARATORE
 				separatore.setOpaque(true);
 				separatore.setBackground(blueButtonUnpressed);
-				notifiche.setBounds(774, 0, 52, 52);
+				notifiche.setIcon(new ImageIcon("./newimage/notifiche.png"));
+				notifiche.setBounds(770, 0, 52, 52);
 				pannello_interno_menu_principale.add(notifiche);
 				
 				//NOTIFICHE
 				notifiche.setFocusPainted(false);
 				notifiche.setBorderPainted(false);
 				notifiche.setBackground(blueButtonUnpressed);
-				profilo.setBounds(828, 0, 182, 52);
+				profilo.setIcon(new ImageIcon("./newimage/profilo.png"));
+				profilo.setBounds(824, 0, 182, 52);
 				pannello_interno_menu_principale.add(profilo);
 				
 				//PROFILO
@@ -298,15 +313,12 @@ public class Home {
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//resetta tutti i colori di pulsanti precedentemente selezionati
-						Home.resetMenuColors();
-						
 						//assegna il colore di pulsante selezionato
 						oldColorState_impostazioni[0] = blueButtonPressed;
 						impostazioni.setBackground(blueButtonPressed);
 						
-						barra_servizi_esterni.setVisible(false);
-						barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+						Home.pulsantiNormali();
+		        		
 					}
 				});
 				profilo.addMouseListener(new MouseAdapter() {
@@ -320,15 +332,13 @@ public class Home {
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//resetta tutti i colori di pulsanti precedentemente selezionati
-						Home.resetMenuColors();
 						
 						//assegna il colore di pulsante selezionato
 						oldColorState_profilo[0] = blueButtonPressed;
 						profilo.setBackground(blueButtonPressed);
 						
-						barra_servizi_esterni.setVisible(false);
-						barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+						Home.pulsantiNormali();
+		        		
 					}
 				});
 				notifiche.addMouseListener(new MouseAdapter() {
@@ -342,15 +352,12 @@ public class Home {
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//resetta tutti i colori di pulsanti precedentemente selezionati
-						Home.resetMenuColors();
-						
 						//assegna il colore di pulsante selezionato
 						oldColorState_notifiche[0] = blueButtonPressed;
 						notifiche.setBackground(blueButtonPressed);
 						
-						barra_servizi_esterni.setVisible(false);
-						barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+						Home.pulsantiNormali();
+		        		
 					}
 				});
 				servizi_esterni.addMouseListener(new MouseAdapter() {
@@ -364,16 +371,11 @@ public class Home {
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//resetta tutti i colori di pulsanti precedentemente selezionati
-						Home.resetMenuColors();
-						
 						//assegna il colore di pulsante selezionato
 						oldColorState_servizi_esterni[0] = blueButtonPressed;
 						servizi_esterni.setBackground(blueButtonPressed);
 						
-						barra_servizi_esterni.setVisible(true);
-						barra_servizi_esterni.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
-						barra_ricerca.setBounds(1, 91, pannello_intero.getWidth()-2, 38);		
+						Home.pulsanteServiziEsterni();
 					}
 				});
 				miei_documenti.addMouseListener(new MouseAdapter() {
@@ -387,15 +389,12 @@ public class Home {
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//resetta tutti i colori di pulsanti precedentemente selezionati
-						Home.resetMenuColors();
-						
 						//assegna il colore di pulsante selezionato
 						oldColorState_miei_documenti[0] = blueButtonPressed;
 						miei_documenti.setBackground(blueButtonPressed);
 						
-						barra_servizi_esterni.setVisible(false);
-						barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+						Home.pulsantiNormali();
+		        		
 					}
 				});
 				preferiti.addMouseListener(new MouseAdapter() {
@@ -409,15 +408,12 @@ public class Home {
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//resetta tutti i colori di pulsanti precedentemente selezionati
-						Home.resetMenuColors();
-						
 						//assegna il colore di pulsante selezionato
 						oldColorState_preferiti[0] = blueButtonPressed;
 						preferiti.setBackground(blueButtonPressed);
 						
-						barra_servizi_esterni.setVisible(false);
-						barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+						Home.pulsantiNormali();
+		        		
 					}
 				});
 		corsi_seguiti.addMouseListener(new MouseAdapter() {
@@ -431,15 +427,12 @@ public class Home {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//resetta tutti i colori di pulsanti precedentemente selezionati
-				Home.resetMenuColors();
-				
 				//assegna il colore di pulsante selezionato
 				oldColorState_corsi_seguiti[0] = blueButtonPressed;
 				corsi_seguiti.setBackground(blueButtonPressed);
 				
-				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+				Home.pulsantiNormali();
+        		
 			}
 		});
 		home.addMouseListener(new MouseAdapter() {
@@ -453,15 +446,12 @@ public class Home {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//resetta tutti i colori di pulsanti precedentemente selezionati
-				Home.resetMenuColors();
-				
 				//assegna il colore di pulsante selezionato
 				oldColorState_home[0] = blueButtonPressed;
 				home.setBackground(blueButtonPressed);
 				
-				barra_servizi_esterni.setVisible(false);
-				barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);	
+				Home.pulsantiNormali();
+        		
 			}
 		});
 		barra_ricerca.setBounds(0, 53, 1016, 38);
@@ -475,7 +465,7 @@ public class Home {
 		pannello_interno_ricerca.setBackground(blueSearchBar);
 		barra_ricerca.add(pannello_interno_ricerca);
 		pannello_interno_ricerca.setLayout(null);
-		ricerca_testuale.setBounds(9, 5, 410, 28);
+		ricerca_testuale.setBounds(5, 5, 410, 28);
 		pannello_interno_ricerca.add(ricerca_testuale);
 		
 		ricerca_testuale.addMouseListener(new MouseAdapter() {
@@ -500,13 +490,16 @@ public class Home {
 		ricerca_testuale.setForeground(Color.WHITE);
 		ricerca_testuale.setBorder(new LineBorder(Color.WHITE, 2));
 		ricerca_testuale.setColumns(10);
-		cerca.setBounds(424, 5, 28, 28);
+		cerca.setBounds(420, 5, 28, 28);
 		pannello_interno_ricerca.add(cerca);
 		cerca.setIcon(new ImageIcon("./image/search.png"));
 		cerca.setFocusPainted(false);
 		cerca.setBorderPainted(false);
 		cerca.setBackground(blueSearchBar);
-				carica_materiale.setBounds(821, 5, 184, 28);
+				carica_materiale.setText("Carica materiale");
+				carica_materiale.setFont(new Font("Arial", Font.BOLD, 18));
+				carica_materiale.setForeground(Color.WHITE);
+				carica_materiale.setBounds(817, 5, 184, 28);
 				pannello_interno_ricerca.add(carica_materiale);
 				carica_materiale.setFocusPainted(false);
 				//prenota_digitalizzazione_2.setBorderPainted(false);
@@ -521,7 +514,8 @@ public class Home {
 		pannello_interno_servizi_esterni.setBackground(blueButtonUnpressed);
 		barra_servizi_esterni.add(pannello_interno_servizi_esterni);
 		pannello_interno_servizi_esterni.setLayout(null);
-		gestione_stampa.setBounds(4, 2, 334, 36);
+		gestione_stampa.setIcon(new ImageIcon("./newimage/gestione_stampa.png"));
+		gestione_stampa.setBounds(0, 2, 334, 36);
 		pannello_interno_servizi_esterni.add(gestione_stampa);
 		
 
@@ -543,16 +537,26 @@ public class Home {
 		gestione_stampa.setFocusPainted(false);
 		gestione_stampa.setBorderPainted(false);
 		gestione_stampa.setBackground(blueButtonUnpressed);
-		prenotazione_digitalizzazione.setBounds(340, 2, 334, 36);
+		prenotazione_digitalizzazione.setIcon(new ImageIcon("./newimage/prenota_digitalizzazione.png"));
+		prenotazione_digitalizzazione.setBounds(336, 2, 334, 36);
 		pannello_interno_servizi_esterni.add(prenotazione_digitalizzazione);
 		prenotazione_digitalizzazione.setFocusPainted(false);
 		prenotazione_digitalizzazione.setBorderPainted(false);
 		prenotazione_digitalizzazione.setBackground(blueButtonUnpressed);
-		prenotazione_libri.setBounds(676, 2, 334, 36);
+		prenotazione_libri.setIcon(new ImageIcon("./newimage/prenota_libri.png"));
+		prenotazione_libri.setBounds(672, 2, 334, 36);
 		pannello_interno_servizi_esterni.add(prenotazione_libri);
 		prenotazione_libri.setFocusPainted(false);
 		prenotazione_libri.setBorderPainted(false);
 		prenotazione_libri.setBackground(blueButtonUnpressed);
+		
+		pannello_contenuti.setBackground(Color.YELLOW);
+		pannello_contenuti.setBounds(0, 130, 1016, 386);
+		pannello_intero.add(pannello_contenuti);
+		pannello_contenuti.setLayout(null);
+		pannello_home.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		pannello_home.setBounds(50, 50, 50, 50);
+		pannello_contenuti.add(pannello_home);
 		prenotazione_libri.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -612,6 +616,30 @@ public class Home {
 		});
 		
 
+	}
+
+	protected static void pulsanteServiziEsterni() {
+		//resetta tutti i colori di pulsanti precedentemente selezionati
+		Home.resetMenuColors();
+
+		barra_servizi_esterni.setVisible(true);
+		barra_servizi_esterni.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+		barra_ricerca.setBounds(1, 91, pannello_intero.getWidth()-2, 38);		
+		pannello_contenuti.setBounds(1, 129, pannello_intero.getWidth()-2, pannello_intero.getHeight()-130);
+		pannello_home.setBounds(pannello_home.getBounds().x, pannello_home.getBounds().y, pannello_home.getBounds().width, pannello_intero.getHeight()-130);
+    	
+		
+	}
+
+	protected static void pulsantiNormali() {
+		//resetta tutti i colori di pulsanti precedentemente selezionati
+		Home.resetMenuColors();
+		Home.resetMenu2Colors();
+		
+		barra_servizi_esterni.setVisible(false);
+		barra_ricerca.setBounds(1, 53, pannello_intero.getWidth()-2, 38);
+		pannello_contenuti.setBounds(1, 91, pannello_intero.getWidth()-2, pannello_intero.getHeight()-92);
+		pannello_home.setBounds(pannello_home.getBounds().x, pannello_home.getBounds().y, pannello_home.getBounds().width, pannello_intero.getHeight()-92);
 	}
 
 	protected static void resetMenuColors() {
