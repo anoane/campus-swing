@@ -4,11 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,16 +17,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
-import java.awt.Canvas;
 import java.util.TreeMap;
 
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JTextPane;
-import javax.swing.JComboBox;
 
 public class Home {
 
@@ -86,6 +77,7 @@ public class Home {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Home window = new Home();
@@ -159,7 +151,8 @@ public class Home {
 		pannello_intero.setLayout(null);
 		
 		pannello_intero.addComponentListener(new ComponentListener() {
-	        public void componentResized(ComponentEvent e) {
+	        @Override
+			public void componentResized(ComponentEvent e) {
 	            //MIN_DIMENSION_X + 18 perchè 18 pixel sono per le barre laterali
 	        	int dimensione_fill_centro = ((pannello_intero.getWidth() - MIN_DIMENSION_X + 18) / 2);
 	        	barra_menu_principale.setBounds(1, 1, pannello_intero.getWidth()-2, 52);
@@ -182,9 +175,12 @@ public class Home {
 		        	
 	        	}
 	        }
-	        public void componentHidden(ComponentEvent arg0) {}
-	        public void componentMoved(ComponentEvent arg0) {}
-	        public void componentShown(ComponentEvent arg0) {}
+	        @Override
+			public void componentHidden(ComponentEvent arg0) {}
+	        @Override
+			public void componentMoved(ComponentEvent arg0) {}
+	        @Override
+			public void componentShown(ComponentEvent arg0) {}
 	    });
 		
 		//inizializzo i colori
@@ -223,6 +219,7 @@ public class Home {
 		home.setBounds(134, 0, 75, 52);
 		pannello_interno_menu_principale.add(home);
 		home.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
@@ -248,6 +245,7 @@ public class Home {
 				miei_documenti.setBounds(439, 0, 163, 52);
 				pannello_interno_menu_principale.add(miei_documenti);
 				miei_documenti.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent arg0) {
 					}
 				});
