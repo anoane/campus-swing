@@ -20,7 +20,13 @@ import javax.swing.border.LineBorder;
 import java.util.TreeMap;
 
 import javax.swing.JTextField;
-
+/**
+ * 
+ * Classe Home
+ * 
+ * classe mostro
+ *
+ */
 public class Home {
 
 	//TODO: parametrizzare TUTTO
