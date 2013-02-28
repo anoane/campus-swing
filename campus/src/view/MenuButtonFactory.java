@@ -46,7 +46,7 @@ public class MenuButtonFactory {
 	 * @wbp.factory
 	 * @wbp.factory.parameter.source background BLUE_BUTTON_UNPRESSED
 	 */
-	public JButton createJButton(String icon,final String controller,final String action) {
+	public MenuButton createMenuButton(String icon,final String controller,final String action) {
 		final MenuButton button = new MenuButton(icon);
 		
 		//Aggiungo il Listener
@@ -61,12 +61,8 @@ public class MenuButtonFactory {
 			}
 			@Override
 			public void mouseClicked(MouseEvent arg0){
-				if(button.isPressed() == 0){
-					RouterController.getInstance().doAction(controller, action);
-					button.pressButton();
-				}else{
-					button.resetButton();
-				}
+				RouterController.getInstance().doAction(controller, action);
+				button.pressButton();
 					
 			}
 		});
