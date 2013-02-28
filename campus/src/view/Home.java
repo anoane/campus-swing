@@ -1,3 +1,4 @@
+package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -30,7 +31,7 @@ import javax.swing.JTextField;
 public class Home {
 
 	//TODO: parametrizzare TUTTO
-	JFrame frame;
+	public JFrame frame;
 	
 	private final static JButton home = new JButton();
 	private final static JButton corsi_seguiti = new JButton();
@@ -75,25 +76,6 @@ public class Home {
 	private final static JPanel pannello_contenuti = new JPanel();
 	
 	private final static JPanel pannello_verticale = new JPanel();
-	
-	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Home window = new Home();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -239,6 +221,7 @@ public class Home {
 		corsi_seguiti.setBackground(BLUE_BUTTON_UNPRESSED);
 		corsi_seguiti.setFocusPainted(false);
 		corsi_seguiti.setBorderPainted(false);
+		
 		preferiti.setBounds(342, 0, 95, 52);
 		pannello_interno_menu_principale.add(preferiti);
 		preferiti.setIcon(new ImageIcon("./newimage/preferiti.png"));

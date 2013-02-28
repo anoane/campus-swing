@@ -1,5 +1,7 @@
 import java.awt.EventQueue;
 
+import view.Home;
+
 /**
  * 
  * @author mw

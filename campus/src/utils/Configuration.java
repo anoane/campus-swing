@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * @author mw
  *
  */
-public class Configuration extends TreeMap<String, String>{
+public class Configuration extends TreeMap<String, Object>{
 
 	/**
 	 *  serialVersionUID

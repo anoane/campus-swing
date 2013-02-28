@@ -1,13 +1,13 @@
 package view;
 
-import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+import controller.RouterController;
 
 /**
  * 
@@ -22,9 +22,6 @@ public class MenuButtonFactory {
 	 * 
 	 */
 	private static MenuButtonFactory instance;
-	
-	private Color released = new Color(67, 136, 204);
-	private Color pressed = new Color(67, 136, 204);
 	
 	/**
 	 * 
@@ -49,22 +46,28 @@ public class MenuButtonFactory {
 	 * @wbp.factory
 	 * @wbp.factory.parameter.source background BLUE_BUTTON_UNPRESSED
 	 */
-	public JButton createJButton() {
-		final JButton button = new JButton();
-		button.setIcon(new ImageIcon("./newimage/corsi_seguiti.png"));
-		button.setBackground(released);
-		button.setFocusPainted(false);
-		button.setBorderPainted(false);
+	public JButton createJButton(String icon,final String controller,final String action) {
+		final MenuButton button = new MenuButton(icon);
 		
 		//Aggiungo il Listener
-		button.addFocusListener(new FocusAdapter() {
+		button.addMouseListener(new MouseAdapter() {
 			@Override
-			public void focusGained(FocusEvent arg0) {
-				button.setBackground(pressed);
+			public void mouseEntered(MouseEvent arg0) {
+				
 			}
 			@Override
-			public void focusLost(FocusEvent arg0){
-				button.setBackground(released);
+			public void mouseExited(MouseEvent arg0){
+				
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0){
+				if(button.isPressed() == 0){
+					RouterController.getInstance().doAction(controller, action);
+					button.pressButton();
+				}else{
+					button.resetButton();
+				}
+					
 			}
 		});
 		
