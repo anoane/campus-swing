@@ -21,6 +21,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.SpringLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Home {
 
@@ -76,6 +82,7 @@ public class Home {
 	// private final static JPanel drawingPane = new JPanel();
 	private final static JScrollPane scroller = new JScrollPane(
 			pannello_verticale);
+	private final JPanel pagina_home = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -598,21 +605,37 @@ public class Home {
 		prenotazione_libri.setBackground(BLUE_BUTTON_UNPRESSED);
 
 		pannello_contenuti.setBackground(Color.LIGHT_GRAY);
-		pannello_contenuti.setBounds(0, 130, MIN_DIMENSION_X - 8, 386);
+		pannello_contenuti.setBounds(0, 130, 1004, 386);
 		pannello_intero.add(pannello_contenuti);
 		pannello_contenuti.setLayout(null);
 		pannello_verticale.setBackground(Color.WHITE);
 
 		pannello_verticale.setForeground(Color.BLACK);
-		pannello_verticale.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		scroller.setSize(1004, 386);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		// drawingPane.setBackground(Color.black);
-
-		scroller.setSize(1016, 386);
-		scroller.setPreferredSize(new Dimension(200, 200));
+		scroller.setViewportView(pannello_verticale);
+		GroupLayout gl_pannello_verticale = new GroupLayout(pannello_verticale);
+		gl_pannello_verticale.setHorizontalGroup(
+			gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannello_verticale.createSequentialGroup()
+					.addComponent(pagina_home, GroupLayout.PREFERRED_SIZE, 988, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(19, Short.MAX_VALUE))
+		);
+		gl_pannello_verticale.setVerticalGroup(
+			gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannello_verticale.createSequentialGroup()
+					.addComponent(pagina_home, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(76, Short.MAX_VALUE))
+		);
+		
+		JLabel lblHome = new JLabel("HOME");
+		pagina_home.add(lblHome);
+		pannello_verticale.setLayout(gl_pannello_verticale);
+		//scroller.setPreferredSize(new Dimension(200, 200));
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
-
+		
 		prenotazione_libri.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
