@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +35,7 @@ import javax.swing.SwingConstants;
 public class Home {
 
 	// TODO: parametrizzare TUTTO
-	JFrame frame;
+	static JFrame frame;
 
 	private final static JButton home = new JButton();
 	private final static JButton corsi_seguiti = new JButton();
@@ -90,11 +91,12 @@ public class Home {
 	private final JSeparator separator_1 = new JSeparator();
 	private final JLabel lblIMieiDocumenti = new JLabel("I miei documenti recenti");
 	private final JSeparator separator_2 = new JSeparator();
-	private final JSeparator separator_3 = new JSeparator();
-	private final JSeparator separator_4 = new JSeparator();
+	private final static JSeparator separator_3 = new JSeparator();
+	private final static JSeparator separator_4 = new JSeparator();
 	private final JSeparator separator_5 = new JSeparator();
 	private final JSeparator separator_6 = new JSeparator();
-
+	private final static JPanel pagina_home_bottom = new JPanel();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -169,51 +171,10 @@ public class Home {
 		pannello_intero.addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				// MIN_DIMENSION_X + 18 perchè 18 pixel sono per le barre
-				// laterali
-				int dimensione_fill_centro = ((pannello_intero.getWidth()
-						- MIN_DIMENSION_X + 18) / 2);
-				barra_menu_principale.setBounds(1, 1,
-						pannello_intero.getWidth() - 2, 52);
-				pannello_interno_menu_principale.setBounds(
-						dimensione_fill_centro, 0,
-						pannello_intero.getWidth() + 2, 52);
-				if (barra_servizi_esterni.isVisible()) {
-					barra_ricerca.setBounds(1, 91,
-							pannello_intero.getWidth() - 2, 38);
-					barra_servizi_esterni.setBounds(1, 53,
-							pannello_intero.getWidth() - 2, 38);
-					pannello_contenuti.setBounds(1, 129,
-							pannello_intero.getWidth() - 2,
-							pannello_intero.getHeight() - 130);
-					pannello_interno_servizi_esterni
-							.setBounds(dimensione_fill_centro, 0,
-									MIN_DIMENSION_X - 18, 38);
-					pannello_interno_ricerca.setBounds(dimensione_fill_centro,
-							0, MIN_DIMENSION_X - 18, 38);
-					scroller.setBounds(dimensione_fill_centro-1, 0,
-							MIN_DIMENSION_X - 18,
-							pannello_intero.getHeight() - 130);
-
-					// pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro,
-					// 0, pannello_intero.getWidth()+2, 38);
-				} else {
-					barra_ricerca.setBounds(1, 53,
-							pannello_intero.getWidth() - 2, 38);
-					pannello_contenuti.setBounds(1, 91,
-							pannello_intero.getWidth() - 2,
-							pannello_intero.getHeight() - 92);
-					pannello_interno_servizi_esterni
-							.setBounds(dimensione_fill_centro, 0,
-									MIN_DIMENSION_X - 18, 38);
-					pannello_interno_ricerca.setBounds(dimensione_fill_centro,
-							0, MIN_DIMENSION_X - 18, 38);
-					scroller.setBounds(dimensione_fill_centro-1, 0,
-							MIN_DIMENSION_X - 18,
-							pannello_intero.getHeight() - 92);
-
-				}
+				Home.spaghettiResize();
 			}
+
+
 
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
@@ -672,26 +633,25 @@ public class Home {
 		pagina_home.add(separator_2);
 		separator_3.setOrientation(SwingConstants.VERTICAL);
 		separator_3.setForeground(new Color(27, 50, 128));
-		separator_3.setBounds(330, 48, 1, 200);
+		separator_3.setBounds(330, 48, 1, 198);
 		
 		pagina_home.add(separator_3);
 		separator_4.setOrientation(SwingConstants.VERTICAL);
 		separator_4.setForeground(new Color(27, 50, 128));
-		separator_4.setBounds(660, 48, 1, 200);
+		separator_4.setBounds(660, 48, 1, 198);
 		
 		pagina_home.add(separator_4);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(46,93,140));
-		panel.setBounds(0, 266, 1008, 163);
-		pagina_home.add(panel);
-		panel.setLayout(null);
+		pagina_home_bottom.setBackground(new Color(46,93,140));
+		pagina_home_bottom.setBounds(0, 266, 1008, 163);
+		pagina_home.add(pagina_home_bottom);
+		pagina_home_bottom.setLayout(null);
 		separator_5.setBounds(330, 20, 1, 163);
-		panel.add(separator_5);
+		pagina_home_bottom.add(separator_5);
 		separator_5.setOrientation(SwingConstants.VERTICAL);
 		separator_5.setForeground(Color.WHITE);
 		separator_6.setBounds(660, 20, 1, 163);
-		panel.add(separator_6);
+		pagina_home_bottom.add(separator_6);
 		separator_6.setOrientation(SwingConstants.VERTICAL);
 		separator_6.setForeground(Color.WHITE);
 		pannello_verticale.setLayout(gl_pannello_verticale);
@@ -773,19 +733,97 @@ public class Home {
 
 	}
 
+	protected static void spaghettiResize() {
+		    // TODO Auto-generated method stub
+			// MIN_DIMENSION_X + 18 perchè 18 pixel sono per le barre
+			// laterali
+			int dimensione_fill_centro = ((pannello_intero.getWidth()
+					- MIN_DIMENSION_X + 18) / 2);
+			int dimensione_fill_home_bottom = (pannello_intero.getHeight()
+					- MIN_DIMENSION_Y);
+			barra_menu_principale.setBounds(1, 1,
+					pannello_intero.getWidth() - 2, 52);
+			pannello_interno_menu_principale.setBounds(
+					dimensione_fill_centro, 0,
+					pannello_intero.getWidth() + 2, 52);
+			if (barra_servizi_esterni.isVisible()) {
+				barra_ricerca.setBounds(1, 91,
+						pannello_intero.getWidth() - 2, 38);
+				barra_servizi_esterni.setBounds(1, 53,
+						pannello_intero.getWidth() - 2, 38);
+				pannello_contenuti.setBounds(1, 129,
+						pannello_intero.getWidth() - 2,
+						pannello_intero.getHeight() - 130);
+				pannello_interno_servizi_esterni
+						.setBounds(dimensione_fill_centro, 0,
+								MIN_DIMENSION_X - 18, 38);
+				pannello_interno_ricerca.setBounds(dimensione_fill_centro,
+						0, MIN_DIMENSION_X - 18, 38);
+				scroller.setBounds(dimensione_fill_centro-1, 0,
+						MIN_DIMENSION_X - 18,
+						pannello_intero.getHeight() - 130);
+				if (pagina_home_bottom.isEnabled()) {
+					pagina_home_bottom.setBounds(0, dimensione_fill_home_bottom+305-38,
+							pagina_home_bottom.getWidth(),
+							pagina_home_bottom.getHeight());
+					separator_3.setBounds(330, 48, 1, dimensione_fill_home_bottom+198);
+					separator_4.setBounds(660, 48, 1, dimensione_fill_home_bottom+198);
+					
+				}
+
+
+				// pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro,
+				// 0, pannello_intero.getWidth()+2, 38);
+			} else {
+				barra_ricerca.setBounds(1, 53,
+						pannello_intero.getWidth() - 2, 38);
+				pannello_contenuti.setBounds(1, 91,
+						pannello_intero.getWidth() - 2,
+						pannello_intero.getHeight() - 92);
+				pannello_interno_servizi_esterni
+						.setBounds(dimensione_fill_centro, 0,
+								MIN_DIMENSION_X - 18, 38);
+				pannello_interno_ricerca.setBounds(dimensione_fill_centro,
+						0, MIN_DIMENSION_X - 18, 38);
+				scroller.setBounds(dimensione_fill_centro-1, 0,
+						MIN_DIMENSION_X - 18,
+						pannello_intero.getHeight() - 92);
+				if (pagina_home_bottom.isEnabled()) {
+					pagina_home_bottom.setBounds(0, dimensione_fill_home_bottom+305,
+							pagina_home_bottom.getWidth(),
+							pagina_home_bottom.getHeight());
+					separator_3.setBounds(330, 48, 1, dimensione_fill_home_bottom+198+38);
+					separator_4.setBounds(660, 48, 1, dimensione_fill_home_bottom+198+38);
+					
+				}
+
+
+			}
+		
+	}
+
 	protected static void pulsanteServiziEsterni() {
 		// resetta tutti i colori di pulsanti precedentemente selezionati
 		Home.resetMenuColors();
 
 		barra_servizi_esterni.setVisible(true);
-		barra_servizi_esterni.setBounds(1, 53, pannello_intero.getWidth() - 2,
+		/*barra_servizi_esterni.setBounds(1, 53, pannello_intero.getWidth() - 2,
 				38);
 		barra_ricerca.setBounds(1, 91, pannello_intero.getWidth() - 2, 38);
 		pannello_contenuti.setBounds(1, 129, pannello_intero.getWidth() - 2,
 				pannello_intero.getHeight() - 130);
 		scroller.setBounds(scroller.getBounds().x, scroller.getBounds().y,
-				scroller.getBounds().width, pannello_intero.getHeight() - 130);
+				scroller.getBounds().width, pannello_intero.getHeight() - 130);*/
+		forceResizeEvent();
 
+
+	}
+
+	private static void forceResizeEvent() {
+		Rectangle old_rect = frame.getBounds();
+		frame.setBounds((int)frame.getBounds().getX(),(int)frame.getBounds().getY(),(int)frame.getBounds().getWidth(),(int)frame.getBounds().getHeight()-1);
+		frame.revalidate();
+		frame.setBounds(old_rect);
 	}
 
 	protected static void pulsantiNormali() {
@@ -794,11 +832,14 @@ public class Home {
 		Home.resetMenu2Colors();
 
 		barra_servizi_esterni.setVisible(false);
-		barra_ricerca.setBounds(1, 53, pannello_intero.getWidth() - 2, 38);
+		/*barra_ricerca.setBounds(1, 53, pannello_intero.getWidth() - 2, 38);
 		pannello_contenuti.setBounds(1, 91, pannello_intero.getWidth() - 2,
 				pannello_intero.getHeight() - 92);
 		scroller.setBounds(scroller.getBounds().x, scroller.getBounds().y,
-				scroller.getBounds().width, pannello_intero.getHeight() - 92);
+				scroller.getBounds().width, pannello_intero.getHeight() - 92);*/
+		
+		forceResizeEvent();
+
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
