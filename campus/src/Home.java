@@ -96,6 +96,7 @@ public class Home {
 	private final JSeparator separator_5 = new JSeparator();
 	private final JSeparator separator_6 = new JSeparator();
 	private final static JPanel pagina_home_bottom = new JPanel();
+	private final JPanel ordini_stampa_3 = new JPanel();
 	
 	/**
 	 * Launch the application.
@@ -605,7 +606,7 @@ public class Home {
 		
 		JLabel lblHome = new JLabel("Ultimi corsi seguiti");
 		lblHome.setForeground(new Color(6,121,159));
-		lblHome.setBounds(10, 11, 200, 25);
+		lblHome.setBounds(10, 10, 200, 25);
 		lblHome.setFont(new Font("Arial", Font.BOLD, 20));
 		pagina_home.add(lblHome);
 		
@@ -615,7 +616,7 @@ public class Home {
 		pagina_home.add(separator);
 		lblPreferitiRecenti.setForeground(new Color(6, 121, 159));
 		lblPreferitiRecenti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblPreferitiRecenti.setBounds(350, 11, 200, 25);
+		lblPreferitiRecenti.setBounds(350, 10, 200, 25);
 		
 		pagina_home.add(lblPreferitiRecenti);
 		separator_1.setForeground(new Color(27, 50, 128));
@@ -624,7 +625,7 @@ public class Home {
 		pagina_home.add(separator_1);
 		lblIMieiDocumenti.setForeground(new Color(6, 121, 159));
 		lblIMieiDocumenti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIMieiDocumenti.setBounds(680, 12, 270, 25);
+		lblIMieiDocumenti.setBounds(680, 10, 270, 25);
 		
 		pagina_home.add(lblIMieiDocumenti);
 		separator_2.setForeground(new Color(27, 50, 128));
@@ -654,6 +655,43 @@ public class Home {
 		pagina_home_bottom.add(separator_6);
 		separator_6.setOrientation(SwingConstants.VERTICAL);
 		separator_6.setForeground(Color.WHITE);
+		
+		JLabel lblOrdiniStampa = new JLabel("Ordini stampa");
+		lblOrdiniStampa.setForeground(Color.WHITE);
+		lblOrdiniStampa.setFont(new Font("Arial", Font.BOLD, 20));
+		lblOrdiniStampa.setBounds(10, 10, 200, 25);
+		pagina_home_bottom.add(lblOrdiniStampa);
+		
+		JLabel lblClassificaUtenti = new JLabel("Classifica utenti");
+		lblClassificaUtenti.setForeground(Color.WHITE);
+		lblClassificaUtenti.setFont(new Font("Arial", Font.BOLD, 20));
+		lblClassificaUtenti.setBounds(670, 10, 273, 25);
+		pagina_home_bottom.add(lblClassificaUtenti);
+		
+		JLabel lblOrdiniDigitalizzazione = new JLabel("Ordini digitalizzazione");
+		lblOrdiniDigitalizzazione.setForeground(Color.WHITE);
+		lblOrdiniDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 20));
+		lblOrdiniDigitalizzazione.setBounds(340, 10, 263, 25);
+		pagina_home_bottom.add(lblOrdiniDigitalizzazione);
+		
+		JPanel ordini_stampa_1 = new JPanel();
+		ordini_stampa_1.setBounds(10, 40, 310, 31);
+		pagina_home_bottom.add(ordini_stampa_1);
+		
+		JPanel ordini_stampa_2 = new JPanel();
+		ordini_stampa_2.setBounds(10, 81, 310, 31);
+		pagina_home_bottom.add(ordini_stampa_2);
+		ordini_stampa_3.setBounds(10, 122, 310, 31);
+		
+		pagina_home_bottom.add(ordini_stampa_3);
+		
+		JPanel home_corso_seguito_1 = new JPanel();
+		home_corso_seguito_1.setBounds(10, 52, 310, 97);
+		pagina_home.add(home_corso_seguito_1);
+		
+		JPanel home_corso_seguito_2 = new JPanel();
+		home_corso_seguito_2.setBounds(10, 159, 310, 97);
+		pagina_home.add(home_corso_seguito_2);
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		//scroller.setPreferredSize(new Dimension(200, 200));
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
