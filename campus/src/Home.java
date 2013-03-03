@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.TreeMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,6 +28,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.SpringLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class Home {
 
@@ -83,6 +86,14 @@ public class Home {
 	private final static JScrollPane scroller = new JScrollPane(
 			pannello_verticale);
 	private final JPanel pagina_home = new JPanel();
+	private final JLabel lblPreferitiRecenti = new JLabel("Preferiti recenti");
+	private final JSeparator separator_1 = new JSeparator();
+	private final JLabel lblIMieiDocumenti = new JLabel("I miei documenti recenti");
+	private final JSeparator separator_2 = new JSeparator();
+	private final JSeparator separator_3 = new JSeparator();
+	private final JSeparator separator_4 = new JSeparator();
+	private final JSeparator separator_5 = new JSeparator();
+	private final JSeparator separator_6 = new JSeparator();
 
 	/**
 	 * Launch the application.
@@ -180,7 +191,7 @@ public class Home {
 									MIN_DIMENSION_X - 18, 38);
 					pannello_interno_ricerca.setBounds(dimensione_fill_centro,
 							0, MIN_DIMENSION_X - 18, 38);
-					scroller.setBounds(dimensione_fill_centro, 0,
+					scroller.setBounds(dimensione_fill_centro-1, 0,
 							MIN_DIMENSION_X - 18,
 							pannello_intero.getHeight() - 130);
 
@@ -197,7 +208,7 @@ public class Home {
 									MIN_DIMENSION_X - 18, 38);
 					pannello_interno_ricerca.setBounds(dimensione_fill_centro,
 							0, MIN_DIMENSION_X - 18, 38);
-					scroller.setBounds(dimensione_fill_centro, 0,
+					scroller.setBounds(dimensione_fill_centro-1, 0,
 							MIN_DIMENSION_X - 18,
 							pannello_intero.getHeight() - 92);
 
@@ -603,35 +614,86 @@ public class Home {
 		prenotazione_libri.setFocusPainted(false);
 		prenotazione_libri.setBorderPainted(false);
 		prenotazione_libri.setBackground(BLUE_BUTTON_UNPRESSED);
+		pannello_contenuti.setBorder(null);
 
 		pannello_contenuti.setBackground(Color.LIGHT_GRAY);
 		pannello_contenuti.setBounds(0, 130, 1004, 386);
 		pannello_intero.add(pannello_contenuti);
 		pannello_contenuti.setLayout(null);
+		pannello_verticale.setBorder(null);
 		pannello_verticale.setBackground(Color.WHITE);
 
 		pannello_verticale.setForeground(Color.BLACK);
+		scroller.setLocation(0, 0);
 		scroller.setSize(1004, 386);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
+		scroller.setBorder(BorderFactory.createEmptyBorder());
 		// drawingPane.setBackground(Color.black);
 		scroller.setViewportView(pannello_verticale);
 		GroupLayout gl_pannello_verticale = new GroupLayout(pannello_verticale);
 		gl_pannello_verticale.setHorizontalGroup(
 			gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannello_verticale.createSequentialGroup()
-					.addComponent(pagina_home, GroupLayout.PREFERRED_SIZE, 988, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(19, Short.MAX_VALUE))
+				.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
 		);
 		gl_pannello_verticale.setVerticalGroup(
 			gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannello_verticale.createSequentialGroup()
-					.addComponent(pagina_home, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(76, Short.MAX_VALUE))
+				.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
 		);
+		pagina_home.setBackground(Color.WHITE);
+		pagina_home.setLayout(null);
 		
-		JLabel lblHome = new JLabel("HOME");
+		JLabel lblHome = new JLabel("Ultimi corsi seguiti");
+		lblHome.setForeground(new Color(6,121,159));
+		lblHome.setBounds(10, 11, 200, 25);
+		lblHome.setFont(new Font("Arial", Font.BOLD, 20));
 		pagina_home.add(lblHome);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(27,50,128));
+		separator.setBounds(0, 41, 170, 1);
+		pagina_home.add(separator);
+		lblPreferitiRecenti.setForeground(new Color(6, 121, 159));
+		lblPreferitiRecenti.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPreferitiRecenti.setBounds(350, 11, 200, 25);
+		
+		pagina_home.add(lblPreferitiRecenti);
+		separator_1.setForeground(new Color(27, 50, 128));
+		separator_1.setBounds(340, 41, 170, 1);
+		
+		pagina_home.add(separator_1);
+		lblIMieiDocumenti.setForeground(new Color(6, 121, 159));
+		lblIMieiDocumenti.setFont(new Font("Arial", Font.BOLD, 20));
+		lblIMieiDocumenti.setBounds(680, 12, 270, 25);
+		
+		pagina_home.add(lblIMieiDocumenti);
+		separator_2.setForeground(new Color(27, 50, 128));
+		separator_2.setBounds(670, 41, 170, 1);
+		
+		pagina_home.add(separator_2);
+		separator_3.setOrientation(SwingConstants.VERTICAL);
+		separator_3.setForeground(new Color(27, 50, 128));
+		separator_3.setBounds(330, 48, 1, 200);
+		
+		pagina_home.add(separator_3);
+		separator_4.setOrientation(SwingConstants.VERTICAL);
+		separator_4.setForeground(new Color(27, 50, 128));
+		separator_4.setBounds(660, 48, 1, 200);
+		
+		pagina_home.add(separator_4);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(46,93,140));
+		panel.setBounds(0, 266, 1008, 163);
+		pagina_home.add(panel);
+		panel.setLayout(null);
+		separator_5.setBounds(330, 20, 1, 163);
+		panel.add(separator_5);
+		separator_5.setOrientation(SwingConstants.VERTICAL);
+		separator_5.setForeground(Color.WHITE);
+		separator_6.setBounds(660, 20, 1, 163);
+		panel.add(separator_6);
+		separator_6.setOrientation(SwingConstants.VERTICAL);
+		separator_6.setForeground(Color.WHITE);
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		//scroller.setPreferredSize(new Dimension(200, 200));
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
