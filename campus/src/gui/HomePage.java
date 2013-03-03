@@ -23,7 +23,8 @@ public class HomePage extends JPanel {
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
 	private static String array = "prova";
-
+	private final static JLabel label_6 = new JLabel("new label");
+	
 	
 	public static String getHomeBottomText() {
 		//String[] = loadStringsbalablala();
@@ -37,7 +38,7 @@ public class HomePage extends JPanel {
 	}
 	
 	public static void reload() {
-
+		label_6.setText(getHomeBottomText());
 	}
 
 	/**
@@ -164,7 +165,6 @@ public class HomePage extends JPanel {
 		panel_2.setBounds(10, 40, 310, 31);
 		panel_1.add(panel_2);
 		
-		JLabel label_6 = new JLabel(getHomeBottomText());
 		panel_2.add(label_6);
 		
 		JPanel panel_3 = new JPanel();
@@ -208,5 +208,7 @@ public class HomePage extends JPanel {
 		lblAdattativa.setBounds(364, 168, 170, 14);
 		panel.add(lblAdattativa);
 
+		
+		reload();
 	}
 }

@@ -582,10 +582,11 @@ public class Home {
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
 					.addComponent(pagina_home, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
 			);
-			gl_pannello_verticale.setVerticalGroup(
+		gl_pannello_verticale.setVerticalGroup(
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
 					.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
 			);
+		HomePage.reload();
 	}
 	
 	private static void loadCorsiSeguiti() {
@@ -593,18 +594,11 @@ public class Home {
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
 					.addComponent(pagina_corsi_seguiti, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
 			);
-			gl_pannello_verticale.setVerticalGroup(
+		gl_pannello_verticale.setVerticalGroup(
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
 					.addComponent(pagina_corsi_seguiti, GroupLayout.PREFERRED_SIZE, 1529, GroupLayout.PREFERRED_SIZE)
-			);/*
-		gl_pannello_verticale.setHorizontalGroup(
-				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-					.addComponent(pagina_corsi_seguiti, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
 			);
-			gl_pannello_verticale.setVerticalGroup(
-				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-					.addComponent(pagina_corsi_seguiti, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)
-			);*/
+		CorsiSeguiti.reload();
 	}
 
 	protected static void spaghettiResize() {
