@@ -1,5 +1,6 @@
 package main;
 
+import gui.CorsiSeguiti;
 import gui.HomePage;
 
 import java.awt.BorderLayout;
@@ -89,6 +90,7 @@ public class Home {
 
 	private final static JPanel pannello_verticale = new JPanel();
 	private final static JPanel pagina_home = new HomePage();
+	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
 	
 	private final static GroupLayout gl_pannello_verticale = new GroupLayout(pannello_verticale);
 
@@ -442,7 +444,8 @@ public class Home {
 			public void mouseClicked(MouseEvent e) {
 
 				Home.pulsantiNormali();
-				
+				loadCorsiSeguiti();
+				pagina_corsi_seguiti.setVisible(true);
 				// assegna il colore di pulsante selezionato
 				setOldButtonColor("corsi_seguiti", BLUE_BUTTON_PRESSED);
 				corsi_seguiti.setBackground(BLUE_BUTTON_PRESSED);
@@ -464,7 +467,7 @@ public class Home {
 			public void mouseClicked(MouseEvent e) {
 
 				Home.pulsantiNormali();
-				//TODO:controllaHome.reloadHome();
+				loadHome();
 				pagina_home.setVisible(true);
 				// assegna il colore di pulsante selezionato
 				setOldButtonColor("home", BLUE_BUTTON_PRESSED);
@@ -589,7 +592,7 @@ public class Home {
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
 		
 
-		Home.loadPages();
+		Home.loadHome();
 		
 		
 		
@@ -669,7 +672,7 @@ public class Home {
 
 	}
 	
-	private static void loadPages() {
+	private static void loadHome() {
 		gl_pannello_verticale.setHorizontalGroup(
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
 					.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
@@ -677,7 +680,18 @@ public class Home {
 		gl_pannello_verticale.setVerticalGroup(
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
 					.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-			);	
+			);
+	}
+	
+	private static void loadCorsiSeguiti() {
+		gl_pannello_verticale.setHorizontalGroup(
+				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
+					.addComponent(pagina_corsi_seguiti, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+			);
+		gl_pannello_verticale.setVerticalGroup(
+				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
+					.addComponent(pagina_corsi_seguiti, GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+			);
 	}
 
 
@@ -754,6 +768,7 @@ public class Home {
 
 	private static void resetPagina() {
 		pagina_home.setVisible(false);
+		pagina_corsi_seguiti.setVisible(false);
 		
 	}
 
