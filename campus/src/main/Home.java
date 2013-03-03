@@ -1,3 +1,7 @@
+package main;
+
+import gui.HomePage;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,6 +35,8 @@ import javax.swing.SpringLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+import controller.Controller;
 
 public class Home {
 
@@ -82,33 +88,18 @@ public class Home {
 	private final static JPanel pannello_contenuti = new JPanel();
 
 	private final static JPanel pannello_verticale = new JPanel();
+	private final static JPanel pagina_home = new HomePage();
+	
+	private final static GroupLayout gl_pannello_verticale = new GroupLayout(pannello_verticale);
+
 
 	// private final static JPanel drawingPane = new JPanel();
 	private final static JScrollPane scroller = new JScrollPane(
 			pannello_verticale);
-	private final JPanel pagina_home = new JPanel();
-	private final JLabel lblPreferitiRecenti = new JLabel("Preferiti recenti");
-	private final JSeparator separator_1 = new JSeparator();
-	private final JLabel lblIMieiDocumenti = new JLabel("I miei documenti recenti");
-	private final JSeparator separator_2 = new JSeparator();
-	private final static JSeparator separator_3 = new JSeparator();
-	private final static JSeparator separator_4 = new JSeparator();
-	private final JSeparator separator_5 = new JSeparator();
-	private final JSeparator separator_6 = new JSeparator();
-	private final static JPanel pagina_home_bottom = new JPanel();
-	private final JPanel ordini_stampa_3 = new JPanel();
+
 	
-	/**
-	 * Launch the application.
-	 */
-	/*
-	 * public static void main(String[] args) { EventQueue.invokeLater(new
-	 * Runnable() {
-	 * 
-	 * @Override public void run() { try { Home window = new Home();
-	 * window.frame.setVisible(true); } catch (Exception e) {
-	 * e.printStackTrace(); } } }); }
-	 */
+	
+
 	/**
 	 * Create the application.
 	 */
@@ -174,8 +165,6 @@ public class Home {
 			public void componentResized(ComponentEvent e) {
 				Home.spaghettiResize();
 			}
-
-
 
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
@@ -453,7 +442,7 @@ public class Home {
 			public void mouseClicked(MouseEvent e) {
 
 				Home.pulsantiNormali();
-
+				
 				// assegna il colore di pulsante selezionato
 				setOldButtonColor("corsi_seguiti", BLUE_BUTTON_PRESSED);
 				corsi_seguiti.setBackground(BLUE_BUTTON_PRESSED);
@@ -475,7 +464,8 @@ public class Home {
 			public void mouseClicked(MouseEvent e) {
 
 				Home.pulsantiNormali();
-
+				//TODO:controllaHome.reloadHome();
+				pagina_home.setVisible(true);
 				// assegna il colore di pulsante selezionato
 				setOldButtonColor("home", BLUE_BUTTON_PRESSED);
 				home.setBackground(BLUE_BUTTON_PRESSED);
@@ -592,109 +582,17 @@ public class Home {
 		scroller.setBorder(BorderFactory.createEmptyBorder());
 		// drawingPane.setBackground(Color.black);
 		scroller.setViewportView(pannello_verticale);
-		GroupLayout gl_pannello_verticale = new GroupLayout(pannello_verticale);
-		gl_pannello_verticale.setHorizontalGroup(
-			gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-				.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
-		);
-		gl_pannello_verticale.setVerticalGroup(
-			gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-				.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-		);
-		pagina_home.setBackground(Color.WHITE);
-		pagina_home.setLayout(null);
 		
-		JLabel lblHome = new JLabel("Ultimi corsi seguiti");
-		lblHome.setForeground(new Color(6,121,159));
-		lblHome.setBounds(10, 10, 200, 25);
-		lblHome.setFont(new Font("Arial", Font.BOLD, 20));
-		pagina_home.add(lblHome);
 		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(27,50,128));
-		separator.setBounds(0, 41, 170, 1);
-		pagina_home.add(separator);
-		lblPreferitiRecenti.setForeground(new Color(6, 121, 159));
-		lblPreferitiRecenti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblPreferitiRecenti.setBounds(350, 10, 200, 25);
-		
-		pagina_home.add(lblPreferitiRecenti);
-		separator_1.setForeground(new Color(27, 50, 128));
-		separator_1.setBounds(340, 41, 170, 1);
-		
-		pagina_home.add(separator_1);
-		lblIMieiDocumenti.setForeground(new Color(6, 121, 159));
-		lblIMieiDocumenti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIMieiDocumenti.setBounds(680, 10, 270, 25);
-		
-		pagina_home.add(lblIMieiDocumenti);
-		separator_2.setForeground(new Color(27, 50, 128));
-		separator_2.setBounds(670, 41, 170, 1);
-		
-		pagina_home.add(separator_2);
-		separator_3.setOrientation(SwingConstants.VERTICAL);
-		separator_3.setForeground(new Color(27, 50, 128));
-		separator_3.setBounds(330, 48, 1, 198);
-		
-		pagina_home.add(separator_3);
-		separator_4.setOrientation(SwingConstants.VERTICAL);
-		separator_4.setForeground(new Color(27, 50, 128));
-		separator_4.setBounds(660, 48, 1, 198);
-		
-		pagina_home.add(separator_4);
-		
-		pagina_home_bottom.setBackground(new Color(46,93,140));
-		pagina_home_bottom.setBounds(0, 266, 1008, 163);
-		pagina_home.add(pagina_home_bottom);
-		pagina_home_bottom.setLayout(null);
-		separator_5.setBounds(330, 20, 1, 163);
-		pagina_home_bottom.add(separator_5);
-		separator_5.setOrientation(SwingConstants.VERTICAL);
-		separator_5.setForeground(Color.WHITE);
-		separator_6.setBounds(660, 20, 1, 163);
-		pagina_home_bottom.add(separator_6);
-		separator_6.setOrientation(SwingConstants.VERTICAL);
-		separator_6.setForeground(Color.WHITE);
-		
-		JLabel lblOrdiniStampa = new JLabel("Ordini stampa");
-		lblOrdiniStampa.setForeground(Color.WHITE);
-		lblOrdiniStampa.setFont(new Font("Arial", Font.BOLD, 20));
-		lblOrdiniStampa.setBounds(10, 10, 200, 25);
-		pagina_home_bottom.add(lblOrdiniStampa);
-		
-		JLabel lblClassificaUtenti = new JLabel("Classifica utenti");
-		lblClassificaUtenti.setForeground(Color.WHITE);
-		lblClassificaUtenti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblClassificaUtenti.setBounds(670, 10, 273, 25);
-		pagina_home_bottom.add(lblClassificaUtenti);
-		
-		JLabel lblOrdiniDigitalizzazione = new JLabel("Ordini digitalizzazione");
-		lblOrdiniDigitalizzazione.setForeground(Color.WHITE);
-		lblOrdiniDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 20));
-		lblOrdiniDigitalizzazione.setBounds(340, 10, 263, 25);
-		pagina_home_bottom.add(lblOrdiniDigitalizzazione);
-		
-		JPanel ordini_stampa_1 = new JPanel();
-		ordini_stampa_1.setBounds(10, 40, 310, 31);
-		pagina_home_bottom.add(ordini_stampa_1);
-		
-		JPanel ordini_stampa_2 = new JPanel();
-		ordini_stampa_2.setBounds(10, 81, 310, 31);
-		pagina_home_bottom.add(ordini_stampa_2);
-		ordini_stampa_3.setBounds(10, 122, 310, 31);
-		
-		pagina_home_bottom.add(ordini_stampa_3);
-		
-		JPanel home_corso_seguito_1 = new JPanel();
-		home_corso_seguito_1.setBounds(10, 52, 310, 97);
-		pagina_home.add(home_corso_seguito_1);
-		
-		JPanel home_corso_seguito_2 = new JPanel();
-		home_corso_seguito_2.setBounds(10, 159, 310, 97);
-		pagina_home.add(home_corso_seguito_2);
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		//scroller.setPreferredSize(new Dimension(200, 200));
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
+		
+
+		Home.loadPages();
+		
+		
+		
 		
 		prenotazione_libri.addMouseListener(new MouseAdapter() {
 			@Override
@@ -770,15 +668,24 @@ public class Home {
 		});
 
 	}
+	
+	private static void loadPages() {
+		gl_pannello_verticale.setHorizontalGroup(
+				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
+					.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+			);
+		gl_pannello_verticale.setVerticalGroup(
+				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
+					.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+			);	
+	}
+
 
 	protected static void spaghettiResize() {
-		    // TODO Auto-generated method stub
-			// MIN_DIMENSION_X + 18 perchè 18 pixel sono per le barre
+		    // MIN_DIMENSION_X + 18 perchè 18 pixel sono per le barre
 			// laterali
 			int dimensione_fill_centro = ((pannello_intero.getWidth()
 					- MIN_DIMENSION_X + 18) / 2);
-			int dimensione_fill_home_bottom = (pannello_intero.getHeight()
-					- MIN_DIMENSION_Y);
 			barra_menu_principale.setBounds(1, 1,
 					pannello_intero.getWidth() - 2, 52);
 			pannello_interno_menu_principale.setBounds(
@@ -800,18 +707,6 @@ public class Home {
 				scroller.setBounds(dimensione_fill_centro-1, 0,
 						MIN_DIMENSION_X - 18,
 						pannello_intero.getHeight() - 130);
-				if (pagina_home_bottom.isEnabled()) {
-					pagina_home_bottom.setBounds(0, dimensione_fill_home_bottom+305-38,
-							pagina_home_bottom.getWidth(),
-							pagina_home_bottom.getHeight());
-					separator_3.setBounds(330, 48, 1, dimensione_fill_home_bottom+198);
-					separator_4.setBounds(660, 48, 1, dimensione_fill_home_bottom+198);
-					
-				}
-
-
-				// pannello_interno_servizi_esterni.setBounds(dimensione_fill_centro,
-				// 0, pannello_intero.getWidth()+2, 38);
 			} else {
 				barra_ricerca.setBounds(1, 53,
 						pannello_intero.getWidth() - 2, 38);
@@ -826,34 +721,16 @@ public class Home {
 				scroller.setBounds(dimensione_fill_centro-1, 0,
 						MIN_DIMENSION_X - 18,
 						pannello_intero.getHeight() - 92);
-				if (pagina_home_bottom.isEnabled()) {
-					pagina_home_bottom.setBounds(0, dimensione_fill_home_bottom+305,
-							pagina_home_bottom.getWidth(),
-							pagina_home_bottom.getHeight());
-					separator_3.setBounds(330, 48, 1, dimensione_fill_home_bottom+198+38);
-					separator_4.setBounds(660, 48, 1, dimensione_fill_home_bottom+198+38);
-					
-				}
-
-
 			}
-		
 	}
 
 	protected static void pulsanteServiziEsterni() {
 		// resetta tutti i colori di pulsanti precedentemente selezionati
 		Home.resetMenuColors();
+		Home.resetPagina();
 
 		barra_servizi_esterni.setVisible(true);
-		/*barra_servizi_esterni.setBounds(1, 53, pannello_intero.getWidth() - 2,
-				38);
-		barra_ricerca.setBounds(1, 91, pannello_intero.getWidth() - 2, 38);
-		pannello_contenuti.setBounds(1, 129, pannello_intero.getWidth() - 2,
-				pannello_intero.getHeight() - 130);
-		scroller.setBounds(scroller.getBounds().x, scroller.getBounds().y,
-				scroller.getBounds().width, pannello_intero.getHeight() - 130);*/
 		forceResizeEvent();
-
 
 	}
 
@@ -868,16 +745,16 @@ public class Home {
 		// resetta tutti i colori di pulsanti precedentemente selezionati
 		Home.resetMenuColors();
 		Home.resetMenu2Colors();
+		Home.resetPagina();
 
 		barra_servizi_esterni.setVisible(false);
-		/*barra_ricerca.setBounds(1, 53, pannello_intero.getWidth() - 2, 38);
-		pannello_contenuti.setBounds(1, 91, pannello_intero.getWidth() - 2,
-				pannello_intero.getHeight() - 92);
-		scroller.setBounds(scroller.getBounds().x, scroller.getBounds().y,
-				scroller.getBounds().width, pannello_intero.getHeight() - 92);*/
-		
 		forceResizeEvent();
 
+	}
+
+	private static void resetPagina() {
+		pagina_home.setVisible(false);
+		
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
