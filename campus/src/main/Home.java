@@ -114,25 +114,6 @@ public class Home {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		/*
-		 * frame.addComponentListener(new ComponentListener() { public void
-		 * componentResized(ComponentEvent e) { if
-		 * ((pannello_intero.getWidth()-2 % scaglione_resize != 0) ||
-		 * (pannello_intero.getHeight() % scaglione_resize != 0)) { int
-		 * screenWidth = ((pannello_intero.getWidth()-2 + scaglione_resize) /
-		 * scaglione_resize) * scaglione_resize; int screenHeight =
-		 * ((pannello_intero.getHeight() + scaglione_resize) / scaglione_resize)
-		 * * scaglione_resize; frame.setSize(screenWidth, screenHeight);
-		 * System.out.println("adsa"); } } public void
-		 * componentHidden(ComponentEvent arg0) {} public void
-		 * componentMoved(ComponentEvent arg0) {} public void
-		 * componentShown(ComponentEvent arg0) {} });
-		 */
-
-		// distanza x avvio, distanza y avvio, dimensione x, dimensione y
-
-		// solo se undecorated è false - resizable
-		// frame.setBounds(50, 50, 1298, 802);
 
 		// resizable
 		frame.setResizable(true);
@@ -142,20 +123,6 @@ public class Home {
 
 		// frame.setBounds(0, 0, screenSize.width, screenSize.height-40);
 		frame.setBounds(0, 0, MIN_DIMENSION_X, screenSize.height - 40);
-
-		// TODO: disabilitare una volta finito lo sviluppo
-		// utilizzabili sono 1006x519
-		// frame.setBounds(0, 0, 1024, 560);
-
-		// frame.setExtendedState(frame.getExtendedState() |
-		// frame.MAXIMIZED_BOTH);
-
-		// SPAZZATURA, per ora la lascio in caso serve più in la da
-		// riferimento...
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// toglie la barra dei comandi (close, maximize, minimize)
-		// frame.setUndecorated(true);
-		// frame.setBounds(50, 50, 1282, 802);
 
 		pannello_intero.setBorder(new LineBorder(Color.BLACK));
 		pannello_intero.setBackground(Color.WHITE);
@@ -591,11 +558,7 @@ public class Home {
 		//scroller.setPreferredSize(new Dimension(200, 200));
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
 		
-
 		Home.loadHome();
-		
-		
-		
 		
 		prenotazione_libri.addMouseListener(new MouseAdapter() {
 			@Override
@@ -614,7 +577,8 @@ public class Home {
 				// resetta tutti i colori di pulsanti precedentemente
 				// selezionati
 				Home.resetMenu2Colors();
-
+				Home.resetPagina();
+				Home.forceResizeEvent();
 				// assegna il colore di pulsante selezionato
 				setOldButtonColor("prenotazione_libri", BLUE_BUTTON_PRESSED);
 				prenotazione_libri.setBackground(BLUE_BUTTON_PRESSED);
@@ -638,7 +602,8 @@ public class Home {
 				// resetta tutti i colori di pulsanti precedentemente
 				// selezionati
 				Home.resetMenu2Colors();
-
+				Home.resetPagina();
+				Home.forceResizeEvent();
 				// assegna il colore di pulsante selezionato
 				setOldButtonColor("prenotazione_digitalizzazione",
 						BLUE_BUTTON_PRESSED);
@@ -663,7 +628,8 @@ public class Home {
 				// resetta tutti i colori di pulsanti precedentemente
 				// selezionati
 				Home.resetMenu2Colors();
-
+				Home.resetPagina();
+				Home.forceResizeEvent();
 				// assegna il colore di pulsante selezionato
 				setOldButtonColor("gestione_stampa", BLUE_BUTTON_PRESSED);
 				gestione_stampa.setBackground(BLUE_BUTTON_PRESSED);
@@ -696,8 +662,7 @@ public class Home {
 
 
 	protected static void spaghettiResize() {
-		    // MIN_DIMENSION_X + 18 perchè 18 pixel sono per le barre
-			// laterali
+		    // un pò di spaghetti ci vuole :p
 			int dimensione_fill_centro = ((pannello_intero.getWidth()
 					- MIN_DIMENSION_X + 18) / 2);
 			barra_menu_principale.setBounds(1, 1,
@@ -741,18 +706,11 @@ public class Home {
 	protected static void pulsanteServiziEsterni() {
 		// resetta tutti i colori di pulsanti precedentemente selezionati
 		Home.resetMenuColors();
-		Home.resetPagina();
+		//Home.resetPagina();
 
 		barra_servizi_esterni.setVisible(true);
-		forceResizeEvent();
+		Home.forceResizeEvent();
 
-	}
-
-	private static void forceResizeEvent() {
-		Rectangle old_rect = frame.getBounds();
-		frame.setBounds((int)frame.getBounds().getX(),(int)frame.getBounds().getY(),(int)frame.getBounds().getWidth(),(int)frame.getBounds().getHeight()-1);
-		frame.revalidate();
-		frame.setBounds(old_rect);
 	}
 
 	protected static void pulsantiNormali() {
@@ -762,8 +720,15 @@ public class Home {
 		Home.resetPagina();
 
 		barra_servizi_esterni.setVisible(false);
-		forceResizeEvent();
+		Home.forceResizeEvent();
 
+	}
+	
+	private static void forceResizeEvent() {
+		Rectangle old_rect = frame.getBounds();
+		frame.setBounds((int)frame.getBounds().getX(),(int)frame.getBounds().getY(),(int)frame.getBounds().getWidth(),(int)frame.getBounds().getHeight()-1);
+		frame.revalidate();
+		frame.setBounds(old_rect);
 	}
 
 	private static void resetPagina() {
