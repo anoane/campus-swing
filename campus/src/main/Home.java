@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -100,6 +101,11 @@ public class Home {
 			pannello_verticale);
 
 	public Home() {
+		try {
+	    	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 		initialize();
 	}
 
