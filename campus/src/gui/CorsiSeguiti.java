@@ -48,7 +48,7 @@ public class CorsiSeguiti extends JPanel {
 		
 		final JPanel panel = new JPanel();
 		
-		panel.setBounds(0, 0, 1008, 429);
+		panel.setBounds(0, 0, 1008, 542);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
@@ -59,14 +59,14 @@ public class CorsiSeguiti extends JPanel {
 			public void componentResized(ComponentEvent e) {
 				int dimensione_fill_home_bottom = (panel.getParent().getHeight()
 						- MIN_DIMENSION_Y + 300);
-				panel.setBounds(panel.getX(), panel.getY(),
+				/*panel.setBounds(panel.getX(), panel.getY(),
 						panel.getWidth(),
-						panel.getHeight()+dimensione_fill_home_bottom);
-				panel_1.setBounds(0, dimensione_fill_home_bottom+97,
+						panel.getHeight()+dimensione_fill_home_bottom);*/
+				/*panel_1.setBounds(0, dimensione_fill_home_bottom+97,
 						panel_1.getWidth(),
-						panel_1.getHeight());
-				separator_3.setBounds(330, 48, 1, dimensione_fill_home_bottom+29);
-				separator_4.setBounds(660, 48, 1, dimensione_fill_home_bottom+29);
+						panel_1.getHeight());*/
+				//separator_3.setBounds(330, 48, 1, dimensione_fill_home_bottom+29);
+				//separator_4.setBounds(660, 48, 1, dimensione_fill_home_bottom+29);
 			}
 
 			@Override
@@ -203,6 +203,10 @@ public class CorsiSeguiti extends JPanel {
 		});
 		button.setBounds(492, 81, 89, 23);
 		panel.add(button);
+		
+		JLabel lblNonAdattativa = new JLabel("NON ADATTATIVA");
+		lblNonAdattativa.setBounds(379, 170, 171, 40);
+		panel.add(lblNonAdattativa);
 
 	}
 

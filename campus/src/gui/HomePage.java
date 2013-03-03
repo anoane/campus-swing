@@ -203,7 +203,10 @@ public class HomePage extends JPanel {
 		});
 		button.setBounds(492, 81, 89, 23);
 		panel.add(button);
+		
+		JLabel lblAdattativa = new JLabel("ADATTATIVA");
+		lblAdattativa.setBounds(364, 168, 170, 14);
+		panel.add(lblAdattativa);
 
 	}
-
 }
