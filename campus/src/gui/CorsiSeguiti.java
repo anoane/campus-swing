@@ -12,42 +12,46 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import main.Home;
+
+import controller.Controller;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class CorsiSeguiti extends JPanel {
-	private JTextField textField;
+	private final static JPanel panel = new JPanel();
 	private final static int MIN_DIMENSION_X = 1024;
 	private final static int MIN_DIMENSION_Y = 560;
-	private final static JPanel panel_1 = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
-	private static String array = "prova";
-	private final static JLabel label_6 = new JLabel("new label");
+	private static int numero_caselle = 0;
 	
-	
-	public static String getHomeBottomText() {
-		//String[] = loadStringsbalablala();
-		return array;
-		
-	}
-	
-	public static void setHomeBottomText(String a) {
-		//String[] = loadStringsbalablala();
-		array=a;
-	}
-	
+
 	public static void reload() {
-		label_6.setText(getHomeBottomText());
+		numero_caselle = Controller.loadNumeroCorsiSeguiti();
+		for (int i=0; i < numero_caselle; i++) {
+			creaCasellina(i);
+		}
+		int altezza = 52+numero_caselle*10+numero_caselle*97;
+		panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(), altezza);
+		Home.setDimCorsiSeguiti(altezza);
 	}
 
+	public static JPanel creaCasellina(int i) {
+		JPanel panel_nuova = new JPanel();
+		panel_nuova.setBounds(10, 52+i*10+i*97, 310, 97);
+		panel.add(panel_nuova);
+		return panel_nuova;
+	}
+	
 	/**
 	 * Create the panel.
 	 */
 	public CorsiSeguiti() {
 		setLayout(null);
 		
-		final JPanel panel = new JPanel();
 		
 		panel.setBounds(0, 0, 1008, 542);
 		panel.setLayout(null);
@@ -125,84 +129,6 @@ public class CorsiSeguiti extends JPanel {
 		separator_4.setForeground(new Color(27, 50, 128));
 		separator_4.setBounds(660, 48, 1, 198);
 		panel.add(separator_4);
-		
-		panel_1.setLayout(null);
-		panel_1.setBackground(new Color(46, 93, 140));
-		panel_1.setBounds(0, 266, 1008, 163);
-		panel.add(panel_1);
-		
-		JSeparator separator_5 = new JSeparator();
-		separator_5.setOrientation(SwingConstants.VERTICAL);
-		separator_5.setForeground(Color.WHITE);
-		separator_5.setBounds(330, 20, 1, 163);
-		panel_1.add(separator_5);
-		
-		JSeparator separator_6 = new JSeparator();
-		separator_6.setOrientation(SwingConstants.VERTICAL);
-		separator_6.setForeground(Color.WHITE);
-		separator_6.setBounds(660, 20, 1, 163);
-		panel_1.add(separator_6);
-		
-		JLabel label_3 = new JLabel("Ordini stampa");
-		label_3.setForeground(Color.WHITE);
-		label_3.setFont(new Font("Arial", Font.BOLD, 20));
-		label_3.setBounds(10, 10, 200, 25);
-		panel_1.add(label_3);
-		
-		JLabel label_4 = new JLabel("Classifica utenti");
-		label_4.setForeground(Color.WHITE);
-		label_4.setFont(new Font("Arial", Font.BOLD, 20));
-		label_4.setBounds(670, 10, 273, 25);
-		panel_1.add(label_4);
-		
-		JLabel label_5 = new JLabel("Ordini digitalizzazione");
-		label_5.setForeground(Color.WHITE);
-		label_5.setFont(new Font("Arial", Font.BOLD, 20));
-		label_5.setBounds(340, 10, 263, 25);
-		panel_1.add(label_5);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 40, 310, 31);
-		panel_1.add(panel_2);
-		
-		panel_2.add(label_6);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 81, 310, 31);
-		panel_1.add(panel_3);
-		
-		JLabel label_7 = new JLabel("New label");
-		panel_3.add(label_7);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(10, 122, 310, 31);
-		panel_1.add(panel_4);
-		
-		JLabel label_8 = new JLabel("New label");
-		panel_4.add(label_8);
-		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(10, 52, 310, 97);
-		panel.add(panel_5);
-		
-		JPanel panel_6 = new JPanel();
-		panel_6.setBounds(10, 159, 310, 97);
-		panel.add(panel_6);
-		
-		textField = new JTextField();
-		textField.setText("Cambia valore label TEST");
-		textField.setColumns(10);
-		textField.setBounds(350, 72, 132, 40);
-		panel.add(textField);
-		
-		JButton button = new JButton("Cambia");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setHomeBottomText(textField.getText());
-			}
-		});
-		button.setBounds(492, 81, 89, 23);
-		panel.add(button);
 		
 		JLabel lblNonAdattativa = new JLabel("NON ADATTATIVA");
 		lblNonAdattativa.setBounds(379, 170, 171, 40);

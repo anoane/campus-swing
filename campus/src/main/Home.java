@@ -92,6 +92,15 @@ public class Home {
 	private final static JPanel pannello_verticale = new JPanel();
 	private final static JPanel pagina_home = new HomePage();
 	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
+	private static int dimensione_corsi_seguiti = 600;
+	
+	public static void setDimCorsiSeguiti(int a) {
+		dimensione_corsi_seguiti = a;
+	}
+	
+	public static int getDimCorsiSeguiti() {
+		return dimensione_corsi_seguiti;
+	}
 	
 	private final static GroupLayout gl_pannello_verticale = new GroupLayout(pannello_verticale);
 
@@ -592,7 +601,7 @@ public class Home {
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
 					.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
 			);
-		HomePage.reload();
+		reloadPages();
 	}
 	
 	private static void loadCorsiSeguiti() {
@@ -602,12 +611,18 @@ public class Home {
 			);
 		gl_pannello_verticale.setVerticalGroup(
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-					.addComponent(pagina_corsi_seguiti, GroupLayout.PREFERRED_SIZE, 1529, GroupLayout.PREFERRED_SIZE)
+					.addComponent(pagina_corsi_seguiti, GroupLayout.PREFERRED_SIZE, Home.getDimCorsiSeguiti(), GroupLayout.PREFERRED_SIZE)
 			);
+		reloadPages();
+	}
+	
+	private static void reloadPages() {
+		HomePage.reload();
 		CorsiSeguiti.reload();
 	}
 
 	protected static void spaghettiResize() {
+			reloadPages();
 		    int dimensione_fill_centro = ((pannello_intero.getWidth()
 					- MIN_DIMENSION_X + 18) / 2);
 			barra_menu_principale.setBounds(1, 1,
