@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="modello_di_dominio.Facolta" table="Facolta" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_Corso" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="FacoltaID" not-null="true"/>
+			<one-to-many class="modello_di_dominio.Corso"/>
+		</set>
+	</class>
+</hibernate-mapping>

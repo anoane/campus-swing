@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="modello_di_dominio.Utente" table="Utente" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="cognome" column="Cognome" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="datadinascita" column="Datadinascita" type="timestamp" not-null="false" lazy="false"/>
+		<property name="sesso" column="Sesso" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_Corso" table="Corso_Utente" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="UtenteID" not-null="true"/>
+			<many-to-many column="CorsoID" class="modello_di_dominio.Corso">
+			</many-to-many>
+		</set>
+		<set name="ORM_Documento" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="UtenteID" not-null="true"/>
+			<one-to-many class="modello_di_dominio.Documento"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -8,6 +8,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		//Window thread
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -19,7 +21,10 @@ public class Main {
 				}
 			}
 		});
-
+		
+		
+		
+		
 	}
 
 }
