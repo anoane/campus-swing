@@ -1,6 +1,7 @@
 package gui;
 
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +15,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.InvalidPropertiesFormatException;
+import java.util.Properties;
 import java.util.TreeMap;
 
 import javax.swing.BorderFactory;
@@ -28,6 +31,11 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -35,6 +43,13 @@ import javax.swing.SpringLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import controller.Controller;
 
@@ -57,14 +72,18 @@ public class Home {
 	private final static JButton prenotazione_digitalizzazione = new JButton();
 	private final static JButton prenotazione_libri = new JButton();
 
-	private final static Color BLUE_BUTTON_UNPRESSED = new Color(67, 136, 204);
-	private final static Color BLUE_BUTTON_PRESSED = new Color(46, 93, 140);
-	private final static Color BLUE_SEARCH_BAR = new Color(97, 180, 207);
+	//BLUE_BUTTON_UNPRESSED = 4425932 (67, 136, 204) 4388CC
+	//BLUE_BUTTON_PRESSED = 3038604 (46, 93, 140) 2E5D8C
+	//BLUE_SEARCH_BAR = 6403279 (97, 180, 207) 61B4CF
+	private final static Color BLUE_BUTTON_UNPRESSED = new Color(loadXMLInt("BLUE_BUTTON_UNPRESSED","color"));//new Color(67, 136, 204);
+	private final static Color BLUE_BUTTON_PRESSED = new Color(loadXMLInt("BLUE_BUTTON_PRESSED","color"));//(46, 93, 140);
+	private final static Color BLUE_SEARCH_BAR = new Color(loadXMLInt("BLUE_SEARCH_BAR","color"));//(97, 180, 207);
 
 	// le dimensioni utili di un netbook 1024x600 con una barra di sistema
 	// standard alta 40pixel
-	private final static int MIN_DIMENSION_X = 1024;
-	private final static int MIN_DIMENSION_Y = 560;
+	private final static int OS_BAR_DIMENSION = loadXMLInt("OS_BAR_DIMENSION","dimension");
+	private final static int MIN_DIMENSION_X = loadXMLInt("MIN_DIMENSION_X","dimension");
+	private final static int MIN_DIMENSION_Y = loadXMLInt("MIN_DIMENSION_Y","dimension")-OS_BAR_DIMENSION;
 
 	private final static TreeMap<String, Color> oldColorState = new TreeMap<String, Color>();
 
@@ -107,6 +126,30 @@ public class Home {
 	private final static JScrollPane scroller = new JScrollPane(
 			pannello_verticale);
 
+	private static int loadXMLInt(String name, String type) {
+		  try {
+			  File file = new File("bin/settings/gui.xml");
+			  DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			  DocumentBuilder db = dbf.newDocumentBuilder();
+			  Document doc = db.parse(file);
+			  doc.getDocumentElement().normalize();
+			  NodeList nodeLst = doc.getElementsByTagName(type);
+			  for (int s = 0; s < nodeLst.getLength(); s++) {
+				  Node fstNode = nodeLst.item(s);
+				  if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
+				      Element fstElmnt = (Element) fstNode;
+				      NodeList fstNmElmntLst = fstElmnt.getElementsByTagName(name);
+				      Element fstNmElmnt = (Element) fstNmElmntLst.item(0);
+				      NodeList fstNm = fstNmElmnt.getChildNodes();
+				      return Integer.parseInt(((Node) fstNm.item(0)).getNodeValue());
+				  }
+			  }
+			  } catch (Exception e) {
+				  return 0;
+			  }
+        return 0;
+	}
+	
 	public Home() {
 		try {
 	    	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
