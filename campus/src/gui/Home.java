@@ -58,9 +58,10 @@ public class Home {
 
 	// TODO: parametrizzare TUTTO
 	private static JFrame frame;
+	private static int dimensione_corsi_seguiti = 600;
 	private final static ButtonStandard buttonCreator = new ButtonStandard();
 	private final static JButton home = buttonCreator.createButton("home", 134, 0, 75, 52, "./newimage/home.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
-	private final static JButton corsi_seguiti = new JButton();
+	private final static JButton corsi_seguiti = buttonCreator.createButton("corsi_seguiti", 211, 0, 129, 52, "./newimage/corsi_seguiti.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getDimCorsiSeguiti(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton preferiti = new JButton();
 	private final static JButton miei_documenti = buttonCreator.createButton("miei_documenti", 439, 0, 163, 52, "./newimage/i_miei_documenti.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getDimCorsiSeguiti(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton servizi_esterni = new JButton();
@@ -76,9 +77,9 @@ public class Home {
 	//BLUE_BUTTON_UNPRESSED = 4425932 (67, 136, 204) 4388CC
 	//BLUE_BUTTON_PRESSED = 3038604 (46, 93, 140) 2E5D8C
 	//BLUE_SEARCH_BAR = 6403279 (97, 180, 207) 61B4CF
-	final static Color BLUE_BUTTON_UNPRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_UNPRESSED","color"));//new Color(67, 136, 204);
-	final static Color BLUE_BUTTON_PRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_PRESSED","color"));//(46, 93, 140);
-	final static Color BLUE_SEARCH_BAR = new Color(GUIConfig.loadXMLInt("BLUE_SEARCH_BAR","color"));//(97, 180, 207);
+	final static Color BLUE_BUTTON_UNPRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_UNPRESSED","color"));
+	final static Color BLUE_BUTTON_PRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_PRESSED","color"));
+	final static Color BLUE_SEARCH_BAR = new Color(GUIConfig.loadXMLInt("BLUE_SEARCH_BAR","color"));
 
 	// le dimensioni utili di un netbook 1024x600 con una barra di sistema
 	// standard alta 40pixel
@@ -111,8 +112,8 @@ public class Home {
 	private final static JPanel pagina_home = new HomePage();
 	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
 	
+	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
 	
-	private static int dimensione_corsi_seguiti = 600;
 	
 	public static void setDimCorsiSeguiti(int a) {
 		dimensione_corsi_seguiti = a;
@@ -190,7 +191,8 @@ public class Home {
 				BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("prenotazione_libri", BLUE_BUTTON_UNPRESSED);
 
-		
+		relazionePaginaBottone.put("home", pagina_home);
+		relazionePaginaBottone.put("corsi_seguiti", pagina_corsi_seguiti);
 		
 		barra_menu_principale.setBounds(0, 0, MIN_DIMENSION_X - 8, 52);
 		pannello_intero.add(barra_menu_principale);
@@ -218,12 +220,12 @@ public class Home {
 		//home.setBackground(BLUE_BUTTON_UNPRESSED);
 		//home.setFocusPainted(false);
 		//home.setBorderPainted(false);
-		corsi_seguiti.setBounds(211, 0, 129, 52);
+		//corsi_seguiti.setBounds(211, 0, 129, 52);
 		pannello_interno_menu_principale.add(corsi_seguiti);
-		corsi_seguiti.setIcon(new ImageIcon("./newimage/corsi_seguiti.png"));
-		corsi_seguiti.setBackground(BLUE_BUTTON_UNPRESSED);
-		corsi_seguiti.setFocusPainted(false);
-		corsi_seguiti.setBorderPainted(false);
+		//corsi_seguiti.setIcon(new ImageIcon("./newimage/corsi_seguiti.png"));
+		//corsi_seguiti.setBackground(BLUE_BUTTON_UNPRESSED);
+		//corsi_seguiti.setFocusPainted(false);
+		//corsi_seguiti.setBorderPainted(false);
 		preferiti.setBounds(342, 0, 95, 52);
 		pannello_interno_menu_principale.add(preferiti);
 		preferiti.setIcon(new ImageIcon("./newimage/preferiti.png"));
@@ -535,7 +537,9 @@ public class Home {
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
 		
-		Home.loadPages(Home.getPaginaCorrispondente("home"), Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+		Home.loadPages("home", Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+		home.setBackground(BLUE_BUTTON_PRESSED);
+		setOldButtonColor("home", BLUE_BUTTON_PRESSED);
 		
 		prenotazione_libri.addMouseListener(new MouseAdapter() {
 			@Override
@@ -605,17 +609,17 @@ public class Home {
 		});
 	}
 	
-	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
+	protected static void loadPages(String pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
 		gl_pannello_verticale.setHorizontalGroup(
 				gl_pannello_verticale.createParallelGroup(hAlignment)
-					.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
+					.addComponent(Home.getPaginaCorrispondente(pagina), hMinSize, hPrefSize, hMaxSize)
 			);
 		gl_pannello_verticale.setVerticalGroup(
 				gl_pannello_verticale.createParallelGroup(vAlignment)
-					.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
+					.addComponent(Home.getPaginaCorrispondente(pagina), vMinSize, vPrefSize, vMaxSize)
 			);
 		reloadPages();
-		
+		Home.getPaginaCorrispondente(pagina).setVisible(true);
 	}
 	/*
 	private static void loadHome() {
@@ -761,6 +765,6 @@ public class Home {
 	}
 
 	public static JPanel getPaginaCorrispondente(String nome_pulsante) {
-		return pagina_home;
+		return relazionePaginaBottone.get(nome_pulsante);
 	}
 }
