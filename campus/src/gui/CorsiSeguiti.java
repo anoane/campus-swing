@@ -35,7 +35,7 @@ public class CorsiSeguiti extends JPanel {
 		}
 		int altezza = 52+numero_caselle*10+numero_caselle*97;
 		panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(), altezza);
-		Home.setDimCorsiSeguiti(altezza);
+		Home.setAltezzaDinamica(altezza);
 	}
 
 	public static JPanel creaCasellina(int i) {

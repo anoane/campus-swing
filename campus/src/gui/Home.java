@@ -58,12 +58,12 @@ public class Home {
 
 	// TODO: parametrizzare TUTTO
 	private static JFrame frame;
-	private static int dimensione_corsi_seguiti = 600;
+	private static int altezza = 429;
 	private final static ButtonStandard buttonCreator = new ButtonStandard();
-	private final static JButton home = buttonCreator.createButton("home", 134, 0, 75, 52, "./newimage/home.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
-	private final static JButton corsi_seguiti = buttonCreator.createButton("corsi_seguiti", 211, 0, 129, 52, "./newimage/corsi_seguiti.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getDimCorsiSeguiti(), GroupLayout.PREFERRED_SIZE);
+	private final static JButton home = buttonCreator.createButton("home", 134, 0, 75, 52, "./newimage/home.png", false, false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+	private final static JButton corsi_seguiti = buttonCreator.createButton("corsi_seguiti", 211, 0, 129, 52, "./newimage/corsi_seguiti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton preferiti = new JButton();
-	private final static JButton miei_documenti = buttonCreator.createButton("miei_documenti", 439, 0, 163, 52, "./newimage/i_miei_documenti.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getDimCorsiSeguiti(), GroupLayout.PREFERRED_SIZE);
+	private final static JButton miei_documenti = buttonCreator.createButton("miei_documenti", 439, 0, 163, 52, "./newimage/i_miei_documenti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton servizi_esterni = new JButton();
 	private final static JLabel separatore = new JLabel();
 	private final static JButton notifiche = new JButton();
@@ -115,12 +115,12 @@ public class Home {
 	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
 	
 	
-	public static void setDimCorsiSeguiti(int a) {
-		dimensione_corsi_seguiti = a;
+	public static void setAltezzaDinamica(int a) {
+		altezza = a;
 	}
 	
-	public static int getDimCorsiSeguiti() {
-		return dimensione_corsi_seguiti;
+	public static int getAltezzaDinamica() {
+		return altezza;
 	}
 	
 	private final static GroupLayout gl_pannello_verticale = new GroupLayout(pannello_verticale);
