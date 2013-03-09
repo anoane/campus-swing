@@ -213,19 +213,10 @@ public class Home {
 		logo.setIcon(new ImageIcon("./newimage/logo.png"));
 		logo.setOpaque(true);
 		logo.setBackground(BLUE_BUTTON_UNPRESSED);
-		//home.setBounds(134, 0, 75, 52);
-		pannello_interno_menu_principale.add(home);
 
-		//home.setIcon(new ImageIcon("./newimage/home.png"));
-		//home.setBackground(BLUE_BUTTON_UNPRESSED);
-		//home.setFocusPainted(false);
-		//home.setBorderPainted(false);
-		//corsi_seguiti.setBounds(211, 0, 129, 52);
+		pannello_interno_menu_principale.add(home);
 		pannello_interno_menu_principale.add(corsi_seguiti);
-		//corsi_seguiti.setIcon(new ImageIcon("./newimage/corsi_seguiti.png"));
-		//corsi_seguiti.setBackground(BLUE_BUTTON_UNPRESSED);
-		//corsi_seguiti.setFocusPainted(false);
-		//corsi_seguiti.setBorderPainted(false);
+
 		preferiti.setBounds(342, 0, 95, 52);
 		pannello_interno_menu_principale.add(preferiti);
 		preferiti.setIcon(new ImageIcon("./newimage/preferiti.png"));
@@ -234,15 +225,9 @@ public class Home {
 		preferiti.setBackground(BLUE_BUTTON_UNPRESSED);
 		preferiti.setFocusPainted(false);
 		preferiti.setBorderPainted(false);
-		//miei_documenti.setBounds(439, 0, 163, 52);
-		pannello_interno_menu_principale.add(miei_documenti);
-		
-		//miei_documenti.setIcon(new ImageIcon("./newimage/i_miei_documenti.png"));
 
-		// MIEI DOCUMENTI
-		//miei_documenti.setFocusPainted(false);
-		//miei_documenti.setBorderPainted(false);
-		//miei_documenti.setBackground(BLUE_BUTTON_UNPRESSED);
+		pannello_interno_menu_principale.add(miei_documenti);
+
 		servizi_esterni.setBounds(604, 0, 155, 52);
 		pannello_interno_menu_principale.add(servizi_esterni);
 
@@ -283,61 +268,7 @@ public class Home {
 		impostazioni.setFocusPainted(false);
 		impostazioni.setBorderPainted(false);
 		impostazioni.setBackground(BLUE_BUTTON_UNPRESSED);
-		/*
-		impostazioni.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				impostazioni.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				impostazioni.setBackground(getOldButtonColor("impostazioni"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsantiNormali();
-				setOldButtonColor("impostazioni", BLUE_BUTTON_PRESSED);
-				impostazioni.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		profilo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				profilo.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				profilo.setBackground(getOldButtonColor("profilo"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsantiNormali();
-				setOldButtonColor("profilo", BLUE_BUTTON_PRESSED);
-				profilo.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		notifiche.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				notifiche.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				notifiche.setBackground(getOldButtonColor("notifiche"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsantiNormali();
-				setOldButtonColor("notifiche", BLUE_BUTTON_PRESSED);
-				notifiche.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});*/
+		
 		servizi_esterni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -357,84 +288,7 @@ public class Home {
 				servizi_esterni.setBackground(BLUE_BUTTON_PRESSED);
 			}
 		});
-		/*miei_documenti.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				miei_documenti.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				miei_documenti
-						.setBackground(getOldButtonColor("miei_documenti"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsantiNormali();
-				setOldButtonColor("miei_documenti", BLUE_BUTTON_PRESSED);
-				miei_documenti.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		preferiti.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				preferiti.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				preferiti.setBackground(getOldButtonColor("preferiti"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsantiNormali();
-				setOldButtonColor("preferiti", BLUE_BUTTON_PRESSED);
-				preferiti.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		corsi_seguiti.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				corsi_seguiti.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				corsi_seguiti.setBackground(getOldButtonColor("corsi_seguiti"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsantiNormali();
-				loadCorsiSeguiti();
-				pagina_corsi_seguiti.setVisible(true);
-				// assegna il colore di pulsante selezionato
-				setOldButtonColor("corsi_seguiti", BLUE_BUTTON_PRESSED);
-				corsi_seguiti.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		home.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				home.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				home.setBackground(getOldButtonColor("home"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsantiNormali();
-				loadHome();
-				pagina_home.setVisible(true);
-				setOldButtonColor("home", BLUE_BUTTON_PRESSED);
-				home.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});*/
+		
 		barra_ricerca.setBounds(0, 53, MIN_DIMENSION_X - 8, 38);
 		pannello_intero.add(barra_ricerca);
 		barra_ricerca.setBackground(BLUE_SEARCH_BAR);
@@ -621,31 +475,7 @@ public class Home {
 		reloadPages();
 		pagina.setVisible(true);
 	}
-	/*
-	private static void loadHome() {
-		gl_pannello_verticale.setHorizontalGroup(
-				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-					.addComponent(pagina_home, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
-			);
-		gl_pannello_verticale.setVerticalGroup(
-				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-					.addComponent(pagina_home, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
-			);
-		reloadPages();
-	}
-	
-	private static void loadCorsiSeguiti() {
-		gl_pannello_verticale.setHorizontalGroup(
-				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-					.addComponent(pagina_corsi_seguiti, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
-			);
-		gl_pannello_verticale.setVerticalGroup(
-				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
-					.addComponent(pagina_corsi_seguiti, GroupLayout.PREFERRED_SIZE, Home.getDimCorsiSeguiti(), GroupLayout.PREFERRED_SIZE)
-			);
-		reloadPages();
-	}
-	*/
+
 	private static void reloadPages() {
 		HomePage.reload();
 		CorsiSeguiti.reload();
