@@ -4,6 +4,7 @@ package gui;
 import util.GUIConfig;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -57,11 +58,11 @@ public class Home {
 
 	// TODO: parametrizzare TUTTO
 	private static JFrame frame;
-
-	private final static JButton home = new JButton();
+	private final static ButtonStandard buttonCreator = new ButtonStandard();
+	private final static JButton home = buttonCreator.createButton("home", 134, 0, 75, 52, "./newimage/home.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 	private final static JButton corsi_seguiti = new JButton();
 	private final static JButton preferiti = new JButton();
-	private final static JButton miei_documenti = new JButton();
+	private final static JButton miei_documenti = buttonCreator.createButton("miei_documenti", 439, 0, 163, 52, "./newimage/i_miei_documenti.png", false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getDimCorsiSeguiti(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton servizi_esterni = new JButton();
 	private final static JLabel separatore = new JLabel();
 	private final static JButton notifiche = new JButton();
@@ -86,7 +87,7 @@ public class Home {
 	private final static int MIN_DIMENSION_Y = GUIConfig.loadXMLInt("MIN_DIMENSION_Y","dimension")-OS_BAR_DIMENSION;
 
 	private final static TreeMap<String, Color> oldColorState = new TreeMap<String, Color>();
-
+	
 	private final static JPanel barra_ricerca = new JPanel();
 	private final static JPanel barra_servizi_esterni = new JPanel();
 	private final static JPanel pannello_intero = new JPanel();
@@ -109,6 +110,8 @@ public class Home {
 	private final static JPanel pannello_verticale = new JPanel();
 	private final static JPanel pagina_home = new HomePage();
 	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
+	
+	
 	private static int dimensione_corsi_seguiti = 600;
 	
 	public static void setDimCorsiSeguiti(int a) {
@@ -136,7 +139,6 @@ public class Home {
 	}
 
 	private void initialize() {
-
 		setFrame(new JFrame());
 
 		// resizable
@@ -188,6 +190,8 @@ public class Home {
 				BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("prenotazione_libri", BLUE_BUTTON_UNPRESSED);
 
+		
+		
 		barra_menu_principale.setBounds(0, 0, MIN_DIMENSION_X - 8, 52);
 		pannello_intero.add(barra_menu_principale);
 
@@ -207,17 +211,13 @@ public class Home {
 		logo.setIcon(new ImageIcon("./newimage/logo.png"));
 		logo.setOpaque(true);
 		logo.setBackground(BLUE_BUTTON_UNPRESSED);
-		home.setBounds(134, 0, 75, 52);
+		//home.setBounds(134, 0, 75, 52);
 		pannello_interno_menu_principale.add(home);
-		home.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		home.setIcon(new ImageIcon("./newimage/home.png"));
-		home.setBackground(BLUE_BUTTON_UNPRESSED);
-		home.setFocusPainted(false);
-		home.setBorderPainted(false);
+
+		//home.setIcon(new ImageIcon("./newimage/home.png"));
+		//home.setBackground(BLUE_BUTTON_UNPRESSED);
+		//home.setFocusPainted(false);
+		//home.setBorderPainted(false);
 		corsi_seguiti.setBounds(211, 0, 129, 52);
 		pannello_interno_menu_principale.add(corsi_seguiti);
 		corsi_seguiti.setIcon(new ImageIcon("./newimage/corsi_seguiti.png"));
@@ -232,15 +232,15 @@ public class Home {
 		preferiti.setBackground(BLUE_BUTTON_UNPRESSED);
 		preferiti.setFocusPainted(false);
 		preferiti.setBorderPainted(false);
-		miei_documenti.setBounds(439, 0, 163, 52);
+		//miei_documenti.setBounds(439, 0, 163, 52);
 		pannello_interno_menu_principale.add(miei_documenti);
-		miei_documenti
-				.setIcon(new ImageIcon("./newimage/i_miei_documenti.png"));
+		
+		//miei_documenti.setIcon(new ImageIcon("./newimage/i_miei_documenti.png"));
 
 		// MIEI DOCUMENTI
-		miei_documenti.setFocusPainted(false);
-		miei_documenti.setBorderPainted(false);
-		miei_documenti.setBackground(BLUE_BUTTON_UNPRESSED);
+		//miei_documenti.setFocusPainted(false);
+		//miei_documenti.setBorderPainted(false);
+		//miei_documenti.setBackground(BLUE_BUTTON_UNPRESSED);
 		servizi_esterni.setBounds(604, 0, 155, 52);
 		pannello_interno_menu_principale.add(servizi_esterni);
 
@@ -281,6 +281,7 @@ public class Home {
 		impostazioni.setFocusPainted(false);
 		impostazioni.setBorderPainted(false);
 		impostazioni.setBackground(BLUE_BUTTON_UNPRESSED);
+		/*
 		impostazioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -334,7 +335,7 @@ public class Home {
 				setOldButtonColor("notifiche", BLUE_BUTTON_PRESSED);
 				notifiche.setBackground(BLUE_BUTTON_PRESSED);
 			}
-		});
+		});*/
 		servizi_esterni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -354,7 +355,7 @@ public class Home {
 				servizi_esterni.setBackground(BLUE_BUTTON_PRESSED);
 			}
 		});
-		miei_documenti.addMouseListener(new MouseAdapter() {
+		/*miei_documenti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				miei_documenti.setBackground(BLUE_BUTTON_PRESSED);
@@ -431,7 +432,7 @@ public class Home {
 				setOldButtonColor("home", BLUE_BUTTON_PRESSED);
 				home.setBackground(BLUE_BUTTON_PRESSED);
 			}
-		});
+		});*/
 		barra_ricerca.setBounds(0, 53, MIN_DIMENSION_X - 8, 38);
 		pannello_intero.add(barra_ricerca);
 		barra_ricerca.setBackground(BLUE_SEARCH_BAR);
@@ -534,7 +535,7 @@ public class Home {
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
 		
-		Home.loadHome();
+		Home.loadPages(Home.getPaginaCorrispondente("home"), Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 		
 		prenotazione_libri.addMouseListener(new MouseAdapter() {
 			@Override
@@ -604,6 +605,19 @@ public class Home {
 		});
 	}
 	
+	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
+		gl_pannello_verticale.setHorizontalGroup(
+				gl_pannello_verticale.createParallelGroup(hAlignment)
+					.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
+			);
+		gl_pannello_verticale.setVerticalGroup(
+				gl_pannello_verticale.createParallelGroup(vAlignment)
+					.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
+			);
+		reloadPages();
+		
+	}
+	/*
 	private static void loadHome() {
 		gl_pannello_verticale.setHorizontalGroup(
 				gl_pannello_verticale.createParallelGroup(Alignment.LEADING)
@@ -627,7 +641,7 @@ public class Home {
 			);
 		reloadPages();
 	}
-	
+	*/
 	private static void reloadPages() {
 		HomePage.reload();
 		CorsiSeguiti.reload();
@@ -744,5 +758,9 @@ public class Home {
 
 	public static void setFrame(JFrame frame) {
 		Home.frame = frame;
+	}
+
+	public static JPanel getPaginaCorrispondente(String nome_pulsante) {
+		return pagina_home;
 	}
 }
