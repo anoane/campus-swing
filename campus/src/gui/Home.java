@@ -1,7 +1,7 @@
 package gui;
 
 
-
+import util.GUIConfig;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -75,15 +75,15 @@ public class Home {
 	//BLUE_BUTTON_UNPRESSED = 4425932 (67, 136, 204) 4388CC
 	//BLUE_BUTTON_PRESSED = 3038604 (46, 93, 140) 2E5D8C
 	//BLUE_SEARCH_BAR = 6403279 (97, 180, 207) 61B4CF
-	private final static Color BLUE_BUTTON_UNPRESSED = new Color(loadXMLInt("BLUE_BUTTON_UNPRESSED","color"));//new Color(67, 136, 204);
-	private final static Color BLUE_BUTTON_PRESSED = new Color(loadXMLInt("BLUE_BUTTON_PRESSED","color"));//(46, 93, 140);
-	private final static Color BLUE_SEARCH_BAR = new Color(loadXMLInt("BLUE_SEARCH_BAR","color"));//(97, 180, 207);
+	final static Color BLUE_BUTTON_UNPRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_UNPRESSED","color"));//new Color(67, 136, 204);
+	final static Color BLUE_BUTTON_PRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_PRESSED","color"));//(46, 93, 140);
+	final static Color BLUE_SEARCH_BAR = new Color(GUIConfig.loadXMLInt("BLUE_SEARCH_BAR","color"));//(97, 180, 207);
 
 	// le dimensioni utili di un netbook 1024x600 con una barra di sistema
 	// standard alta 40pixel
-	private final static int OS_BAR_DIMENSION = loadXMLInt("OS_BAR_DIMENSION","dimension");
-	private final static int MIN_DIMENSION_X = loadXMLInt("MIN_DIMENSION_X","dimension");
-	private final static int MIN_DIMENSION_Y = loadXMLInt("MIN_DIMENSION_Y","dimension")-OS_BAR_DIMENSION;
+	private final static int OS_BAR_DIMENSION = GUIConfig.loadXMLInt("OS_BAR_DIMENSION","dimension");
+	private final static int MIN_DIMENSION_X = GUIConfig.loadXMLInt("MIN_DIMENSION_X","dimension");
+	private final static int MIN_DIMENSION_Y = GUIConfig.loadXMLInt("MIN_DIMENSION_Y","dimension")-OS_BAR_DIMENSION;
 
 	private final static TreeMap<String, Color> oldColorState = new TreeMap<String, Color>();
 
@@ -125,30 +125,6 @@ public class Home {
 	// private final static JPanel drawingPane = new JPanel();
 	private final static JScrollPane scroller = new JScrollPane(
 			pannello_verticale);
-
-	private static int loadXMLInt(String name, String type) {
-		  try {
-			  File file = new File("bin/settings/gui.xml");
-			  DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			  DocumentBuilder db = dbf.newDocumentBuilder();
-			  Document doc = db.parse(file);
-			  doc.getDocumentElement().normalize();
-			  NodeList nodeLst = doc.getElementsByTagName(type);
-			  for (int s = 0; s < nodeLst.getLength(); s++) {
-				  Node fstNode = nodeLst.item(s);
-				  if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
-				      Element fstElmnt = (Element) fstNode;
-				      NodeList fstNmElmntLst = fstElmnt.getElementsByTagName(name);
-				      Element fstNmElmnt = (Element) fstNmElmntLst.item(0);
-				      NodeList fstNm = fstNmElmnt.getChildNodes();
-				      return Integer.parseInt(((Node) fstNm.item(0)).getNodeValue());
-				  }
-			  }
-			  } catch (Exception e) {
-				  return 0;
-			  }
-        return 0;
-	}
 	
 	public Home() {
 		try {
@@ -258,11 +234,6 @@ public class Home {
 		preferiti.setBorderPainted(false);
 		miei_documenti.setBounds(439, 0, 163, 52);
 		pannello_interno_menu_principale.add(miei_documenti);
-		miei_documenti.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		miei_documenti
 				.setIcon(new ImageIcon("./newimage/i_miei_documenti.png"));
 
