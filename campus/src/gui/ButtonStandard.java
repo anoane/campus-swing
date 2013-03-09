@@ -33,7 +33,7 @@ public class ButtonStandard implements ButtonInterface {
 				Home.pulsantiNormali();
 				Home.setOldButtonColor(action, Home.BLUE_BUTTON_PRESSED);
 				button.setBackground(Home.BLUE_BUTTON_PRESSED);
-				Home.loadPages(action, hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
+				Home.loadPages(Home.getPaginaCorrispondente(action), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
 			}
 		});
 		return button;

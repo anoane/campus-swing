@@ -537,7 +537,7 @@ public class Home {
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
 		
-		Home.loadPages("home", Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+		Home.loadPages(pagina_home, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 		home.setBackground(BLUE_BUTTON_PRESSED);
 		setOldButtonColor("home", BLUE_BUTTON_PRESSED);
 		
@@ -609,17 +609,17 @@ public class Home {
 		});
 	}
 	
-	protected static void loadPages(String pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
+	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
 		gl_pannello_verticale.setHorizontalGroup(
 				gl_pannello_verticale.createParallelGroup(hAlignment)
-					.addComponent(Home.getPaginaCorrispondente(pagina), hMinSize, hPrefSize, hMaxSize)
+					.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
 			);
 		gl_pannello_verticale.setVerticalGroup(
 				gl_pannello_verticale.createParallelGroup(vAlignment)
-					.addComponent(Home.getPaginaCorrispondente(pagina), vMinSize, vPrefSize, vMaxSize)
+					.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
 			);
 		reloadPages();
-		Home.getPaginaCorrispondente(pagina).setVisible(true);
+		pagina.setVisible(true);
 	}
 	/*
 	private static void loadHome() {
