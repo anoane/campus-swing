@@ -1,4 +1,6 @@
 package main;
+import gui.Home;
+
 import java.awt.EventQueue;
 import java.sql.Timestamp;
 
@@ -19,7 +21,7 @@ public class Main {
 			public void run() {
 				try {
 					Home window = new Home();
-					window.frame.setVisible(true);
+					window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
