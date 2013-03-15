@@ -75,9 +75,10 @@ public class Home {
 	private final static ButtonServiziEsterni buttonCreatorSE = new ButtonServiziEsterni();
 	private final static JButton servizi_esterni = buttonCreatorSE.createButton("servizi_esterni", 604, 0, 155, 52, "./newimage/servizi_esterni.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	
-	private final static JButton gestione_stampa = new JButton();
-	private final static JButton prenotazione_digitalizzazione = new JButton();
-	private final static JButton prenotazione_libri = new JButton();
+	private final static ButtonBarra buttonCreatorBarra = new ButtonBarra();
+	private final static JButton gestione_stampa = buttonCreatorBarra.createButton("gestione_stampa", 0, 2, 334, 36, "./newimage/gestione_stampa.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+	private final static JButton prenotazione_digitalizzazione = buttonCreatorBarra.createButton("prenotazione_digitalizzazione", 336, 2, 334, 36, "./newimage/prenota_digitalizzazione.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+	private final static JButton prenotazione_libri = buttonCreatorBarra.createButton("prenotazione_libri", 672, 2, 334, 36, "./newimage/prenota_libri.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 
 	//BLUE_BUTTON_UNPRESSED = 4425932 (67, 136, 204) 4388CC
 	//BLUE_BUTTON_PRESSED = 3038604 (46, 93, 140) 2E5D8C
@@ -242,27 +243,6 @@ public class Home {
 
 		//pannello_interno_menu_principale.add(impostazioni);
 
-		
-		servizi_esterni.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				servizi_esterni.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				servizi_esterni
-						.setBackground(getOldButtonColor("servizi_esterni"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.pulsanteServiziEsterni();
-				setOldButtonColor("servizi_esterni", BLUE_BUTTON_PRESSED);
-				servizi_esterni.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		
 		barra_ricerca.setBounds(0, 53, MIN_DIMENSION_X - 8, 38);
 		pannello_intero.add(barra_ricerca);
 		barra_ricerca.setBackground(BLUE_SEARCH_BAR);
@@ -312,43 +292,12 @@ public class Home {
 		pannello_interno_servizi_esterni.setBackground(BLUE_BUTTON_UNPRESSED);
 		barra_servizi_esterni.add(pannello_interno_servizi_esterni);
 		pannello_interno_servizi_esterni.setLayout(null);
-		gestione_stampa
-				.setIcon(new ImageIcon("./newimage/gestione_stampa.png"));
-		gestione_stampa.setBounds(0, 2, 334, 36);
+		
 		pannello_interno_servizi_esterni.add(gestione_stampa);
-
-		gestione_stampa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-		});
-		gestione_stampa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-		});
-		gestione_stampa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		gestione_stampa.setFocusPainted(false);
-		gestione_stampa.setBorderPainted(false);
-		gestione_stampa.setBackground(BLUE_BUTTON_UNPRESSED);
-		prenotazione_digitalizzazione.setIcon(new ImageIcon(
-				"./newimage/prenota_digitalizzazione.png"));
-		prenotazione_digitalizzazione.setBounds(336, 2, 334, 36);
+		
 		pannello_interno_servizi_esterni.add(prenotazione_digitalizzazione);
-		prenotazione_digitalizzazione.setFocusPainted(false);
-		prenotazione_digitalizzazione.setBorderPainted(false);
-		prenotazione_digitalizzazione.setBackground(BLUE_BUTTON_UNPRESSED);
-		prenotazione_libri
-				.setIcon(new ImageIcon("./newimage/prenota_libri.png"));
-		prenotazione_libri.setBounds(672, 2, 334, 36);
+
 		pannello_interno_servizi_esterni.add(prenotazione_libri);
-		prenotazione_libri.setFocusPainted(false);
-		prenotazione_libri.setBorderPainted(false);
-		prenotazione_libri.setBackground(BLUE_BUTTON_UNPRESSED);
 		pannello_contenuti.setBorder(null);
 		pannello_contenuti.setBackground(Color.LIGHT_GRAY);
 		pannello_contenuti.setBounds(0, 130, 1004, 386);
@@ -369,72 +318,7 @@ public class Home {
 		home.setBackground(BLUE_BUTTON_PRESSED);
 		setOldButtonColor("home", BLUE_BUTTON_PRESSED);
 		
-		prenotazione_libri.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				prenotazione_libri.setBackground(BLUE_BUTTON_PRESSED);
-			}
 
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				prenotazione_libri
-						.setBackground(getOldButtonColor("prenotazione_libri"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.resetMenu2Colors();
-				Home.resetPagina();
-				Home.forceResizeEvent();
-				setOldButtonColor("prenotazione_libri", BLUE_BUTTON_PRESSED);
-				prenotazione_libri.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		prenotazione_digitalizzazione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				prenotazione_digitalizzazione
-						.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				prenotazione_digitalizzazione
-						.setBackground(getOldButtonColor("prenotazione_digitalizzazione"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.resetMenu2Colors();
-				Home.resetPagina();
-				Home.forceResizeEvent();
-				setOldButtonColor("prenotazione_digitalizzazione",
-						BLUE_BUTTON_PRESSED);
-				prenotazione_digitalizzazione
-						.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
-		gestione_stampa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				gestione_stampa.setBackground(BLUE_BUTTON_PRESSED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				gestione_stampa
-						.setBackground(getOldButtonColor("gestione_stampa"));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home.resetMenu2Colors();
-				Home.resetPagina();
-				Home.forceResizeEvent();
-				setOldButtonColor("gestione_stampa", BLUE_BUTTON_PRESSED);
-				gestione_stampa.setBackground(BLUE_BUTTON_PRESSED);
-			}
-		});
 	}
 	
 	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
@@ -511,14 +395,14 @@ public class Home {
 		Home.forceResizeEvent();
 	}
 	
-	private static void forceResizeEvent() {
+	static void forceResizeEvent() {
 		Rectangle old_rect = getFrame().getBounds();
 		getFrame().setBounds((int)getFrame().getBounds().getX(),(int)getFrame().getBounds().getY(),(int)getFrame().getBounds().getWidth(),(int)getFrame().getBounds().getHeight()-1);
 		getFrame().revalidate();
 		getFrame().setBounds(old_rect);
 	}
 
-	private static void resetPagina() {
+	static void resetPagina() {
 		pagina_home.setVisible(false);
 		pagina_corsi_seguiti.setVisible(false);
 		
