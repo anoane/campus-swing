@@ -59,17 +59,22 @@ public class Home {
 	// TODO: parametrizzare TUTTO
 	private static JFrame frame;
 	private static int altezza = 429;
+	
+	private final static JLabel separatore = new JLabel();
+	
+	
 	private final static ButtonStandard buttonCreator = new ButtonStandard();
 	private final static JButton home = buttonCreator.createButton("home", 134, 0, 75, 52, "./newimage/home.png", false, false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 	private final static JButton corsi_seguiti = buttonCreator.createButton("corsi_seguiti", 211, 0, 129, 52, "./newimage/corsi_seguiti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
-	private final static JButton preferiti = new JButton();
+	private final static JButton preferiti = buttonCreator.createButton("preferiti", 342, 0, 95, 52, "./newimage/preferiti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton miei_documenti = buttonCreator.createButton("miei_documenti", 439, 0, 163, 52, "./newimage/i_miei_documenti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
-	private final static JButton servizi_esterni = new JButton();
-	private final static JLabel separatore = new JLabel();
-	private final static JButton notifiche = new JButton();
-	private final static JButton profilo = new JButton();
-	private final static JButton impostazioni = new JButton();
+	private final static JButton notifiche = buttonCreator.createButton("notifiche", 770, 0, 52, 52, "./newimage/notifiche.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+	private final static JButton profilo = buttonCreator.createButton("profilo", 824, 0, 182, 52, "./newimage/profilo.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+	//private final static JButton impostazioni = buttonCreator.createButton("impostazioni", 3000, 0, 110, 52, "./newimage/impostazioni.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 
+	private final static ButtonServiziEsterni buttonCreatorSE = new ButtonServiziEsterni();
+	private final static JButton servizi_esterni = buttonCreatorSE.createButton("servizi_esterni", 604, 0, 155, 52, "./newimage/servizi_esterni.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+	
 	private final static JButton gestione_stampa = new JButton();
 	private final static JButton prenotazione_digitalizzazione = new JButton();
 	private final static JButton prenotazione_libri = new JButton();
@@ -183,7 +188,7 @@ public class Home {
 		oldColorState.put("servizi_esterni", BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("notifiche", BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("profilo", BLUE_BUTTON_UNPRESSED);
-		oldColorState.put("impostazioni", BLUE_BUTTON_UNPRESSED);
+		//oldColorState.put("impostazioni", BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("home", BLUE_BUTTON_UNPRESSED);
 
 		oldColorState.put("gestione_stampa", BLUE_BUTTON_UNPRESSED);
@@ -217,27 +222,13 @@ public class Home {
 		pannello_interno_menu_principale.add(home);
 		pannello_interno_menu_principale.add(corsi_seguiti);
 
-		preferiti.setBounds(342, 0, 95, 52);
 		pannello_interno_menu_principale.add(preferiti);
-		preferiti.setIcon(new ImageIcon("./newimage/preferiti.png"));
 
-		// PREFERITI
-		preferiti.setBackground(BLUE_BUTTON_UNPRESSED);
-		preferiti.setFocusPainted(false);
-		preferiti.setBorderPainted(false);
 
 		pannello_interno_menu_principale.add(miei_documenti);
 
-		servizi_esterni.setBounds(604, 0, 155, 52);
 		pannello_interno_menu_principale.add(servizi_esterni);
 
-		servizi_esterni
-				.setIcon(new ImageIcon("./newimage/servizi_esterni.png"));
-
-		// SERVIZI ESTERNI
-		servizi_esterni.setFocusPainted(false);
-		servizi_esterni.setBorderPainted(false);
-		servizi_esterni.setBackground(BLUE_BUTTON_UNPRESSED);
 		separatore.setBounds(760, 0, 9, 52);
 		pannello_interno_menu_principale.add(separatore);
 		separatore.setIcon(new ImageIcon("./newimage/separatore.png"));
@@ -245,29 +236,12 @@ public class Home {
 		// SERPARATORE
 		separatore.setOpaque(true);
 		separatore.setBackground(BLUE_BUTTON_UNPRESSED);
-		notifiche.setIcon(new ImageIcon("./newimage/notifiche.png"));
-		notifiche.setBounds(770, 0, 52, 52);
 		pannello_interno_menu_principale.add(notifiche);
 
-		// NOTIFICHE
-		notifiche.setFocusPainted(false);
-		notifiche.setBorderPainted(false);
-		notifiche.setBackground(BLUE_BUTTON_UNPRESSED);
-		profilo.setIcon(new ImageIcon("./newimage/profilo.png"));
-		profilo.setBounds(824, 0, 182, 52);
 		pannello_interno_menu_principale.add(profilo);
 
-		// PROFILO
-		profilo.setFocusPainted(false);
-		profilo.setBorderPainted(false);
-		profilo.setBackground(BLUE_BUTTON_UNPRESSED);
-		impostazioni.setBounds(3000, 0, 110, 52);
-		pannello_interno_menu_principale.add(impostazioni);
+		//pannello_interno_menu_principale.add(impostazioni);
 
-		// IMPOSTAZIONI
-		impostazioni.setFocusPainted(false);
-		impostazioni.setBorderPainted(false);
-		impostazioni.setBackground(BLUE_BUTTON_UNPRESSED);
 		
 		servizi_esterni.addMouseListener(new MouseAdapter() {
 			@Override
@@ -573,8 +547,8 @@ public class Home {
 		setOldButtonColor("notifiche", BLUE_BUTTON_UNPRESSED);
 		profilo.setBackground(BLUE_BUTTON_UNPRESSED);
 		setOldButtonColor("profilo", BLUE_BUTTON_UNPRESSED);
-		impostazioni.setBackground(BLUE_BUTTON_UNPRESSED);
-		setOldButtonColor("impostazioni", BLUE_BUTTON_UNPRESSED);
+		//impostazioni.setBackground(BLUE_BUTTON_UNPRESSED);
+		//setOldButtonColor("impostazioni", BLUE_BUTTON_UNPRESSED);
 	}
 
 	protected static void resetMenu2Colors() {
