@@ -58,10 +58,10 @@ public class Home {
 
 	// TODO: parametrizzare TUTTO
 	private static JFrame frame;
-	private static int altezza = 429;
+	
+	private static int altezza = 0;
 	
 	private final static JLabel separatore = new JLabel();
-	
 	
 	private final static ButtonStandard buttonCreator = new ButtonStandard();
 	private final static JButton home = buttonCreator.createButton("home", 134, 0, 75, 52, "./newimage/home.png", false, false, false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
@@ -83,15 +83,15 @@ public class Home {
 	//BLUE_BUTTON_UNPRESSED = 4425932 (67, 136, 204) 4388CC
 	//BLUE_BUTTON_PRESSED = 3038604 (46, 93, 140) 2E5D8C
 	//BLUE_SEARCH_BAR = 6403279 (97, 180, 207) 61B4CF
-	final static Color BLUE_BUTTON_UNPRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_UNPRESSED","color"));
-	final static Color BLUE_BUTTON_PRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_PRESSED","color"));
-	final static Color BLUE_SEARCH_BAR = new Color(GUIConfig.loadXMLInt("BLUE_SEARCH_BAR","color"));
+	public final static Color BLUE_BUTTON_UNPRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_UNPRESSED","color"));
+	public final static Color BLUE_BUTTON_PRESSED = new Color(GUIConfig.loadXMLInt("BLUE_BUTTON_PRESSED","color"));
+	public final static Color BLUE_SEARCH_BAR = new Color(GUIConfig.loadXMLInt("BLUE_SEARCH_BAR","color"));
 
 	// le dimensioni utili di un netbook 1024x600 con una barra di sistema
 	// standard alta 40pixel
-	private final static int OS_BAR_DIMENSION = GUIConfig.loadXMLInt("OS_BAR_DIMENSION","dimension");
-	private final static int MIN_DIMENSION_X = GUIConfig.loadXMLInt("MIN_DIMENSION_X","dimension");
-	private final static int MIN_DIMENSION_Y = GUIConfig.loadXMLInt("MIN_DIMENSION_Y","dimension")-OS_BAR_DIMENSION;
+	public final static int OS_BAR_DIMENSION = GUIConfig.loadXMLInt("OS_BAR_DIMENSION","dimension");
+	public final static int MIN_DIMENSION_X = GUIConfig.loadXMLInt("MIN_DIMENSION_X","dimension");
+	public final static int MIN_DIMENSION_Y = GUIConfig.loadXMLInt("MIN_DIMENSION_Y","dimension")-OS_BAR_DIMENSION;
 
 	private final static TreeMap<String, Color> oldColorState = new TreeMap<String, Color>();
 	
@@ -111,10 +111,9 @@ public class Home {
 			.getScreenSize();
 	private final static JPanel pannello_interno_ricerca = new JPanel();
 	private final static JPanel pannello_interno_servizi_esterni = new JPanel();
-
 	private final static JPanel pannello_contenuti = new JPanel();
-
 	private final static JPanel pannello_verticale = new JPanel();
+	
 	private final static JPanel pagina_home = new HomePage();
 	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
 	
@@ -219,30 +218,19 @@ public class Home {
 		logo.setIcon(new ImageIcon("./newimage/logo.png"));
 		logo.setOpaque(true);
 		logo.setBackground(BLUE_BUTTON_UNPRESSED);
-
 		pannello_interno_menu_principale.add(home);
 		pannello_interno_menu_principale.add(corsi_seguiti);
-
 		pannello_interno_menu_principale.add(preferiti);
-
-
 		pannello_interno_menu_principale.add(miei_documenti);
-
 		pannello_interno_menu_principale.add(servizi_esterni);
-
-		separatore.setBounds(760, 0, 9, 52);
+		pannello_interno_menu_principale.add(notifiche);
+		pannello_interno_menu_principale.add(profilo);
+		//pannello_interno_menu_principale.add(impostazioni);
 		pannello_interno_menu_principale.add(separatore);
+		separatore.setBounds(760, 0, 9, 52);
 		separatore.setIcon(new ImageIcon("./newimage/separatore.png"));
-
-		// SERPARATORE
 		separatore.setOpaque(true);
 		separatore.setBackground(BLUE_BUTTON_UNPRESSED);
-		pannello_interno_menu_principale.add(notifiche);
-
-		pannello_interno_menu_principale.add(profilo);
-
-		//pannello_interno_menu_principale.add(impostazioni);
-
 		barra_ricerca.setBounds(0, 53, MIN_DIMENSION_X - 8, 38);
 		pannello_intero.add(barra_ricerca);
 		barra_ricerca.setBackground(BLUE_SEARCH_BAR);
@@ -292,11 +280,8 @@ public class Home {
 		pannello_interno_servizi_esterni.setBackground(BLUE_BUTTON_UNPRESSED);
 		barra_servizi_esterni.add(pannello_interno_servizi_esterni);
 		pannello_interno_servizi_esterni.setLayout(null);
-		
 		pannello_interno_servizi_esterni.add(gestione_stampa);
-		
 		pannello_interno_servizi_esterni.add(prenotazione_digitalizzazione);
-
 		pannello_interno_servizi_esterni.add(prenotazione_libri);
 		pannello_contenuti.setBorder(null);
 		pannello_contenuti.setBackground(Color.LIGHT_GRAY);

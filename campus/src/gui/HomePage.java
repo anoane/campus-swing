@@ -17,8 +17,6 @@ import java.awt.event.ActionEvent;
 
 public class HomePage extends JPanel {
 	private JTextField textField;
-	private final static int MIN_DIMENSION_X = 1024;
-	private final static int MIN_DIMENSION_Y = 560;
 	private final static JPanel panel_1 = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
@@ -59,7 +57,7 @@ public class HomePage extends JPanel {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				int dimensione_fill_home_bottom = (panel.getParent().getHeight()
-						- MIN_DIMENSION_Y + 300);
+						- Home.MIN_DIMENSION_Y + 300);
 				panel.setBounds(panel.getX(), panel.getY(),
 						panel.getWidth(),
 						panel.getHeight()+dimensione_fill_home_bottom);

@@ -8,9 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.GroupLayout.Alignment;
 
-public class ButtonStandard implements ButtonInterface {
+public class ButtonStandard  {
 
-	@Override
 	public JButton createButton(final String action, int x, int y, int width,
 			int height, String iconPath, Boolean focusPainted,
 			Boolean borderPainted, final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
