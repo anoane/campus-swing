@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Component;
 
 public class HomePage extends JPanel {
 	private JTextField textField;
@@ -208,5 +209,15 @@ public class HomePage extends JPanel {
 
 		
 		reload();
+	}
+	/**
+	 * @wbp.factory
+	 * @wbp.factory.parameter.source arg0 label_6
+	 * Questo metodo aggiunge ordini di stampa
+	 */
+	public static JPanel createOrdiniStampa(Component arg0) {
+		JPanel panel = new JPanel();
+		panel.add(arg0);
+		return panel;
 	}
 }
