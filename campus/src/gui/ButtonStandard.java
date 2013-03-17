@@ -13,12 +13,14 @@ public class ButtonStandard  {
 	public JButton createButton(final String action, int x, int y, int width,
 			int height, String iconPath, Boolean focusPainted,
 			Boolean borderPainted, final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
+		
 		final JButton button = new JButton();
 		button.setBounds(x, y, width, height);
 		button.setIcon(new ImageIcon(iconPath));
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
 		button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+		
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent arg0) {
 				button.setBackground(Home.BLUE_BUTTON_PRESSED);
