@@ -39,6 +39,7 @@ public class Preferiti extends JPanel{
 		panel.add(separator);
 		
 		JPanel preferito = new JPanel();
+		preferito.setBackground(Color.BLUE);
 		preferito.setBounds(50, 71, 400, 150);
 		panel.add(preferito);
 		preferito.setLayout(null);
