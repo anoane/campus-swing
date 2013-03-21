@@ -15,6 +15,8 @@ import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Canvas;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Preferiti extends JPanel{
 	public Preferiti() {
@@ -55,6 +57,12 @@ public class Preferiti extends JPanel{
 		panel_2.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+			}
+		});
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(23, 11, 116, 128);
 		preferito.add(panel_1);
