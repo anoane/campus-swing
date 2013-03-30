@@ -93,7 +93,7 @@ public class PagePanel extends JPanel
 
         // set up the new page
         currentPage = page;
-
+        System.out.println(page);
         if (page == null) {
             // no page
             currentImage = null;

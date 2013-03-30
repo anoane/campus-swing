@@ -326,7 +326,7 @@ public class CopyOfPDFViewer extends JPanel
         jb.setText("");
         toolbar.add(jb);
         pageField = new JTextField("-", 3);
-        //	pageField.setEnabled(false);
+        pageField.setEnabled(false);
         pageField.setMaximumSize(new Dimension(45, 32));
         pageField.addActionListener(new ActionListener() {
 
@@ -744,6 +744,8 @@ public class CopyOfPDFViewer extends JPanel
                 try {
                     prevDirChoice = fc.getSelectedFile();
                     openFile(fc.getSelectedFile());
+                    
+
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
                 }

@@ -1,0 +1,10 @@
+com.sun.pdfview
+com.sun.pdfview.action
+com.sun.pdfview.colorspace
+com.sun.pdfview.decode
+com.sun.pdfview.decrypt
+com.sun.pdfview.font
+com.sun.pdfview.font.ttf
+com.sun.pdfview.function
+com.sun.pdfview.pattern
+test
