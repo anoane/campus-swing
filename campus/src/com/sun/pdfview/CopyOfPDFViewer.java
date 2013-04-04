@@ -74,6 +74,7 @@ import com.sun.pdfview.action.GoToAction;
 import com.sun.pdfview.action.PDFAction;
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.JPanel;
+import java.awt.FlowLayout;
 
 /**
  * A demo PDF Viewer application.
@@ -353,6 +354,9 @@ public class CopyOfPDFViewer extends JPanel
 
         JToggleButton jtb;
         ButtonGroup bg = new ButtonGroup();
+        FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 0, 0);
+        flowLayout.setAlignOnBaseline(true);
+        setLayout(flowLayout);
 
         jtb = new JToggleButton(zoomToolAction);
         jtb.setText("");
@@ -370,9 +374,7 @@ public class CopyOfPDFViewer extends JPanel
         jb.setText("");
         toolbar.add(jb);
 
-        this.add(toolbar);//, BorderLayout.NORTH);
-
-        toolbar.setBounds(0, 0, 200, 30);
+        this.add(toolbar, BorderLayout.CENTER);
         
         JMenuBar mb = new JMenuBar();
         
