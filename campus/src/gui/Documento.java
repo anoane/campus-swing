@@ -29,13 +29,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 
-import com.sun.pdfview.CopyOfPDFViewer;
 import com.sun.pdfview.PDFViewer;
 import com.sun.pdfview.PagePanel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
-import net.miginfocom.swing.MigLayout;
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
