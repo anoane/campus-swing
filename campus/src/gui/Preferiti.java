@@ -41,7 +41,7 @@ public class Preferiti extends JPanel{
 		panel.add(separator);
 		
 		JPanel preferito = new JPanel();
-		preferito.setBackground(Color.BLUE);
+		preferito.setBackground(new Color(67,136,204));
 		preferito.setBounds(50, 71, 400, 150);
 		panel.add(preferito);
 		preferito.setLayout(null);
@@ -53,6 +53,7 @@ public class Preferiti extends JPanel{
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("APPUNTI");
+		lblNewLabel.setBackground(new Color(0xFF,0x99,0x00));
 		lblNewLabel.setBounds(5, 2, 54, 20);
 		panel_2.add(lblNewLabel);
 		
