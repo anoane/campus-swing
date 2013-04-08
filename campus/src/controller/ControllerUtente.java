@@ -4,8 +4,13 @@
 package controller;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
+import modello_di_dominio.DAOFactory;
+import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
+import modello_di_dominio.dao.FacoltaDAO;
+import modello_di_dominio.dao.UtenteDAO;
 
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
@@ -29,18 +34,20 @@ public class ControllerUtente {
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
-			modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
-			modello_di_dominio.dao.UtenteDAO modello_di_DominioUtenteDAO = lDAOFactory.getUtenteDAO();
-			modello_di_dominio.Utente utente = modello_di_DominioUtenteDAO.createUtente();
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			UtenteDAO utenteDAO = factory.getUtenteDAO();
+			Utente utente = utenteDAO.createUtente();
 			
 			utente.setNome("Francesco");
 			utente.setCognome("Di Paolo");
 			utente.setSesso("M");
-			Timestamp time = new Timestamp(48474241);
 			
-			utente.setDatadinascita(time);
+			utente.setDatadinascita(new Date());
+			FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
+			Facolta facolta = facoltaDAO.getFacoltaByORMID(1);
 			
-			modello_di_DominioUtenteDAO.save(utente);
+			utente.setFacolta(facolta);
+			utenteDAO.save(utente);
 			//Commit
 			t.commit();
 			
@@ -58,14 +65,14 @@ public class ControllerUtente {
 		try{
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
-			modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
-			modello_di_dominio.dao.UtenteDAO modello_di_DominioUtenteDAO = lDAOFactory.getUtenteDAO();
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			UtenteDAO utenteDAO = factory.getUtenteDAO();
 			
 			//Trovo l'utente
-			modello_di_dominio.Utente utente = modello_di_DominioUtenteDAO.getUtenteByORMID(ID);
+			Utente utente = utenteDAO.getUtenteByORMID(ID);
 			
 			//Lo cancello
-			modello_di_DominioUtenteDAO.delete(utente);
+			utenteDAO.delete(utente);
 			
 			//Commit
 			t.commit();
@@ -75,6 +82,21 @@ public class ControllerUtente {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public Utente getUtente(String n, String c){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		try {
+			Utente utente = utenteDAO.loadUtenteByQuery("Nome = '" + n + "' AND Cognome = '" + c+"'", null);
+			return utente;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+		
 	}
 	
 }
