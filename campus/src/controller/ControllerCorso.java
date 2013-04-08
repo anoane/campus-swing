@@ -13,7 +13,7 @@ public class ControllerCorso extends AbstractController {
 	
 	private static ControllerCorso instance = null;
 
-	public ControllerCorso(){
+	protected ControllerCorso(){
 		super();
 	}
 	

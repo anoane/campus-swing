@@ -45,15 +45,20 @@ public class Main {
 					//Facolta facolta = f.getFacolta(1);
 					
 					
-					ControllerUtente u = ControllerUtente.getInstance();
+					
 					
 					u.creaUtente("Pippo","Pluto","M",new Date(), facolta);
-					//Utente utente = u.getUtente("Pippo", "Pluto");*/
+					*/
 					/*
-					ControllerDocumento d = ControllerDocumento.getInstance();
+					
 					d.creaDocumento("Sistemi", "Appunti", "/", utente, corso);
 					d.creaDocumento("Interattivi", "Appunti", "/", utente, corso);
 					d.creaDocumento("Ing", "Appunti", "/", utente, corso);
+					ControllerUtente u = ControllerUtente.getInstance();
+					Utente utente = u.getUtente("Pippo", "Pluto");
+					ControllerDocumento d = ControllerDocumento.getInstance();
+					
+					u.aggiungiDocumentoPreferito(utente, d.getDocumento(1));
 					*/
 					
 				} catch (Exception e) {

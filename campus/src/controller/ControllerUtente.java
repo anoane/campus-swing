@@ -3,13 +3,12 @@
  */
 package controller;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import modello_di_dominio.DAOFactory;
+import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
-import modello_di_dominio.dao.FacoltaDAO;
 import modello_di_dominio.dao.UtenteDAO;
 
 import org.orm.PersistentException;
@@ -25,7 +24,7 @@ public class ControllerUtente {
 	/**
 	 * 
 	 */
-	public ControllerUtente() {
+	protected ControllerUtente() {
 		super();
 	}
 	
@@ -93,6 +92,18 @@ public class ControllerUtente {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void aggiungiDocumentoPreferito(Utente u, Documento d){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		u.documentoPreferito.add(d);
+		try {
+			utenteDAO.save(u);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static ControllerUtente getInstance(){
