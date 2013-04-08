@@ -452,15 +452,15 @@ public class Home {
 		}
 	}
 	
-	public static void openDocument(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
+	public static void openDocument(final Boolean altezzaDinamica) {
 		Home.unloadDocumento();
-		//TODO:aggiungere parametri
+		//TODO:aggiungere parametri del documento
 		documento = new Documento(null);
 		Home.pulsantiNormali();
 		if (altezzaDinamica) {
-			Home.loadPages(documento, hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
+			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
 		} else {
-			Home.loadPages(documento, hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
+			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
 		}
 		documento.setPDF(null);
 	}
