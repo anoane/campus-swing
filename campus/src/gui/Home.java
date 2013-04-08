@@ -445,12 +445,13 @@ public class Home {
 
 	public static void openDocument(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
 		//TODO:aggiungere parametri
-		JPanel documento = new Documento();
+		Documento documento = new Documento(null);
 		Home.pulsantiNormali();
 		if (altezzaDinamica) {
 			Home.loadPages(documento, hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 		} else {
 			Home.loadPages(documento, hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
 		}
+		documento.setPDF(null);
 	}
 }

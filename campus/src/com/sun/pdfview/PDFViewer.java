@@ -38,8 +38,6 @@ import java.awt.Toolkit;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -56,6 +54,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -78,7 +77,7 @@ import javax.swing.JPanel;
 /**
  * A demo PDF Viewer application.
  */
-public class PDFViewer extends JFrame
+public class PDFViewer extends JInternalFrame 
         implements KeyListener, TreeSelectionListener,
         PageChangeListener {
 
@@ -280,12 +279,13 @@ public class PDFViewer extends JFrame
      */
     public PDFViewer(boolean useThumbs) {
         super(TITLE);
-        addWindowListener(new WindowAdapter() {
+        /*addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent evt) {
                 doQuit();
             }
-        });
+        });*/
+        //setUndecorated(true);
         doThumb = useThumbs;
         init();
     }
@@ -699,7 +699,7 @@ public class PDFViewer extends JFrame
         }
         if (outline != null) {
             if (outline.getChildCount() > 0) {
-                olf = new JDialog(this, "Outline");
+                //TODO:olf = new JDialog(this, "Outline");
                 olf.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
                 olf.setLocation(this.getLocation());
                 JTree jt = new JTree(outline);

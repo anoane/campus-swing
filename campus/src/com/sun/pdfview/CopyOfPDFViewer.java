@@ -297,8 +297,8 @@ public class CopyOfPDFViewer extends JPanel
      */
     protected void init() {
         page = new PagePanel();
-        page.addKeyListener(this);
-
+        //page.addKeyListener(this);
+        
         if (doThumb) {
             split = new JSplitPane(split.HORIZONTAL_SPLIT);
             split.addPropertyChangeListener(split.DIVIDER_LOCATION_PROPERTY,
@@ -314,7 +314,7 @@ public class CopyOfPDFViewer extends JPanel
         } else {
             this.add(page, BorderLayout.CENTER);
         }
-
+        
         JToolBar toolbar = new JToolBar();
         toolbar.setFloatable(false);
 
@@ -375,19 +375,9 @@ public class CopyOfPDFViewer extends JPanel
         toolbar.add(jb);
 
         this.add(toolbar, BorderLayout.CENTER);
-        
-        JMenuBar mb = new JMenuBar();
-        
-
-        mb.add(this);
-        //TODO:FIX
-/*
-        if (doThumb) {
-            this.addSeparator();
-            this.add(thumbAction);
-        }
-  */      //setJMenuBar(mb);
         setEnabling();
+        doOpen("C:\\Users\\Fabiano\\Documents\\Regalo_Fabi.pdf");
+        
         //TODO:pack();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screen.width - getWidth()) / 2;
@@ -409,7 +399,7 @@ public class CopyOfPDFViewer extends JPanel
                 // ignore
             }
         }
-        doOpen();
+        
     }
 
     /**
@@ -530,7 +520,6 @@ public class CopyOfPDFViewer extends JPanel
         boolean fileavailable = curFile != null;
         boolean pageshown = ((fspp != null) ? fspp.getPage() != null : page.getPage() != null);
         boolean printable = fileavailable && curFile.isPrintable();
-
         pageField.setEnabled(fileavailable);
         printAction.setEnabled(printable);
         closeAction.setEnabled(fileavailable);
