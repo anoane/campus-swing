@@ -38,10 +38,14 @@ import java.awt.CardLayout;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Documento extends JPanel{
 	
 	private PDFViewer pdfDoc = new PDFViewer(true);
+	boolean suggestOpened = false;
+	
 	
 	public Documento(String pdfPath) {
 		setBackground(Color.WHITE);
@@ -81,21 +85,38 @@ public class Documento extends JPanel{
 		lblNewLabel.setBounds(5, 2, 83, 20);
 		panel_2.add(lblNewLabel);
 		
-		JPanel doc_panel = new JPanel();
+		final JPanel doc_panel = new JPanel();
 		doc_panel.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
 		doc_panel.setBackground(Color.WHITE);
 		doc_panel.setBounds(10, 100, 594, 484);
 		panel.add(doc_panel);
 		doc_panel.setLayout(null);
 		
-		JPanel suggerimenti = new JPanel();
+		final JPanel suggerimenti = new JPanel();
 		suggerimenti.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
 		suggerimenti.setBackground(Color.WHITE);
 		suggerimenti.setBounds(519, 0, 75, 484);
 		doc_panel.add(suggerimenti);
 		suggerimenti.setLayout(null);
 		
-		JButton btnNewButton = new JButton(">");
+		final JButton btnNewButton = new JButton(">");
+		
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (suggestOpened) {
+					suggestOpened = false;
+					doc_panel.setBounds(10, 100, 594, 484);
+					suggerimenti.setBounds(519, 0, 75, 484);
+					btnNewButton.setText(">");
+				} else {
+					suggestOpened = true;
+					doc_panel.setBounds(10, 100, 594+376, 484);
+					suggerimenti.setBounds(519+376, 0, 75, 484);
+					btnNewButton.setText("<");
+				}
+			}
+		});
 		btnNewButton.setBounds(2, 2, 71, 71);
 		suggerimenti.add(btnNewButton);
 		
@@ -143,6 +164,51 @@ public class Documento extends JPanel{
 		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblUniversit.setBounds(292, 57, 121, 14);
 		panel.add(lblUniversit);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_3.setBackground(Color.WHITE);
+		panel_3.setBounds(614, 100, 178, 240);
+		panel.add(panel_3);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setLayout(null);
+		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_4.setBackground(Color.WHITE);
+		panel_4.setBounds(802, 100, 178, 240);
+		panel.add(panel_4);
+		
+		JButton btnScarica = new JButton();
+		btnScarica.setText("Scarica");
+		btnScarica.setForeground(Color.WHITE);
+		btnScarica.setFont(new Font("Arial", Font.BOLD, 18));
+		btnScarica.setFocusPainted(false);
+		btnScarica.setBorder(new LineBorder(Color.BLACK, 1));
+		btnScarica.setBackground(Color.BLACK);
+		btnScarica.setBounds(614, 351, 178, 28);
+		panel.add(btnScarica);
+		
+		JButton btnPrenotaStampa = new JButton();
+		btnPrenotaStampa.setText("Prenota stampa");
+		btnPrenotaStampa.setForeground(Color.WHITE);
+		btnPrenotaStampa.setFont(new Font("Arial", Font.BOLD, 18));
+		btnPrenotaStampa.setFocusPainted(false);
+		btnPrenotaStampa.setBorder(new LineBorder(Color.BLACK, 1));
+		btnPrenotaStampa.setBackground(Color.BLACK);
+		btnPrenotaStampa.setBounds(802, 351, 178, 28);
+		panel.add(btnPrenotaStampa);
+		
+		JLabel lblCommenti = new JLabel("Commenti");
+		lblCommenti.setForeground(new Color(6, 121, 159));
+		lblCommenti.setFont(new Font("Arial", Font.BOLD, 18));
+		lblCommenti.setBounds(624, 390, 200, 25);
+		panel.add(lblCommenti);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(new Color(27, 50, 128));
+		separator_1.setBounds(614, 414, 170, 1);
+		panel.add(separator_1);
 		
 	}
 	
