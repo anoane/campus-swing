@@ -120,9 +120,14 @@ public class Preferiti extends JPanel{
 		
 		//Label title
 		JLabel title = new JLabel("Titolo");
-		title.setBounds(150,10,100,40);
+		title.setBounds(170,10,50,40);
 		title.setFont(new Font("Monotype Corsiva",Font.PLAIN,25));
 		title.setForeground(Color.WHITE);
+		
+		//Label rimuovi
+		JPanel rimuovi = new JPanel();
+		rimuovi.setBounds(260,10,80,100);
+		rimuovi.setBackground(Color.WHITE);
 		
 		preferito.add(panelLabel);
 		panelLabel.add(lblNewLabel);
@@ -130,6 +135,7 @@ public class Preferiti extends JPanel{
 		preferito.add(facolta);
 		preferito.add(univ);
 		preferito.add(title);
+		preferito.add(rimuovi);
 		
 		return preferito;
 	}
