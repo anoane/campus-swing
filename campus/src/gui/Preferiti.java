@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 
+import controller.ControllerUtente;
+
 import modello_di_dominio.Documento;
 
 public class Preferiti extends JPanel{
@@ -54,16 +56,9 @@ public class Preferiti extends JPanel{
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
-		ArrayList<Documento> prova = new ArrayList<Documento>();
-			
-		prova.add(null);
-		prova.add(null);
-		prova.add(null);
-		prova.add(null);
-		prova.add(null);
-		prova.add(null);
+		ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentoPreferito.getCollection());
 		
-		addFavourites(prova);
+		addFavourites(d);
 		
 	}
 	

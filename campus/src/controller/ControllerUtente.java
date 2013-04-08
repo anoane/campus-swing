@@ -94,6 +94,19 @@ public class ControllerUtente {
 		return null;
 	}
 	
+	public Utente getUtente(int ID){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		try {
+			Utente utente = utenteDAO.getUtenteByORMID(ID);
+			return utente;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void aggiungiDocumentoPreferito(Utente u, Documento d){
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
