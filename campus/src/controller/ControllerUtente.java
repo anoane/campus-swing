@@ -5,6 +5,8 @@ package controller;
 
 import java.sql.Timestamp;
 
+import modello_di_dominio.Utente;
+
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
@@ -19,6 +21,7 @@ public class ControllerUtente {
 	public ControllerUtente() {
 		super();
 	}
+	
 	/**
 	 * 
 	 */
@@ -47,6 +50,31 @@ public class ControllerUtente {
 		}
 	}
 	
-	//public void 
+	/**
+	 * 
+	 * @param ID
+	 */
+	public void deleteUtente(int ID) {
+		try{
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			
+			modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
+			modello_di_dominio.dao.UtenteDAO modello_di_DominioUtenteDAO = lDAOFactory.getUtenteDAO();
+			
+			//Trovo l'utente
+			modello_di_dominio.Utente utente = modello_di_DominioUtenteDAO.getUtenteByORMID(ID);
+			
+			//Lo cancello
+			modello_di_DominioUtenteDAO.delete(utente);
+			
+			//Commit
+			t.commit();
+			
+		} catch (PersistentException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

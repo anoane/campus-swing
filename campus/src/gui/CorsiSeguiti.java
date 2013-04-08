@@ -27,6 +27,9 @@ public class CorsiSeguiti extends JPanel {
 	
 
 	public static void reload() {
+		
+
+		
 		numero_caselle = Controller.loadNumeroCorsiSeguiti();
 		for (int i=0; i < numero_caselle; i++) {
 			creaCasellina(i);
