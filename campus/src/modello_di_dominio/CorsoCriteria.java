@@ -38,16 +38,12 @@ public class CorsoCriteria extends AbstractORMCriteria {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
-	public FacoltaCriteria createFacoltaCriteria() {
-		return new FacoltaCriteria(createCriteria("facolta"));
+	public modello_di_dominio.UtenteCriteria createUtenteCorsoCriteria() {
+		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_UtenteCorso"));
 	}
 	
-	public modello_di_dominio.UtenteCriteria createUtenteCriteria() {
-		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_Utente"));
-	}
-	
-	public modello_di_dominio.DocumentoCriteria createDocumentoCriteria() {
-		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_Documento"));
+	public modello_di_dominio.DocumentoCriteria createDocumentoCorsoCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoCorso"));
 	}
 	
 	public Corso uniqueCorso() {

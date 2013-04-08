@@ -281,13 +281,25 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Utente utente)throws PersistentException {
 		try {
+			if(utente.getFacolta() != null) {
+				utente.getFacolta().iscritto.remove(utente);
+			}
+			
 			modello_di_dominio.Corso[] lCorsos = utente.corso.toArray();
 			for(int i = 0; i < lCorsos.length; i++) {
-				lCorsos[i].utente.remove(utente);
+				lCorsos[i].utenteCorso.remove(utente);
 			}
-			modello_di_dominio.Documento[] lDocumentos = utente.documento.toArray();
-			for(int i = 0; i < lDocumentos.length; i++) {
-				lDocumentos[i].setUtente(null);
+			modello_di_dominio.Documento[] lDocumentoUtentes = utente.documentoUtente.toArray();
+			for(int i = 0; i < lDocumentoUtentes.length; i++) {
+				lDocumentoUtentes[i].setUtenteDocumento(null);
+			}
+			modello_di_dominio.Documento[] lUtentes = utente.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(utente);
+			}
+			modello_di_dominio.Correzione[] lCorrezioness = utente.correziones.toArray();
+			for(int i = 0; i < lCorrezioness.length; i++) {
+				lCorrezioness[i].setUtente(null);
 			}
 			return delete(utente);
 		}
@@ -299,13 +311,25 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Utente utente, org.orm.PersistentSession session)throws PersistentException {
 		try {
+			if(utente.getFacolta() != null) {
+				utente.getFacolta().iscritto.remove(utente);
+			}
+			
 			modello_di_dominio.Corso[] lCorsos = utente.corso.toArray();
 			for(int i = 0; i < lCorsos.length; i++) {
-				lCorsos[i].utente.remove(utente);
+				lCorsos[i].utenteCorso.remove(utente);
 			}
-			modello_di_dominio.Documento[] lDocumentos = utente.documento.toArray();
-			for(int i = 0; i < lDocumentos.length; i++) {
-				lDocumentos[i].setUtente(null);
+			modello_di_dominio.Documento[] lDocumentoUtentes = utente.documentoUtente.toArray();
+			for(int i = 0; i < lDocumentoUtentes.length; i++) {
+				lDocumentoUtentes[i].setUtenteDocumento(null);
+			}
+			modello_di_dominio.Documento[] lUtentes = utente.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(utente);
+			}
+			modello_di_dominio.Correzione[] lCorrezioness = utente.correziones.toArray();
+			for(int i = 0; i < lCorrezioness.length; i++) {
+				lCorrezioness[i].setUtente(null);
 			}
 			try {
 				session.delete(utente);

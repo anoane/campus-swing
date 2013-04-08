@@ -36,8 +36,12 @@ public class FacoltaCriteria extends AbstractORMCriteria {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
-	public modello_di_dominio.CorsoCriteria createCorsoCriteria() {
-		return new modello_di_dominio.CorsoCriteria(createCriteria("ORM_Corso"));
+	public UniversitaCriteria createUniversitaCriteria() {
+		return new UniversitaCriteria(createCriteria("universita"));
+	}
+	
+	public modello_di_dominio.UtenteCriteria createIscrittoCriteria() {
+		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_Iscritto"));
 	}
 	
 	public Facolta uniqueFacolta() {

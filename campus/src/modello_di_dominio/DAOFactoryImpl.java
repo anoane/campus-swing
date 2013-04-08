@@ -47,5 +47,15 @@ public class DAOFactoryImpl extends DAOFactory {
 		return _facoltaDAO;
 	}
 	
+	private UniversitaDAO _universitaDAO = new UniversitaDAOImpl();
+	public UniversitaDAO getUniversitaDAO() {
+		return _universitaDAO;
+	}
+	
+	private CorrezioneDAO _correzioneDAO = new CorrezioneDAOImpl();
+	public CorrezioneDAO getCorrezioneDAO() {
+		return _correzioneDAO;
+	}
+	
 }
 

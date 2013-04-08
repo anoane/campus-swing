@@ -281,14 +281,22 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Documento documento)throws PersistentException {
 		try {
-			if(documento.getUtente() != null) {
-				documento.getUtente().documento.remove(documento);
+			modello_di_dominio.Correzione[] lCorrezioness = documento.correziones.toArray();
+			for(int i = 0; i < lCorrezioness.length; i++) {
+				lCorrezioness[i].setDocumento(null);
 			}
-			
 			if(documento.getCorso() != null) {
-				documento.getCorso().documento.remove(documento);
+				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
+			if(documento.getUtenteDocumento() != null) {
+				documento.getUtenteDocumento().documentoUtente.remove(documento);
+			}
+			
+			modello_di_dominio.Utente[] lDocumentoPreferitos = documento.documentoPreferito.toArray();
+			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
+				lDocumentoPreferitos[i].utente.remove(documento);
+			}
 			return delete(documento);
 		}
 		catch(Exception e) {
@@ -299,14 +307,22 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Documento documento, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			if(documento.getUtente() != null) {
-				documento.getUtente().documento.remove(documento);
+			modello_di_dominio.Correzione[] lCorrezioness = documento.correziones.toArray();
+			for(int i = 0; i < lCorrezioness.length; i++) {
+				lCorrezioness[i].setDocumento(null);
 			}
-			
 			if(documento.getCorso() != null) {
-				documento.getCorso().documento.remove(documento);
+				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
+			if(documento.getUtenteDocumento() != null) {
+				documento.getUtenteDocumento().documentoUtente.remove(documento);
+			}
+			
+			modello_di_dominio.Utente[] lDocumentoPreferitos = documento.documentoPreferito.toArray();
+			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
+				lDocumentoPreferitos[i].utente.remove(documento);
+			}
 			try {
 				session.delete(documento);
 				return true;

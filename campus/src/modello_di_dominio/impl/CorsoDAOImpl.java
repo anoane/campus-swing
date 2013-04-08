@@ -281,17 +281,13 @@ public class CorsoDAOImpl implements modello_di_dominio.dao.CorsoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Corso corso)throws PersistentException {
 		try {
-			if(corso.getFacolta() != null) {
-				corso.getFacolta().corso.remove(corso);
+			modello_di_dominio.Utente[] lUtenteCorsos = corso.utenteCorso.toArray();
+			for(int i = 0; i < lUtenteCorsos.length; i++) {
+				lUtenteCorsos[i].corso.remove(corso);
 			}
-			
-			modello_di_dominio.Utente[] lUtentes = corso.utente.toArray();
-			for(int i = 0; i < lUtentes.length; i++) {
-				lUtentes[i].corso.remove(corso);
-			}
-			modello_di_dominio.Documento[] lDocumentos = corso.documento.toArray();
-			for(int i = 0; i < lDocumentos.length; i++) {
-				lDocumentos[i].setCorso(null);
+			modello_di_dominio.Documento[] lDocumentoCorsos = corso.documentoCorso.toArray();
+			for(int i = 0; i < lDocumentoCorsos.length; i++) {
+				lDocumentoCorsos[i].setCorso(null);
 			}
 			return delete(corso);
 		}
@@ -303,17 +299,13 @@ public class CorsoDAOImpl implements modello_di_dominio.dao.CorsoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Corso corso, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			if(corso.getFacolta() != null) {
-				corso.getFacolta().corso.remove(corso);
+			modello_di_dominio.Utente[] lUtenteCorsos = corso.utenteCorso.toArray();
+			for(int i = 0; i < lUtenteCorsos.length; i++) {
+				lUtenteCorsos[i].corso.remove(corso);
 			}
-			
-			modello_di_dominio.Utente[] lUtentes = corso.utente.toArray();
-			for(int i = 0; i < lUtentes.length; i++) {
-				lUtentes[i].corso.remove(corso);
-			}
-			modello_di_dominio.Documento[] lDocumentos = corso.documento.toArray();
-			for(int i = 0; i < lDocumentos.length; i++) {
-				lDocumentos[i].setCorso(null);
+			modello_di_dominio.Documento[] lDocumentoCorsos = corso.documentoCorso.toArray();
+			for(int i = 0; i < lDocumentoCorsos.length; i++) {
+				lDocumentoCorsos[i].setCorso(null);
 			}
 			try {
 				session.delete(corso);

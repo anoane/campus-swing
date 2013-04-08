@@ -37,12 +37,20 @@ public class AppuntiDetachedCriteria extends AbstractORMDetachedCriteria {
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 	}
 	
-	public UtenteDetachedCriteria createUtenteCriteria() {
-		return new UtenteDetachedCriteria(createCriteria("utente"));
+	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {
+		return new modello_di_dominio.CorrezioneDetachedCriteria(createCriteria("ORM_Correziones"));
 	}
 	
 	public CorsoDetachedCriteria createCorsoCriteria() {
 		return new CorsoDetachedCriteria(createCriteria("corso"));
+	}
+	
+	public UtenteDetachedCriteria createUtenteDocumentoCriteria() {
+		return new UtenteDetachedCriteria(createCriteria("utenteDocumento"));
+	}
+	
+	public modello_di_dominio.UtenteDetachedCriteria createDocumentoPreferitoCriteria() {
+		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_DocumentoPreferito"));
 	}
 	
 	public Appunti uniqueAppunti(PersistentSession session) {
