@@ -26,7 +26,7 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_DOCUMENTO_CORSO = -1280320265;
 	
-	final int KEY_DOCUMENTO_DOCUMENTOPREFERITO = -104527925;
+	final int KEY_DOCUMENTO_UTENTE = -515672060;
 	
 	final int KEY_DOCUMENTO_UTENTEDOCUMENTO = -939999472;
 	
@@ -40,10 +40,10 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_UTENTE_CORSO = -1264608580;
 	
+	final int KEY_UTENTE_DOCUMENTOPREFERITO = -1027829210;
+	
 	final int KEY_UTENTE_DOCUMENTOUTENTE = -1694642265;
 	
 	final int KEY_UTENTE_FACOLTA = -1860336148;
-	
-	final int KEY_UTENTE_UTENTE = -28609825;
 	
 }
