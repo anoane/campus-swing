@@ -7,18 +7,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-
 import controller.Controller;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
+@SuppressWarnings("serial")
 public class CorsiSeguiti extends JPanel {
 	private final static JPanel panel = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
@@ -62,6 +55,7 @@ public class CorsiSeguiti extends JPanel {
 		panel.getParent().addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent e) {
+				@SuppressWarnings("unused")
 				int dimensione_fill_home_bottom = (panel.getParent().getHeight()
 						- Home.MIN_DIMENSION_Y + 300);
 				/*panel.setBounds(panel.getX(), panel.getY(),
