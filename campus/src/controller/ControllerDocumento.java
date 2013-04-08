@@ -14,7 +14,7 @@ public class ControllerDocumento extends AbstractController{
 	
 	private static ControllerDocumento instance;
 	
-	public ControllerDocumento(){
+	protected ControllerDocumento(){
 		super();
 	}
 

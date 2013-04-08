@@ -13,7 +13,7 @@ public class ControllerUniversita extends AbstractController {
 	
 	private static ControllerUniversita instance;
 
-	public ControllerUniversita(){
+	protected ControllerUniversita(){
 		super();
 	}
 	

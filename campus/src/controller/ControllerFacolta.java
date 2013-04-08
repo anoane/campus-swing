@@ -17,14 +17,14 @@ public class ControllerFacolta extends AbstractController {
 	
 	private static ControllerFacolta instance;
 	
-	public ControllerFacolta() {
+	protected ControllerFacolta() {
 		super();
 	}
 	
 	/**
 	 * 
 	 */
-	public void creaFacolta(String nome, Universita u){
+	protected void creaFacolta(String nome, Universita u){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
