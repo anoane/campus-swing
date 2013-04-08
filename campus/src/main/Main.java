@@ -29,14 +29,14 @@ public class Main {
 				try {
 					Home window = new Home();
 					window.getFrame().setVisible(true);
-					ControllerCorso c = ControllerCorso.getInstance();
+					//ControllerCorso c = ControllerCorso.getInstance();
 					
-					c.creaCorso("Sistemi Interattivi", "Nah cagata!");
+					//c.creaCorso("Sistemi Interattivi", "Nah cagata!");
 					//Corso corso = c.getCorso("Sistemi Interattivi");
 					
-					ControllerUniversita univ = ControllerUniversita.getInstance();
+					//ControllerUniversita univ = ControllerUniversita.getInstance();
 					
-					univ.createUniversita("Universita di L'Aquila");
+					//univ.createUniversita("Universita di L'Aquila");
 					//Universita universita = univ.getUniversita(1);
 					/*
 					ControllerFacolta f = ControllerFacolta.getInstance();
