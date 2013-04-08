@@ -1,24 +1,30 @@
 package gui;
 
-import javax.swing.JPanel;
-import java.awt.Rectangle;
-import java.awt.ComponentOrientation;
-import java.awt.Component;
 import java.awt.Color;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.JDesktopPane;
-import javax.swing.border.LineBorder;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Canvas;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.border.LineBorder;
+
+import modello_di_dominio.Documento;
+import java.awt.LayoutManager;
+import java.awt.Component;
+import java.awt.FlowLayout;
 
 public class Preferiti extends JPanel{
+	
+	private ArrayList<JPanel> preferiti = new ArrayList<JPanel>();
+	private Color preferitoBgColor = new Color(67,136,204);
+	//private 
+	
 	public Preferiti() {
 		setBackground(Color.WHITE);
 		setLayout(null);
@@ -41,7 +47,7 @@ public class Preferiti extends JPanel{
 		panel.add(separator);
 		
 		JPanel preferito = new JPanel();
-		preferito.setBackground(new Color(67,136,204));
+		preferito.setBackground(preferitoBgColor);
 		preferito.setBounds(50, 71, 400, 150);
 		panel.add(preferito);
 		preferito.setLayout(null);
@@ -61,12 +67,36 @@ public class Preferiti extends JPanel{
 		panel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+				Home.openDocument(true);
 			}
 		});
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(23, 11, 116, 128);
 		preferito.add(panel_1);
 		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(217, 116, 346, 218);
+		preferito.add(panel_3);
+		
+		JPanel panel_4 = new JPanel();
+		panel_3.add(panel_4);
+		
+	}
+	
+
+	/**
+	 * @wbp.factory
+	 * @wbp.factory.parameter.source background new java.awt.Color(67,136,204)
+	 * @wbp.factory.parameter.source layout null
+	 * @wbp.factory.parameter.source arg0 panel_2
+	 * @wbp.factory.parameter.source arg0_1 panel_1
+	 */
+	public static JPanel addPreferito(Color background, LayoutManager layout, Component arg0, Component arg0_1) {
+		JPanel panel = new JPanel();
+		panel.setBackground(background);
+		panel.setLayout(layout);
+		panel.add(arg0);
+		panel.add(arg0_1);
+		return panel;
 	}
 }
