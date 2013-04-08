@@ -118,6 +118,8 @@ public class Home {
 	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
 	private final static JPanel pagina_preferiti = new Preferiti();
 	
+	private static Documento documento = null;
+	
 	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
 	
 	
@@ -443,9 +445,16 @@ public class Home {
 		return relazionePaginaBottone.get(nome_pulsante);
 	}
 
+	public static void unloadDocumento() {
+		if (documento!=null) {
+			documento.setVisible(false);
+		}
+	}
+	
 	public static void openDocument(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
+		Home.unloadDocumento();
 		//TODO:aggiungere parametri
-		Documento documento = new Documento(null);
+		documento = new Documento(null);
 		Home.pulsantiNormali();
 		if (altezzaDinamica) {
 			Home.loadPages(documento, hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	

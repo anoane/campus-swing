@@ -218,8 +218,7 @@ public class ThumbPanel extends JPanel
      * @param y the y coordinate of the mouse click
      */
     public void handleClick(int x, int y) {
-    	System.out.println("click");
-        int linecount = -1;
+    	int linecount = -1;
         int line = y / lineheight;
         // run through the thumbnail locations, counting new lines
         // until the appropriate line is reached.
