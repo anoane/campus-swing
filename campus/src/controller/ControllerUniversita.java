@@ -10,6 +10,8 @@ import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
 public class ControllerUniversita extends AbstractController {
+	
+	private static ControllerUniversita instance;
 
 	public ControllerUniversita(){
 		super();
@@ -68,4 +70,9 @@ public class ControllerUniversita extends AbstractController {
 		return null;
 	}
 	
+	public static ControllerUniversita getInstance(){
+		if(ControllerUniversita.instance == null)
+			ControllerUniversita.instance = new ControllerUniversita();
+		return ControllerUniversita.instance;
+	}
 }

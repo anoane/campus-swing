@@ -7,12 +7,15 @@ import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.FacoltaDAO;
+import modello_di_dominio.dao.UniversitaDAO;
 import modello_di_dominio.dao.UtenteDAO;
 
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
 public class ControllerFacolta extends AbstractController {
+	
+	private static ControllerFacolta instance;
 	
 	public ControllerFacolta() {
 		super();
@@ -21,7 +24,7 @@ public class ControllerFacolta extends AbstractController {
 	/**
 	 * 
 	 */
-	public void creaFacolta(Universita u){
+	public void creaFacolta(String nome, Universita u){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
@@ -29,7 +32,7 @@ public class ControllerFacolta extends AbstractController {
 			FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
 			Facolta facolta = facoltaDAO.createFacolta();
 			
-			facolta.setNome("Ingegneria");
+			facolta.setNome(nome);
 			facolta.setUniversita(u);
 			facoltaDAO.save(facolta);
 			//Commit
@@ -39,6 +42,26 @@ public class ControllerFacolta extends AbstractController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public Facolta getFacolta(int ID){
+		
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
+			//Trovo l'univesita
+		try {
+			return facoltaDAO.getFacoltaByORMID(ID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	
+	}
+	public static ControllerFacolta getInstance(){
+		if(ControllerFacolta.instance == null)
+			ControllerFacolta.instance = new ControllerFacolta();
+		return ControllerFacolta.instance;
 	}
 	
 }

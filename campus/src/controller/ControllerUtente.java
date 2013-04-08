@@ -20,6 +20,8 @@ import org.orm.PersistentTransaction;
  *
  */
 public class ControllerUtente {
+	
+	private static ControllerUtente instance;
 	/**
 	 * 
 	 */
@@ -30,7 +32,7 @@ public class ControllerUtente {
 	/**
 	 * 
 	 */
-	public void creaUtente(){
+	public void creaUtente(String nome, String cognome, String sesso, Date date, Facolta facolta){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
@@ -38,14 +40,10 @@ public class ControllerUtente {
 			UtenteDAO utenteDAO = factory.getUtenteDAO();
 			Utente utente = utenteDAO.createUtente();
 			
-			utente.setNome("Francesco");
-			utente.setCognome("Di Paolo");
-			utente.setSesso("M");
-			
-			utente.setDatadinascita(new Date());
-			FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
-			Facolta facolta = facoltaDAO.getFacoltaByORMID(1);
-			
+			utente.setNome(nome);
+			utente.setCognome(cognome);
+			utente.setSesso(sesso);
+			utente.setDatadinascita(date);
 			utente.setFacolta(facolta);
 			utenteDAO.save(utente);
 			//Commit
@@ -95,8 +93,12 @@ public class ControllerUtente {
 			e.printStackTrace();
 		}
 		return null;
-		
-		
+	}
+	
+	public static ControllerUtente getInstance(){
+		if(ControllerUtente.instance == null)
+			ControllerUtente.instance = new ControllerUtente();
+		return ControllerUtente.instance;
 	}
 	
 }
