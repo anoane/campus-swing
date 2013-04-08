@@ -131,7 +131,7 @@ public class Home {
 
 		// frame.setBounds(0, 0, screenSize.width, screenSize.height-40);
 		getFrame().setBounds(0, 0, MIN_DIMENSION_X, screenSize.height - 40);
-
+		getFrame().setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		pannello_intero.setBorder(new LineBorder(Color.BLACK));
 		pannello_intero.setBackground(Color.WHITE);
 		getFrame().getContentPane().add(pannello_intero, BorderLayout.CENTER);
