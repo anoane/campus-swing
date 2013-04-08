@@ -23,8 +23,8 @@ public class Preferiti extends JPanel{
 	private ArrayList<JPanel> preferiti = new ArrayList<JPanel>();
 	
 	//Padding 
-	private int preferitoPadTop = 10;
-	private int preferitoPadLeft = 10;
+//	private int preferitoPadTop = 10;
+//	private int preferitoPadLeft = 10;
 	private static Color preferitoBgColor = new Color(67,136,204);
 	
 	//Pannello principale
@@ -79,27 +79,29 @@ public class Preferiti extends JPanel{
 		//Contenitore
 		JPanel preferito = new JPanel();
 		preferito.setBackground(preferitoBgColor);
+		preferito.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		
 		preferito.setLayout(null);
-		preferito.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		preferito.addMouseListener(new MouseAdapter() {
+		//Anteprima
+		JPanel anteprima = new JPanel();
+		anteprima.setBackground(Color.WHITE);
+		anteprima.setBounds(23, 16, 116, 170);
+		anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
+		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		//Event listener
+		anteprima.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openDocument(true);
 			}
 		});
 		
-		//Anteprima
-		JPanel anteprima = new JPanel();
-		anteprima.setBackground(Color.WHITE);
-		anteprima.setBounds(23, 11, 116, 128);
-		
 		//Label panel
 		JPanel panelLabel = new JPanel();
-		panelLabel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panelLabel.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		panelLabel.setBounds(10, 21, 58, 24);
-		preferito.add(panelLabel);
 		panelLabel.setLayout(null);
 		
 		//Label
@@ -107,9 +109,28 @@ public class Preferiti extends JPanel{
 		JLabel lblNewLabel = new JLabel("APPUNTI");
 		lblNewLabel.setBackground(new Color(0xFF,0x99,0x00));
 		lblNewLabel.setBounds(5, 2, 54, 20);
+		
+		//Label facolta
+		JLabel facolta = new JLabel("Ingegneria");
+		facolta.setBounds(260,80,100,20);
+		
+		//Label università
+		JLabel univ = new JLabel("Università degli studi dell'Aquila");
+		univ.setBounds(260,100,130,20);
+		
+		//Label title
+		JLabel title = new JLabel("Titolo");
+		title.setBounds(150,10,100,40);
+		title.setFont(new Font("Monotype Corsiva",Font.PLAIN,25));
+		title.setForeground(Color.WHITE);
+		
+		preferito.add(panelLabel);
 		panelLabel.add(lblNewLabel);
 		preferito.add(anteprima);
-
+		preferito.add(facolta);
+		preferito.add(univ);
+		preferito.add(title);
+		
 		return preferito;
 	}
 	
@@ -124,10 +145,10 @@ public class Preferiti extends JPanel{
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
 			
-			preferito.setBounds((50+(445*row)), 71+(180*col), 400, 150);
+			preferito.setBounds((50+(445*row)), 71+(230*col), 400, 200);
 			panel.add(preferito);
 			
-			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(180*col));
+			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));
 			
 		}
 		
