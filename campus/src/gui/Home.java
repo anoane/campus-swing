@@ -392,6 +392,7 @@ public class Home {
 	}
 
 	static void resetPagina() {
+		Home.unloadDocumento();
 		pagina_home.setVisible(false);
 		pagina_corsi_seguiti.setVisible(false);
 		pagina_preferiti.setVisible(false);
