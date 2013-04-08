@@ -93,6 +93,11 @@ public class Documento extends JPanel{
 		suggerimenti.setBackground(Color.WHITE);
 		suggerimenti.setBounds(519, 0, 75, 484);
 		doc_panel.add(suggerimenti);
+		suggerimenti.setLayout(null);
+		
+		JButton btnNewButton = new JButton(">");
+		btnNewButton.setBounds(2, 2, 71, 71);
+		suggerimenti.add(btnNewButton);
 		
 		JPanel doc = new JPanel();
 		doc.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
