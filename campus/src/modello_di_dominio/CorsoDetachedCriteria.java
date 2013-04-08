@@ -37,16 +37,12 @@ public class CorsoDetachedCriteria extends AbstractORMDetachedCriteria {
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 	}
 	
-	public FacoltaDetachedCriteria createFacoltaCriteria() {
-		return new FacoltaDetachedCriteria(createCriteria("facolta"));
+	public modello_di_dominio.UtenteDetachedCriteria createUtenteCorsoCriteria() {
+		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_UtenteCorso"));
 	}
 	
-	public modello_di_dominio.UtenteDetachedCriteria createUtenteCriteria() {
-		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_Utente"));
-	}
-	
-	public modello_di_dominio.DocumentoDetachedCriteria createDocumentoCriteria() {
-		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_Documento"));
+	public modello_di_dominio.DocumentoDetachedCriteria createDocumentoCorsoCriteria() {
+		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentoCorso"));
 	}
 	
 	public Corso uniqueCorso(PersistentSession session) {

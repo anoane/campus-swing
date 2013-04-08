@@ -281,14 +281,22 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Appunti appunti)throws PersistentException {
 		try {
-			if(appunti.getUtente() != null) {
-				appunti.getUtente().documento.remove(appunti);
+			modello_di_dominio.Correzione[] lCorrezioness = appunti.correziones.toArray();
+			for(int i = 0; i < lCorrezioness.length; i++) {
+				lCorrezioness[i].setDocumento(null);
 			}
-			
 			if(appunti.getCorso() != null) {
-				appunti.getCorso().documento.remove(appunti);
+				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
+			if(appunti.getUtenteDocumento() != null) {
+				appunti.getUtenteDocumento().documentoUtente.remove(appunti);
+			}
+			
+			modello_di_dominio.Utente[] lDocumentoPreferitos = appunti.documentoPreferito.toArray();
+			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
+				lDocumentoPreferitos[i].utente.remove(appunti);
+			}
 			return delete(appunti);
 		}
 		catch(Exception e) {
@@ -299,14 +307,22 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Appunti appunti, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			if(appunti.getUtente() != null) {
-				appunti.getUtente().documento.remove(appunti);
+			modello_di_dominio.Correzione[] lCorrezioness = appunti.correziones.toArray();
+			for(int i = 0; i < lCorrezioness.length; i++) {
+				lCorrezioness[i].setDocumento(null);
 			}
-			
 			if(appunti.getCorso() != null) {
-				appunti.getCorso().documento.remove(appunti);
+				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
+			if(appunti.getUtenteDocumento() != null) {
+				appunti.getUtenteDocumento().documentoUtente.remove(appunti);
+			}
+			
+			modello_di_dominio.Utente[] lDocumentoPreferitos = appunti.documentoPreferito.toArray();
+			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
+				lDocumentoPreferitos[i].utente.remove(appunti);
+			}
 			try {
 				session.delete(appunti);
 				return true;

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.AbstractAction;
@@ -28,12 +29,21 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 
-import com.sun.pdfview.CopyOfPDFViewer;
+import com.sun.pdfview.PDFViewer;
 import com.sun.pdfview.PagePanel;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.CardLayout;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class Documento extends JPanel{
-	public Documento() {
+	
+	private PDFViewer pdfDoc = new PDFViewer(true);
+	
+	public Documento(String pdfPath) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -83,6 +93,11 @@ public class Documento extends JPanel{
 		suggerimenti.setBackground(Color.WHITE);
 		suggerimenti.setBounds(519, 0, 75, 484);
 		doc_panel.add(suggerimenti);
+		suggerimenti.setLayout(null);
+		
+		JButton btnNewButton = new JButton(">");
+		btnNewButton.setBounds(2, 2, 71, 71);
+		suggerimenti.add(btnNewButton);
 		
 		JPanel doc = new JPanel();
 		doc.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
@@ -91,10 +106,24 @@ public class Documento extends JPanel{
 		doc_panel.add(doc);
 		doc.setLayout(null);
 		
-		CopyOfPDFViewer pdfDoc = new CopyOfPDFViewer(true);
-		pdfDoc.setBounds(2, 2, 517, 480);
-		doc.add(pdfDoc);
-		pdfDoc.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(2, 2, 517, 480);
+		doc.add(panel_1);
+		panel_1.setLayout(null);
+
+		
+
+		
+		//CopyOfPDFViewer pdfDoc = new CopyOfPDFViewer(true);
+		//pdfDoc.setBackground(Color.WHITE);
+		//pdfDoc.setBounds(2, 2, 517, 480);
+		//doc.add(pdfDoc);
+		
+		pdfDoc.setBounds(0, -48, 518, 529);
+		panel_1.add(pdfDoc);
+		pdfDoc.setBorder(null);
+
+		//pdfDoc.setBackground(Color.WHITE);
 		
 		JButton btnAggiungiAiPreferiti = new JButton();
 		btnAggiungiAiPreferiti.setText("Aggiungi ai preferiti");
@@ -117,4 +146,12 @@ public class Documento extends JPanel{
 		
 	}
 	
+	public void setPDF(String pdfPath) {
+        if (pdfPath != null) {
+        	pdfDoc.doOpen(pdfPath);
+        }
+        else {
+        	pdfDoc.doOpen();
+        }
+	}
 }

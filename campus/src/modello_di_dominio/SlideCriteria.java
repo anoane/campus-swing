@@ -38,12 +38,20 @@ public class SlideCriteria extends AbstractORMCriteria {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
-	public UtenteCriteria createUtenteCriteria() {
-		return new UtenteCriteria(createCriteria("utente"));
+	public modello_di_dominio.CorrezioneCriteria createCorrezionesCriteria() {
+		return new modello_di_dominio.CorrezioneCriteria(createCriteria("ORM_Correziones"));
 	}
 	
 	public CorsoCriteria createCorsoCriteria() {
 		return new CorsoCriteria(createCriteria("corso"));
+	}
+	
+	public UtenteCriteria createUtenteDocumentoCriteria() {
+		return new UtenteCriteria(createCriteria("utenteDocumento"));
+	}
+	
+	public modello_di_dominio.UtenteCriteria createDocumentoPreferitoCriteria() {
+		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_DocumentoPreferito"));
 	}
 	
 	public Slide uniqueSlide() {

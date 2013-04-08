@@ -10,16 +10,14 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="facolta" cascade="lock" column="FacoltaID" class="modello_di_dominio.Facolta" not-null="true" lazy="no-proxy" access="field">
-		</many-to-one>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
-		<set name="ORM_Utente" table="Corso_Utente" lazy="true" cascade="save-update,lock">
+		<set name="ORM_UtenteCorso" table="Corso_Utente" lazy="true" cascade="save-update,lock">
 			<key column="CorsoID" not-null="true"/>
 			<many-to-many column="UtenteID" class="modello_di_dominio.Utente">
 			</many-to-many>
 		</set>
-		<set name="ORM_Documento" lazy="true" cascade="save-update,lock" inverse="true">
+		<set name="ORM_DocumentoCorso" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="CorsoID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Documento"/>
 		</set>

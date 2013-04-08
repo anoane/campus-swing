@@ -10,18 +10,29 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
+		<many-to-one name="facolta" cascade="lock" column="FacoltaID" class="modello_di_dominio.Facolta" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="cognome" column="Cognome" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="datadinascita" column="Datadinascita" type="timestamp" not-null="false" lazy="false"/>
+		<property name="datadinascita" column="Datadinascita" type="date" not-null="false" lazy="false"/>
 		<property name="sesso" column="Sesso" type="string" length="255" not-null="false" lazy="false"/>
 		<set name="ORM_Corso" table="Corso_Utente" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<many-to-many column="CorsoID" class="modello_di_dominio.Corso">
 			</many-to-many>
 		</set>
-		<set name="ORM_Documento" lazy="true" cascade="save-update,lock" inverse="true">
+		<set name="ORM_DocumentoUtente" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Documento"/>
+		</set>
+		<set name="ORM_Utente" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="DocumentoID" not-null="true"/>
+			<many-to-many column="UtenteID" class="modello_di_dominio.Documento">
+			</many-to-many>
+		</set>
+		<set name="ORM_Correziones" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="UtenteID" not-null="true"/>
+			<one-to-many class="modello_di_dominio.Correzione"/>
 		</set>
 	</class>
 </hibernate-mapping>

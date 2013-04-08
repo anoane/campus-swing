@@ -11,12 +11,21 @@ License Type: Purchased
 			</generator>
 		</id>
 		<discriminator column="Discriminator" type="string"/>
-		<many-to-one name="utente" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="no-proxy" access="field">
-		</many-to-one>
+		<set name="ORM_Correziones" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="DocumentoID" not-null="true"/>
+			<one-to-many class="modello_di_dominio.Correzione"/>
+		</set>
 		<many-to-one name="corso" cascade="lock" column="CorsoID" class="modello_di_dominio.Corso" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
+		<many-to-one name="utenteDocumento" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<set name="ORM_DocumentoPreferito" table="Utente_Documento" lazy="true" cascade="save-update,lock">
+			<key column="UtenteID" not-null="true"/>
+			<many-to-many column="DocumentoID" class="modello_di_dominio.Utente">
+			</many-to-many>
+		</set>
 		<subclass name="modello_di_dominio.Slide" discriminator-value="Slide" lazy="false">
 		</subclass>
 		<subclass name="modello_di_dominio.Appunti" discriminator-value="Appunti" lazy="false">

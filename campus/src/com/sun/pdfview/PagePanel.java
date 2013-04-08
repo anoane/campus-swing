@@ -75,6 +75,7 @@ public class PagePanel extends JPanel
      */
     public PagePanel() {
         super();
+        //setPreferredSize(new Dimension(360, 450));
         setPreferredSize(new Dimension(360, 450));
         //setSize(new Dimension(800, 800));
         setFocusable(true);
@@ -94,7 +95,6 @@ public class PagePanel extends JPanel
 
         // set up the new page
         currentPage = page;
-        System.out.println(page);
         if (page == null) {
             // no page
             currentImage = null;

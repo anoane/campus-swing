@@ -10,10 +10,12 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
+		<many-to-one name="universita" cascade="lock" column="UniversitaID" class="modello_di_dominio.Universita" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
-		<set name="ORM_Corso" lazy="true" cascade="save-update,lock" inverse="true">
+		<set name="ORM_Iscritto" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="FacoltaID" not-null="true"/>
-			<one-to-many class="modello_di_dominio.Corso"/>
+			<one-to-many class="modello_di_dominio.Utente"/>
 		</set>
 	</class>
 </hibernate-mapping>

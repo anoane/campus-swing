@@ -281,9 +281,13 @@ public class FacoltaDAOImpl implements modello_di_dominio.dao.FacoltaDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Facolta facolta)throws PersistentException {
 		try {
-			modello_di_dominio.Corso[] lCorsos = facolta.corso.toArray();
-			for(int i = 0; i < lCorsos.length; i++) {
-				lCorsos[i].setFacolta(null);
+			if(facolta.getUniversita() != null) {
+				facolta.getUniversita().facolta.remove(facolta);
+			}
+			
+			modello_di_dominio.Utente[] lIscrittos = facolta.iscritto.toArray();
+			for(int i = 0; i < lIscrittos.length; i++) {
+				lIscrittos[i].setFacolta(null);
 			}
 			return delete(facolta);
 		}
@@ -295,9 +299,13 @@ public class FacoltaDAOImpl implements modello_di_dominio.dao.FacoltaDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Facolta facolta, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			modello_di_dominio.Corso[] lCorsos = facolta.corso.toArray();
-			for(int i = 0; i < lCorsos.length; i++) {
-				lCorsos[i].setFacolta(null);
+			if(facolta.getUniversita() != null) {
+				facolta.getUniversita().facolta.remove(facolta);
+			}
+			
+			modello_di_dominio.Utente[] lIscrittos = facolta.iscritto.toArray();
+			for(int i = 0; i < lIscrittos.length; i++) {
+				lIscrittos[i].setFacolta(null);
 			}
 			try {
 				session.delete(facolta);

@@ -22,7 +22,7 @@ public class UtenteCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression nome;
 	public final StringExpression cognome;
-	public final TimestampExpression datadinascita;
+	public final DateExpression datadinascita;
 	public final StringExpression sesso;
 	
 	public UtenteCriteria(Criteria criteria) {
@@ -30,7 +30,7 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		ID = new IntegerExpression("ID", this);
 		nome = new StringExpression("nome", this);
 		cognome = new StringExpression("cognome", this);
-		datadinascita = new TimestampExpression("datadinascita", this);
+		datadinascita = new DateExpression("datadinascita", this);
 		sesso = new StringExpression("sesso", this);
 	}
 	
@@ -42,12 +42,24 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
+	public FacoltaCriteria createFacoltaCriteria() {
+		return new FacoltaCriteria(createCriteria("facolta"));
+	}
+	
 	public modello_di_dominio.CorsoCriteria createCorsoCriteria() {
 		return new modello_di_dominio.CorsoCriteria(createCriteria("ORM_Corso"));
 	}
 	
-	public modello_di_dominio.DocumentoCriteria createDocumentoCriteria() {
-		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_Documento"));
+	public modello_di_dominio.DocumentoCriteria createDocumentoUtenteCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoUtente"));
+	}
+	
+	public modello_di_dominio.DocumentoCriteria createUtenteCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_Utente"));
+	}
+	
+	public modello_di_dominio.CorrezioneCriteria createCorrezionesCriteria() {
+		return new modello_di_dominio.CorrezioneCriteria(createCriteria("ORM_Correziones"));
 	}
 	
 	public Utente uniqueUtente() {
