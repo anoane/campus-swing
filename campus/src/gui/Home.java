@@ -89,6 +89,7 @@ public class Home {
 	private final static JPanel pagina_home = new HomePage();
 	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
 	private final static JPanel pagina_preferiti = new Preferiti();
+	private final static JPanel pagina_carica_materiale = new CaricaMateriale();
 	
 	private static Documento documento = null;
 	
@@ -174,6 +175,7 @@ public class Home {
 		relazionePaginaBottone.put("home", pagina_home);
 		relazionePaginaBottone.put("corsi_seguiti", pagina_corsi_seguiti);
 		relazionePaginaBottone.put("preferiti", pagina_preferiti);
+		relazionePaginaBottone.put("carica_materiale", pagina_carica_materiale);
 		
 		barra_menu_principale.setBounds(0, 0, MIN_DIMENSION_X - 8, 52);
 		pannello_intero.add(barra_menu_principale);
@@ -237,6 +239,12 @@ public class Home {
 		cerca.setFocusPainted(false);
 		cerca.setBorderPainted(false);
 		cerca.setBackground(BLUE_SEARCH_BAR);
+		carica_materiale.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openCaricaMateriale(false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+			}
+		});
 		carica_materiale.setText("Carica materiale");
 		carica_materiale.setFont(new Font("Arial", Font.BOLD, 18));
 		carica_materiale.setForeground(Color.WHITE);
@@ -282,6 +290,16 @@ public class Home {
 
 	}
 	
+	protected static void openCaricaMateriale(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
+		// TODO Auto-generated method stub
+		Home.pulsantiNormali();
+		if (altezzaDinamica) {
+			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
+		} else {
+			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
+		}
+	}
+
 	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
 		gl_pannello_verticale.setHorizontalGroup(
 				gl_pannello_verticale.createParallelGroup(hAlignment)
@@ -368,6 +386,7 @@ public class Home {
 		pagina_home.setVisible(false);
 		pagina_corsi_seguiti.setVisible(false);
 		pagina_preferiti.setVisible(false);
+		pagina_carica_materiale.setVisible(false);
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
