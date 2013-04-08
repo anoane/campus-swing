@@ -73,6 +73,7 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * <li>ID</li>
 	 * <li>nome</li>
 	 * <li>descrizione</li>
+	 * <li>path</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -86,6 +87,7 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * <li>ID</li>
 	 * <li>nome</li>
 	 * <li>descrizione</li>
+	 * <li>path</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array

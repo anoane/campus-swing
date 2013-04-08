@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 
+@SuppressWarnings("serial")
 public class HomePage extends JPanel {
 	private JTextField textField;
 	private final static JPanel panel_1 = new JPanel();

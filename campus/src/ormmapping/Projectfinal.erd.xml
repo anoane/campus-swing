@@ -139,6 +139,17 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="Path">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
   </Entity>
   <Entity name="Corso">
     <Column name="ID">
@@ -332,18 +343,6 @@
     </Column>
   </Entity>
   <Entity name="Utente_Documento">
-    <Column name="UtenteID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Modello di Dominio.Utente.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>assigned</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="DocumentoID">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -356,27 +355,19 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="UtenteID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>Modello di Dominio.Utente.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
   </Entity>
-  <ForeignKey name="Correzione">
-    <ReferenceTable>Correzione</ReferenceTable>
-    <ReferencedTable>Documento</ReferencedTable>
-    <Columns>
-      <Column>DocumentoID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="Correzione2">
-    <ReferenceTable>Correzione</ReferenceTable>
-    <ReferencedTable>Utente</ReferencedTable>
-    <Columns>
-      <Column>UtenteID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
   <ForeignKey name="segue">
     <ReferenceTable>Corso_Utente</ReferenceTable>
     <ReferencedTable>Corso</ReferencedTable>
@@ -439,6 +430,16 @@
   </ForeignKey>
   <ForeignKey name="preferito">
     <ReferenceTable>Utente_Documento</ReferenceTable>
+    <ReferencedTable>Documento</ReferencedTable>
+    <Columns>
+      <Column>DocumentoID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="preferito2">
+    <ReferenceTable>Utente_Documento</ReferenceTable>
     <ReferencedTable>Utente</ReferencedTable>
     <Columns>
       <Column>UtenteID</Column>
@@ -447,11 +448,21 @@
       <Column>ID</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="preferito2">
-    <ReferenceTable>Utente_Documento</ReferenceTable>
+  <ForeignKey name="Correzione">
+    <ReferenceTable>Correzione</ReferenceTable>
     <ReferencedTable>Documento</ReferencedTable>
     <Columns>
       <Column>DocumentoID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="Correzione2">
+    <ReferenceTable>Correzione</ReferenceTable>
+    <ReferencedTable>Utente</ReferencedTable>
+    <Columns>
+      <Column>UtenteID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>

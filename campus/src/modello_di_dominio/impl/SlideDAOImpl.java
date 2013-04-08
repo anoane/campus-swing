@@ -289,14 +289,14 @@ public class SlideDAOImpl implements modello_di_dominio.dao.SlideDAO {
 				slide.getCorso().documentoCorso.remove(slide);
 			}
 			
+			modello_di_dominio.Utente[] lUtentes = slide.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(slide);
+			}
 			if(slide.getUtenteDocumento() != null) {
 				slide.getUtenteDocumento().documentoUtente.remove(slide);
 			}
 			
-			modello_di_dominio.Utente[] lDocumentoPreferitos = slide.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(slide);
-			}
 			return delete(slide);
 		}
 		catch(Exception e) {
@@ -315,14 +315,14 @@ public class SlideDAOImpl implements modello_di_dominio.dao.SlideDAO {
 				slide.getCorso().documentoCorso.remove(slide);
 			}
 			
+			modello_di_dominio.Utente[] lUtentes = slide.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(slide);
+			}
 			if(slide.getUtenteDocumento() != null) {
 				slide.getUtenteDocumento().documentoUtente.remove(slide);
 			}
 			
-			modello_di_dominio.Utente[] lDocumentoPreferitos = slide.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(slide);
-			}
 			try {
 				session.delete(slide);
 				return true;

@@ -22,12 +22,14 @@ public class SlideDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression nome;
 	public final StringExpression descrizione;
+	public final StringExpression path;
 	
 	public SlideDetachedCriteria() {
 		super(modello_di_dominio.Slide.class, modello_di_dominio.SlideCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
+		path = new StringExpression("path", this.getDetachedCriteria());
 	}
 	
 	public SlideDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -35,6 +37,7 @@ public class SlideDetachedCriteria extends AbstractORMDetachedCriteria {
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
+		path = new StringExpression("path", this.getDetachedCriteria());
 	}
 	
 	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {
@@ -45,12 +48,12 @@ public class SlideDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new CorsoDetachedCriteria(createCriteria("corso"));
 	}
 	
-	public UtenteDetachedCriteria createUtenteDocumentoCriteria() {
-		return new UtenteDetachedCriteria(createCriteria("utenteDocumento"));
+	public modello_di_dominio.UtenteDetachedCriteria createUtenteCriteria() {
+		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_Utente"));
 	}
 	
-	public modello_di_dominio.UtenteDetachedCriteria createDocumentoPreferitoCriteria() {
-		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_DocumentoPreferito"));
+	public UtenteDetachedCriteria createUtenteDocumentoCriteria() {
+		return new UtenteDetachedCriteria(createCriteria("utenteDocumento"));
 	}
 	
 	public Slide uniqueSlide(PersistentSession session) {

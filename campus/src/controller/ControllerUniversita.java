@@ -15,7 +15,7 @@ public class ControllerUniversita extends AbstractController {
 		super();
 	}
 	
-	public void createUniversita(){
+	public void createUniversita(String n){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
@@ -23,7 +23,7 @@ public class ControllerUniversita extends AbstractController {
 			UniversitaDAO universitaDAO = factory.getUniversitaDAO();
 			Universita universita = universitaDAO.createUniversita();
 			
-			universita.setNome("Universita dell'Aquila");
+			universita.setNome(n);
 			universitaDAO.save(universita);
 			//Commit
 			t.commit();
@@ -32,6 +32,40 @@ public class ControllerUniversita extends AbstractController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void deleteUniversita(int ID){
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			UniversitaDAO universitaDAO = factory.getUniversitaDAO();
+			//Trovo l'universita
+			Universita universita = universitaDAO.getUniversitaByORMID(ID);
+			
+			//La cancello
+			universitaDAO.delete(universita);
+			
+			//Commit
+			t.commit();
+			
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Universita getUniversita(int ID){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UniversitaDAO universitaDAO = factory.getUniversitaDAO();
+		//Trovo l'univesita
+		try {
+			return universitaDAO.getUniversitaByORMID(ID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

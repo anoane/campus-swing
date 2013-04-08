@@ -12,11 +12,11 @@ public class CreateProjectfinalData {
 			modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
 			modello_di_dominio.dao.UtenteDAO modello_di_DominioUtenteDAO = lDAOFactory.getUtenteDAO();
 			modello_di_dominio.Utente modello_di_DominioUtente = modello_di_DominioUtenteDAO.createUtente();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : correziones, utente, documentoUtente, corso, facolta
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : documentoPreferito, correziones, documentoUtente, corso, facolta
 			modello_di_DominioUtenteDAO.save(modello_di_DominioUtente);
 			modello_di_dominio.dao.DocumentoDAO modello_di_DominioDocumentoDAO = lDAOFactory.getDocumentoDAO();
 			modello_di_dominio.Documento modello_di_DominioDocumento = modello_di_DominioDocumentoDAO.createDocumento();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : documentoPreferito, utenteDocumento, corso, correziones
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : utenteDocumento, utente, corso, correziones
 			modello_di_DominioDocumentoDAO.save(modello_di_DominioDocumento);
 			modello_di_dominio.dao.SlideDAO modello_di_DominioSlideDAO = lDAOFactory.getSlideDAO();
 			modello_di_dominio.Slide modello_di_DominioSlide = modello_di_DominioSlideDAO.createSlide();

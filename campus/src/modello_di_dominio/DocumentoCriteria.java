@@ -22,12 +22,14 @@ public class DocumentoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression nome;
 	public final StringExpression descrizione;
+	public final StringExpression path;
 	
 	public DocumentoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		nome = new StringExpression("nome", this);
 		descrizione = new StringExpression("descrizione", this);
+		path = new StringExpression("path", this);
 	}
 	
 	public DocumentoCriteria(PersistentSession session) {
@@ -46,12 +48,12 @@ public class DocumentoCriteria extends AbstractORMCriteria {
 		return new CorsoCriteria(createCriteria("corso"));
 	}
 	
-	public UtenteCriteria createUtenteDocumentoCriteria() {
-		return new UtenteCriteria(createCriteria("utenteDocumento"));
+	public modello_di_dominio.UtenteCriteria createUtenteCriteria() {
+		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_Utente"));
 	}
 	
-	public modello_di_dominio.UtenteCriteria createDocumentoPreferitoCriteria() {
-		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_DocumentoPreferito"));
+	public UtenteCriteria createUtenteDocumentoCriteria() {
+		return new UtenteCriteria(createCriteria("utenteDocumento"));
 	}
 	
 	public Documento uniqueDocumento() {

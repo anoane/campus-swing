@@ -25,14 +25,14 @@ License Type: Purchased
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Documento"/>
 		</set>
-		<set name="ORM_Utente" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
-			<key column="DocumentoID" not-null="true"/>
-			<many-to-many column="UtenteID" class="modello_di_dominio.Documento">
-			</many-to-many>
-		</set>
 		<set name="ORM_Correziones" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Correzione"/>
+		</set>
+		<set name="ORM_DocumentoPreferito" table="Utente_Documento" lazy="true" cascade="save-update,lock">
+			<key column="DocumentoID" not-null="true"/>
+			<many-to-many column="UtenteID" class="modello_di_dominio.Documento">
+			</many-to-many>
 		</set>
 	</class>
 </hibernate-mapping>

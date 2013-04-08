@@ -55,12 +55,12 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentoUtente"));
 	}
 	
-	public modello_di_dominio.DocumentoDetachedCriteria createUtenteCriteria() {
-		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_Utente"));
-	}
-	
 	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {
 		return new modello_di_dominio.CorrezioneDetachedCriteria(createCriteria("ORM_Correziones"));
+	}
+	
+	public modello_di_dominio.DocumentoDetachedCriteria createDocumentoPreferitoCriteria() {
+		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentoPreferito"));
 	}
 	
 	public Utente uniqueUtente(PersistentSession session) {

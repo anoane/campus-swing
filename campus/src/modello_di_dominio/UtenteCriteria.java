@@ -54,12 +54,12 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoUtente"));
 	}
 	
-	public modello_di_dominio.DocumentoCriteria createUtenteCriteria() {
-		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_Utente"));
-	}
-	
 	public modello_di_dominio.CorrezioneCriteria createCorrezionesCriteria() {
 		return new modello_di_dominio.CorrezioneCriteria(createCriteria("ORM_Correziones"));
+	}
+	
+	public modello_di_dominio.DocumentoCriteria createDocumentoPreferitoCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoPreferito"));
 	}
 	
 	public Utente uniqueUtente() {

@@ -24,11 +24,11 @@ public class Utente {
 		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOUTENTE) {
 			return ORM_documentoUtente;
 		}
-		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_UTENTE) {
-			return ORM_utente;
-		}
 		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_CORREZIONES) {
 			return ORM_correziones;
+		}
+		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOPREFERITO) {
+			return ORM_documentoPreferito;
 		}
 		
 		return null;
@@ -67,9 +67,9 @@ public class Utente {
 	
 	private java.util.Set ORM_documentoUtente = new java.util.HashSet();
 	
-	private java.util.Set ORM_utente = new java.util.HashSet();
-	
 	private java.util.Set ORM_correziones = new java.util.HashSet();
+	
+	private java.util.Set ORM_documentoPreferito = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -134,16 +134,6 @@ public class Utente {
 	}
 	
 	public final modello_di_dominio.DocumentoSetCollection documentoUtente = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOUTENTE, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEDOCUMENTO, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	private void setORM_Utente(java.util.Set value) {
-		this.ORM_utente = value;
-	}
-	
-	private java.util.Set getORM_Utente() {
-		return ORM_utente;
-	}
-	
-	public final modello_di_dominio.DocumentoSetCollection utente = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_UTENTE, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_DOCUMENTOPREFERITO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	public void setFacolta(modello_di_dominio.Facolta value) {
 		if (facolta != null) {
@@ -210,6 +200,16 @@ public class Utente {
 	}
 	
 	public final modello_di_dominio.CorrezioneSetCollection correziones = new modello_di_dominio.CorrezioneSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_CORREZIONES, modello_di_dominio.ORMConstants.KEY_CORREZIONE_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_DocumentoPreferito(java.util.Set value) {
+		this.ORM_documentoPreferito = value;
+	}
+	
+	private java.util.Set getORM_DocumentoPreferito() {
+		return ORM_documentoPreferito;
+	}
+	
+	public final modello_di_dominio.DocumentoSetCollection documentoPreferito = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOPREFERITO, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

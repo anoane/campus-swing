@@ -289,14 +289,14 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
+			modello_di_dominio.Utente[] lUtentes = appunti.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(appunti);
+			}
 			if(appunti.getUtenteDocumento() != null) {
 				appunti.getUtenteDocumento().documentoUtente.remove(appunti);
 			}
 			
-			modello_di_dominio.Utente[] lDocumentoPreferitos = appunti.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(appunti);
-			}
 			return delete(appunti);
 		}
 		catch(Exception e) {
@@ -315,14 +315,14 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
+			modello_di_dominio.Utente[] lUtentes = appunti.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(appunti);
+			}
 			if(appunti.getUtenteDocumento() != null) {
 				appunti.getUtenteDocumento().documentoUtente.remove(appunti);
 			}
 			
-			modello_di_dominio.Utente[] lDocumentoPreferitos = appunti.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(appunti);
-			}
 			try {
 				session.delete(appunti);
 				return true;

@@ -289,14 +289,14 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
+			modello_di_dominio.Utente[] lUtentes = documento.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(documento);
+			}
 			if(documento.getUtenteDocumento() != null) {
 				documento.getUtenteDocumento().documentoUtente.remove(documento);
 			}
 			
-			modello_di_dominio.Utente[] lDocumentoPreferitos = documento.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(documento);
-			}
 			return delete(documento);
 		}
 		catch(Exception e) {
@@ -315,14 +315,14 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
+			modello_di_dominio.Utente[] lUtentes = documento.utente.toArray();
+			for(int i = 0; i < lUtentes.length; i++) {
+				lUtentes[i].documentoPreferito.remove(documento);
+			}
 			if(documento.getUtenteDocumento() != null) {
 				documento.getUtenteDocumento().documentoUtente.remove(documento);
 			}
 			
-			modello_di_dominio.Utente[] lDocumentoPreferitos = documento.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(documento);
-			}
 			try {
 				session.delete(documento);
 				return true;
