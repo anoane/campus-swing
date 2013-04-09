@@ -5,6 +5,7 @@ package controller;
 
 import java.util.Date;
 
+import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
@@ -38,7 +39,6 @@ public class ControllerUtente {
 			DAOFactory factory = DAOFactory.getDAOFactory();
 			UtenteDAO utenteDAO = factory.getUtenteDAO();
 			Utente utente = utenteDAO.createUtente();
-			
 			utente.setNome(nome);
 			utente.setCognome(cognome);
 			utente.setSesso(sesso);
@@ -114,11 +114,21 @@ public class ControllerUtente {
 		try {
 			utenteDAO.save(u);
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	public void aggiungiCorsoSeguito(Utente u, Corso c){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		u.corso.add(c);
+		try {
+			utenteDAO.save(u);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+		
 	public static ControllerUtente getInstance(){
 		if(ControllerUtente.instance == null)
 			ControllerUtente.instance = new ControllerUtente();

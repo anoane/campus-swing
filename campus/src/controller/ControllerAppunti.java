@@ -42,4 +42,16 @@ public class ControllerAppunti extends ControllerDocumento {
 			ControllerAppunti.instance = new ControllerAppunti();
 		return ControllerAppunti.instance;
 	}
+	
+	public void deleteAppunti(Appunti appunti){
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		AppuntiDAO appuntiDAO = factory.getAppuntiDAO();
+		appuntiDAO.delete(appunti);
+		t.commit();
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
 }

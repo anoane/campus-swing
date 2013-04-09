@@ -47,6 +47,18 @@ public class ControllerCorso extends AbstractController {
 		return null;
 	}
 	
+	public void deleteCorso(Corso corso){
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			CorsoDAO corsoDAO = factory.getCorsoDAO();
+			corsoDAO.delete(corso);
+			t.commit();
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static ControllerCorso getInstance(){
 		if(ControllerCorso.instance == null)
 			ControllerCorso.instance = new ControllerCorso();
