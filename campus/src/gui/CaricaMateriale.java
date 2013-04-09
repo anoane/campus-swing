@@ -10,12 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import java.nio.file.StandardCopyOption.*;
 import controller.Controller;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -25,8 +28,22 @@ import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+
+import util.DocumentFilter;
+import util.RandomString;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class CaricaMateriale extends JPanel  {
 	private final static JPanel panel = new JPanel();
@@ -35,6 +52,7 @@ public class CaricaMateriale extends JPanel  {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JSeparator separator_1 = new JSeparator();
+	
 	 
 	/**
 	 * Create the panel.
@@ -107,7 +125,34 @@ public class CaricaMateriale extends JPanel  {
 		JLabel lblNewLabel = new JLabel("File");
 		panel_1.add(lblNewLabel, "3, 2, left, default");
 		
-		JButton btnScegliFile = new JButton("Scegli file...");
+		final JButton btnScegliFile = new JButton("Scegli file...");
+		btnScegliFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fc = new JFileChooser();
+				fc.setAcceptAllFileFilterUsed(false);
+				fc.setFileFilter(new util.DocumentFilter());
+				int returnVal = fc.showOpenDialog(btnScegliFile);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+		            File file = fc.getSelectedFile();
+		            String newname = file.getName();
+		            File f = new File("./files/"+newname);
+		            if(!f.exists()){
+		            	RandomString rand = new RandomString(5);
+		            	newname = newname + rand.nextString();
+		            }
+		            Path source = Paths.get(f.getPath());
+		            Path target = Paths.get("./files/"+newname);
+		            try {
+						Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
+					}
+		        } else {
+		        	JOptionPane.showMessageDialog(null, "Non riesco ad aprire questo file", "Errore", JOptionPane.ERROR_MESSAGE);
+		        }
+			}
+		});
 		btnScegliFile.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(btnScegliFile, "4, 2, fill, default");
 		
@@ -132,7 +177,7 @@ public class CaricaMateriale extends JPanel  {
 		panel_1.add(lblNewLabel_3, "3, 7, left, center");
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Slide", "Esercizi"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Dispense", "Esercizi", "Slide"}));
 		panel_1.add(comboBox, "4, 7, fill, center");
 		
 		JLabel lblNewLabel_4 = new JLabel("Facolt\u00E0");

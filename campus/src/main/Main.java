@@ -29,34 +29,34 @@ public class Main {
 				try {
 					Home window = new Home();
 					window.getFrame().setVisible(true);
-					//ControllerCorso c = ControllerCorso.getInstance();
-					
-					//c.creaCorso("Sistemi Interattivi", "Nah cagata!");
-					//Corso corso = c.getCorso("Sistemi Interattivi");
-					
-					//ControllerUniversita univ = ControllerUniversita.getInstance();
-					
-					//univ.createUniversita("Universita di L'Aquila");
-					//Universita universita = univ.getUniversita(1);
 					/*
+					ControllerCorso c = ControllerCorso.getInstance();
+					
+					c.creaCorso("Sistemi Interattivi", "Nah cagata!");
+					Corso corso = c.getCorso("Sistemi Interattivi");
+					
+					ControllerUniversita univ = ControllerUniversita.getInstance();
+					
+					univ.createUniversita("Universita di L'Aquila");
+					Universita universita = univ.getUniversita(1);
+					
 					ControllerFacolta f = ControllerFacolta.getInstance();
 					
 					f.creaFacolta("Ingegneria",universita);
-					//Facolta facolta = f.getFacolta(1);
+					Facolta facolta = f.getFacolta(1);
 					
 					
 					
-					
+					ControllerUtente u = ControllerUtente.getInstance();
 					u.creaUtente("Pippo","Pluto","M",new Date(), facolta);
-					*/
-					/*
+					
+					ControllerDocumento d = ControllerDocumento.getInstance();
+					Utente utente = u.getUtente("Pippo", "Pluto");
+					
 					
 					d.creaDocumento("Sistemi", "Appunti", "/", utente, corso);
 					d.creaDocumento("Interattivi", "Appunti", "/", utente, corso);
 					d.creaDocumento("Ing", "Appunti", "/", utente, corso);
-					ControllerUtente u = ControllerUtente.getInstance();
-					Utente utente = u.getUtente("Pippo", "Pluto");
-					ControllerDocumento d = ControllerDocumento.getInstance();
 					
 					u.aggiungiDocumentoPreferito(utente, d.getDocumento(1));
 					*/
