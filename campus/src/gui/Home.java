@@ -358,6 +358,7 @@ public class Home {
 						MIN_DIMENSION_X - 18,
 						pannello_intero.getHeight() - 92);
 			}
+			
 	}
 
 	protected static void pulsanteServiziEsterni() {
@@ -379,6 +380,7 @@ public class Home {
 		getFrame().setBounds((int)getFrame().getBounds().getX(),(int)getFrame().getBounds().getY(),(int)getFrame().getBounds().getWidth(),(int)getFrame().getBounds().getHeight()-1);
 		getFrame().revalidate();
 		getFrame().setBounds(old_rect);
+		spaghettiResize();
 	}
 
 	static void resetPagina() {
