@@ -30,8 +30,8 @@ License Type: Purchased
 			<one-to-many class="modello_di_dominio.Correzione"/>
 		</set>
 		<set name="ORM_DocumentoPreferito" table="Utente_Documento" lazy="true" cascade="save-update,lock">
-			<key column="DocumentoID" not-null="true"/>
-			<many-to-many column="UtenteID" class="modello_di_dominio.Documento">
+			<key column="UtenteID" not-null="true"/>
+			<many-to-many column="DocumentoID" class="modello_di_dominio.Documento">
 			</many-to-many>
 		</set>
 	</class>
