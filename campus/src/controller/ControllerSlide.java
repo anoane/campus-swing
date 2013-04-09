@@ -1,7 +1,13 @@
 package controller;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.DAOFactory;
+import modello_di_dominio.Slide;
 import modello_di_dominio.Utente;
+import modello_di_dominio.dao.SlideDAO;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 public class ControllerSlide extends ControllerDocumento {
 	
@@ -12,7 +18,23 @@ public class ControllerSlide extends ControllerDocumento {
 	}
 	
 	public void creaSlide(String nome, String descrizione,String path, Utente u, Corso c){
-		super.creaDocumento(nome, descrizione, path, u, c);
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			SlideDAO slideDAO = factory.getSlideDAO();
+			Slide slide = slideDAO.createSlide();
+			slide.setNome(nome);
+			slide.setDescrizione(descrizione);
+			slide.setPath(path);
+			slide.setUtenteDocumento(u);
+			slide.setCorso(c);
+			slideDAO.save(slide);
+			//Commit
+			t.commit();
+			
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static ControllerSlide getInstance(){
