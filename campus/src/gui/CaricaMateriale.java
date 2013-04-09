@@ -16,6 +16,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JList;
@@ -23,6 +24,9 @@ import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 
 public class CaricaMateriale extends JPanel  {
 	private final static JPanel panel = new JPanel();
@@ -85,13 +89,15 @@ public class CaricaMateriale extends JPanel  {
 		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("max(3dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(42dlu;default)"),
+				ColumnSpec.decode("right:max(50dlu;default)"),
 				ColumnSpec.decode("max(159dlu;default):grow"),},
 			new RowSpec[] {
 				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
-				RowSpec.decode("max(60dlu;default):grow"),
+				RowSpec.decode("max(3dlu;default)"),
+				RowSpec.decode("max(83dlu;default):grow"),
+				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("top:max(20dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
@@ -113,40 +119,45 @@ public class CaricaMateriale extends JPanel  {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Descrizione");
-		panel_1.add(lblNewLabel_2, "3, 4, left, top");
+		panel_1.add(lblNewLabel_2, "3, 5, left, top");
 		
-		JTextPane textPane = new JTextPane();
-		panel_1.add(textPane, "4, 4, fill, fill");
+		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+		textArea.setWrapStyleWord(true);
+		JScrollPane scrollPane = new JScrollPane(textArea); 
+		panel_1.add(scrollPane, "4, 5, fill, fill");
 		
 		JLabel lblNewLabel_3 = new JLabel("Categoria");
-		panel_1.add(lblNewLabel_3, "3, 5, left, default");
+		panel_1.add(lblNewLabel_3, "3, 7, left, center");
 		
 		JComboBox comboBox = new JComboBox();
-		panel_1.add(comboBox, "4, 5, fill, default");
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Slide", "Esercizi"}));
+		panel_1.add(comboBox, "4, 7, fill, center");
 		
 		JLabel lblNewLabel_4 = new JLabel("Facolt\u00E0");
-		panel_1.add(lblNewLabel_4, "3, 6, left, default");
+		panel_1.add(lblNewLabel_4, "3, 8, left, default");
 		
 		textField_2 = new JTextField();
-		panel_1.add(textField_2, "4, 6, fill, default");
+		panel_1.add(textField_2, "4, 8, fill, default");
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Universit\u00E0");
-		panel_1.add(lblNewLabel_5, "3, 7, left, default");
+		panel_1.add(lblNewLabel_5, "3, 9, left, default");
 		
 		textField_3 = new JTextField();
-		panel_1.add(textField_3, "4, 7, fill, default");
+		panel_1.add(textField_3, "4, 9, fill, default");
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Corso");
-		panel_1.add(lblNewLabel_6, "3, 8, left, default");
+		panel_1.add(lblNewLabel_6, "3, 10, left, default");
 		
 		textField_4 = new JTextField();
-		panel_1.add(textField_4, "4, 8, fill, default");
+		panel_1.add(textField_4, "4, 10, fill, default");
 		textField_4.setColumns(10);
 		
 		JButton btnCaricaMateriale = new JButton("Carica materiale");
-		panel_1.add(btnCaricaMateriale, "4, 9, fill, default");
+		panel_1.add(btnCaricaMateriale, "4, 11, fill, default");
 		
 		separator_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1.setForeground(new Color(27, 50, 128));
@@ -165,9 +176,59 @@ public class CaricaMateriale extends JPanel  {
 		txtpnNonHaiUno.setFont(new Font("Arial", Font.BOLD, 20));
 		txtpnNonHaiUno.setForeground(new Color(6, 121, 159));
 		txtpnNonHaiUno.setText("Non hai uno scanner? Non hai tempo per digitalizzare il tuo materiale?");
-		txtpnNonHaiUno.setBounds(776, 60, 222, 136);
+		txtpnNonHaiUno.setBounds(772, 48, 222, 110);
 		txtpnNonHaiUno.setHighlighter(null);
 		panel.add(txtpnNonHaiUno);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.WHITE);
+		panel_3.setBounds(377, 289, 12, 20);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel label_1 = new JLabel("New label");
+		label_1.setIcon(new ImageIcon("./newimage/freccia.png"));
+		label_1.setBounds(0, 0, 12, 20);
+		panel_3.add(label_1);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.WHITE);
+		panel_4.setLayout(null);
+		panel_4.setBounds(377, 319, 12, 20);
+		panel.add(panel_4);
+		
+		JLabel label = new JLabel("New label");
+		label.setIcon(new ImageIcon("./newimage/freccia.png"));
+		label.setBounds(0, 0, 12, 20);
+		panel_4.add(label);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.WHITE);
+		panel_5.setLayout(null);
+		panel_5.setBounds(377, 349, 12, 20);
+		panel.add(panel_5);
+		
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setIcon(new ImageIcon("./newimage/freccia.png"));
+		lblNewLabel_7.setBounds(0, 0, 12, 20);
+		panel_5.add(lblNewLabel_7);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(67, 136, 204));
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_2.setBounds(388, 55, 367, 347);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JButton btnPrenotaDigitalizzazione = new JButton();
+		btnPrenotaDigitalizzazione.setText("Prenota digitalizzazione");
+		btnPrenotaDigitalizzazione.setForeground(Color.WHITE);
+		btnPrenotaDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 18));
+		btnPrenotaDigitalizzazione.setFocusPainted(false);
+		btnPrenotaDigitalizzazione.setBorder(new LineBorder(Color.BLACK, 1));
+		btnPrenotaDigitalizzazione.setBackground(Color.BLACK);
+		btnPrenotaDigitalizzazione.setBounds(776, 164, 203, 86);
+		panel.add(btnPrenotaDigitalizzazione);
 
 	}
 }
