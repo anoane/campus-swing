@@ -35,7 +35,7 @@ public class CaricaMateriale extends JPanel  {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JSeparator separator_1 = new JSeparator();
-	
+	 
 	/**
 	 * Create the panel.
 	 */
