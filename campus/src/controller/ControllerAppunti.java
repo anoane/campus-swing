@@ -1,7 +1,13 @@
 package controller;
 
+import modello_di_dominio.Appunti;
 import modello_di_dominio.Corso;
+import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Utente;
+import modello_di_dominio.dao.AppuntiDAO;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 public class ControllerAppunti extends ControllerDocumento {
 	
@@ -11,8 +17,24 @@ public class ControllerAppunti extends ControllerDocumento {
 		super();
 	}
 	
-	protected void creaAppunti(String nome, String descrizione,String path, Utente u, Corso c){
-		super.creaDocumento(nome, descrizione, path, u, c);
+	public void creaAppunti(String nome, String descrizione,String path, Utente u, Corso c){
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			AppuntiDAO appuntiDAO = factory.getAppuntiDAO();
+			Appunti appunti = appuntiDAO.createAppunti();
+			appunti.setNome(nome);
+			appunti.setDescrizione(descrizione);
+			appunti.setPath(path);
+			appunti.setUtenteDocumento(u);
+			appunti.setCorso(c);
+			appuntiDAO.save(appunti);
+			//Commit
+			t.commit();
+			
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static ControllerAppunti getInstance(){
