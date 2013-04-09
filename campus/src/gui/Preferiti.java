@@ -100,21 +100,21 @@ public class Preferiti extends JPanel{
 		panelLabel.setLayout(null);
 		
 		//Label
-		//TODO: Modificare in base al documento caricato
-		JLabel lblNewLabel = new JLabel("APPUNTI");
+		//TODO: Modificare l'etichetta del documento
+		JLabel lblNewLabel = new JLabel(doc.getClass().getName().split("\\.")[1]);
 		lblNewLabel.setBackground(new Color(0xFF,0x99,0x00));
 		lblNewLabel.setBounds(5, 2, 54, 20);
 		
 		//Label facolta
-		JLabel facolta = new JLabel("Ingegneria");
+		JLabel facolta = new JLabel(doc.getUtenteDocumento().getFacolta().getNome());
 		facolta.setBounds(260,80,100,20);
 		
 		//Label università
-		JLabel univ = new JLabel("Università degli studi dell'Aquila");
+		JLabel univ = new JLabel(doc.getUtenteDocumento().getFacolta().getUniversita().getNome());
 		univ.setBounds(260,100,130,20);
 		
 		//Label title
-		JLabel title = new JLabel("Titolo");
+		JLabel title = new JLabel(doc.getNome());
 		title.setBounds(170,10,50,40);
 		title.setFont(new Font("Monotype Corsiva",Font.PLAIN,25));
 		title.setForeground(Color.WHITE);

@@ -24,7 +24,7 @@ public class ControllerFacolta extends AbstractController {
 	/**
 	 * 
 	 */
-	protected void creaFacolta(String nome, Universita u){
+	public void creaFacolta(String nome, Universita u){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
