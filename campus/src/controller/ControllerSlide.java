@@ -37,6 +37,18 @@ public class ControllerSlide extends ControllerDocumento {
 		}
 	}
 	
+	public Slide getSlide(int ID){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		SlideDAO slideDAO = factory.getSlideDAO();
+		try {
+			return slideDAO.getSlideByORMID(ID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static ControllerSlide getInstance(){
 		if(ControllerSlide.instance == null)
 			ControllerSlide.instance = new ControllerSlide();

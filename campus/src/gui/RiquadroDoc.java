@@ -55,28 +55,32 @@ public class RiquadroDoc extends JPanel {
 
 		// JPanel tipo
 		tipo = new JPanel();
-		tipo.setBounds(10, 21, 58, 24);
+		tipo.setBounds(10, 30, 58, 24);
 		tipo.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
+		tipo.setLayout(new BorderLayout(0, 0));
 
 		// Label Tipo
 		// TODO: Modificare l'etichetta del documento
 		JLabel lblNewLabel = new JLabel(
 				doc.getClass().getName().split("\\.")[1]);
 
-		tipo.add(lblNewLabel);
+		tipo.add(lblNewLabel,BorderLayout.CENTER);
 		switch (doc.getClass().getName().split("\\.")[1]) {
 		case "Appunti":
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 21, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		case "Dispense":
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
+			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		case "Esercizi":
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
+			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		case "Slide":
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
+			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		}
 		// Label facolta
