@@ -7,17 +7,14 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 
-import controller.ControllerUtente;
-
 import modello_di_dominio.Documento;
+import controller.ControllerUtente;
 
 public class Preferiti extends JPanel{
 	
@@ -141,7 +138,7 @@ public class Preferiti extends JPanel{
 		
 		for(int i = 0;i < docs.size();i++){
 			
-			JPanel preferito = createFavourite(docs.get(i));
+			RiquadroDoc preferito = new RiquadroDoc(docs.get(i));//createFavourite(docs.get(i));
 			
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
