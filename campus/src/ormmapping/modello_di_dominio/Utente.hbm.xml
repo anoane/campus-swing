@@ -16,12 +16,13 @@ License Type: Purchased
 		<property name="cognome" column="Cognome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="datadinascita" column="Datadinascita" type="date" not-null="false" lazy="false"/>
 		<property name="sesso" column="Sesso" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="immagine" column="Immagine" type="string" length="255" not-null="false" lazy="false"/>
 		<set name="ORM_Corso" table="Corso_Utente" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<many-to-many column="CorsoID" class="modello_di_dominio.Corso">
 			</many-to-many>
 		</set>
-		<set name="ORM_DocumentoUtente" lazy="true" cascade="save-update,lock" inverse="true">
+		<set name="ORM_DocumentiUtente" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Documento"/>
 		</set>
@@ -29,7 +30,7 @@ License Type: Purchased
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Correzione"/>
 		</set>
-		<set name="ORM_DocumentoPreferito" table="Utente_Documento" lazy="true" cascade="save-update,lock">
+		<set name="ORM_DocumentoPreferiti" table="Utente_Documento" lazy="true" cascade="save-update,lock">
 			<key column="UtenteID" not-null="true"/>
 			<many-to-many column="DocumentoID" class="modello_di_dominio.Documento">
 			</many-to-many>

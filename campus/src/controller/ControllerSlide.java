@@ -26,7 +26,7 @@ public class ControllerSlide extends ControllerDocumento {
 			slide.setNome(nome);
 			slide.setDescrizione(descrizione);
 			slide.setPath(path);
-			slide.setUtenteDocumento(u);
+			slide.setProprietario(u);
 			slide.setCorso(c);
 			slideDAO.save(slide);
 			//Commit
@@ -35,6 +35,18 @@ public class ControllerSlide extends ControllerDocumento {
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Slide getSlide(int ID){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		SlideDAO slideDAO = factory.getSlideDAO();
+		try {
+			return slideDAO.getSlideByORMID(ID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static ControllerSlide getInstance(){

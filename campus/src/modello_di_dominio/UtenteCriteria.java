@@ -24,6 +24,7 @@ public class UtenteCriteria extends AbstractORMCriteria {
 	public final StringExpression cognome;
 	public final DateExpression datadinascita;
 	public final StringExpression sesso;
+	public final StringExpression immagine;
 	
 	public UtenteCriteria(Criteria criteria) {
 		super(criteria);
@@ -32,6 +33,7 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		cognome = new StringExpression("cognome", this);
 		datadinascita = new DateExpression("datadinascita", this);
 		sesso = new StringExpression("sesso", this);
+		immagine = new StringExpression("immagine", this);
 	}
 	
 	public UtenteCriteria(PersistentSession session) {
@@ -50,16 +52,16 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		return new modello_di_dominio.CorsoCriteria(createCriteria("ORM_Corso"));
 	}
 	
-	public modello_di_dominio.DocumentoCriteria createDocumentoUtenteCriteria() {
-		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoUtente"));
+	public modello_di_dominio.DocumentoCriteria createDocumentiUtenteCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentiUtente"));
 	}
 	
 	public modello_di_dominio.CorrezioneCriteria createCorrezionesCriteria() {
 		return new modello_di_dominio.CorrezioneCriteria(createCriteria("ORM_Correziones"));
 	}
 	
-	public modello_di_dominio.DocumentoCriteria createDocumentoPreferitoCriteria() {
-		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoPreferito"));
+	public modello_di_dominio.DocumentoCriteria createDocumentoPreferitiCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoPreferiti"));
 	}
 	
 	public Utente uniqueUtente() {

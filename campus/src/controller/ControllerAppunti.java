@@ -26,7 +26,7 @@ public class ControllerAppunti extends ControllerDocumento {
 			appunti.setNome(nome);
 			appunti.setDescrizione(descrizione);
 			appunti.setPath(path);
-			appunti.setUtenteDocumento(u);
+			appunti.setProprietario(u);
 			appunti.setCorso(c);
 			appuntiDAO.save(appunti);
 			//Commit
@@ -41,6 +41,18 @@ public class ControllerAppunti extends ControllerDocumento {
 		if(ControllerAppunti.instance == null)
 			ControllerAppunti.instance = new ControllerAppunti();
 		return ControllerAppunti.instance;
+	}
+	
+	public Appunti getAppunti(int ID){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		AppuntiDAO appuntiDAO = factory.getAppuntiDAO();
+		try {
+			return appuntiDAO.getAppuntiByORMID(ID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public void deleteAppunti(Appunti appunti){

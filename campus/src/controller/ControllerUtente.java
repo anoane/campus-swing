@@ -110,7 +110,7 @@ public class ControllerUtente {
 	public void aggiungiDocumentoPreferito(Utente u, Documento d){
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
-		u.documentoPreferito.add(d);
+		u.documentoPreferiti.add(d);
 		try {
 			utenteDAO.save(u);
 		} catch (PersistentException e) {

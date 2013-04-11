@@ -289,17 +289,17 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			for(int i = 0; i < lCorsos.length; i++) {
 				lCorsos[i].utenteCorso.remove(utente);
 			}
-			modello_di_dominio.Documento[] lDocumentoUtentes = utente.documentoUtente.toArray();
-			for(int i = 0; i < lDocumentoUtentes.length; i++) {
-				lDocumentoUtentes[i].setUtenteDocumento(null);
+			modello_di_dominio.Documento[] lDocumentiUtentes = utente.documentiUtente.toArray();
+			for(int i = 0; i < lDocumentiUtentes.length; i++) {
+				lDocumentiUtentes[i].setProprietario(null);
 			}
 			modello_di_dominio.Correzione[] lCorrezioness = utente.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setUtente(null);
 			}
-			modello_di_dominio.Documento[] lDocumentoPreferitos = utente.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(utente);
+			modello_di_dominio.Documento[] lDocumentoPreferitis = utente.documentoPreferiti.toArray();
+			for(int i = 0; i < lDocumentoPreferitis.length; i++) {
+				lDocumentoPreferitis[i].utentePrefetito.remove(utente);
 			}
 			return delete(utente);
 		}
@@ -319,17 +319,17 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			for(int i = 0; i < lCorsos.length; i++) {
 				lCorsos[i].utenteCorso.remove(utente);
 			}
-			modello_di_dominio.Documento[] lDocumentoUtentes = utente.documentoUtente.toArray();
-			for(int i = 0; i < lDocumentoUtentes.length; i++) {
-				lDocumentoUtentes[i].setUtenteDocumento(null);
+			modello_di_dominio.Documento[] lDocumentiUtentes = utente.documentiUtente.toArray();
+			for(int i = 0; i < lDocumentiUtentes.length; i++) {
+				lDocumentiUtentes[i].setProprietario(null);
 			}
 			modello_di_dominio.Correzione[] lCorrezioness = utente.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setUtente(null);
 			}
-			modello_di_dominio.Documento[] lDocumentoPreferitos = utente.documentoPreferito.toArray();
-			for(int i = 0; i < lDocumentoPreferitos.length; i++) {
-				lDocumentoPreferitos[i].utente.remove(utente);
+			modello_di_dominio.Documento[] lDocumentoPreferitis = utente.documentoPreferiti.toArray();
+			for(int i = 0; i < lDocumentoPreferitis.length; i++) {
+				lDocumentoPreferitis[i].utentePrefetito.remove(utente);
 			}
 			try {
 				session.delete(utente);

@@ -21,8 +21,8 @@ public class Documento {
 		if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_CORREZIONES) {
 			return ORM_correziones;
 		}
-		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTE) {
-			return ORM_utente;
+		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFETITO) {
+			return ORM_utentePrefetito;
 		}
 		
 		return null;
@@ -33,8 +33,8 @@ public class Documento {
 			this.corso = (modello_di_dominio.Corso) owner;
 		}
 		
-		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEDOCUMENTO) {
-			this.utenteDocumento = (modello_di_dominio.Utente) owner;
+		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_PROPRIETARIO) {
+			this.proprietario = (modello_di_dominio.Utente) owner;
 		}
 	}
 	
@@ -61,9 +61,13 @@ public class Documento {
 	
 	private String path;
 	
-	private java.util.Set ORM_utente = new java.util.HashSet();
+	private int voto;
 	
-	private modello_di_dominio.Utente utenteDocumento;
+	private int num_voti;
+	
+	private java.util.Set ORM_utentePrefetito = new java.util.HashSet();
+	
+	private modello_di_dominio.Utente proprietario;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -99,6 +103,22 @@ public class Documento {
 	
 	public String getPath() {
 		return path;
+	}
+	
+	public void setVoto(int value) {
+		this.voto = value;
+	}
+	
+	public int getVoto() {
+		return voto;
+	}
+	
+	public void setNum_voti(int value) {
+		this.num_voti = value;
+	}
+	
+	public int getNum_voti() {
+		return num_voti;
 	}
 	
 	public void setCorso(modello_di_dominio.Corso value) {
@@ -167,38 +187,38 @@ public class Documento {
 	
 	public final modello_di_dominio.CorrezioneSetCollection correziones = new modello_di_dominio.CorrezioneSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_CORREZIONES, modello_di_dominio.ORMConstants.KEY_CORREZIONE_DOCUMENTO, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	private void setORM_Utente(java.util.Set value) {
-		this.ORM_utente = value;
+	private void setORM_UtentePrefetito(java.util.Set value) {
+		this.ORM_utentePrefetito = value;
 	}
 	
-	private java.util.Set getORM_Utente() {
-		return ORM_utente;
+	private java.util.Set getORM_UtentePrefetito() {
+		return ORM_utentePrefetito;
 	}
 	
-	public final modello_di_dominio.UtenteSetCollection utente = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTE, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOPREFERITO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	public final modello_di_dominio.UtenteSetCollection utentePrefetito = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFETITO, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOPREFERITI, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
-	public void setUtenteDocumento(modello_di_dominio.Utente value) {
-		if (utenteDocumento != null) {
-			utenteDocumento.documentoUtente.remove(this);
+	public void setProprietario(modello_di_dominio.Utente value) {
+		if (proprietario != null) {
+			proprietario.documentiUtente.remove(this);
 		}
 		if (value != null) {
-			value.documentoUtente.add(this);
+			value.documentiUtente.add(this);
 		}
 	}
 	
-	public modello_di_dominio.Utente getUtenteDocumento() {
-		return utenteDocumento;
+	public modello_di_dominio.Utente getProprietario() {
+		return proprietario;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_UtenteDocumento(modello_di_dominio.Utente value) {
-		this.utenteDocumento = value;
+	public void setORM_Proprietario(modello_di_dominio.Utente value) {
+		this.proprietario = value;
 	}
 	
-	private modello_di_dominio.Utente getORM_UtenteDocumento() {
-		return utenteDocumento;
+	private modello_di_dominio.Utente getORM_Proprietario() {
+		return proprietario;
 	}
 	
 	public String toString() {

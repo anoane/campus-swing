@@ -23,6 +23,8 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression nome;
 	public final StringExpression descrizione;
 	public final StringExpression path;
+	public final IntegerExpression voto;
+	public final IntegerExpression num_voti;
 	
 	public DocumentoDetachedCriteria() {
 		super(modello_di_dominio.Documento.class, modello_di_dominio.DocumentoCriteria.class);
@@ -30,6 +32,8 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		path = new StringExpression("path", this.getDetachedCriteria());
+		voto = new IntegerExpression("voto", this.getDetachedCriteria());
+		num_voti = new IntegerExpression("num_voti", this.getDetachedCriteria());
 	}
 	
 	public DocumentoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -38,6 +42,8 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		path = new StringExpression("path", this.getDetachedCriteria());
+		voto = new IntegerExpression("voto", this.getDetachedCriteria());
+		num_voti = new IntegerExpression("num_voti", this.getDetachedCriteria());
 	}
 	
 	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {
@@ -48,12 +54,12 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new CorsoDetachedCriteria(createCriteria("corso"));
 	}
 	
-	public modello_di_dominio.UtenteDetachedCriteria createUtenteCriteria() {
-		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_Utente"));
+	public modello_di_dominio.UtenteDetachedCriteria createUtentePrefetitoCriteria() {
+		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_UtentePrefetito"));
 	}
 	
-	public UtenteDetachedCriteria createUtenteDocumentoCriteria() {
-		return new UtenteDetachedCriteria(createCriteria("utenteDocumento"));
+	public UtenteDetachedCriteria createProprietarioCriteria() {
+		return new UtenteDetachedCriteria(createCriteria("proprietario"));
 	}
 	
 	public Documento uniqueDocumento(PersistentSession session) {

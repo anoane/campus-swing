@@ -20,12 +20,14 @@ License Type: Purchased
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="path" column="Path" type="string" length="255" not-null="false" lazy="false"/>
-		<set name="ORM_Utente" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
+		<property name="voto" column="Voto" type="integer" length="11" not-null="true" lazy="false"/>
+		<property name="num_voti" column="Num_voti" type="integer" length="11" not-null="true" lazy="false"/>
+		<set name="ORM_UtentePrefetito" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="DocumentoID" not-null="true"/>
 			<many-to-many column="UtenteID" class="modello_di_dominio.Utente">
 			</many-to-many>
 		</set>
-		<many-to-one name="utenteDocumento" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="proprietario" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
 		<subclass name="modello_di_dominio.Slide" discriminator-value="Slide" lazy="false">
 		</subclass>
