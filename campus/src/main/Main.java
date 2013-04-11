@@ -8,8 +8,8 @@ import modello_di_dominio.Corso;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
 import modello_di_dominio.Utente;
+import controller.ControllerAppunti;
 import controller.ControllerCorso;
-import controller.ControllerDocumento;
 import controller.ControllerFacolta;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
@@ -50,17 +50,17 @@ public class Main {
 					ControllerUtente u = ControllerUtente.getInstance();
 					u.creaUtente("Pippo","Pluto","M",new Date(), facolta);
 					
-					ControllerDocumento d = ControllerDocumento.getInstance();
+					ControllerAppunti d = ControllerAppunti.getInstance();
 					Utente utente = u.getUtente("Pippo", "Pluto");
 					
 					
-					d.creaDocumento("Sistemi", "Appunti", "/", utente, corso);
-					d.creaDocumento("Interattivi", "Appunti", "/", utente, corso);
+					d.creaAppunti("Sistemi", "Appunti", "/", utente, corso);
+					d.creaAppunti("Interattivi", "Appunti", "/", utente, corso);
 					d.creaDocumento("Ing", "Appunti", "/", utente, corso);
 					
-					u.aggiungiDocumentoPreferito(utente, d.getDocumento(1));
+					u.aggiungiDocumentoPreferito(utente, d.getAppunti(1));
+					u.aggiungiDocumentoPreferito(utente, d.getAppunti(2));
 					*/
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
