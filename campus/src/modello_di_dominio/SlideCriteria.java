@@ -23,6 +23,8 @@ public class SlideCriteria extends AbstractORMCriteria {
 	public final StringExpression nome;
 	public final StringExpression descrizione;
 	public final StringExpression path;
+	public final IntegerExpression voto;
+	public final IntegerExpression num_voti;
 	
 	public SlideCriteria(Criteria criteria) {
 		super(criteria);
@@ -30,6 +32,8 @@ public class SlideCriteria extends AbstractORMCriteria {
 		nome = new StringExpression("nome", this);
 		descrizione = new StringExpression("descrizione", this);
 		path = new StringExpression("path", this);
+		voto = new IntegerExpression("voto", this);
+		num_voti = new IntegerExpression("num_voti", this);
 	}
 	
 	public SlideCriteria(PersistentSession session) {
@@ -48,12 +52,12 @@ public class SlideCriteria extends AbstractORMCriteria {
 		return new CorsoCriteria(createCriteria("corso"));
 	}
 	
-	public modello_di_dominio.UtenteCriteria createUtenteCriteria() {
-		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_Utente"));
+	public modello_di_dominio.UtenteCriteria createUtentePrefetitoCriteria() {
+		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_UtentePrefetito"));
 	}
 	
-	public UtenteCriteria createUtenteDocumentoCriteria() {
-		return new UtenteCriteria(createCriteria("utenteDocumento"));
+	public UtenteCriteria createProprietarioCriteria() {
+		return new UtenteCriteria(createCriteria("proprietario"));
 	}
 	
 	public Slide uniqueSlide() {

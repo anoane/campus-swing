@@ -26,7 +26,7 @@ public class ControllerSlide extends ControllerDocumento {
 			slide.setNome(nome);
 			slide.setDescrizione(descrizione);
 			slide.setPath(path);
-			slide.setUtenteDocumento(u);
+			slide.setProprietario(u);
 			slide.setCorso(c);
 			slideDAO.save(slide);
 			//Commit

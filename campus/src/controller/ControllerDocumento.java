@@ -27,7 +27,7 @@ public class ControllerDocumento extends AbstractController{
 			documento.setNome(nome);
 			documento.setDescrizione(descrizione);
 			documento.setPath(path);
-			documento.setUtenteDocumento(u);
+			documento.setProprietario(u);
 			documento.setCorso(c);
 			documentoDAO.save(documento);
 			//Commit

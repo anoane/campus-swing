@@ -26,7 +26,7 @@ public class ControllerAppunti extends ControllerDocumento {
 			appunti.setNome(nome);
 			appunti.setDescrizione(descrizione);
 			appunti.setPath(path);
-			appunti.setUtenteDocumento(u);
+			appunti.setProprietario(u);
 			appunti.setCorso(c);
 			appuntiDAO.save(appunti);
 			//Commit

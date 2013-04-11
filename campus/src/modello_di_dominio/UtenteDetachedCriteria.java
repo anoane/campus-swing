@@ -24,6 +24,7 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression cognome;
 	public final DateExpression datadinascita;
 	public final StringExpression sesso;
+	public final StringExpression immagine;
 	
 	public UtenteDetachedCriteria() {
 		super(modello_di_dominio.Utente.class, modello_di_dominio.UtenteCriteria.class);
@@ -32,6 +33,7 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
 		datadinascita = new DateExpression("datadinascita", this.getDetachedCriteria());
 		sesso = new StringExpression("sesso", this.getDetachedCriteria());
+		immagine = new StringExpression("immagine", this.getDetachedCriteria());
 	}
 	
 	public UtenteDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -41,6 +43,7 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
 		datadinascita = new DateExpression("datadinascita", this.getDetachedCriteria());
 		sesso = new StringExpression("sesso", this.getDetachedCriteria());
+		immagine = new StringExpression("immagine", this.getDetachedCriteria());
 	}
 	
 	public FacoltaDetachedCriteria createFacoltaCriteria() {
@@ -51,16 +54,16 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new modello_di_dominio.CorsoDetachedCriteria(createCriteria("ORM_Corso"));
 	}
 	
-	public modello_di_dominio.DocumentoDetachedCriteria createDocumentoUtenteCriteria() {
-		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentoUtente"));
+	public modello_di_dominio.DocumentoDetachedCriteria createDocumentiUtenteCriteria() {
+		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentiUtente"));
 	}
 	
 	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {
 		return new modello_di_dominio.CorrezioneDetachedCriteria(createCriteria("ORM_Correziones"));
 	}
 	
-	public modello_di_dominio.DocumentoDetachedCriteria createDocumentoPreferitoCriteria() {
-		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentoPreferito"));
+	public modello_di_dominio.DocumentoDetachedCriteria createDocumentoPreferitiCriteria() {
+		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentoPreferiti"));
 	}
 	
 	public Utente uniqueUtente(PersistentSession session) {

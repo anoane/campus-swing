@@ -56,7 +56,7 @@ public class Preferiti extends JPanel{
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
-		ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentoPreferito.getCollection());
+		ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentoPreferiti.getCollection());
 		
 		addFavourites(d);
 		
@@ -106,11 +106,11 @@ public class Preferiti extends JPanel{
 		lblNewLabel.setBounds(5, 2, 54, 20);
 		
 		//Label facolta
-		JLabel facolta = new JLabel(doc.getUtenteDocumento().getFacolta().getNome());
+		JLabel facolta = new JLabel(doc.getProprietario().getFacolta().getNome());
 		facolta.setBounds(260,80,100,20);
 		
 		//Label università
-		JLabel univ = new JLabel(doc.getUtenteDocumento().getFacolta().getUniversita().getNome());
+		JLabel univ = new JLabel(doc.getProprietario().getFacolta().getUniversita().getNome());
 		univ.setBounds(260,100,130,20);
 		
 		//Label title

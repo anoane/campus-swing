@@ -289,12 +289,12 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
-			modello_di_dominio.Utente[] lUtentes = appunti.utente.toArray();
-			for(int i = 0; i < lUtentes.length; i++) {
-				lUtentes[i].documentoPreferito.remove(appunti);
+			modello_di_dominio.Utente[] lUtentePrefetitos = appunti.utentePrefetito.toArray();
+			for(int i = 0; i < lUtentePrefetitos.length; i++) {
+				lUtentePrefetitos[i].documentoPreferiti.remove(appunti);
 			}
-			if(appunti.getUtenteDocumento() != null) {
-				appunti.getUtenteDocumento().documentoUtente.remove(appunti);
+			if(appunti.getProprietario() != null) {
+				appunti.getProprietario().documentiUtente.remove(appunti);
 			}
 			
 			return delete(appunti);
@@ -315,12 +315,12 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
-			modello_di_dominio.Utente[] lUtentes = appunti.utente.toArray();
-			for(int i = 0; i < lUtentes.length; i++) {
-				lUtentes[i].documentoPreferito.remove(appunti);
+			modello_di_dominio.Utente[] lUtentePrefetitos = appunti.utentePrefetito.toArray();
+			for(int i = 0; i < lUtentePrefetitos.length; i++) {
+				lUtentePrefetitos[i].documentoPreferiti.remove(appunti);
 			}
-			if(appunti.getUtenteDocumento() != null) {
-				appunti.getUtenteDocumento().documentoUtente.remove(appunti);
+			if(appunti.getProprietario() != null) {
+				appunti.getProprietario().documentiUtente.remove(appunti);
 			}
 			
 			try {
