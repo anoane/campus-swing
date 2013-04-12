@@ -142,6 +142,7 @@ public class CaricaMateriale extends JPanel  {
 		            }
 		            Path source = Paths.get(f.getPath());
 		            Path target = Paths.get("./files/"+newname);
+		            System.out.println(target.toString());
 		            try {
 						Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
 					} catch (IOException e) {
