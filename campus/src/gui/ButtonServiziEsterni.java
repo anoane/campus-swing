@@ -29,8 +29,8 @@ public class ButtonServiziEsterni  {
 
 			public void mouseClicked(MouseEvent e) {
 				Home.pulsanteServiziEsterni();
-				Home.setOldButtonColor("servizi_esterni", Home.BLUE_BUTTON_PRESSED);
-				button.setBackground(Home.BLUE_BUTTON_PRESSED);
+				//Home.setOldButtonColor("servizi_esterni", Home.BLUE_BUTTON_PRESSED);
+				//button.setBackground(Home.BLUE_BUTTON_PRESSED);
 				/*if (altezzaDinamica) {
 					Home.loadPages(Home.getPaginaCorrispondente(action), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 				} else {
