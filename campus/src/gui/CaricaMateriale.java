@@ -135,14 +135,12 @@ public class CaricaMateriale extends JPanel  {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 		            File file = fc.getSelectedFile();
 		            String newname = file.getName();
-		            File f = new File("./files/"+newname);
-		            if(!f.exists()){
-		            	RandomString rand = new RandomString(5);
-		            	newname = newname + rand.nextString();
+		            File f = new File("files/"+newname);
+		            if(f.exists()){
+		            	newname = util.EstensioneFile.addRandToFileName(newname);
 		            }
-		            Path source = Paths.get(f.getPath());
-		            Path target = Paths.get("./files/"+newname);
-		            System.out.println(target.toString());
+		            Path source = Paths.get(file.getPath());
+		            Path target = Paths.get("files/"+newname);
 		            try {
 						Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
 					} catch (IOException e) {

@@ -35,4 +35,22 @@ public class EstensioneFile {
         }
         return ext;
     }
+    
+    /*
+     * Get the extension of a file.
+     */  
+    public static String addRandToFileName(String name) {
+        String ext = null;
+        String noExt = null;
+        String newName = "";
+        int i = name.lastIndexOf('.');
+        if (i > 0 &&  i < name.length() - 1) {
+            ext = name.substring(i+1).toLowerCase();
+            noExt = name.substring(0, i);
+            RandomString rand = new RandomString(5);
+            newName = newName.concat(noExt+"_"+rand.nextString()+"."+ext);
+        }
+        
+        return newName;
+    }
 }
