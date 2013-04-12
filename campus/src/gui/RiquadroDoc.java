@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,6 +22,8 @@ import javax.swing.border.LineBorder;
 import controller.ControllerUtente;
 
 import modello_di_dominio.Documento;
+import java.awt.Rectangle;
+import java.awt.Dimension;
 
 public class RiquadroDoc extends JPanel {
 
@@ -39,6 +42,7 @@ public class RiquadroDoc extends JPanel {
 	private RimuoviButton rimuovi;
 
 	private static Color preferitoBgColor = new Color(67, 136, 204);
+	private static Color colore_stella = new Color(255,222,87);
 
 	public RiquadroDoc(final Documento doc) {
 		//this.id = doc.getID();
@@ -129,8 +133,22 @@ public class RiquadroDoc extends JPanel {
 		
 		// Panel stelle
 		stelle = new JPanel();
+		JPanel colore = new JPanel();
+		stelle.setLayout(null);
+		
+		for(int i=0; i<5; ++i){
+			JLabel stella = new JLabel();
+			stella.setAlignmentY(Component.TOP_ALIGNMENT);
+			stella.setBounds(i*30, 0, 30, 30);
+			stella.setIcon(new ImageIcon("./newimage/star.png"));
+			//stella.setBackground(Color.black);
+			stelle.add(stella);
+		}
+		stelle.add(colore);
+		colore.setBackground(colore_stella);
+		colore.setSize(30, 30);
 		stelle.setLocation(154, 45);
-		stelle.setSize(120, 30);
+		stelle.setSize(150, 30);
 		
 		// Panel utente
 		utente = new JPanel();
