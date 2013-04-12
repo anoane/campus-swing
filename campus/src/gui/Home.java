@@ -90,7 +90,7 @@ public class Home {
 	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
 	private final static JPanel pagina_preferiti = new Preferiti();
 	private final static JPanel pagina_carica_materiale = new CaricaMateriale();
-	
+	private final static JPanel pagina_miei_documenti = new MieiDocumenti();
 	private static Documento documento = null;
 	
 	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
@@ -176,6 +176,7 @@ public class Home {
 		relazionePaginaBottone.put("corsi_seguiti", pagina_corsi_seguiti);
 		relazionePaginaBottone.put("preferiti", pagina_preferiti);
 		relazionePaginaBottone.put("carica_materiale", pagina_carica_materiale);
+		relazionePaginaBottone.put("miei_documenti", pagina_miei_documenti);
 		
 		barra_menu_principale.setBounds(0, 0, MIN_DIMENSION_X - 8, 52);
 		pannello_intero.add(barra_menu_principale);
@@ -389,6 +390,7 @@ public class Home {
 		pagina_corsi_seguiti.setVisible(false);
 		pagina_preferiti.setVisible(false);
 		pagina_carica_materiale.setVisible(false);
+		pagina_miei_documenti.setVisible(false);
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {

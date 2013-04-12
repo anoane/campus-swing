@@ -158,12 +158,11 @@ public class Preferiti extends JPanel{
 			
 			preferito.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
-				//JOptionPane.showMessageDialog(null,doc);
-				ControllerUtente u = ControllerUtente.getInstance();
-				u.rimuoviDocumentoPrefetito(u.getUtente(1), d);
-				panel.remove(preferito);
-				validate();
-				repaint();}
+					ControllerUtente u = ControllerUtente.getInstance();
+					u.rimuoviDocumentoPrefetito(u.getUtente(1), d);
+					panel.remove(preferito);
+					validate();
+					repaint();}
 				});
 			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));
 			
