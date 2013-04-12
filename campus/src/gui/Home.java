@@ -40,7 +40,7 @@ public class Home {
 	private final static JButton corsi_seguiti = buttonCreator.createButton("corsi_seguiti", 211, 0, 129, 52, "./newimage/corsi_seguiti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton preferiti = buttonCreator.createButton("preferiti", 342, 0, 95, 52, "./newimage/preferiti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton miei_documenti = buttonCreator.createButton("miei_documenti", 439, 0, 163, 52, "./newimage/i_miei_documenti.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
-	private final static JButton notifiche = buttonCreator.createButton("notifiche", 770, 0, 52, 52, "./newimage/notifiche.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+	private final static JButton notifiche = new JButton();
 	private final static JButton profilo = buttonCreator.createButton("profilo", 824, 0, 182, 52, "./newimage/profilo.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	//private final static JButton impostazioni = buttonCreator.createButton("impostazioni", 3000, 0, 110, 52, "./newimage/impostazioni.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 
@@ -91,6 +91,10 @@ public class Home {
 	private final static JPanel pagina_preferiti = new Preferiti();
 	private final static JPanel pagina_carica_materiale = new CaricaMateriale();
 	private final static JPanel pagina_miei_documenti = new MieiDocumenti();
+	private final static JPanel pagina_profilo = new Profilo();
+	private final static JPanel pagina_gestione_stampa = new GestioneStampa();
+	private final static JPanel pagina_prenota_digitalizzazione = new PrenotaDigitalizzazione();
+	private final static JPanel pagina_prenota_libri = new PrenotaLibro();
 	private static Documento documento = null;
 	
 	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
@@ -177,6 +181,10 @@ public class Home {
 		relazionePaginaBottone.put("preferiti", pagina_preferiti);
 		relazionePaginaBottone.put("carica_materiale", pagina_carica_materiale);
 		relazionePaginaBottone.put("miei_documenti", pagina_miei_documenti);
+		relazionePaginaBottone.put("profilo", pagina_profilo);
+		relazionePaginaBottone.put("gestione_stampa", pagina_gestione_stampa);
+		relazionePaginaBottone.put("prenotazione_digitalizzazione", pagina_prenota_digitalizzazione);
+		relazionePaginaBottone.put("prenotazione_libri", pagina_prenota_libri);
 		
 		barra_menu_principale.setBounds(0, 0, MIN_DIMENSION_X - 8, 52);
 		pannello_intero.add(barra_menu_principale);
@@ -190,6 +198,28 @@ public class Home {
 		barra_menu_principale.add(pannello_interno_menu_principale);
 		pannello_interno_menu_principale.setLayout(null);
 
+		notifiche.setBounds(770, 0, 52, 52);
+		notifiche.setIcon(new ImageIcon("./newimage/notifiche.png"));
+		notifiche.setFocusPainted(false);
+		notifiche.setBorderPainted(false);
+		notifiche.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+		notifiche.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+				notifiche.setBackground(Home.BLUE_BUTTON_PRESSED);
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+				notifiche.setBackground(Home.getOldButtonColor("notifiche"));
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				//Home.pulsantiNormali();
+				//Home.setOldButtonColor("notifiche", Home.BLUE_BUTTON_PRESSED);
+				//notifiche.setBackground(Home.BLUE_BUTTON_PRESSED);
+
+			}
+		});
+		
 		// LOGO LABEL
 		JLabel logo = new JLabel();
 		logo.setBounds(0, 0, 133, 52);
@@ -391,6 +421,10 @@ public class Home {
 		pagina_preferiti.setVisible(false);
 		pagina_carica_materiale.setVisible(false);
 		pagina_miei_documenti.setVisible(false);
+		pagina_profilo.setVisible(false);
+		pagina_gestione_stampa.setVisible(false);
+		pagina_prenota_digitalizzazione.setVisible(false);
+		pagina_prenota_libri.setVisible(false);
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
