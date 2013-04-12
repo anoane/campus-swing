@@ -9,11 +9,16 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 
+import org.orm.PersistentException;
+
+import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
+import modello_di_dominio.dao.UtenteDAO;
 import controller.ControllerUtente;
 
 public class Preferiti extends JPanel{
@@ -132,20 +137,28 @@ public class Preferiti extends JPanel{
 		return preferito;
 	}
 	
-	public void addFavourites(ArrayList<Documento> docs){
-		
+	public void addFavourites(final ArrayList<Documento> docs){
 		
 		
 		for(int i = 0;i < docs.size();i++){
-			
-			RiquadroDoc preferito = new RiquadroDoc(docs.get(i));//createFavourite(docs.get(i));
+		
+			final Documento d = docs.get(i);
+			final RiquadroDoc preferito = new RiquadroDoc(d);//createFavourite(docs.get(i));
 			
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
-			
-			preferito.setBounds((50+(445*row)), 71+(230*col), 400, 200);
+			preferito.setLocation((32+(485*row)), 71+(230*col));
 			panel.add(preferito);
 			
+			preferito.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0) {
+				//JOptionPane.showMessageDialog(null,doc);
+				ControllerUtente u = ControllerUtente.getInstance();
+				u.rimuoviDocumentoPrefetito(u.getUtente(1), d);
+				panel.remove(preferito);
+				validate();
+				repaint();}
+				});
 			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));
 			
 		}

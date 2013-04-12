@@ -3,6 +3,8 @@
  */
 package gui.buttons;
 
+import java.awt.Cursor;
+
 import javax.swing.JPanel;
 
 /**
@@ -11,4 +13,8 @@ import javax.swing.JPanel;
  */
 public class CustomButton extends JPanel {
 
+	public CustomButton(){
+		super();
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	}
 }

@@ -13,7 +13,8 @@ import java.awt.Color;
 public class RimuoviButton extends CustomButton {
 	
 	public RimuoviButton() {
-		setSize(56,51);
+		super();
+		setSize(52,52);
 		setBackground(null);
 		setLayout(null);
 		

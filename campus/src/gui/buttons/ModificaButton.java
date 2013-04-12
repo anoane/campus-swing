@@ -9,6 +9,7 @@ package gui.buttons;
  */
 public class ModificaButton extends CustomButton {
 	public ModificaButton() {
+		super();
 	}
 	
 	

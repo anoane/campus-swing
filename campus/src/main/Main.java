@@ -65,6 +65,11 @@ public class Main {
 					//u.aggiungiDocumentoPreferito(utente, s.getSlide(4));
 					//u.aggiungiDocumentoPreferito(utente, d.getAppunti(2));
 					*/
+					//ControllerAppunti d = ControllerAppunti.getInstance();
+					//ControllerSlide s = ControllerSlide.getInstance();
+					//ControllerUtente u = ControllerUtente.getInstance();
+					//u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
+					//u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(4));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

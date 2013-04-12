@@ -5,6 +5,8 @@ package controller;
 
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
@@ -111,6 +113,17 @@ public class ControllerUtente {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		u.documentoPreferiti.add(d);
+		try {
+			utenteDAO.save(u);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void rimuoviDocumentoPrefetito(Utente u, Documento d){
+		u.documentoPreferiti.remove(d);
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {
 			utenteDAO.save(u);
 		} catch (PersistentException e) {
