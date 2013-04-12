@@ -260,7 +260,7 @@ public class Home {
 		});
 		ricerca_testuale.setText(" Cerca");
 		ricerca_testuale.setFont(new Font("Arial", Font.BOLD, 14));
-		ricerca_testuale.setBackground(BLUE_SEARCH_BAR);
+		ricerca_testuale.setBackground(Home.BLUE_SEARCH_BAR);
 		ricerca_testuale.setForeground(Color.WHITE);
 		ricerca_testuale.setBorder(new LineBorder(Color.WHITE, 2));
 		ricerca_testuale.setColumns(10);
@@ -269,7 +269,23 @@ public class Home {
 		cerca.setIcon(new ImageIcon("./newimage/search.png"));
 		cerca.setFocusPainted(false);
 		cerca.setBorderPainted(false);
-		cerca.setBackground(BLUE_SEARCH_BAR);
+		cerca.setBackground(Home.BLUE_SEARCH_BAR);
+		cerca.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				cerca.setIcon(new ImageIcon("./newimage/search_over.png"));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				cerca.setIcon(new ImageIcon("./newimage/search.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.out.println("Ricerca in corso");
+			}
+		});
 		carica_materiale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

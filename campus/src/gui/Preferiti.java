@@ -63,7 +63,7 @@ public class Preferiti extends JPanel{
 			
 			addFavourites(d);
 		} catch (NullPointerException npe) { } {
-			
+			System.out.println("non esiste l'utente 1");
 		}
 		
 		
