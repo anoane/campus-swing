@@ -297,12 +297,13 @@ public class Home {
 		carica_materiale.setText("Carica materiale");
 		carica_materiale.setFont(new Font("Arial", Font.BOLD, 18));
 		carica_materiale.setForeground(Color.WHITE);
-		carica_materiale.setBounds(817, 5, 184, 28);
+		//carica_materiale.setBounds(817, 5, 184, 28);
+		carica_materiale.setBounds(770, 5, 231, 28);
 		pannello_interno_ricerca.add(carica_materiale);
 		carica_materiale.setFocusPainted(false);
 		// prenota_digitalizzazione_2.setBorderPainted(false);
-		carica_materiale.setBackground(BLUE_BUTTON_UNPRESSED);
-		carica_materiale.setBorder(new LineBorder(Color.BLACK, 1));
+		carica_materiale.setBackground(new Color(0x2E, 0x5D, 0x8C));
+		carica_materiale.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 1));
 		barra_servizi_esterni.setBounds(0, 91, MIN_DIMENSION_X - 8, 38);
 		pannello_intero.add(barra_servizi_esterni);
 		barra_servizi_esterni.setLayout(null);
