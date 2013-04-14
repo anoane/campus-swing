@@ -95,7 +95,7 @@ public class Home {
 	private final static JPanel pagina_gestione_stampa = new GestioneStampa();
 	private final static JPanel pagina_prenota_digitalizzazione = new PrenotaDigitalizzazione();
 	private final static JPanel pagina_prenota_libri = new PrenotaLibro();
-	private static Documento documento = null;
+	private static DocumentoPanel documento = null;
 	
 	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
 	
@@ -502,7 +502,7 @@ public class Home {
 	public static void openDocument(final Boolean altezzaDinamica) {
 		Home.unloadDocumento();
 		//TODO:aggiungere parametri del documento
-		documento = new Documento(null);
+		documento = new DocumentoPanel(null);
 		Home.pulsantiNormali();
 		if (altezzaDinamica) {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	

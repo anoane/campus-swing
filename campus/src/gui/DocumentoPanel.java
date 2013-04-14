@@ -13,13 +13,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
-public class Documento extends JPanel{
+public class DocumentoPanel extends JPanel{
 	
 	private PDFViewer pdfDoc = new PDFViewer(true);
 	boolean suggestOpened = false;
 	
 	
-	public Documento(String pdfPath) {
+	public DocumentoPanel(String pdfPath) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
