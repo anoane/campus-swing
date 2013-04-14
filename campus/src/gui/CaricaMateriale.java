@@ -71,16 +71,15 @@ public class CaricaMateriale extends JPanel  {
 	private JPanel panel_3 = new JPanel();
 	private JPanel panel_4 = new JPanel();
 	private JPanel panel_5 = new JPanel();
-	private JPanel panel_6 = new JPanel();
-	private JPanel panel_7 = new JPanel();
-	private JPanel panel_8 = new JPanel();
+	private JPanel scegli_fac = new JPanel();
+	private JPanel scegli_corso = new JPanel();
+	private JPanel scegli_univ = new JPanel();
 	private JPanel panel_9 = new JPanel();
-	private JPanel panel_10 = new JPanel();
-	private JPanel panel_11 = new JPanel();
-	private JPanel panel_12 = new JPanel();
+	private JPanel crea_corso = new JPanel();
 	private JPanel panel_13 = new JPanel();
-	private JPanel panel_14 = new JPanel();
+	private JPanel crea_fac = new JPanel();
 	private JPanel panel_15 = new JPanel();
+	private JPanel crea_univ = new JPanel();
 	private JTextField textField_1;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -230,11 +229,30 @@ public class CaricaMateriale extends JPanel  {
 			public void focusGained(FocusEvent arg0) {
 				panel_2.setVisible(true);
 				panel_3.setVisible(true);
+				panel_9.setVisible(false);
+				panel_13.setVisible(false);
+				panel_15.setVisible(false);
+				crea_univ.setVisible(false);
+				crea_fac.setVisible(false);
+				crea_corso.setVisible(false);
+				scegli_univ.setVisible(false);
+				scegli_fac.setVisible(true);
+				scegli_corso.setVisible(false);
+				
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				panel_2.setVisible(false);
 				panel_3.setVisible(false);
+				panel_9.setVisible(false);
+				panel_13.setVisible(false);
+				panel_15.setVisible(false);
+				crea_univ.setVisible(false);
+				crea_fac.setVisible(false);
+				crea_corso.setVisible(false);
+				scegli_univ.setVisible(false);
+				scegli_fac.setVisible(false);
+				scegli_corso.setVisible(false);
 			}
 		});
 		panel_1.add(textField_2, "4, 8, fill, default");
@@ -248,6 +266,27 @@ public class CaricaMateriale extends JPanel  {
 		textField_3.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_3.setEditable(false);
 		textField_3.setBackground(UIManager.getColor("TextField.backgroud"));
+		textField_3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				panel_2.setVisible(true);
+				panel_3.setVisible(true);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				panel_2.setVisible(false);
+				panel_3.setVisible(false);
+				panel_9.setVisible(false);
+				panel_13.setVisible(false);
+				panel_15.setVisible(false);
+				crea_univ.setVisible(false);
+				crea_fac.setVisible(false);
+				crea_corso.setVisible(false);
+				scegli_univ.setVisible(false);
+				scegli_fac.setVisible(false);
+				scegli_corso.setVisible(false);
+			}
+		});
 		panel_1.add(textField_3, "4, 9, fill, default");
 		textField_3.setColumns(10);
 		
@@ -259,6 +298,27 @@ public class CaricaMateriale extends JPanel  {
 		textField_4.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_4.setEditable(false);
 		textField_4.setBackground(UIManager.getColor("TextField.backgroud"));
+		textField_4.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				panel_2.setVisible(true);
+				panel_3.setVisible(true);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				panel_2.setVisible(false);
+				panel_3.setVisible(false);
+				panel_9.setVisible(false);
+				panel_13.setVisible(false);
+				panel_15.setVisible(false);
+				crea_univ.setVisible(false);
+				crea_fac.setVisible(false);
+				crea_corso.setVisible(false);
+				scegli_univ.setVisible(false);
+				scegli_fac.setVisible(false);
+				scegli_corso.setVisible(false);
+			}
+		});
 		panel_1.add(textField_4, "4, 10, fill, default");
 		textField_4.setColumns(10);
 		
@@ -331,26 +391,157 @@ public class CaricaMateriale extends JPanel  {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		panel_12.setBounds(1, 1, 365, 345);
-		panel_2.add(panel_12);
-		panel_12.setLayout(null);
-		panel_12.setBackground(new Color(67, 136, 204));
+		crea_fac.setLayout(null);
+		crea_fac.setBackground(new Color(67, 136, 204));
+		crea_fac.setBounds(1, 1, 365, 345);
+		panel_2.add(crea_fac);
+		
+		JButton button = new JButton();
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		button.setText("Crea facolt\u00E0");
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+		button.setFocusPainted(false);
+		button.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+		button.setBackground(new Color(46, 93, 140));
+		button.setBounds(185, 304, 170, 30);
+		crea_fac.add(button);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setForeground(Color.BLACK);
+		separator_4.setBackground(Color.BLACK);
+		separator_4.setBounds(10, 292, 345, 1);
+		crea_fac.add(separator_4);
+		
+		JButton button_1 = new JButton();
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_1.setText("Indietro");
+		button_1.setForeground(Color.WHITE);
+		button_1.setFont(new Font("Arial", Font.BOLD, 18));
+		button_1.setFocusPainted(false);
+		button_1.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+		button_1.setBackground(new Color(46, 93, 140));
+		button_1.setBounds(10, 304, 165, 30);
+		crea_fac.add(button_1);
+		
+		panel_15.setBackground(new Color(67, 136, 204));
+		panel_15.setBounds(10, 10, 345, 271);
+		crea_fac.add(panel_15);
+		panel_15.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("10dlu"),
+				ColumnSpec.decode("max(50dlu;default)"),
+				ColumnSpec.decode("10dlu"),
+				ColumnSpec.decode("max(123dlu;default):grow"),
+				ColumnSpec.decode("10dlu"),},
+			new RowSpec[] {
+				RowSpec.decode("10dlu"),
+				RowSpec.decode("35dlu"),
+				RowSpec.decode("10dlu"),}));
+		
+		JLabel lblNewLabel_12 = new JLabel("Facolt\u00E0");
+		lblNewLabel_12.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNewLabel_12.setForeground(Color.WHITE);
+		panel_15.add(lblNewLabel_12, "2, 2");
+		
+		textField_6 = new JTextField();
+		textField_6.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_15.add(textField_6, "4, 2, fill, default");
+		textField_6.setColumns(10);
+		panel_15.setVisible(false);
+		crea_fac.setVisible(false);
+		
+		scegli_fac.setBounds(1, 1, 365, 345);
+		scegli_fac.setBackground(new Color(67, 136, 204));
+		panel_2.add(scegli_fac);
+		scegli_fac.setLayout(null);
+		
+		JButton btnAggiungiFacolt = new JButton();
+		btnAggiungiFacolt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				crea_fac.setVisible(true);
+				panel_15.setVisible(true);
+				scegli_fac.setVisible(false);
+				scegli_fac.setEnabled(false);
+				
+				//System.out.println("crea fac");
+			}
+		});
+		btnAggiungiFacolt.setText("Aggiungi facolt\u00E0");
+		btnAggiungiFacolt.setForeground(Color.WHITE);
+		btnAggiungiFacolt.setFont(new Font("Arial", Font.BOLD, 18));
+		btnAggiungiFacolt.setFocusPainted(false);
+		btnAggiungiFacolt.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+		btnAggiungiFacolt.setBackground(new Color(0x2E, 0x5D, 0x8C));
+		btnAggiungiFacolt.setBounds(10, 304, 345, 30);
+		scegli_fac.add(btnAggiungiFacolt);
+		
+		JLabel lblNewLabel_8 = new JLabel("Non trovi la tua facolt\u00E0?");
+		lblNewLabel_8.setForeground(Color.WHITE);
+		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNewLabel_8.setBounds(10, 285, 302, 14);
+		scegli_fac.add(lblNewLabel_8);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBackground(Color.BLACK);
+		separator_2.setForeground(Color.BLACK);
+		separator_2.setBounds(10, 280, 345, 1);
+		scegli_fac.add(separator_2);
+		
+		final JList list = new JList();
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				String s = (String) list.getSelectedValue();
+				textField_2.setText(s);
+				System.out.println("listenerrompipalle");
+			}
+		});
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"facolta1", "facolta2", "facolta3"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setForeground(Color.WHITE);
+		list.setBackground(new Color(67, 136, 204));
+		list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		list.setBounds(10, 10, 345, 264);
+		scegli_fac.add(list);
+		scegli_fac.setVisible(false);
+		
+		crea_corso.setBounds(1, 1, 365, 345);
+		panel_2.add(crea_corso);
+		crea_corso.setLayout(null);
+		crea_corso.setBackground(new Color(67, 136, 204));
 		
 		JButton btnCreaFacolt = new JButton();
+		btnCreaFacolt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("crea fac");
+			}
+		});
 		btnCreaFacolt.setText("Crea corso");
 		btnCreaFacolt.setForeground(Color.WHITE);
 		btnCreaFacolt.setFont(new Font("Arial", Font.BOLD, 18));
 		btnCreaFacolt.setFocusPainted(false);
 		btnCreaFacolt.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
 		btnCreaFacolt.setBackground(new Color(46, 93, 140));
-		btnCreaFacolt.setBounds(189, 304, 166, 30);
-		panel_12.add(btnCreaFacolt);
+		btnCreaFacolt.setBounds(185, 304, 170, 30);
+		crea_corso.add(btnCreaFacolt);
 		
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setForeground(Color.BLACK);
 		separator_3.setBackground(Color.BLACK);
 		separator_3.setBounds(10, 292, 345, 1);
-		panel_12.add(separator_3);
+		crea_corso.add(separator_3);
 		
 		JButton btnIndietro = new JButton();
 		btnIndietro.setText("Indietro");
@@ -359,15 +550,15 @@ public class CaricaMateriale extends JPanel  {
 		btnIndietro.setFocusPainted(false);
 		btnIndietro.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
 		btnIndietro.setBackground(new Color(46, 93, 140));
-		btnIndietro.setBounds(10, 304, 169, 30);
-		panel_12.add(btnIndietro);
+		btnIndietro.setBounds(10, 304, 165, 30);
+		crea_corso.add(btnIndietro);
 		
 		panel_13.setBounds(10, 10, 345, 271);
-		panel_12.add(panel_13);
+		crea_corso.add(panel_13);
 		panel_13.setBackground(new Color(67, 136, 204));
 		panel_13.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("10dlu"),
-				ColumnSpec.decode("max(63dlu;default)"),
+				ColumnSpec.decode("max(50dlu;default)"),
 				ColumnSpec.decode("10dlu"),
 				ColumnSpec.decode("max(123dlu;default):grow"),
 				ColumnSpec.decode("10dlu"),},
@@ -408,66 +599,69 @@ public class CaricaMateriale extends JPanel  {
 		textField_5.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_13.add(textField_5, "4, 6, fill, default");
 		textField_5.setColumns(10);
+		panel_13.setVisible(false);
+		crea_corso.setVisible(false);
 		
-		panel_14.setLayout(null);
-		panel_14.setBackground(new Color(67, 136, 204));
-		panel_14.setBounds(1, 1, 365, 345);
-		panel_2.add(panel_14);
+		crea_univ.setBounds(1, 1, 365, 345);
+		panel_2.add(crea_univ);
+		crea_univ.setBackground(new Color(67, 136, 204));
+		crea_univ.setLayout(null);
 		
-		JButton button = new JButton();
-		button.setText("Crea facolt\u00E0");
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Arial", Font.BOLD, 18));
-		button.setFocusPainted(false);
-		button.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		button.setBackground(new Color(46, 93, 140));
-		button.setBounds(189, 304, 166, 30);
-		panel_14.add(button);
+		JButton btnCreaUniversit = new JButton();
+		btnCreaUniversit.setText("Crea universit\u00E0");
+		btnCreaUniversit.setForeground(Color.WHITE);
+		btnCreaUniversit.setFont(new Font("Arial", Font.BOLD, 18));
+		btnCreaUniversit.setFocusPainted(false);
+		btnCreaUniversit.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+		btnCreaUniversit.setBackground(new Color(46, 93, 140));
+		btnCreaUniversit.setBounds(185, 304, 170, 30);
+		crea_univ.add(btnCreaUniversit);
 		
-		JSeparator separator_4 = new JSeparator();
-		separator_4.setForeground(Color.BLACK);
-		separator_4.setBackground(Color.BLACK);
-		separator_4.setBounds(10, 292, 345, 1);
-		panel_14.add(separator_4);
+		JButton button_3 = new JButton();
+		button_3.setText("Indietro");
+		button_3.setForeground(Color.WHITE);
+		button_3.setFont(new Font("Arial", Font.BOLD, 18));
+		button_3.setFocusPainted(false);
+		button_3.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+		button_3.setBackground(new Color(46, 93, 140));
+		button_3.setBounds(10, 304, 165, 30);
+		crea_univ.add(button_3);
 		
-		JButton button_1 = new JButton();
-		button_1.setText("Indietro");
-		button_1.setForeground(Color.WHITE);
-		button_1.setFont(new Font("Arial", Font.BOLD, 18));
-		button_1.setFocusPainted(false);
-		button_1.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		button_1.setBackground(new Color(46, 93, 140));
-		button_1.setBounds(10, 304, 169, 30);
-		panel_14.add(button_1);
+		JSeparator separator_7 = new JSeparator();
+		separator_7.setForeground(Color.BLACK);
+		separator_7.setBackground(Color.BLACK);
+		separator_7.setBounds(10, 292, 345, 1);
+		crea_univ.add(separator_7);
 		
-		panel_15.setBackground(new Color(67, 136, 204));
-		panel_15.setBounds(10, 10, 345, 271);
-		panel_14.add(panel_15);
-		panel_15.setLayout(new FormLayout(new ColumnSpec[] {
+		panel_9.setBounds(10, 10, 345, 271);
+		panel_9.setBackground(new Color(67, 136, 204));
+		crea_univ.add(panel_9);
+		panel_9.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("10dlu"),
-				ColumnSpec.decode("max(63dlu;default)"),
+				ColumnSpec.decode("50dlu"),
 				ColumnSpec.decode("10dlu"),
-				ColumnSpec.decode("max(123dlu;default):grow"),
+				ColumnSpec.decode("123dlu:grow"),
 				ColumnSpec.decode("10dlu"),},
 			new RowSpec[] {
 				RowSpec.decode("10dlu"),
 				RowSpec.decode("35dlu"),
 				RowSpec.decode("10dlu"),}));
 		
-		JLabel lblNewLabel_12 = new JLabel("Facolt\u00E0");
-		lblNewLabel_12.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_12.setForeground(Color.WHITE);
-		panel_15.add(lblNewLabel_12, "2, 2");
+		JLabel lblNewLabel_13 = new JLabel("Universit\u00E0");
+		lblNewLabel_13.setForeground(Color.WHITE);
+		lblNewLabel_13.setFont(new Font("Arial", Font.BOLD, 14));
+		panel_9.add(lblNewLabel_13, "2, 2");
 		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_15.add(textField_6, "4, 2, fill, default");
-		textField_6.setColumns(10);
+		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_9.add(textPane, "4, 2, fill, default");
+		panel_9.setVisible(false);
+		crea_univ.setVisible(false);
 		
-		panel_7.setLayout(null);
-		panel_7.setBackground(new Color(67, 136, 204));
-		panel_7.setBounds(1, 1, 365, 345);
-		panel_2.add(panel_7);
+		scegli_corso.setLayout(null);
+		scegli_corso.setBackground(new Color(67, 136, 204));
+		scegli_corso.setBounds(1, 1, 365, 345);
+		panel_2.add(scegli_corso);
 		
 		JButton btnAggiungiCorso = new JButton();
 		btnAggiungiCorso.setText("Aggiungi corso");
@@ -477,19 +671,19 @@ public class CaricaMateriale extends JPanel  {
 		btnAggiungiCorso.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
 		btnAggiungiCorso.setBackground(new Color(46, 93, 140));
 		btnAggiungiCorso.setBounds(10, 304, 345, 30);
-		panel_7.add(btnAggiungiCorso);
+		scegli_corso.add(btnAggiungiCorso);
 		
 		JLabel lblNonTroviIl = new JLabel("Non trovi il tuo corso?");
 		lblNonTroviIl.setForeground(Color.WHITE);
 		lblNonTroviIl.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNonTroviIl.setBounds(10, 285, 302, 14);
-		panel_7.add(lblNonTroviIl);
+		scegli_corso.add(lblNonTroviIl);
 		
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setForeground(Color.BLACK);
 		separator_5.setBackground(Color.BLACK);
 		separator_5.setBounds(10, 280, 345, 1);
-		panel_7.add(separator_5);
+		scegli_corso.add(separator_5);
 		
 		JList list_1 = new JList();
 		list_1.setModel(new AbstractListModel() {
@@ -505,12 +699,12 @@ public class CaricaMateriale extends JPanel  {
 		list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		list_1.setBackground(new Color(67, 136, 204));
 		list_1.setBounds(10, 10, 345, 264);
-		panel_7.add(list_1);
+		scegli_corso.add(list_1);
 		
-		panel_8.setLayout(null);
-		panel_8.setBackground(new Color(67, 136, 204));
-		panel_8.setBounds(1, 1, 365, 345);
-		panel_2.add(panel_8);
+		scegli_univ.setLayout(null);
+		scegli_univ.setBackground(new Color(67, 136, 204));
+		scegli_univ.setBounds(1, 1, 365, 345);
+		panel_2.add(scegli_univ);
 		
 		JButton btnAggiungiUniversit = new JButton();
 		btnAggiungiUniversit.setText("Aggiungi universit\u00E0");
@@ -520,19 +714,19 @@ public class CaricaMateriale extends JPanel  {
 		btnAggiungiUniversit.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
 		btnAggiungiUniversit.setBackground(new Color(46, 93, 140));
 		btnAggiungiUniversit.setBounds(10, 304, 345, 30);
-		panel_8.add(btnAggiungiUniversit);
+		scegli_univ.add(btnAggiungiUniversit);
 		
 		JLabel lblNonTroviLa = new JLabel("Non trovi la tua universit\u00E0?");
 		lblNonTroviLa.setForeground(Color.WHITE);
 		lblNonTroviLa.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNonTroviLa.setBounds(10, 285, 302, 14);
-		panel_8.add(lblNonTroviLa);
+		scegli_univ.add(lblNonTroviLa);
 		
 		JSeparator separator_6 = new JSeparator();
 		separator_6.setForeground(Color.BLACK);
 		separator_6.setBackground(Color.BLACK);
 		separator_6.setBounds(10, 280, 345, 1);
-		panel_8.add(separator_6);
+		scegli_univ.add(separator_6);
 		
 		JList list_2 = new JList();
 		list_2.setModel(new AbstractListModel() {
@@ -548,65 +742,14 @@ public class CaricaMateriale extends JPanel  {
 		list_2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		list_2.setBackground(new Color(67, 136, 204));
 		list_2.setBounds(10, 10, 345, 264);
-		panel_8.add(list_2);
-		
-		panel_6.setBounds(1, 1, 365, 345);
-		panel_6.setBackground(new Color(67, 136, 204));
-		panel_2.add(panel_6);
-		panel_6.setLayout(null);
-		
-		JButton btnAggiungiFacolt = new JButton();
-		btnAggiungiFacolt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAggiungiFacolt.setText("Aggiungi facolt\u00E0");
-		btnAggiungiFacolt.setForeground(Color.WHITE);
-		btnAggiungiFacolt.setFont(new Font("Arial", Font.BOLD, 18));
-		btnAggiungiFacolt.setFocusPainted(false);
-		btnAggiungiFacolt.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		btnAggiungiFacolt.setBackground(new Color(0x2E, 0x5D, 0x8C));
-		btnAggiungiFacolt.setBounds(10, 304, 345, 30);
-		panel_6.add(btnAggiungiFacolt);
-		
-		JLabel lblNewLabel_8 = new JLabel("Non trovi la tua facolt\u00E0?");
-		lblNewLabel_8.setForeground(Color.WHITE);
-		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_8.setBounds(10, 285, 302, 14);
-		panel_6.add(lblNewLabel_8);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBackground(Color.BLACK);
-		separator_2.setForeground(Color.BLACK);
-		separator_2.setBounds(10, 280, 345, 1);
-		panel_6.add(separator_2);
-		
-		final JList list = new JList();
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				String s = (String) list.getSelectedValue();
-				textField_2.setText(s);
-			}
-		});
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"facolta1", "facolta2", "facolta3"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setForeground(Color.WHITE);
-		list.setBackground(new Color(67, 136, 204));
-		list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		list.setBounds(10, 10, 345, 264);
-		panel_6.add(list);
+		scegli_univ.add(list_2);
 		
 		panel_2.setVisible(false);
 		panel_3.setVisible(false);
 		panel_4.setVisible(false);
 		panel_5.setVisible(false);
+		scegli_univ.setVisible(false);
+		scegli_corso.setVisible(false);
 		
 		JButton btnPrenotaDigitalizzazione = new JButton();
 		btnPrenotaDigitalizzazione.addActionListener(new ActionListener() {
