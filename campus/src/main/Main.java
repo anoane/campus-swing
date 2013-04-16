@@ -7,9 +7,11 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
 import modello_di_dominio.Utente;
+import modello_di_dominio.dao.AppuntiDAO;
 import controller.ControllerAppunti;
 import controller.ControllerCorso;
 import controller.ControllerFacolta;
@@ -29,7 +31,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				try {
+				try {					
 					Home window = new Home();
 					window.getFrame().setVisible(true);
 					/*
@@ -70,6 +72,7 @@ public class Main {
 					//ControllerUtente u = ControllerUtente.getInstance();
 					//u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
 					//u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(4));
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

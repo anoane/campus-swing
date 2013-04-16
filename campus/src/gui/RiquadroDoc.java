@@ -133,22 +133,24 @@ public class RiquadroDoc extends JPanel {
 		
 		// Panel stelle
 		stelle = new JPanel();
+		// Panel contenente il colore di riempimento delle stelle
 		JPanel colore = new JPanel();
 		stelle.setLayout(null);
 		
 		for(int i=0; i<5; ++i){
+			//Label contenente la singola stella
 			JLabel stella = new JLabel();
 			stella.setAlignmentY(Component.TOP_ALIGNMENT);
 			stella.setBounds(i*30, 0, 30, 30);
 			stella.setIcon(new ImageIcon("./newimage/star.png"));
-			//stella.setBackground(Color.black);
 			stelle.add(stella);
 		}
 		stelle.add(colore);
-		colore.setBackground(colore_stella);
-		colore.setSize(30, 30);
 		stelle.setLocation(154, 45);
 		stelle.setSize(150, 30);
+		colore.setBackground(colore_stella);
+		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
+		
 		
 		// Panel utente
 		utente = new JPanel();
@@ -175,5 +177,15 @@ public class RiquadroDoc extends JPanel {
 	
 	public RimuoviButton getRimuovi(){
 		return this.rimuovi;
+	}
+	
+	private float calcolaVoto(int num, int voto){
+		if(voto == 0 && num == 0)
+			return 0;
+		else{
+			float media = voto / num;
+			return media/10;
+		}
+		
 	}
 }
