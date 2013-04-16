@@ -14,11 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 
-import org.orm.PersistentException;
-
-import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
-import modello_di_dominio.dao.UtenteDAO;
 import controller.ControllerUtente;
 
 public class MieiDocumenti extends JPanel{
@@ -144,30 +140,27 @@ public class MieiDocumenti extends JPanel{
 	}
 	
 	public void addDocumenti(final ArrayList<Documento> docs){
-		
-		
 		for(int i = 0;i < docs.size();i++){
-		
+			final int num_doc = i;
 			final Documento d = docs.get(i);
 			final RiquadroDoc preferito = new RiquadroDoc(d);//createFavourite(docs.get(i));
-			
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
 			preferito.setLocation((32+(485*row)), 71+(230*col));
 			panel.add(preferito);
 			
-			preferito.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
+			preferito.getRimuovi().addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0){
+					docs.remove(num_doc);
 					ControllerUtente u = ControllerUtente.getInstance();
 					u.rimuoviDocumentoPrefetito(u.getUtente(1), d);
-					panel.remove(preferito);
+					panel.removeAll();
+					addDocumenti(docs);
 					validate();
 					repaint();}
 				});
-			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));
-			
-		}
-		
+			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));	
+		}	
 	}
 }
 

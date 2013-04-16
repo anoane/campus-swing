@@ -109,7 +109,7 @@ public class RiquadroDoc extends JPanel {
 		univ.setHorizontalAlignment(SwingConstants.LEFT);
 		univ.setBounds(276, 175, 154, 20);
 
-		// Pannello pulsanti
+		// Pannello Rimuovi
 		rimuovi = new RimuoviButton();
 		rimuovi.setLocation(384, 2);
 		
@@ -171,5 +171,9 @@ public class RiquadroDoc extends JPanel {
 		add(proprietario);
 		add(tipo);
 		add(anteprima);
+	}
+	
+	public RimuoviButton getRimuovi(){
+		return this.rimuovi;
 	}
 }
