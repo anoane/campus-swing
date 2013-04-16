@@ -144,29 +144,26 @@ public class Preferiti extends JPanel{
 	}
 	
 	public void addFavourites(final ArrayList<Documento> docs){
-		
-		
 		for(int i = 0;i < docs.size();i++){
-		
+			final int num_doc = i;
 			final Documento d = docs.get(i);
 			final RiquadroDoc preferito = new RiquadroDoc(d);//createFavourite(docs.get(i));
-			
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
 			preferito.setLocation((32+(485*row)), 71+(230*col));
 			panel.add(preferito);
 			
-			preferito.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
+			preferito.getRimuovi().addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0){
+					docs.remove(num_doc);
 					ControllerUtente u = ControllerUtente.getInstance();
 					u.rimuoviDocumentoPrefetito(u.getUtente(1), d);
-					panel.remove(preferito);
+					panel.removeAll();
+					addFavourites(docs);
 					validate();
 					repaint();}
 				});
-			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));
-			
-		}
-		
+			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));	
+		}	
 	}
 }
