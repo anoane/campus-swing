@@ -253,7 +253,7 @@ public class CaricaMateriale extends JPanel  {
 			public void focusGained(FocusEvent arg0) {
 				CaricaMateriale.nascondiTutto();
 				panel_2.setVisible(true);
-				panel_3.setVisible(true);
+				panel_4.setVisible(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -276,7 +276,7 @@ public class CaricaMateriale extends JPanel  {
 			public void focusGained(FocusEvent arg0) {
 				CaricaMateriale.nascondiTutto();
 				panel_2.setVisible(true);
-				panel_3.setVisible(true);
+				panel_5.setVisible(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -417,9 +417,7 @@ public class CaricaMateriale extends JPanel  {
 		textField_6.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_15.add(textField_6, "4, 2, fill, default");
 		textField_6.setColumns(10);
-		panel_15.setVisible(false);
-		crea_fac.setVisible(false);
-		
+
 		scegli_fac.setBounds(1, 1, 365, 345);
 		scegli_fac.setBackground(new Color(67, 136, 204));
 		panel_2.add(scegli_fac);
@@ -428,12 +426,11 @@ public class CaricaMateriale extends JPanel  {
 		JButton btnAggiungiFacolt = new JButton();
 		btnAggiungiFacolt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CaricaMateriale.nascondiTutto();
+				panel_2.setVisible(true);
+				panel_3.setVisible(true);
 				crea_fac.setVisible(true);
 				panel_15.setVisible(true);
-				scegli_fac.setVisible(false);
-				scegli_fac.setEnabled(false);
-				
-				//System.out.println("crea fac");
 			}
 		});
 		btnAggiungiFacolt.setText("Aggiungi facolt\u00E0");
@@ -479,8 +476,7 @@ public class CaricaMateriale extends JPanel  {
 		list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		list.setBounds(10, 10, 345, 264);
 		scegli_fac.add(list);
-		scegli_fac.setVisible(false);
-		
+
 		crea_corso.setBounds(1, 1, 365, 345);
 		panel_2.add(crea_corso);
 		crea_corso.setLayout(null);
@@ -563,9 +559,7 @@ public class CaricaMateriale extends JPanel  {
 		textField_5.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_13.add(textField_5, "4, 6, fill, default");
 		textField_5.setColumns(10);
-		panel_13.setVisible(false);
-		crea_corso.setVisible(false);
-		
+
 		crea_univ.setBounds(1, 1, 365, 345);
 		panel_2.add(crea_univ);
 		crea_univ.setBackground(new Color(67, 136, 204));
@@ -619,9 +613,7 @@ public class CaricaMateriale extends JPanel  {
 		JTextPane textPane = new JTextPane();
 		textPane.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_9.add(textPane, "4, 2, fill, default");
-		panel_9.setVisible(false);
-		crea_univ.setVisible(false);
-		
+
 		scegli_corso.setLayout(null);
 		scegli_corso.setBackground(new Color(67, 136, 204));
 		scegli_corso.setBounds(1, 1, 365, 345);
@@ -708,12 +700,7 @@ public class CaricaMateriale extends JPanel  {
 		list_2.setBounds(10, 10, 345, 264);
 		scegli_univ.add(list_2);
 		
-		panel_2.setVisible(false);
-		panel_3.setVisible(false);
-		panel_4.setVisible(false);
-		panel_5.setVisible(false);
-		scegli_univ.setVisible(false);
-		scegli_corso.setVisible(false);
+
 		
 		JButton btnPrenotaDigitalizzazione = new JButton();
 		btnPrenotaDigitalizzazione.addActionListener(new ActionListener() {
@@ -728,6 +715,8 @@ public class CaricaMateriale extends JPanel  {
 		btnPrenotaDigitalizzazione.setBackground(new Color(0x2E, 0x5D, 0x8C));
 		btnPrenotaDigitalizzazione.setBounds(776, 164, 203, 86);
 		panel.add(btnPrenotaDigitalizzazione);
+		
+		CaricaMateriale.nascondiTutto();
 	}
 
 	protected static void nascondiTutto() {
