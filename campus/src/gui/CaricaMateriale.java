@@ -66,20 +66,20 @@ public class CaricaMateriale extends JPanel  {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JSeparator separator_1 = new JSeparator();
-	private JPanel panel_1 = new JPanel();
-	private JPanel panel_2 = new JPanel();
-	private JPanel panel_3 = new JPanel();
-	private JPanel panel_4 = new JPanel();
-	private JPanel panel_5 = new JPanel();
-	private JPanel scegli_fac = new JPanel();
-	private JPanel scegli_corso = new JPanel();
-	private JPanel scegli_univ = new JPanel();
-	private JPanel panel_9 = new JPanel();
-	private JPanel crea_corso = new JPanel();
-	private JPanel panel_13 = new JPanel();
-	private JPanel crea_fac = new JPanel();
-	private JPanel panel_15 = new JPanel();
-	private JPanel crea_univ = new JPanel();
+	private static JPanel panel_1 = new JPanel();
+	private static JPanel panel_2 = new JPanel();
+	private static JPanel panel_3 = new JPanel();
+	private static JPanel panel_4 = new JPanel();
+	private static JPanel panel_5 = new JPanel();
+	private static JPanel scegli_fac = new JPanel();
+	private static JPanel scegli_corso = new JPanel();
+	private static JPanel scegli_univ = new JPanel();
+	private static JPanel panel_9 = new JPanel();
+	private static JPanel crea_corso = new JPanel();
+	private static JPanel panel_13 = new JPanel();
+	private static JPanel crea_fac = new JPanel();
+	private static JPanel panel_15 = new JPanel();
+	private static JPanel crea_univ = new JPanel();
 	private JTextField textField_1;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -227,32 +227,14 @@ public class CaricaMateriale extends JPanel  {
 		textField_2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
+				CaricaMateriale.nascondiTutto();
 				panel_2.setVisible(true);
 				panel_3.setVisible(true);
-				panel_9.setVisible(false);
-				panel_13.setVisible(false);
-				panel_15.setVisible(false);
-				crea_univ.setVisible(false);
-				crea_fac.setVisible(false);
-				crea_corso.setVisible(false);
-				scegli_univ.setVisible(false);
 				scegli_fac.setVisible(true);
-				scegli_corso.setVisible(false);
-				
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				panel_2.setVisible(false);
-				panel_3.setVisible(false);
-				panel_9.setVisible(false);
-				panel_13.setVisible(false);
-				panel_15.setVisible(false);
-				crea_univ.setVisible(false);
-				crea_fac.setVisible(false);
-				crea_corso.setVisible(false);
-				scegli_univ.setVisible(false);
-				scegli_fac.setVisible(false);
-				scegli_corso.setVisible(false);
+				CaricaMateriale.nascondiTutto();
 			}
 		});
 		panel_1.add(textField_2, "4, 8, fill, default");
@@ -269,22 +251,13 @@ public class CaricaMateriale extends JPanel  {
 		textField_3.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
+				CaricaMateriale.nascondiTutto();
 				panel_2.setVisible(true);
 				panel_3.setVisible(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				panel_2.setVisible(false);
-				panel_3.setVisible(false);
-				panel_9.setVisible(false);
-				panel_13.setVisible(false);
-				panel_15.setVisible(false);
-				crea_univ.setVisible(false);
-				crea_fac.setVisible(false);
-				crea_corso.setVisible(false);
-				scegli_univ.setVisible(false);
-				scegli_fac.setVisible(false);
-				scegli_corso.setVisible(false);
+				CaricaMateriale.nascondiTutto();
 			}
 		});
 		panel_1.add(textField_3, "4, 9, fill, default");
@@ -301,22 +274,13 @@ public class CaricaMateriale extends JPanel  {
 		textField_4.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
+				CaricaMateriale.nascondiTutto();
 				panel_2.setVisible(true);
 				panel_3.setVisible(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				panel_2.setVisible(false);
-				panel_3.setVisible(false);
-				panel_9.setVisible(false);
-				panel_13.setVisible(false);
-				panel_15.setVisible(false);
-				crea_univ.setVisible(false);
-				crea_fac.setVisible(false);
-				crea_corso.setVisible(false);
-				scegli_univ.setVisible(false);
-				scegli_fac.setVisible(false);
-				scegli_corso.setVisible(false);
+				CaricaMateriale.nascondiTutto();
 			}
 		});
 		panel_1.add(textField_4, "4, 10, fill, default");
@@ -764,5 +728,21 @@ public class CaricaMateriale extends JPanel  {
 		btnPrenotaDigitalizzazione.setBackground(new Color(0x2E, 0x5D, 0x8C));
 		btnPrenotaDigitalizzazione.setBounds(776, 164, 203, 86);
 		panel.add(btnPrenotaDigitalizzazione);
+	}
+
+	protected static void nascondiTutto() {
+		panel_2.setVisible(false);
+		panel_3.setVisible(false);
+		panel_4.setVisible(false);
+		panel_5.setVisible(false);
+		panel_9.setVisible(false);
+		panel_13.setVisible(false);
+		panel_15.setVisible(false);
+		crea_univ.setVisible(false);
+		crea_fac.setVisible(false);
+		crea_corso.setVisible(false);
+		scegli_univ.setVisible(false);
+		scegli_fac.setVisible(false);
+		scegli_corso.setVisible(false);
 	}
 }
