@@ -59,13 +59,13 @@ public class ControllerFacolta extends AbstractController {
 		return null;
 	}
 	
-	public Facolta[] getAllFacolta(){
+	public Facolta[] getAllFacoltaByUniv(int indexUniv){
 		
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
 			//Trovo l'univesita
 		try {
-			return facoltaDAO.listFacoltaByQuery(null,null);
+			return facoltaDAO.listFacoltaByQuery("UniversitaID="+indexUniv,null);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
