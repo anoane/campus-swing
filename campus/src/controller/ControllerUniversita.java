@@ -70,6 +70,21 @@ public class ControllerUniversita extends AbstractController {
 		return null;
 	}
 	
+	public boolean isUniversitaAlreadyPresent(String univ){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UniversitaDAO universitaDAO = factory.getUniversitaDAO();
+		//Trovo l'univesita
+		try {
+			if (universitaDAO.listUniversitaByQuery("Nome='"+univ+"'",null).length != 0) {
+				return true;
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public Universita[] getAllUniversita(){
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		UniversitaDAO universitaDAO = factory.getUniversitaDAO();
