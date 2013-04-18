@@ -10,6 +10,7 @@ import java.awt.Color;
  * @author mw
  *
  */
+@SuppressWarnings("serial")
 public class RimuoviButton extends CustomButton {
 	
 	public RimuoviButton() {
