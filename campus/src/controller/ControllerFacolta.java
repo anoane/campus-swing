@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Facolta;
@@ -56,8 +57,22 @@ public class ControllerFacolta extends AbstractController {
 			e.printStackTrace();
 		}
 		return null;
-	
 	}
+	
+	public Facolta[] getAllFacolta(){
+		
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
+			//Trovo l'univesita
+		try {
+			return facoltaDAO.listFacoltaByQuery(null,null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static ControllerFacolta getInstance(){
 		if(ControllerFacolta.instance == null)
 			ControllerFacolta.instance = new ControllerFacolta();
