@@ -88,6 +88,9 @@ public class CaricaMateriale extends JPanel  {
 	final JButton button = new JButton();
 	final JButton button_1 = new JButton();
 	static boolean isOverSelectionPanel =  false;
+	static Universita[] listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
+	private int indexUniv = 0;
+	private int dbIndexUniv = 0;
 	
 	
 	
@@ -264,6 +267,7 @@ public class CaricaMateriale extends JPanel  {
 			@Override
 			public void focusGained(FocusEvent arg0) {
 				if (!isOverSelectionPanel) {
+					reloadUniv();
 					CaricaMateriale.nascondiTutto();
 					panel_2.setVisible(true);
 					panel_3.setVisible(true);
@@ -419,6 +423,8 @@ public class CaricaMateriale extends JPanel  {
 									public void valueChanged(ListSelectionEvent arg0) {
 										String s = (String) list_2.getSelectedValue();
 										textField_3.setText(s);
+										indexUniv = list_2.getSelectedIndex();
+										dbIndexUniv = listaUniversità[indexUniv].getID();
 									}
 								});
 								JScrollPane pane_list_2 = new JScrollPane(list_2);  
@@ -594,7 +600,7 @@ public class CaricaMateriale extends JPanel  {
 										button.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
 												CaricaMateriale.salvaFac();
-												CaricaMateriale.reloadFac();
+												CaricaMateriale.reloadFac(dbIndexUniv);
 												CaricaMateriale.nascondiTutto();
 												//panel_2.setVisible(true);
 												//panel_4.setVisible(true);
@@ -860,9 +866,9 @@ public class CaricaMateriale extends JPanel  {
 		//aggiungiListnerMouseOver(list);
 		//aggiungiListnerMouseOver(crea_fac);
 		CaricaMateriale.nascondiTutto();
-		reloadFac();
-		reloadUniv();
-		reloadCorso();
+		
+		
+		
 	}
 	
 	protected static boolean salvaUniv(String univ) {
@@ -884,8 +890,8 @@ public class CaricaMateriale extends JPanel  {
 		
 	}
 
-	protected static void reloadFac() {
-		Facolta[] listaFacoltà = ControllerFacolta.getInstance().getAllFacolta();
+	protected static void reloadFac(int indiceUniv) {
+		Facolta[] listaFacoltà = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
 		final String[] values = new String[listaFacoltà.length];
 		System.out.println(listaFacoltà.length);
 		for (int i = 0; listaFacoltà.length > i; i++) {
@@ -903,7 +909,7 @@ public class CaricaMateriale extends JPanel  {
 	}
 	
 	protected static void reloadUniv() {
-		Universita[] listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
+		listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
 		final String[] values = new String[listaUniversità.length];
 		System.out.println(listaUniversità.length);
 		for (int i = 0; listaUniversità.length > i; i++) {
