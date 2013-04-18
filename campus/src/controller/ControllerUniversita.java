@@ -70,6 +70,19 @@ public class ControllerUniversita extends AbstractController {
 		return null;
 	}
 	
+	public Universita[] getAllUniversita(){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UniversitaDAO universitaDAO = factory.getUniversitaDAO();
+		//Trovo l'univesita
+		try {
+			return universitaDAO.listUniversitaByQuery(null,null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static ControllerUniversita getInstance(){
 		if(ControllerUniversita.instance == null)
 			ControllerUniversita.instance = new ControllerUniversita();
