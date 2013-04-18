@@ -58,6 +58,26 @@ public class ControllerCorso extends AbstractController {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 
+	 * @param u Utente
+	 * @return 
+	 */
+	public Corso[] getCorsiSeguiti(Utente u){
+		
+		modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
+		modello_di_dominio.dao.CorsoDAO CorsoDao = lDAOFactory.getCorsoDAO();
+		try{
+			//TODO cancellare
+			Corso[] corsi = CorsoDao.listCorsoByQuery("", null);
+			return corsi;
+		}catch(PersistentException e){
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 	
 	public static ControllerCorso getInstance(){
 		if(ControllerCorso.instance == null)

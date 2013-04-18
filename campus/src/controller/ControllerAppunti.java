@@ -9,7 +9,7 @@ import modello_di_dominio.dao.AppuntiDAO;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-public class ControllerAppunti extends ControllerDocumento {
+public class ControllerAppunti extends AbstractController {
 	
 	private static ControllerAppunti instance;
 	

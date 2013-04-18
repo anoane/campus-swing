@@ -21,7 +21,7 @@ import org.orm.PersistentTransaction;
  * @author mw
  *
  */
-public class ControllerUtente {
+public class ControllerUtente extends AbstractController{
 	
 	private static ControllerUtente instance;
 	/**

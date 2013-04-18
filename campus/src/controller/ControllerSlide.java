@@ -9,7 +9,7 @@ import modello_di_dominio.dao.SlideDAO;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-public class ControllerSlide extends ControllerDocumento {
+public class ControllerSlide extends AbstractController {
 	
 	private static ControllerSlide instance;
 	
