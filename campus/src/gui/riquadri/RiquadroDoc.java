@@ -1,5 +1,6 @@
-package gui;
+package gui.riquadri;
 
+import gui.Home;
 import gui.buttons.RimuoviButton;
 
 import java.awt.BorderLayout;
@@ -10,24 +11,17 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import controller.ControllerUtente;
-
 import modello_di_dominio.Documento;
-import java.awt.Rectangle;
-import java.awt.Dimension;
 
-public class RiquadroDoc extends JPanel {
+public class RiquadroDoc extends Riquadro {
 
-	private int id;
 	private JPanel anteprima;
 	private JPanel tipo;
 	//private JPanel pulsanti;
@@ -41,17 +35,11 @@ public class RiquadroDoc extends JPanel {
 	private JLabel proprietario;
 	private RimuoviButton rimuovi;
 
-	private static Color preferitoBgColor = new Color(67, 136, 204);
 	private static Color colore_stella = new Color(255,222,87);
 
 	public RiquadroDoc(final Documento doc) {
-		//this.id = doc.getID();
-		//JPanel j = new JPanel();
-		//super(440, 200);
-		this.setSize(440, 200);
-		this.setBackground(preferitoBgColor);
-		this.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
-		setLayout(null);
+		super();
+		
 
 		// Riquadro Anteprima
 		anteprima = new JPanel();
