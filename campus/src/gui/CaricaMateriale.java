@@ -567,10 +567,20 @@ public class CaricaMateriale extends JPanel  {
 												list.setForeground(Color.WHITE);
 												list.setBackground(new Color(67, 136, 204));
 												list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-												list.setBounds(10, 10, 345, 264);
-												scegli_fac.add(list);
+												
+												JScrollPane pane_list = new JScrollPane(list);  
+												pane_list.setBounds(10, 10, 345, 264);
+												pane_list.setBorder(new EmptyBorder(0, 0, 0, 0));
+												
+												
+												
+												scegli_fac.add(pane_list);
 												scegli_fac.setFocusable(false);
 												list.setFocusable(false);
+												
+												
+												
+												
 												aggiungiListnerMouseOver(scegli_fac);
 												aggiungiListnerMouseOver(btnAggiungiFacolt);
 												aggiungiListnerMouseOver(list);
@@ -784,8 +794,13 @@ public class CaricaMateriale extends JPanel  {
 		list_1.setForeground(Color.WHITE);
 		list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		list_1.setBackground(new Color(67, 136, 204));
-		list_1.setBounds(10, 10, 345, 264);
-		scegli_corso.add(list_1);
+		
+		JScrollPane pane_list_1 = new JScrollPane(list_1);  
+		pane_list_1.setBounds(10, 10, 345, 264);
+		pane_list_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+		
+		
+		scegli_corso.add(pane_list_1);
 		
 
 		
