@@ -1,4 +1,6 @@
-package gui;
+package gui.riquadri;
+
+import gui.Corso;
 
 import java.awt.Color;
 
@@ -11,7 +13,7 @@ import java.awt.Font;
  * @author mw
  *
  */
-public class RiquadroCorso extends JPanel {
+public class RiquadroCorso extends Riquadro {
 	/**
 	 * 
 	 */
