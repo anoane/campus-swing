@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
@@ -17,6 +18,7 @@ public class ButtonStandard  {
 		button.setIcon(new ImageIcon(iconPath));
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		
 		button.addMouseListener(new MouseAdapter() {
