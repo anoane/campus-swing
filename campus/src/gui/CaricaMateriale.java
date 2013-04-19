@@ -249,7 +249,7 @@ public class CaricaMateriale extends JPanel  {
 				if (!isOverSelectionPanel) {
 					CaricaMateriale.nascondiTutto();
 				}
-				System.out.println("fuoco perso - valore booleano "+isOverSelectionPanel);
+				//System.out.println("fuoco perso - valore booleano "+isOverSelectionPanel);
 			}
 		});
 		panel_1.add(textField_2, "4, 9, fill, default");
@@ -279,7 +279,7 @@ public class CaricaMateriale extends JPanel  {
 				if (!isOverSelectionPanel) {
 					CaricaMateriale.nascondiTutto();
 				}
-				System.out.println("fuoco perso - valore booleano "+isOverSelectionPanel);
+				//System.out.println("fuoco perso - valore booleano "+isOverSelectionPanel);
 			}
 		});
 		panel_1.add(textField_3, "4, 8, fill, default");
@@ -421,10 +421,14 @@ public class CaricaMateriale extends JPanel  {
 								
 								list_2.addListSelectionListener(new ListSelectionListener() {
 									public void valueChanged(ListSelectionEvent arg0) {
-										String s = (String) list_2.getSelectedValue();
-										textField_3.setText(s);
-										indexUniv = list_2.getSelectedIndex();
-										dbIndexUniv = listaUniversità[indexUniv].getID();
+										//TODO:FIX
+										System.out.println("sss");
+										if (list_2.getSelectedIndex() != -1) {
+											String s = (String) list_2.getSelectedValue();
+											textField_3.setText(s);
+											indexUniv = list_2.getSelectedIndex();
+											dbIndexUniv = listaUniversità[indexUniv].getID();
+										}
 									}
 								});
 								JScrollPane pane_list_2 = new JScrollPane(list_2);  
@@ -457,6 +461,12 @@ public class CaricaMateriale extends JPanel  {
 										panel_2.setVisible(true);
 										panel_3.setVisible(true);
 										scegli_univ.setVisible(true);
+										int lastIndex = list_2.getModel().getSize() - 1;
+										if (lastIndex >= 0) {
+											list_2.ensureIndexIsVisible(lastIndex);
+										}
+										list_2.setSelectedIndex(lastIndex);
+										
 									}
 								});
 								crea_univ.add(btnCreaUniversit);
@@ -564,7 +574,7 @@ public class CaricaMateriale extends JPanel  {
 							public void valueChanged(ListSelectionEvent arg0) {
 								String s = (String) list.getSelectedValue();
 								textField_2.setText(s);
-								System.out.println("listenerrompipalle");
+								//System.out.println("listenerrompipalle");
 							}
 						});
 						
@@ -893,7 +903,7 @@ public class CaricaMateriale extends JPanel  {
 	protected static void reloadFac(int indiceUniv) {
 		Facolta[] listaFacoltà = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
 		final String[] values = new String[listaFacoltà.length];
-		System.out.println(listaFacoltà.length);
+		//System.out.println(listaFacoltà.length);
 		for (int i = 0; listaFacoltà.length > i; i++) {
 			values[i] = listaFacoltà[i].getNome();
 		}
@@ -911,7 +921,7 @@ public class CaricaMateriale extends JPanel  {
 	protected static void reloadUniv() {
 		listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
 		final String[] values = new String[listaUniversità.length];
-		System.out.println(listaUniversità.length);
+		//System.out.println(listaUniversità.length);
 		for (int i = 0; listaUniversità.length > i; i++) {
 			values[i] = listaUniversità[i].getNome();
 		}
