@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
@@ -18,6 +19,7 @@ public class ButtonServiziEsterni  {
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
 		button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent arg0) {
 				button.setBackground(Home.BLUE_BUTTON_PRESSED);
