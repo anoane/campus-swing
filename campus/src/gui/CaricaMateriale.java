@@ -88,9 +88,12 @@ public class CaricaMateriale extends JPanel  {
 	final JButton button = new JButton();
 	final JButton button_1 = new JButton();
 	static boolean isOverSelectionPanel =  false;
-	static Universita[] listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
-	private int indexUniv = 0;
-	private int dbIndexUniv = 0;
+	private int indexUniv = -1;
+	private int dbIndexUniv = -1;
+	private int indexFac = -1;
+	private int dbIndexFac = -1;
+	static Universita[] listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+	static Facolta[] listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(-1); 
 	
 	
 	
@@ -238,6 +241,9 @@ public class CaricaMateriale extends JPanel  {
 			@Override
 			public void focusGained(FocusEvent arg0) {
 				if (!isOverSelectionPanel) {
+					if (dbIndexUniv != -1) {
+						CaricaMateriale.reloadFac(dbIndexUniv);
+					}
 					CaricaMateriale.nascondiTutto();
 					panel_2.setVisible(true);
 					panel_4.setVisible(true);
@@ -421,13 +427,12 @@ public class CaricaMateriale extends JPanel  {
 								
 								list_2.addListSelectionListener(new ListSelectionListener() {
 									public void valueChanged(ListSelectionEvent arg0) {
-										//TODO:FIX
-										System.out.println("sss");
+										//System.out.println("sss");
 										if (list_2.getSelectedIndex() != -1) {
 											String s = (String) list_2.getSelectedValue();
 											textField_3.setText(s);
 											indexUniv = list_2.getSelectedIndex();
-											dbIndexUniv = listaUniversità[indexUniv].getID();
+											dbIndexUniv = listaUniversita[indexUniv].getID();
 										}
 									}
 								});
@@ -572,8 +577,12 @@ public class CaricaMateriale extends JPanel  {
 						
 						list.addListSelectionListener(new ListSelectionListener() {
 							public void valueChanged(ListSelectionEvent arg0) {
-								String s = (String) list.getSelectedValue();
-								textField_2.setText(s);
+								if (list.getSelectedIndex() != -1) {
+									String s = (String) list.getSelectedValue();
+									textField_2.setText(s);
+									indexFac = list.getSelectedIndex();
+									dbIndexFac = listaFacoltaByUniv[indexFac].getID();
+								}
 								//System.out.println("listenerrompipalle");
 							}
 						});
@@ -610,7 +619,9 @@ public class CaricaMateriale extends JPanel  {
 										button.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
 												CaricaMateriale.salvaFac();
-												CaricaMateriale.reloadFac(dbIndexUniv);
+												if (dbIndexUniv != -1) {
+													CaricaMateriale.reloadFac(dbIndexUniv);
+												}
 												CaricaMateriale.nascondiTutto();
 												//panel_2.setVisible(true);
 												//panel_4.setVisible(true);
@@ -901,11 +912,10 @@ public class CaricaMateriale extends JPanel  {
 	}
 
 	protected static void reloadFac(int indiceUniv) {
-		Facolta[] listaFacoltà = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
-		final String[] values = new String[listaFacoltà.length];
-		//System.out.println(listaFacoltà.length);
-		for (int i = 0; listaFacoltà.length > i; i++) {
-			values[i] = listaFacoltà[i].getNome();
+		listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
+		final String[] values = new String[listaFacoltaByUniv.length];
+		for (int i = 0; listaFacoltaByUniv.length > i; i++) {
+			values[i] = listaFacoltaByUniv[i].getNome();
 		}
 		list.setModel(new AbstractListModel() {
 			//String[] values = new String[] {"facolta1", "facolta2", "facolta3"};
@@ -919,11 +929,11 @@ public class CaricaMateriale extends JPanel  {
 	}
 	
 	protected static void reloadUniv() {
-		listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
-		final String[] values = new String[listaUniversità.length];
+		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+		final String[] values = new String[listaUniversita.length];
 		//System.out.println(listaUniversità.length);
-		for (int i = 0; listaUniversità.length > i; i++) {
-			values[i] = listaUniversità[i].getNome();
+		for (int i = 0; listaUniversita.length > i; i++) {
+			values[i] = listaUniversita[i].getNome();
 		}
 		list_2.setModel(new AbstractListModel() {
 			//String[] values = new String[] {"facolta1", "facolta2", "facolta3"};

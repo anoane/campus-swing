@@ -49,7 +49,7 @@ public class ControllerFacolta extends AbstractController {
 		
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
-			//Trovo l'univesita
+			
 		try {
 			return facoltaDAO.getFacoltaByORMID(ID);
 		} catch (PersistentException e) {
@@ -63,7 +63,7 @@ public class ControllerFacolta extends AbstractController {
 		
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
-			//Trovo l'univesita
+			
 		try {
 			return facoltaDAO.listFacoltaByQuery("UniversitaID="+indexUniv,null);
 		} catch (PersistentException e) {
