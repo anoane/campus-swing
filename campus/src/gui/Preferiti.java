@@ -1,6 +1,7 @@
 package gui;
 
 import gui.riquadri.RiquadroDoc;
+import gui.riquadri.RiquadroPref;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -149,7 +150,7 @@ public class Preferiti extends JPanel{
 		for(int i = 0;i < docs.size();i++){
 			final int num_doc = i;
 			final Documento d = docs.get(i);
-			final RiquadroDoc preferito = new RiquadroDoc(d);//createFavourite(docs.get(i));
+			final RiquadroPref preferito = new RiquadroPref(d);//createFavourite(docs.get(i));
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
 			preferito.setLocation((32+(485*row)), 71+(230*col));

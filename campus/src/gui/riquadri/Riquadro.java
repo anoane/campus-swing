@@ -35,20 +35,64 @@ public class Riquadro extends JPanel {
 	/**
 	 * 
 	 */
-	protected static Color preferitoBgColor = new Color(67, 136, 204);
+	private static Color preferitoBgColor = new Color(67, 136, 204);
 	/**
 	 * 
-	 * @param doc
 	 */
+	private static Color corsoBgColor = new Color(0x22,0x44,0x66);
+	
+	private static LineBorder preferitoBorder = new LineBorder(new Color(0x1B, 0x32, 0x80), 2);
+	
 	public Riquadro() {
-		
+		super();
 		this.setSize(440, 200);
-		this.setBackground(preferitoBgColor);
-		this.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
-		setLayout(null);
-
+		this.setLayout(null);
 	}
-		
+
+	/**
+	 * @return the corsoBgColor
+	 */
+	public static Color getCorsoBgColor() {
+		return corsoBgColor;
+	}
+
+	/**
+	 * @param corsoBgColor the corsoBgColor to set
+	 */
+	public static void setCorsoBgColor(Color corsoBgColor) {
+		Riquadro.corsoBgColor = corsoBgColor;
+	}
+
+	/**
+	 * @return the preferitoBgColor
+	 */
+	public static Color getPreferitoBgColor() {
+		return preferitoBgColor;
+	}
+
+	/**
+	 * @param preferitoBgColor the preferitoBgColor to set
+	 */
+	public static void setPreferitoBgColor(Color preferitoBgColor) {
+		Riquadro.preferitoBgColor = preferitoBgColor;
+	}
+
+	/**
+	 * @return the preferitoBorder
+	 */
+	public static LineBorder getPreferitoBorder() {
+		return preferitoBorder;
+	}
+
+	/**
+	 * @param preferitoBorder the preferitoBorder to set
+	 */
+	public static void setPreferitoBorder(LineBorder preferitoBorder) {
+		Riquadro.preferitoBorder = preferitoBorder;
+	}
+	
+
+	
 }
 
 

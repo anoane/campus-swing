@@ -31,7 +31,11 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				try {					
+				try {			
+					ControllerUtente u = ControllerUtente.getInstance();
+					ControllerAppunti d = ControllerAppunti.getInstance();
+					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
+					
 					Home window = new Home();
 					window.getFrame().setVisible(true);
 					/*

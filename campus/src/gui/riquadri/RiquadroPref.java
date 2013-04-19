@@ -1,6 +1,7 @@
 package gui.riquadri;
 
 import gui.Home;
+import gui.buttons.ModificaButton;
 import gui.buttons.RimuoviButton;
 
 import java.awt.BorderLayout;
@@ -20,11 +21,11 @@ import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
 
-public class RiquadroDoc extends Riquadro {
+public class RiquadroPref extends Riquadro {
 
 	private JPanel anteprima;
 	private JPanel tipo;
-	//private JPanel pulsanti;
+	private JPanel pulsanti;
 	private JPanel stelle;
 	private JLabel titolo;
 	private JLabel descrizione;
@@ -37,7 +38,7 @@ public class RiquadroDoc extends Riquadro {
 
 	private static Color colore_stella = new Color(255,222,87);
 
-	public RiquadroDoc(final Documento doc) {
+	public RiquadroPref(final Documento doc) {
 		super();
 		this.setBackground(super.getPreferitoBgColor());
 		this.setBorder(super.getPreferitoBorder());	
@@ -98,8 +99,20 @@ public class RiquadroDoc extends Riquadro {
 		univ.setBounds(276, 175, 154, 20);
 
 		// Pannello Rimuovi
-		rimuovi = new RimuoviButton("Cancella il documento");
-		rimuovi.setLocation(385, 5);
+		pulsanti = new JPanel();
+		pulsanti.setBackground(null);
+		pulsanti.setSize(128, 52);
+		pulsanti.setLocation(308, 5);
+		pulsanti.setLayout(null);
+		RimuoviButton r = new RimuoviButton("Rimuovi il documento dai Preferiti");
+		r.setLocation(75, 0);
+		//r.setSize(19,26);
+		ModificaButton m = new ModificaButton();
+		m.setLocation(15, 0);
+		//m.setSize(19,26);
+		pulsanti.add(m);
+		pulsanti.add(r);
+		
 		
 		
 		// Label title
@@ -155,7 +168,7 @@ public class RiquadroDoc extends Riquadro {
 		add(facolta);
 		add(univ);
 		add(descrizione);
-		add(rimuovi);
+		add(pulsanti);
 		add(stelle);
 		add(utente);
 		add(proprietario);
@@ -164,7 +177,7 @@ public class RiquadroDoc extends Riquadro {
 	}
 	
 	public RimuoviButton getRimuovi(){
-		return this.rimuovi;
+		return (RimuoviButton) this.pulsanti.getComponent(1);
 	}
 	
 	private float calcolaVoto(int num, int voto){

@@ -2,9 +2,11 @@
  * 
  */
 package gui.buttons;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  * @author mw
@@ -13,15 +15,18 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class RimuoviButton extends CustomButton {
 	
-	public RimuoviButton() {
+	protected static String iconPath = "./newimage/elimina.png";
+	
+	public RimuoviButton(String s) {
 		super();
 		setSize(52,52);
 		setBackground(null);
 		setLayout(null);
-		
-		JLabel lblX = new JLabel("X");
+		setToolTipText(s);
+		JLabel lblX = new JLabel();
+		lblX.setIcon(new ImageIcon(iconPath));
 		lblX.setForeground(Color.WHITE);
-		lblX.setBounds(17, 0, 16, 32);
+		lblX.setBounds(17, 0, 19, 26);
 		lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
 		add(lblX);
 		
