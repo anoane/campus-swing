@@ -583,7 +583,6 @@ public class CaricaMateriale extends JPanel  {
 									indexFac = list.getSelectedIndex();
 									dbIndexFac = listaFacoltaByUniv[indexFac].getID();
 								}
-								//System.out.println("listenerrompipalle");
 							}
 						});
 						
@@ -618,14 +617,20 @@ public class CaricaMateriale extends JPanel  {
 										
 										button.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
-												CaricaMateriale.salvaFac();
+												
+												CaricaMateriale.salvaFac(textField_6.getText(),dbIndexUniv);
 												if (dbIndexUniv != -1) {
 													CaricaMateriale.reloadFac(dbIndexUniv);
 												}
 												CaricaMateriale.nascondiTutto();
-												//panel_2.setVisible(true);
-												//panel_4.setVisible(true);
-												//scegli_fac.setVisible(true);
+												panel_2.setVisible(true);
+												panel_4.setVisible(true);
+												scegli_fac.setVisible(true);
+												int lastIndex = list.getModel().getSize() - 1;
+												if (lastIndex >= 0) {
+													list.ensureIndexIsVisible(lastIndex);
+												}
+												list.setSelectedIndex(lastIndex);
 											}
 										});
 										button.setText("Crea facolt\u00E0");
@@ -901,9 +906,13 @@ public class CaricaMateriale extends JPanel  {
 		return true;
 	}
 
-	protected static void salvaFac() {
-		// TODO Auto-generated method stub
-		
+	protected static boolean salvaFac(String facolta, int indexUniv) {
+		if(ControllerFacolta.getInstance().isFacoltaByUnivAlreadyPresent(facolta,indexUniv)) {
+			JOptionPane.showMessageDialog(null, "Facoltà già esistente", "Errore", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		ControllerFacolta.getInstance().createFacolta(facolta,indexUniv);
+		return true;
 	}
 	
 	protected static void salvaCorso() {

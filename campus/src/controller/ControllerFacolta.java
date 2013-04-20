@@ -25,7 +25,7 @@ public class ControllerFacolta extends AbstractController {
 	/**
 	 * 
 	 */
-	public void creaFacolta(String nome, Universita u){
+	public void createFacolta(String nome, int dbIndexUniv){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
@@ -34,6 +34,7 @@ public class ControllerFacolta extends AbstractController {
 			Facolta facolta = facoltaDAO.createFacolta();
 			
 			facolta.setNome(nome);
+			Universita u = ControllerUniversita.getInstance().getUniversita(dbIndexUniv);
 			facolta.setUniversita(u);
 			facoltaDAO.save(facolta);
 			//Commit
@@ -77,6 +78,21 @@ public class ControllerFacolta extends AbstractController {
 		if(ControllerFacolta.instance == null)
 			ControllerFacolta.instance = new ControllerFacolta();
 		return ControllerFacolta.instance;
+	}
+
+	public boolean isFacoltaByUnivAlreadyPresent(String facolta, int indexUniv) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
+		//Trovo l'univesita
+		try {
+			if (facoltaDAO.listFacoltaByQuery("UniversitaID="+indexUniv+" AND "+"Nome='"+facolta+"'",null).length != 0) {
+				return true;
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }
