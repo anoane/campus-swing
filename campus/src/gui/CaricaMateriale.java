@@ -423,7 +423,12 @@ public class CaricaMateriale extends JPanel  {
 													}
 													list_1.setSelectedIndex(lastIndex);
 												} else {
-													//TODO:FIX
+													int index = -1;
+													index = list_1.getNextMatch(textField_1.getText(), 0, javax.swing.text.Position.Bias.Forward );
+													if (index >= 0) {
+														list_1.ensureIndexIsVisible(index);
+													}
+													list_1.setSelectedIndex(index);
 												}
 											}
 										});
@@ -624,7 +629,12 @@ public class CaricaMateriale extends JPanel  {
 											}
 											list_2.setSelectedIndex(lastIndex);
 										} else {
-											//TODO:finish posizionamento sul corso già esistente
+											int index = -1;
+											index = list_2.getNextMatch(textPane.getText(), 0, javax.swing.text.Position.Bias.Forward );
+											if (index >= 0) {
+												list_2.ensureIndexIsVisible(index);
+											}
+											list_2.setSelectedIndex(index);
 										}
 										
 									}
@@ -788,7 +798,12 @@ public class CaricaMateriale extends JPanel  {
 													}
 													list.setSelectedIndex(lastIndex);
 												} else {
-													//TODO: finish posizionamento su facolta gia esistente
+													int index = -1;
+													index = list.getNextMatch(textField_6.getText(), 0, javax.swing.text.Position.Bias.Forward );
+													if (index >= 0) {
+														list.ensureIndexIsVisible(index);
+													}
+													list.setSelectedIndex(index);
 												}
 											}
 										});
