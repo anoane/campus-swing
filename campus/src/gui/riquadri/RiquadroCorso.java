@@ -1,6 +1,6 @@
 package gui.riquadri;
 
-import gui.Corso;
+import gui.CorsoPanel;
 
 import java.awt.Color;
 
@@ -17,7 +17,7 @@ public class RiquadroCorso extends Riquadro {
 	/**
 	 * 
 	 */
-	public RiquadroCorso(Corso c) {
+	public RiquadroCorso(CorsoPanel c) {
 		setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		setLayout(null);
 		setSize(400, 150);
