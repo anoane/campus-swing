@@ -56,6 +56,8 @@ import controller.ControllerUtente;
 
 import controller.ControllerFacolta;
 
+//TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
+
 public class CaricaMateriale extends JPanel  {
 	private final static JPanel panel = new JPanel();
 	private JTextField textField;
@@ -243,11 +245,14 @@ public class CaricaMateriale extends JPanel  {
 				if (!isOverSelectionPanel) {
 					if (dbIndexUniv != -1) {
 						CaricaMateriale.reloadFac(dbIndexUniv);
-					}
-					CaricaMateriale.nascondiTutto();
-					panel_2.setVisible(true);
-					panel_4.setVisible(true);
-					scegli_fac.setVisible(true);
+						CaricaMateriale.nascondiTutto();
+						panel_2.setVisible(true);
+						panel_4.setVisible(true);
+						scegli_fac.setVisible(true);
+					} else {
+						textField_3.requestFocus();
+						JOptionPane.showMessageDialog(null, "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
+						}
 				}
 			}
 			@Override
@@ -380,13 +385,13 @@ public class CaricaMateriale extends JPanel  {
 		
 		panel_2.setBackground(new Color(67, 136, 204));
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2.setBounds(388, 55, 367, 347);
+		panel_2.setBounds(388, 54, 367, 348);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 								
 								scegli_univ.setLayout(null);
 								scegli_univ.setBackground(new Color(67, 136, 204));
-								scegli_univ.setBounds(1, 1, 365, 345);
+								scegli_univ.setBounds(1, 2, 365, 345);
 								panel_2.add(scegli_univ);
 								
 								JButton btnAggiungiUniversit = new JButton();
@@ -445,7 +450,7 @@ public class CaricaMateriale extends JPanel  {
 								aggiungiListnerMouseOver(list_2);
 								aggiungiListnerMouseOver(btnAggiungiUniversit);
 						
-								crea_univ.setBounds(1, 1, 365, 345);
+								crea_univ.setBounds(1, 2, 365, 345);
 								panel_2.add(crea_univ);
 								crea_univ.setBackground(new Color(67, 136, 204));
 								crea_univ.setLayout(null);
@@ -537,7 +542,7 @@ public class CaricaMateriale extends JPanel  {
 								textPane.setFocusable(true);
 						
 
-						scegli_fac.setBounds(1, 1, 365, 345);
+						scegli_fac.setBounds(1, 2, 365, 345);
 						scegli_fac.setBackground(new Color(67, 136, 204));
 						panel_2.add(scegli_fac);
 						scegli_fac.setLayout(null);
@@ -611,7 +616,7 @@ public class CaricaMateriale extends JPanel  {
 						
 						crea_fac.setLayout(null);
 						crea_fac.setBackground(new Color(67, 136, 204));
-						crea_fac.setBounds(1, 1, 365, 345);
+						crea_fac.setBounds(1, 2, 365, 345);
 						
 										panel_2.add(crea_fac);
 										
@@ -701,7 +706,7 @@ public class CaricaMateriale extends JPanel  {
 										aggiungiListnerMouseOver(textField_6);
 										textField_6.setFocusable(true);
 
-		crea_corso.setBounds(1, 1, 365, 345);
+		crea_corso.setBounds(1, 2, 365, 345);
 		panel_2.add(crea_corso);
 		crea_corso.setLayout(null);
 		crea_corso.setBackground(new Color(67, 136, 204));
@@ -788,7 +793,7 @@ public class CaricaMateriale extends JPanel  {
 
 		scegli_corso.setLayout(null);
 		scegli_corso.setBackground(new Color(67, 136, 204));
-		scegli_corso.setBounds(1, 1, 365, 345);
+		scegli_corso.setBounds(1, 2, 365, 345);
 		panel_2.add(scegli_corso);
 		
 		JButton btnAggiungiCorso = new JButton();
