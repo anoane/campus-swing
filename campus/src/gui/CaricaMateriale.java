@@ -46,6 +46,7 @@ import javax.swing.event.ListSelectionListener;
 import modello_di_dominio.Corso;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
+import modello_di_dominio.Utente;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -53,6 +54,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import controller.ControllerCorso;
+import controller.ControllerDocumento;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
 
@@ -101,6 +103,8 @@ public class CaricaMateriale extends JPanel  {
 	private int dbIndexFac = -1;
 	private int indexCorso = -1;
 	private int dbIndexCorso = -1;
+	private boolean fileSelezionato = false;
+	private Path target;
 	static Universita[] listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
 	static Facolta[] listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(-1); 
 	static Corso[] listaCorsi = ControllerCorso.getInstance().getAllCorsi(); 
@@ -160,7 +164,7 @@ public class CaricaMateriale extends JPanel  {
 				ColumnSpec.decode("max(3dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("right:max(55dlu;default)"),
-				ColumnSpec.decode("max(159dlu;default):grow"),},
+				ColumnSpec.decode("right:max(189dlu;default)"),},
 			new RowSpec[] {
 				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
@@ -194,15 +198,18 @@ public class CaricaMateriale extends JPanel  {
 		            	newname = util.EstensioneFile.addRandToFileName(newname);
 		            }
 		            Path source = Paths.get(file.getPath());
-		            Path target = Paths.get("files/"+newname);
+		            target = Paths.get("files/"+newname);
 		            try {
 						Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+						fileSelezionato = true;
+						btnScegliFile.setText("..."+source.toString().substring(source.toString().length()-30));
+						btnScegliFile.setBackground(Color.GREEN);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(Home.getFrame(), "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
 					}
 		        } else {
-		        	JOptionPane.showMessageDialog(null, "Non riesco ad aprire questo file", "Errore", JOptionPane.ERROR_MESSAGE);
+		        	JOptionPane.showMessageDialog(Home.getFrame(), "Non riesco ad aprire questo file", "Errore", JOptionPane.ERROR_MESSAGE);
 		        }
 			}
 		});
@@ -222,7 +229,7 @@ public class CaricaMateriale extends JPanel  {
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel_2, "3, 5, left, top");
 		
-		JTextArea textArea = new JTextArea();
+		final JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
 		textArea.setLineWrap(true);
 		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
@@ -234,7 +241,7 @@ public class CaricaMateriale extends JPanel  {
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel_3, "3, 7, left, center");
 		
-		JComboBox comboBox = new JComboBox();
+		final JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Dispense", "Esercizi", "Slide"}));
 		panel_1.add(comboBox, "4, 7, fill, center");
@@ -338,6 +345,40 @@ public class CaricaMateriale extends JPanel  {
 		btnCaricaMateriale.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnCaricaMateriale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				boolean continua = true;
+				if (!fileSelezionato) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessun file selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessun titolo assegnato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textArea.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna descrizione immessa", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (comboBox.getSelectedItem().toString().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna tipologia selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField_3.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna università selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField_2.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna facoltà selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField_4.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (continua) {
+					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), ControllerUtente.getInstance().getUtente(1), ControllerCorso.getInstance().getCorso(textField_4.getText()));
+					JOptionPane.showMessageDialog(Home.getFrame(), "OK CI SIAMO", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				
 				//ControllerDocumento.getInstance().creaDocumento(nome, descrizione, path, u, c);		
 			}
 		});
