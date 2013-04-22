@@ -62,12 +62,10 @@ public class Main {
 					d.creaAppunti("Interattivi", "Appunti", "/", utente, corso);
 					s.creaSlide("Ingegneria del software", "Slide offerte dal professore", "/", utente, corso);
 					JOptionPane.showMessageDialog(null, s.getSlide(4));
-					u.aggiungiDocumentoPreferito(utente, s.getSlide(4));
-					u.aggiungiDocumentoPreferito(utente, d.getAppunti(2));
 					
 				
-					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
-					u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(4));
+					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(1));
+					u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(3));
 					
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
 					*/

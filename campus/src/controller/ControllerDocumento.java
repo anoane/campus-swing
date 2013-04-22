@@ -51,6 +51,16 @@ public class ControllerDocumento extends AbstractController{
 		return null;
 	}
 	
+	public void removeDocumento(Documento d){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
+		try {
+			documentoDAO.delete(d);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static ControllerDocumento getInstance(){
 		if(ControllerDocumento.instance == null)
 			ControllerDocumento.instance = new ControllerDocumento();

@@ -1,9 +1,11 @@
 package controller;
 
+import modello_di_dominio.Appunti;
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Slide;
 import modello_di_dominio.Utente;
+import modello_di_dominio.dao.AppuntiDAO;
 import modello_di_dominio.dao.SlideDAO;
 
 import org.orm.PersistentException;
@@ -47,6 +49,18 @@ public class ControllerSlide extends AbstractController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void deleteSlide(Slide slide){
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			SlideDAO slideDAO = factory.getSlideDAO();
+			slideDAO.delete(slide);
+			t.commit();
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static ControllerSlide getInstance(){

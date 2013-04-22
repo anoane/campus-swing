@@ -37,6 +37,11 @@ public class Preferiti extends JPanel{
 	//Pannello principale
 	private JPanel panel;
 	
+	//Label Pagina
+	private JLabel lblPage;
+	
+	// Linea
+	private JSeparator separator;
 	
 	//private 
 	
@@ -50,13 +55,13 @@ public class Preferiti extends JPanel{
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblPreferiti = new JLabel("Preferiti");
-		lblPreferiti.setForeground(new Color(6, 121, 159));
-		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblPreferiti.setBounds(10, 10, 200, 25);
-		panel.add(lblPreferiti);
+		lblPage = new JLabel("Preferiti");
+		lblPage.setForeground(new Color(6, 121, 159));
+		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPage.setBounds(10, 10, 200, 25);
+		panel.add(lblPage);
 		
-		JSeparator separator = new JSeparator();
+		separator = new JSeparator();
 		separator.setForeground(new Color(27, 50, 128));
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
@@ -160,13 +165,19 @@ public class Preferiti extends JPanel{
 				public void mouseClicked(MouseEvent arg0){
 					docs.remove(num_doc);
 					ControllerUtente u = ControllerUtente.getInstance();
-					u.rimuoviDocumentoPrefetito(u.getUtente(1), d);
-					panel.removeAll();
-					addFavourites(docs);
+					//u.rimuoviDocumentoPreferito(u.getUtente(1), d);
+					adjustDocs(docs);
 					validate();
 					repaint();}
 				});
 			panel.setBounds(panel.getX(),panel.getY(),panel.getWidth(),322+(230*col));	
 		}	
+	}
+	
+	private void adjustDocs(final ArrayList<Documento> docs){
+		panel.removeAll();
+		panel.add(lblPage);
+		panel.add(separator);
+		addFavourites(docs);
 	}
 }

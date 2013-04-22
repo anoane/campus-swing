@@ -5,12 +5,12 @@ package controller;
 
 import java.util.Date;
 
-import javax.swing.JOptionPane;
-
+import modello_di_dominio.Appunti;
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
+import modello_di_dominio.Slide;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.UtenteDAO;
 
@@ -134,9 +134,31 @@ public class ControllerUtente extends AbstractController{
 		}
 	}
 	
-	public void rimuoviDocumentoPrefetito(Utente u, Documento d){
+	public void rimuoviDocumentoPreferito(Utente u, Documento d){
 		u.documentiPreferiti.remove(d);
 		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		try {
+			utenteDAO.save(u);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void rimuoviDocumento(Utente u, Object d){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		if(d.getClass().getName() == "Slide"){
+			ControllerSlide s = ControllerSlide.getInstance();
+			s.deleteSlide((Slide) d);
+		}
+		else
+			if(d.getClass().getName() == "Appunti"){
+			ControllerAppunti a = ControllerAppunti.getInstance();
+			a.deleteAppunti((Appunti) d);
+		}
+			
+		//u.documentiUtente.remove(d);
+		
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {
 			utenteDAO.save(u);
