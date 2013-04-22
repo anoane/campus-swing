@@ -289,6 +289,10 @@ public class CorsoDAOImpl implements modello_di_dominio.dao.CorsoDAO {
 			for(int i = 0; i < lDocumentoCorsos.length; i++) {
 				lDocumentoCorsos[i].setCorso(null);
 			}
+			modello_di_dominio.Facolta[] lFacoltas = corso.facolta.toArray();
+			for(int i = 0; i < lFacoltas.length; i++) {
+				lFacoltas[i].corso.remove(corso);
+			}
 			return delete(corso);
 		}
 		catch(Exception e) {
@@ -306,6 +310,10 @@ public class CorsoDAOImpl implements modello_di_dominio.dao.CorsoDAO {
 			modello_di_dominio.Documento[] lDocumentoCorsos = corso.documentoCorso.toArray();
 			for(int i = 0; i < lDocumentoCorsos.length; i++) {
 				lDocumentoCorsos[i].setCorso(null);
+			}
+			modello_di_dominio.Facolta[] lFacoltas = corso.facolta.toArray();
+			for(int i = 0; i < lFacoltas.length; i++) {
+				lFacoltas[i].corso.remove(corso);
 			}
 			try {
 				session.delete(corso);

@@ -289,6 +289,10 @@ public class FacoltaDAOImpl implements modello_di_dominio.dao.FacoltaDAO {
 			for(int i = 0; i < lIscrittos.length; i++) {
 				lIscrittos[i].setFacolta(null);
 			}
+			modello_di_dominio.Corso[] lCorsos = facolta.corso.toArray();
+			for(int i = 0; i < lCorsos.length; i++) {
+				lCorsos[i].facolta.remove(facolta);
+			}
 			return delete(facolta);
 		}
 		catch(Exception e) {
@@ -306,6 +310,10 @@ public class FacoltaDAOImpl implements modello_di_dominio.dao.FacoltaDAO {
 			modello_di_dominio.Utente[] lIscrittos = facolta.iscritto.toArray();
 			for(int i = 0; i < lIscrittos.length; i++) {
 				lIscrittos[i].setFacolta(null);
+			}
+			modello_di_dominio.Corso[] lCorsos = facolta.corso.toArray();
+			for(int i = 0; i < lCorsos.length; i++) {
+				lCorsos[i].facolta.remove(facolta);
 			}
 			try {
 				session.delete(facolta);

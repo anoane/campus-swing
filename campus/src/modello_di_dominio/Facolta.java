@@ -21,6 +21,9 @@ public class Facolta {
 		if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_ISCRITTO) {
 			return ORM_iscritto;
 		}
+		else if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_CORSO) {
+			return ORM_corso;
+		}
 		
 		return null;
 	}
@@ -49,6 +52,8 @@ public class Facolta {
 	private String nome;
 	
 	private java.util.Set ORM_iscritto = new java.util.HashSet();
+	
+	private java.util.Set ORM_corso = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -79,6 +84,16 @@ public class Facolta {
 	}
 	
 	public final modello_di_dominio.UtenteSetCollection iscritto = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_FACOLTA_ISCRITTO, modello_di_dominio.ORMConstants.KEY_UTENTE_FACOLTA, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Corso(java.util.Set value) {
+		this.ORM_corso = value;
+	}
+	
+	private java.util.Set getORM_Corso() {
+		return ORM_corso;
+	}
+	
+	public final modello_di_dominio.CorsoSetCollection corso = new modello_di_dominio.CorsoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_FACOLTA_CORSO, modello_di_dominio.ORMConstants.KEY_CORSO_FACOLTA, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	public void setUniversita(modello_di_dominio.Universita value) {
 		if (universita != null) {

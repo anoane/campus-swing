@@ -24,6 +24,9 @@ public class Corso {
 		else if (key == modello_di_dominio.ORMConstants.KEY_CORSO_DOCUMENTOCORSO) {
 			return ORM_documentoCorso;
 		}
+		else if (key == modello_di_dominio.ORMConstants.KEY_CORSO_FACOLTA) {
+			return ORM_facolta;
+		}
 		
 		return null;
 	}
@@ -46,6 +49,8 @@ public class Corso {
 	private java.util.Set ORM_utenteCorso = new java.util.HashSet();
 	
 	private java.util.Set ORM_documentoCorso = new java.util.HashSet();
+	
+	private java.util.Set ORM_facolta = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -102,6 +107,16 @@ public class Corso {
 	}
 	
 	public final modello_di_dominio.DocumentoSetCollection documentoCorso = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_CORSO_DOCUMENTOCORSO, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_CORSO, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Facolta(java.util.Set value) {
+		this.ORM_facolta = value;
+	}
+	
+	private java.util.Set getORM_Facolta() {
+		return ORM_facolta;
+	}
+	
+	public final modello_di_dominio.FacoltaSetCollection facolta = new modello_di_dominio.FacoltaSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_CORSO_FACOLTA, modello_di_dominio.ORMConstants.KEY_FACOLTA_CORSO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

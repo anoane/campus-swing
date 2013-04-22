@@ -48,6 +48,10 @@ public class CorsoDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentoCorso"));
 	}
 	
+	public modello_di_dominio.FacoltaDetachedCriteria createFacoltaCriteria() {
+		return new modello_di_dominio.FacoltaDetachedCriteria(createCriteria("ORM_Facolta"));
+	}
+	
 	public Corso uniqueCorso(PersistentSession session) {
 		return (Corso) super.createExecutableCriteria(session).uniqueResult();
 	}

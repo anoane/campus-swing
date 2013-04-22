@@ -42,6 +42,10 @@ public class FacoltaDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_Iscritto"));
 	}
 	
+	public modello_di_dominio.CorsoDetachedCriteria createCorsoCriteria() {
+		return new modello_di_dominio.CorsoDetachedCriteria(createCriteria("ORM_Corso"));
+	}
+	
 	public Facolta uniqueFacolta(PersistentSession session) {
 		return (Facolta) super.createExecutableCriteria(session).uniqueResult();
 	}

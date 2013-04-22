@@ -22,5 +22,10 @@ License Type: Purchased
 			<key column="CorsoID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Documento"/>
 		</set>
+		<set name="ORM_Facolta" table="Corso_Facolta" lazy="true" cascade="save-update,lock">
+			<key column="CorsoID" not-null="true"/>
+			<many-to-many column="FacoltaID" class="modello_di_dominio.Facolta">
+			</many-to-many>
+		</set>
 	</class>
 </hibernate-mapping>

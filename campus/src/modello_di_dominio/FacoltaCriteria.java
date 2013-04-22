@@ -44,6 +44,10 @@ public class FacoltaCriteria extends AbstractORMCriteria {
 		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_Iscritto"));
 	}
 	
+	public modello_di_dominio.CorsoCriteria createCorsoCriteria() {
+		return new modello_di_dominio.CorsoCriteria(createCriteria("ORM_Corso"));
+	}
+	
 	public Facolta uniqueFacolta() {
 		return (Facolta) super.uniqueResult();
 	}

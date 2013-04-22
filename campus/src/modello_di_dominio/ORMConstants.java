@@ -14,11 +14,13 @@
 package modello_di_dominio;
 
 public interface ORMConstants extends org.orm.util.ORMBaseConstants {
-	final int KEY_CORREZIONE_DOCUMENTO = 214539795;
+	final int KEY_CORREZIONE_DOCUMENTO = -2076459533;
 	
-	final int KEY_CORREZIONE_UTENTE = 1712637178;
+	final int KEY_CORREZIONE_UTENTE = 796504346;
 	
 	final int KEY_CORSO_DOCUMENTOCORSO = 1115627435;
+	
+	final int KEY_CORSO_FACOLTA = 1649113877;
 	
 	final int KEY_CORSO_UTENTECORSO = 853938028;
 	
@@ -29,6 +31,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_DOCUMENTO_PROPRIETARIO = 2085130091;
 	
 	final int KEY_DOCUMENTO_UTENTEPREFERITO = 1117411568;
+	
+	final int KEY_FACOLTA_CORSO = -195828779;
 	
 	final int KEY_FACOLTA_ISCRITTO = -678016724;
 	
