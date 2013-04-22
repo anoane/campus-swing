@@ -293,6 +293,10 @@ public class FacoltaDAOImpl implements modello_di_dominio.dao.FacoltaDAO {
 			for(int i = 0; i < lCorsos.length; i++) {
 				lCorsos[i].facolta.remove(facolta);
 			}
+			if(facolta.getDocumentoFacolta() != null) {
+				facolta.getDocumentoFacolta().setFacolta(null);
+			}
+			
 			return delete(facolta);
 		}
 		catch(Exception e) {
@@ -315,6 +319,10 @@ public class FacoltaDAOImpl implements modello_di_dominio.dao.FacoltaDAO {
 			for(int i = 0; i < lCorsos.length; i++) {
 				lCorsos[i].facolta.remove(facolta);
 			}
+			if(facolta.getDocumentoFacolta() != null) {
+				facolta.getDocumentoFacolta().setFacolta(null);
+			}
+			
 			try {
 				session.delete(facolta);
 				return true;

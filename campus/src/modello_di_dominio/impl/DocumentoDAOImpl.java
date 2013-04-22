@@ -281,6 +281,10 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Documento documento)throws PersistentException {
 		try {
+			if(documento.getFacolta() != null) {
+				documento.getFacolta().setDocumentoFacolta(null);
+			}
+			
 			modello_di_dominio.Correzione[] lCorrezioness = documento.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);
@@ -307,6 +311,10 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Documento documento, org.orm.PersistentSession session)throws PersistentException {
 		try {
+			if(documento.getFacolta() != null) {
+				documento.getFacolta().setDocumentoFacolta(null);
+			}
+			
 			modello_di_dominio.Correzione[] lCorrezioness = documento.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);

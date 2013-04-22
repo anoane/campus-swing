@@ -281,6 +281,10 @@ public class SlideDAOImpl implements modello_di_dominio.dao.SlideDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Slide slide)throws PersistentException {
 		try {
+			if(slide.getFacolta() != null) {
+				slide.getFacolta().setDocumentoFacolta(null);
+			}
+			
 			modello_di_dominio.Correzione[] lCorrezioness = slide.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);
@@ -307,6 +311,10 @@ public class SlideDAOImpl implements modello_di_dominio.dao.SlideDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Slide slide, org.orm.PersistentSession session)throws PersistentException {
 		try {
+			if(slide.getFacolta() != null) {
+				slide.getFacolta().setDocumentoFacolta(null);
+			}
+			
 			modello_di_dominio.Correzione[] lCorrezioness = slide.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);

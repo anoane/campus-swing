@@ -104,6 +104,18 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="FacoltaID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>Modello di Dominio.Facolta.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
     <Column name="UtenteID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -346,30 +358,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="DocumentoID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Modello di Dominio.Documento.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="UtenteID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Modello di Dominio.Utente.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
   </Entity>
   <Entity name="Corso_Utente">
     <Column name="CorsoID">
@@ -449,6 +437,52 @@
       <UserTypes/>
     </Column>
   </Entity>
+  <Entity name="Utente_Documento2">
+    <Column name="UtenteID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>Modello di Dominio.Utente.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="DocumentoID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>Modello di Dominio.Documento.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <ForeignKey name="Correzione">
+    <ReferenceTable>Utente_Documento2</ReferenceTable>
+    <ReferencedTable>Utente</ReferencedTable>
+    <Columns>
+      <Column>UtenteID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="Correzione2">
+    <ReferenceTable>Utente_Documento2</ReferenceTable>
+    <ReferencedTable>Documento</ReferencedTable>
+    <Columns>
+      <Column>DocumentoID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
   <ForeignKey name="segue">
     <ReferenceTable>Corso_Utente</ReferenceTable>
     <ReferencedTable>Corso</ReferencedTable>
@@ -529,26 +563,6 @@
       <Column>ID</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="Correzione">
-    <ReferenceTable>Correzione</ReferenceTable>
-    <ReferencedTable>Documento</ReferencedTable>
-    <Columns>
-      <Column>DocumentoID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="Correzione2">
-    <ReferenceTable>Correzione</ReferenceTable>
-    <ReferencedTable>Utente</ReferencedTable>
-    <Columns>
-      <Column>UtenteID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
   <ForeignKey name="appartiene">
     <ReferenceTable>Corso_Facolta</ReferenceTable>
     <ReferencedTable>Corso</ReferencedTable>
@@ -561,6 +575,16 @@
   </ForeignKey>
   <ForeignKey name="appartiene2">
     <ReferenceTable>Corso_Facolta</ReferenceTable>
+    <ReferencedTable>Facolta</ReferencedTable>
+    <Columns>
+      <Column>FacoltaID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="appartiene a">
+    <ReferenceTable>Documento</ReferenceTable>
     <ReferencedTable>Facolta</ReferencedTable>
     <Columns>
       <Column>FacoltaID</Column>

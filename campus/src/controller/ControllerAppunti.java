@@ -3,6 +3,7 @@ package controller;
 import modello_di_dominio.Appunti;
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
+import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.AppuntiDAO;
 
@@ -17,7 +18,7 @@ public class ControllerAppunti extends AbstractController {
 		super();
 	}
 	
-	public void creaAppunti(String nome, String descrizione,String path, Utente u, Corso c){
+	public void creaAppunti(String nome, String descrizione,String path, Utente u, Corso c,Facolta f){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			DAOFactory factory = DAOFactory.getDAOFactory();
@@ -28,6 +29,7 @@ public class ControllerAppunti extends AbstractController {
 			appunti.setPath(path);
 			appunti.setProprietario(u);
 			appunti.setCorso(c);
+			appunti.setFacolta(f);
 			appuntiDAO.save(appunti);
 			//Commit
 			t.commit();

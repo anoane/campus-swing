@@ -33,6 +33,10 @@ public class Documento {
 			this.corso = (modello_di_dominio.Corso) owner;
 		}
 		
+		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_FACOLTA) {
+			this.facolta = (modello_di_dominio.Facolta) owner;
+		}
+		
 		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_PROPRIETARIO) {
 			this.proprietario = (modello_di_dominio.Utente) owner;
 		}
@@ -50,6 +54,8 @@ public class Documento {
 	};
 	
 	private int ID;
+	
+	private modello_di_dominio.Facolta facolta;
 	
 	private java.util.Set ORM_correziones = new java.util.HashSet();
 	
@@ -196,6 +202,23 @@ public class Documento {
 	}
 	
 	public final modello_di_dominio.UtenteSetCollection utentePreferito = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFERITO, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	
+	public void setFacolta(modello_di_dominio.Facolta value) {
+		if (this.facolta != value) {
+			modello_di_dominio.Facolta lfacolta = this.facolta;
+			this.facolta = value;
+			if (value != null) {
+				facolta.setDocumentoFacolta(this);
+			}
+			else {
+				lfacolta.setDocumentoFacolta(null);
+			}
+		}
+	}
+	
+	public modello_di_dominio.Facolta getFacolta() {
+		return facolta;
+	}
 	
 	public void setProprietario(modello_di_dominio.Utente value) {
 		if (proprietario != null) {

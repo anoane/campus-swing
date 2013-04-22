@@ -6,16 +6,15 @@ License Type: Purchased
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="modello_di_dominio.Correzione" table="Correzione" lazy="false">
-		<id name="ID" column="ID" type="integer" unsaved-value="0">
-			<generator class="native">
-			</generator>
-		</id>
+		<composite-id>
+			<key-property name="ID" column="ID" type="integer"/>
+			<key-many-to-one name="ORM_Utente" column="UtenteID" class="modello_di_dominio.Utente">
+			</key-many-to-one>
+			<key-many-to-one name="ORM_Documento" column="DocumentoID" class="modello_di_dominio.Documento">
+			</key-many-to-one>
+		</composite-id>
 		<property name="testo" column="Testo" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="data" column="Data" type="date" not-null="false" lazy="false"/>
 		<property name="approvato" column="Approvato" type="boolean" length="1" not-null="true" lazy="false"/>
-		<many-to-one name="ORM_Documento" cascade="lock" column="DocumentoID" class="modello_di_dominio.Documento" not-null="true" lazy="false">
-		</many-to-one>
-		<many-to-one name="ORM_Utente" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="false">
-		</many-to-one>
 	</class>
 </hibernate-mapping>

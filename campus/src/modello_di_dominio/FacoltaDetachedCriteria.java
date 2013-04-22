@@ -46,6 +46,10 @@ public class FacoltaDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new modello_di_dominio.CorsoDetachedCriteria(createCriteria("ORM_Corso"));
 	}
 	
+	public DocumentoDetachedCriteria createDocumentoFacoltaCriteria() {
+		return new DocumentoDetachedCriteria(createCriteria("documentoFacolta"));
+	}
+	
 	public Facolta uniqueFacolta(PersistentSession session) {
 		return (Facolta) super.createExecutableCriteria(session).uniqueResult();
 	}

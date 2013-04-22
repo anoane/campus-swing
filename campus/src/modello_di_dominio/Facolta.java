@@ -32,6 +32,10 @@ public class Facolta {
 		if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_UNIVERSITA) {
 			this.universita = (modello_di_dominio.Universita) owner;
 		}
+		
+		else if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_DOCUMENTOFACOLTA) {
+			this.documentoFacolta = (modello_di_dominio.Documento) owner;
+		}
 	}
 	
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
@@ -54,6 +58,8 @@ public class Facolta {
 	private java.util.Set ORM_iscritto = new java.util.HashSet();
 	
 	private java.util.Set ORM_corso = new java.util.HashSet();
+	
+	private modello_di_dominio.Documento documentoFacolta;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -117,6 +123,23 @@ public class Facolta {
 	
 	private modello_di_dominio.Universita getORM_Universita() {
 		return universita;
+	}
+	
+	public void setDocumentoFacolta(modello_di_dominio.Documento value) {
+		if (this.documentoFacolta != value) {
+			modello_di_dominio.Documento ldocumentoFacolta = this.documentoFacolta;
+			this.documentoFacolta = value;
+			if (value != null) {
+				documentoFacolta.setFacolta(this);
+			}
+			else {
+				ldocumentoFacolta.setFacolta(null);
+			}
+		}
+	}
+	
+	public modello_di_dominio.Documento getDocumentoFacolta() {
+		return documentoFacolta;
 	}
 	
 	public String toString() {

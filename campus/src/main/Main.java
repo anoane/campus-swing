@@ -32,7 +32,7 @@ public class Main {
 			@Override
 			public void run() {
 				try {	
-					/*
+					
 					ControllerUniversita univ = ControllerUniversita.getInstance();
 					
 					univ.createUniversita("Universita di L'Aquila");
@@ -48,8 +48,6 @@ public class Main {
 					c.creaCorso("Sistemi Interattivi", "Nah cagata!",facolta.getID());
 					Corso corso = c.getCorso("Sistemi Interattivi");
 					
-
-					
 					ControllerUtente u = ControllerUtente.getInstance();
 					u.creaUtente("Pippo","Pluto","PlutoPippo","M",new Date(), facolta);
 					
@@ -58,20 +56,20 @@ public class Main {
 					Utente utente = u.getUtente("Pippo", "Pluto");
 					
 					
-					d.creaAppunti("Sistemi", "Appunti", "/", utente, corso);
-					d.creaAppunti("Interattivi", "Appunti", "/", utente, corso);
-					s.creaSlide("Ingegneria del software", "Slide offerte dal professore", "/", utente, corso);
-					JOptionPane.showMessageDialog(null, s.getSlide(4));
+					d.creaAppunti("Sistemi", "Appunti", "/", utente, corso,facolta);
+					d.creaAppunti("Interattivi", "Appunti", "/", utente, corso,facolta);
+					//s.creaSlide("Ingegneria del software", "Slide offerte dal professore", "/", utente, corso);
+					//JOptionPane.showMessageDialog(null, s.getSlide(4));
 					
 				
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(1));
 					u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(3));
 					
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
-					*/
+					/*
 					Home window = new Home();
 					window.getFrame().setVisible(true);
-					
+					*/
 					
 					
 				} catch (Exception e) {
