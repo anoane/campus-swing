@@ -65,6 +65,8 @@ public class Utente {
 	
 	private String immagine;
 	
+	private String username;
+	
 	private java.util.Set ORM_corso = new java.util.HashSet();
 	
 	private java.util.Set ORM_documentiUtente = new java.util.HashSet();
@@ -123,6 +125,14 @@ public class Utente {
 	
 	public String getImmagine() {
 		return immagine;
+	}
+	
+	public void setUsername(String value) {
+		this.username = value;
+	}
+	
+	public String getUsername() {
+		return username;
 	}
 	
 	private void setORM_Corso(java.util.Set value) {

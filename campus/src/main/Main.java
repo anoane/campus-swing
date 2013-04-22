@@ -32,12 +32,6 @@ public class Main {
 			@Override
 			public void run() {
 				try {			
-					/*
-					ControllerCorso c = ControllerCorso.getInstance();
-					
-					c.creaCorso("Sistemi Interattivi", "Nah cagata!");
-					Corso corso = c.getCorso("Sistemi Interattivi");
-					
 					ControllerUniversita univ = ControllerUniversita.getInstance();
 					
 					univ.createUniversita("Universita di L'Aquila");
@@ -48,8 +42,15 @@ public class Main {
 					f.createFacolta("Ingegneria",universita.getID());
 					Facolta facolta = f.getFacolta(1);
 					
+					ControllerCorso c = ControllerCorso.getInstance();
+					
+					c.creaCorso("Sistemi Interattivi", "Nah cagata!",facolta.getID());
+					Corso corso = c.getCorso("Sistemi Interattivi");
+					
+
+					
 					ControllerUtente u = ControllerUtente.getInstance();
-					u.creaUtente("Pippo","Pluto","M",new Date(), facolta);
+					u.creaUtente("Pippo","Pluto","PlutoPippo","M",new Date(), facolta);
 					
 					ControllerAppunti d = ControllerAppunti.getInstance();
 					ControllerSlide s = ControllerSlide.getInstance();
@@ -68,7 +69,7 @@ public class Main {
 					u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(4));
 					
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
-					*/
+					
 					Home window = new Home();
 					window.getFrame().setVisible(true);
 					

@@ -17,6 +17,7 @@ License Type: Purchased
 		<property name="datadinascita" column="Datadinascita" type="date" not-null="false" lazy="false"/>
 		<property name="sesso" column="Sesso" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="immagine" column="Immagine" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="username" column="Username" unique="true" type="string" length="255" not-null="false" lazy="false"/>
 		<set name="ORM_Corso" table="Corso_Utente" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<many-to-many column="CorsoID" class="modello_di_dominio.Corso">

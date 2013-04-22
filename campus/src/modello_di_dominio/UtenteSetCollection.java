@@ -76,6 +76,7 @@ public class UtenteSetCollection extends org.orm.util.ORMSet {
 	 * <li>datadinascita</li>
 	 * <li>sesso</li>
 	 * <li>immagine</li>
+	 * <li>username</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -92,6 +93,7 @@ public class UtenteSetCollection extends org.orm.util.ORMSet {
 	 * <li>datadinascita</li>
 	 * <li>sesso</li>
 	 * <li>immagine</li>
+	 * <li>username</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array

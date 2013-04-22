@@ -19,10 +19,10 @@ import java.util.List;
 import modello_di_dominio.*;
 
 public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
-	public Correzione loadCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException {
+	public Correzione loadCorrezioneByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession();
-			return loadCorrezioneByORMID(session, ID, utente, documento);
+			return loadCorrezioneByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -30,10 +30,10 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 		}
 	}
 	
-	public Correzione getCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException {
+	public Correzione getCorrezioneByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession();
-			return getCorrezioneByORMID(session, ID, utente, documento);
+			return getCorrezioneByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -41,10 +41,10 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 		}
 	}
 	
-	public Correzione loadCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException {
+	public Correzione loadCorrezioneByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession();
-			return loadCorrezioneByORMID(session, ID, utente, documento, lockMode);
+			return loadCorrezioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -52,10 +52,10 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 		}
 	}
 	
-	public Correzione getCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException {
+	public Correzione getCorrezioneByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession();
-			return getCorrezioneByORMID(session, ID, utente, documento, lockMode);
+			return getCorrezioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -63,14 +63,9 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 		}
 	}
 	
-	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException {
+	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			Correzione correzione = new modello_di_dominio.Correzione();
-			correzione.setID(ID);
-			correzione.setUtente(utente);
-			correzione.setDocumento(documento);
-			
-			return (Correzione) session.load(modello_di_dominio.Correzione.class, correzione);
+			return (Correzione) session.load(modello_di_dominio.Correzione.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -78,14 +73,9 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 		}
 	}
 	
-	public Correzione getCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException {
+	public Correzione getCorrezioneByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			Correzione correzione = new modello_di_dominio.Correzione();
-			correzione.setID(ID);
-			correzione.setUtente(utente);
-			correzione.setDocumento(documento);
-			
-			return (Correzione) session.get(modello_di_dominio.Correzione.class, correzione);
+			return (Correzione) session.get(modello_di_dominio.Correzione.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -93,14 +83,9 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 		}
 	}
 	
-	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException {
+	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			Correzione correzione = new modello_di_dominio.Correzione();
-			correzione.setID(ID);
-			correzione.setUtente(utente);
-			correzione.setDocumento(documento);
-			
-			return (Correzione) session.load(modello_di_dominio.Correzione.class, correzione, lockMode);
+			return (Correzione) session.load(modello_di_dominio.Correzione.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -108,14 +93,9 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 		}
 	}
 	
-	public Correzione getCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException {
+	public Correzione getCorrezioneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			Correzione correzione = new modello_di_dominio.Correzione();
-			correzione.setID(ID);
-			correzione.setUtente(utente);
-			correzione.setDocumento(documento);
-			
-			return (Correzione) session.get(modello_di_dominio.Correzione.class, correzione, lockMode);
+			return (Correzione) session.get(modello_di_dominio.Correzione.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -301,17 +281,13 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Correzione correzione)throws PersistentException {
 		try {
-			modello_di_dominio.Utente utente = correzione.getUtente();
-			if(correzione.getUtente() != null) {
-				correzione.getUtente().correziones.remove(correzione);
-			}
-			correzione.setORM_Utente(utente);
-			
-			modello_di_dominio.Documento documento = correzione.getDocumento();
 			if(correzione.getDocumento() != null) {
 				correzione.getDocumento().correziones.remove(correzione);
 			}
-			correzione.setORM_Documento(documento);
+			
+			if(correzione.getUtente() != null) {
+				correzione.getUtente().correziones.remove(correzione);
+			}
 			
 			return delete(correzione);
 		}
@@ -323,17 +299,13 @@ public class CorrezioneDAOImpl implements modello_di_dominio.dao.CorrezioneDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Correzione correzione, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			modello_di_dominio.Utente utente = correzione.getUtente();
-			if(correzione.getUtente() != null) {
-				correzione.getUtente().correziones.remove(correzione);
-			}
-			correzione.setORM_Utente(utente);
-			
-			modello_di_dominio.Documento documento = correzione.getDocumento();
 			if(correzione.getDocumento() != null) {
 				correzione.getDocumento().correziones.remove(correzione);
 			}
-			correzione.setORM_Documento(documento);
+			
+			if(correzione.getUtente() != null) {
+				correzione.getUtente().correziones.remove(correzione);
+			}
 			
 			try {
 				session.delete(correzione);

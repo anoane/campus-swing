@@ -34,25 +34,26 @@ public class ControllerUtente extends AbstractController{
 	/**
 	 * 
 	 */
-	public void creaUtente(String nome, String cognome, String sesso, Date date, Facolta facolta){
-		try {
-			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+	public void creaUtente(String nome, String cognome,String username, String sesso, Date date, Facolta facolta){
+		if(this.getUtente(username) == null){ 
+			try {
+				PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+				DAOFactory factory = DAOFactory.getDAOFactory();
+				UtenteDAO utenteDAO = factory.getUtenteDAO();
+				Utente utente = utenteDAO.createUtente();
+				utente.setNome(nome);
+				utente.setCognome(cognome);
+				utente.setSesso(sesso);
+				utente.setDatadinascita(date);
+				utente.setFacolta(facolta);
+				utenteDAO.save(utente);
+				//Commit
+				t.commit();
 			
-			DAOFactory factory = DAOFactory.getDAOFactory();
-			UtenteDAO utenteDAO = factory.getUtenteDAO();
-			Utente utente = utenteDAO.createUtente();
-			utente.setNome(nome);
-			utente.setCognome(cognome);
-			utente.setSesso(sesso);
-			utente.setDatadinascita(date);
-			utente.setFacolta(facolta);
-			utenteDAO.save(utente);
-			//Commit
-			t.commit();
-			
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -101,6 +102,19 @@ public class ControllerUtente extends AbstractController{
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {
 			Utente utente = utenteDAO.getUtenteByORMID(ID);
+			return utente;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Utente getUtente(String user){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		try {
+			Utente utente = utenteDAO.loadUtenteByQuery("Username ='"+user+"'", null);
 			return utente;
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block

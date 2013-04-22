@@ -17,14 +17,14 @@ import org.orm.*;
 import modello_di_dominio.*;
 
 public interface CorrezioneDAO {
-	public Correzione loadCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException;
-	public Correzione getCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException;
-	public Correzione loadCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException;
-	public Correzione getCorrezioneByORMID(int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException;
-	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException;
-	public Correzione getCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento) throws PersistentException;
-	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException;
-	public Correzione getCorrezioneByORMID(PersistentSession session, int ID, modello_di_dominio.Utente utente, modello_di_dominio.Documento documento, org.hibernate.LockMode lockMode) throws PersistentException;
+	public Correzione loadCorrezioneByORMID(int ID) throws PersistentException;
+	public Correzione getCorrezioneByORMID(int ID) throws PersistentException;
+	public Correzione loadCorrezioneByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException;
+	public Correzione getCorrezioneByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException;
+	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID) throws PersistentException;
+	public Correzione getCorrezioneByORMID(PersistentSession session, int ID) throws PersistentException;
+	public Correzione loadCorrezioneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException;
+	public Correzione getCorrezioneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException;
 	public Correzione[] listCorrezioneByQuery(String condition, String orderBy) throws PersistentException;
 	public Correzione[] listCorrezioneByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException;
 	public Correzione[] listCorrezioneByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException;

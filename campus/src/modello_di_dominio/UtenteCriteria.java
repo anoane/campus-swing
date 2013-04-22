@@ -25,6 +25,7 @@ public class UtenteCriteria extends AbstractORMCriteria {
 	public final DateExpression datadinascita;
 	public final StringExpression sesso;
 	public final StringExpression immagine;
+	public final StringExpression username;
 	
 	public UtenteCriteria(Criteria criteria) {
 		super(criteria);
@@ -34,6 +35,7 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		datadinascita = new DateExpression("datadinascita", this);
 		sesso = new StringExpression("sesso", this);
 		immagine = new StringExpression("immagine", this);
+		username = new StringExpression("username", this);
 	}
 	
 	public UtenteCriteria(PersistentSession session) {

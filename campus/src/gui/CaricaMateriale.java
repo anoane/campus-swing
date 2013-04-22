@@ -1032,7 +1032,7 @@ public class CaricaMateriale extends JPanel  {
 			JOptionPane.showMessageDialog(Home.getFrame(), "Corso già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
-		ControllerCorso.getInstance().creaCorso(nomeCorso,descrizione);
+		ControllerCorso.getInstance().creaCorso(nomeCorso,descrizione, 1);
 		return true;
 	}
 

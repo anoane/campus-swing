@@ -14,9 +14,9 @@
 package modello_di_dominio;
 
 public interface ORMConstants extends org.orm.util.ORMBaseConstants {
-	final int KEY_CORREZIONE_DOCUMENTO = -2076459533;
+	final int KEY_CORREZIONE_DOCUMENTO = 214539795;
 	
-	final int KEY_CORREZIONE_UTENTE = 796504346;
+	final int KEY_CORREZIONE_UTENTE = 1712637178;
 	
 	final int KEY_CORSO_DOCUMENTOCORSO = 1115627435;
 	

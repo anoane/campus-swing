@@ -25,6 +25,7 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final DateExpression datadinascita;
 	public final StringExpression sesso;
 	public final StringExpression immagine;
+	public final StringExpression username;
 	
 	public UtenteDetachedCriteria() {
 		super(modello_di_dominio.Utente.class, modello_di_dominio.UtenteCriteria.class);
@@ -34,6 +35,7 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		datadinascita = new DateExpression("datadinascita", this.getDetachedCriteria());
 		sesso = new StringExpression("sesso", this.getDetachedCriteria());
 		immagine = new StringExpression("immagine", this.getDetachedCriteria());
+		username = new StringExpression("username", this.getDetachedCriteria());
 	}
 	
 	public UtenteDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -44,6 +46,7 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		datadinascita = new DateExpression("datadinascita", this.getDetachedCriteria());
 		sesso = new StringExpression("sesso", this.getDetachedCriteria());
 		immagine = new StringExpression("immagine", this.getDetachedCriteria());
+		username = new StringExpression("username", this.getDetachedCriteria());
 	}
 	
 	public FacoltaDetachedCriteria createFacoltaCriteria() {

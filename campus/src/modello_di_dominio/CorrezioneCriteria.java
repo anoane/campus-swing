@@ -40,12 +40,12 @@ public class CorrezioneCriteria extends AbstractORMCriteria {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
-	public UtenteCriteria createUtenteCriteria() {
-		return new UtenteCriteria(createCriteria("ORM_Utente"));
-	}
-	
 	public DocumentoCriteria createDocumentoCriteria() {
 		return new DocumentoCriteria(createCriteria("ORM_Documento"));
+	}
+	
+	public UtenteCriteria createUtenteCriteria() {
+		return new UtenteCriteria(createCriteria("ORM_Utente"));
 	}
 	
 	public Correzione uniqueCorrezione() {

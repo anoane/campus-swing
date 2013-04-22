@@ -4,6 +4,7 @@ import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
+import modello_di_dominio.dao.FacoltaDAO;
 import modello_di_dominio.dao.UniversitaDAO;
 import modello_di_dominio.dao.UtenteDAO;
 
@@ -18,14 +19,16 @@ public class ControllerCorso extends AbstractController {
 		super();
 	}
 	
-	public void creaCorso(String nome, String descrizione){
+	public void creaCorso(String nome, String descrizione, int FacoltaID){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			DAOFactory factory = DAOFactory.getDAOFactory();
+			FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
 			CorsoDAO corsoDAO = factory.getCorsoDAO();
 			Corso corso = corsoDAO.createCorso();
 			corso.setNome(nome);
 			corso.setDescrizione(descrizione);
+			corso.facolta.add(facoltaDAO.getFacoltaByORMID(FacoltaID));
 			corsoDAO.save(corso);
 			//Commit
 			t.commit();
