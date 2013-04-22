@@ -7,9 +7,6 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
-import modello_di_dominio.Corso;
-
 import java.awt.Font;
 /**
  * 
@@ -17,41 +14,25 @@ import java.awt.Font;
  *
  */
 public class RiquadroCorso extends Riquadro {
-	
-	private JPanel anteprima;
-	//private JPanel pulsanti;
-	private JLabel titolo;
-	private JLabel descrizione;
-	private JLabel facolta;
-	
 	/**
 	 * 
 	 */
-	public RiquadroCorso(Corso corso) {
-		super();
-		this.setBackground(super.getCorsoBgColor());
-		this.setBorder(super.getRiquadroBorder());
+	public RiquadroCorso(CorsoPanel c) {
+		setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
+		setLayout(null);
+		setSize(400, 150);
+		setBackground(new Color(0x22,0x44,0x66));
 		
-		// Riquadro Anteprima
-		anteprima = new JPanel();
-		anteprima.setBounds(20, 16, 165, 170);
-		anteprima.setBackground(Color.WHITE);
-		anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		
-		// Label title
-		titolo = new JLabel(corso.getNome());
-		titolo.setBounds(195, 11, 133, 40);
-		titolo.setFont(new Font("Monotype Corsiva", Font.PLAIN, 25));
-		titolo.setForeground(Color.WHITE);
-				
-		// Label descrizione
-		descrizione = new JLabel(corso.getDescrizione());
-		descrizione.setLocation(185, 80);
-		descrizione.setSize(245, 41);
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 128, 128);
+		add(panel);
 		
-		add(titolo);
-		add(facolta);
-		add(descrizione);
-		add(anteprima);
+		JLabel label = new JLabel(c.getName());
+		label.setFont(new Font("Arial", Font.PLAIN, 20));
+		label.setForeground(Color.WHITE);
+		label.setBounds(142, 11, 158, 24);
+		add(label);
+		
 	}
 }
