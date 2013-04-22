@@ -52,8 +52,8 @@ public class DocumentoCriteria extends AbstractORMCriteria {
 		return new CorsoCriteria(createCriteria("corso"));
 	}
 	
-	public modello_di_dominio.UtenteCriteria createUtentePrefetitoCriteria() {
-		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_UtentePrefetito"));
+	public modello_di_dominio.UtenteCriteria createUtentePreferitoCriteria() {
+		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_UtentePreferito"));
 	}
 	
 	public UtenteCriteria createProprietarioCriteria() {

@@ -21,8 +21,8 @@ public class Documento {
 		if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_CORREZIONES) {
 			return ORM_correziones;
 		}
-		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFETITO) {
-			return ORM_utentePrefetito;
+		else if (key == modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFERITO) {
+			return ORM_utentePreferito;
 		}
 		
 		return null;
@@ -65,7 +65,7 @@ public class Documento {
 	
 	private int num_voti;
 	
-	private java.util.Set ORM_utentePrefetito = new java.util.HashSet();
+	private java.util.Set ORM_utentePreferito = new java.util.HashSet();
 	
 	private modello_di_dominio.Utente proprietario;
 	
@@ -187,15 +187,15 @@ public class Documento {
 	
 	public final modello_di_dominio.CorrezioneSetCollection correziones = new modello_di_dominio.CorrezioneSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_CORREZIONES, modello_di_dominio.ORMConstants.KEY_CORREZIONE_DOCUMENTO, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	private void setORM_UtentePrefetito(java.util.Set value) {
-		this.ORM_utentePrefetito = value;
+	private void setORM_UtentePreferito(java.util.Set value) {
+		this.ORM_utentePreferito = value;
 	}
 	
-	private java.util.Set getORM_UtentePrefetito() {
-		return ORM_utentePrefetito;
+	private java.util.Set getORM_UtentePreferito() {
+		return ORM_utentePreferito;
 	}
 	
-	public final modello_di_dominio.UtenteSetCollection utentePrefetito = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFETITO, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOPREFERITI, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	public final modello_di_dominio.UtenteSetCollection utentePreferito = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFERITO, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	public void setProprietario(modello_di_dominio.Utente value) {
 		if (proprietario != null) {

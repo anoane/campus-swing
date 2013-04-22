@@ -60,8 +60,8 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		return new modello_di_dominio.CorrezioneCriteria(createCriteria("ORM_Correziones"));
 	}
 	
-	public modello_di_dominio.DocumentoCriteria createDocumentoPreferitiCriteria() {
-		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentoPreferiti"));
+	public modello_di_dominio.DocumentoCriteria createDocumentiPreferitiCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentiPreferiti"));
 	}
 	
 	public Utente uniqueUtente() {

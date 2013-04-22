@@ -40,7 +40,7 @@ public class RiquadroDoc extends Riquadro {
 	public RiquadroDoc(final Documento doc) {
 		super();
 		this.setBackground(super.getPreferitoBgColor());
-		this.setBorder(super.getPreferitoBorder());	
+		this.setBorder(super.getRiquadroBorder());	
 		// Riquadro Anteprima
 		anteprima = new JPanel();
 		anteprima.setBounds(20, 16, 116, 170);

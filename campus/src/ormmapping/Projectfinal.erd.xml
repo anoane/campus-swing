@@ -218,6 +218,17 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="Immagine">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
   </Entity>
   <Entity name="Facolta">
     <Column name="ID">

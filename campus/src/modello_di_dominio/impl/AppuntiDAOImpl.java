@@ -289,9 +289,9 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
-			modello_di_dominio.Utente[] lUtentePrefetitos = appunti.utentePrefetito.toArray();
-			for(int i = 0; i < lUtentePrefetitos.length; i++) {
-				lUtentePrefetitos[i].documentoPreferiti.remove(appunti);
+			modello_di_dominio.Utente[] lUtentePreferitos = appunti.utentePreferito.toArray();
+			for(int i = 0; i < lUtentePreferitos.length; i++) {
+				lUtentePreferitos[i].documentiPreferiti.remove(appunti);
 			}
 			if(appunti.getProprietario() != null) {
 				appunti.getProprietario().documentiUtente.remove(appunti);
@@ -315,9 +315,9 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 				appunti.getCorso().documentoCorso.remove(appunti);
 			}
 			
-			modello_di_dominio.Utente[] lUtentePrefetitos = appunti.utentePrefetito.toArray();
-			for(int i = 0; i < lUtentePrefetitos.length; i++) {
-				lUtentePrefetitos[i].documentoPreferiti.remove(appunti);
+			modello_di_dominio.Utente[] lUtentePreferitos = appunti.utentePreferito.toArray();
+			for(int i = 0; i < lUtentePreferitos.length; i++) {
+				lUtentePreferitos[i].documentiPreferiti.remove(appunti);
 			}
 			if(appunti.getProprietario() != null) {
 				appunti.getProprietario().documentiUtente.remove(appunti);

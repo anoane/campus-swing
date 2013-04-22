@@ -27,8 +27,8 @@ public class Utente {
 		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_CORREZIONES) {
 			return ORM_correziones;
 		}
-		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOPREFERITI) {
-			return ORM_documentoPreferiti;
+		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI) {
+			return ORM_documentiPreferiti;
 		}
 		
 		return null;
@@ -71,7 +71,7 @@ public class Utente {
 	
 	private java.util.Set ORM_correziones = new java.util.HashSet();
 	
-	private java.util.Set ORM_documentoPreferiti = new java.util.HashSet();
+	private java.util.Set ORM_documentiPreferiti = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -211,15 +211,15 @@ public class Utente {
 	
 	public final modello_di_dominio.CorrezioneSetCollection correziones = new modello_di_dominio.CorrezioneSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_CORREZIONES, modello_di_dominio.ORMConstants.KEY_CORREZIONE_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	private void setORM_DocumentoPreferiti(java.util.Set value) {
-		this.ORM_documentoPreferiti = value;
+	private void setORM_DocumentiPreferiti(java.util.Set value) {
+		this.ORM_documentiPreferiti = value;
 	}
 	
-	private java.util.Set getORM_DocumentoPreferiti() {
-		return ORM_documentoPreferiti;
+	private java.util.Set getORM_DocumentiPreferiti() {
+		return ORM_documentiPreferiti;
 	}
 	
-	public final modello_di_dominio.DocumentoSetCollection documentoPreferiti = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTOPREFERITI, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFETITO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	public final modello_di_dominio.DocumentoSetCollection documentiPreferiti = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFERITO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

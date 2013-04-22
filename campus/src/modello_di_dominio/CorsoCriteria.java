@@ -22,12 +22,14 @@ public class CorsoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression nome;
 	public final StringExpression descrizione;
+	public final StringExpression immagine;
 	
 	public CorsoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		nome = new StringExpression("nome", this);
 		descrizione = new StringExpression("descrizione", this);
+		immagine = new StringExpression("immagine", this);
 	}
 	
 	public CorsoCriteria(PersistentSession session) {

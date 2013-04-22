@@ -112,7 +112,7 @@ public class ControllerUtente extends AbstractController{
 	public void aggiungiDocumentoPreferito(Utente u, Documento d){
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
-		u.documentoPreferiti.add(d);
+		u.documentiPreferiti.add(d);
 		try {
 			utenteDAO.save(u);
 		} catch (PersistentException e) {
@@ -121,7 +121,7 @@ public class ControllerUtente extends AbstractController{
 	}
 	
 	public void rimuoviDocumentoPrefetito(Utente u, Documento d){
-		u.documentoPreferiti.remove(d);
+		u.documentiPreferiti.remove(d);
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {

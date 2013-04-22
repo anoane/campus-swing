@@ -22,7 +22,7 @@ License Type: Purchased
 		<property name="path" column="Path" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="voto" column="Voto" type="integer" length="11" not-null="true" lazy="false"/>
 		<property name="num_voti" column="Num_voti" type="integer" length="11" not-null="true" lazy="false"/>
-		<set name="ORM_UtentePrefetito" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
+		<set name="ORM_UtentePreferito" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="DocumentoID" not-null="true"/>
 			<many-to-many column="UtenteID" class="modello_di_dominio.Utente">
 			</many-to-many>

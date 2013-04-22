@@ -62,7 +62,7 @@ public class Preferiti extends JPanel{
 		panel.add(separator);
 		
 		try {
-			ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentoPreferiti.getCollection());
+			ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.getCollection());
 			
 			addFavourites(d);
 		} catch (NullPointerException npe) { } {

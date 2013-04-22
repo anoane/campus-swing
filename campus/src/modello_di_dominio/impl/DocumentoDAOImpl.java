@@ -289,9 +289,9 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
-			modello_di_dominio.Utente[] lUtentePrefetitos = documento.utentePrefetito.toArray();
-			for(int i = 0; i < lUtentePrefetitos.length; i++) {
-				lUtentePrefetitos[i].documentoPreferiti.remove(documento);
+			modello_di_dominio.Utente[] lUtentePreferitos = documento.utentePreferito.toArray();
+			for(int i = 0; i < lUtentePreferitos.length; i++) {
+				lUtentePreferitos[i].documentiPreferiti.remove(documento);
 			}
 			if(documento.getProprietario() != null) {
 				documento.getProprietario().documentiUtente.remove(documento);
@@ -315,9 +315,9 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
-			modello_di_dominio.Utente[] lUtentePrefetitos = documento.utentePrefetito.toArray();
-			for(int i = 0; i < lUtentePrefetitos.length; i++) {
-				lUtentePrefetitos[i].documentoPreferiti.remove(documento);
+			modello_di_dominio.Utente[] lUtentePreferitos = documento.utentePreferito.toArray();
+			for(int i = 0; i < lUtentePreferitos.length; i++) {
+				lUtentePreferitos[i].documentiPreferiti.remove(documento);
 			}
 			if(documento.getProprietario() != null) {
 				documento.getProprietario().documentiUtente.remove(documento);

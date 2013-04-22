@@ -41,7 +41,8 @@ public class Riquadro extends JPanel {
 	 */
 	private static Color corsoBgColor = new Color(0x22,0x44,0x66);
 	
-	private static LineBorder preferitoBorder = new LineBorder(new Color(0x1B, 0x32, 0x80), 2);
+	private static LineBorder riquadroBorder = new LineBorder(new Color(0x1B, 0x32, 0x80), 2);
+	
 	
 	public Riquadro() {
 		super();
@@ -78,19 +79,22 @@ public class Riquadro extends JPanel {
 	}
 
 	/**
-	 * @return the preferitoBorder
+	 * @return the riquadroBorder
 	 */
-	public static LineBorder getPreferitoBorder() {
-		return preferitoBorder;
+	public static LineBorder getRiquadroBorder() {
+		return riquadroBorder;
 	}
 
 	/**
-	 * @param preferitoBorder the preferitoBorder to set
+	 * @param riquadroBorder the riquadroBorder to set
 	 */
-	public static void setPreferitoBorder(LineBorder preferitoBorder) {
-		Riquadro.preferitoBorder = preferitoBorder;
+	public static void setRiquadroBorder(LineBorder riquadroBorder) {
+		Riquadro.riquadroBorder = riquadroBorder;
 	}
-	
+
+
+
+
 
 	
 }

@@ -297,9 +297,9 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setUtente(null);
 			}
-			modello_di_dominio.Documento[] lDocumentoPreferitis = utente.documentoPreferiti.toArray();
-			for(int i = 0; i < lDocumentoPreferitis.length; i++) {
-				lDocumentoPreferitis[i].utentePrefetito.remove(utente);
+			modello_di_dominio.Documento[] lDocumentiPreferitis = utente.documentiPreferiti.toArray();
+			for(int i = 0; i < lDocumentiPreferitis.length; i++) {
+				lDocumentiPreferitis[i].utentePreferito.remove(utente);
 			}
 			return delete(utente);
 		}
@@ -327,9 +327,9 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setUtente(null);
 			}
-			modello_di_dominio.Documento[] lDocumentoPreferitis = utente.documentoPreferiti.toArray();
-			for(int i = 0; i < lDocumentoPreferitis.length; i++) {
-				lDocumentoPreferitis[i].utentePrefetito.remove(utente);
+			modello_di_dominio.Documento[] lDocumentiPreferitis = utente.documentiPreferiti.toArray();
+			for(int i = 0; i < lDocumentiPreferitis.length; i++) {
+				lDocumentiPreferitis[i].utentePreferito.remove(utente);
 			}
 			try {
 				session.delete(utente);

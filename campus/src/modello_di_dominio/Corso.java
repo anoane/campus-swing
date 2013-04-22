@@ -41,6 +41,8 @@ public class Corso {
 	
 	private String descrizione;
 	
+	private String immagine;
+	
 	private java.util.Set ORM_utenteCorso = new java.util.HashSet();
 	
 	private java.util.Set ORM_documentoCorso = new java.util.HashSet();
@@ -71,6 +73,14 @@ public class Corso {
 	
 	public String getDescrizione() {
 		return descrizione;
+	}
+	
+	public void setImmagine(String value) {
+		this.immagine = value;
+	}
+	
+	public String getImmagine() {
+		return immagine;
 	}
 	
 	private void setORM_UtenteCorso(java.util.Set value) {

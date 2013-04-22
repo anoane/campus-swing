@@ -54,8 +54,8 @@ public class AppuntiDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new CorsoDetachedCriteria(createCriteria("corso"));
 	}
 	
-	public modello_di_dominio.UtenteDetachedCriteria createUtentePrefetitoCriteria() {
-		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_UtentePrefetito"));
+	public modello_di_dominio.UtenteDetachedCriteria createUtentePreferitoCriteria() {
+		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_UtentePreferito"));
 	}
 	
 	public UtenteDetachedCriteria createProprietarioCriteria() {
