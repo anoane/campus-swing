@@ -457,7 +457,7 @@ public class CaricaMateriale extends JPanel  {
 					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (continua) {
-					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), ControllerUtente.getInstance().getUtente(1), ControllerCorso.getInstance().getCorso(textField_4.getText()));
+					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), ControllerUtente.getInstance().getUtente(1), ControllerCorso.getInstance().getCorso(textField_4.getText()),ControllerFacolta.getInstance().getFacolta(dbIndexFac));
 					JOptionPane.showMessageDialog(Home.getFrame(), "OK CI SIAMO", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				

@@ -105,7 +105,7 @@ public class Preferiti extends JPanel{
 		anteprima.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc.getPath());
+				Home.openDocument(true,doc);
 			}
 		});
 		

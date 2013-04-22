@@ -28,6 +28,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
+import modello_di_dominio.Documento;
+
 public class Home {
 
 	private static JFrame frame;
@@ -502,7 +504,7 @@ public class Home {
 		}
 	}
 	
-	public static void openDocument(final Boolean altezzaDinamica,String path) {
+	public static void openDocument(final Boolean altezzaDinamica, Documento doc) {
 		Home.unloadDocumento();
 		//TODO:aggiungere parametri del documento
 		documento = new DocumentoPanel(null);
@@ -512,6 +514,6 @@ public class Home {
 		} else {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
 		}
-		documento.setPDF(path);
+		documento.setPDF(doc.getPath());
 	}
 }

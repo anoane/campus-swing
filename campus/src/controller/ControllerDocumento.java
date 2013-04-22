@@ -3,6 +3,7 @@ package controller;
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
+import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
 import modello_di_dominio.dao.DocumentoDAO;
@@ -19,7 +20,7 @@ public class ControllerDocumento extends AbstractController{
 	}
 	
 	//TODO: Da modificare aggiungere facolta
-	public void creaDocumento(String nome, String descrizione,String path, Utente u, Corso c){
+	public void creaDocumento(String nome, String descrizione,String path, Utente u, Corso c, Facolta f){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			DAOFactory factory = DAOFactory.getDAOFactory();
@@ -30,6 +31,7 @@ public class ControllerDocumento extends AbstractController{
 			documento.setPath(path);
 			documento.setProprietario(u);
 			documento.setCorso(c);
+			documento.setFacolta(f);
 			documentoDAO.save(documento);
 			//Commit
 			t.commit();
