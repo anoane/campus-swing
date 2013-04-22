@@ -2,6 +2,7 @@ package controller;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
+import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
 import modello_di_dominio.dao.FacoltaDAO;
@@ -36,6 +37,58 @@ public class ControllerCorso extends AbstractController {
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public boolean isCorsoAlreadyCollegato(int corsoID, int facoltaID) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		CorsoDAO corsoDAO = factory.getCorsoDAO();
+		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
+		Facolta facolta = null;
+		try {
+			facolta = facoltaDAO.getFacoltaByORMID(facoltaID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Corso[] corsi = facolta.corso.toArray();
+		for (int i=0; i < corsi.length; i++) {
+			if (corsi[i].getID() == corsoID) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void collegaCorsoFacolta(int corsoID, int facoltaID){
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			CorsoDAO corsoDAO = factory.getCorsoDAO();
+			FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
+			Corso corso = corsoDAO.getCorsoByORMID(corsoID);
+			Facolta facolta = facoltaDAO.getFacoltaByORMID(facoltaID);
+			
+			corso.facolta.add(facolta);
+
+			corsoDAO.save(corso);
+			facoltaDAO.save(facolta);
+			//Commit
+			t.commit();
+			
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Corso[] getCorsiByFac(int indexFac) throws PersistentException {
+		modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
+		Facolta facolta = facoltaDAO.getFacoltaByORMID(indexFac);
+		Corso[] corsi = facolta.corso.toArray();
+		//System.out.println(corsi.length);
+		return corsi;
 	}
 	
 	public Corso getCorso(String nome){
