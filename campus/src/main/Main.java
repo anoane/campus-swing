@@ -31,7 +31,8 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				try {			
+				try {	
+					/*
 					ControllerUniversita univ = ControllerUniversita.getInstance();
 					
 					univ.createUniversita("Universita di L'Aquila");
@@ -69,7 +70,7 @@ public class Main {
 					u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(4));
 					
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
-					
+					*/
 					Home window = new Home();
 					window.getFrame().setVisible(true);
 					
