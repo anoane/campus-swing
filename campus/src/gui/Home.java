@@ -343,6 +343,7 @@ public class Home {
 	protected static void openCaricaMateriale(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
 		// TODO Auto-generated method stub
 		Home.pulsantiNormali();
+		((CaricaMateriale) pagina_carica_materiale).resetPanel();
 		if (altezzaDinamica) {
 			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 		} else {

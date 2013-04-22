@@ -95,6 +95,7 @@ public class CaricaMateriale extends JPanel  {
 	final static JList list_2 = new JList();
 	final static JList list_3 = new JList();
 	final JTextPane textPane = new JTextPane();
+	final JButton btnScegliFile = new JButton("Scegli file...");
 	
 	private JTextField textField_1;
 	private JTextField textField_5;
@@ -122,6 +123,35 @@ public class CaricaMateriale extends JPanel  {
 	static Corso[] listaCorsiByFac = null; 
 	
 	
+	public void resetPanel() {
+		btnScegliFile.setText("Scegli file...");
+		btnScegliFile.setBackground(new Color(240,240,240));
+		textField.setText("");
+		textField_2.setText("");
+		textField_3.setText("");
+		textField_4.setText("");
+		
+		textPane.setText("");
+		textField_1.setText("");
+		textField_5.setText("");
+		textField_6.setText("");
+		textArea_1.setText("");
+		isOverSelectionPanel =  false;
+		indexUniv = -1;
+		dbIndexUniv = -1;
+		indexFac = -1;
+		dbIndexFac = -1;
+		indexCorso = -1;
+		dbIndexCorso = -1;
+		indexCorsoByFac = -1;
+		dbIndexCorsoByFac = -1;
+		fileSelezionato = false;
+		Path target = null;
+		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+		listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(-1); 
+		listaCorsi = ControllerCorso.getInstance().getAllCorsi(); 
+		listaCorsiByFac = null; 
+	}
 	
 	/**
 	 * Create the panel.
@@ -194,7 +224,6 @@ public class CaricaMateriale extends JPanel  {
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel, "3, 2, left, default");
 		
-		final JButton btnScegliFile = new JButton("Scegli file...");
 		btnScegliFile.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnScegliFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1191,6 +1220,7 @@ public class CaricaMateriale extends JPanel  {
 		
 		
 		
+	
 	}
 	
 	protected static boolean salvaUniv(String univ) {
