@@ -19,6 +19,7 @@ public class ControllerSlide extends AbstractController {
 		super();
 	}
 	
+	//TODO: Da modificare aggiungere facolta
 	public void creaSlide(String nome, String descrizione,String path, Utente u, Corso c){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
