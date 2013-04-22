@@ -52,7 +52,7 @@ public class RiquadroPref extends Riquadro {
 		anteprima.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true);
+				Home.openDocument(true,doc.getPath());
 			}
 		});
 

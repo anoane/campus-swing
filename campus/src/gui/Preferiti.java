@@ -85,7 +85,7 @@ public class Preferiti extends JPanel{
 	 * @wbp.factory.parameter.source arg0 panel_2
 	 * @wbp.factory.parameter.source arg0_1 panel_1
 	 */
-	public static JPanel createFavourite(Documento doc) {
+	public static JPanel createFavourite(final Documento doc) {
 		
 		//Contenitore
 		JPanel preferito = new JPanel();
@@ -105,7 +105,7 @@ public class Preferiti extends JPanel{
 		anteprima.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true);
+				Home.openDocument(true,doc.getPath());
 			}
 		});
 		

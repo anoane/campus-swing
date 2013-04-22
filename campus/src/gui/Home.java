@@ -12,6 +12,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.file.Path;
 import java.util.TreeMap;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -501,7 +502,7 @@ public class Home {
 		}
 	}
 	
-	public static void openDocument(final Boolean altezzaDinamica) {
+	public static void openDocument(final Boolean altezzaDinamica,String path) {
 		Home.unloadDocumento();
 		//TODO:aggiungere parametri del documento
 		documento = new DocumentoPanel(null);
@@ -511,6 +512,6 @@ public class Home {
 		} else {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
 		}
-		documento.setPDF(null);
+		documento.setPDF(path);
 	}
 }
