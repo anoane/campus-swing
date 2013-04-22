@@ -13,12 +13,12 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 
 @SuppressWarnings("serial")
-public class Corso extends JPanel {
+public class CorsoPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Corso( modello_di_dominio.Corso corso) {
+	public CorsoPanel( modello_di_dominio.Corso corso) {
 		
 		//Absolute layout
 		setLayout(null);

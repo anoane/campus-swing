@@ -43,18 +43,24 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import modello_di_dominio.Corso;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
+import modello_di_dominio.Utente;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import controller.ControllerCorso;
+import controller.ControllerDocumento;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
 
 import controller.ControllerFacolta;
+
+//TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 
 public class CaricaMateriale extends JPanel  {
 	private final static JPanel panel = new JPanel();
@@ -78,19 +84,30 @@ public class CaricaMateriale extends JPanel  {
 	private static JPanel panel_15 = new JPanel();
 	private static JPanel crea_univ = new JPanel();
 	final static JList list = new JList();
+	final static JList list_1 = new JList();
 	final static JList list_2 = new JList();
 	final JTextPane textPane = new JTextPane();
 	
 	private JTextField textField_1;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private JTextArea textArea_1 = new JTextArea();
+	
 	final JButton btnAggiungiFacolt = new JButton();
 	final JButton button = new JButton();
 	final JButton button_1 = new JButton();
 	static boolean isOverSelectionPanel =  false;
-	static Universita[] listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
-	private int indexUniv = 0;
-	private int dbIndexUniv = 0;
+	private int indexUniv = -1;
+	private int dbIndexUniv = -1;
+	private int indexFac = -1;
+	private int dbIndexFac = -1;
+	private int indexCorso = -1;
+	private int dbIndexCorso = -1;
+	private boolean fileSelezionato = false;
+	private Path target;
+	static Universita[] listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+	static Facolta[] listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(-1); 
+	static Corso[] listaCorsi = ControllerCorso.getInstance().getAllCorsi(); 
 	
 	
 	
@@ -147,7 +164,7 @@ public class CaricaMateriale extends JPanel  {
 				ColumnSpec.decode("max(3dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("right:max(55dlu;default)"),
-				ColumnSpec.decode("max(159dlu;default):grow"),},
+				ColumnSpec.decode("right:max(189dlu;default)"),},
 			new RowSpec[] {
 				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
@@ -181,15 +198,18 @@ public class CaricaMateriale extends JPanel  {
 		            	newname = util.EstensioneFile.addRandToFileName(newname);
 		            }
 		            Path source = Paths.get(file.getPath());
-		            Path target = Paths.get("files/"+newname);
+		            target = Paths.get("files/"+newname);
 		            try {
 						Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+						fileSelezionato = true;
+						btnScegliFile.setText("..."+source.toString().substring(source.toString().length()-30));
+						btnScegliFile.setBackground(Color.GREEN);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(Home.getFrame(), "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
 					}
 		        } else {
-		        	JOptionPane.showMessageDialog(null, "Non riesco ad aprire questo file", "Errore", JOptionPane.ERROR_MESSAGE);
+		        	JOptionPane.showMessageDialog(Home.getFrame(), "Non riesco ad aprire questo file", "Errore", JOptionPane.ERROR_MESSAGE);
 		        }
 			}
 		});
@@ -209,7 +229,7 @@ public class CaricaMateriale extends JPanel  {
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel_2, "3, 5, left, top");
 		
-		JTextArea textArea = new JTextArea();
+		final JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
 		textArea.setLineWrap(true);
 		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
@@ -221,7 +241,7 @@ public class CaricaMateriale extends JPanel  {
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel_3, "3, 7, left, center");
 		
-		JComboBox comboBox = new JComboBox();
+		final JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Dispense", "Esercizi", "Slide"}));
 		panel_1.add(comboBox, "4, 7, fill, center");
@@ -238,10 +258,16 @@ public class CaricaMateriale extends JPanel  {
 			@Override
 			public void focusGained(FocusEvent arg0) {
 				if (!isOverSelectionPanel) {
-					CaricaMateriale.nascondiTutto();
-					panel_2.setVisible(true);
-					panel_4.setVisible(true);
-					scegli_fac.setVisible(true);
+					if (dbIndexUniv != -1) {
+						CaricaMateriale.reloadFac(dbIndexUniv);
+						CaricaMateriale.nascondiTutto();
+						panel_2.setVisible(true);
+						panel_4.setVisible(true);
+						scegli_fac.setVisible(true);
+					} else {
+						textField_3.requestFocus();
+						JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
+						}
 				}
 			}
 			@Override
@@ -249,7 +275,7 @@ public class CaricaMateriale extends JPanel  {
 				if (!isOverSelectionPanel) {
 					CaricaMateriale.nascondiTutto();
 				}
-				System.out.println("fuoco perso - valore booleano "+isOverSelectionPanel);
+				//System.out.println("fuoco perso - valore booleano "+isOverSelectionPanel);
 			}
 		});
 		panel_1.add(textField_2, "4, 9, fill, default");
@@ -279,7 +305,6 @@ public class CaricaMateriale extends JPanel  {
 				if (!isOverSelectionPanel) {
 					CaricaMateriale.nascondiTutto();
 				}
-				System.out.println("fuoco perso - valore booleano "+isOverSelectionPanel);
 			}
 		});
 		panel_1.add(textField_3, "4, 8, fill, default");
@@ -296,13 +321,19 @@ public class CaricaMateriale extends JPanel  {
 		textField_4.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				CaricaMateriale.nascondiTutto();
-				panel_2.setVisible(true);
-				panel_5.setVisible(true);
+				if (!isOverSelectionPanel) {
+					reloadCorso();
+					CaricaMateriale.nascondiTutto();
+					panel_2.setVisible(true);
+					panel_5.setVisible(true);
+					scegli_corso.setVisible(true);
+				}
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				CaricaMateriale.nascondiTutto();
+				if (!isOverSelectionPanel) {
+					CaricaMateriale.nascondiTutto();
+				}
 			}
 		});
 		panel_1.add(textField_4, "4, 10, fill, default");
@@ -314,6 +345,40 @@ public class CaricaMateriale extends JPanel  {
 		btnCaricaMateriale.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnCaricaMateriale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				boolean continua = true;
+				if (!fileSelezionato) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessun file selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessun titolo assegnato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textArea.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna descrizione immessa", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (comboBox.getSelectedItem().toString().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna tipologia selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField_3.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna università selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField_2.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna facoltà selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (textField_4.getText().matches("")) {
+					continua = false;
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				if (continua) {
+					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), ControllerUtente.getInstance().getUtente(1), ControllerCorso.getInstance().getCorso(textField_4.getText()));
+					JOptionPane.showMessageDialog(Home.getFrame(), "OK CI SIAMO", "Attenzione", JOptionPane.WARNING_MESSAGE);
+				}
+				
 				//ControllerDocumento.getInstance().creaDocumento(nome, descrizione, path, u, c);		
 			}
 		});
@@ -374,13 +439,151 @@ public class CaricaMateriale extends JPanel  {
 		
 		panel_2.setBackground(new Color(67, 136, 204));
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2.setBounds(388, 55, 367, 347);
+		panel_2.setBounds(388, 54, 367, 348);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 								
+										crea_corso.setBounds(1, 2, 365, 345);
+										panel_2.add(crea_corso);
+										crea_corso.setLayout(null);
+										crea_corso.setBackground(new Color(67, 136, 204));
+										
+										JButton btnCreaCorso = new JButton();
+										btnCreaCorso.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+												boolean tempCorso = CaricaMateriale.salvaCorso(textField_1.getText(),textArea_1.getText());
+												CaricaMateriale.reloadCorso();
+												CaricaMateriale.nascondiTutto();
+												panel_2.setVisible(true);
+												panel_5.setVisible(true);
+												scegli_corso.setVisible(true);
+												int lastIndex = list_1.getModel().getSize() - 1;
+												if (tempCorso) {
+													if (lastIndex >= 0) {
+														list_1.ensureIndexIsVisible(lastIndex);
+													}
+													list_1.setSelectedIndex(lastIndex);
+												} else {
+													int index = -1;
+													index = list_1.getNextMatch(textField_1.getText(), 0, javax.swing.text.Position.Bias.Forward );
+													if (index >= 0) {
+														list_1.ensureIndexIsVisible(index);
+													}
+													list_1.setSelectedIndex(index);
+												}
+											}
+										});
+										btnCreaCorso.setText("Crea corso");
+										btnCreaCorso.setForeground(Color.WHITE);
+										btnCreaCorso.setFont(new Font("Arial", Font.BOLD, 18));
+										btnCreaCorso.setFocusPainted(false);
+										btnCreaCorso.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+										btnCreaCorso.setBackground(new Color(46, 93, 140));
+										btnCreaCorso.setBounds(185, 304, 170, 30);
+										crea_corso.add(btnCreaCorso);
+										
+										JSeparator separator_3 = new JSeparator();
+										separator_3.setForeground(Color.BLACK);
+										separator_3.setBackground(Color.BLACK);
+										separator_3.setBounds(10, 292, 345, 1);
+										crea_corso.add(separator_3);
+										
+										JButton btnIndietro = new JButton();
+										btnIndietro.setText("Indietro");
+										btnIndietro.setForeground(Color.WHITE);
+										btnIndietro.setFont(new Font("Arial", Font.BOLD, 18));
+										btnIndietro.setFocusPainted(false);
+										btnIndietro.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+										btnIndietro.setBackground(new Color(46, 93, 140));
+										btnIndietro.setBounds(10, 304, 165, 30);
+										btnIndietro.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+												CaricaMateriale.nascondiTutto();
+												panel_2.setVisible(true);
+												panel_5.setVisible(true);
+												scegli_corso.setVisible(true);
+											}
+										});
+										crea_corso.add(btnIndietro);
+										
+										panel_13.setBounds(10, 10, 345, 271);
+										crea_corso.add(panel_13);
+										panel_13.setBackground(new Color(67, 136, 204));
+										panel_13.setLayout(new FormLayout(new ColumnSpec[] {
+												ColumnSpec.decode("10dlu"),
+												ColumnSpec.decode("max(50dlu;default)"),
+												ColumnSpec.decode("10dlu"),
+												ColumnSpec.decode("max(123dlu;default):grow"),
+												ColumnSpec.decode("10dlu"),},
+											new RowSpec[] {
+												RowSpec.decode("10dlu"),
+												RowSpec.decode("max(35dlu;default)"),
+												RowSpec.decode("10dlu"),
+												RowSpec.decode("max(34dlu;default):grow"),
+												RowSpec.decode("10dlu"),
+												RowSpec.decode("max(35dlu;default)"),
+												RowSpec.decode("10dlu"),}));
+										
+										JLabel lblNewLabel_9 = new JLabel("Corso");
+										lblNewLabel_9.setForeground(Color.WHITE);
+										lblNewLabel_9.setFont(new Font("Arial", Font.BOLD, 14));
+										panel_13.add(lblNewLabel_9, "2, 2, left, center");
+										
+										textField_1 = new JTextField();
+										textField_1.setFont(new Font("Arial", Font.PLAIN, 14));
+										panel_13.add(textField_1, "4, 2, fill, default");
+										textField_1.setColumns(10);
+										
+										JLabel lblNewLabel_10 = new JLabel("Descrizione");
+										lblNewLabel_10.setFont(new Font("Arial", Font.BOLD, 14));
+										lblNewLabel_10.setForeground(Color.WHITE);
+										panel_13.add(lblNewLabel_10, "2, 4, left, top");
+										
+										textArea_1.setFont(new Font("Arial", Font.PLAIN, 14));
+										panel_13.add(textArea_1, "4, 4, fill, fill");
+										
+										JLabel lblNewLabel_11 = new JLabel("Facolt\u00E0");
+										lblNewLabel_11.setFont(new Font("Arial", Font.BOLD, 14));
+										lblNewLabel_11.setForeground(Color.WHITE);
+										panel_13.add(lblNewLabel_11, "2, 6, left, center");
+										
+										textField_5 = new JTextField();
+										textField_5.setFont(new Font("Arial", Font.PLAIN, 14));
+										panel_13.add(textField_5, "4, 6, fill, default");
+										textField_5.setColumns(10);
+										aggiungiListnerMouseOver(textField_1);
+										aggiungiListnerMouseOver(textField_5);
+										aggiungiListnerMouseOver(textArea_1);
+										aggiungiListnerMouseOver(crea_corso);
+										aggiungiListnerMouseOver(btnCreaCorso);
+										aggiungiListnerMouseOver(btnIndietro);
+										aggiungiListnerMouseOver(panel_13);
+										
+										textField_1.addFocusListener(new FocusAdapter() {
+											@Override
+											public void focusLost(FocusEvent arg0) {
+												textField_4.dispatchEvent(arg0);
+											}
+										});
+										textField_5.addFocusListener(new FocusAdapter() {
+											@Override
+											public void focusLost(FocusEvent arg0) {
+												textField_4.dispatchEvent(arg0);
+											}
+										});
+										textArea_1.addFocusListener(new FocusAdapter() {
+											@Override
+											public void focusLost(FocusEvent arg0) {
+												textField_4.dispatchEvent(arg0);
+											}
+										});
+										textField_1.setFocusable(true);
+										textField_5.setFocusable(true);
+										textArea_1.setFocusable(true);
+								
 								scegli_univ.setLayout(null);
 								scegli_univ.setBackground(new Color(67, 136, 204));
-								scegli_univ.setBounds(1, 1, 365, 345);
+								scegli_univ.setBounds(1, 2, 365, 345);
 								panel_2.add(scegli_univ);
 								
 								JButton btnAggiungiUniversit = new JButton();
@@ -421,10 +624,13 @@ public class CaricaMateriale extends JPanel  {
 								
 								list_2.addListSelectionListener(new ListSelectionListener() {
 									public void valueChanged(ListSelectionEvent arg0) {
-										String s = (String) list_2.getSelectedValue();
-										textField_3.setText(s);
-										indexUniv = list_2.getSelectedIndex();
-										dbIndexUniv = listaUniversità[indexUniv].getID();
+										//System.out.println("sss");
+										if (list_2.getSelectedIndex() != -1) {
+											String s = (String) list_2.getSelectedValue();
+											textField_3.setText(s);
+											indexUniv = list_2.getSelectedIndex();
+											dbIndexUniv = listaUniversita[indexUniv].getID();
+										}
 									}
 								});
 								JScrollPane pane_list_2 = new JScrollPane(list_2);  
@@ -436,7 +642,7 @@ public class CaricaMateriale extends JPanel  {
 								aggiungiListnerMouseOver(list_2);
 								aggiungiListnerMouseOver(btnAggiungiUniversit);
 						
-								crea_univ.setBounds(1, 1, 365, 345);
+								crea_univ.setBounds(1, 2, 365, 345);
 								panel_2.add(crea_univ);
 								crea_univ.setBackground(new Color(67, 136, 204));
 								crea_univ.setLayout(null);
@@ -451,12 +657,27 @@ public class CaricaMateriale extends JPanel  {
 								btnCreaUniversit.setBounds(185, 304, 170, 30);
 								btnCreaUniversit.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent arg0) {
-										CaricaMateriale.salvaUniv(textPane.getText());
+										boolean tempUniv = CaricaMateriale.salvaUniv(textPane.getText());
 										CaricaMateriale.reloadUniv();
 										CaricaMateriale.nascondiTutto();
 										panel_2.setVisible(true);
 										panel_3.setVisible(true);
 										scegli_univ.setVisible(true);
+										if (tempUniv) {
+											int lastIndex = list_2.getModel().getSize() - 1;
+											if (lastIndex >= 0) {
+												list_2.ensureIndexIsVisible(lastIndex);
+											}
+											list_2.setSelectedIndex(lastIndex);
+										} else {
+											int index = -1;
+											index = list_2.getNextMatch(textPane.getText(), 0, javax.swing.text.Position.Bias.Forward );
+											if (index >= 0) {
+												list_2.ensureIndexIsVisible(index);
+											}
+											list_2.setSelectedIndex(index);
+										}
+										
 									}
 								});
 								crea_univ.add(btnCreaUniversit);
@@ -522,7 +743,7 @@ public class CaricaMateriale extends JPanel  {
 								textPane.setFocusable(true);
 						
 
-						scegli_fac.setBounds(1, 1, 365, 345);
+						scegli_fac.setBounds(1, 2, 365, 345);
 						scegli_fac.setBackground(new Color(67, 136, 204));
 						panel_2.add(scegli_fac);
 						scegli_fac.setLayout(null);
@@ -562,9 +783,12 @@ public class CaricaMateriale extends JPanel  {
 						
 						list.addListSelectionListener(new ListSelectionListener() {
 							public void valueChanged(ListSelectionEvent arg0) {
-								String s = (String) list.getSelectedValue();
-								textField_2.setText(s);
-								System.out.println("listenerrompipalle");
+								if (list.getSelectedIndex() != -1) {
+									String s = (String) list.getSelectedValue();
+									textField_2.setText(s);
+									indexFac = list.getSelectedIndex();
+									dbIndexFac = listaFacoltaByUniv[indexFac].getID();
+								}
 							}
 						});
 						
@@ -593,18 +817,35 @@ public class CaricaMateriale extends JPanel  {
 						
 						crea_fac.setLayout(null);
 						crea_fac.setBackground(new Color(67, 136, 204));
-						crea_fac.setBounds(1, 1, 365, 345);
+						crea_fac.setBounds(1, 2, 365, 345);
 						
 										panel_2.add(crea_fac);
 										
 										button.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
-												CaricaMateriale.salvaFac();
-												CaricaMateriale.reloadFac(dbIndexUniv);
+												
+												boolean tempFac = CaricaMateriale.salvaFac(textField_6.getText(),dbIndexUniv);
+												if (dbIndexUniv != -1) {
+													CaricaMateriale.reloadFac(dbIndexUniv);
+												}
 												CaricaMateriale.nascondiTutto();
-												//panel_2.setVisible(true);
-												//panel_4.setVisible(true);
-												//scegli_fac.setVisible(true);
+												panel_2.setVisible(true);
+												panel_4.setVisible(true);
+												scegli_fac.setVisible(true);
+												if (tempFac) {
+													int lastIndex = list.getModel().getSize() - 1;
+													if (lastIndex >= 0) {
+														list.ensureIndexIsVisible(lastIndex);
+													}
+													list.setSelectedIndex(lastIndex);
+												} else {
+													int index = -1;
+													index = list.getNextMatch(textField_6.getText(), 0, javax.swing.text.Position.Bias.Forward );
+													if (index >= 0) {
+														list.ensureIndexIsVisible(index);
+													}
+													list.setSelectedIndex(index);
+												}
 											}
 										});
 										button.setText("Crea facolt\u00E0");
@@ -675,97 +916,21 @@ public class CaricaMateriale extends JPanel  {
 										aggiungiListnerMouseOver(textField_6);
 										textField_6.setFocusable(true);
 
-		crea_corso.setBounds(1, 1, 365, 345);
-		panel_2.add(crea_corso);
-		crea_corso.setLayout(null);
-		crea_corso.setBackground(new Color(67, 136, 204));
-		
-		JButton btnCreaCorso = new JButton();
-		btnCreaCorso.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CaricaMateriale.salvaCorso();
-				CaricaMateriale.reloadCorso();
-				CaricaMateriale.nascondiTutto();
-			}
-		});
-		btnCreaCorso.setText("Crea corso");
-		btnCreaCorso.setForeground(Color.WHITE);
-		btnCreaCorso.setFont(new Font("Arial", Font.BOLD, 18));
-		btnCreaCorso.setFocusPainted(false);
-		btnCreaCorso.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		btnCreaCorso.setBackground(new Color(46, 93, 140));
-		btnCreaCorso.setBounds(185, 304, 170, 30);
-		crea_corso.add(btnCreaCorso);
-		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setForeground(Color.BLACK);
-		separator_3.setBackground(Color.BLACK);
-		separator_3.setBounds(10, 292, 345, 1);
-		crea_corso.add(separator_3);
-		
-		JButton btnIndietro = new JButton();
-		btnIndietro.setText("Indietro");
-		btnIndietro.setForeground(Color.WHITE);
-		btnIndietro.setFont(new Font("Arial", Font.BOLD, 18));
-		btnIndietro.setFocusPainted(false);
-		btnIndietro.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		btnIndietro.setBackground(new Color(46, 93, 140));
-		btnIndietro.setBounds(10, 304, 165, 30);
-		crea_corso.add(btnIndietro);
-		
-		panel_13.setBounds(10, 10, 345, 271);
-		crea_corso.add(panel_13);
-		panel_13.setBackground(new Color(67, 136, 204));
-		panel_13.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("10dlu"),
-				ColumnSpec.decode("max(50dlu;default)"),
-				ColumnSpec.decode("10dlu"),
-				ColumnSpec.decode("max(123dlu;default):grow"),
-				ColumnSpec.decode("10dlu"),},
-			new RowSpec[] {
-				RowSpec.decode("10dlu"),
-				RowSpec.decode("max(35dlu;default)"),
-				RowSpec.decode("10dlu"),
-				RowSpec.decode("max(34dlu;default):grow"),
-				RowSpec.decode("10dlu"),
-				RowSpec.decode("max(35dlu;default)"),
-				RowSpec.decode("10dlu"),}));
-		
-		JLabel lblNewLabel_9 = new JLabel("Corso");
-		lblNewLabel_9.setForeground(Color.WHITE);
-		lblNewLabel_9.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_13.add(lblNewLabel_9, "2, 2, left, center");
-		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_13.add(textField_1, "4, 2, fill, default");
-		textField_1.setColumns(10);
-		
-		JLabel lblNewLabel_10 = new JLabel("Descrizione");
-		lblNewLabel_10.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_10.setForeground(Color.WHITE);
-		panel_13.add(lblNewLabel_10, "2, 4, left, top");
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_13.add(textArea_1, "4, 4, fill, fill");
-		
-		JLabel lblNewLabel_11 = new JLabel("Facolt\u00E0");
-		lblNewLabel_11.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_11.setForeground(Color.WHITE);
-		panel_13.add(lblNewLabel_11, "2, 6, left, center");
-		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_13.add(textField_5, "4, 6, fill, default");
-		textField_5.setColumns(10);
-
 		scegli_corso.setLayout(null);
 		scegli_corso.setBackground(new Color(67, 136, 204));
-		scegli_corso.setBounds(1, 1, 365, 345);
+		scegli_corso.setBounds(1, 2, 365, 345);
 		panel_2.add(scegli_corso);
 		
 		JButton btnAggiungiCorso = new JButton();
+		btnAggiungiCorso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CaricaMateriale.nascondiTutto();
+				panel_2.setVisible(true);
+				panel_5.setVisible(true);
+				crea_corso.setVisible(true);
+				panel_13.setVisible(true);
+			}
+		});
 		btnAggiungiCorso.setText("Aggiungi corso");
 		btnAggiungiCorso.setForeground(Color.WHITE);
 		btnAggiungiCorso.setFont(new Font("Arial", Font.BOLD, 18));
@@ -787,19 +952,19 @@ public class CaricaMateriale extends JPanel  {
 		separator_5.setBounds(10, 280, 345, 1);
 		scegli_corso.add(separator_5);
 		
-		JList list_1 = new JList();
-		list_1.setModel(new AbstractListModel() {
-			String[] values = new String[] {"corso1", "corso2", "corso3"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
 		list_1.setForeground(Color.WHITE);
 		list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		list_1.setBackground(new Color(67, 136, 204));
+		list_1.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				if (list_1.getSelectedIndex() != -1) {
+					String s = (String) list_1.getSelectedValue();
+					textField_4.setText(s);
+					indexCorso = list_1.getSelectedIndex();
+					dbIndexCorso = listaCorsi[indexCorso].getID();
+				}
+			}
+		});
 		
 		JScrollPane pane_list_1 = new JScrollPane(list_1);  
 		pane_list_1.setBounds(10, 10, 345, 264);
@@ -825,13 +990,6 @@ public class CaricaMateriale extends JPanel  {
 		panel.add(btnPrenotaDigitalizzazione);
 		//panel_2.setFocusable(true);
 		aggiungiListnerMouseOver(panel_2);
-		aggiungiListnerMouseOver(textField_1);
-		aggiungiListnerMouseOver(textField_5);
-		aggiungiListnerMouseOver(textArea_1);
-		aggiungiListnerMouseOver(crea_corso);
-		aggiungiListnerMouseOver(btnCreaCorso);
-		aggiungiListnerMouseOver(btnIndietro);
-		aggiungiListnerMouseOver(panel_13);
 		aggiungiListnerMouseOver(scegli_corso);
 		aggiungiListnerMouseOver(btnAggiungiCorso);
 		aggiungiListnerMouseOver(list_1);
@@ -840,28 +998,8 @@ public class CaricaMateriale extends JPanel  {
 		aggiungiListnerMouseOver
 		aggiungiListnerMouseOver
 		aggiungiListnerMouseOver*/
-		
-		textField_1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				textField_4.dispatchEvent(arg0);
-			}
-		});
-		textField_5.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				textField_4.dispatchEvent(arg0);
-			}
-		});
-		textArea_1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				textField_4.dispatchEvent(arg0);
-			}
-		});
-		textField_1.setFocusable(true);
-		textField_5.setFocusable(true);
-		textArea_1.setFocusable(true);
+		lblNewLabel_11.setVisible(false);
+		textField_5.setVisible(false);
 		
 		//aggiungiListnerMouseOver(list);
 		//aggiungiListnerMouseOver(crea_fac);
@@ -873,32 +1011,38 @@ public class CaricaMateriale extends JPanel  {
 	
 	protected static boolean salvaUniv(String univ) {
 		if(ControllerUniversita.getInstance().isUniversitaAlreadyPresent(univ)) {
-			JOptionPane.showMessageDialog(null, "Università già esistente", "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(Home.getFrame(), "Università già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		ControllerUniversita.getInstance().createUniversita(univ);
 		return true;
 	}
 
-	protected static void salvaFac() {
-		// TODO Auto-generated method stub
-		
+	protected static boolean salvaFac(String facolta, int indexUniv) {
+		if(ControllerFacolta.getInstance().isFacoltaByUnivAlreadyPresent(facolta,indexUniv)) {
+			JOptionPane.showMessageDialog(Home.getFrame(), "Facoltà già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		ControllerFacolta.getInstance().createFacolta(facolta,indexUniv);
+		return true;
 	}
 	
-	protected static void salvaCorso() {
-		// TODO Auto-generated method stub
-		
+	protected static boolean salvaCorso(String nomeCorso, String descrizione) {
+		if(ControllerCorso.getInstance().isCorsoAlreadyPresent(nomeCorso)) {
+			JOptionPane.showMessageDialog(Home.getFrame(), "Corso già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		ControllerCorso.getInstance().creaCorso(nomeCorso,descrizione);
+		return true;
 	}
 
 	protected static void reloadFac(int indiceUniv) {
-		Facolta[] listaFacoltà = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
-		final String[] values = new String[listaFacoltà.length];
-		System.out.println(listaFacoltà.length);
-		for (int i = 0; listaFacoltà.length > i; i++) {
-			values[i] = listaFacoltà[i].getNome();
+		listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
+		final String[] values = new String[listaFacoltaByUniv.length];
+		for (int i = 0; listaFacoltaByUniv.length > i; i++) {
+			values[i] = listaFacoltaByUniv[i].getNome();
 		}
 		list.setModel(new AbstractListModel() {
-			//String[] values = new String[] {"facolta1", "facolta2", "facolta3"};
 			public int getSize() {
 				return values.length;
 			}
@@ -909,14 +1053,12 @@ public class CaricaMateriale extends JPanel  {
 	}
 	
 	protected static void reloadUniv() {
-		listaUniversità = ControllerUniversita.getInstance().getAllUniversita();
-		final String[] values = new String[listaUniversità.length];
-		System.out.println(listaUniversità.length);
-		for (int i = 0; listaUniversità.length > i; i++) {
-			values[i] = listaUniversità[i].getNome();
+		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+		final String[] values = new String[listaUniversita.length];
+		for (int i = 0; listaUniversita.length > i; i++) {
+			values[i] = listaUniversita[i].getNome();
 		}
 		list_2.setModel(new AbstractListModel() {
-			//String[] values = new String[] {"facolta1", "facolta2", "facolta3"};
 			public int getSize() {
 				return values.length;
 			}
@@ -927,7 +1069,19 @@ public class CaricaMateriale extends JPanel  {
 	}
 	
 	protected static void reloadCorso() {
-		
+		listaCorsi = ControllerCorso.getInstance().getAllCorsi();
+		final String[] values = new String[listaCorsi.length];
+		for (int i = 0; listaCorsi.length > i; i++) {
+			values[i] = listaCorsi[i].getNome();
+		}
+		list_1.setModel(new AbstractListModel() {
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 	}
 
 	protected void aggiungiListnerMouseOver(final Component component) {

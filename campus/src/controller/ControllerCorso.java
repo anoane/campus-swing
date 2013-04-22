@@ -4,6 +4,7 @@ import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
+import modello_di_dominio.dao.UniversitaDAO;
 import modello_di_dominio.dao.UtenteDAO;
 
 import org.orm.PersistentException;
@@ -83,5 +84,32 @@ public class ControllerCorso extends AbstractController {
 		if(ControllerCorso.instance == null)
 			ControllerCorso.instance = new ControllerCorso();
 		return ControllerCorso.instance;
+	}
+
+	public Corso[] getAllCorsi() {
+		modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
+		modello_di_dominio.dao.CorsoDAO CorsoDao = lDAOFactory.getCorsoDAO();
+		try{
+			Corso[] corsi = CorsoDao.listCorsoByQuery(null, null);
+			return corsi;
+		}catch(PersistentException e){
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public boolean isCorsoAlreadyPresent(String nomeCorso) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		CorsoDAO corsoDAO = factory.getCorsoDAO();
+		try {
+			if (corsoDAO.listCorsoByQuery("Nome='"+nomeCorso+"'",null).length != 0) {
+				return true;
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
