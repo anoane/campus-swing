@@ -14,6 +14,7 @@ import modello_di_dominio.Utente;
 import modello_di_dominio.dao.AppuntiDAO;
 import controller.ControllerAppunti;
 import controller.ControllerCorso;
+import controller.ControllerDocumento;
 import controller.ControllerFacolta;
 import controller.ControllerSlide;
 import controller.ControllerUniversita;
@@ -41,32 +42,35 @@ public class Main {
 					ControllerFacolta f = ControllerFacolta.getInstance();
 					
 					f.createFacolta("Ingegneria",universita.getID());
-					Facolta facolta = f.getFacolta(1);
+					Facolta facolta1 = f.getFacolta(1);
+					f.createFacolta("Scienze",universita.getID());
+					Facolta facolta2 = f.getFacolta(2);
+					
 					
 					ControllerCorso c = ControllerCorso.getInstance();
 					
-					c.creaCorso("Sistemi Interattivi", "Nah cagata!",facolta.getID());
+					c.creaCorso("Sistemi Interattivi", "Nah cagata!",facolta1.getID());
 					Corso corso = c.getCorso("Sistemi Interattivi");
 					
 					ControllerUtente u = ControllerUtente.getInstance();
-					u.creaUtente("Pippo","Pluto","PlutoPippo","M",new Date(), facolta);
+					u.creaUtente("Pippo","Pluto","PlutoPippo","M",new Date(), facolta1);
 					
-					ControllerAppunti d = ControllerAppunti.getInstance();
-					ControllerSlide s = ControllerSlide.getInstance();
-					Utente utente = u.getUtente("Pippo", "Pluto");
+					ControllerDocumento d = ControllerDocumento.getInstance();
+					Utente utente = u.getUtente(1);
 					
 					
-					d.creaAppunti("Sistemi", "Appunti", "/", utente, corso,facolta);
-					d.creaAppunti("Interattivi", "Appunti", "/", utente, corso,facolta);
-					//s.creaSlide("Ingegneria del software", "Slide offerte dal professore", "/", utente, corso);
-					//JOptionPane.showMessageDialog(null, s.getSlide(4));
+					d.creaDocumento("Sistemi", "Appunti", "/", u.getUtente(1), corso, facolta1);
+					d.creaDocumento("Interattivi", "Appunti", "/", utente, corso, facolta1);
+					d.creaDocumento("Sistemi", "Appunti", "/", u.getUtente(1), corso, facolta2);
+					d.creaDocumento("Interattivi", "Appunti", "/", utente, corso, facolta2);
 					
 				
-					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(1));
-					u.aggiungiDocumentoPreferito(u.getUtente(1), s.getSlide(3));
-					
-					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getAppunti(2));
+					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(1));
+					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(2));
+					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(3));
+					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(4));
 					*/
+					
 					Home window = new Home();
 					window.getFrame().setVisible(true);
 					

@@ -55,8 +55,6 @@ public class Documento {
 	
 	private int ID;
 	
-	private modello_di_dominio.Facolta facolta;
-	
 	private java.util.Set ORM_correziones = new java.util.HashSet();
 	
 	private modello_di_dominio.Corso corso;
@@ -70,6 +68,8 @@ public class Documento {
 	private int voto;
 	
 	private int num_voti;
+	
+	private modello_di_dominio.Facolta facolta;
 	
 	private java.util.Set ORM_utentePreferito = new java.util.HashSet();
 	
@@ -204,19 +204,26 @@ public class Documento {
 	public final modello_di_dominio.UtenteSetCollection utentePreferito = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFERITO, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	public void setFacolta(modello_di_dominio.Facolta value) {
-		if (this.facolta != value) {
-			modello_di_dominio.Facolta lfacolta = this.facolta;
-			this.facolta = value;
-			if (value != null) {
-				facolta.setDocumentoFacolta(this);
-			}
-			else {
-				lfacolta.setDocumentoFacolta(null);
-			}
+		if (facolta != null) {
+			facolta.documento.remove(this);
+		}
+		if (value != null) {
+			value.documento.add(this);
 		}
 	}
 	
 	public modello_di_dominio.Facolta getFacolta() {
+		return facolta;
+	}
+	
+	/**
+	 * This method is for internal use only.
+	 */
+	public void setORM_Facolta(modello_di_dominio.Facolta value) {
+		this.facolta = value;
+	}
+	
+	private modello_di_dominio.Facolta getORM_Facolta() {
 		return facolta;
 	}
 	

@@ -44,16 +44,16 @@ public class SlideCriteria extends AbstractORMCriteria {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
-	public FacoltaCriteria createFacoltaCriteria() {
-		return new FacoltaCriteria(createCriteria("facolta"));
-	}
-	
 	public modello_di_dominio.CorrezioneCriteria createCorrezionesCriteria() {
 		return new modello_di_dominio.CorrezioneCriteria(createCriteria("ORM_Correziones"));
 	}
 	
 	public CorsoCriteria createCorsoCriteria() {
 		return new CorsoCriteria(createCriteria("corso"));
+	}
+	
+	public FacoltaCriteria createFacoltaCriteria() {
+		return new FacoltaCriteria(createCriteria("facolta"));
 	}
 	
 	public modello_di_dominio.UtenteCriteria createUtentePreferitoCriteria() {

@@ -46,16 +46,16 @@ public class AppuntiDetachedCriteria extends AbstractORMDetachedCriteria {
 		num_voti = new IntegerExpression("num_voti", this.getDetachedCriteria());
 	}
 	
-	public FacoltaDetachedCriteria createFacoltaCriteria() {
-		return new FacoltaDetachedCriteria(createCriteria("facolta"));
-	}
-	
 	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {
 		return new modello_di_dominio.CorrezioneDetachedCriteria(createCriteria("ORM_Correziones"));
 	}
 	
 	public CorsoDetachedCriteria createCorsoCriteria() {
 		return new CorsoDetachedCriteria(createCriteria("corso"));
+	}
+	
+	public FacoltaDetachedCriteria createFacoltaCriteria() {
+		return new FacoltaDetachedCriteria(createCriteria("facolta"));
 	}
 	
 	public modello_di_dominio.UtenteDetachedCriteria createUtentePreferitoCriteria() {

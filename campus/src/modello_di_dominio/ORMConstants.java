@@ -36,7 +36,7 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_FACOLTA_CORSO = -195828779;
 	
-	final int KEY_FACOLTA_DOCUMENTOFACOLTA = -1694236821;
+	final int KEY_FACOLTA_DOCUMENTO = -1683489113;
 	
 	final int KEY_FACOLTA_ISCRITTO = -678016724;
 	

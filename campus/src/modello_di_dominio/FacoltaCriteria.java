@@ -48,8 +48,8 @@ public class FacoltaCriteria extends AbstractORMCriteria {
 		return new modello_di_dominio.CorsoCriteria(createCriteria("ORM_Corso"));
 	}
 	
-	public DocumentoCriteria createDocumentoFacoltaCriteria() {
-		return new DocumentoCriteria(createCriteria("documentoFacolta"));
+	public modello_di_dominio.DocumentoCriteria createDocumentoCriteria() {
+		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_Documento"));
 	}
 	
 	public Facolta uniqueFacolta() {

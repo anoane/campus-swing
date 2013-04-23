@@ -281,16 +281,16 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Appunti appunti)throws PersistentException {
 		try {
-			if(appunti.getFacolta() != null) {
-				appunti.getFacolta().setDocumentoFacolta(null);
-			}
-			
 			modello_di_dominio.Correzione[] lCorrezioness = appunti.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);
 			}
 			if(appunti.getCorso() != null) {
 				appunti.getCorso().documentoCorso.remove(appunti);
+			}
+			
+			if(appunti.getFacolta() != null) {
+				appunti.getFacolta().documento.remove(appunti);
 			}
 			
 			modello_di_dominio.Utente[] lUtentePreferitos = appunti.utentePreferito.toArray();
@@ -311,16 +311,16 @@ public class AppuntiDAOImpl implements modello_di_dominio.dao.AppuntiDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Appunti appunti, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			if(appunti.getFacolta() != null) {
-				appunti.getFacolta().setDocumentoFacolta(null);
-			}
-			
 			modello_di_dominio.Correzione[] lCorrezioness = appunti.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);
 			}
 			if(appunti.getCorso() != null) {
 				appunti.getCorso().documentoCorso.remove(appunti);
+			}
+			
+			if(appunti.getFacolta() != null) {
+				appunti.getFacolta().documento.remove(appunti);
 			}
 			
 			modello_di_dominio.Utente[] lUtentePreferitos = appunti.utentePreferito.toArray();

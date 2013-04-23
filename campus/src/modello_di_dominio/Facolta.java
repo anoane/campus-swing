@@ -24,6 +24,9 @@ public class Facolta {
 		else if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_CORSO) {
 			return ORM_corso;
 		}
+		else if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_DOCUMENTO) {
+			return ORM_documento;
+		}
 		
 		return null;
 	}
@@ -31,10 +34,6 @@ public class Facolta {
 	private void this_setOwner(Object owner, int key) {
 		if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_UNIVERSITA) {
 			this.universita = (modello_di_dominio.Universita) owner;
-		}
-		
-		else if (key == modello_di_dominio.ORMConstants.KEY_FACOLTA_DOCUMENTOFACOLTA) {
-			this.documentoFacolta = (modello_di_dominio.Documento) owner;
 		}
 	}
 	
@@ -59,7 +58,7 @@ public class Facolta {
 	
 	private java.util.Set ORM_corso = new java.util.HashSet();
 	
-	private modello_di_dominio.Documento documentoFacolta;
+	private java.util.Set ORM_documento = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -125,22 +124,15 @@ public class Facolta {
 		return universita;
 	}
 	
-	public void setDocumentoFacolta(modello_di_dominio.Documento value) {
-		if (this.documentoFacolta != value) {
-			modello_di_dominio.Documento ldocumentoFacolta = this.documentoFacolta;
-			this.documentoFacolta = value;
-			if (value != null) {
-				documentoFacolta.setFacolta(this);
-			}
-			else {
-				ldocumentoFacolta.setFacolta(null);
-			}
-		}
+	private void setORM_Documento(java.util.Set value) {
+		this.ORM_documento = value;
 	}
 	
-	public modello_di_dominio.Documento getDocumentoFacolta() {
-		return documentoFacolta;
+	private java.util.Set getORM_Documento() {
+		return ORM_documento;
 	}
+	
+	public final modello_di_dominio.DocumentoSetCollection documento = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_FACOLTA_DOCUMENTO, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_FACOLTA, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());
