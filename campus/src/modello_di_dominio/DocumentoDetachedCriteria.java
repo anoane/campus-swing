@@ -23,6 +23,7 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression nome;
 	public final StringExpression descrizione;
 	public final StringExpression path;
+	public final StringExpression discriminator;
 	public final IntegerExpression voto;
 	public final IntegerExpression num_voti;
 	
@@ -32,6 +33,7 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		path = new StringExpression("path", this.getDetachedCriteria());
+		discriminator = new StringExpression("discriminator", this.getDetachedCriteria());
 		voto = new IntegerExpression("voto", this.getDetachedCriteria());
 		num_voti = new IntegerExpression("num_voti", this.getDetachedCriteria());
 	}
@@ -42,6 +44,7 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		path = new StringExpression("path", this.getDetachedCriteria());
+		discriminator = new StringExpression("discriminator", this.getDetachedCriteria());
 		voto = new IntegerExpression("voto", this.getDetachedCriteria());
 		num_voti = new IntegerExpression("num_voti", this.getDetachedCriteria());
 	}

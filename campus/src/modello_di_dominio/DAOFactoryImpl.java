@@ -27,16 +27,6 @@ public class DAOFactoryImpl extends DAOFactory {
 		return _documentoDAO;
 	}
 	
-	private SlideDAO _slideDAO = new SlideDAOImpl();
-	public SlideDAO getSlideDAO() {
-		return _slideDAO;
-	}
-	
-	private AppuntiDAO _appuntiDAO = new AppuntiDAOImpl();
-	public AppuntiDAO getAppuntiDAO() {
-		return _appuntiDAO;
-	}
-	
 	private CorsoDAO _corsoDAO = new CorsoDAOImpl();
 	public CorsoDAO getCorsoDAO() {
 		return _corsoDAO;

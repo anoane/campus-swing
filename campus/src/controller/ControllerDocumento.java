@@ -20,7 +20,7 @@ public class ControllerDocumento extends AbstractController{
 	}
 	
 	//TODO: Da modificare aggiungere facolta
-	public void creaDocumento(String nome, String descrizione,String path, Utente u, Corso c, Facolta f){
+	public void creaDocumento(String nome, String descrizione,String path, String discriminator, Utente u, Corso c, Facolta f){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			DAOFactory factory = DAOFactory.getDAOFactory();
@@ -32,6 +32,7 @@ public class ControllerDocumento extends AbstractController{
 			documento.setProprietario(u);
 			documento.setCorso(c);
 			documento.setFacolta(f);
+			documento.setDiscriminator(discriminator);
 			documentoDAO.save(documento);
 			//Commit
 			t.commit();

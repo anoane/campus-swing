@@ -102,6 +102,7 @@ public class CaricaMateriale extends JPanel  {
 	private JTextField textField_6;
 	private JTextArea textArea_1 = new JTextArea();
 	final static JButton btnConfermaSelezione = new JButton();
+	final JTextArea textArea = new JTextArea();
 	
 	final JButton btnAggiungiFacolt = new JButton();
 	final JButton button = new JButton();
@@ -136,6 +137,7 @@ public class CaricaMateriale extends JPanel  {
 		textField_5.setText("");
 		textField_6.setText("");
 		textArea_1.setText("");
+		textArea.setText("");
 		isOverSelectionPanel =  false;
 		indexUniv = -1;
 		dbIndexUniv = -1;
@@ -270,7 +272,6 @@ public class CaricaMateriale extends JPanel  {
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel_2, "3, 5, left, top");
 		
-		final JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
 		textArea.setLineWrap(true);
 		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
@@ -457,7 +458,7 @@ public class CaricaMateriale extends JPanel  {
 					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (continua) {
-					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), ControllerUtente.getInstance().getUtente(1), ControllerCorso.getInstance().getCorso(textField_4.getText()),ControllerFacolta.getInstance().getFacolta(dbIndexFac));
+					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), comboBox.getSelectedItem().toString(), ControllerUtente.getInstance().getUtente(1), ControllerCorso.getInstance().getCorso(textField_4.getText()),ControllerFacolta.getInstance().getFacolta(dbIndexFac));
 					JOptionPane.showMessageDialog(Home.getFrame(), "OK CI SIAMO", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				

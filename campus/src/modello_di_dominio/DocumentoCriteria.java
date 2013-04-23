@@ -23,6 +23,7 @@ public class DocumentoCriteria extends AbstractORMCriteria {
 	public final StringExpression nome;
 	public final StringExpression descrizione;
 	public final StringExpression path;
+	public final StringExpression discriminator;
 	public final IntegerExpression voto;
 	public final IntegerExpression num_voti;
 	
@@ -32,6 +33,7 @@ public class DocumentoCriteria extends AbstractORMCriteria {
 		nome = new StringExpression("nome", this);
 		descrizione = new StringExpression("descrizione", this);
 		path = new StringExpression("path", this);
+		discriminator = new StringExpression("discriminator", this);
 		voto = new IntegerExpression("voto", this);
 		num_voti = new IntegerExpression("num_voti", this);
 	}

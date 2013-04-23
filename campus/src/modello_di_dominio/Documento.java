@@ -65,6 +65,8 @@ public class Documento {
 	
 	private String path;
 	
+	private String discriminator;
+	
 	private int voto;
 	
 	private int num_voti;
@@ -109,6 +111,14 @@ public class Documento {
 	
 	public String getPath() {
 		return path;
+	}
+	
+	public void setDiscriminator(String value) {
+		this.discriminator = value;
+	}
+	
+	public String getDiscriminator() {
+		return discriminator;
 	}
 	
 	public void setVoto(int value) {

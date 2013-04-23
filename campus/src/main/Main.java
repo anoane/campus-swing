@@ -11,12 +11,12 @@ import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
 import modello_di_dominio.Utente;
-import modello_di_dominio.dao.AppuntiDAO;
-import controller.ControllerAppunti;
+//import modello_di_dominio.dao.AppuntiDAO;
+//import controller.ControllerAppunti;
 import controller.ControllerCorso;
 import controller.ControllerDocumento;
 import controller.ControllerFacolta;
-import controller.ControllerSlide;
+//import controller.ControllerSlide;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
 
@@ -59,10 +59,10 @@ public class Main {
 					Utente utente = u.getUtente(1);
 					
 					
-					d.creaDocumento("Sistemi", "Appunti", "/", u.getUtente(1), corso, facolta1);
-					d.creaDocumento("Interattivi", "Appunti", "/", utente, corso, facolta1);
-					d.creaDocumento("Sistemi", "Appunti", "/", u.getUtente(1), corso, facolta2);
-					d.creaDocumento("Interattivi", "Appunti", "/", utente, corso, facolta2);
+					d.creaDocumento("Sistemi", "Appunti", "/","Slide", u.getUtente(1), corso, facolta1);
+					d.creaDocumento("Interattivi", "Appunti","Appunti", "/", utente, corso, facolta1);
+					d.creaDocumento("Sistemi", "Appunti", "/","Esercizi", u.getUtente(1), corso, facolta2);
+					d.creaDocumento("Interattivi", "Appunti", "/","Dispense", utente, corso, facolta2);
 					
 				
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(1));

@@ -5,12 +5,12 @@ package controller;
 
 import java.util.Date;
 
-import modello_di_dominio.Appunti;
+//import modello_di_dominio.Appunti;
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
-import modello_di_dominio.Slide;
+//import modello_di_dominio.Slide;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.UtenteDAO;
 
@@ -145,17 +145,11 @@ public class ControllerUtente extends AbstractController{
 		}
 	}
 	
-	public void rimuoviDocumento(Utente u, Object d){
+	public void rimuoviDocumento(Utente u, Documento d){
 		DAOFactory factory = DAOFactory.getDAOFactory();
-		if(d.getClass().getName() == "Slide"){
-			ControllerSlide s = ControllerSlide.getInstance();
-			s.deleteSlide((Slide) d);
-		}
-		else
-			if(d.getClass().getName() == "Appunti"){
-			ControllerAppunti a = ControllerAppunti.getInstance();
-			a.deleteAppunti((Appunti) d);
-		}
+		ControllerDocumento s = ControllerDocumento.getInstance();
+		s.removeDocumento(d);
+
 			
 		//u.documentiUtente.remove(d);
 		

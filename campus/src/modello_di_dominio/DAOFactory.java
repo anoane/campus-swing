@@ -24,8 +24,6 @@ public abstract class DAOFactory {
 	
 	public abstract UtenteDAO getUtenteDAO();
 	public abstract DocumentoDAO getDocumentoDAO();
-	public abstract SlideDAO getSlideDAO();
-	public abstract AppuntiDAO getAppuntiDAO();
 	public abstract CorsoDAO getCorsoDAO();
 	public abstract FacoltaDAO getFacoltaDAO();
 	public abstract UniversitaDAO getUniversitaDAO();

@@ -5,12 +5,11 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="modello_di_dominio.Documento" table="Documento" lazy="false" discriminator-value="Documento">
+	<class name="modello_di_dominio.Documento" table="Documento" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<discriminator column="Discriminator" type="string"/>
 		<set name="ORM_Correziones" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="DocumentoID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Correzione"/>
@@ -20,6 +19,7 @@ License Type: Purchased
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="path" column="Path" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="discriminator" column="Discriminator" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="voto" column="Voto" type="integer" length="11" not-null="true" lazy="false"/>
 		<property name="num_voti" column="Num_voti" type="integer" length="11" not-null="true" lazy="false"/>
 		<many-to-one name="facolta" cascade="lock" column="FacoltaID" class="modello_di_dominio.Facolta" not-null="true" lazy="no-proxy" access="field">
@@ -31,9 +31,5 @@ License Type: Purchased
 		</set>
 		<many-to-one name="proprietario" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
-		<subclass name="modello_di_dominio.Slide" discriminator-value="Slide" lazy="false">
-		</subclass>
-		<subclass name="modello_di_dominio.Appunti" discriminator-value="Appunti" lazy="false">
-		</subclass>
 	</class>
 </hibernate-mapping>

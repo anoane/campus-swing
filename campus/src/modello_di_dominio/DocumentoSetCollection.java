@@ -74,6 +74,7 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * <li>nome</li>
 	 * <li>descrizione</li>
 	 * <li>path</li>
+	 * <li>discriminator</li>
 	 * <li>voto</li>
 	 * <li>num_voti</li>
 	 * </ul>
@@ -90,6 +91,7 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * <li>nome</li>
 	 * <li>descrizione</li>
 	 * <li>path</li>
+	 * <li>discriminator</li>
 	 * <li>voto</li>
 	 * <li>num_voti</li>
 	 * </ul>
