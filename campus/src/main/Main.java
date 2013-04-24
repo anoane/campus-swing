@@ -60,7 +60,7 @@ public class Main {
 					
 					
 					d.creaDocumento("Sistemi", "Appunti", "/","Slide", u.getUtente(1), corso, facolta1);
-					d.creaDocumento("Interattivi", "Appunti","Appunti", "/", utente, corso, facolta1);
+					d.creaDocumento("Interattivi", "Appunti", "/","Appunti", utente, corso, facolta1);
 					d.creaDocumento("Sistemi", "Appunti", "/","Esercizi", u.getUtente(1), corso, facolta2);
 					d.creaDocumento("Interattivi", "Appunti", "/","Dispense", utente, corso, facolta2);
 					

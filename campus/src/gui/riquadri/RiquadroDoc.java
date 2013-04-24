@@ -63,26 +63,34 @@ public class RiquadroDoc extends Riquadro {
 
 		// Label Tipo
 		// TODO: Modificare l'etichetta del documento
-		JLabel lblNewLabel = new JLabel(
-				doc.getClass().getName().split("\\.")[1]);
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
+		lblNewLabel.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		tipo.add(lblNewLabel,BorderLayout.CENTER);
-		switch (doc.getClass().getName().split("\\.")[1]) {
+		switch (doc.getDiscriminator()) {
 		case "Appunti":
+			lblNewLabel.setText("Appunti");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
 			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		case "Dispense":
+			lblNewLabel.setText("Dispense");
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
 			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		case "Esercizi":
+			lblNewLabel.setText("Esercizi");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
 			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		case "Slide":
+			lblNewLabel.setText("Slide");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
+			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
+			break;
+		default:
+			lblNewLabel.setText("Documento");
+			lblNewLabel.getParent().setBackground(new Color(0x00, 0x00, 0x00));
 			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		}
