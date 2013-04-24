@@ -26,6 +26,8 @@ public class DocumentoCriteria extends AbstractORMCriteria {
 	public final StringExpression discriminator;
 	public final IntegerExpression voto;
 	public final IntegerExpression num_voti;
+	public final TimestampExpression timestamp;
+	public final IntegerExpression downloads;
 	
 	public DocumentoCriteria(Criteria criteria) {
 		super(criteria);
@@ -36,6 +38,8 @@ public class DocumentoCriteria extends AbstractORMCriteria {
 		discriminator = new StringExpression("discriminator", this);
 		voto = new IntegerExpression("voto", this);
 		num_voti = new IntegerExpression("num_voti", this);
+		timestamp = new TimestampExpression("timestamp", this);
+		downloads = new IntegerExpression("downloads", this);
 	}
 	
 	public DocumentoCriteria(PersistentSession session) {

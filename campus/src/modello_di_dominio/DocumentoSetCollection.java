@@ -77,6 +77,8 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * <li>discriminator</li>
 	 * <li>voto</li>
 	 * <li>num_voti</li>
+	 * <li>timestamp</li>
+	 * <li>downloads</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -94,6 +96,8 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * <li>discriminator</li>
 	 * <li>voto</li>
 	 * <li>num_voti</li>
+	 * <li>timestamp</li>
+	 * <li>downloads</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array

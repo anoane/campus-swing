@@ -24,6 +24,12 @@ License Type: Purchased
 		<property name="num_voti" column="Num_voti" type="integer" length="11" not-null="true" lazy="false"/>
 		<many-to-one name="facolta" cascade="lock" column="FacoltaID" class="modello_di_dominio.Facolta" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
+		<property name="timestamp" type="timestamp" not-null="true" lazy="false">
+			<column name="Timestamp" default="CURRENT_TIMESTAMP"/>
+		</property>
+		<property name="downloads" type="integer" length="11" not-null="true" lazy="false">
+			<column name="Downloads" default="1"/>
+		</property>
 		<set name="ORM_UtentePreferito" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="DocumentoID" not-null="true"/>
 			<many-to-many column="UtenteID" class="modello_di_dominio.Utente">

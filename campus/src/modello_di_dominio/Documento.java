@@ -73,6 +73,10 @@ public class Documento {
 	
 	private modello_di_dominio.Facolta facolta;
 	
+	private java.sql.Timestamp timestamp;
+	
+	private int downloads = 1;
+	
 	private java.util.Set ORM_utentePreferito = new java.util.HashSet();
 	
 	private modello_di_dominio.Utente proprietario;
@@ -135,6 +139,22 @@ public class Documento {
 	
 	public int getNum_voti() {
 		return num_voti;
+	}
+	
+	public void setTimestamp(java.sql.Timestamp value) {
+		this.timestamp = value;
+	}
+	
+	public java.sql.Timestamp getTimestamp() {
+		return timestamp;
+	}
+	
+	public void setDownloads(int value) {
+		this.downloads = value;
+	}
+	
+	public int getDownloads() {
+		return downloads;
 	}
 	
 	public void setCorso(modello_di_dominio.Corso value) {
