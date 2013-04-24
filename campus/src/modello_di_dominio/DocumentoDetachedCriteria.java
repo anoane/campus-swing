@@ -26,6 +26,8 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression discriminator;
 	public final IntegerExpression voto;
 	public final IntegerExpression num_voti;
+	public final TimestampExpression timestamp;
+	public final IntegerExpression downloads;
 	
 	public DocumentoDetachedCriteria() {
 		super(modello_di_dominio.Documento.class, modello_di_dominio.DocumentoCriteria.class);
@@ -36,6 +38,8 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		discriminator = new StringExpression("discriminator", this.getDetachedCriteria());
 		voto = new IntegerExpression("voto", this.getDetachedCriteria());
 		num_voti = new IntegerExpression("num_voti", this.getDetachedCriteria());
+		timestamp = new TimestampExpression("timestamp", this.getDetachedCriteria());
+		downloads = new IntegerExpression("downloads", this.getDetachedCriteria());
 	}
 	
 	public DocumentoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -47,6 +51,8 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		discriminator = new StringExpression("discriminator", this.getDetachedCriteria());
 		voto = new IntegerExpression("voto", this.getDetachedCriteria());
 		num_voti = new IntegerExpression("num_voti", this.getDetachedCriteria());
+		timestamp = new TimestampExpression("timestamp", this.getDetachedCriteria());
+		downloads = new IntegerExpression("downloads", this.getDetachedCriteria());
 	}
 	
 	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {

@@ -206,6 +206,30 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="Timestamp">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>22</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <DefaultValue>CURRENT_TIMESTAMP</DefaultValue>
+      <UserTypes/>
+    </Column>
+    <Column name="Downloads">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <DefaultValue>1</DefaultValue>
+      <UserTypes/>
+    </Column>
   </Entity>
   <Entity name="Corso">
     <Column name="ID">
