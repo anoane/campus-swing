@@ -465,6 +465,7 @@ public class Home {
 		pagina_gestione_stampa.setVisible(false);
 		pagina_prenota_digitalizzazione.setVisible(false);
 		pagina_prenota_libri.setVisible(false);
+		pagina_risultati_ricerca.setVisible(false);
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
