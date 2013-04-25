@@ -89,15 +89,17 @@ public class Home {
 	private final static JPanel pannello_contenuti = new JPanel();
 	private final static JPanel pannello_verticale = new JPanel();
 	
-	private final static JPanel pagina_home = new HomePage();
-	private final static JPanel pagina_corsi_seguiti = new CorsiSeguiti();
-	private final static JPanel pagina_preferiti = new Preferiti();
-	private final static JPanel pagina_carica_materiale = new CaricaMateriale();
-	private final static JPanel pagina_miei_documenti = new MieiDocumenti();
-	private final static JPanel pagina_profilo = new Profilo();
-	private final static JPanel pagina_gestione_stampa = new GestioneStampa();
-	private final static JPanel pagina_prenota_digitalizzazione = new PrenotaDigitalizzazione();
-	private final static JPanel pagina_prenota_libri = new PrenotaLibro();
+	private final static HomePage pagina_home = new HomePage();
+	private final static CorsiSeguiti pagina_corsi_seguiti = new CorsiSeguiti();
+	private final static Preferiti pagina_preferiti = new Preferiti();
+	private final static CaricaMateriale pagina_carica_materiale = new CaricaMateriale();
+	private final static MieiDocumenti pagina_miei_documenti = new MieiDocumenti();
+	private final static Profilo pagina_profilo = new Profilo();
+	private final static GestioneStampa pagina_gestione_stampa = new GestioneStampa();
+	private final static PrenotaDigitalizzazione pagina_prenota_digitalizzazione = new PrenotaDigitalizzazione();
+	private final static PrenotaLibro pagina_prenota_libri = new PrenotaLibro();
+	private final static RisultatiRicerca pagina_risultati_ricerca = new RisultatiRicerca();
+	
 	private static DocumentoPanel documento = null;
 	
 	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
@@ -183,6 +185,7 @@ public class Home {
 		relazionePaginaBottone.put("corsi_seguiti", pagina_corsi_seguiti);
 		relazionePaginaBottone.put("preferiti", pagina_preferiti);
 		relazionePaginaBottone.put("carica_materiale", pagina_carica_materiale);
+		relazionePaginaBottone.put("cerca",pagina_risultati_ricerca);
 		relazionePaginaBottone.put("miei_documenti", pagina_miei_documenti);
 		relazionePaginaBottone.put("profilo", pagina_profilo);
 		relazionePaginaBottone.put("gestione_stampa", pagina_gestione_stampa);
@@ -289,6 +292,9 @@ public class Home {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				System.out.println("Ricerca in corso");
+				Home.resetMenuColors();
+				Home.resetPagina();
+				Home.openRisultatiRicerca(ricerca_testuale.getText(),false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 			}
 		});
 		carica_materiale.addMouseListener(new MouseAdapter() {
@@ -351,6 +357,17 @@ public class Home {
 			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 		} else {
 			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
+		}
+	}
+	
+	protected static void openRisultatiRicerca(String ricerca,final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
+		// TODO Auto-generated method stub
+		Home.pulsantiNormali();
+		((RisultatiRicerca) pagina_risultati_ricerca).resetPanel(ricerca);
+		if (altezzaDinamica) {
+			Home.loadPages(Home.getPaginaCorrispondente("cerca"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
+		} else {
+			Home.loadPages(Home.getPaginaCorrispondente("cerca"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
 		}
 	}
 
