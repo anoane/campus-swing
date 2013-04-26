@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import controller.Controller;
 
 @SuppressWarnings("serial")
-public class CorsiSeguiti extends Pagina {
+public class CorsiSeguiti extends JPanel {
 	private final static JPanel panel = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
@@ -20,6 +20,9 @@ public class CorsiSeguiti extends Pagina {
 	
 
 	public static void reload() {
+		
+
+		
 		numero_caselle = Controller.loadNumeroCorsiSeguiti();
 		for (int i=0; i < numero_caselle; i++) {
 			creaCasellina(i);
@@ -40,12 +43,9 @@ public class CorsiSeguiti extends Pagina {
 	 * Create the panel.
 	 */
 	public CorsiSeguiti() {
-		super();
-	}
-
-	@Override
-	public void load() {
 		setLayout(null);
+		
+		
 		panel.setBounds(0, 0, 1008, 542);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
@@ -127,12 +127,7 @@ public class CorsiSeguiti extends Pagina {
 		JLabel lblNonAdattativa = new JLabel("NON ADATTATIVA");
 		lblNonAdattativa.setBounds(379, 170, 171, 40);
 		panel.add(lblNonAdattativa);
-		
-	}
 
-	@Override
-	public int getHeight() {
-		return panel.getHeight();
 	}
 
 }
