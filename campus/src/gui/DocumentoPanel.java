@@ -13,32 +13,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
-public class DocumentoPanel extends Pagina{
+public class DocumentoPanel extends JPanel{
 	
-	private JPanel panel;
 	private PDFViewer pdfDoc = new PDFViewer(true);
 	boolean suggestOpened = false;
 	
 	
 	public DocumentoPanel(String pdfPath) {
-		super();
-	}
-	
-	public void setPDF(String pdfPath) {
-        if (pdfPath != null) {
-        	pdfDoc.doOpen(pdfPath);
-        }
-        else {
-        	pdfDoc.doOpen();
-        }
-	}
-
-	@Override
-	public void load() {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		panel = new JPanel();
+		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(new Rectangle(0, 0, 1008, 585));
 		add(panel);
@@ -198,9 +183,13 @@ public class DocumentoPanel extends Pagina{
 		panel.add(separator_1);
 		
 	}
-
-	@Override
-	public int getHeight() {
-		return panel.getHeight();
+	
+	public void setPDF(String pdfPath) {
+        if (pdfPath != null) {
+        	pdfDoc.doOpen(pdfPath);
+        }
+        else {
+        	pdfDoc.doOpen();
+        }
 	}
 }

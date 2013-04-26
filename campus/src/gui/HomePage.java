@@ -8,22 +8,18 @@ import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 
 @SuppressWarnings("serial")
-public class HomePage extends Pagina {
+public class HomePage extends JPanel {
 	private JTextField textField;
-	private JPanel panel;
-	private JPanel panel_1;
+	private final static JPanel panel_1 = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
 	private static String array = "prova";
@@ -49,30 +45,15 @@ public class HomePage extends Pagina {
 	 * Create the panel.
 	 */
 	public HomePage() {
-		super();
-	}
-	/**
-	 * @wbp.factory
-	 * @wbp.factory.parameter.source arg0 label_6
-	 * Questo metodo aggiunge ordini di stampa
-	 */
-	public static JPanel createOrdiniStampa(Component arg0) {
-		JPanel panel = new JPanel();
-		panel.add(arg0);
-		return panel;
-	}
-
-	@Override
-	public void load() {
 		setLayout(null);
 		
-		panel = new JPanel();
+		final JPanel panel = new JPanel();
 		
 		panel.setBounds(0, 0, 1008, 429);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
-		panel_1 = new JPanel();
+		
 		
 		panel.getParent().addComponentListener(new ComponentListener() {
 			@Override
@@ -138,18 +119,18 @@ public class HomePage extends Pagina {
 		separator_3.setOrientation(SwingConstants.VERTICAL);
 		separator_3.setForeground(new Color(27, 50, 128));
 		separator_3.setBounds(330, 48, 1, 198);
-		add(separator_3);
+		panel.add(separator_3);
 		
 		separator_4.setOrientation(SwingConstants.VERTICAL);
 		separator_4.setForeground(new Color(27, 50, 128));
 		separator_4.setBounds(660, 48, 1, 198);
-		add(separator_4);
+		panel.add(separator_4);
 		
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(46, 93, 140));
-		panel_1.setBounds(0, panel.getHeight(), 1008, 170);
-		add(panel_1);
-
+		panel_1.setBounds(0, 266, 1008, 163);
+		panel.add(panel_1);
+		
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setOrientation(SwingConstants.VERTICAL);
 		separator_5.setForeground(Color.WHITE);
@@ -227,10 +208,17 @@ public class HomePage extends Pagina {
 		lblAdattativa.setBounds(364, 168, 170, 14);
 		panel.add(lblAdattativa);
 
+		
+		reload();
 	}
-
-	@Override
-	public int getHeight() {
-		return panel.getHeight();
+	/**
+	 * @wbp.factory
+	 * @wbp.factory.parameter.source arg0 label_6
+	 * Questo metodo aggiunge ordini di stampa
+	 */
+	public static JPanel createOrdiniStampa(Component arg0) {
+		JPanel panel = new JPanel();
+		panel.add(arg0);
+		return panel;
 	}
 }

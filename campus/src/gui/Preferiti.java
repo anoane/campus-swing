@@ -24,7 +24,15 @@ import modello_di_dominio.Documento;
 import modello_di_dominio.dao.UtenteDAO;
 import controller.ControllerUtente;
 
-public class Preferiti extends Pagina{
+public class Preferiti extends JPanel{
+	
+	//Pannelli preferiti
+	private ArrayList<JPanel> preferiti = new ArrayList<JPanel>();
+	
+	//Padding 
+//	private int preferitoPadTop = 10;
+//	private int preferitoPadLeft = 10;
+	private static Color preferitoBgColor = new Color(67,136,204);
 	
 	//Pannello principale
 	private JPanel panel;
@@ -38,7 +46,36 @@ public class Preferiti extends Pagina{
 	//private 
 	
 	public Preferiti() {
-		super();
+		setBackground(Color.WHITE);
+		setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(new Rectangle(0, 0, 1008, 429));
+		add(panel);
+		panel.setLayout(null);
+		
+		lblPage = new JLabel("Preferiti");
+		lblPage.setForeground(new Color(6, 121, 159));
+		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPage.setBounds(10, 10, 200, 25);
+		panel.add(lblPage);
+		
+		separator = new JSeparator();
+		separator.setForeground(new Color(27, 50, 128));
+		separator.setBounds(0, 41, 170, 1);
+		panel.add(separator);
+		
+		try {
+			ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.getCollection());
+			
+			addFavourites(d);
+		} catch (NullPointerException npe) { } {
+			System.out.println("non esiste l'utente 1");
+		}
+		
+		
+		
 	}
 	
 
@@ -52,7 +89,7 @@ public class Preferiti extends Pagina{
 		
 		//Contenitore
 		JPanel preferito = new JPanel();
-		//preferito.setBackground(preferitoBgColor);
+		preferito.setBackground(preferitoBgColor);
 		preferito.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		
 		preferito.setLayout(null);
@@ -142,42 +179,5 @@ public class Preferiti extends Pagina{
 		panel.add(lblPage);
 		panel.add(separator);
 		addFavourites(docs);
-	}
-
-
-	@Override
-	public void load() {
-		setBackground(Color.WHITE);
-		setLayout(null);
-		
-		panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(new Rectangle(0, 0, 1008, 429));
-		add(panel);
-		panel.setLayout(null);
-		
-		lblPage = new JLabel("Preferiti");
-		lblPage.setForeground(new Color(6, 121, 159));
-		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
-		lblPage.setBounds(10, 10, 200, 25);
-		panel.add(lblPage);
-		
-		separator = new JSeparator();
-		separator.setForeground(new Color(27, 50, 128));
-		separator.setBounds(0, 41, 170, 1);
-		panel.add(separator);
-		try {
-			ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.getCollection());
-			
-			addFavourites(d);
-		} catch (NullPointerException npe) { } {
-			System.out.println("non esiste l'utente 1");
-		}
-	}
-
-
-	@Override
-	public int getHeight() {
-		return panel.getHeight();
 	}
 }
