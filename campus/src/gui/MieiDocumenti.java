@@ -39,7 +39,6 @@ public class MieiDocumenti extends JPanel{
 	private JSeparator separator;
 	
 	protected void reload() {
-		addDocumenti(getDocs());
 		adjustDocs(getDocs());
 	}
 	
