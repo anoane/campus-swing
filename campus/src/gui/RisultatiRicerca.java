@@ -68,8 +68,8 @@ import java.beans.PropertyChangeEvent;
 
 //TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 
-public class RisultatiRicerca extends JPanel  {
-	private final static JPanel panel = new JPanel();
+public class RisultatiRicerca extends Pagina  {
+	private JPanel panel = new JPanel();
 	private static JPanel scegli_fac = new JPanel();
 	private static JPanel scegli_corso = new JPanel();
 	private static JPanel scegli_univ = new JPanel();
@@ -134,6 +134,145 @@ public class RisultatiRicerca extends JPanel  {
 	 * Create the panel.
 	 */
 	public RisultatiRicerca() {
+		super();	
+	}
+	/*
+	protected static boolean salvaUniv(String univ) {
+		if(ControllerUniversita.getInstance().isUniversitaAlreadyPresent(univ)) {
+			JOptionPane.showMessageDialog(Home.getFrame(), "Università già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		ControllerUniversita.getInstance().createUniversita(univ);
+		return true;
+	}
+
+	protected static boolean salvaFac(String facolta, int indexUniv) {
+		if(ControllerFacolta.getInstance().isFacoltaByUnivAlreadyPresent(facolta,indexUniv)) {
+			JOptionPane.showMessageDialog(Home.getFrame(), "Facoltà già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		ControllerFacolta.getInstance().createFacolta(facolta,indexUniv);
+		return true;
+	}
+	
+	protected static boolean salvaCorso(String nomeCorso, String descrizione, int index_fac) {
+		if(ControllerCorso.getInstance().isCorsoAlreadyPresent(nomeCorso)) {
+			JOptionPane.showMessageDialog(Home.getFrame(), "Corso già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			int index_corso = ControllerCorso.getInstance().getCorso(nomeCorso).getID();
+			collegaCorso(index_corso,index_fac);
+			return false;
+		}
+		ControllerCorso.getInstance().creaCorso(nomeCorso,descrizione,index_fac);
+		return true;
+	}
+	
+	protected static boolean collegaCorso(int index_corso, int index_fac) {
+		if(ControllerCorso.getInstance().isCorsoAlreadyCollegato(index_corso,index_fac)) {
+			JOptionPane.showMessageDialog(Home.getFrame(), "Questo corso è collegato alla tua facoltà", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		ControllerCorso.getInstance().collegaCorsoFacolta(index_corso, index_fac);
+		return true;
+	}
+*/
+	protected static void reloadFac(int indiceUniv) {
+		listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
+		final String[] values = new String[listaFacoltaByUniv.length];
+		for (int i = 0; listaFacoltaByUniv.length > i; i++) {
+			values[i] = listaFacoltaByUniv[i].getNome();
+		}
+		list.setModel(new AbstractListModel() {
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+	}
+	
+	protected static void reloadUniv() {
+		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+		final String[] values = new String[listaUniversita.length];
+		for (int i = 0; listaUniversita.length > i; i++) {
+			values[i] = listaUniversita[i].getNome();
+		}
+		list_2.setModel(new AbstractListModel() {
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+	}
+	
+	protected static void reloadCorsoByFac(int dbIndexFac) {
+		try {
+			listaCorsiByFac = ControllerCorso.getInstance().getCorsiByFac(dbIndexFac);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		final String[] values = new String[listaCorsiByFac.length];
+		for (int i = 0; listaCorsiByFac.length > i; i++) {
+			values[i] = listaCorsiByFac[i].getNome();
+		}
+		list_1.setModel(new AbstractListModel() {
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+	}
+	
+	protected static void reloadTuttiCorsi() {
+		//System.out.println("relod corsi");
+		listaCorsi = ControllerCorso.getInstance().getAllCorsi();
+		final String[] values = new String[listaCorsi.length];
+		for (int i = 0; listaCorsi.length > i; i++) {
+			values[i] = listaCorsi[i].getNome();
+		}
+		/*list_3.setModel(new AbstractListModel() {
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});*/
+	}
+
+	protected void aggiungiListnerMouseOver(final Component component) {
+		component.setFocusable(false);
+		component.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				isOverSelectionPanel = true;
+				//System.out.println("in");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				isOverSelectionPanel = false;
+				//System.out.println("out");
+			}
+		});
+	}
+
+	protected static void nascondiTutto() {
+		scegli_univ.setVisible(false);
+		scegli_fac.setVisible(false);
+		scegli_corso.setVisible(false);
+	}
+
+	@Override
+	public void load() {
+		panel = new JPanel();
+		scegli_fac = new JPanel();
+		scegli_corso = new JPanel();
+		scegli_univ = new JPanel();
 		setLayout(null);
 
 		panel.setBounds(0, 0, 1008, 542);
@@ -369,137 +508,10 @@ public class RisultatiRicerca extends JPanel  {
 		//RisultatiRicerca.nascondiTutto();
 		
 		
-		
-	
-	}
-	/*
-	protected static boolean salvaUniv(String univ) {
-		if(ControllerUniversita.getInstance().isUniversitaAlreadyPresent(univ)) {
-			JOptionPane.showMessageDialog(Home.getFrame(), "Università già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
-			return false;
-		}
-		ControllerUniversita.getInstance().createUniversita(univ);
-		return true;
 	}
 
-	protected static boolean salvaFac(String facolta, int indexUniv) {
-		if(ControllerFacolta.getInstance().isFacoltaByUnivAlreadyPresent(facolta,indexUniv)) {
-			JOptionPane.showMessageDialog(Home.getFrame(), "Facoltà già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
-			return false;
-		}
-		ControllerFacolta.getInstance().createFacolta(facolta,indexUniv);
-		return true;
-	}
-	
-	protected static boolean salvaCorso(String nomeCorso, String descrizione, int index_fac) {
-		if(ControllerCorso.getInstance().isCorsoAlreadyPresent(nomeCorso)) {
-			JOptionPane.showMessageDialog(Home.getFrame(), "Corso già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
-			int index_corso = ControllerCorso.getInstance().getCorso(nomeCorso).getID();
-			collegaCorso(index_corso,index_fac);
-			return false;
-		}
-		ControllerCorso.getInstance().creaCorso(nomeCorso,descrizione,index_fac);
-		return true;
-	}
-	
-	protected static boolean collegaCorso(int index_corso, int index_fac) {
-		if(ControllerCorso.getInstance().isCorsoAlreadyCollegato(index_corso,index_fac)) {
-			JOptionPane.showMessageDialog(Home.getFrame(), "Questo corso è collegato alla tua facoltà", "Attenzione", JOptionPane.WARNING_MESSAGE);
-			return false;
-		}
-		ControllerCorso.getInstance().collegaCorsoFacolta(index_corso, index_fac);
-		return true;
-	}
-*/
-	protected static void reloadFac(int indiceUniv) {
-		listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(indiceUniv);
-		final String[] values = new String[listaFacoltaByUniv.length];
-		for (int i = 0; listaFacoltaByUniv.length > i; i++) {
-			values[i] = listaFacoltaByUniv[i].getNome();
-		}
-		list.setModel(new AbstractListModel() {
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-	}
-	
-	protected static void reloadUniv() {
-		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
-		final String[] values = new String[listaUniversita.length];
-		for (int i = 0; listaUniversita.length > i; i++) {
-			values[i] = listaUniversita[i].getNome();
-		}
-		list_2.setModel(new AbstractListModel() {
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-	}
-	
-	protected static void reloadCorsoByFac(int dbIndexFac) {
-		try {
-			listaCorsiByFac = ControllerCorso.getInstance().getCorsiByFac(dbIndexFac);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		final String[] values = new String[listaCorsiByFac.length];
-		for (int i = 0; listaCorsiByFac.length > i; i++) {
-			values[i] = listaCorsiByFac[i].getNome();
-		}
-		list_1.setModel(new AbstractListModel() {
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-	}
-	
-	protected static void reloadTuttiCorsi() {
-		//System.out.println("relod corsi");
-		listaCorsi = ControllerCorso.getInstance().getAllCorsi();
-		final String[] values = new String[listaCorsi.length];
-		for (int i = 0; listaCorsi.length > i; i++) {
-			values[i] = listaCorsi[i].getNome();
-		}
-		/*list_3.setModel(new AbstractListModel() {
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});*/
-	}
-
-	protected void aggiungiListnerMouseOver(final Component component) {
-		component.setFocusable(false);
-		component.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				isOverSelectionPanel = true;
-				//System.out.println("in");
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				isOverSelectionPanel = false;
-				//System.out.println("out");
-			}
-		});
-	}
-
-	protected static void nascondiTutto() {
-		scegli_univ.setVisible(false);
-		scegli_fac.setVisible(false);
-		scegli_corso.setVisible(false);
+	@Override
+	public int getHeight() {
+		return panel.getHeight();
 	}
 }

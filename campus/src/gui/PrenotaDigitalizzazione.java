@@ -16,11 +16,19 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.GridLayout;
 
-public class PrenotaDigitalizzazione extends JPanel {
+public class PrenotaDigitalizzazione extends Pagina {
+	
+	private JPanel panel;
+	
 	public PrenotaDigitalizzazione() {
+		super();
+	}
+
+	@Override
+	public void load() {
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, 1008, 800);
@@ -130,5 +138,10 @@ public class PrenotaDigitalizzazione extends JPanel {
 		gbc_textarea.gridy = 1;
 		formPanel.add(txtAreaDescrizione, gbc_textarea);
 		textField.setColumns(10);
+	}
+
+	@Override
+	public int getHeight() {
+		return panel.getHeight();
 	}
 }

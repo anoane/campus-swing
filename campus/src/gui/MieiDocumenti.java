@@ -19,16 +19,8 @@ import javax.swing.border.LineBorder;
 import modello_di_dominio.Documento;
 import controller.ControllerUtente;
 
-public class MieiDocumenti extends JPanel{
-	
-	//Pannelli preferiti
-	private ArrayList<JPanel> documenti = new ArrayList<JPanel>();
-	
-	//Padding 
-//	private int preferitoPadTop = 10;
-//	private int preferitoPadLeft = 10;
-	private static Color preferitoBgColor = new Color(67,136,204);
-	
+public class MieiDocumenti extends Pagina{
+		
 	//Pannello principale
 	private JPanel panel;
 	
@@ -42,36 +34,7 @@ public class MieiDocumenti extends JPanel{
 	//private 
 	
 	public MieiDocumenti() {
-		setBackground(Color.WHITE);
-		setLayout(null);
-		
-		panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(new Rectangle(0, 0, 1008, 429));
-		add(panel);
-		panel.setLayout(null);
-		
-		lblPage = new JLabel("I miei documenti");
-		lblPage.setForeground(new Color(6, 121, 159));
-		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
-		lblPage.setBounds(10, 10, 200, 25);
-		panel.add(lblPage);
-		
-		separator = new JSeparator();
-		separator.setForeground(new Color(27, 50, 128));
-		separator.setBounds(0, 41, 170, 1);
-		panel.add(separator);
-		
-		try {
-			ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiUtente.getCollection());
-			
-			addDocumenti(d);
-		} catch (NullPointerException npe) { } {
-			
-		}
-		
-		
-		
+		super();		
 	}
 	
 
@@ -152,7 +115,7 @@ public class MieiDocumenti extends JPanel{
 		for(int i = 0;i < docs.size();i++){
 			final int num_doc = i;
 			final Documento d = docs.get(i);
-			final RiquadroDoc documenti = new RiquadroDoc(d);//createFavourite(docs.get(i));
+			final RiquadroDoc documenti = new RiquadroDoc(d);
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
 			documenti.setLocation((32+(485*row)), 71+(230*col));
@@ -175,7 +138,48 @@ public class MieiDocumenti extends JPanel{
 		panel.removeAll();
 		panel.add(lblPage);
 		panel.add(separator);
+		//remove(panel);
+		//load();
 		addDocumenti(docs);
+	}
+
+
+	@Override
+	public void load() {
+		setBackground(Color.WHITE);
+		setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(new Rectangle(0, 0, 1008, 429));
+		add(panel);
+		panel.setLayout(null);
+		
+		lblPage = new JLabel("I miei documenti");
+		lblPage.setForeground(new Color(6, 121, 159));
+		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPage.setBounds(10, 10, 200, 25);
+		panel.add(lblPage);
+		
+		separator = new JSeparator();
+		separator.setForeground(new Color(27, 50, 128));
+		separator.setBounds(0, 41, 170, 1);
+		panel.add(separator);
+		
+		try {
+			ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiUtente.getCollection());
+			
+			addDocumenti(d);
+		} catch (NullPointerException npe) { } {
+			
+		}
+		
+	}
+
+
+	@Override
+	public int getHeight() {
+		return panel.getHeight();
 	}
 }
 

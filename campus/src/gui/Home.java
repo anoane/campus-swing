@@ -102,7 +102,7 @@ public class Home {
 	
 	private static DocumentoPanel documento = null;
 	
-	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
+	private final static TreeMap<String, Pagina> relazionePaginaBottone = new TreeMap<String, Pagina>();
 	
 	
 	public static void setAltezzaDinamica(int a) {
@@ -300,7 +300,7 @@ public class Home {
 		carica_materiale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Home.openCaricaMateriale(false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+				Home.openCaricaMateriale(pagina_carica_materiale,false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 			}
 		});
 		carica_materiale.setText("Carica materiale");
@@ -342,21 +342,22 @@ public class Home {
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
 		
-		Home.loadPages(pagina_home, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+		pagina_home.load();
+		Home.loadPages(pagina_home, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, pagina_home.getHeight(), Short.MAX_VALUE);
 		home.setBackground(BLUE_BUTTON_PRESSED);
 		setOldButtonColor("home", BLUE_BUTTON_PRESSED);
 		
 
 	}
 	
-	protected static void openCaricaMateriale(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
+	protected static void openCaricaMateriale(Pagina pagina, final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
 		// TODO Auto-generated method stub
 		Home.pulsantiNormali();
-		((CaricaMateriale) pagina_carica_materiale).resetPanel();
+		//((CaricaMateriale) pagina_carica_materiale).resetPanel();
 		if (altezzaDinamica) {
 			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 		} else {
-			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
+			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, pagina.getHeight(), vMaxSize);
 		}
 	}
 	
@@ -371,16 +372,18 @@ public class Home {
 		}
 	}
 
-	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
+	protected static void loadPages(Pagina pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
+		resetPagina();
+		pagina.load();
 		gl_pannello_verticale.setHorizontalGroup(
 				gl_pannello_verticale.createParallelGroup(hAlignment)
 					.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
 			);
 		gl_pannello_verticale.setVerticalGroup(
 				gl_pannello_verticale.createParallelGroup(vAlignment)
-					.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
+					.addComponent(pagina, vMinSize, pagina.getHeight(), vMaxSize)
 			);
-		reloadPages();
+		//reloadPages();
 		pagina.setVisible(true);
 	}
 
@@ -512,7 +515,7 @@ public class Home {
 		Home.frame = frame;
 	}
 
-	public static JPanel getPaginaCorrispondente(String nome_pulsante) {
+	public static Pagina getPaginaCorrispondente(String nome_pulsante) {
 		return relazionePaginaBottone.get(nome_pulsante);
 	}
 

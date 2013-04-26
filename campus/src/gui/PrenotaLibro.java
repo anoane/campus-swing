@@ -16,16 +16,24 @@ import java.awt.Insets;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-public class PrenotaLibro extends JPanel {
+public class PrenotaLibro extends Pagina {
+	
+	private JPanel panel;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	
 	public PrenotaLibro() {
-		setLayout(null);
+		super();
+	}
+
+	@Override
+	public void load() {
+setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, 1008, 800);
@@ -164,5 +172,10 @@ public class PrenotaLibro extends JPanel {
 		lblInvRic.setForeground(Color.WHITE);
 		lblInvRic.setFont(new Font("Arial", Font.PLAIN, 18));
 		panel_1.add(lblInvRic);
+	}
+
+	@Override
+	public int getHeight() {
+		return panel.getHeight();
 	}
 }
