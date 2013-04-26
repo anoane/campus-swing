@@ -38,6 +38,20 @@ public class MieiDocumenti extends JPanel{
 	// Linea
 	private JSeparator separator;
 	
+	protected void reload() {
+		addDocumenti(getDocs());
+		adjustDocs(getDocs());
+	}
+	
+	private ArrayList<Documento> getDocs() {
+		ArrayList<Documento> d = new ArrayList<Documento>();
+		try {
+			d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiUtente.getCollection());
+			return d;
+		} catch (NullPointerException npe) { } {
+			return null;
+		}
+	}
 	
 	//private 
 	
@@ -62,15 +76,7 @@ public class MieiDocumenti extends JPanel{
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
-		try {
-			ArrayList<Documento> d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiUtente.getCollection());
-			
-			addDocumenti(d);
-		} catch (NullPointerException npe) { } {
-			
-		}
-		
-		
+		reload();
 		
 	}
 	
