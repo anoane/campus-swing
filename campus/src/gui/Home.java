@@ -387,6 +387,7 @@ public class Home {
 	private static void reloadPages() {
 		pagina_home.reload();
 		pagina_corsi_seguiti.reload();
+		pagina_preferiti.reload();
 		pagina_miei_documenti.reload();
 		
 	}
