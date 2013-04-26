@@ -37,7 +37,7 @@ public class HomePage extends JPanel {
 		array=a;
 	}
 	
-	public static void reload() {
+	public void reload() {
 		label_6.setText(getHomeBottomText());
 	}
 

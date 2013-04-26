@@ -385,8 +385,10 @@ public class Home {
 	}
 
 	private static void reloadPages() {
-		HomePage.reload();
-		CorsiSeguiti.reload();
+		pagina_home.reload();
+		pagina_corsi_seguiti.reload();
+		pagina_miei_documenti.reload();
+		
 	}
 
 	protected static void spaghettiResize() {
@@ -460,7 +462,6 @@ public class Home {
 		pagina_corsi_seguiti.setVisible(false);
 		pagina_preferiti.setVisible(false);
 		pagina_carica_materiale.setVisible(false);
-		pagina_miei_documenti.reload();
 		pagina_miei_documenti.setVisible(false);
 		pagina_profilo.setVisible(false);
 		pagina_gestione_stampa.setVisible(false);

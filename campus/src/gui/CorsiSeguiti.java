@@ -19,7 +19,7 @@ public class CorsiSeguiti extends JPanel {
 	private static int numero_caselle = 0;
 	
 
-	public static void reload() {
+	public void reload() {
 		
 
 		
