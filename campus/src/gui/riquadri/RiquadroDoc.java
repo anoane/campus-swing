@@ -62,7 +62,6 @@ public class RiquadroDoc extends Riquadro {
 		tipo.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
 		// Label Tipo
-		// TODO: Modificare l'etichetta del documento
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setAlignmentY(Component.BOTTOM_ALIGNMENT);
@@ -90,7 +89,7 @@ public class RiquadroDoc extends Riquadro {
 			break;
 		default:
 			lblNewLabel.setText("Documento");
-			lblNewLabel.getParent().setBackground(new Color(0x00, 0x00, 0x00));
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
 			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
 			break;
 		}
@@ -112,7 +111,7 @@ public class RiquadroDoc extends Riquadro {
 		
 		// Label title
 		titolo = new JLabel(doc.getNome());
-		titolo.setBounds(154, 5, 133, 40);
+		titolo.setBounds(154, 5, 194, 40);
 		titolo.setFont(new Font("Monotype Corsiva", Font.PLAIN, 25));
 		titolo.setForeground(Color.WHITE);
 		
@@ -182,6 +181,5 @@ public class RiquadroDoc extends Riquadro {
 			float media = voto / num;
 			return media/10;
 		}
-		
 	}
 }

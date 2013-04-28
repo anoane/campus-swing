@@ -1,16 +1,17 @@
 package gui;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.Rectangle;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.Rectangle;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
+import modello_di_dominio.Corso;
 
 @SuppressWarnings("serial")
 public class CorsoPanel extends JPanel {
@@ -18,7 +19,7 @@ public class CorsoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CorsoPanel( modello_di_dominio.Corso corso) {
+	public CorsoPanel(Corso corso) {
 		
 		//Absolute layout
 		setLayout(null);

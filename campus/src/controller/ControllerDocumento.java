@@ -83,6 +83,7 @@ public class ControllerDocumento extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		try {
+			d.setProprietario(null);
 			documentoDAO.delete(d);
 		} catch (PersistentException e) {
 			e.printStackTrace();

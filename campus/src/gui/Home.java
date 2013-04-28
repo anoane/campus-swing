@@ -28,6 +28,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
+import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
 
 public class Home {
@@ -101,6 +102,7 @@ public class Home {
 	private final static RisultatiRicerca pagina_risultati_ricerca = new RisultatiRicerca();
 	
 	private static DocumentoPanel documento = null;
+	private static CorsoPanel corso = null;
 	
 	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
 	
@@ -363,13 +365,13 @@ public class Home {
 	protected static void openRisultatiRicerca(String ricerca,final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
 		// TODO Auto-generated method stub
 		Home.pulsantiNormali();
-		((RisultatiRicerca) pagina_risultati_ricerca).resetPanel(ricerca);
 		if (altezzaDinamica) {
 			Home.loadPages(Home.getPaginaCorrispondente("cerca"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 		} else {
 			Home.loadPages(Home.getPaginaCorrispondente("cerca"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
 		}
 	}
+	
 
 	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
 		gl_pannello_verticale.setHorizontalGroup(
@@ -469,6 +471,8 @@ public class Home {
 		pagina_prenota_digitalizzazione.setVisible(false);
 		pagina_prenota_libri.setVisible(false);
 		pagina_risultati_ricerca.setVisible(false);
+		if(corso!=null)
+			corso.setVisible(false);
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
@@ -528,7 +532,7 @@ public class Home {
 	public static void openDocument(final Boolean altezzaDinamica, Documento doc) {
 		Home.unloadDocumento();
 		//TODO:aggiungere parametri del documento
-		documento = new DocumentoPanel(null);
+		documento = new DocumentoPanel(null, doc);
 		Home.pulsantiNormali();
 		if (altezzaDinamica) {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
@@ -536,5 +540,16 @@ public class Home {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
 		}
 		documento.setPDF(doc.getPath());
+	}
+	
+	public static void openCorso(final Boolean altezzaDinamica,Corso c) {
+		// TODO Auto-generated method stub
+		corso = new CorsoPanel(c);
+		Home.pulsantiNormali();
+		if (altezzaDinamica) {
+			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
+		} else {
+			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
+		}
 	}
 }

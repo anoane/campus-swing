@@ -149,9 +149,7 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		ControllerDocumento s = ControllerDocumento.getInstance();
 		s.removeDocumento(d);
-
-			
-		//u.documentiUtente.remove(d);
+		u.documentiUtente.remove(d);
 		
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {
@@ -165,6 +163,17 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		u.corso.add(c);
+		try {
+			utenteDAO.save(u);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void rimuoviCorsoSeguito(Utente u, Corso c){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		u.corso.remove(c);
 		try {
 			utenteDAO.save(u);
 		} catch (PersistentException e) {

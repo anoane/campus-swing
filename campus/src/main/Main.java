@@ -70,7 +70,7 @@ public class Main {
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(3));
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(4));
 					*/
-					
+
 					Home window = new Home();
 					window.getFrame().setVisible(true);
 					

@@ -104,6 +104,19 @@ public class ControllerCorso extends AbstractController {
 		return null;
 	}
 	
+	public Corso getCorso(int ID){
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		CorsoDAO corsoDAO = factory.getCorsoDAO();
+		try {
+			Corso corso = corsoDAO.getCorsoByORMID(ID);
+			return corso;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void deleteCorso(Corso corso){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();

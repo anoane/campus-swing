@@ -1,16 +1,27 @@
 package gui;
 
+import gui.riquadri.RiquadroUtenteDoc;
+
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
-import javax.swing.JButton;
+
+import modello_di_dominio.Documento;
+
 import com.sun.pdfview.PDFViewer;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import controller.ControllerUtente;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends JPanel{
@@ -19,7 +30,7 @@ public class DocumentoPanel extends JPanel{
 	boolean suggestOpened = false;
 	
 	
-	public DocumentoPanel(String pdfPath) {
+	public DocumentoPanel(String pdfPath, Documento d) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -29,15 +40,37 @@ public class DocumentoPanel extends JPanel{
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblPreferiti = new JLabel("NomeDocumento");
+		JLabel lblPreferiti = new JLabel(d.getNome());
 		lblPreferiti.setForeground(new Color(6, 121, 159));
 		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 20));
 		lblPreferiti.setBounds(10, 10, 200, 25);
 		panel.add(lblPreferiti);
 		
-		JLabel lblNewLabel_1 = new JLabel("Materia");
+		// Panel stelle
+		JPanel stelle = new JPanel();
+		
+		// Panel contenente il colore di riempimento delle stelle
+		JPanel colore = new JPanel();
+		stelle.setLayout(null);
+		
+		for(int i=0; i<5; ++i){
+			//Label contenente la singola stella
+			JLabel stella = new JLabel();
+			stella.setAlignmentY(Component.TOP_ALIGNMENT);
+			stella.setBounds(i*30, 0, 30, 30);
+			stella.setIcon(new ImageIcon("./newimage/star3.png"));
+			stelle.add(stella);
+		}
+		stelle.add(colore);
+		stelle.setLocation(205, 10);
+		stelle.setSize(150, 30);
+		colore.setBackground(new Color(255,222,87));
+		colore.setSize((int) (stelle.getWidth()*calcolaVoto(d.getNum_voti(), d.getVoto())), 30);
+		panel.add(stelle);
+		
+		JLabel lblNewLabel_1 = new JLabel(d.getCorso().getNome());
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(147, 57, 134, 14);
+		lblNewLabel_1.setBounds(147, 53, 134, 23);
 		panel.add(lblNewLabel_1);
 		
 		JSeparator separator = new JSeparator();
@@ -52,10 +85,33 @@ public class DocumentoPanel extends JPanel{
 		panel_2.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("APPUNTI");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblNewLabel.setBounds(5, 2, 83, 20);
 		panel_2.add(lblNewLabel);
+		
+		switch(d.getDiscriminator()){
+		case "Appunti":
+			lblNewLabel.setText("Appunti");
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
+			break;
+		case "Dispense":
+			lblNewLabel.setText("Dispense");
+			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
+			break;
+		case "Esercizi":
+			lblNewLabel.setText("Esercizi");
+			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
+			break;
+		case "Slide":
+			lblNewLabel.setText("Slide");
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
+			break;
+		default:
+			lblNewLabel.setText("Documento");
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
+			break;	
+		}
 		
 		final JPanel doc_panel = new JPanel();
 		doc_panel.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
@@ -119,32 +175,35 @@ public class DocumentoPanel extends JPanel{
 		//pdfDoc.setBackground(Color.WHITE);
 		
 		JButton btnAggiungiAiPreferiti = new JButton();
+		btnAggiungiAiPreferiti.setFocusPainted(false);
 		btnAggiungiAiPreferiti.setText("Aggiungi ai preferiti");
 		btnAggiungiAiPreferiti.setForeground(Color.WHITE);
 		btnAggiungiAiPreferiti.setFont(new Font("Arial", Font.BOLD, 18));
-		btnAggiungiAiPreferiti.setFocusPainted(false);
 		btnAggiungiAiPreferiti.setBorder(new LineBorder(Color.BLACK, 1));
 		btnAggiungiAiPreferiti.setBackground(Color.BLACK);
-		btnAggiungiAiPreferiti.setBounds(420, 48, 184, 28);
+		btnAggiungiAiPreferiti.setBounds(409, 49, 184, 28);
 		panel.add(btnAggiungiAiPreferiti);
 		
 		JLabel lblNewLabel_2 = new JLabel("tipo_img");
 		lblNewLabel_2.setBounds(84, 53, 57, 23);
 		panel.add(lblNewLabel_2);
 		
-		JLabel lblUniversit = new JLabel("Universit\u00E0");
+		JLabel lblUniversit = new JLabel(d.getFacolta().getNome());
 		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblUniversit.setBounds(292, 57, 121, 14);
+		lblUniversit.setBounds(290, 53, 121, 23);
 		panel.add(lblUniversit);
 		
-		JPanel panel_3 = new JPanel();
+		JTextPane panel_3 = new JTextPane();
+		panel_3.setEditable(false);
 		panel_3.setLayout(null);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_3.setBackground(Color.WHITE);
 		panel_3.setBounds(614, 100, 178, 240);
+		panel_3.setText(d.getDescrizione());
 		panel.add(panel_3);
 		
-		JPanel panel_4 = new JPanel();
+		
+		RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(ControllerUtente.getInstance().getUtente(1));
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_4.setBackground(Color.WHITE);
@@ -167,7 +226,7 @@ public class DocumentoPanel extends JPanel{
 		btnPrenotaStampa.setFont(new Font("Arial", Font.BOLD, 18));
 		btnPrenotaStampa.setFocusPainted(false);
 		btnPrenotaStampa.setBorder(new LineBorder(Color.BLACK, 1));
-		btnPrenotaStampa.setBackground(Color.BLACK);
+		btnPrenotaStampa.setBackground(new Color(0x2E, 0x5D, 0x8C));
 		btnPrenotaStampa.setBounds(802, 351, 178, 28);
 		panel.add(btnPrenotaStampa);
 		
@@ -191,5 +250,14 @@ public class DocumentoPanel extends JPanel{
         else {
         	pdfDoc.doOpen();
         }
+	}
+	
+	private float calcolaVoto(int num, int voto){
+		if(voto == 0 && num == 0)
+			return 0;
+		else{
+			float media = voto / num;
+			return media/10;
+		}
 	}
 }
