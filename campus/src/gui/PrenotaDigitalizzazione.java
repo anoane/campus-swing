@@ -68,34 +68,34 @@ public class PrenotaDigitalizzazione extends JPanel {
 		gbc_lblAsd.gridy = 0;
 		formPanel.add(lblAsd, gbc_lblAsd);
 		
-		JLabel lblNewLabel = new JLabel("Descrizione");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
-		formPanel.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel lblDesc = new JLabel("Descrizione");
+		lblDesc.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDesc = new GridBagConstraints();
+		gbc_lblDesc.anchor = GridBagConstraints.WEST;
+		gbc_lblDesc.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDesc.gridx = 0;
+		gbc_lblDesc.gridy = 1;
+		formPanel.add(lblDesc, gbc_lblDesc);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 2;
-		formPanel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel lblnumPag = new JLabel("Numero di pagine");
+		lblnumPag.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblnumPag = new GridBagConstraints();
+		gbc_lblnumPag.anchor = GridBagConstraints.WEST;
+		gbc_lblnumPag.insets = new Insets(0, 0, 5, 5);
+		gbc_lblnumPag.gridx = 0;
+		gbc_lblnumPag.gridy = 2;
+		formPanel.add(lblnumPag, gbc_lblnumPag);
 		
-		JTextField textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 0;
-		formPanel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		JTextField nomeDoc = new JTextField();
+		GridBagConstraints gbc_nomeDoc = new GridBagConstraints();
+		gbc_nomeDoc.insets = new Insets(0, 0, 5, 0);
+		gbc_nomeDoc.fill = GridBagConstraints.HORIZONTAL;
+		gbc_nomeDoc.gridx = 1;
+		gbc_nomeDoc.gridy = 0;
+		formPanel.add(nomeDoc, gbc_nomeDoc);
+		nomeDoc.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("Materia");
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
@@ -123,12 +123,28 @@ public class PrenotaDigitalizzazione extends JPanel {
 		formPanel.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		JTextArea txtAreaDescrizione = new JTextArea();
+		txtAreaDescrizione.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		//txtAreaDescrizione.setText("Prova prova");
 		GridBagConstraints gbc_textarea = new GridBagConstraints();
 		gbc_textarea.insets = new Insets(0, 0, 5, 0);
 		gbc_textarea.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textarea.gridx = 1;
 		gbc_textarea.gridy = 1;
 		formPanel.add(txtAreaDescrizione, gbc_textarea);
-		textField.setColumns(10);
+        txtAreaDescrizione.setColumns(20);
+        txtAreaDescrizione.setLineWrap(true);
+        txtAreaDescrizione.setRows(5);
+        txtAreaDescrizione.setWrapStyleWord(true);
+        
+		JTextField numPag = new JTextField();
+		GridBagConstraints gbc_numPag = new GridBagConstraints();
+		gbc_numPag.insets = new Insets(0, 0, 5, 0);
+		gbc_numPag.fill = GridBagConstraints.HORIZONTAL;
+		gbc_numPag.gridx = 1;
+		gbc_numPag.gridy = 2;
+		formPanel.add(numPag, gbc_numPag);
+		numPag.setColumns(3);
+		
+		
 	}
 }
