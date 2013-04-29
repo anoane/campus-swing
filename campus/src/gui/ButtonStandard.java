@@ -34,7 +34,7 @@ public class ButtonStandard  {
 				Home.pulsantiNormali();
 				Home.setOldButtonColor(action, Home.BLUE_BUTTON_PRESSED);
 				button.setBackground(Home.BLUE_BUTTON_PRESSED);
-				if (altezzaDinamica) {
+				if (Home.getAltezzaDinamica() != 0) {
 					Home.loadPages(Home.getPaginaCorrispondente(action), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 				} else {
 					Home.loadPages(Home.getPaginaCorrispondente(action), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);

@@ -37,7 +37,7 @@ public class RiquadroDoc extends Riquadro {
 
 	private static Color colore_stella = new Color(255,222,87);
 
-	public RiquadroDoc(final Documento doc) {
+	public RiquadroDoc(final Documento doc, boolean showPulsanti) {
 		super();
 		this.setBackground(super.getPreferitoBgColor());
 		this.setBorder(super.getRiquadroBorder());	
@@ -168,6 +168,9 @@ public class RiquadroDoc extends Riquadro {
 		add(proprietario);
 		add(tipo);
 		add(anteprima);
+		
+		if(!showPulsanti)
+			rimuovi.setVisible(false);
 	}
 	
 	public RimuoviButton getRimuovi(){

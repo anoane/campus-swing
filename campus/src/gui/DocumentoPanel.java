@@ -28,6 +28,7 @@ public class DocumentoPanel extends JPanel{
 	
 	private PDFViewer pdfDoc = new PDFViewer(true);
 	boolean suggestOpened = false;
+	private JPanel riquadrodx;
 	
 	
 	public DocumentoPanel(String pdfPath, Documento d) {
@@ -143,6 +144,7 @@ public class DocumentoPanel extends JPanel{
 					suggerimenti.setBounds(519+376, 0, 75, 484);
 					btnNewButton.setText("<");
 				}
+				toggleInfo();
 			}
 		});
 		btnNewButton.setBounds(2, 2, 71, 71);
@@ -193,22 +195,28 @@ public class DocumentoPanel extends JPanel{
 		lblUniversit.setBounds(290, 53, 121, 23);
 		panel.add(lblUniversit);
 		
-		JTextPane panel_3 = new JTextPane();
+		riquadrodx = new JPanel();
+		riquadrodx.setBackground(Color.WHITE);
+		riquadrodx.setBounds(614,100,500,280);
+		riquadrodx.setLayout(null);
+		panel.add(riquadrodx);
+		
+		JTextPane panel_3 = new JTextPane();		
 		panel_3.setEditable(false);
 		panel_3.setLayout(null);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(614, 100, 178, 240);
+		panel_3.setBounds(0, 0, 178, 240);
 		panel_3.setText(d.getDescrizione());
-		panel.add(panel_3);
+		riquadrodx.add(panel_3);
 		
 		
 		RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(ControllerUtente.getInstance().getUtente(1));
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_4.setBackground(Color.WHITE);
-		panel_4.setBounds(802, 100, 178, 240);
-		panel.add(panel_4);
+		panel_4.setBounds(188, 0, 178, 240);
+		riquadrodx.add(panel_4);
 		
 		JButton btnScarica = new JButton();
 		btnScarica.setText("Scarica");
@@ -217,8 +225,8 @@ public class DocumentoPanel extends JPanel{
 		btnScarica.setFocusPainted(false);
 		btnScarica.setBorder(new LineBorder(Color.BLACK, 1));
 		btnScarica.setBackground(Color.BLACK);
-		btnScarica.setBounds(614, 351, 178, 28);
-		panel.add(btnScarica);
+		btnScarica.setBounds(0, 251, 178, 28);
+		riquadrodx.add(btnScarica);
 		
 		JButton btnPrenotaStampa = new JButton();
 		btnPrenotaStampa.setText("Prenota stampa");
@@ -227,8 +235,8 @@ public class DocumentoPanel extends JPanel{
 		btnPrenotaStampa.setFocusPainted(false);
 		btnPrenotaStampa.setBorder(new LineBorder(Color.BLACK, 1));
 		btnPrenotaStampa.setBackground(new Color(0x2E, 0x5D, 0x8C));
-		btnPrenotaStampa.setBounds(802, 351, 178, 28);
-		panel.add(btnPrenotaStampa);
+		btnPrenotaStampa.setBounds(188, 251, 178, 28);
+		riquadrodx.add(btnPrenotaStampa);
 		
 		JLabel lblCommenti = new JLabel("Commenti");
 		lblCommenti.setForeground(new Color(6, 121, 159));
@@ -259,5 +267,16 @@ public class DocumentoPanel extends JPanel{
 			float media = voto / num;
 			return media/10;
 		}
+	}
+	
+	/**
+	 * Metodo che nasconde i riquadri della descrizione del documento, il riquadro dell'utente
+	 * e i pulsanti di scarica e prenota altrimenti si possono vedere...
+	 */
+	private void toggleInfo(){
+		if(riquadrodx.isVisible())
+			riquadrodx.setVisible(false);
+		else
+			riquadrodx.setVisible(true);
 	}
 }

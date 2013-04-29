@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -374,14 +375,14 @@ public class Home {
 	
 
 	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
-		gl_pannello_verticale.setHorizontalGroup(
-				gl_pannello_verticale.createParallelGroup(hAlignment)
-					.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
-			);
-		gl_pannello_verticale.setVerticalGroup(
-				gl_pannello_verticale.createParallelGroup(vAlignment)
-					.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
-			);
+			gl_pannello_verticale.setHorizontalGroup(
+					gl_pannello_verticale.createParallelGroup(hAlignment)
+						.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
+				);
+			gl_pannello_verticale.setVerticalGroup(
+					gl_pannello_verticale.createParallelGroup(vAlignment)
+						.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
+				);
 		reloadPages();
 		pagina.setVisible(true);
 	}
@@ -546,10 +547,10 @@ public class Home {
 		// TODO Auto-generated method stub
 		corso = new CorsoPanel(c);
 		Home.pulsantiNormali();
-		if (altezzaDinamica) {
-			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
+		if (getAltezzaDinamica() != 0) {
+			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina()/*Home.getAltezzaDinamica()*/, GroupLayout.PREFERRED_SIZE);	
 		} else {
-			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
+			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina()/*585*/, GroupLayout.PREFERRED_SIZE);
 		}
 	}
 }

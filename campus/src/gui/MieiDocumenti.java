@@ -85,7 +85,7 @@ public class MieiDocumenti extends JPanel{
 		int col = 0;
 		for(int i = 0;i < docs.size();i++){
 			final Documento d = docs.get(i);
-			final RiquadroDoc documento = new RiquadroDoc(d);//createFavourite(docs.get(i));
+			final RiquadroDoc documento = new RiquadroDoc(d,true);//createFavourite(docs.get(i));
 			col = (int) Math.floor(i/2);
 			int row = i%2;
 			documento.setLocation((32+(485*row)), (230*col));
