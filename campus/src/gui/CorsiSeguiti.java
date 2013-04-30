@@ -5,8 +5,6 @@ import gui.riquadri.RiquadroCorso;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -16,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import modello_di_dominio.Corso;
+
+import org.orm.PersistentException;
+
 import controller.ControllerUtente;
 
 @SuppressWarnings("serial")
@@ -77,7 +78,11 @@ public class CorsiSeguiti extends JPanel {
 		contenuto_pagina.removeAll();
 		contenuto_pagina.validate();
 		contenuto_pagina.repaint();
-		addCorsi(course);
+		try{
+			addCorsi(course);
+		}catch(NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 	
 	/**
