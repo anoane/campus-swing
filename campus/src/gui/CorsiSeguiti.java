@@ -14,9 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import modello_di_dominio.Corso;
-
-import org.orm.PersistentException;
-
+import modello_di_dominio.Utente;
 import controller.ControllerUtente;
 
 @SuppressWarnings("serial")
@@ -46,15 +44,15 @@ public class CorsiSeguiti extends JPanel {
 	 * @return ArrayList<Corso>
 	 */
 	private ArrayList<Corso> getCorsi() {
-		ArrayList<Corso> c;
-		//TODO: Rimuovere il try!
-		try {
-			c = new ArrayList<Corso>(ControllerUtente.getInstance().getUtente(1).corso.getCollection());
-			return c;
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
+		
+		Utente u = ControllerUtente.getInstance().getUtente(1);
+
+		if(u == null){
 			return null;
 		}
+
+		return new ArrayList<Corso>(u.corso.getCollection());
+
 	}
 	
 	/**

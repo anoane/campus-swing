@@ -83,8 +83,16 @@ public class Preferiti extends JPanel{
 		panel.add(contenuto_pagina);
 
 	}
-	
+	/**
+	 * addFavourites
+	 * @param docs
+	 */
 	public void addFavourites(final ArrayList<Documento> docs){
+		
+		if(docs == null){
+			return ;
+		}
+		
 		int col = 0;
 		for(int i = 0;i < docs.size();i++){
 			final Documento d = docs.get(i);
