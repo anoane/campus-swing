@@ -2,7 +2,9 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,12 +13,13 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
 public class PrenotaLibro extends JPanel {
+	/**
+	 * Serial ID 
+	 */
+	private static final long serialVersionUID = -3213821259248266494L;
+	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;

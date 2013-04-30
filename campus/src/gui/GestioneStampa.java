@@ -8,6 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 public class GestioneStampa extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2221792807472367352L;
+
 	public GestioneStampa() {
 		setLayout(null);
 		

@@ -3,21 +3,17 @@ package gui;
 import gui.riquadri.RiquadroDoc;
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
+import modello_di_dominio.Utente;
 import controller.ControllerUtente;
 
 public class MieiDocumenti extends JPanel{
@@ -39,19 +35,24 @@ public class MieiDocumenti extends JPanel{
 	protected void reload() {
 		adjustDocs(getDocs());
 	}
-	
-	private ArrayList<Documento> getDocs() {
-		ArrayList<Documento> d = new ArrayList<Documento>();
-		try {
-			d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiUtente.getCollection());
-			return d;
-		} catch (NullPointerException npe) { } {
+	/**
+	 * getDocs()
+	 * @return
+	 */
+	private ArrayList<Documento> getDocs() {	
+		Utente u = ControllerUtente.getInstance().getUtente(1);
+			
+		if(u == null){
 			return null;
 		}
+		
+		return new ArrayList<Documento>(u.documentiUtente.getCollection());
+		
 	}
 	
-	//private 
-	
+	/**
+	 * Costruttore
+	 */
 	public MieiDocumenti() {
 		setBackground(Color.WHITE);
 		setLayout(null);

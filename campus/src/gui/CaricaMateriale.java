@@ -18,14 +18,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.HashMap;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -45,12 +43,11 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.orm.PersistentException;
-
 import modello_di_dominio.Corso;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
-import modello_di_dominio.Utente;
+
+import org.orm.PersistentException;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -59,12 +56,9 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import controller.ControllerCorso;
 import controller.ControllerDocumento;
+import controller.ControllerFacolta;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
-
-import controller.ControllerFacolta;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 //TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 

@@ -1,10 +1,8 @@
 package gui;
 
-import gui.riquadri.RiquadroDoc;
 import gui.riquadri.RiquadroPref;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -12,16 +10,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.border.LineBorder;
 
-import org.orm.PersistentException;
-
-import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
-import modello_di_dominio.dao.UtenteDAO;
+import modello_di_dominio.Utente;
 import controller.ControllerUtente;
 
 public class Preferiti extends JPanel{
@@ -45,17 +38,18 @@ public class Preferiti extends JPanel{
 	}
 	
 	private ArrayList<Documento> getDocs() {
-		ArrayList<Documento> d = new ArrayList<Documento>();
-		try {
-			d = new ArrayList<Documento>(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.getCollection());
-			return d;
-		} catch (NullPointerException npe) { } {
+		Utente u = ControllerUtente.getInstance().getUtente(1);
+		
+		if(u == null){
 			return null;
 		}
+		
+		return new ArrayList<Documento>(u.documentiPreferiti.getCollection());
 	}
 	
-	//private 
-	
+	/**
+	 * 
+	 */
 	public Preferiti() {
 		setBackground(Color.WHITE);
 		setLayout(null);

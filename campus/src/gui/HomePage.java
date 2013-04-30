@@ -22,19 +22,18 @@ public class HomePage extends JPanel {
 	private final static JPanel panel_1 = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
-	private static String array = "prova";
+	private static String homeBottomText = "prova";
 	private final static JLabel label_6 = new JLabel("new label");
 	
 	
 	public static String getHomeBottomText() {
-		//String[] = loadStringsbalablala();
-		return array;
+		
+		return homeBottomText;
 		
 	}
 	
 	public static void setHomeBottomText(String a) {
-		//String[] = loadStringsbalablala();
-		array=a;
+		homeBottomText=a;
 	}
 	
 	public void reload() {
