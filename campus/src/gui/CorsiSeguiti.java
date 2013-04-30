@@ -35,23 +35,38 @@ public class CorsiSeguiti extends JPanel {
 	 * Pannello che contiene tutti i corsi seguiti dall'utente
 	 */
 	private JPanel contenuto_pagina;
-	
+	/**
+	 * 
+	 */
 	protected void reload() {
 		adjustCourse(getCorsi());
 	}
-	
+	/**
+	 * getCorsi
+	 * @return ArrayList<Corso>
+	 */
 	private ArrayList<Corso> getCorsi() {
-		ArrayList<Corso> c = new ArrayList<Corso>();
+		ArrayList<Corso> c;
+		//TODO: Rimuovere il try!
 		try {
 			c = new ArrayList<Corso>(ControllerUtente.getInstance().getUtente(1).corso.getCollection());
 			return c;
-		} catch (NullPointerException npe) { } {
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
 			return null;
 		}
 	}
 	
-
+	/**
+	 * addCorsi
+	 * @param course
+	 */
 	public void addCorsi(final ArrayList<Corso> course){
+		
+		if(course == null){
+			return ;
+		}
+		
 		int col = 0;
 		for(int i = 0; i < course.size(); i++){
 			final Corso c = course.get(i);
@@ -73,19 +88,19 @@ public class CorsiSeguiti extends JPanel {
 		panel.setSize(panel.getWidth(), altezza);
 		Home.setAltezzaDinamica(altezza);
 	}
-
+	/**
+	 * 
+	 * @param course
+	 */
 	private void adjustCourse(final ArrayList<Corso> course){
 		contenuto_pagina.removeAll();
 		contenuto_pagina.validate();
 		contenuto_pagina.repaint();
-		try{
-			addCorsi(course);
-		}catch(NullPointerException e){
-			e.printStackTrace();
-		}
+		addCorsi(course);
 	}
 	
 	/**
+	 * Constructor
 	 * Create the panel.
 	 */
 	public CorsiSeguiti() {
