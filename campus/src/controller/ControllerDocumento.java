@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -95,4 +96,39 @@ public class ControllerDocumento extends AbstractController{
 			ControllerDocumento.instance = new ControllerDocumento();
 		return ControllerDocumento.instance;
 	}
+
+	public ArrayList<Documento> getListAllDocumenti() {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
+		try {
+			Documento[] temp = documentoDAO.listDocumentoByQuery(null, null);
+			ArrayList<Documento> docs = new ArrayList<Documento>();
+			for (int i=0; temp.length > i; i++) {
+				docs.add(temp[i]);
+			}
+			return docs;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ArrayList<Documento> getListAllDocumentiByStringSearch(String ricerca) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
+		try {
+			Documento[] temp = documentoDAO.listDocumentoByQuery(null, null);
+			ArrayList<Documento> docs = new ArrayList<Documento>();
+			for (int i=0; temp.length > i; i++) {
+				docs.add(temp[i]);
+			}
+			return docs;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
