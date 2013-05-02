@@ -1,22 +1,28 @@
 package gui;
 
-import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Vector;
 
+import javax.swing.AbstractListModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import java.awt.GridLayout;
+
+import modello_di_dominio.Corso;
+import controller.ControllerCorso;
+import javax.swing.ScrollPaneConstants;
 
 public class PrenotaDigitalizzazione extends Pagina {
+	
 	public PrenotaDigitalizzazione() {
 		setLayout(null);
 		
@@ -49,24 +55,24 @@ public class PrenotaDigitalizzazione extends Pagina {
 		btnRichiesta.add(label_6);
 		
 		JPanel formPanel = new JPanel();
-		formPanel.setBounds(36, 76, 425, 432);
+		formPanel.setBounds(20, 55, 425, 315);
 		formPanel.setBackground(null);
 		panel.add(formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
 		gbl_formPanel.columnWidths = new int[] {189, 189};
-		gbl_formPanel.rowHeights = new int[] {60, 120, 60, 60, 60, 60};
+		gbl_formPanel.rowHeights = new int[] {30, 140, 30, 30, 30, 30};
 		gbl_formPanel.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_formPanel.rowWeights = new double[]{Double.MIN_VALUE};
+		gbl_formPanel.rowWeights = new double[]{0.0};
 		formPanel.setLayout(gbl_formPanel);
 		
-		JLabel lblAsd = new JLabel("Nome documento");
-		lblAsd.setFont(new Font("Arial", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblAsd = new GridBagConstraints();
-		gbc_lblAsd.anchor = GridBagConstraints.WEST;
-		gbc_lblAsd.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAsd.gridx = 0;
-		gbc_lblAsd.gridy = 0;
-		formPanel.add(lblAsd, gbc_lblAsd);
+		JLabel lblNomedoc = new JLabel("Nome documento");
+		lblNomedoc.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNomedoc = new GridBagConstraints();
+		gbc_lblNomedoc.anchor = GridBagConstraints.WEST;
+		gbc_lblNomedoc.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNomedoc.gridx = 0;
+		gbc_lblNomedoc.gridy = 0;
+		formPanel.add(lblNomedoc, gbc_lblNomedoc);
 		
 		JLabel lblDesc = new JLabel("Descrizione");
 		lblDesc.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -86,41 +92,41 @@ public class PrenotaDigitalizzazione extends Pagina {
 		gbc_lblnumPag.gridy = 2;
 		formPanel.add(lblnumPag, gbc_lblnumPag);
 		
-		JTextField nomeDoc = new JTextField();
-		GridBagConstraints gbc_nomeDoc = new GridBagConstraints();
-		gbc_nomeDoc.insets = new Insets(0, 0, 5, 0);
-		gbc_nomeDoc.fill = GridBagConstraints.HORIZONTAL;
-		gbc_nomeDoc.gridx = 1;
-		gbc_nomeDoc.gridy = 0;
-		formPanel.add(nomeDoc, gbc_nomeDoc);
-		nomeDoc.setColumns(10);
+		JTextField txtNomeDoc = new JTextField();
+		GridBagConstraints gbc_txtNomeDoc = new GridBagConstraints();
+		gbc_txtNomeDoc.insets = new Insets(0, 0, 5, 0);
+		gbc_txtNomeDoc.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNomeDoc.gridx = 1;
+		gbc_txtNomeDoc.gridy = 0;
+		formPanel.add(txtNomeDoc, gbc_txtNomeDoc);
+		txtNomeDoc.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Materia");
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 3;
-		formPanel.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		JLabel lblCorso = new JLabel("Materia");
+		lblCorso.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblCorso = new GridBagConstraints();
+		gbc_lblCorso.anchor = GridBagConstraints.WEST;
+		gbc_lblCorso.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCorso.gridx = 0;
+		gbc_lblCorso.gridy = 3;
+		formPanel.add(lblCorso, gbc_lblCorso);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 4;
-		formPanel.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		JLabel lblCitta = new JLabel("Citt\u00E0");
+		lblCitta.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblCitta = new GridBagConstraints();
+		gbc_lblCitta.anchor = GridBagConstraints.WEST;
+		gbc_lblCitta.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCitta.gridx = 0;
+		gbc_lblCitta.gridy = 4;
+		formPanel.add(lblCitta, gbc_lblCitta);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-		gbc_lblNewLabel_4.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_4.gridx = 0;
-		gbc_lblNewLabel_4.gridy = 5;
-		formPanel.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		JLabel lblCopisteria = new JLabel("Copisteria");
+		lblCopisteria.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblCopisteria = new GridBagConstraints();
+		gbc_lblCopisteria.anchor = GridBagConstraints.WEST;
+		gbc_lblCopisteria.insets = new Insets(0, 0, 0, 5);
+		gbc_lblCopisteria.gridx = 0;
+		gbc_lblCopisteria.gridy = 5;
+		formPanel.add(lblCopisteria, gbc_lblCopisteria);
 		
 		JTextArea txtAreaDescrizione = new JTextArea();
 		txtAreaDescrizione.setBorder(new LineBorder(Color.LIGHT_GRAY));
@@ -136,15 +142,77 @@ public class PrenotaDigitalizzazione extends Pagina {
         txtAreaDescrizione.setRows(5);
         txtAreaDescrizione.setWrapStyleWord(true);
         
-		JTextField numPag = new JTextField();
-		GridBagConstraints gbc_numPag = new GridBagConstraints();
-		gbc_numPag.insets = new Insets(0, 0, 5, 0);
-		gbc_numPag.fill = GridBagConstraints.HORIZONTAL;
-		gbc_numPag.gridx = 1;
-		gbc_numPag.gridy = 2;
-		formPanel.add(numPag, gbc_numPag);
-		numPag.setColumns(3);
+		JTextField txtNumPag = new JTextField();
+		GridBagConstraints gbc_txtNumPag = new GridBagConstraints();
+		gbc_txtNumPag.insets = new Insets(0, 0, 5, 0);
+		gbc_txtNumPag.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNumPag.gridx = 1;
+		gbc_txtNumPag.gridy = 2;
+		formPanel.add(txtNumPag, gbc_txtNumPag);
+		txtNumPag.setColumns(3);
 		
+		/**
+		 * Lista citta'
+		 */
+		Vector<String> listCitta = new Vector<String>();
+		listCitta.add("L'Aquila");
+		listCitta.add("Torino");
+		listCitta.add("Roma");
+		
+		/**
+		 *  Inserimento e caricamento corsi dal db
+		 */
+		
+		final Corso[] corsi = ControllerCorso.getInstance().getAllCorsi();
+		JList lstCorsi = new JList();
+		
+		lstCorsi.setModel(new AbstractListModel() {
+			public int getSize() {
+				return corsi.length;
+			}
+			public Object getElementAt(int index) {
+				return corsi[index].getNome();
+			}
+		});
+		
+		GridBagConstraints gbc_lstCorso = new GridBagConstraints();
+		gbc_lstCorso.insets = new Insets(0, 0, 5, 0);
+		gbc_lstCorso.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lstCorso.gridx = 1;
+		gbc_lstCorso.gridy = 3;
+		formPanel.add(lstCorsi,gbc_lstCorso);
+		
+		/**
+		 *  Inserimento e caricamento corsi dal db
+		 */
+		
+		final String[] copisterie = new String[5];
+		copisterie[0] = "New Copy";
+		copisterie[1] = "Stella degli elfi";
+		copisterie[2] = "CopiaCopia";
+		copisterie[3] = "Dal magnaccia";
+		copisterie[4] = "Vieni da Zio";
+		
+		JList lstCopisteria = new JList();
+		lstCopisteria.setModel(new AbstractListModel() {
+			public int getSize() {
+				return copisterie.length;
+			}
+			public Object getElementAt(int index) {
+				return copisterie[index];
+			}
+		});
+		
+		JScrollPane scrollPaneCopist = new JScrollPane();
+		scrollPaneCopist.getViewport().setView(lstCopisteria);
+		//scrollPaneCopist.setVisibleRowCount(1);
+		
+		GridBagConstraints gbc_lstcopisteria = new GridBagConstraints();
+		gbc_lstcopisteria.insets = new Insets(0, 0, 5, 0);
+		gbc_lstcopisteria.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lstcopisteria.gridx = 1;
+		gbc_lstcopisteria.gridy = 4;
+		formPanel.add(scrollPaneCopist,gbc_lstcopisteria);
 		
 	}
 
