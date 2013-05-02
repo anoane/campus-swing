@@ -200,7 +200,7 @@ public class RisultatiRicerca extends Pagina  {
 		lblIPiVotati.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("click");
+				//System.out.println("click");
 			}
 		});
 		lblIPiVotati.setForeground(new Color(6, 121, 159));
@@ -410,7 +410,7 @@ public class RisultatiRicerca extends Pagina  {
 			int row = i%2;
 			documento.setLocation((32+(485*row)), (230*col));
 			panel_1.add(documento);
-			System.out.println("dd");
+			//System.out.println("dd");
 			/*
 			documento.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
