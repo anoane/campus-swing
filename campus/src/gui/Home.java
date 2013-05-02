@@ -365,8 +365,8 @@ public class Home {
 	}
 	
 	protected static void openRisultatiRicerca(String ricerca,final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
-		// TODO Auto-generated method stub
 		Home.pulsantiNormali();
+		pagina_risultati_ricerca.resetPanel(ricerca);
 		if (altezzaDinamica) {
 			Home.loadPages(Home.getPaginaCorrispondente("cerca"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 		} else {
