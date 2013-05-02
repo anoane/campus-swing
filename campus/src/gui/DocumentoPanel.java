@@ -24,7 +24,7 @@ import com.sun.pdfview.PDFViewer;
 import controller.ControllerUtente;
 
 @SuppressWarnings("serial")
-public class DocumentoPanel extends JPanel{
+public class DocumentoPanel extends Pagina {
 	
 	private PDFViewer pdfDoc = new PDFViewer(true);
 	boolean suggestOpened = false;
@@ -278,5 +278,11 @@ public class DocumentoPanel extends JPanel{
 			riquadrodx.setVisible(false);
 		else
 			riquadrodx.setVisible(true);
+	}
+
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
+		
 	}
 }

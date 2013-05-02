@@ -23,7 +23,7 @@ import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
 
 @SuppressWarnings("serial")
-public class CorsoPanel extends JPanel {
+public class CorsoPanel extends Pagina {
 	
 	private JPanel panel;
 	private JPanel paneldx;
@@ -243,5 +243,11 @@ public class CorsoPanel extends JPanel {
 	
 	public int getAltezzaPagina(){
 		return this.altezzaPagina;
+	}
+
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Component;
 
 @SuppressWarnings("serial")
-public class HomePage extends JPanel {
+public class HomePage extends Pagina {
 	private JTextField textField;
 	private final static JPanel panel_1 = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();

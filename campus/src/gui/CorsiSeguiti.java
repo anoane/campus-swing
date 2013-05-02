@@ -18,7 +18,7 @@ import modello_di_dominio.Utente;
 import controller.ControllerUtente;
 
 @SuppressWarnings("serial")
-public class CorsiSeguiti extends JPanel {
+public class CorsiSeguiti extends Pagina {
 
 	//Pannello principale
 	private JPanel panel;
@@ -36,7 +36,7 @@ public class CorsiSeguiti extends JPanel {
 	/**
 	 * 
 	 */
-	protected void reload() {
+	public void reload() {
 		adjustCourse(getCorsi());
 	}
 	/**

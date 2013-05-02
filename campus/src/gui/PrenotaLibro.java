@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class PrenotaLibro extends JPanel {
+public class PrenotaLibro extends Pagina {
 	/**
 	 * Serial ID 
 	 */
@@ -167,5 +167,10 @@ public class PrenotaLibro extends JPanel {
 		lblInvRic.setForeground(Color.WHITE);
 		lblInvRic.setFont(new Font("Arial", Font.PLAIN, 18));
 		panel_1.add(lblInvRic);
+	}
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
+		
 	}
 }

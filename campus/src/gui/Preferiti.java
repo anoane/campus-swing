@@ -17,7 +17,7 @@ import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
 import controller.ControllerUtente;
 
-public class Preferiti extends JPanel{
+public class Preferiti extends Pagina {
 	
 	//Pannello principale
 	private JPanel panel;
@@ -33,7 +33,7 @@ public class Preferiti extends JPanel{
 	 */
 	private JPanel contenuto_pagina;
 	
-	protected void reload() {
+	public void reload() {
 		adjustDocs(getDocs());
 	}
 	

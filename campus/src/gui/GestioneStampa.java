@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-public class GestioneStampa extends JPanel {
+public class GestioneStampa extends Pagina {
 	/**
 	 * 
 	 */
@@ -32,6 +32,12 @@ public class GestioneStampa extends JPanel {
 		separator.setForeground(new Color(27, 50, 128));
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
+	}
+
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

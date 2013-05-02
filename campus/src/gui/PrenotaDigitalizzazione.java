@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.GridLayout;
 
-public class PrenotaDigitalizzazione extends JPanel {
+public class PrenotaDigitalizzazione extends Pagina {
 	public PrenotaDigitalizzazione() {
 		setLayout(null);
 		
@@ -145,6 +145,12 @@ public class PrenotaDigitalizzazione extends JPanel {
 		formPanel.add(numPag, gbc_numPag);
 		numPag.setColumns(3);
 		
+		
+	}
+
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
 		
 	}
 }

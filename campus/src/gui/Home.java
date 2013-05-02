@@ -105,7 +105,7 @@ public class Home {
 	private static DocumentoPanel documento = null;
 	private static CorsoPanel corso = null;
 	
-	private final static TreeMap<String, JPanel> relazionePaginaBottone = new TreeMap<String, JPanel>();
+	private final static TreeMap<String, Pagina> relazionePaginaBottone = new TreeMap<String, Pagina>();
 	
 	
 	public static void setAltezzaDinamica(int a) {
@@ -354,9 +354,8 @@ public class Home {
 	}
 	
 	protected static void openCaricaMateriale(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
-		// TODO Auto-generated method stub
 		Home.pulsantiNormali();
-		((CaricaMateriale) pagina_carica_materiale).resetPanel();
+		pagina_carica_materiale.reload();
 		if (altezzaDinamica) {
 			Home.loadPages(Home.getPaginaCorrispondente("carica_materiale"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
 		} else {
@@ -375,7 +374,7 @@ public class Home {
 	}
 	
 
-	protected static void loadPages(JPanel pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
+	protected static void loadPages(Pagina pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
 			gl_pannello_verticale.setHorizontalGroup(
 					gl_pannello_verticale.createParallelGroup(hAlignment)
 						.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
@@ -384,20 +383,16 @@ public class Home {
 					gl_pannello_verticale.createParallelGroup(vAlignment)
 						.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
 				);
-		reloadPages();
+		reloadPages(pagina);
 		pagina.setVisible(true);
 	}
 
-	private static void reloadPages() {
-		pagina_home.reload();
-		pagina_corsi_seguiti.reload();
-		pagina_preferiti.reload();
-		pagina_miei_documenti.reload();
-		
+	private static void reloadPages(Pagina pagina) {
+		pagina.reload();
 	}
 
 	protected static void spaghettiResize() {
-			reloadPages();
+			//TODO:check se necessario, reloadPages();
 		    int dimensione_fill_centro = ((pannello_intero.getWidth()
 					- MIN_DIMENSION_X + 18) / 2);
 			barra_menu_principale.setBounds(1, 1,
@@ -520,7 +515,7 @@ public class Home {
 		Home.frame = frame;
 	}
 
-	public static JPanel getPaginaCorrispondente(String nome_pulsante) {
+	public static Pagina getPaginaCorrispondente(String nome_pulsante) {
 		return relazionePaginaBottone.get(nome_pulsante);
 	}
 

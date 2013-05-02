@@ -72,7 +72,7 @@ import java.beans.PropertyChangeEvent;
 
 //TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 
-public class RisultatiRicerca extends JPanel  {
+public class RisultatiRicerca extends Pagina  {
 	private final static JPanel panel = new JPanel();
 	private static JPanel scegli_fac = new JPanel();
 	private static JPanel scegli_corso = new JPanel();
@@ -232,6 +232,7 @@ public class RisultatiRicerca extends JPanel  {
 		
 		panel_1.setBounds(10, 51, 952, 257);
 		panel_risultati.add(panel_1);
+		panel_1.setLayout(null);
 		panel_ricerca_guidata.setBackground(Color.WHITE);
 		panel_ricerca_guidata.setBounds(0, 400, 1008, 247);
 		
@@ -404,7 +405,7 @@ public class RisultatiRicerca extends JPanel  {
 		int col = 0;
 		for(int i = 0;i < docs.size();i++){
 			final Documento d = docs.get(i);
-			final RiquadroDoc documento = new RiquadroDoc(d,true);//createFavourite(docs.get(i));
+			final RiquadroDoc documento = new RiquadroDoc(d,false);//createFavourite(docs.get(i));
 			col = (int) Math.floor(i/2);
 			int row = i%2;
 			documento.setLocation((32+(485*row)), (230*col));
@@ -425,7 +426,7 @@ public class RisultatiRicerca extends JPanel  {
 		panel_1.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
 		panel.setSize(panel.getWidth(), altezza);
 		//panel_risultati.setSize(panel_risultati.getWidth(), altezza);
-		Home.setAltezzaDinamica(altezza);
+		//Home.setAltezzaDinamica(altezza);
 	}
 	
 	private void adjustDocs(final ArrayList<Documento> docs){
@@ -525,5 +526,11 @@ public class RisultatiRicerca extends JPanel  {
 		scegli_univ.setVisible(false);
 		scegli_fac.setVisible(false);
 		scegli_corso.setVisible(false);
+	}
+
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
+		
 	}
 }

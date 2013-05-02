@@ -16,7 +16,7 @@ import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
 import controller.ControllerUtente;
 
-public class MieiDocumenti extends JPanel{
+public class MieiDocumenti extends Pagina {
 	
 	//Pannello principale
 	private JPanel panel;
@@ -32,7 +32,7 @@ public class MieiDocumenti extends JPanel{
 	 */
 	private JPanel contenuto_pagina;
 	
-	protected void reload() {
+	public void reload() {
 		adjustDocs(getDocs());
 	}
 	/**

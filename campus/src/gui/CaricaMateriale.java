@@ -62,7 +62,7 @@ import controller.ControllerUtente;
 
 //TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 
-public class CaricaMateriale extends JPanel  {
+public class CaricaMateriale extends Pagina  {
 	private final static JPanel panel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_2;
@@ -117,37 +117,6 @@ public class CaricaMateriale extends JPanel  {
 	static Corso[] listaCorsi = ControllerCorso.getInstance().getAllCorsi(); 
 	static Corso[] listaCorsiByFac = null; 
 	
-	
-	public void resetPanel() {
-		btnScegliFile.setText("Scegli file...");
-		btnScegliFile.setBackground(new Color(240,240,240));
-		textField.setText("");
-		textField_2.setText("");
-		textField_3.setText("");
-		textField_4.setText("");
-		
-		textPane.setText("");
-		textField_1.setText("");
-		textField_5.setText("");
-		textField_6.setText("");
-		textArea_1.setText("");
-		textArea.setText("");
-		isOverSelectionPanel =  false;
-		indexUniv = -1;
-		dbIndexUniv = -1;
-		indexFac = -1;
-		dbIndexFac = -1;
-		indexCorso = -1;
-		dbIndexCorso = -1;
-		indexCorsoByFac = -1;
-		dbIndexCorsoByFac = -1;
-		fileSelezionato = false;
-		Path target = null;
-		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
-		listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(-1); 
-		listaCorsi = ControllerCorso.getInstance().getAllCorsi(); 
-		listaCorsiByFac = null; 
-	}
 	
 	/**
 	 * Create the panel.
@@ -1357,5 +1326,37 @@ public class CaricaMateriale extends JPanel  {
 		scegli_univ.setVisible(false);
 		scegli_fac.setVisible(false);
 		scegli_corso.setVisible(false);
+	}
+
+	@Override
+	public void reload() {
+		btnScegliFile.setText("Scegli file...");
+		btnScegliFile.setBackground(new Color(240,240,240));
+		textField.setText("");
+		textField_2.setText("");
+		textField_3.setText("");
+		textField_4.setText("");
+		
+		textPane.setText("");
+		textField_1.setText("");
+		textField_5.setText("");
+		textField_6.setText("");
+		textArea_1.setText("");
+		textArea.setText("");
+		isOverSelectionPanel =  false;
+		indexUniv = -1;
+		dbIndexUniv = -1;
+		indexFac = -1;
+		dbIndexFac = -1;
+		indexCorso = -1;
+		dbIndexCorso = -1;
+		indexCorsoByFac = -1;
+		dbIndexCorsoByFac = -1;
+		fileSelezionato = false;
+		Path target = null;
+		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+		listaFacoltaByUniv = ControllerFacolta.getInstance().getAllFacoltaByUniv(-1); 
+		listaCorsi = ControllerCorso.getInstance().getAllCorsi(); 
+		listaCorsiByFac = null; 
 	}
 }
