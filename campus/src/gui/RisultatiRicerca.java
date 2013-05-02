@@ -235,8 +235,8 @@ public class RisultatiRicerca extends Pagina  {
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 968, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(96, Short.MAX_VALUE))
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 841, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(223, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		scrollPane.setBounds(0, 41, 1008, 360);
