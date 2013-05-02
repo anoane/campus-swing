@@ -463,6 +463,7 @@ public class Home {
 
 	static void resetPagina() {
 		Home.unloadDocumento();
+		Home.unloadCorso();
 		pagina_home.setVisible(false);
 		pagina_corsi_seguiti.setVisible(false);
 		pagina_preferiti.setVisible(false);
@@ -473,8 +474,6 @@ public class Home {
 		pagina_prenota_digitalizzazione.setVisible(false);
 		pagina_prenota_libri.setVisible(false);
 		pagina_risultati_ricerca.setVisible(false);
-		if(corso!=null)
-			corso.setVisible(false);
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
@@ -528,6 +527,12 @@ public class Home {
 	public static void unloadDocumento() {
 		if (documento!=null) {
 			documento.setVisible(false);
+		}
+	}
+	
+	public static void unloadCorso() {
+		if (corso!=null) {
+			corso.setVisible(false);
 		}
 	}
 	

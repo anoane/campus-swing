@@ -184,7 +184,7 @@ public class RisultatiRicerca extends JPanel  {
 		lblNewLabel.setBounds(200, 10, 264, 25);
 		panel_risultati.add(lblNewLabel);
 		separator_4.setForeground(new Color(27, 50, 128));
-		separator_4.setBounds(0, 40, 963, 2);
+		separator_4.setBounds(0, 41, 963, 2);
 		
 		panel_risultati.add(separator_4);
 		lblRisultatiTrovatiPer.setForeground(new Color(6, 121, 159));
@@ -230,22 +230,22 @@ public class RisultatiRicerca extends JPanel  {
 		panel_risultati.add(separator_6);
 		panel_1.setBackground(Color.WHITE);
 		
-		panel_1.setBounds(11, 47, 952, 257);
+		panel_1.setBounds(10, 51, 952, 257);
 		panel_risultati.add(panel_1);
 		panel_ricerca_guidata.setBackground(Color.WHITE);
 		panel_ricerca_guidata.setBounds(0, 400, 1008, 247);
 		
 		panel.add(panel_ricerca_guidata);
 		panel_ricerca_guidata.setLayout(null);
-		label.setBounds(319, 135, 12, 20);
+		label.setBounds(319, 130, 12, 20);
 		panel_ricerca_guidata.add(label);
 		label.setIcon(new ImageIcon("./newimage/freccia_right.png"));
-		label_1.setBounds(640, 135, 12, 20);
+		label_1.setBounds(640, 130, 12, 20);
 		panel_ricerca_guidata.add(label_1);
 		label_1.setIcon(new ImageIcon("./newimage/freccia_right.png"));
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 40, 963, 2);
+		separator.setBounds(0, 41, 963, 2);
 		panel_ricerca_guidata.add(separator);
 		separator.setForeground(new Color(27, 50, 128));
 		
@@ -255,7 +255,7 @@ public class RisultatiRicerca extends JPanel  {
 		lblRicercaAvanzata.setForeground(new Color(6, 121, 159));
 		lblRicercaAvanzata.setFont(new Font("Arial", Font.BOLD, 20));
 				scegli_univ.setBorder(new LineBorder(new Color(0, 0, 0)));
-				scegli_univ.setBounds(10, 55, 310, 180);
+				scegli_univ.setBounds(10, 51, 310, 180);
 				panel_ricerca_guidata.add(scegli_univ);
 				
 				scegli_univ.setLayout(null);
@@ -295,7 +295,7 @@ public class RisultatiRicerca extends JPanel  {
 				
 				scegli_univ.add(lblUniversit);
 				scegli_fac.setBorder(new LineBorder(new Color(0, 0, 0)));
-				scegli_fac.setBounds(331, 55, 310, 180);
+				scegli_fac.setBounds(331, 51, 310, 180);
 				panel_ricerca_guidata.add(scegli_fac);
 				scegli_fac.setBackground(new Color(67, 136, 204));
 				scegli_fac.setLayout(null);
@@ -342,7 +342,7 @@ public class RisultatiRicerca extends JPanel  {
 														
 														scegli_fac.add(separator_2);
 				scegli_corso.setBorder(new LineBorder(new Color(0, 0, 0)));
-				scegli_corso.setBounds(652, 55, 310, 180);
+				scegli_corso.setBounds(652, 51, 310, 180);
 				panel_ricerca_guidata.add(scegli_corso);
 				
 						scegli_corso.setLayout(null);
@@ -424,6 +424,7 @@ public class RisultatiRicerca extends JPanel  {
 		int altezza = 322+(230*col);
 		panel_1.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
 		panel.setSize(panel.getWidth(), altezza);
+		//panel_risultati.setSize(panel_risultati.getWidth(), altezza);
 		Home.setAltezzaDinamica(altezza);
 	}
 	
