@@ -98,11 +98,14 @@ public class Preferiti extends Pagina {
 			
 			preferito.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
+					int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler rimuovere dai Preferiti il documento?","Attenzione",0);
+					if(n==0){
 					docs.remove(d);
 					ControllerUtente u = ControllerUtente.getInstance();
-					//u.rimuoviDocumentoPreferito(u.getUtente(1), d);
+					u.rimuoviDocumentoPreferito(u.getUtente(1), d);
 					adjustDocs(docs);}
-				});
+				}
+			});
 		}
 	}
 	

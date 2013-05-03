@@ -153,6 +153,7 @@ public class CorsoPanel extends Pagina {
 		gbc_lblNewLabel_2.gridy = 2;
 		programma.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
+		
 		JComboBox comboBox_1 = new JComboBox();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);

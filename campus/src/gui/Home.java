@@ -106,6 +106,7 @@ public class Home {
 	private static CorsoPanel corso = null;
 	
 	private final static TreeMap<String, Pagina> relazionePaginaBottone = new TreeMap<String, Pagina>();
+	private final static TreeMap<String, JButton> bottoniMenu = new TreeMap<String, JButton>();
 	
 	
 	public static void setAltezzaDinamica(int a) {
@@ -207,6 +208,19 @@ public class Home {
 		pannello_interno_menu_principale.setBackground(BLUE_BUTTON_UNPRESSED);
 		barra_menu_principale.add(pannello_interno_menu_principale);
 		pannello_interno_menu_principale.setLayout(null);
+		
+		
+		
+		/*
+		 * Metto tutti i bottoni dentro  
+		 */
+		bottoniMenu.put("home", home);
+		bottoniMenu.put("corsi_seguiti", corsi_seguiti);
+		bottoniMenu.put("preferiti", preferiti);
+		bottoniMenu.put("miei_documenti", miei_documenti);
+		bottoniMenu.put("servizi_esterni", servizi_esterni);
+		bottoniMenu.put("profilo", profilo);
+
 /*
 		notifiche.setBounds(770, 0, 52, 52);
 		notifiche.setIcon(new ImageIcon("./newimage/notifiche.png"));
@@ -375,6 +389,7 @@ public class Home {
 	
 
 	protected static void loadPages(final Pagina pagina, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, int vPrefSize, final int vMaxSize) {
+		resetPagina();
 		pagina.reload();
 		if(pagina.getClass().getName() == "gui.MieiDocumenti" || pagina.getClass().getName() == "gui.Preferiti" || pagina.getClass().getName() == "gui.CorsiSeguiti")
 			pagina.getComponents()[0].addComponentListener(new ComponentListener() {
@@ -505,6 +520,8 @@ public class Home {
 		pagina_prenota_digitalizzazione.setVisible(false);
 		pagina_prenota_libri.setVisible(false);
 		pagina_risultati_ricerca.setVisible(false);
+		pannello_intero.validate();
+		pannello_intero.repaint();
 	}
 
 	protected static Color getOldButtonColor(String nome_pulsante) {
@@ -568,7 +585,8 @@ public class Home {
 	}
 	
 	public static void openDocument(final Boolean altezzaDinamica, Documento doc) {
-		Home.unloadDocumento();
+		//resetPagina();
+		//Home.unloadDocumento();
 		//TODO:aggiungere parametri del documento
 		documento = new DocumentoPanel(null, doc);
 		Home.pulsantiNormali();
@@ -583,16 +601,26 @@ public class Home {
 	
 	public static void openCorso(final Boolean altezzaDinamica,Corso c) {
 		// TODO Auto-generated method stub
+		//resetPagina();
 		corso = new CorsoPanel(c);
 		Home.pulsantiNormali();
+		Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
+		/*
 		if (getAltezzaDinamica() != 0) {
-			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina()/*Home.getAltezzaDinamica()*/, GroupLayout.PREFERRED_SIZE);	
+			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 		} else {
-			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina()/*585*/, GroupLayout.PREFERRED_SIZE);
-		}
+			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
+		}*/
 	}
 
 	public static JTextField getRicercaTestuale() {
 		return ricerca_testuale;
+	}
+	
+	public static void getPagina(String pagina){
+		Home.pulsantiNormali();
+		Home.bottoniMenu.get(pagina).setBackground(BLUE_BUTTON_PRESSED);
+		Home.setOldButtonColor(pagina, Home.BLUE_BUTTON_PRESSED);
+		Home.loadPages(Home.getPaginaCorrispondente(pagina),Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getPaginaCorrispondente(pagina).getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);
 	}
 }

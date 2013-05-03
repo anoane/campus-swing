@@ -59,6 +59,8 @@ import controller.ControllerDocumento;
 import controller.ControllerFacolta;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Dimension;
 
 //TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 
@@ -423,6 +425,8 @@ public class CaricaMateriale extends Pagina  {
 				if (continua) {
 					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), comboBox.getSelectedItem().toString(), ControllerUtente.getInstance().getUtente(1), ControllerCorso.getInstance().getCorso(textField_4.getText()),ControllerFacolta.getInstance().getFacolta(dbIndexFac));
 					JOptionPane.showMessageDialog(Home.getFrame(), "OK CI SIAMO", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					Home.getPagina("miei_documenti");
+						
 				}
 				
 				//ControllerDocumento.getInstance().creaDocumento(nome, descrizione, path, u, c);		
@@ -682,13 +686,13 @@ public class CaricaMateriale extends Pagina  {
 																		ColumnSpec.decode("10dlu"),
 																		ColumnSpec.decode("max(50dlu;default)"),
 																		ColumnSpec.decode("10dlu"),
-																		ColumnSpec.decode("max(123dlu;default):grow"),
+																		ColumnSpec.decode("max(124dlu;default):grow"),
 																		ColumnSpec.decode("10dlu"),},
 																	new RowSpec[] {
 																		RowSpec.decode("10dlu"),
 																		RowSpec.decode("max(35dlu;default)"),
 																		RowSpec.decode("10dlu"),
-																		RowSpec.decode("max(34dlu;default):grow"),
+																		RowSpec.decode("max(35dlu;default):grow"),
 																		RowSpec.decode("10dlu"),
 																		RowSpec.decode("max(35dlu;default)"),
 																		RowSpec.decode("10dlu"),}));
@@ -707,9 +711,14 @@ public class CaricaMateriale extends Pagina  {
 																lblNewLabel_10.setFont(new Font("Arial", Font.BOLD, 14));
 																lblNewLabel_10.setForeground(Color.WHITE);
 																panel_13.add(lblNewLabel_10, "2, 4, left, top");
+																textArea_1.setWrapStyleWord(true);
+																textArea_1.setLineWrap(true);
 																
 																textArea_1.setFont(new Font("Arial", Font.PLAIN, 14));
-																panel_13.add(textArea_1, "4, 4, fill, fill");
+																JScrollPane areaScrollPane = new JScrollPane(textArea_1);
+																areaScrollPane.setPreferredSize(new Dimension(185, 53));
+																areaScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+																panel_13.add(areaScrollPane, "4, 4, default, fill");
 																
 																JLabel lblNewLabel_11 = new JLabel("Facolt\u00E0");
 																lblNewLabel_11.setFont(new Font("Arial", Font.BOLD, 14));

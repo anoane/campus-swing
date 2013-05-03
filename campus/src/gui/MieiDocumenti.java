@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
+import org.hibernate.type.YesNoType;
+
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
 import controller.ControllerUtente;
@@ -102,10 +104,12 @@ public class MieiDocumenti extends Pagina {
 			
 			documento.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					docs.remove(d);
-					//ControllerUtente u = ControllerUtente.getInstance();
-					//u.rimuoviDocumento(u.getUtente(1), d);
-					adjustDocs(docs);
+					int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler cancellare il documento?","Attenzione",0);
+					if(n==0){
+						docs.remove(d);
+						//ControllerUtente u = ControllerUtente.getInstance();
+						//u.rimuoviDocumento(u.getUtente(1), d);
+						adjustDocs(docs);}
 					}
 				});
 		}

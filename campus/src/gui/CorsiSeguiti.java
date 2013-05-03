@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
@@ -75,10 +76,13 @@ public class CorsiSeguiti extends Pagina {
 			contenuto_pagina.add(corsi);
 			corsi.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
+					int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler rimuovere dai Corsi Seguiti il corso?","Attenzione",0);
+					if(n==0){
 					course.remove(c);
 					ControllerUtente u = ControllerUtente.getInstance();
 					//u.rimuoviCorsoSeguito(u.getUtente(1), c);
 					adjustCourse(course);}
+				}
 				});
 		}
 	}

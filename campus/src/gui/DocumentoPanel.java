@@ -32,7 +32,7 @@ public class DocumentoPanel extends Pagina {
 	private JPanel panel ;
 	
 	
-	public DocumentoPanel(String pdfPath, Documento d) {
+	public DocumentoPanel(String pdfPath, final Documento d) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -186,6 +186,17 @@ public class DocumentoPanel extends Pagina {
 		btnAggiungiAiPreferiti.setBackground(Color.BLACK);
 		btnAggiungiAiPreferiti.setBounds(409, 49, 184, 28);
 		panel.add(btnAggiungiAiPreferiti);
+		
+		if(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
+			btnAggiungiAiPreferiti.setVisible(false);
+		
+		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ControllerUtente u = ControllerUtente.getInstance();
+				u.aggiungiDocumentoPreferito(u.getUtente(1), d);
+				Home.getPagina("preferiti");
+			}
+		});
 		
 		JLabel lblNewLabel_2 = new JLabel("tipo_img");
 		lblNewLabel_2.setBounds(84, 53, 57, 23);
