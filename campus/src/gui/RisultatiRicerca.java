@@ -89,10 +89,13 @@ public class RisultatiRicerca extends Pagina  {
 	private final JPanel panel_1 = new JPanel();
 	private final JPanel panel_2 = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane(panel_1);
+	private final GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 	
 	
 	
-	public void resetPanel(String ricerca) {		
+	public void resetPanel(String ricerca) {	
+		panel.setBounds(0, 0, 1008, 429);
+		resetListe();
 		isOverSelectionPanel =  false;
 		indexUniv = -1;
 		dbIndexUniv = -1;
@@ -114,13 +117,15 @@ public class RisultatiRicerca extends Pagina  {
 		adjustDocs(ControllerDocumento.getInstance().getListAllDocumenti());
 	}
 	
+
+
 	/**
 	 * Create the panel.
 	 */
 	public RisultatiRicerca() {
 		setLayout(null);
 
-		panel.setBounds(0, 0, 1008, 647);
+		panel.setBounds(0, 0, 1008, 429);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
@@ -158,7 +163,7 @@ public class RisultatiRicerca extends Pagina  {
 		
 		
 		panel_risultati.setBackground(Color.WHITE);
-		panel_risultati.setBounds(0, 0, 1008, 401);
+		panel_risultati.setBounds(0, 0, 1008, 186);
 		
 		panel.add(panel_risultati);
 		panel_risultati.setLayout(null);
@@ -225,26 +230,25 @@ public class RisultatiRicerca extends Pagina  {
 		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setLayout(null);
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1007, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(22, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 841, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(223, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
-		scrollPane.setBounds(0, 41, 1008, 360);
+		scrollPane.setBounds(0, 41, 1008, 145);
 		panel_risultati.add(scrollPane, BorderLayout.CENTER);
 		
 		
 		panel_ricerca_guidata.setBackground(Color.WHITE);
-		panel_ricerca_guidata.setBounds(0, 400, 1008, 247);
+		panel_ricerca_guidata.setBounds(0, 187, 1008, 247);
 		
 		panel.add(panel_ricerca_guidata);
 		panel_ricerca_guidata.setLayout(null);
@@ -419,9 +423,7 @@ public class RisultatiRicerca extends Pagina  {
 			final RiquadroDoc documento = new RiquadroDoc(d,false);//createFavourite(docs.get(i));
 			col = (int) Math.floor(i/2);
 			int row = i%2;
-			documento.setLocation((32+(485*row)), (230*col));
-			
-			
+			documento.setLocation((32+(485*row)), 32+(230*col));			
 			panel_2.add(documento);
 			
 			//System.out.println("dd");
@@ -436,9 +438,21 @@ public class RisultatiRicerca extends Pagina  {
 				});
 			*/
 		}
-		int altezza = 5000+(230*col);
+		int altezza = 252+(230*col);
 		//panel_1.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
 		panel_2.setSize(panel_2.getWidth(), altezza);
+		/*gl_panel_1.setHorizontalGroup(
+				gl_panel_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel_1.createSequentialGroup()
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(22, Short.MAX_VALUE))
+			);*/
+		gl_panel_1.setVerticalGroup(
+				gl_panel_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel_1.createSequentialGroup()
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, altezza, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(0, Short.MAX_VALUE))
+			);
 		//panel_1.setSize(panel_2.getWidth(), altezza);
 
 		//panel_1.setSize(panel_1.getWidth(), altezza);
@@ -546,20 +560,42 @@ public class RisultatiRicerca extends Pagina  {
 		scegli_corso.setVisible(false);
 	}
 
+	private void resetListe() {
+		list_2.removeAll();	
+		list_1.removeAll();
+		list_1.setModel(new AbstractListModel() {
+			public int getSize() {
+				return 0;
+			}
+			public Object getElementAt(int index) {
+				return null;
+			}
+		});
+		list.removeAll();
+		list.setModel(new AbstractListModel() {
+			public int getSize() {
+				return 0;
+			}
+			public Object getElementAt(int index) {
+				return null;
+			}
+		});
+	}
+	
 	@Override
 	public void reload() {
-		// TODO Auto-generated method stub
-		
+		resetPanel(Home.getRicercaTestuale().getText());
+	}
+
+
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
 	}
 
 	@Override
 	public void reload(Object o) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public int getAltezzaPagina() {
-		return panel.getHeight();
 	}
 }
