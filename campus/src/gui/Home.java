@@ -375,15 +375,17 @@ public class Home {
 	
 
 	protected static void loadPages(Pagina pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
-			gl_pannello_verticale.setHorizontalGroup(
-					gl_pannello_verticale.createParallelGroup(hAlignment)
-						.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
-				);
-			gl_pannello_verticale.setVerticalGroup(
-					gl_pannello_verticale.createParallelGroup(vAlignment)
-						.addComponent(pagina, vMinSize, vPrefSize, vMaxSize)
-				);
-		reloadPages(pagina);
+		pagina.reload();
+		gl_pannello_verticale.setHorizontalGroup(
+			gl_pannello_verticale.createParallelGroup(hAlignment)
+				.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
+		);
+		gl_pannello_verticale.setVerticalGroup(
+			gl_pannello_verticale.createParallelGroup(vAlignment)
+				.addComponent(pagina, vMinSize, pagina.getAltezzaPagina(), vMaxSize)
+		);
+		
+		//reloadPages(pagina);
 		pagina.setVisible(true);
 	}
 
@@ -536,11 +538,12 @@ public class Home {
 		//TODO:aggiungere parametri del documento
 		documento = new DocumentoPanel(null, doc);
 		Home.pulsantiNormali();
-		if (altezzaDinamica) {
+		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
+		/*if (altezzaDinamica) {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
 		} else {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
-		}
+		}*/
 		documento.setPDF(doc.getPath());
 	}
 	

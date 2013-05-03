@@ -18,6 +18,7 @@ import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class HomePage extends Pagina {
+	private JPanel panel;
 	private JTextField textField;
 	private final static JPanel panel_1 = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
@@ -46,7 +47,7 @@ public class HomePage extends Pagina {
 	public HomePage() {
 		setLayout(null);
 		
-		final JPanel panel = new JPanel();
+		panel = new JPanel();
 		
 		panel.setBounds(0, 0, 1008, 429);
 		panel.setLayout(null);
@@ -219,5 +220,16 @@ public class HomePage extends Pagina {
 		JPanel panel = new JPanel();
 		panel.add(arg0);
 		return panel;
+	}
+
+	@Override
+	public void reload(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
 	}
 }

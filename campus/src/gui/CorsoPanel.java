@@ -208,26 +208,25 @@ public class CorsoPanel extends Pagina {
 		contenuto_pagina.setBackground(Color.WHITE);
 		doc.add(contenuto_pagina);
 		addDocumenti(corso);
-		//Home.setAltezzaDinamica(1000);
 	}
 	
 	public void addDocumenti(Corso corso){
 		Documento[] docs = corso.documentoCorso.toArray(); 
-		int col = 0;
-		for(int i = 0;i < docs.length; i++){
-			final Documento d = docs[i];
-			final RiquadroDoc documento = new RiquadroDoc(d,false);//createFavourite(docs.get(i));
-			col = (int) Math.floor(i/2);
-			int row = i%2;
-			documento.setLocation((32+(485*row)), (230*col));
-			contenuto_pagina.add(documento);
-		}
-		int altezza = 322+(230*col);
+		int colmax = (int) Math.ceil((float)docs.length/2);
+		int altezza = 230*colmax;
+		
 		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
 		panel.setSize(panel.getWidth(), panel.getHeight()+altezza);
 		doc.setSize(doc.getWidth(), panel.getHeight()+altezza);
-		Home.setAltezzaDinamica(panel.getHeight());
-		altezzaPagina = panel.getHeight();
+		
+		for(int i = 0;i < docs.length; i++){
+			int col = (int) Math.floor(i/2);
+			int row = i%2;
+			final Documento d = docs[i];
+			final RiquadroDoc documento = new RiquadroDoc(d,false);
+			documento.setLocation((32+(485*row)), (230*col));
+			contenuto_pagina.add(documento);
+		}
 	}
 	
 	private void adjustDocs(Corso corso){
@@ -237,12 +236,13 @@ public class CorsoPanel extends Pagina {
 		addDocumenti(corso);		
 	}
 	
-	protected void reload(Corso corso) {
-		adjustDocs(corso);
+	@Override
+	public void reload(Object corso) {
+		adjustDocs((Corso)corso);
 	}
 	
 	public int getAltezzaPagina(){
-		return this.altezzaPagina;
+		return panel.getHeight();
 	}
 
 	@Override
@@ -250,4 +250,6 @@ public class CorsoPanel extends Pagina {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

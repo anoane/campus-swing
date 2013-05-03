@@ -29,13 +29,14 @@ public class DocumentoPanel extends Pagina {
 	private PDFViewer pdfDoc = new PDFViewer(true);
 	boolean suggestOpened = false;
 	private JPanel riquadrodx;
+	private JPanel panel ;
 	
 	
 	public DocumentoPanel(String pdfPath, Documento d) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(new Rectangle(0, 0, 1008, 585));
 		add(panel);
@@ -284,5 +285,16 @@ public class DocumentoPanel extends Pagina {
 	public void reload() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void reload(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
 	}
 }

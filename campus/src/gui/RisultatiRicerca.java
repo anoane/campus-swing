@@ -3,72 +3,44 @@ package gui;
 
 import gui.riquadri.RiquadroDoc;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.AbstractListModel;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import org.orm.PersistentException;
-
+import javax.swing.GroupLayout.Alignment;
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
-import modello_di_dominio.Utente;
 
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
+import org.orm.PersistentException;
+
 
 import controller.ControllerCorso;
 import controller.ControllerDocumento;
-import controller.ControllerUniversita;
-import controller.ControllerUtente;
-
 import controller.ControllerFacolta;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
+import controller.ControllerUniversita;
 
 //TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 
@@ -77,7 +49,6 @@ public class RisultatiRicerca extends Pagina  {
 	private static JPanel scegli_fac = new JPanel();
 	private static JPanel scegli_corso = new JPanel();
 	private static JPanel scegli_univ = new JPanel();
-	private static JPanel panel_1 = new JPanel();
 	final static JList list = new JList();
 	final static JList list_1 = new JList();
 	final static JList list_2 = new JList();
@@ -115,6 +86,10 @@ public class RisultatiRicerca extends Pagina  {
 	private final JSeparator separator_6 = new JSeparator();
 	private final JPanel panel_ricerca_guidata = new JPanel();
 	private final JPanel panel_risultati = new JPanel();
+	private final JPanel panel_1 = new JPanel();
+	private final JPanel panel_2 = new JPanel();
+	private final JScrollPane scrollPane = new JScrollPane(panel_1);
+	
 	
 	
 	public void resetPanel(String ricerca) {		
@@ -145,7 +120,7 @@ public class RisultatiRicerca extends Pagina  {
 	public RisultatiRicerca() {
 		setLayout(null);
 
-		panel.setBounds(0, 0, 1008, 734);
+		panel.setBounds(0, 0, 1008, 647);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
@@ -159,6 +134,13 @@ public class RisultatiRicerca extends Pagina  {
 						panel.getWidth(),
 						panel.getHeight()+dimensione_fill_home_bottom);
 				//separator_1.setBounds(765, 48, 1, dimensione_fill_home_bottom+192);
+				panel_risultati.setBounds(0, 0,
+						panel_risultati.getWidth(),
+						dimensione_fill_home_bottom+20);
+				scrollPane.setBounds(scrollPane.getX(),scrollPane.getY(),scrollPane.getWidth(),panel_risultati.getHeight()-41);
+				panel_ricerca_guidata.setBounds(0, dimensione_fill_home_bottom+20,
+						panel_ricerca_guidata.getWidth(),
+						panel_ricerca_guidata.getHeight());
 			}
 
 			@Override
@@ -173,8 +155,10 @@ public class RisultatiRicerca extends Pagina  {
 			public void componentShown(ComponentEvent arg0) {
 			}
 		});
+		
+		
 		panel_risultati.setBackground(Color.WHITE);
-		panel_risultati.setBounds(0, 0, 1008, 361);
+		panel_risultati.setBounds(0, 0, 1008, 401);
 		
 		panel.add(panel_risultati);
 		panel_risultati.setLayout(null);
@@ -229,10 +213,36 @@ public class RisultatiRicerca extends Pagina  {
 		
 		panel_risultati.add(separator_6);
 		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(56, 81, 525, 300);
 		
-		panel_1.setBounds(10, 51, 952, 257);
-		panel_risultati.add(panel_1);
-		panel_1.setLayout(null);
+		scrollPane.setBorder(new LineBorder(new Color(27, 50, 128)));
+		
+		//scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		//scrollPane.setBorder(new LineBorder());
+		//.setForeground(new Color(27, 50, 128));
+		
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setLayout(null);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1007, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(22, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 841, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(223, Short.MAX_VALUE))
+		);
+		panel_1.setLayout(gl_panel_1);
+		scrollPane.setBounds(0, 41, 1008, 360);
+		panel_risultati.add(scrollPane, BorderLayout.CENTER);
+		
+		
 		panel_ricerca_guidata.setBackground(Color.WHITE);
 		panel_ricerca_guidata.setBounds(0, 400, 1008, 247);
 		
@@ -363,7 +373,8 @@ public class RisultatiRicerca extends Pagina  {
 							}
 						});
 						
-						JScrollPane pane_list_1 = new JScrollPane(list_1);  
+						JScrollPane pane_list_1 = new JScrollPane(list_1);
+						
 						pane_list_1.setBounds(10, 40, 290, 130);
 						pane_list_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 						
@@ -409,7 +420,10 @@ public class RisultatiRicerca extends Pagina  {
 			col = (int) Math.floor(i/2);
 			int row = i%2;
 			documento.setLocation((32+(485*row)), (230*col));
-			panel_1.add(documento);
+			
+			
+			panel_2.add(documento);
+			
 			//System.out.println("dd");
 			/*
 			documento.getRimuovi().addMouseListener(new MouseAdapter() {
@@ -422,17 +436,21 @@ public class RisultatiRicerca extends Pagina  {
 				});
 			*/
 		}
-		int altezza = 322+(230*col);
-		panel_1.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
-		panel.setSize(panel.getWidth(), altezza);
+		int altezza = 5000+(230*col);
+		//panel_1.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
+		panel_2.setSize(panel_2.getWidth(), altezza);
+		//panel_1.setSize(panel_2.getWidth(), altezza);
+
+		//panel_1.setSize(panel_1.getWidth(), altezza);
+		//System.out.println(panel_2.getHeight());
 		//panel_risultati.setSize(panel_risultati.getWidth(), altezza);
 		//Home.setAltezzaDinamica(altezza);
 	}
 	
 	private void adjustDocs(final ArrayList<Documento> docs){
-		panel_1.removeAll();
-		panel_1.validate();
-		panel_1.repaint();
+		panel_2.removeAll();
+		panel_2.validate();
+		panel_2.repaint();
 		addDocumenti(docs);	
 	}
 
@@ -532,5 +550,16 @@ public class RisultatiRicerca extends Pagina  {
 	public void reload() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void reload(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
 	}
 }

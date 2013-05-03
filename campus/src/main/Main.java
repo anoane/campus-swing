@@ -69,12 +69,10 @@ public class Main {
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(2));
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(3));
 					u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(4));
-					*/
 					
-					ControllerUtente u = ControllerUtente.getInstance();
-					Utente utente = u.getUtente(1);
-					ControllerCorso c = ControllerCorso.getInstance();
-					u.aggiungiCorsoSeguito(utente, c.getCorso(1));
+					u.aggiungiCorsoSeguito(utente,corso);
+					*/
+
 
 					Home window = new Home();
 					window.getFrame().setVisible(true);

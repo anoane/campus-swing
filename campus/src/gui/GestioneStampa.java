@@ -12,11 +12,12 @@ public class GestioneStampa extends Pagina {
 	 * 
 	 */
 	private static final long serialVersionUID = 2221792807472367352L;
-
+	private JPanel panel = new JPanel();
+	
 	public GestioneStampa() {
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, 1008, 800);
@@ -38,6 +39,17 @@ public class GestioneStampa extends Pagina {
 	public void reload() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void reload(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
 	}
 
 }

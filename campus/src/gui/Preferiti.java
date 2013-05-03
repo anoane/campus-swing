@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
@@ -41,7 +42,7 @@ public class Preferiti extends Pagina {
 		Utente u = ControllerUtente.getInstance().getUtente(1);
 		
 		if(u == null){
-			return null;
+			return new ArrayList<Documento>();
 		}
 		
 		return new ArrayList<Documento>(u.documentiPreferiti.getCollection());
@@ -82,17 +83,16 @@ public class Preferiti extends Pagina {
 	 * @param docs
 	 */
 	public void addFavourites(final ArrayList<Documento> docs){
-		
-		if(docs == null){
-			return ;
-		}
-		
-		int col = 0;
+		int colmax = (int) Math.ceil((float)docs.size()/2);
+		int altezza = 230*colmax;
+		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
+		panel.setSize(panel.getWidth(), altezza+71);
+
 		for(int i = 0;i < docs.size();i++){
-			final Documento d = docs.get(i);
-			final RiquadroPref preferito = new RiquadroPref(d);//createFavourite(docs.get(i));
-			col = (int) Math.floor(i/2);
 			int row = i%2;
+			int col = (int) Math.floor(i/2);
+			final Documento d = docs.get(i);
+			final RiquadroPref preferito = new RiquadroPref(d);
 			preferito.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(preferito);
 			
@@ -104,10 +104,6 @@ public class Preferiti extends Pagina {
 					adjustDocs(docs);}
 				});
 		}
-		int altezza = 322+(230*col);
-		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
-		panel.setSize(panel.getWidth(), altezza);
-		Home.setAltezzaDinamica(altezza);
 	}
 	
 	private void adjustDocs(final ArrayList<Documento> docs){
@@ -115,5 +111,16 @@ public class Preferiti extends Pagina {
 		contenuto_pagina.validate();
 		contenuto_pagina.repaint();
 		addFavourites(docs);
+	}
+
+	@Override
+	public void reload(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
 	}
 }

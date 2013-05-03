@@ -48,7 +48,7 @@ public class CorsiSeguiti extends Pagina {
 		Utente u = ControllerUtente.getInstance().getUtente(1);
 
 		if(u == null){
-			return null;
+			return new ArrayList<Corso>();
 		}
 
 		return new ArrayList<Corso>(u.corso.getCollection());
@@ -60,17 +60,17 @@ public class CorsiSeguiti extends Pagina {
 	 * @param course
 	 */
 	public void addCorsi(final ArrayList<Corso> course){
-		
-		if(course == null){
-			return ;
-		}
-		
-		int col = 0;
+		int colmax = (int) Math.ceil((float)course.size()/2);
+		int altezza = 230*colmax;
+		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
+		panel.setSize(panel.getWidth(), altezza+71);
+
 		for(int i = 0; i < course.size(); i++){
-			final Corso c = course.get(i);
-			final RiquadroCorso corsi = new RiquadroCorso(c);//createFavourite(docs.get(i));
-			col = (int) Math.floor(i/2);
 			int row = i%2;
+			int col = (int) Math.floor(i/2);
+			final Corso c = course.get(i);
+			final RiquadroCorso corsi = new RiquadroCorso(c);
+
 			corsi.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(corsi);
 			corsi.getRimuovi().addMouseListener(new MouseAdapter() {
@@ -81,10 +81,6 @@ public class CorsiSeguiti extends Pagina {
 					adjustCourse(course);}
 				});
 		}
-		int altezza = 322+(230*col);
-		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
-		panel.setSize(panel.getWidth(), altezza);
-		Home.setAltezzaDinamica(altezza);
 	}
 	/**
 	 * 
@@ -128,6 +124,15 @@ public class CorsiSeguiti extends Pagina {
 		contenuto_pagina.setBackground(Color.WHITE);
 		panel.add(contenuto_pagina);
 		
+	}
+	@Override
+	public void reload(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
 	}
 
 }

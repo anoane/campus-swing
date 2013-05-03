@@ -1359,4 +1359,15 @@ public class CaricaMateriale extends Pagina  {
 		listaCorsi = ControllerCorso.getInstance().getAllCorsi(); 
 		listaCorsiByFac = null; 
 	}
+
+	@Override
+	public void reload(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getAltezzaPagina() {
+		return panel.getHeight();
+	}
 }
