@@ -124,7 +124,7 @@ public class CaricaMateriale extends Pagina  {
 	public CaricaMateriale() {
 		setLayout(null);
 
-		panel.setBounds(0, 0, 1008, 542);
+		panel.setBounds(0, 0, 1008, 429);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
@@ -1330,6 +1330,8 @@ public class CaricaMateriale extends Pagina  {
 
 	@Override
 	public void reload() {
+		panel.setBounds(0, 0, 1008, 429);
+		
 		btnScegliFile.setText("Scegli file...");
 		btnScegliFile.setBackground(new Color(240,240,240));
 		textField.setText("");

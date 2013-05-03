@@ -38,6 +38,8 @@ public class HomePage extends Pagina {
 	}
 	
 	public void reload() {
+		panel.setBounds(0, 0, 1008, 429);
+		
 		label_6.setText(getHomeBottomText());
 	}
 
