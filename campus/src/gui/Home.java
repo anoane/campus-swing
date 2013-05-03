@@ -374,8 +374,42 @@ public class Home {
 	}
 	
 
-	protected static void loadPages(Pagina pagina, Alignment hAlignment, int hMinSize, int hPrefSize, int hMaxSize, Alignment vAlignment, int vMinSize, int vPrefSize, int vMaxSize) {
+	protected static void loadPages(final Pagina pagina, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, int vPrefSize, final int vMaxSize) {
 		pagina.reload();
+		if(pagina.getClass().getName() == "gui.MieiDocumenti" || pagina.getClass().getName() == "gui.Preferiti" || pagina.getClass().getName() == "gui.CorsiSeguiti")
+			pagina.getComponents()[0].addComponentListener(new ComponentListener() {
+			
+				@Override
+				public void componentShown(ComponentEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void componentResized(ComponentEvent e) {
+					gl_pannello_verticale.setHorizontalGroup(
+							gl_pannello_verticale.createParallelGroup(hAlignment)
+								.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
+						);
+						gl_pannello_verticale.setVerticalGroup(
+							gl_pannello_verticale.createParallelGroup(vAlignment)
+								.addComponent(pagina, vMinSize, pagina.getAltezzaPagina(), vMaxSize)
+						);
+					
+				}
+				
+				@Override
+				public void componentMoved(ComponentEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void componentHidden(ComponentEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
 		gl_pannello_verticale.setHorizontalGroup(
 			gl_pannello_verticale.createParallelGroup(hAlignment)
 				.addComponent(pagina, hMinSize, hPrefSize, hMaxSize)
