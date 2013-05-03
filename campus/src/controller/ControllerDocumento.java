@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TreeMap;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
@@ -118,11 +119,16 @@ public class ControllerDocumento extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		try {
-			Documento[] temp = documentoDAO.listDocumentoByQuery(null, null);
-			ArrayList<Documento> docs = new ArrayList<Documento>();
+			TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
+			Documento[] temp = documentoDAO.listDocumentoByQuery("Nome='"+ricerca+"'", null);
 			for (int i=0; temp.length > i; i++) {
-				docs.add(temp[i]);
+				treedocs.put(temp[i].getID(), temp[i]);
 			}
+			temp = documentoDAO.listDocumentoByQuery("Descrizione='"+ricerca+"'", null);
+			for (int i=0; temp.length > i; i++) {
+				treedocs.put(temp[i].getID(), temp[i]);
+			}
+			ArrayList<Documento> docs = new ArrayList<Documento>(treedocs.values());
 			return docs;
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block

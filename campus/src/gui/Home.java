@@ -266,7 +266,7 @@ public class Home {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (getRicercaTestuale().getText().equals(" Cerca")) {
-					getRicercaTestuale().setText(" ");
+					getRicercaTestuale().setText("");
 				}
 			}
 		});
