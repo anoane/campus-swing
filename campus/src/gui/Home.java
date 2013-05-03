@@ -260,22 +260,22 @@ public class Home {
 		pannello_interno_ricerca.setBackground(BLUE_SEARCH_BAR);
 		barra_ricerca.add(pannello_interno_ricerca);
 		pannello_interno_ricerca.setLayout(null);
-		ricerca_testuale.setBounds(5, 5, 410, 28);
-		pannello_interno_ricerca.add(ricerca_testuale);
-		ricerca_testuale.addMouseListener(new MouseAdapter() {
+		getRicercaTestuale().setBounds(5, 5, 410, 28);
+		pannello_interno_ricerca.add(getRicercaTestuale());
+		getRicercaTestuale().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (ricerca_testuale.getText().equals(" Cerca")) {
-					ricerca_testuale.setText(" ");
+				if (getRicercaTestuale().getText().equals(" Cerca")) {
+					getRicercaTestuale().setText(" ");
 				}
 			}
 		});
-		ricerca_testuale.setText(" Cerca");
-		ricerca_testuale.setFont(new Font("Arial", Font.BOLD, 14));
-		ricerca_testuale.setBackground(Home.BLUE_SEARCH_BAR);
-		ricerca_testuale.setForeground(Color.WHITE);
-		ricerca_testuale.setBorder(new LineBorder(Color.WHITE, 2));
-		ricerca_testuale.setColumns(10);
+		getRicercaTestuale().setText(" Cerca");
+		getRicercaTestuale().setFont(new Font("Arial", Font.BOLD, 14));
+		getRicercaTestuale().setBackground(Home.BLUE_SEARCH_BAR);
+		getRicercaTestuale().setForeground(Color.WHITE);
+		getRicercaTestuale().setBorder(new LineBorder(Color.WHITE, 2));
+		getRicercaTestuale().setColumns(10);
 		cerca.setBounds(420, 5, 28, 28);
 		pannello_interno_ricerca.add(cerca);
 		cerca.setIcon(new ImageIcon("./newimage/search.png"));
@@ -298,7 +298,7 @@ public class Home {
 				System.out.println("Ricerca in corso");
 				Home.resetMenuColors();
 				Home.resetPagina();
-				Home.openRisultatiRicerca(ricerca_testuale.getText(),false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+				Home.openRisultatiRicerca(getRicercaTestuale().getText(),false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 			}
 		});
 		carica_materiale.addMouseListener(new MouseAdapter() {
@@ -556,5 +556,9 @@ public class Home {
 		} else {
 			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina()/*585*/, GroupLayout.PREFERRED_SIZE);
 		}
+	}
+
+	public static JTextField getRicercaTestuale() {
+		return ricerca_testuale;
 	}
 }
