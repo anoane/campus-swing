@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
@@ -40,6 +41,8 @@ import controller.ControllerDocumento;
 import controller.ControllerFacolta;
 import controller.ControllerUniversita;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 //TODO:filtro facolta
 
@@ -92,6 +95,7 @@ public class RisultatiRicerca extends Pagina {
 	private final JScrollPane scrollPane = new JScrollPane(panel_1);
 	private final GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 	private final JSeparator separator_8 = new JSeparator();
+	private boolean is_ricerca_guidata_open = false;
 
 	public void resetPanel(String ricerca) {
 		panel.setBounds(0, 0, 1008, 429);
@@ -145,16 +149,30 @@ public class RisultatiRicerca extends Pagina {
 			public void componentResized(ComponentEvent e) {
 				int dimensione_fill_home_bottom = (panel.getParent()
 						.getHeight() - Home.MIN_DIMENSION_Y + 300);
-				panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
-						panel.getHeight() + dimensione_fill_home_bottom);
-				panel_risultati.setBounds(0, 0, panel_risultati.getWidth(),
-						dimensione_fill_home_bottom + 20);
-				scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
-						scrollPane.getWidth(), panel_risultati.getHeight() - 75);
-				panel_ricerca_guidata.setBounds(0,
-						dimensione_fill_home_bottom + 20,
-						panel_ricerca_guidata.getWidth(),
-						panel_ricerca_guidata.getHeight());
+				if (is_ricerca_guidata_open) {
+					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
+							panel.getHeight() + dimensione_fill_home_bottom);
+					panel_risultati.setBounds(0, 0, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom + 20);
+					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
+							scrollPane.getWidth(), panel_risultati.getHeight() - 75);
+					panel_ricerca_guidata.setBounds(0,
+							dimensione_fill_home_bottom + 20,
+							panel_ricerca_guidata.getWidth(),
+							panel_ricerca_guidata.getHeight());
+				} else {
+					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
+							panel.getHeight() + dimensione_fill_home_bottom );
+					panel_risultati.setBounds(0, 0, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom + 20 + 200);
+					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
+							scrollPane.getWidth(), panel_risultati.getHeight() - 75);
+					panel_ricerca_guidata.setBounds(0,
+							dimensione_fill_home_bottom + 20 + 200,
+							panel_ricerca_guidata.getWidth(),
+							panel_ricerca_guidata.getHeight());
+				}
+
 			}
 
 			@Override
@@ -232,7 +250,7 @@ public class RisultatiRicerca extends Pagina {
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setLayout(null);
 		panel_1.setLayout(gl_panel_1);
-		scrollPane.setBounds(0, 75, 1008, 111);
+		scrollPane.setBounds(0, 75, 1008, 313);
 		panel_risultati.add(scrollPane, BorderLayout.CENTER);
 		
 		JLabel lblFiltra = new JLabel("Filtra:");
@@ -258,7 +276,7 @@ public class RisultatiRicerca extends Pagina {
 		panel_risultati.add(separator_8);
 
 		panel_ricerca_guidata.setBackground(Color.WHITE);
-		panel_ricerca_guidata.setBounds(0, 187, 1008, 247);
+		panel_ricerca_guidata.setBounds(0, 388, 1008, 247);
 
 		panel.add(panel_ricerca_guidata);
 		panel_ricerca_guidata.setLayout(null);
@@ -400,6 +418,16 @@ public class RisultatiRicerca extends Pagina {
 		scegli_corso.add(separator_3);
 		
 		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (is_ricerca_guidata_open) {
+					is_ricerca_guidata_open = false;
+				} else {
+					is_ricerca_guidata_open = true;
+				}
+				Home.forceResizeEvent();
+			}
+		});
 		btnNewButton.setBounds(688, 14, 89, 23);
 		panel_ricerca_guidata.add(btnNewButton);
 
@@ -567,4 +595,5 @@ public class RisultatiRicerca extends Pagina {
 	public void reload(Object o) {
 
 	}
+	
 }
