@@ -117,6 +117,7 @@ public class RisultatiRicerca extends Pagina {
 	public void resetPanel(String ricerca) {
 		panel.setBounds(0, 0, 1008, 429);
 		panel_risultati_bycorso.setVisible(false);
+		panel_risultati.setVisible(true);
 		resetListe();
 		isOverSelectionPanel = false;
 		indexUniv = -1;
