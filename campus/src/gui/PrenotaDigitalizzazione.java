@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.util.Vector;
 
 import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListDataListener;
 
 import modello_di_dominio.Corso;
 import controller.ControllerCorso;
@@ -32,7 +35,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel.setBounds(0, 0, 1008, 800);
 		add(panel);
 		
-		JLabel label = new JLabel("Prenotazione Libri");
+		JLabel label = new JLabel("Prenota Digitalizzazione");
 		label.setForeground(new Color(6, 121, 159));
 		label.setFont(new Font("Arial", Font.BOLD, 20));
 		label.setBounds(10, 10, 200, 25);
@@ -164,55 +167,99 @@ public class PrenotaDigitalizzazione extends Pagina {
 		 */
 		
 		final Corso[] corsi = ControllerCorso.getInstance().getAllCorsi();
-		JList lstCorsi = new JList();
+		JComboBox comboBoxCorsi = new JComboBox();
 		
-		lstCorsi.setModel(new AbstractListModel() {
+		//if(corsi.length != 0){
+		
+		comboBoxCorsi.setModel(new ComboBoxModel<String>() {
+			//TODO: Fix
+			private String selected = corsi[0].getNome();
+			
+			@Override
+			public void addListDataListener(ListDataListener arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public String getElementAt(int arg0) {
+				return corsi[arg0].getNome();
+			}
+
+			@Override
 			public int getSize() {
 				return corsi.length;
 			}
-			public Object getElementAt(int index) {
-				return corsi[index].getNome();
+
+			@Override
+			public void removeListDataListener(ListDataListener arg0) {
+				// TODO Auto-generated method stub
+				
 			}
+
+			@Override
+			public Object getSelectedItem() {
+				return selected;
+			}
+
+			@Override
+			public void setSelectedItem(Object anItem) {
+				selected = (String) anItem;
+			}
+			
 		});
+		
+
 		
 		GridBagConstraints gbc_lstCorso = new GridBagConstraints();
 		gbc_lstCorso.insets = new Insets(0, 0, 5, 0);
 		gbc_lstCorso.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lstCorso.gridx = 1;
 		gbc_lstCorso.gridy = 3;
-		formPanel.add(lstCorsi,gbc_lstCorso);
+		formPanel.add(comboBoxCorsi,gbc_lstCorso);
 		
 		/**
 		 *  Inserimento e caricamento corsi dal db
 		 */
 		
-		final String[] copisterie = new String[5];
+		String[] copisterie = new String[5];
 		copisterie[0] = "New Copy";
 		copisterie[1] = "Stella degli elfi";
 		copisterie[2] = "CopiaCopia";
 		copisterie[3] = "Dal magnaccia";
 		copisterie[4] = "Vieni da Zio";
 		
-		JList lstCopisteria = new JList();
-		lstCopisteria.setModel(new AbstractListModel() {
-			public int getSize() {
-				return copisterie.length;
-			}
-			public Object getElementAt(int index) {
-				return copisterie[index];
-			}
-		});
-		
-		JScrollPane scrollPaneCopist = new JScrollPane();
-		scrollPaneCopist.getViewport().setView(lstCopisteria);
-		//scrollPaneCopist.setVisibleRowCount(1);
+		JComboBox comboBoxCop = new JComboBox(copisterie);
+		comboBoxCop.setSelectedIndex(4);
 		
 		GridBagConstraints gbc_lstcopisteria = new GridBagConstraints();
 		gbc_lstcopisteria.insets = new Insets(0, 0, 5, 0);
 		gbc_lstcopisteria.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lstcopisteria.gridx = 1;
-		gbc_lstcopisteria.gridy = 4;
-		formPanel.add(scrollPaneCopist,gbc_lstcopisteria);
+		gbc_lstcopisteria.gridy = 5;
+		formPanel.add(comboBoxCop,gbc_lstcopisteria);
+		
+		/**
+		 * Citta dati
+		 */
+		
+		String[] citta = new String[5];
+		citta[0] = "Roma";
+		citta[1] = "Milano";
+		citta[2] = "Torino";
+		citta[3] = "Napoli";
+		citta[4] = "L'Aquila";
+		
+		JComboBox comboBoxCitta = new JComboBox(citta);
+		comboBoxCitta.setSelectedIndex(4);
+		
+		GridBagConstraints gbc_citta = new GridBagConstraints();
+		gbc_citta.insets = new Insets(0, 0, 5, 0);
+		gbc_citta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_citta.gridx = 1;
+		gbc_citta.gridy = 4;
+		formPanel.add(comboBoxCitta,gbc_citta);
+		
 		
 	}
 
