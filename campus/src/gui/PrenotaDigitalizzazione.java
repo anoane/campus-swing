@@ -23,7 +23,6 @@ import javax.swing.ScrollPaneConstants;
 
 public class PrenotaDigitalizzazione extends Pagina {
 	private JPanel panel;
-	
 	public PrenotaDigitalizzazione() {
 		setLayout(null);
 		
