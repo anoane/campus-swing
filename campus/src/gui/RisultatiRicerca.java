@@ -217,6 +217,7 @@ public class RisultatiRicerca extends Pagina  {
 		
 		scrollPane.setBorder(new LineBorder(new Color(27, 50, 128)));
 		
+		
 		//scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		//scrollPane.setBorder(new LineBorder());
 		//.setForeground(new Color(27, 50, 128));
@@ -241,7 +242,6 @@ public class RisultatiRicerca extends Pagina  {
 		panel_1.setLayout(gl_panel_1);
 		scrollPane.setBounds(0, 41, 1008, 360);
 		panel_risultati.add(scrollPane, BorderLayout.CENTER);
-		
 		
 		panel_ricerca_guidata.setBackground(Color.WHITE);
 		panel_ricerca_guidata.setBounds(0, 400, 1008, 247);
