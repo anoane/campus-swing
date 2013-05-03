@@ -39,6 +39,7 @@ import controller.ControllerCorso;
 import controller.ControllerDocumento;
 import controller.ControllerFacolta;
 import controller.ControllerUniversita;
+import javax.swing.JButton;
 
 //TODO:filtro facolta
 
@@ -76,7 +77,6 @@ public class RisultatiRicerca extends Pagina {
 	private final JSeparator separator_2 = new JSeparator();
 	private final JLabel lblCorso = new JLabel("Corso");
 	private final JSeparator separator_3 = new JSeparator();
-	private final JSeparator separator_4 = new JSeparator();
 	private final JLabel lblRisultatiTrovatiPer = new JLabel(
 			"Risultati trovati per:");
 	private final JLabel lblOrdinaPer = new JLabel("Ordina per:");
@@ -91,6 +91,7 @@ public class RisultatiRicerca extends Pagina {
 	private final JPanel panel_2 = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane(panel_1);
 	private final GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+	private final JSeparator separator_8 = new JSeparator();
 
 	public void resetPanel(String ricerca) {
 		panel.setBounds(0, 0, 1008, 429);
@@ -111,7 +112,7 @@ public class RisultatiRicerca extends Pagina {
 				.getAllFacoltaByUniv(-1);
 		listaCorsi = ControllerCorso.getInstance().getAllCorsi();
 		listaCorsiByFac = null;
-		lblNewLabel.setText(ricerca);
+		lblNewLabel.setText("'"+ricerca+"'");
 		reloadUniv();
 		adjustDocs(ControllerDocumento.getInstance().getListAllDocumenti());
 	}
@@ -120,6 +121,18 @@ public class RisultatiRicerca extends Pagina {
 	 * Create the panel.
 	 */
 	public RisultatiRicerca() {
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(22, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(223, Short.MAX_VALUE))
+		);
 		setLayout(null);
 
 		panel.setBounds(0, 0, 1008, 429);
@@ -137,7 +150,7 @@ public class RisultatiRicerca extends Pagina {
 				panel_risultati.setBounds(0, 0, panel_risultati.getWidth(),
 						dimensione_fill_home_bottom + 20);
 				scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
-						scrollPane.getWidth(), panel_risultati.getHeight() - 41);
+						scrollPane.getWidth(), panel_risultati.getHeight() - 75);
 				panel_ricerca_guidata.setBounds(0,
 						dimensione_fill_home_bottom + 20,
 						panel_ricerca_guidata.getWidth(),
@@ -164,13 +177,9 @@ public class RisultatiRicerca extends Pagina {
 		panel_risultati.setLayout(null);
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
-
-		lblNewLabel.setBounds(200, 10, 264, 25);
+		lblNewLabel.setForeground(new Color(6, 121, 159));
+		lblNewLabel.setBounds(208, 10, 790, 25);
 		panel_risultati.add(lblNewLabel);
-		separator_4.setForeground(new Color(27, 50, 128));
-		separator_4.setBounds(0, 41, 963, 2);
-
-		panel_risultati.add(separator_4);
 		lblRisultatiTrovatiPer.setForeground(new Color(6, 121, 159));
 		lblRisultatiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
 		lblRisultatiTrovatiPer.setBounds(10, 10, 188, 25);
@@ -178,7 +187,7 @@ public class RisultatiRicerca extends Pagina {
 		panel_risultati.add(lblRisultatiTrovatiPer);
 		lblOrdinaPer.setForeground(new Color(6, 121, 159));
 		lblOrdinaPer.setFont(new Font("Arial", Font.BOLD, 20));
-		lblOrdinaPer.setBounds(470, 10, 111, 25);
+		lblOrdinaPer.setBounds(505, 50, 111, 25);
 
 		panel_risultati.add(lblOrdinaPer);
 		lblIPiVotati.addMouseListener(new MouseAdapter() {
@@ -187,29 +196,29 @@ public class RisultatiRicerca extends Pagina {
 				// System.out.println("click");
 			}
 		});
-		lblIPiVotati.setForeground(new Color(6, 121, 159));
+		lblIPiVotati.setForeground(Color.BLACK);
 		lblIPiVotati.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIPiVotati.setBounds(585, 10, 99, 25);
+		lblIPiVotati.setBounds(620, 50, 99, 25);
 
 		panel_risultati.add(lblIPiVotati);
-		lblIPiRecenti.setForeground(new Color(6, 121, 159));
+		lblIPiRecenti.setForeground(Color.BLACK);
 		lblIPiRecenti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIPiRecenti.setBounds(705, 10, 111, 25);
+		lblIPiRecenti.setBounds(740, 50, 111, 25);
 
 		panel_risultati.add(lblIPiRecenti);
-		lblIPiScaricati.setForeground(new Color(6, 121, 159));
+		lblIPiScaricati.setForeground(Color.BLACK);
 		lblIPiScaricati.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIPiScaricati.setBounds(837, 10, 126, 25);
+		lblIPiScaricati.setBounds(872, 50, 126, 25);
 
 		panel_risultati.add(lblIPiScaricati);
 		separator_5.setOrientation(SwingConstants.VERTICAL);
 		separator_5.setForeground(new Color(27, 50, 128));
-		separator_5.setBounds(827, 14, 2, 28);
+		separator_5.setBounds(862, 47, 2, 28);
 
 		panel_risultati.add(separator_5);
 		separator_6.setOrientation(SwingConstants.VERTICAL);
 		separator_6.setForeground(new Color(27, 50, 128));
-		separator_6.setBounds(695, 14, 2, 28);
+		separator_6.setBounds(730, 47, 2, 28);
 
 		panel_risultati.add(separator_6);
 		panel_1.setBackground(Color.WHITE);
@@ -222,23 +231,31 @@ public class RisultatiRicerca extends Pagina {
 		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setLayout(null);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				gl_panel_1
-						.createSequentialGroup()
-						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE,
-								1008, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(22, Short.MAX_VALUE)));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				gl_panel_1
-						.createSequentialGroup()
-						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 0,
-								GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(223, Short.MAX_VALUE)));
 		panel_1.setLayout(gl_panel_1);
-		scrollPane.setBounds(0, 41, 1008, 145);
+		scrollPane.setBounds(0, 75, 1008, 111);
 		panel_risultati.add(scrollPane, BorderLayout.CENTER);
+		
+		JLabel lblFiltra = new JLabel("Filtra:");
+		lblFiltra.setForeground(new Color(6, 121, 159));
+		lblFiltra.setFont(new Font("Arial", Font.BOLD, 20));
+		lblFiltra.setBounds(10, 50, 55, 25);
+		panel_risultati.add(lblFiltra);
+		
+		JLabel lblDocumentiCreatiNella = new JLabel("Solo documenti creati nella mia facolt\u00E0");
+		lblDocumentiCreatiNella.setForeground(Color.BLACK);
+		lblDocumentiCreatiNella.setFont(new Font("Arial", Font.BOLD, 20));
+		lblDocumentiCreatiNella.setBounds(75, 50, 370, 25);
+		panel_risultati.add(lblDocumentiCreatiNella);
+		
+		JSeparator separator_7 = new JSeparator();
+		separator_7.setOrientation(SwingConstants.VERTICAL);
+		separator_7.setForeground(new Color(27, 50, 128));
+		separator_7.setBounds(472, 47, 2, 28);
+		panel_risultati.add(separator_7);
+		separator_8.setForeground(new Color(27, 50, 128));
+		separator_8.setBounds(0, 41, 170, 1);
+		
+		panel_risultati.add(separator_8);
 
 		panel_ricerca_guidata.setBackground(Color.WHITE);
 		panel_ricerca_guidata.setBounds(0, 187, 1008, 247);
@@ -381,6 +398,10 @@ public class RisultatiRicerca extends Pagina {
 		separator_3.setBounds(10, 28, 290, 1);
 
 		scegli_corso.add(separator_3);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(688, 14, 89, 23);
+		panel_ricerca_guidata.add(btnNewButton);
 
 	}
 
