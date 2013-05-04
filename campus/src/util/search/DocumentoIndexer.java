@@ -7,18 +7,11 @@ import java.io.IOException;
 
 import modello_di_dominio.Documento;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.IntField;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.IndexWriterConfig.OpenMode;
-import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.util.Version;
+import org.apache.lucene.index.Term;
 
 /**
  * FIXME:Da migliorare -> Work in progress o come direbbe il Fab WIP
@@ -65,9 +58,21 @@ public class DocumentoIndexer extends AbstractIndexer {
 		   
 	   }
    }
-
+   /**
+    * removeDoc
+    * Elimina un documento dall'indice
+    * @param doc
+    */
 	public void removeDoc(Documento doc) {
-		// TODO Auto-generated method stub
+		
+		Term t = new Term("ID",""+doc.getID());
+		
+		try {
+			iw.deleteDocuments(t);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 
 	}
 	

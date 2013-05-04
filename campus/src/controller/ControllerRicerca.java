@@ -174,11 +174,15 @@ public class ControllerRicerca extends AbstractController {
 	public void commitIndexingDocumento(){
 		docIndex.commit();
 	}
-	
+	/**
+	 * 
+	 */
 	public void commitIndexingGeneral(){
 		genIndex.commit();
 	}
-	
+	/**
+	 * 
+	 */
 	public void commitIndexingCorso(){
 		corIndex.commit();
 	}

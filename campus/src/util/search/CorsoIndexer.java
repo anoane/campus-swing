@@ -6,11 +6,13 @@ package util.search;
 import java.io.IOException;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.Documento;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.IntField;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.Term;
 
 /**
  * @author mw
@@ -58,8 +60,16 @@ public class CorsoIndexer extends AbstractIndexer {
 	 * 
 	 * @param cor
 	 */
-	public void removeCorso(Corso cor){
-		//TODO:implementare
+	public void removeCorso(Corso cor) {
+		
+		Term t = new Term("ID",""+cor.getID());
+		
+		try {
+			iw.deleteDocuments(t);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
 	}
-	
 }
