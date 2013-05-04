@@ -118,13 +118,17 @@ public class ControllerDocumento extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
-		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca);//documentoDAO.listDocumentoByQuery("Nome='"+ricerca+"'", null);
-		for (int i=0; temp.length > i; i++) {
-			treedocs.put(temp[i].getID(), temp[i]);
+		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca);
+		if (temp != null) {
+			for (int i=0; temp.length > i; i++) {
+				treedocs.put(temp[i].getID(), temp[i]);
+			}
 		}
 		temp = ControllerRicerca.getInstance().cercaDocumento("Descrizione", ricerca);
-		for (int i=0; temp.length > i; i++) {
-			treedocs.put(temp[i].getID(), temp[i]);
+		if (temp != null) {
+			for (int i=0; temp.length > i; i++) {
+				treedocs.put(temp[i].getID(), temp[i]);
+			}
 		}
 		ArrayList<Documento> docs = new ArrayList<Documento>(treedocs.values());
 		return docs;
