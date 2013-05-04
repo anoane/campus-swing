@@ -23,19 +23,28 @@ import org.apache.lucene.util.Version;
 import util.search.DocumentoIndexer;
 
 /**
- * @author mw
+ * @author Igor
  *
  */
 public class ControllerRicerca extends AbstractController {
-	
+	/**
+	 * 
+	 */
 	private static ControllerRicerca instance;
-	
+	/**
+	 * 
+	 */
 	private DocumentoIndexer docIndex = new DocumentoIndexer();
-	
+	/**
+	 * 
+	 */
 	protected ControllerRicerca() {
 		super();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public static ControllerRicerca getInstance(){
 		if(ControllerRicerca.instance == null)
 			ControllerRicerca.instance = new ControllerRicerca();
@@ -53,7 +62,8 @@ public class ControllerRicerca extends AbstractController {
 	 * 
 	 */
 	public Documento[] cercaDocumento(String field,String stQuery) {
-		IndexReader ir;
+		IndexReader ir = null;
+		Documento[] docs = null;
 		
 		try {
 			
@@ -67,11 +77,19 @@ public class ControllerRicerca extends AbstractController {
 			TopDocs result = is.search(query, null,5);
 			ScoreDoc[] hits = result.scoreDocs;
 			
-			/**
-			 * Per prendere un singolo documento ...
-			 * 
-			 */
-			//Document doc = is.doc(hits[0].doc);
+			docs = new Documento[hits.length];
+			
+			for(int i= 0; i < hits.length;i++){
+				/**
+				 * Per prendere un singolo documento ...
+				 * 
+				 */
+				Document doc = is.doc(hits[0].doc);
+				docs[i] = ControllerDocumento.getInstance().getDocumento(Integer.parseInt(doc.get("id")));
+				
+			}
+			
+
 			
 			/**
 			 * Da questo documento ho tutte le informazioni
@@ -88,6 +106,6 @@ public class ControllerRicerca extends AbstractController {
 			
 		}
 		
-		return null;
+		return docs;
 	}
 }

@@ -2,23 +2,14 @@ package main;
 import gui.Home;
 
 import java.awt.EventQueue;
-import java.util.Date;
+import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
-import modello_di_dominio.Corso;
-import modello_di_dominio.DAOFactory;
-import modello_di_dominio.Facolta;
-import modello_di_dominio.Universita;
-import modello_di_dominio.Utente;
+import modello_di_dominio.Documento;
+import controller.ControllerDocumento;
 //import modello_di_dominio.dao.AppuntiDAO;
 //import controller.ControllerAppunti;
-import controller.ControllerCorso;
-import controller.ControllerDocumento;
-import controller.ControllerFacolta;
 //import controller.ControllerSlide;
-import controller.ControllerUniversita;
-import controller.ControllerUtente;
+import controller.ControllerRicerca;
 
 
 public class Main {
@@ -86,7 +77,22 @@ public class Main {
 		});
 		
 
-		
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run(){
+				ArrayList<Documento> docs = ControllerDocumento.getInstance().getListAllDocumenti();
+				
+				ControllerRicerca cr = ControllerRicerca.getInstance();
+				
+				for(Documento doc : docs){
+					
+					cr.aggiungiDocumento(doc);
+					
+				}
+				
+				cr.cercaDocumento("nome", "nome:sis");
+			}
+		});
 		
 	}
 
