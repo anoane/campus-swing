@@ -286,28 +286,28 @@ public class ControllerDocumento extends AbstractController{
 		}
 		if (sorting.matches("nomeDOWN")) {
 			Collections.sort(doclist, nome);
-			Collections.reverse(docs);
+			Collections.reverse(doclist);
 		}
 		if (sorting.matches("timestampUP")) {
 			Collections.sort(doclist, timestamp);
 		}
 		if (sorting.matches("timestampDOWN")) {
 			Collections.sort(doclist, timestamp);
-			Collections.reverse(docs);
+			Collections.reverse(doclist);
 		}
 		if (sorting.matches("votoUP")) {
 			Collections.sort(doclist, voto);
 		}
 		if (sorting.matches("votoDOWN")) {
 			Collections.sort(doclist, voto);
-			Collections.reverse(docs);
+			Collections.reverse(doclist);
 		}
 		if (sorting.matches("downloadUP")) {
 			Collections.sort(doclist, download);
 		}
 		if (sorting.matches("downloadDOWN")) {
 			Collections.sort(doclist, download);
-			Collections.reverse(docs);
+			Collections.reverse(doclist);
 		}
 		
 		ArrayList<Documento> newdoclist = new ArrayList<Documento>(doclist);
