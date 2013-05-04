@@ -129,6 +129,17 @@ public class ControllerRicerca extends AbstractController {
 	 * @return
 	 */
 	public Corso[] cercaCorso(String field,String stQuery){
+		//TODO: Da implementare
+		return null;
+	}
+	/**
+	 * ricercaGenerica
+	 * @param field
+	 * @param stQuery
+	 * @return
+	 */
+	public Object[] ricercaGenerica(String field,String stQuery){
+		//TODO: Da implementare
 		return null;
 	}
 	/**
@@ -136,5 +147,17 @@ public class ControllerRicerca extends AbstractController {
 	 */
 	public void closeIndexingDocumento(){
 		docIndex.closeWriter();
+	}
+	/**
+	 * 
+	 */
+	public void closeIndexingCorso(){
+		corIndex.closeWriter();
+	}
+	/**
+	 * 
+	 */
+	public void closeIndexingGeneral(){
+		genIndex.closeWriter();
 	}
 }
