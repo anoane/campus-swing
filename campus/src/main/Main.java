@@ -90,7 +90,12 @@ public class Main {
 					
 				}
 				
-				cr.cercaDocumento("nome", "nome:sis");
+				cr.closeIndexingDocumento();
+				
+				Documento[] result = cr.cercaDocumento("nome", "nome:int*");
+				for(Documento doc : result){
+					System.out.println(doc.getNome());
+				}
 			}
 		});
 		

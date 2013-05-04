@@ -44,4 +44,17 @@ public abstract class AbstractIndexer {
     public Directory getDir(){
     	return dir;
     }
+    
+    /**
+     * Close Writer
+     */
+    public void closeWriter(){
+ 	   try {
+ 		iw.forceMerge(1); 
+ 		iw.close();
+ 	   }catch (IOException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 	   }
+    }
 }

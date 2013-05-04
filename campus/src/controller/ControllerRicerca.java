@@ -5,6 +5,7 @@ package controller;
 
 import java.io.IOException;
 
+import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -20,7 +21,9 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.util.Version;
 
+import util.search.CorsoIndexer;
 import util.search.DocumentoIndexer;
+import util.search.GeneralIndexer;
 
 /**
  * @author Igor
@@ -35,6 +38,8 @@ public class ControllerRicerca extends AbstractController {
 	 * 
 	 */
 	private DocumentoIndexer docIndex = new DocumentoIndexer();
+	private CorsoIndexer corIndex = new CorsoIndexer();
+	private GeneralIndexer genIndex = new GeneralIndexer();
 	/**
 	 * 
 	 */
@@ -56,6 +61,15 @@ public class ControllerRicerca extends AbstractController {
 	 */
 	public void aggiungiDocumento(Documento doc){
 		docIndex.addDoc(doc);
+		genIndex.addDocumento(doc);
+	}
+	/**
+	 * aggiungiCorso
+	 * @param cor
+	 */
+	public void aggiungiCorso(Corso cor){
+		corIndex.addCorso(cor);
+		genIndex.addCorso(cor);
 	}
 	/**
 	 * @throws ParseException 
@@ -98,7 +112,7 @@ public class ControllerRicerca extends AbstractController {
 			 */
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}catch ( ParseException e){
 			e.printStackTrace();
@@ -107,5 +121,20 @@ public class ControllerRicerca extends AbstractController {
 		}
 		
 		return docs;
+	}
+	/**
+	 * cercaCorso
+	 * @param field
+	 * @param stQuery
+	 * @return
+	 */
+	public Corso[] cercaCorso(String field,String stQuery){
+		return null;
+	}
+	/**
+	 * 
+	 */
+	public void closeIndexingDocumento(){
+		docIndex.closeWriter();
 	}
 }

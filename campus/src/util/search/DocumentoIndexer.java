@@ -55,20 +55,13 @@ public class DocumentoIndexer extends AbstractIndexer {
 		   d.add(new TextField("nome",doc.getNome(),Field.Store.YES));
 		   d.add(new IntField("id", doc.getID(), Field.Store.YES));
 		   
+		   iw.addDocument(d);
+		   
+	   } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	   }finally{
 		   
-	   }
-   }
-   /**
-    * Close Writer
-    */
-   public void closeWriter(){
-	   try {
-		iw.forceMerge(1); 
-		iw.close();
-	   }catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 	   }
    }
 }
