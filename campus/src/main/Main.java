@@ -90,7 +90,7 @@ public class Main {
 					
 				}
 				
-				
+				cr.removeDocumento(docs.get(docs.size()-1));
 				cr.commitIndexingDocumento();
 				
 				Documento[] result = cr.cercaDocumento("Descrizione", "Descrizione:App*");

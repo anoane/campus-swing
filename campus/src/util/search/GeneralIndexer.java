@@ -71,7 +71,7 @@ public class GeneralIndexer extends AbstractIndexer {
 			    */
 			   d.add(new TextField("Descrizione", cor.getDescrizione(),Field.Store.YES));
 			   d.add(new TextField("Nome",cor.getNome(),Field.Store.YES));
-			   d.add(new IntField("ID", cor.getID(), Field.Store.YES));
+			   d.add(new TextField("ID", ""+cor.getID(), Field.Store.YES));
 			   
 			   iw.addDocument(d);
 			   
