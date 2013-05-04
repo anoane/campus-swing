@@ -213,6 +213,8 @@ public class ControllerDocumento extends AbstractController{
 			
 		    @Override
 		    public int compare(Documento obj1, Documento obj2) {
+		    	return obj1.getNome().compareTo(obj2.getNome());
+		    	/*
 		        String o1 = obj1.getNome();
 		        String o2 = obj2.getNome();
 		        
@@ -251,7 +253,7 @@ public class ControllerDocumento extends AbstractController{
 		            o2.replaceFirst(string, leftPad(string, "0", maxLen));
 		        }
 		        return o1.compareTo(o2);
-
+				*/
 		    }
 
 		};
