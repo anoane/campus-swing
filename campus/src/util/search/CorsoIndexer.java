@@ -41,8 +41,9 @@ public class CorsoIndexer extends AbstractIndexer {
 			    * per ora id e nome
 			    * 
 			    */
-			   d.add(new TextField("nome",cor.getNome(),Field.Store.YES));
-			   d.add(new IntField("id", cor.getID(), Field.Store.YES));
+			   d.add(new TextField("Descrizione",cor.getDescrizione(),Field.Store.YES));
+			   d.add(new TextField("Nome",cor.getNome(),Field.Store.YES));
+			   d.add(new IntField("ID", cor.getID(), Field.Store.YES));
 			   
 			   iw.addDocument(d);
 			   

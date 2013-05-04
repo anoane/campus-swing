@@ -64,6 +64,14 @@ public class ControllerRicerca extends AbstractController {
 		genIndex.addDocumento(doc);
 	}
 	/**
+	 * rimuoviDocumento
+	 * @param doc
+	 */
+	public void rimuoviDocumento(Documento doc){
+		docIndex.removeDoc(doc);
+		genIndex.removeDocumento(doc);
+	}
+	/**
 	 * aggiungiCorso
 	 * @param cor
 	 */
@@ -90,7 +98,7 @@ public class ControllerRicerca extends AbstractController {
 			Query query= qp.parse(stQuery);
 			TopDocs result = is.search(query, null,5);
 			ScoreDoc[] hits = result.scoreDocs;
-			
+			System.out.println(hits.length);
 			docs = new Documento[hits.length];
 			
 			for(int i= 0; i < hits.length;i++){
@@ -98,8 +106,8 @@ public class ControllerRicerca extends AbstractController {
 				 * Per prendere un singolo documento ...
 				 * 
 				 */
-				Document doc = is.doc(hits[0].doc);
-				docs[i] = ControllerDocumento.getInstance().getDocumento(Integer.parseInt(doc.get("id")));
+				Document doc = is.doc(hits[i].doc);
+				docs[i] = ControllerDocumento.getInstance().getDocumento(Integer.parseInt(doc.get("ID")));
 				
 			}
 			

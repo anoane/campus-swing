@@ -52,8 +52,9 @@ public class DocumentoIndexer extends AbstractIndexer {
 		    * per ora id e nome
 		    * 
 		    */
-		   d.add(new TextField("nome",doc.getNome(),Field.Store.YES));
-		   d.add(new IntField("id", doc.getID(), Field.Store.YES));
+		   d.add(new TextField("Descrizione",doc.getNome(),Field.Store.YES));
+		   d.add(new TextField("Nome",doc.getNome(),Field.Store.YES));
+		   d.add(new IntField("ID", doc.getID(), Field.Store.YES));
 		   
 		   iw.addDocument(d);
 		   
@@ -64,4 +65,10 @@ public class DocumentoIndexer extends AbstractIndexer {
 		   
 	   }
    }
+
+	public void removeDoc(Documento doc) {
+		// TODO Auto-generated method stub
+		 
+	}
+
 }

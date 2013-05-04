@@ -38,9 +38,9 @@ public class GeneralIndexer extends AbstractIndexer {
 			    * per ora id e nome
 			    * 
 			    */
-			   d.add(new TextField("type", "corso",Field.Store.YES));
-			   d.add(new TextField("nome",doc.getNome(),Field.Store.YES));
-			   d.add(new IntField("id", doc.getID(), Field.Store.YES));
+			   d.add(new TextField("Descrizione", doc.getDescrizione(),Field.Store.YES));
+			   d.add(new TextField("Nome",doc.getNome(),Field.Store.YES));
+			   d.add(new IntField("ID", doc.getID(), Field.Store.YES));
 			   
 			   iw.addDocument(d);
 			   
@@ -67,9 +67,9 @@ public class GeneralIndexer extends AbstractIndexer {
 			    * per ora id e nome
 			    * 
 			    */
-			   d.add(new TextField("type", "corso",Field.Store.YES));
-			   d.add(new TextField("nome",cor.getNome(),Field.Store.YES));
-			   d.add(new IntField("id", cor.getID(), Field.Store.YES));
+			   d.add(new TextField("Descrizione", cor.getDescrizione(),Field.Store.YES));
+			   d.add(new TextField("Nome",cor.getNome(),Field.Store.YES));
+			   d.add(new IntField("ID", cor.getID(), Field.Store.YES));
 			   
 			   iw.addDocument(d);
 			   
@@ -80,4 +80,9 @@ public class GeneralIndexer extends AbstractIndexer {
 			   
 		   }
 	}
+	public void removeDocumento(Documento doc) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
