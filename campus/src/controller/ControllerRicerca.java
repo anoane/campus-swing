@@ -186,4 +186,19 @@ public class ControllerRicerca extends AbstractController {
 	public void commitIndexingCorso(){
 		corIndex.commit();
 	}
+	/**
+	 * 
+	 */
+	public void removeDocumento(Documento doc){
+		docIndex.removeDoc(doc);
+		genIndex.removeDocumento(doc);
+	}
+	/**
+	 * 
+	 * @param cor
+	 */
+	public void removeCorso(Corso cor){
+		corIndex.removeCorso(cor);
+		genIndex.removeCorso(cor);
+	}
 }

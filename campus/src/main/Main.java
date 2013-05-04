@@ -90,6 +90,7 @@ public class Main {
 					
 				}
 				
+				
 				cr.commitIndexingDocumento();
 				
 				Documento[] result = cr.cercaDocumento("Descrizione", "Descrizione:App*");

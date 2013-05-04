@@ -82,8 +82,13 @@ public class GeneralIndexer extends AbstractIndexer {
 			   
 		   }
 	}
+	
 	public void removeDocumento(Documento doc) {
 		// TODO Auto-generated method stub
+	}
+	
+	public void removeCorso(Corso cor){
+		// TODO auto
 	}
 
 }

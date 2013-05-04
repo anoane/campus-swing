@@ -31,7 +31,7 @@ public abstract class AbstractIndexer {
 	}
 	
 	/**
-	 * 
+	 * getIndexWriter
 	 * @return
 	 */
     public IndexWriter getIndexWriter() {
