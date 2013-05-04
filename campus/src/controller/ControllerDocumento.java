@@ -134,4 +134,15 @@ public class ControllerDocumento extends AbstractController{
 		return docs;
 	}
 	
+	public ArrayList<Documento> getListAllDocumentiByCorso(int indexCorso) throws PersistentException {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
+		Documento[] temp = ControllerCorso.getInstance().getCorso(indexCorso).documentoCorso.toArray();
+		ArrayList<Documento> docs = new ArrayList<Documento>();
+		for (int i=0; temp.length > i; i++) {
+			docs.add(temp[i]);
+		}
+		return docs;
+	}
+	
 }
