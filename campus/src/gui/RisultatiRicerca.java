@@ -139,20 +139,20 @@ public class RisultatiRicerca extends Pagina {
 		reloadUniv();
 		//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
 		try {
-			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca));
+			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca, false, "nome"));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	private void showRisultatiByCorso(int index_facolta, int index_corso) {
+	private void showRisultatiByCorso(int index_facolta, int index_corso, boolean soloFac, String sorting) {
 		panel_risultati.setVisible(false);
 		panel_risultati_bycorso.setVisible(true);
 		is_ricerca_guidata_open = false;
 		label_2.setText(ControllerCorso.getInstance().getCorso(index_corso).getNome());
 		try {
-			adjustDocsByCorso(ControllerDocumento.getInstance().getListAllDocumentiByCorso(index_corso));
+			adjustDocsByCorso(ControllerDocumento.getInstance().getListAllDocumentiByCorso(index_facolta,index_corso,soloFac,sorting));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -529,7 +529,7 @@ public class RisultatiRicerca extends Pagina {
 					// textField_4.setText(s);
 					indexCorso = list_1.getSelectedIndex();
 					dbIndexCorsoByFac = listaCorsiByFac[indexCorso].getID();
-					showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac);
+					showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac,false,"nome");
 				}
 			}
 		});
