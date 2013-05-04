@@ -137,8 +137,13 @@ public class RisultatiRicerca extends Pagina {
 		listaCorsiByFac = null;
 		lblNewLabel.setText("'"+ricerca+"'");
 		reloadUniv();
-		adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
-		//adjustDocs(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca));
+		//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
+		try {
+			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void showRisultatiByCorso(int dbIndexFac, int dbIndexCorso) {

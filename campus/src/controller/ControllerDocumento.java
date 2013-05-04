@@ -46,7 +46,6 @@ public class ControllerDocumento extends AbstractController{
 			documentoDAO.save(documento);
 			//Commit
 			t.commit();
-			
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -115,26 +114,20 @@ public class ControllerDocumento extends AbstractController{
 		return null;
 	}
 	
-	public ArrayList<Documento> getListAllDocumentiByStringSearch(String ricerca) {
+	public ArrayList<Documento> getListAllDocumentiByStringSearch(String ricerca) throws PersistentException {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
-		try {
-			TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
-			Documento[] temp = documentoDAO.listDocumentoByQuery("Nome='"+ricerca+"'", null);
-			for (int i=0; temp.length > i; i++) {
-				treedocs.put(temp[i].getID(), temp[i]);
-			}
-			temp = documentoDAO.listDocumentoByQuery("Descrizione='"+ricerca+"'", null);
-			for (int i=0; temp.length > i; i++) {
-				treedocs.put(temp[i].getID(), temp[i]);
-			}
-			ArrayList<Documento> docs = new ArrayList<Documento>(treedocs.values());
-			return docs;
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
+		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca);//documentoDAO.listDocumentoByQuery("Nome='"+ricerca+"'", null);
+		for (int i=0; temp.length > i; i++) {
+			treedocs.put(temp[i].getID(), temp[i]);
 		}
-		return null;
+		temp = ControllerRicerca.getInstance().cercaDocumento("Descrizione", ricerca);
+		for (int i=0; temp.length > i; i++) {
+			treedocs.put(temp[i].getID(), temp[i]);
+		}
+		ArrayList<Documento> docs = new ArrayList<Documento>(treedocs.values());
+		return docs;
 	}
 	
 }
