@@ -92,7 +92,7 @@ public class Main {
 				
 				cr.closeIndexingDocumento();
 				
-				Documento[] result = cr.cercaDocumento("Nome", "Nome:int*");
+				Documento[] result = cr.cercaDocumento("Descrizione", "Descrizione:Ciao*");
 				for(Documento doc : result){
 					System.out.println(doc.getNome());
 				}
