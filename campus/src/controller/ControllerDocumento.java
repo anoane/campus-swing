@@ -195,7 +195,7 @@ public class ControllerDocumento extends AbstractController{
 
 		Comparator nome = new Comparator<Documento>() {
 
-			public String leftPad(String stringToPad, String padder, Integer size) {
+			/*public String leftPad(String stringToPad, String padder, Integer size) {
 
 			    final StringBuilder strb = new StringBuilder(size.intValue());
 			    final StringCharacterIterator sci = new StringCharacterIterator(padder);
@@ -209,7 +209,7 @@ public class ControllerDocumento extends AbstractController{
 			    }
 
 			    return strb.append(stringToPad).toString();
-			}
+			}*/
 			
 		    @Override
 		    public int compare(Documento obj1, Documento obj2) {
