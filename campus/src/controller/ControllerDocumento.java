@@ -53,6 +53,8 @@ public class ControllerDocumento extends AbstractController{
 			documentoDAO.save(documento);
 			//Commit
 			t.commit();
+			ControllerRicerca.getInstance().aggiungiDocumento(documento);
+			ControllerRicerca.getInstance().commitIndexingDocumento();
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -93,6 +95,8 @@ public class ControllerDocumento extends AbstractController{
 		try {
 			d.setProprietario(null);
 			documentoDAO.delete(d);
+			ControllerRicerca.getInstance().removeDocumento(d);
+			ControllerRicerca.getInstance().commitIndexingDocumento();
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

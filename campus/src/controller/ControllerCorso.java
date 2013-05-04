@@ -33,7 +33,8 @@ public class ControllerCorso extends AbstractController {
 			corsoDAO.save(corso);
 			//Commit
 			t.commit();
-			
+			ControllerRicerca.getInstance().aggiungiCorso(corso);
+			ControllerRicerca.getInstance().commitIndexingCorso();
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -124,6 +125,8 @@ public class ControllerCorso extends AbstractController {
 			CorsoDAO corsoDAO = factory.getCorsoDAO();
 			corsoDAO.delete(corso);
 			t.commit();
+			ControllerRicerca.getInstance().removeCorso(corso);
+			ControllerRicerca.getInstance().commitIndexingCorso();
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
