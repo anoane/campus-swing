@@ -6,6 +6,8 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.IntField;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.Query;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
@@ -82,7 +84,11 @@ public class GeneralIndexer extends AbstractIndexer {
 	}
 	public void removeDocumento(Documento doc) {
 		// TODO Auto-generated method stub
-		
+	}
+	
+	public void updateDocumento(Documento doc) {
+		removeDocumento(doc);
+		addDocumento(doc);
 	}
 
 }

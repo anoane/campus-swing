@@ -70,5 +70,10 @@ public class DocumentoIndexer extends AbstractIndexer {
 		// TODO Auto-generated method stub
 		 
 	}
+	
+	public void updateDocumento(Documento doc) {
+		removeDoc(doc);
+		addDoc(doc);
+	}
 
 }
