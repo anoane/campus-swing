@@ -54,5 +54,12 @@ public class CorsoIndexer extends AbstractIndexer {
 			   
 		   }
 	}
+	/**
+	 * 
+	 * @param cor
+	 */
+	public void removeCorso(Corso cor){
+		//TODO:implementare
+	}
 	
 }

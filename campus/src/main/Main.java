@@ -90,9 +90,12 @@ public class Main {
 					
 				}
 				
-				cr.closeIndexingDocumento();
+				cr.commitIndexingDocumento();
 				
-				Documento[] result = cr.cercaDocumento("Descrizione", "Descrizione:Ciao*");
+				Documento[] result = cr.cercaDocumento("Descrizione", "Descrizione:App*");
+				
+				System.out.println(result.length);
+				
 				for(Documento doc : result){
 					System.out.println(doc.getNome());
 				}

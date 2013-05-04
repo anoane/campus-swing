@@ -85,10 +85,5 @@ public class GeneralIndexer extends AbstractIndexer {
 	public void removeDocumento(Documento doc) {
 		// TODO Auto-generated method stub
 	}
-	
-	public void updateDocumento(Documento doc) {
-		removeDocumento(doc);
-		addDocumento(doc);
-	}
 
 }

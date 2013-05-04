@@ -57,4 +57,14 @@ public abstract class AbstractIndexer {
  			e.printStackTrace();
  	   }
     }
+    /**
+     * 
+     */
+    public void commit(){
+    	try{
+    		iw.commit();
+    	}catch(IOException e){
+    		e.printStackTrace();
+    	}
+    }
 }

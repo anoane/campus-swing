@@ -71,9 +71,5 @@ public class DocumentoIndexer extends AbstractIndexer {
 		 
 	}
 	
-	public void updateDocumento(Documento doc) {
-		removeDoc(doc);
-		addDoc(doc);
-	}
 
 }

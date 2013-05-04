@@ -98,7 +98,7 @@ public class ControllerRicerca extends AbstractController {
 			Query query= qp.parse(stQuery);
 			TopDocs result = is.search(query, null,5);
 			ScoreDoc[] hits = result.scoreDocs;
-			System.out.println(hits.length);
+			
 			docs = new Documento[hits.length];
 			
 			for(int i= 0; i < hits.length;i++){
@@ -167,5 +167,19 @@ public class ControllerRicerca extends AbstractController {
 	 */
 	public void closeIndexingGeneral(){
 		genIndex.closeWriter();
+	}
+	/**
+	 * Commit changes
+	 */
+	public void commitIndexingDocumento(){
+		docIndex.commit();
+	}
+	
+	public void commitIndexingGeneral(){
+		genIndex.commit();
+	}
+	
+	public void commitIndexingCorso(){
+		corIndex.commit();
 	}
 }
