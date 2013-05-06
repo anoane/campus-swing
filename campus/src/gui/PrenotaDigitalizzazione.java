@@ -1,18 +1,16 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.Vector;
 
-import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -23,7 +21,6 @@ import javax.swing.event.ListDataListener;
 
 import modello_di_dominio.Corso;
 import controller.ControllerCorso;
-import javax.swing.ScrollPaneConstants;
 
 public class PrenotaDigitalizzazione extends Pagina {
 	private JPanel panel;
@@ -47,20 +44,10 @@ public class PrenotaDigitalizzazione extends Pagina {
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
-		JPanel btnRichiesta = new JPanel();
-		btnRichiesta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnRichiesta.setBounds(129, 404, 157, 34);
-		panel.add(btnRichiesta);
-		btnRichiesta.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		btnRichiesta.setBackground(new Color(46, 93, 140));
-		
-		
-		JLabel label_6 = new JLabel("Invia Richiesta");
-		label_6.setForeground(Color.WHITE);
-		label_6.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnRichiesta.add(label_6);
-		
-		
+		ButtonStandard buttonCreator = new ButtonStandard();
+		JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 129, 404, 178, 34, false, false);
+		panel.add(inviaRichiesta);
+				
 		JPanel formPanel = new JPanel();
 		formPanel.setBounds(20, 55, 425, 315);
 		formPanel.setBackground(null);

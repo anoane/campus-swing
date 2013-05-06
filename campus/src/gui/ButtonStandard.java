@@ -75,6 +75,31 @@ public class ButtonStandard  {
 		
 		return button;
 	}
+	
+	public JButton createButton(String text,int x, int y, int width,int height, Boolean focusPainted,Boolean borderPainted, final Color enter, final Color exit){
+		
+		final JButton button = new JButton();
+		button.setText(text);
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+		button.setBounds(x, y, width, height);
+		button.setFocusPainted(focusPainted);
+		button.setBorderPainted(borderPainted);
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		button.setBackground(exit);
+		
+		button.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+				button.setBackground(enter);
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+				button.setBackground(exit);
+			}
+		});
+		
+		return button;
+	}
 
 
 }
