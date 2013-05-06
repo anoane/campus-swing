@@ -129,7 +129,7 @@ public class ControllerDocumento extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
-		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca);
+		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca+"*");
 		if (temp != null) {
 			for (int i=0; temp.length > i; i++) {
 				treedocs.put(temp[i].getID(), temp[i]);
@@ -146,7 +146,7 @@ public class ControllerDocumento extends AbstractController{
 				}
 			}*/
 		}
-		temp = ControllerRicerca.getInstance().cercaDocumento("Descrizione", ricerca);
+		temp = ControllerRicerca.getInstance().cercaDocumento("Descrizione", ricerca+"*");
 		if (temp != null) {
 			for (int i=0; temp.length > i; i++) {
 				treedocs.put(temp[i].getID(), temp[i]);
@@ -185,7 +185,7 @@ public class ControllerDocumento extends AbstractController{
 	}
 	
 	private ArrayList<Documento> filtraSoloUnaFac(ArrayList<Documento> docs, int index) {
-		ArrayList<Documento> newdocs = null;
+		ArrayList<Documento> newdocs = new ArrayList<Documento>();
 		for (int i=0; docs.size() > i; i++) {
 			if (docs.get(i).getFacolta().getID() == index) {
 				newdocs.add(docs.get(i));
