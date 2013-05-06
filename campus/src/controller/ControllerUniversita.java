@@ -1,28 +1,40 @@
 package controller;
 
 import modello_di_dominio.DAOFactory;
-import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
-import modello_di_dominio.dao.FacoltaDAO;
 import modello_di_dominio.dao.UniversitaDAO;
 
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
-
+/**
+ * 
+ * @author mw
+ *
+ */
 public class ControllerUniversita extends AbstractController {
-	
+	/**
+	 * 
+	 */
 	private static ControllerUniversita instance;
-
+	/**
+	 * 
+	 */
+	protected UniversitaDAO universitaDAO;
+	/**
+	 * Costruttore
+	 */
 	protected ControllerUniversita(){
 		super();
+		universitaDAO = DAOFactory.getDAOFactory().getUniversitaDAO();
 	}
-	
+	/**
+	 * creaUniversità
+	 * @param n
+	 */
 	public void createUniversita(String n){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
-			DAOFactory factory = DAOFactory.getDAOFactory();
-			UniversitaDAO universitaDAO = factory.getUniversitaDAO();
 			Universita universita = universitaDAO.createUniversita();
 			
 			universita.setNome(n);
@@ -35,13 +47,14 @@ public class ControllerUniversita extends AbstractController {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * deleteUniversità
+	 * @param ID
+	 */
 	public void deleteUniversita(int ID){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
-			DAOFactory factory = DAOFactory.getDAOFactory();
-			UniversitaDAO universitaDAO = factory.getUniversitaDAO();
 			//Trovo l'universita
 			Universita universita = universitaDAO.getUniversitaByORMID(ID);
 			
@@ -56,10 +69,12 @@ public class ControllerUniversita extends AbstractController {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * getUniversita
+	 * @param ID
+	 * @return
+	 */
 	public Universita getUniversita(int ID){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		UniversitaDAO universitaDAO = factory.getUniversitaDAO();
 		//Trovo l'univesita
 		try {
 			return universitaDAO.getUniversitaByORMID(ID);
@@ -69,10 +84,12 @@ public class ControllerUniversita extends AbstractController {
 		}
 		return null;
 	}
-	
+	/**
+	 * isUniversitaAlreadyPresent
+	 * @param univ
+	 * @return
+	 */
 	public boolean isUniversitaAlreadyPresent(String univ){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		UniversitaDAO universitaDAO = factory.getUniversitaDAO();
 		//Trovo l'univesita
 		try {
 			if (universitaDAO.listUniversitaByQuery("Nome='"+univ+"'",null).length != 0) {
@@ -84,10 +101,11 @@ public class ControllerUniversita extends AbstractController {
 		}
 		return false;
 	}
-	
+	/**
+	 * getAllUniversita
+	 * @return
+	 */
 	public Universita[] getAllUniversita(){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		UniversitaDAO universitaDAO = factory.getUniversitaDAO();
 		//Trovo l'univesita
 		try {
 			return universitaDAO.listUniversitaByQuery(null,null);
@@ -97,7 +115,10 @@ public class ControllerUniversita extends AbstractController {
 		}
 		return null;
 	}
-	
+	/**
+	 * getInstance
+	 * @return
+	 */
 	public static ControllerUniversita getInstance(){
 		if(ControllerUniversita.instance == null)
 			ControllerUniversita.instance = new ControllerUniversita();
