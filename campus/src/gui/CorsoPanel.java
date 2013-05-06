@@ -216,8 +216,8 @@ public class CorsoPanel extends Pagina {
 		int altezza = 230*colmax;
 		
 		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
-		panel.setSize(panel.getWidth(), panel.getHeight()+altezza);
-		doc.setSize(doc.getWidth(), panel.getHeight()+altezza);
+		panel.setSize(panel.getWidth(), 420+altezza);
+		doc.setSize(doc.getWidth(), 420+altezza);
 		
 		for(int i = 0;i < docs.length; i++){
 			int col = (int) Math.floor(i/2);
