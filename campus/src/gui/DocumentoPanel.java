@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
 
+import com.jgoodies.forms.layout.CellConstraints.Alignment;
 import com.sun.pdfview.PDFViewer;
 
 import controller.ControllerUtente;
@@ -230,14 +232,18 @@ public class DocumentoPanel extends Pagina {
 		panel_4.setBounds(188, 0, 178, 240);
 		riquadrodx.add(panel_4);
 		
-		JButton btnScarica = new JButton();
-		btnScarica.setText("Scarica");
-		btnScarica.setForeground(Color.WHITE);
-		btnScarica.setFont(new Font("Arial", Font.BOLD, 18));
-		btnScarica.setFocusPainted(false);
-		btnScarica.setBorder(new LineBorder(Color.BLACK, 1));
-		btnScarica.setBackground(Color.BLACK);
-		btnScarica.setBounds(0, 251, 178, 28);
+		ButtonStandard buttonCreator = new ButtonStandard();
+		JButton btnScarica = buttonCreator.createButton("Scarica",0, 251, 178, 28,false, false);
+		//JButton btnScarica = new JButton();
+		
+		//btnScarica.setText("Scarica");
+		//btnScarica.setForeground(Color.WHITE);
+		//btnScarica.setFont(new Font("Arial", Font.BOLD, 18));
+		//btnScarica.setFocusPainted(false);
+		//btnScarica.setBorderPainted(false);
+		//btnScarica.setBorder(new LineBorder(Color.BLACK, 1));
+		//btnScarica.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+		//btnScarica.setBounds(0, 251, 178, 28);
 		riquadrodx.add(btnScarica);
 		
 		JButton btnPrenotaStampa = new JButton();

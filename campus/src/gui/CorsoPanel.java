@@ -19,6 +19,8 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import controller.ControllerUtente;
+
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
 
@@ -73,6 +75,10 @@ public class CorsoPanel extends Pagina {
 		lblSegui.setForeground(Color.WHITE);
 		lblSegui.setFont(new Font("Arial", Font.PLAIN, 18));
 		seguiButton.add(lblSegui);
+		
+		if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){
+			seguiButton.setVisible(false);
+		}
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);

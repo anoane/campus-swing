@@ -20,7 +20,7 @@ public class GestioneStampa extends Pagina {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 800);
+		panel.setBounds(0, 0, 1008, 492);
 		add(panel);
 		
 		JLabel label = new JLabel("Gestione delle stampe prenotate");

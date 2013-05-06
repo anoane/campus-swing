@@ -1,11 +1,14 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.GroupLayout.Alignment;
 
 public class ButtonStandard  {
 
@@ -45,6 +48,31 @@ public class ButtonStandard  {
 				}
 			}
 		});
+		return button;
+	}
+	
+	public JButton createButton(String text,int x, int y, int width,int height, Boolean focusPainted,Boolean borderPainted){
+		
+		final JButton button = new JButton();
+		button.setText(text);
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+		button.setBounds(x, y, width, height);
+		button.setFocusPainted(focusPainted);
+		button.setBorderPainted(borderPainted);
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+		
+		button.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+				button.setBackground(Home.BLUE_BUTTON_PRESSED);
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+				button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+			}
+		});
+		
 		return button;
 	}
 

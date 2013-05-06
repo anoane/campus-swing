@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -32,13 +33,13 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 800);
+		panel.setBounds(0, 0, 1008, 500);
 		add(panel);
 		
 		JLabel label = new JLabel("Prenota Digitalizzazione");
 		label.setForeground(new Color(6, 121, 159));
 		label.setFont(new Font("Arial", Font.BOLD, 20));
-		label.setBounds(10, 10, 200, 25);
+		label.setBounds(10, 10, 235, 25);
 		panel.add(label);
 		
 		JSeparator separator = new JSeparator();
@@ -47,15 +48,18 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel.add(separator);
 		
 		JPanel btnRichiesta = new JPanel();
-		btnRichiesta.setBounds(157, 519, 130, 36);
+		btnRichiesta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRichiesta.setBounds(129, 404, 157, 34);
 		panel.add(btnRichiesta);
 		btnRichiesta.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
 		btnRichiesta.setBackground(new Color(46, 93, 140));
+		
 		
 		JLabel label_6 = new JLabel("Invia Richiesta");
 		label_6.setForeground(Color.WHITE);
 		label_6.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnRichiesta.add(label_6);
+		
 		
 		JPanel formPanel = new JPanel();
 		formPanel.setBounds(20, 55, 425, 315);
@@ -139,11 +143,13 @@ public class PrenotaDigitalizzazione extends Pagina {
 		gbc_textarea.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textarea.gridx = 1;
 		gbc_textarea.gridy = 1;
-		formPanel.add(txtAreaDescrizione, gbc_textarea);
-        txtAreaDescrizione.setColumns(20);
+		txtAreaDescrizione.setColumns(20);
         txtAreaDescrizione.setLineWrap(true);
         txtAreaDescrizione.setRows(5);
         txtAreaDescrizione.setWrapStyleWord(true);
+		JScrollPane scrollPane = new JScrollPane(txtAreaDescrizione); 
+		formPanel.add(scrollPane, gbc_textarea);
+        
         
 		JTextField txtNumPag = new JTextField();
 		GridBagConstraints gbc_txtNumPag = new GridBagConstraints();

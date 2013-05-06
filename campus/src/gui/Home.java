@@ -1,9 +1,9 @@
 package gui;
 
 
-import util.GUIConfig;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -12,25 +12,25 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.nio.file.Path;
 import java.util.TreeMap;
+
 import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
+import util.GUIConfig;
 
 public class Home {
 
@@ -290,6 +290,7 @@ public class Home {
 		getRicercaTestuale().setForeground(Color.WHITE);
 		getRicercaTestuale().setBorder(new LineBorder(Color.WHITE, 2));
 		getRicercaTestuale().setColumns(10);
+		cerca.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		cerca.setBounds(420, 5, 28, 28);
 		pannello_interno_ricerca.add(cerca);
 		cerca.setIcon(new ImageIcon("./newimage/search.png"));
@@ -324,6 +325,7 @@ public class Home {
 		carica_materiale.setText("Carica materiale");
 		carica_materiale.setFont(new Font("Arial", Font.BOLD, 18));
 		carica_materiale.setForeground(Color.WHITE);
+		carica_materiale.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		//carica_materiale.setBounds(817, 5, 184, 28);
 		carica_materiale.setBounds(770, 5, 231, 28);
 		pannello_interno_ricerca.add(carica_materiale);

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -32,7 +33,7 @@ public class PrenotaLibro extends Pagina {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 800);
+		panel.setBounds(0, 0, 1008, 500);
 		add(panel);
 		
 		JLabel lblPrenotazioneLibri = new JLabel("Prenotazione Libri");
@@ -162,6 +163,7 @@ public class PrenotaLibro extends Pagina {
 		panel_1.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
 		panel_1.setBackground(new Color(46, 93, 140));
 		panel_1.setBounds(129, 404, 157, 34);
+		panel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		panel.add(panel_1);
 		
 		JLabel lblInvRic = new JLabel("Invia Richiesta");
