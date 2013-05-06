@@ -393,6 +393,7 @@ public class Home {
 	protected static void loadPages(final Pagina pagina, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, int vPrefSize, final int vMaxSize) {
 		resetPagina();
 		pagina.reload();
+		//Autoresize pagine che contengono documenti
 		if(pagina.getClass().getName() == "gui.MieiDocumenti" || pagina.getClass().getName() == "gui.Preferiti" || pagina.getClass().getName() == "gui.CorsiSeguiti")
 			pagina.getComponents()[0].addComponentListener(new ComponentListener() {
 			

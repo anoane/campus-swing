@@ -6,26 +6,39 @@ import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
 import modello_di_dominio.dao.FacoltaDAO;
-import modello_di_dominio.dao.UniversitaDAO;
-import modello_di_dominio.dao.UtenteDAO;
 
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
-
+/**
+ * 
+ * @author mw
+ *
+ */
 public class ControllerCorso extends AbstractController {
-	
+	/**
+	 * 
+	 */
 	private static ControllerCorso instance = null;
-
+	
+	protected CorsoDAO corsoDAO;
+	/**
+	 * 
+	 */
 	protected ControllerCorso(){
 		super();
+		corsoDAO = DAOFactory.getDAOFactory().getCorsoDAO();
 	}
-	
+	/**
+	 * 
+	 * @param nome
+	 * @param descrizione
+	 * @param FacoltaID
+	 */
 	public void creaCorso(String nome, String descrizione, int FacoltaID){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			DAOFactory factory = DAOFactory.getDAOFactory();
 			FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
-			CorsoDAO corsoDAO = factory.getCorsoDAO();
 			Corso corso = corsoDAO.createCorso();
 			corso.setNome(nome);
 			corso.setDescrizione(descrizione);
@@ -40,10 +53,14 @@ public class ControllerCorso extends AbstractController {
 		}
 		
 	}
-	
+	/**
+	 * isCorsoAlreadyCollegato
+	 * @param corsoID
+	 * @param facoltaID
+	 * @return
+	 */
 	public boolean isCorsoAlreadyCollegato(int corsoID, int facoltaID) {
 		DAOFactory factory = DAOFactory.getDAOFactory();
-		CorsoDAO corsoDAO = factory.getCorsoDAO();
 		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
 		Facolta facolta = null;
 		try {
@@ -60,7 +77,11 @@ public class ControllerCorso extends AbstractController {
 		}
 		return false;
 	}
-	
+	/**
+	 * collegaCorsoFacolta
+	 * @param corsoID
+	 * @param facoltaID
+	 */
 	public void collegaCorsoFacolta(int corsoID, int facoltaID){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
@@ -81,9 +102,13 @@ public class ControllerCorso extends AbstractController {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 
+	 * @param indexFac
+	 * @return
+	 * @throws PersistentException
+	 */
 	public Corso[] getCorsiByFac(int indexFac) throws PersistentException {
-		modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
 		Facolta facolta = facoltaDAO.getFacoltaByORMID(indexFac);
@@ -91,7 +116,11 @@ public class ControllerCorso extends AbstractController {
 		//System.out.println(corsi.length);
 		return corsi;
 	}
-	
+	/**
+	 * getCorso
+	 * @param nome
+	 * @return
+	 */
 	public Corso getCorso(String nome){
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		CorsoDAO corsoDAO = factory.getCorsoDAO();
@@ -104,7 +133,11 @@ public class ControllerCorso extends AbstractController {
 		}
 		return null;
 	}
-	
+	/**
+	 * getCorso
+	 * @param ID
+	 * @return
+	 */
 	public Corso getCorso(int ID){
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		CorsoDAO corsoDAO = factory.getCorsoDAO();
