@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,6 +39,12 @@ public class CorsoPanel extends Pagina {
 	
 	private JPanel contenuto_pagina;
 
+	JLabel labelName = new JLabel();
+	JTextPane descrizione = new JTextPane();
+	ArrayList<String> univ = new ArrayList<String>();
+	JComboBox comboBox = new JComboBox();
+
+	
 	/**
 	 * Create the panel.
 	 */
@@ -54,7 +61,6 @@ public class CorsoPanel extends Pagina {
 		add(panel);
 		
 		//Label
-		JLabel labelName = new JLabel(corso.getNome());
 		labelName.setForeground(new Color(6, 121, 159));
 		labelName.setFont(new Font("Arial", Font.BOLD, 20));
 		labelName.setBounds(10, 10, 200, 25);
@@ -86,9 +92,7 @@ public class CorsoPanel extends Pagina {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JTextPane descrizione = new JTextPane();
 		descrizione.setBackground(Color.WHITE);
-		descrizione.setText(corso.getDescrizione());
 		descrizione.setMargin(new Insets(5, 5, 5, 5));
 		descrizione.setEditable(false);
 		descrizione.setBounds(10, 50, 460, 275);
@@ -129,12 +133,7 @@ public class CorsoPanel extends Pagina {
 		gbc_lblNewLabel.gridy = 0;
 		programma.add(lblNewLabel, gbc_lblNewLabel);
 		
-		ArrayList<String> univ = new ArrayList<String>();
 		
-		for(int i=0; i<corso.facolta.size(); ++i)
-			univ.add(i, corso.facolta.toArray()[i].getNome()); 
-		
-		JComboBox comboBox = new JComboBox(univ.toArray());
 		
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -214,7 +213,6 @@ public class CorsoPanel extends Pagina {
 		contenuto_pagina.setLayout(null);
 		contenuto_pagina.setBackground(Color.WHITE);
 		doc.add(contenuto_pagina);
-		addDocumenti(corso);
 	}
 	
 	public void addDocumenti(Corso corso){
@@ -244,8 +242,18 @@ public class CorsoPanel extends Pagina {
 	}
 	
 	@Override
-	public void reload(Object corso) {
-		adjustDocs((Corso)corso);
+	public void reload(Object c) {
+		Corso corso = (Corso)c;
+		adjustDocs(corso);
+		labelName.setText(corso.getNome());
+		descrizione.setText(corso.getDescrizione());
+		for(int i=0; i< corso.facolta.size(); ++i)
+			univ.add(i, corso.facolta.toArray()[i].getNome()); 
+		
+		DefaultComboBoxModel newModel = new DefaultComboBoxModel(univ.toArray());
+		comboBox.setModel(newModel);
+		addDocumenti(corso);
+		
 	}
 	
 	public int getAltezzaPagina(){

@@ -32,9 +32,21 @@ public class DocumentoPanel extends Pagina {
 	boolean suggestOpened = false;
 	private JPanel riquadrodx;
 	private JPanel panel ;
+	JLabel lblPreferiti = new JLabel();
+	// Panel stelle
+	JPanel stelle = new JPanel();
+		
+	// Panel contenente il colore di riempimento delle stelle
+	JPanel colore = new JPanel();
+	JLabel lblNewLabel_1 = new JLabel();
+	JLabel lblNewLabel = new JLabel();
+	JLabel lblUniversit = new JLabel();
+	JTextPane panel_3 = new JTextPane();		
 	
 	
-	public DocumentoPanel(String pdfPath, final Documento d) {
+	
+	
+	public DocumentoPanel(final Documento d) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -44,17 +56,11 @@ public class DocumentoPanel extends Pagina {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblPreferiti = new JLabel(d.getNome());
 		lblPreferiti.setForeground(new Color(6, 121, 159));
 		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 20));
 		lblPreferiti.setBounds(10, 10, 200, 25);
 		panel.add(lblPreferiti);
 		
-		// Panel stelle
-		JPanel stelle = new JPanel();
-		
-		// Panel contenente il colore di riempimento delle stelle
-		JPanel colore = new JPanel();
 		stelle.setLayout(null);
 		
 		for(int i=0; i<5; ++i){
@@ -69,10 +75,8 @@ public class DocumentoPanel extends Pagina {
 		stelle.setLocation(205, 10);
 		stelle.setSize(150, 30);
 		colore.setBackground(new Color(255,222,87));
-		colore.setSize((int) (stelle.getWidth()*calcolaVoto(d.getNum_voti(), d.getVoto())), 30);
 		panel.add(stelle);
 		
-		JLabel lblNewLabel_1 = new JLabel(d.getCorso().getNome());
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(147, 53, 134, 23);
 		panel.add(lblNewLabel_1);
@@ -89,33 +93,11 @@ public class DocumentoPanel extends Pagina {
 		panel_2.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblNewLabel.setBounds(5, 2, 83, 20);
 		panel_2.add(lblNewLabel);
 		
-		switch(d.getDiscriminator()){
-		case "Appunti":
-			lblNewLabel.setText("Appunti");
-			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-			break;
-		case "Dispense":
-			lblNewLabel.setText("Dispense");
-			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
-			break;
-		case "Esercizi":
-			lblNewLabel.setText("Esercizi");
-			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
-			break;
-		case "Slide":
-			lblNewLabel.setText("Slide");
-			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
-			break;
-		default:
-			lblNewLabel.setText("Documento");
-			lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
-			break;	
-		}
+
 		
 		final JPanel doc_panel = new JPanel();
 		doc_panel.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
@@ -204,7 +186,6 @@ public class DocumentoPanel extends Pagina {
 		lblNewLabel_2.setBounds(84, 53, 57, 23);
 		panel.add(lblNewLabel_2);
 		
-		JLabel lblUniversit = new JLabel(d.getFacolta().getNome());
 		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblUniversit.setBounds(290, 53, 121, 23);
 		panel.add(lblUniversit);
@@ -215,13 +196,11 @@ public class DocumentoPanel extends Pagina {
 		riquadrodx.setLayout(null);
 		panel.add(riquadrodx);
 		
-		JTextPane panel_3 = new JTextPane();		
 		panel_3.setEditable(false);
 		panel_3.setLayout(null);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_3.setBackground(Color.WHITE);
 		panel_3.setBounds(0, 0, 178, 240);
-		panel_3.setText(d.getDescrizione());
 		riquadrodx.add(panel_3);
 		
 		
@@ -307,6 +286,34 @@ public class DocumentoPanel extends Pagina {
 	@Override
 	public void reload(Object o) {
 		// TODO Auto-generated method stub
+		Documento d = ((Documento) o);
+		lblPreferiti.setText(d.getNome());
+		colore.setSize((int) (stelle.getWidth()*calcolaVoto(d.getNum_voti(), d.getVoto())), 30);
+		lblNewLabel_1.setText(d.getCorso().getNome());
+		switch(d.getDiscriminator()){
+		case "Appunti":
+			lblNewLabel.setText("Appunti");
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
+			break;
+		case "Dispense":
+			lblNewLabel.setText("Dispense");
+			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
+			break;
+		case "Esercizi":
+			lblNewLabel.setText("Esercizi");
+			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
+			break;
+		case "Slide":
+			lblNewLabel.setText("Slide");
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
+			break;
+		default:
+			lblNewLabel.setText("Documento");
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
+			break;	
+		}
+		lblUniversit.setText(d.getFacolta().getNome());
+		panel_3.setText(d.getDescrizione());
 		
 	}
 

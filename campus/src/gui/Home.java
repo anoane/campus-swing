@@ -102,8 +102,8 @@ public class Home {
 	private final static PrenotaLibro pagina_prenota_libri = new PrenotaLibro();
 	private final static RisultatiRicerca pagina_risultati_ricerca = new RisultatiRicerca();
 	
-	private static DocumentoPanel documento = null;
-	private static CorsoPanel corso = null;
+	private final static DocumentoPanel documento = new DocumentoPanel(null);
+	private final static CorsoPanel corso = new CorsoPanel(null);
 	
 	private final static TreeMap<String, Pagina> relazionePaginaBottone = new TreeMap<String, Pagina>();
 	private final static TreeMap<String, JButton> bottoniMenu = new TreeMap<String, JButton>();
@@ -590,7 +590,7 @@ public class Home {
 		//resetPagina();
 		//Home.unloadDocumento();
 		//TODO:aggiungere parametri del documento
-		documento = new DocumentoPanel(null, doc);
+		documento.reload(doc);
 		Home.pulsantiNormali();
 		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 		/*if (altezzaDinamica) {
@@ -604,7 +604,7 @@ public class Home {
 	public static void openCorso(final Boolean altezzaDinamica,Corso c) {
 		// TODO Auto-generated method stub
 		//resetPagina();
-		corso = new CorsoPanel(c);
+		corso.reload(c);
 		Home.pulsantiNormali();
 		Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 		/*
