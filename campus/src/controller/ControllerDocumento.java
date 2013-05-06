@@ -1,24 +1,16 @@
 package controller;
 
-import java.sql.Timestamp;
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
-import modello_di_dominio.dao.CorsoDAO;
 import modello_di_dominio.dao.DocumentoDAO;
 
 import org.orm.PersistentException;
@@ -28,15 +20,27 @@ public class ControllerDocumento extends AbstractController{
 	
 	private static ControllerDocumento instance;
 	
+	protected DocumentoDAO documentoDAO;
+	/**
+	 * Costruttore privato
+	 */
 	protected ControllerDocumento(){
 		super();
+		documentoDAO = DAOFactory.getDAOFactory().getDocumentoDAO();
 	}
-	
+	/**
+	 * creaDocumento
+	 * @param nome String
+	 * @param descrizione String
+	 * @param path String
+	 * @param discriminator String
+	 * @param u Utente
+	 * @param c Corso
+	 * @param f Facolta
+	 */
 	public void creaDocumento(String nome, String descrizione,String path, String discriminator, Utente u, Corso c, Facolta f){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
-			DAOFactory factory = DAOFactory.getDAOFactory();
-			DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 			Documento documento = documentoDAO.createDocumento();
 			documento.setNome(nome);
 			documento.setDescrizione(descrizione);
@@ -59,12 +63,13 @@ public class ControllerDocumento extends AbstractController{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Incrementa il download di un documento
+	 * @param docID
+	 */
 	public void incrementaDownloadDocumento(int docID){
 		try {
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
-			DAOFactory factory = DAOFactory.getDAOFactory();
-			DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 			Documento documento = documentoDAO.getDocumentoByORMID(docID);
 			documento.setDownloads(documento.getDownloads()+1);
 			documentoDAO.save(documento);
@@ -75,10 +80,12 @@ public class ControllerDocumento extends AbstractController{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * getDocumento
+	 * @param ID
+	 * @return
+	 */
 	public Documento getDocumento(int ID){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		try {
 			Documento documento = documentoDAO.getDocumentoByORMID(ID);
 			return documento;
@@ -88,12 +95,14 @@ public class ControllerDocumento extends AbstractController{
 		}
 		return null;
 	}
-	
+	/**
+	 * RemoveDocumento
+	 * @param d
+	 */
 	public void removeDocumento(Documento d){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		try {
-			d.setProprietario(null);
+			//XXX:Serve?
+			d.setProprietario(null); 
 			documentoDAO.delete(d);
 			ControllerRicerca.getInstance().removeDocumento(d);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
@@ -101,13 +110,19 @@ public class ControllerDocumento extends AbstractController{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * getInstance
+	 * @return
+	 */
 	public static ControllerDocumento getInstance(){
 		if(ControllerDocumento.instance == null)
 			ControllerDocumento.instance = new ControllerDocumento();
 		return ControllerDocumento.instance;
 	}
-
+	/**
+	 * getListAllDocumenti
+	 * @return
+	 */
 	public ArrayList<Documento> getListAllDocumenti() {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
@@ -124,10 +139,15 @@ public class ControllerDocumento extends AbstractController{
 		}
 		return null;
 	}
-	
+	/**
+	 * getAllDocumentiByStringSearch
+	 * @param ricerca
+	 * @param soloFac
+	 * @param sorting
+	 * @return
+	 * @throws PersistentException
+	 */
 	public ArrayList<Documento> getListAllDocumentiByStringSearch(String ricerca, boolean soloFac, String sorting) throws PersistentException {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
 		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca+"*");
 		if (temp != null) {
@@ -158,10 +178,16 @@ public class ControllerDocumento extends AbstractController{
 		}
 		return sortBy(docs,sorting);
 	}
-	
+	/**
+	 * getListAllDocumentiByCorso
+	 * @param indexFac
+	 * @param indexCorso
+	 * @param soloFac
+	 * @param sorting
+	 * @return
+	 * @throws PersistentException
+	 */
 	public ArrayList<Documento> getListAllDocumentiByCorso(int indexFac, int indexCorso, boolean soloFac, String sorting) throws PersistentException {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
 		Documento[] temp = ControllerCorso.getInstance().getCorso(indexCorso).documentoCorso.toArray();
 		ArrayList<Documento> docs = new ArrayList<Documento>();
 		for (int i=0; temp.length > i; i++) {
@@ -183,7 +209,14 @@ public class ControllerDocumento extends AbstractController{
 		}
 		return sortBy(docs,sorting);
 	}
-	
+	/**
+	 * TODO: Questa funzione ha bisogno di un'ampia ristrutturazione
+	 * 
+	 * filtraSoloUnaFac
+	 * @param docs
+	 * @param index
+	 * @return
+	 */
 	private ArrayList<Documento> filtraSoloUnaFac(ArrayList<Documento> docs, int index) {
 		ArrayList<Documento> newdocs = new ArrayList<Documento>();
 		for (int i=0; docs.size() > i; i++) {
@@ -195,7 +228,6 @@ public class ControllerDocumento extends AbstractController{
 	}
 	
 	private ArrayList<Documento> sortBy(ArrayList<Documento> docs, String sorting) {
-		List<Documento> doclist = docs;
 
 		Comparator nome = new Comparator<Documento>() {
 
@@ -286,37 +318,36 @@ public class ControllerDocumento extends AbstractController{
 		    }
 		};
 		
-		
+		//OMMAIGOD
 		if (sorting.matches("nomeUP")) {
-			Collections.sort(doclist, nome);
+			Collections.sort(docs, nome);
 		}
 		if (sorting.matches("nomeDOWN")) {
-			Collections.sort(doclist, nome);
-			Collections.reverse(doclist);
+			Collections.sort(docs, nome);
+			Collections.reverse(docs);
 		}
 		if (sorting.matches("timestampUP")) {
-			Collections.sort(doclist, timestamp);
+			Collections.sort(docs, timestamp);
 		}
 		if (sorting.matches("timestampDOWN")) {
-			Collections.sort(doclist, timestamp);
-			Collections.reverse(doclist);
+			Collections.sort(docs, timestamp);
+			Collections.reverse(docs);
 		}
 		if (sorting.matches("votoUP")) {
-			Collections.sort(doclist, voto);
+			Collections.sort(docs, voto);
 		}
 		if (sorting.matches("votoDOWN")) {
-			Collections.sort(doclist, voto);
-			Collections.reverse(doclist);
+			Collections.sort(docs, voto);
+			Collections.reverse(docs);
 		}
 		if (sorting.matches("downloadUP")) {
-			Collections.sort(doclist, download);
+			Collections.sort(docs, download);
 		}
 		if (sorting.matches("downloadDOWN")) {
-			Collections.sort(doclist, download);
-			Collections.reverse(doclist);
+			Collections.sort(docs, download);
+			Collections.reverse(docs);
 		}
 		
-		ArrayList<Documento> newdoclist = new ArrayList<Documento>(doclist);
-		return newdoclist;
+		return docs;
 	}
 }
