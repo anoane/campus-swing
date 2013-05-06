@@ -326,6 +326,15 @@ public class Home {
 		carica_materiale.setFont(new Font("Arial", Font.BOLD, 18));
 		carica_materiale.setForeground(Color.WHITE);
 		carica_materiale.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		carica_materiale.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+				carica_materiale.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+				carica_materiale.setBackground(new Color(0x2E, 0x5D, 0x8C));
+			}
+		});
 		//carica_materiale.setBounds(817, 5, 184, 28);
 		carica_materiale.setBounds(770, 5, 231, 28);
 		pannello_interno_ricerca.add(carica_materiale);

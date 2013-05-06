@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -159,17 +160,10 @@ public class PrenotaLibro extends Pagina {
 		formPanel.add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		panel_1.setBackground(new Color(46, 93, 140));
-		panel_1.setBounds(129, 404, 157, 34);
-		panel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		panel.add(panel_1);
+		ButtonStandard buttonCreator = new ButtonStandard();
+		JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 129, 404, 178, 34, false, false);
+		panel.add(inviaRichiesta);
 		
-		JLabel lblInvRic = new JLabel("Invia Richiesta");
-		lblInvRic.setForeground(Color.WHITE);
-		lblInvRic.setFont(new Font("Arial", Font.PLAIN, 18));
-		panel_1.add(lblInvRic);
 	}
 	@Override
 	public void reload() {

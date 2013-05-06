@@ -126,7 +126,7 @@ public class CaricaMateriale extends Pagina  {
 	public CaricaMateriale() {
 		setLayout(null);
 
-		panel.setBounds(0, 0, 1008, 429);
+		panel.setBounds(0, 0, 992, 495);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
@@ -388,9 +388,9 @@ public class CaricaMateriale extends Pagina  {
 		textField_4.setColumns(10);
 		
 		
-		
-		JButton btnCaricaMateriale = new JButton("Carica materiale");
-		btnCaricaMateriale.setFont(new Font("Arial", Font.PLAIN, 14));
+		ButtonStandard buttonCreator = new ButtonStandard();
+		JButton btnCaricaMateriale = buttonCreator.createButton("Carica materiale", 0, 0, 0, 0, false, false);// = new JButton("Carica materiale");
+		//btnCaricaMateriale.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnCaricaMateriale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean continua = true;
@@ -1165,18 +1165,19 @@ public class CaricaMateriale extends Pagina  {
 		
 
 		
-		JButton btnPrenotaDigitalizzazione = new JButton();
+		JButton btnPrenotaDigitalizzazione = buttonCreator.createButton("<html><center>Prenota<br>digitalizzazione</center></html>", 776, 164, 203, 86, false, false);
+		//btnPrenotaDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 14));//= new JButton();
 		btnPrenotaDigitalizzazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnPrenotaDigitalizzazione.setText("Prenota digitalizzazione");
-		btnPrenotaDigitalizzazione.setForeground(Color.WHITE);
-		btnPrenotaDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 18));
-		btnPrenotaDigitalizzazione.setFocusPainted(false);
-		btnPrenotaDigitalizzazione.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		btnPrenotaDigitalizzazione.setBackground(new Color(0x2E, 0x5D, 0x8C));
-		btnPrenotaDigitalizzazione.setBounds(776, 164, 203, 86);
+		//btnPrenotaDigitalizzazione.setText("Prenota digitalizzazione");
+		//btnPrenotaDigitalizzazione.setForeground(Color.WHITE);
+		//btnPrenotaDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 18));
+		//btnPrenotaDigitalizzazione.setFocusPainted(false);
+		//btnPrenotaDigitalizzazione.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+		//btnPrenotaDigitalizzazione.setBackground(new Color(0x2E, 0x5D, 0x8C));
+		//btnPrenotaDigitalizzazione.setBounds(776, 164, 203, 86);
 		panel.add(btnPrenotaDigitalizzazione);
 		//panel_2.setFocusable(true);
 		aggiungiListnerMouseOver(panel_2);

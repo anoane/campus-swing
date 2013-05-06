@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -71,16 +72,10 @@ public class CorsoPanel extends Pagina {
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
-		JPanel seguiButton = new JPanel();
-		seguiButton.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-		seguiButton.setBounds(220, 11, 157, 34);
-		seguiButton.setBackground(new Color(0x2E,0x5D,0x8C));
-		panel.add(seguiButton);
 		
-		JLabel lblSegui = new JLabel("Segui Corso");
-		lblSegui.setForeground(Color.WHITE);
-		lblSegui.setFont(new Font("Arial", Font.PLAIN, 18));
-		seguiButton.add(lblSegui);
+		ButtonStandard buttonCreator = new ButtonStandard();
+		JButton seguiButton = buttonCreator.createButton("Segui Corso", 220, 11, 157, 34, false, false);
+		panel.add(seguiButton);
 		
 		if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){
 			seguiButton.setVisible(false);

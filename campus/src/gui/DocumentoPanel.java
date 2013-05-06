@@ -4,12 +4,12 @@ import gui.riquadri.RiquadroUtenteDoc;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,7 +20,6 @@ import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
 
-import com.jgoodies.forms.layout.CellConstraints.Alignment;
 import com.sun.pdfview.PDFViewer;
 
 import controller.ControllerUtente;
@@ -161,14 +160,8 @@ public class DocumentoPanel extends Pagina {
 
 		//pdfDoc.setBackground(Color.WHITE);
 		
-		JButton btnAggiungiAiPreferiti = new JButton();
-		btnAggiungiAiPreferiti.setFocusPainted(false);
-		btnAggiungiAiPreferiti.setText("Aggiungi ai preferiti");
-		btnAggiungiAiPreferiti.setForeground(Color.WHITE);
-		btnAggiungiAiPreferiti.setFont(new Font("Arial", Font.BOLD, 18));
-		btnAggiungiAiPreferiti.setBorder(new LineBorder(Color.BLACK, 1));
-		btnAggiungiAiPreferiti.setBackground(Color.BLACK);
-		btnAggiungiAiPreferiti.setBounds(409, 49, 184, 28);
+		ButtonStandard buttonCreator = new ButtonStandard();
+		JButton btnAggiungiAiPreferiti = buttonCreator.createButton("Aggiungi ai preferiti",409, 49, 230, 34,false,false);
 		panel.add(btnAggiungiAiPreferiti);
 		
 		if(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
@@ -211,28 +204,11 @@ public class DocumentoPanel extends Pagina {
 		panel_4.setBounds(188, 0, 178, 240);
 		riquadrodx.add(panel_4);
 		
-		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton btnScarica = buttonCreator.createButton("Scarica",0, 251, 178, 28,false, false);
-		//JButton btnScarica = new JButton();
 		
-		//btnScarica.setText("Scarica");
-		//btnScarica.setForeground(Color.WHITE);
-		//btnScarica.setFont(new Font("Arial", Font.BOLD, 18));
-		//btnScarica.setFocusPainted(false);
-		//btnScarica.setBorderPainted(false);
-		//btnScarica.setBorder(new LineBorder(Color.BLACK, 1));
-		//btnScarica.setBackground(Home.BLUE_BUTTON_UNPRESSED);
-		//btnScarica.setBounds(0, 251, 178, 28);
+		JButton btnScarica = buttonCreator.createButton("Scarica",0, 251, 178, 28,false, false);
 		riquadrodx.add(btnScarica);
 		
-		JButton btnPrenotaStampa = new JButton();
-		btnPrenotaStampa.setText("Prenota stampa");
-		btnPrenotaStampa.setForeground(Color.WHITE);
-		btnPrenotaStampa.setFont(new Font("Arial", Font.BOLD, 18));
-		btnPrenotaStampa.setFocusPainted(false);
-		btnPrenotaStampa.setBorder(new LineBorder(Color.BLACK, 1));
-		btnPrenotaStampa.setBackground(new Color(0x2E, 0x5D, 0x8C));
-		btnPrenotaStampa.setBounds(188, 251, 178, 28);
+		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",188, 251, 178, 28,false, false);
 		riquadrodx.add(btnPrenotaStampa);
 		
 		JLabel lblCommenti = new JLabel("Commenti");
