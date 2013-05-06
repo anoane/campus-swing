@@ -13,6 +13,7 @@ public class RiquadroStampa extends JPanel {
 	
 	public RiquadroStampa() {
 		this.setSize(800, 60);
+		this.setBackground(null);
 	}
 
 }

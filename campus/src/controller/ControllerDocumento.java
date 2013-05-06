@@ -229,6 +229,7 @@ public class ControllerDocumento extends AbstractController{
 	
 	private ArrayList<Documento> sortBy(ArrayList<Documento> docs, String sorting) {
 
+		
 		Comparator nome = new Comparator<Documento>() {
 
 			/*public String leftPad(String stringToPad, String padder, Integer size) {
