@@ -195,8 +195,7 @@ public class ControllerDocumento extends AbstractController{
 	}
 	
 	private ArrayList<Documento> sortBy(ArrayList<Documento> docs, String sorting) {
-		List<Documento> doclist = docs;
-
+		
 		Comparator nome = new Comparator<Documento>() {
 
 			/*public String leftPad(String stringToPad, String padder, Integer size) {
@@ -288,35 +287,34 @@ public class ControllerDocumento extends AbstractController{
 		
 		
 		if (sorting.matches("nomeUP")) {
-			Collections.sort(doclist, nome);
+			Collections.sort(docs, nome);
 		}
 		if (sorting.matches("nomeDOWN")) {
-			Collections.sort(doclist, nome);
-			Collections.reverse(doclist);
+			Collections.sort(docs, nome);
+			Collections.reverse(docs);
 		}
 		if (sorting.matches("timestampUP")) {
-			Collections.sort(doclist, timestamp);
+			Collections.sort(docs, timestamp);
 		}
 		if (sorting.matches("timestampDOWN")) {
-			Collections.sort(doclist, timestamp);
-			Collections.reverse(doclist);
+			Collections.sort(docs, timestamp);
+			Collections.reverse(docs);
 		}
 		if (sorting.matches("votoUP")) {
-			Collections.sort(doclist, voto);
+			Collections.sort(docs, voto);
 		}
 		if (sorting.matches("votoDOWN")) {
-			Collections.sort(doclist, voto);
-			Collections.reverse(doclist);
+			Collections.sort(docs, voto);
+			Collections.reverse(docs);
 		}
 		if (sorting.matches("downloadUP")) {
-			Collections.sort(doclist, download);
+			Collections.sort(docs, download);
 		}
 		if (sorting.matches("downloadDOWN")) {
-			Collections.sort(doclist, download);
-			Collections.reverse(doclist);
+			Collections.sort(docs, download);
+			Collections.reverse(docs);
 		}
 		
-		ArrayList<Documento> newdoclist = new ArrayList<Documento>(doclist);
-		return newdoclist;
+		return docs;
 	}
 }
