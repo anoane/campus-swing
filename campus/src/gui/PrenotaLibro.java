@@ -38,7 +38,7 @@ public class PrenotaLibro extends Pagina {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 429);
+		panel.setBounds(0, 0, 1008, 390);
 		add(panel);
 		
 		JLabel lblPrenotazioneLibri = new JLabel("Prenotazione Libri");
