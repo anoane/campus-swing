@@ -45,7 +45,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel.add(separator);
 		
 		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 129, 404, 178, 34, false, false);
+		JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 129, 404, 178, 34, false, true);
 		panel.add(inviaRichiesta);
 				
 		JPanel formPanel = new JPanel();

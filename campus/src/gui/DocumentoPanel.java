@@ -161,7 +161,7 @@ public class DocumentoPanel extends Pagina {
 		//pdfDoc.setBackground(Color.WHITE);
 		
 		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton btnAggiungiAiPreferiti = buttonCreator.createButton("Aggiungi ai preferiti",409, 49, 230, 34,false,false);
+		JButton btnAggiungiAiPreferiti = buttonCreator.createButton("Aggiungi ai preferiti",409, 49, 230, 34,false,true);
 		panel.add(btnAggiungiAiPreferiti);
 		
 		if(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
@@ -205,10 +205,10 @@ public class DocumentoPanel extends Pagina {
 		riquadrodx.add(panel_4);
 		
 		
-		JButton btnScarica = buttonCreator.createButton("Scarica",0, 251, 178, 28,false, false);
+		JButton btnScarica = buttonCreator.createButton("Scarica",0, 251, 178, 28,false, true);
 		riquadrodx.add(btnScarica);
 		
-		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",188, 251, 178, 28,false, false);
+		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",188, 251, 178, 28,false, true);
 		riquadrodx.add(btnPrenotaStampa);
 		
 		JLabel lblCommenti = new JLabel("Commenti");

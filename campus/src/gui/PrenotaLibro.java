@@ -161,7 +161,7 @@ public class PrenotaLibro extends Pagina {
 		textField_4.setColumns(10);
 		
 		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 129, 404, 178, 34, false, false);
+		JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 129, 404, 178, 34, false, true);
 		panel.add(inviaRichiesta);
 		
 	}

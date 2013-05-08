@@ -74,7 +74,7 @@ public class CorsoPanel extends Pagina {
 		
 		
 		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton seguiButton = buttonCreator.createButton("Segui Corso", 220, 11, 157, 34, false, false);
+		JButton seguiButton = buttonCreator.createButton("Segui Corso", 220, 11, 157, 34, false, true);
 		panel.add(seguiButton);
 		
 		if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){

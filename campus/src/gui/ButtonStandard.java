@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
 public class ButtonStandard  {
 
@@ -60,6 +61,9 @@ public class ButtonStandard  {
 		button.setBounds(x, y, width, height);
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
+		if (borderPainted) {
+			button.setBorder(new LineBorder(Color.BLACK));
+		}
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		
@@ -85,6 +89,9 @@ public class ButtonStandard  {
 		button.setBounds(x, y, width, height);
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
+		if (borderPainted) {
+			button.setBorder(new LineBorder(Color.BLACK));
+		}
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.setBackground(exit);
 		

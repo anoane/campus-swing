@@ -389,7 +389,7 @@ public class CaricaMateriale extends Pagina  {
 		
 		
 		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton btnCaricaMateriale = buttonCreator.createButton("Carica materiale", 0, 0, 0, 0, false, false);// = new JButton("Carica materiale");
+		JButton btnCaricaMateriale = buttonCreator.createButton("Carica materiale", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 		//btnCaricaMateriale.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnCaricaMateriale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
