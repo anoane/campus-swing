@@ -62,18 +62,20 @@ public class ButtonStandard  {
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
 		if (borderPainted) {
-			button.setBorder(new LineBorder(Color.BLACK));
+			button.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59),2));
 		}
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+		button.setBackground(Home.BLUE_BUTTON_PRESSED);
+		//button.setBackground(new Color(0x2E, 0x5D, 0x8C));
 		
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent arg0) {
-				button.setBackground(Home.BLUE_BUTTON_PRESSED);
+				button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 			}
 
 			public void mouseExited(MouseEvent arg0) {
-				button.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+				button.setBackground(Home.BLUE_BUTTON_PRESSED);
+				//	button.setBackground(new Color(0x2E, 0x5D, 0x8C));
 			}
 		});
 		
@@ -90,7 +92,7 @@ public class ButtonStandard  {
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
 		if (borderPainted) {
-			button.setBorder(new LineBorder(Color.BLACK));
+			button.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59),2));
 		}
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.setBackground(exit);
