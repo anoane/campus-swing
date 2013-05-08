@@ -33,7 +33,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 500);
+		panel.setBounds(0, 0, 1008, 429);
 		add(panel);
 		
 		JLabel label = new JLabel("Prenota Digitalizzazione");
@@ -47,14 +47,14 @@ public class PrenotaDigitalizzazione extends Pagina {
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
-		panel.add(inviaRichiesta);
+		//panel.add(inviaRichiesta);
 				
 		JPanel formPanel = new JPanel();
-		formPanel.setBounds(0, 48, 442, 356);
+		formPanel.setBounds(0, 48, 424, 356);
 		formPanel.setBackground(null);
 		panel.add(formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
-		gbl_formPanel.columnWidths = new int[] {125, 294};
+		gbl_formPanel.columnWidths = new int[] {125, 280};
 		gbl_formPanel.rowHeights = new int[] {30, 140, 30, 30, 30, 30, 0};
 		gbl_formPanel.columnWeights = new double[]{0.0};
 		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};

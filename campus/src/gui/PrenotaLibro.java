@@ -28,13 +28,17 @@ public class PrenotaLibro extends Pagina {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JPanel panel;
+	private ButtonStandard buttonCreator = new ButtonStandard();
+	private JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 0, 0, 0, 0, false, true);
+	
+	
 	public PrenotaLibro() {
 		setLayout(null);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 500);
+		panel.setBounds(0, 0, 1008, 429);
 		add(panel);
 		
 		JLabel lblPrenotazioneLibri = new JLabel("Prenotazione Libri");
@@ -49,15 +53,15 @@ public class PrenotaLibro extends Pagina {
 		panel.add(separator);
 		
 		JPanel formPanel = new JPanel();
-		formPanel.setBounds(34, 68, 363, 294);
+		formPanel.setBounds(0, 48, 430, 318);
 		formPanel.setBorder(new EmptyBorder(10,10,10,10));
 		formPanel.setBackground(null);
 		panel.add(formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
-		gbl_formPanel.columnWidths = new int[]{189, 189, 0, 0};
-		gbl_formPanel.rowHeights = new int[]{60, 60, 60, 60, 60, 0};
-		gbl_formPanel.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_formPanel.columnWidths = new int[]{96, 310, 0};
+		gbl_formPanel.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 0};
+		gbl_formPanel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lbltitolo = new JLabel("Titolo");
@@ -73,7 +77,7 @@ public class PrenotaLibro extends Pagina {
 		
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 0;
@@ -93,7 +97,7 @@ public class PrenotaLibro extends Pagina {
 		
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 1;
 		gbc_textField_1.gridy = 1;
@@ -113,7 +117,7 @@ public class PrenotaLibro extends Pagina {
 		
 		textField_2 = new JTextField();
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_2.gridx = 1;
 		gbc_textField_2.gridy = 2;
@@ -133,7 +137,7 @@ public class PrenotaLibro extends Pagina {
 		
 		textField_3 = new JTextField();
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_3.gridx = 1;
 		gbc_textField_3.gridy = 3;
@@ -145,7 +149,7 @@ public class PrenotaLibro extends Pagina {
 		lblCitta.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_lblCitta = new GridBagConstraints();
 		gbc_lblCitta.anchor = GridBagConstraints.WEST;
-		gbc_lblCitta.insets = new Insets(0, 0, 0, 5);
+		gbc_lblCitta.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCitta.fill = GridBagConstraints.VERTICAL;
 		gbc_lblCitta.gridx = 0;
 		gbc_lblCitta.gridy = 4;
@@ -153,16 +157,22 @@ public class PrenotaLibro extends Pagina {
 		
 		textField_4 = new JTextField();
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.insets = new Insets(0, 0, 0, 5);
+		gbc_textField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 1;
 		gbc_textField_4.gridy = 4;
 		formPanel.add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 		
-		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 129, 404, 178, 34, false, true);
-		panel.add(inviaRichiesta);
+		JButton btnNewButton = new JButton("New button");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 5;
+		//formPanel.add(btnNewButton, gbc_btnNewButton);
+		formPanel.add(inviaRichiesta, gbc_btnNewButton);
+		
+		//panel.add(inviaRichiesta);
 		
 	}
 	@Override
