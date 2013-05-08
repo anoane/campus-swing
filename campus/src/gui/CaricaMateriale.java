@@ -192,6 +192,8 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.add(lblNewLabel, "3, 2, left, default");
 		
 		btnScegliFile.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnScegliFile.setFocusPainted(false);
+		
 		btnScegliFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser fc = new JFileChooser();
@@ -1165,8 +1167,9 @@ public class CaricaMateriale extends Pagina  {
 		
 
 		
-		JButton btnPrenotaDigitalizzazione = buttonCreator.createButton("<html><center>Prenota<br>digitalizzazione</center></html>", 776, 164, 203, 86, false, false);
+		JButton btnPrenotaDigitalizzazione = buttonCreator.createButton("<html><center>Prenota<br>digitalizzazione</center></html>", 776, 164, 203, 86, false, true);
 		//btnPrenotaDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 14));//= new JButton();
+		
 		btnPrenotaDigitalizzazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
