@@ -5,7 +5,9 @@ import gui.riquadri.RiquadroDoc;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -43,6 +45,8 @@ import controller.ControllerUniversita;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTabbedPane;
+import java.awt.FlowLayout;
 
 //TODO:filtro facolta
 
@@ -113,7 +117,10 @@ public class RisultatiRicerca extends Pagina {
 	private final JLabel lblSoloDocumentiCreati = new JLabel("Solo documenti della facolt\u00E0 selezionata");
 	private final JSeparator separator_10 = new JSeparator();
 	private final JSeparator separator_11 = new JSeparator();
-
+	private final JPanel panel_6 = new JPanel();
+	private final JPanel panel_7 = new JPanel();
+	
+	
 	public void resetPanel(String ricerca) {
 		panel.setBounds(0, 0, 1008, 429);
 		panel_risultati_bycorso.setVisible(false);
@@ -130,6 +137,10 @@ public class RisultatiRicerca extends Pagina {
 		dbIndexCorsoByFac = -1;
 		fileSelezionato = false;
 		Path target = null;
+		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
+		Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
+		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
 		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
 		listaFacoltaByUniv = ControllerFacolta.getInstance()
 				.getAllFacoltaByUniv(-1);
@@ -203,10 +214,10 @@ public class RisultatiRicerca extends Pagina {
 				if (is_ricerca_guidata_open) {
 					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
 							panel.getHeight() + dimensione_fill_home_bottom);
-					panel_risultati.setBounds(0, 0, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom + 20);
-					panel_risultati_bycorso.setBounds(0, 0, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom + 20);
+					panel_risultati.setBounds(0, 38, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18);
+					panel_risultati_bycorso.setBounds(0, 38, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18);
 					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
 							scrollPane.getWidth(), panel_risultati.getHeight() - 75);
 					scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
@@ -218,10 +229,10 @@ public class RisultatiRicerca extends Pagina {
 				} else {
 					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
 							panel.getHeight() + dimensione_fill_home_bottom );
-					panel_risultati.setBounds(0, 0, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom + 20 + 200);
-					panel_risultati_bycorso.setBounds(0, 0, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom + 20 + 200);
+					panel_risultati.setBounds(0, 38, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18 + 200);
+					panel_risultati_bycorso.setBounds(0, 38, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18 + 200);
 					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
 							scrollPane.getWidth(), panel_risultati.getHeight() - 75);
 					scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
@@ -246,9 +257,89 @@ public class RisultatiRicerca extends Pagina {
 			public void componentShown(ComponentEvent arg0) {
 			}
 		});
+		
+		JLabel lab = new JLabel("Cerca documenti");
+		lab.setPreferredSize(new Dimension(500,38));
+		JLabel lab2 = new JLabel("Cerca documenti");
+		lab.setPreferredSize(new Dimension(500,38));
+		
+		/*JPanel newPanelz = new JPanel();
+		newPanelz.setBackground(Color.blue);
+		newPanelz.setSize(100, 100);
+		tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, newPanelz);
+	     */
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.WHITE);
+		panel_5.setBounds(0, 0, 1008, 38);
+		panel.add(panel_5);
+		panel_5.setLayout(null);
+		panel_5.setBackground(Home.BLUE_SEARCH_BAR);
+		
+		
+		JSeparator separator_12 = new JSeparator();
+		separator_12.setBounds(0, 0, 1008, 1);
+		separator_12.setForeground(Home.BLUE_BUTTON_PRESSED);
+		panel_5.add(separator_12);
+		panel_6.setBounds(505, 1, 503, 37);
+		panel_5.add(panel_6);
+		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_6.setLayout(null);
+		
+		JLabel lblCercaCorsi = new JLabel("Cerca corsi");
+		lblCercaCorsi.setBounds(202, 9, 99, 22);
+		lblCercaCorsi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCercaCorsi.setForeground(Color.WHITE);
+		lblCercaCorsi.setFont(new Font("Arial", Font.BOLD, 18));
+		panel_6.add(lblCercaCorsi);
+		panel_6.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+				panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+				panel_6.setBackground(Home.getOldButtonColor("ricerca_doc"));
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_SEARCH_BAR);
+				panel_7.setBackground(Home.BLUE_SEARCH_BAR);
+				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_PRESSED);
+				panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
+			}
+		});
+		
+		panel_7.setBounds(0, 1, 503, 37);
+		panel_5.add(panel_7);
+		panel_7.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_7.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+				panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+				panel_7.setBackground(Home.getOldButtonColor("ricerca_corsi"));
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
+				panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
+				Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
+				panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+			}
+		});
+		panel_7.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Cerca documenti");
+		lblNewLabel_1.setBounds(177, 9, 149, 22);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
+		panel_7.add(lblNewLabel_1);
+		
 		panel_risultati_bycorso.setLayout(null);
 		panel_risultati_bycorso.setBackground(Color.WHITE);
-		panel_risultati_bycorso.setBounds(0, 0, 1008, 186);
+		panel_risultati_bycorso.setBounds(0, 38, 1008, 186);
 		
 		panel.add(panel_risultati_bycorso);
 		label_2.setForeground(new Color(6, 121, 159));
@@ -318,7 +409,7 @@ public class RisultatiRicerca extends Pagina {
 		panel_risultati_bycorso.add(separator_11);
 
 		panel_risultati.setBackground(Color.WHITE);
-		panel_risultati.setBounds(0, 0, 1008, 186);
+		panel_risultati.setBounds(0, 38, 1008, 186);
 
 		panel.add(panel_risultati);
 		panel_risultati.setLayout(null);
@@ -772,4 +863,23 @@ public class RisultatiRicerca extends Pagina {
 
 	}
 	
+	public static class MyTabbedPaneUI extends javax.swing.plaf.basic.BasicTabbedPaneUI {
+
+	    @Override
+	    protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, 
+	               int tabIndex, Rectangle iconRect, Rectangle textRect) {
+	        Color savedColor = g.getColor();
+	        g.setColor(Color.PINK);
+	        
+	        //g.fillRect(rects[tabIndex].x, rects[tabIndex].y, 
+	        //       rects[tabIndex].width, rects[tabIndex].height);
+	        g.fillRect(0,0,200,200);
+	        g.setColor(Color.BLUE);
+	        //g.drawRect(rects[tabIndex].x, rects[tabIndex].y, 
+	        //       rects[tabIndex].width, rects[tabIndex].height);
+	        g.drawRect(0,0,200,200);
+	        g.setColor(savedColor);
+	    }
+	 }
 }
+

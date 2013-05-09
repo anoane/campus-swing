@@ -185,7 +185,9 @@ public class Home {
 		oldColorState.put("prenotazione_digitalizzazione",
 				BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("prenotazione_libri", BLUE_BUTTON_UNPRESSED);
-
+		oldColorState.put("ricerca_doc", BLUE_SEARCH_BAR);
+		oldColorState.put("ricerca_corsi", BLUE_SEARCH_BAR);
+		
 		relazionePaginaBottone.put("home", pagina_home);
 		relazionePaginaBottone.put("corsi_seguiti", pagina_corsi_seguiti);
 		relazionePaginaBottone.put("preferiti", pagina_preferiti);
@@ -513,7 +515,7 @@ public class Home {
 	
 	static void forceResizeEvent() {
 		Rectangle old_rect = getFrame().getBounds();
-		getFrame().setBounds((int)getFrame().getBounds().getX(),(int)getFrame().getBounds().getY(),(int)getFrame().getBounds().getWidth(),(int)getFrame().getBounds().getHeight()-1);
+		getFrame().setBounds((int)getFrame().getBounds().getX(),(int)getFrame().getBounds().getY(),(int)getFrame().getBounds().getWidth(),(int)getFrame().getBounds().getHeight()+1);
 		getFrame().revalidate();
 		getFrame().setBounds(old_rect);
 		spaghettiResize();
