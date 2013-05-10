@@ -141,6 +141,7 @@ public class RisultatiRicerca extends Pagina {
 		Path target = null;
 		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
 		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
+		panel_10.setVisible(false);
 		Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
 		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
 		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();

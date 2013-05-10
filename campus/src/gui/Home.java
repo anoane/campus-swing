@@ -10,6 +10,8 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.TreeMap;
@@ -286,6 +288,31 @@ public class Home {
 				}
 			}
 		});
+		getRicercaTestuale().addKeyListener(
+				new KeyListener() {
+
+					@Override
+					public void keyPressed(KeyEvent e) {
+						// TODO Auto-generated method stub
+						if( e.getKeyCode() == KeyEvent.VK_ENTER ) {
+							Home.cerca(getRicercaTestuale().getText());
+						}
+					}
+
+					@Override
+					public void keyReleased(KeyEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void keyTyped(KeyEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+				}
+		);
 		getRicercaTestuale().setText(" Cerca");
 		getRicercaTestuale().setFont(new Font("Arial", Font.BOLD, 14));
 		getRicercaTestuale().setBackground(Home.BLUE_SEARCH_BAR);
@@ -312,10 +339,7 @@ public class Home {
 			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Ricerca in corso");
-				Home.resetMenuColors();
-				Home.resetPagina();
-				Home.openRisultatiRicerca(getRicercaTestuale().getText(),false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+				Home.cerca(getRicercaTestuale().getText());
 			}
 		});
 		carica_materiale.addMouseListener(new MouseAdapter() {
@@ -380,6 +404,14 @@ public class Home {
 
 	}
 	
+	protected static void cerca(String text) {
+		// TODO Auto-generated method stub
+		System.out.println("Ricerca in corso");
+		Home.resetMenuColors();
+		Home.resetPagina();
+		Home.openRisultatiRicerca(getRicercaTestuale().getText(),false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
+	}
+
 	protected static void openCaricaMateriale(final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
 		Home.pulsantiNormali();
 		pagina_carica_materiale.reload();
