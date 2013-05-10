@@ -118,6 +118,9 @@ public class RisultatiRicerca extends Pagina {
 	private final JPanel panel_8 = new JPanel();
 	private final JPanel panel_9 = new JPanel();
 	private final JComboBox comboBox_1 = new JComboBox();
+	private final JPanel panel_10 = new JPanel();
+	private final JPanel panel_11 = new JPanel();
+	private final JLabel label_3 = new JLabel("Risultati trovati per:");
 	
 	
 	public void resetPanel(String ricerca) {
@@ -286,6 +289,8 @@ public class RisultatiRicerca extends Pagina {
 				panel_7.setBackground(Home.BLUE_SEARCH_BAR);
 				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_PRESSED);
 				panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
+				panel_9.setVisible(false);
+				panel_10.setVisible(true);
 			}
 		});
 		
@@ -306,6 +311,8 @@ public class RisultatiRicerca extends Pagina {
 				panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
 				Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
 				panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+				panel_10.setVisible(false);
+				panel_9.setVisible(true);
 			}
 		});
 		panel_7.setLayout(null);
@@ -316,6 +323,21 @@ public class RisultatiRicerca extends Pagina {
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
 		panel_7.add(lblNewLabel_1);
+		panel_10.setBackground(Color.WHITE);
+		panel_10.setBounds(0, 38, 1008, 391);
+		
+		panel.add(panel_10);
+		panel_10.setLayout(null);
+		panel_11.setBackground(Color.WHITE);
+		panel_11.setBounds(0, 0, 1008, 391);
+		
+		panel_10.add(panel_11);
+		panel_11.setLayout(null);
+		label_3.setBounds(5, 5, 188, 24);
+		label_3.setForeground(new Color(6, 121, 159));
+		label_3.setFont(new Font("Arial", Font.BOLD, 20));
+		
+		panel_11.add(label_3);
 		
 		panel_9.setBounds(0, 38, 1008, 391);
 		panel.add(panel_9);
@@ -343,7 +365,7 @@ public class RisultatiRicerca extends Pagina {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i documenti del corso", "Solo documenti della facolt\u00E0 selezionata"}));
 		comboBox.setBounds(70, 8, 423, 30);
 		panel_8.add(comboBox);
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati (crescente)", "I pi\u00F9 recenti (crescente)", "I pi\u00F9 scaricati (crescente)", "I pi\u00F9 votati (decrescente)", "I pi\u00F9 recenti (decrescente)", "I pi\u00F9 scaricati (decrescente)"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));
 		comboBox_1.setFont(new Font("Arial", Font.BOLD, 14));
 		comboBox_1.setBounds(627, 8, 371, 30);
 		
