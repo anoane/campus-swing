@@ -73,39 +73,39 @@ public class RiquadroPref extends Riquadro {
 		case "Appunti":
 			lblNewLabel.setText("Appunti");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
-			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		case "Esercizi":
 			lblNewLabel.setText("Esercizi");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		default:
 			lblNewLabel.setText("Documento");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 30, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		}
 		// Label facolta
 		facolta = new JLabel(doc.getProprietario().getFacolta().getNome());
 		facolta.setHorizontalAlignment(SwingConstants.LEFT);
-		facolta.setBounds(130, 147, 154, 20);
+		facolta.setBounds(130, 147, 138, 20);
 
 		// Label università
 		univ = new JLabel(doc.getProprietario().getFacolta().getUniversita()
 				.getNome());
 		univ.setHorizontalAlignment(SwingConstants.LEFT);
-		univ.setBounds(130, 169, 154, 20);
+		univ.setBounds(130, 169, 138, 20);
 
 		// Pannello Rimuovi
 		pulsanti = new JPanel();
@@ -139,7 +139,7 @@ public class RiquadroPref extends Riquadro {
 		corso = new JLabel(doc.getCorso().getNome());
 		corso.setHorizontalAlignment(SwingConstants.LEFT);
 		corso.setLocation(130, 126);
-		corso.setSize(154, 20);
+		corso.setSize(138, 20);
 		
 		// Panel stelle
 		stelle = new JPanel();
@@ -169,11 +169,11 @@ public class RiquadroPref extends Riquadro {
 
 		// Label proprietario
 		proprietario_cognome = new JLabel(doc.getProprietario().getCognome());
-		proprietario_cognome.setLocation(330, 169);
+		proprietario_cognome.setLocation(330, 174);
 		proprietario_cognome.setSize(100, 20);
 		
 		proprietario_nome = new JLabel(doc.getProprietario().getNome());
-		proprietario_nome.setLocation(330, 150);
+		proprietario_nome.setLocation(330, 157);
 		proprietario_nome.setSize(100, 20);
 		
 		add(titolo);
