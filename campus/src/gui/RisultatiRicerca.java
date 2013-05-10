@@ -77,7 +77,6 @@ public class RisultatiRicerca extends Pagina {
 			.getAllFacoltaByUniv(-1);
 	static Corso[] listaCorsi = ControllerCorso.getInstance().getAllCorsi();
 	static Corso[] listaCorsiByFac = null;
-	JLabel lblNewLabel = new JLabel("");
 	private final JLabel label = new JLabel("New label");
 	private final JLabel label_1 = new JLabel("New label");
 	private final JSeparator separator_1 = new JSeparator();
@@ -86,14 +85,6 @@ public class RisultatiRicerca extends Pagina {
 	private final JSeparator separator_2 = new JSeparator();
 	private final JLabel lblCorso = new JLabel("Corso");
 	private final JSeparator separator_3 = new JSeparator();
-	private final JLabel lblRisultatiTrovatiPer = new JLabel(
-			"Risultati trovati per:");
-	private final JLabel lblOrdinaPer = new JLabel("Ordina per:");
-	private final JLabel lblIPiVotati = new JLabel("I pi\u00F9 votati");
-	private final JLabel lblIPiRecenti = new JLabel("I pi\u00F9 recenti");
-	private final JLabel lblIPiScaricati = new JLabel("I pi\u00F9 scaricati");
-	private final JSeparator separator_5 = new JSeparator();
-	private final JSeparator separator_6 = new JSeparator();
 	private final JPanel panel_ricerca_guidata = new JPanel();
 	private final JPanel panel_risultati = new JPanel();
 	private final JPanel panel_1 = new JPanel();
@@ -104,13 +95,12 @@ public class RisultatiRicerca extends Pagina {
 	private final JScrollPane scrollPane_1 = new JScrollPane(panel_3);
 	private final GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 	private final GroupLayout gl_panel_2 = new GroupLayout(panel_3);
-	private final JSeparator separator_8 = new JSeparator();
 	private boolean is_ricerca_guidata_open = false;
 	private final JPanel panel_risultati_bycorso = new JPanel();
+	private final JLabel lblNewLabel = new JLabel("");
 	private final JLabel label_2 = new JLabel("");
-	private final JLabel lblRisultatiTrovatiPer_1 = new JLabel("Risultati trovati per il corso:");
 	private final JLabel label_4 = new JLabel("Ordina per:");
-	private final JLabel label_8 = new JLabel("Filtra:");
+	private final JLabel lblCercaIn = new JLabel("Cerca in:");
 	private final JSeparator separator_10 = new JSeparator();
 	private final JSeparator separator_11 = new JSeparator();
 	private final JPanel panel_6 = new JPanel();
@@ -121,6 +111,9 @@ public class RisultatiRicerca extends Pagina {
 	private final JPanel panel_10 = new JPanel();
 	private final JPanel panel_11 = new JPanel();
 	private final JLabel label_3 = new JLabel("Risultati trovati per:");
+	private final JPanel panel_12 = new JPanel();
+	private final JLabel label_5 = new JLabel("");
+	private final JLabel label_6 = new JLabel("Risultati trovati per:");
 	
 	
 	public void resetPanel(String ricerca) {
@@ -195,14 +188,14 @@ public class RisultatiRicerca extends Pagina {
 							panel.getHeight() + dimensione_fill_home_bottom);
 					panel_9.setBounds(panel_9.getX(), panel_9.getY(), panel_9.getWidth(),
 							panel_9.getHeight() + dimensione_fill_home_bottom);
-					panel_risultati.setBounds(0, 38, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -38);
-					panel_risultati_bycorso.setBounds(0, 38, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -38);
+					panel_risultati.setBounds(0, 76, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18 -76);
+					panel_risultati_bycorso.setBounds(0, 76, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18 -76);
 					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 76);
+							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
 					scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 76);
+							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
 					panel_ricerca_guidata.setBounds(0,
 							dimensione_fill_home_bottom + 20 - 38,
 							panel_ricerca_guidata.getWidth(),
@@ -212,14 +205,14 @@ public class RisultatiRicerca extends Pagina {
 							panel.getHeight() + dimensione_fill_home_bottom );
 					panel_9.setBounds(panel_9.getX(), panel_9.getY(), panel_9.getWidth(),
 							panel_9.getHeight() + dimensione_fill_home_bottom );
-					panel_risultati.setBounds(0, 38, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -38 + 200);
-					panel_risultati_bycorso.setBounds(0, 38, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -38 + 200);
+					panel_risultati.setBounds(0, 76, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18 -76 + 200);
+					panel_risultati_bycorso.setBounds(0, 76, panel_risultati.getWidth(),
+							dimensione_fill_home_bottom -18 -76 + 200);
 					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 76);
+							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
 					scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 76);
+							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
 					panel_ricerca_guidata.setBounds(0,
 							dimensione_fill_home_bottom + 20 + 200 - 38,
 							panel_ricerca_guidata.getWidth(),
@@ -324,96 +317,76 @@ public class RisultatiRicerca extends Pagina {
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
 		panel_7.add(lblNewLabel_1);
-		panel_10.setBackground(Color.WHITE);
-		panel_10.setBounds(0, 38, 1008, 391);
-		
-		panel.add(panel_10);
-		panel_10.setLayout(null);
-		panel_11.setBackground(Color.WHITE);
-		panel_11.setBounds(0, 0, 1008, 391);
-		
-		panel_10.add(panel_11);
-		panel_11.setLayout(null);
-		label_3.setBounds(5, 5, 188, 24);
-		label_3.setForeground(new Color(6, 121, 159));
-		label_3.setFont(new Font("Arial", Font.BOLD, 20));
-		
-		panel_11.add(label_3);
 		
 		panel_9.setBounds(0, 38, 1008, 391);
 		panel.add(panel_9);
 		panel_9.setLayout(null);
-		panel_8.setBounds(0, 0, 1008, 38);
+		panel_12.setLayout(null);
+		panel_12.setBackground(Color.WHITE);
+		panel_12.setBounds(0, 0, 1008, 38);
+		
+		panel_9.add(panel_12);
+		label_5.setForeground(new Color(6, 121, 159));
+		label_5.setFont(new Font("Arial", Font.BOLD, 20));
+		label_5.setBackground(Color.WHITE);
+		label_5.setBounds(205, 9, 790, 25);
+		
+		panel_12.add(label_5);
+		label_6.setForeground(new Color(6, 121, 159));
+		label_6.setFont(new Font("Arial", Font.BOLD, 20));
+		label_6.setBounds(10, 9, 188, 25);
+		
+		panel_12.add(label_6);
+		panel_8.setBounds(0, 38, 1008, 38);
 		panel_9.add(panel_8);
-		panel_8.setBackground(Home.BLUE_BUTTON_PRESSED);
+		panel_8.setBackground(Color.WHITE);
 		panel_8.setLayout(null);
-		label_4.setBounds(515, 9, 111, 25);
+		label_4.setBounds(736, 9, 108, 25);
 		panel_8.add(label_4);
-		label_4.setForeground(Color.WHITE);
+		label_4.setForeground(new Color(6, 121, 159));
 		label_4.setFont(new Font("Arial", Font.BOLD, 20));
-		label_8.setBounds(10, 9, 55, 25);
-		panel_8.add(label_8);
-		label_8.setForeground(Color.WHITE);
-		label_8.setFont(new Font("Arial", Font.BOLD, 20));
-		separator_10.setBackground(Color.WHITE);
-		separator_10.setBounds(503, 8, 1, 28);
+		lblCercaIn.setBounds(10, 9, 85, 25);
+		panel_8.add(lblCercaIn);
+		lblCercaIn.setForeground(new Color(6, 121, 159));
+		lblCercaIn.setFont(new Font("Arial", Font.BOLD, 20));
+		separator_10.setBackground(new Color(6, 121, 159));
+		separator_10.setBounds(350, 8, 1, 28);
 		panel_8.add(separator_10);
 		separator_10.setOrientation(SwingConstants.VERTICAL);
-		separator_10.setForeground(Color.WHITE);
+		separator_10.setForeground(new Color(6, 121, 159));
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 14));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i documenti del corso", "Solo documenti della facolt\u00E0 selezionata"}));
-		comboBox.setBounds(70, 8, 423, 30);
+		comboBox.setBounds(97, 8, 246, 30);
+		comboBox.setBackground(new Color(255,255,255));
 		panel_8.add(comboBox);
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));
 		comboBox_1.setFont(new Font("Arial", Font.BOLD, 14));
-		comboBox_1.setBounds(627, 8, 371, 30);
+		comboBox_1.setBounds(854, 8, 144, 30);
+		comboBox_1.setBackground(new Color(255,255,255));
 		
 		panel_8.add(comboBox_1);
-		gl_panel_2.setHorizontalGroup(
-				gl_panel_2.createParallelGroup(Alignment.LEADING)
-					.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
-						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(22, Short.MAX_VALUE))
-			);
-		gl_panel_2.setVerticalGroup(
-				gl_panel_2.createParallelGroup(Alignment.LEADING)
-					.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
-						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(223, Short.MAX_VALUE))
-			);
-		panel_risultati_bycorso.setBounds(0, 38, 1008, 186);
-		panel_9.add(panel_risultati_bycorso);
 		
-		panel_risultati_bycorso.setLayout(null);
-		panel_risultati_bycorso.setBackground(Color.WHITE);
-		label_2.setForeground(new Color(6, 121, 159));
-		label_2.setFont(new Font("Arial", Font.BOLD, 20));
-		label_2.setBackground(Color.WHITE);
-		label_2.setBounds(284, 10, 714, 25);
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setOrientation(SwingConstants.VERTICAL);
+		separator_4.setForeground(new Color(6, 121, 159));
+		separator_4.setBackground(new Color(6, 121, 159));
+		separator_4.setBounds(730, 8, 1, 28);
+		panel_8.add(separator_4);
 		
-		panel_risultati_bycorso.add(label_2);
-		lblRisultatiTrovatiPer_1.setForeground(new Color(6, 121, 159));
-		lblRisultatiTrovatiPer_1.setFont(new Font("Arial", Font.BOLD, 20));
-		lblRisultatiTrovatiPer_1.setBounds(10, 10, 264, 25);
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Esercizi", "Slide", "Dispense"}));
+		comboBox_2.setFont(new Font("Arial", Font.BOLD, 14));
+		comboBox_2.setBackground(Color.WHITE);
+		comboBox_2.setBounds(593, 8, 127, 30);
+		panel_8.add(comboBox_2);
 		
-		panel_risultati_bycorso.add(lblRisultatiTrovatiPer_1);
-		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBorder(new LineBorder(new Color(27, 50, 128)));
-		scrollPane_1.setBounds(0, 75, 1008, 313);
-		
-		panel_risultati_bycorso.add(scrollPane_1);
-		separator_11.setForeground(new Color(27, 50, 128));
-		separator_11.setBounds(0, 41, 170, 1);
-		
-		panel_risultati_bycorso.add(separator_11);
-		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(56, 81, 525, 300);
-		panel_4.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel_4.setBackground(Color.WHITE);
-		panel_4.setLayout(null);
-		panel_3.setLayout(gl_panel_2);
+		JLabel lblFiltraPerTipo = new JLabel("Filtra per tipo:");
+		lblFiltraPerTipo.setForeground(new Color(6, 121, 159));
+		lblFiltraPerTipo.setFont(new Font("Arial", Font.BOLD, 20));
+		lblFiltraPerTipo.setBounds(449, 9, 134, 25);
+		panel_8.add(lblFiltraPerTipo);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
@@ -426,91 +399,55 @@ public class RisultatiRicerca extends Pagina {
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(223, Short.MAX_VALUE))
 		);
-		panel_risultati.setBounds(0, 38, 1008, 186);
+		panel_risultati.setBounds(0, 76, 1008, 186);
 		panel_9.add(panel_risultati);
-
-		panel_risultati.setBackground(Color.WHITE);
-		panel_risultati.setLayout(null);
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel.setForeground(new Color(6, 121, 159));
-		lblNewLabel.setBounds(208, 10, 790, 25);
-		panel_risultati.add(lblNewLabel);
-		lblRisultatiTrovatiPer.setForeground(new Color(6, 121, 159));
-		lblRisultatiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
-		lblRisultatiTrovatiPer.setBounds(10, 10, 188, 25);
-
-		panel_risultati.add(lblRisultatiTrovatiPer);
-		lblOrdinaPer.setForeground(new Color(6, 121, 159));
-		lblOrdinaPer.setFont(new Font("Arial", Font.BOLD, 20));
-		lblOrdinaPer.setBounds(505, 50, 111, 25);
-
-		panel_risultati.add(lblOrdinaPer);
-		lblIPiVotati.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// System.out.println("click");
-			}
-		});
-		lblIPiVotati.setForeground(Color.BLACK);
-		lblIPiVotati.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIPiVotati.setBounds(620, 50, 99, 25);
-
-		panel_risultati.add(lblIPiVotati);
-		lblIPiRecenti.setForeground(Color.BLACK);
-		lblIPiRecenti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIPiRecenti.setBounds(740, 50, 111, 25);
-
-		panel_risultati.add(lblIPiRecenti);
-		lblIPiScaricati.setForeground(Color.BLACK);
-		lblIPiScaricati.setFont(new Font("Arial", Font.BOLD, 20));
-		lblIPiScaricati.setBounds(872, 50, 126, 25);
-
-		panel_risultati.add(lblIPiScaricati);
-		separator_5.setOrientation(SwingConstants.VERTICAL);
-		separator_5.setForeground(new Color(27, 50, 128));
-		separator_5.setBounds(862, 47, 2, 28);
-
-		panel_risultati.add(separator_5);
-		separator_6.setOrientation(SwingConstants.VERTICAL);
-		separator_6.setForeground(new Color(27, 50, 128));
-		separator_6.setBounds(730, 47, 2, 28);
-
-		panel_risultati.add(separator_6);
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(56, 81, 525, 300);
-		scrollPane.setBorder(new LineBorder(new Color(27, 50, 128)));
-
-		scrollPane
-				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel_2.setBackground(Color.WHITE);
-		panel_2.setLayout(null);
-		panel_1.setLayout(gl_panel_1);
-		scrollPane.setBounds(0, 75, 1008, 313);
-		panel_risultati.add(scrollPane, BorderLayout.CENTER);
 		
-		JLabel lblFiltra = new JLabel("Filtra:");
-		lblFiltra.setForeground(new Color(6, 121, 159));
-		lblFiltra.setFont(new Font("Arial", Font.BOLD, 20));
-		lblFiltra.setBounds(10, 50, 55, 25);
-		panel_risultati.add(lblFiltra);
+				panel_risultati.setBackground(Color.WHITE);
+				panel_risultati.setLayout(null);
+																panel_1.setBackground(Color.WHITE);
+																panel_1.setBounds(56, 81, 525, 300);
+																scrollPane.setBorder(new LineBorder(new Color(27, 50, 128)));
+																
+																		scrollPane
+																				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+																		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+																		panel_2.setBackground(Color.WHITE);
+																		panel_2.setLayout(null);
+																		panel_1.setLayout(gl_panel_1);
+																		scrollPane.setBounds(0, 0, 1007, 313);
+																		panel_risultati.add(scrollPane, BorderLayout.CENTER);
+		gl_panel_2.setHorizontalGroup(
+				gl_panel_2.createParallelGroup(Alignment.LEADING)
+					.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(22, Short.MAX_VALUE))
+			);
+		gl_panel_2.setVerticalGroup(
+				gl_panel_2.createParallelGroup(Alignment.LEADING)
+					.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(223, Short.MAX_VALUE))
+			);
+		panel_risultati_bycorso.setBounds(0, 76, 1008, 186);
+		panel_9.add(panel_risultati_bycorso);
 		
-		JLabel lblDocumentiCreatiNella = new JLabel("Solo documenti creati nella mia facolt\u00E0");
-		lblDocumentiCreatiNella.setForeground(Color.BLACK);
-		lblDocumentiCreatiNella.setFont(new Font("Arial", Font.BOLD, 20));
-		lblDocumentiCreatiNella.setBounds(75, 50, 370, 25);
-		panel_risultati.add(lblDocumentiCreatiNella);
+		panel_risultati_bycorso.setLayout(null);
+		panel_risultati_bycorso.setBackground(Color.WHITE);
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_1.setBorder(new LineBorder(new Color(27, 50, 128)));
+		scrollPane_1.setBounds(0, 0, 1007, 313);
 		
-		JSeparator separator_7 = new JSeparator();
-		separator_7.setOrientation(SwingConstants.VERTICAL);
-		separator_7.setForeground(new Color(27, 50, 128));
-		separator_7.setBounds(472, 47, 2, 28);
-		panel_risultati.add(separator_7);
-		separator_8.setForeground(new Color(27, 50, 128));
-		separator_8.setBounds(0, 41, 170, 1);
+		panel_risultati_bycorso.add(scrollPane_1);
+		separator_11.setForeground(new Color(27, 50, 128));
+		separator_11.setBounds(0, 41, 170, 1);
 		
-		panel_risultati.add(separator_8);
+		panel_risultati_bycorso.add(separator_11);
+		panel_3.setBackground(Color.WHITE);
+		panel_3.setBounds(56, 81, 525, 300);
+		panel_4.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel_4.setBackground(Color.WHITE);
+		panel_4.setLayout(null);
+		panel_3.setLayout(gl_panel_2);
 		panel_ricerca_guidata.setBounds(0, 350, 1008, 247);
 		panel_9.add(panel_ricerca_guidata);
 
@@ -662,6 +599,21 @@ public class RisultatiRicerca extends Pagina {
 		});
 		btnNewButton.setBounds(688, 14, 89, 23);
 		panel_ricerca_guidata.add(btnNewButton);
+		panel_10.setBackground(Color.WHITE);
+		panel_10.setBounds(0, 38, 1008, 391);
+		
+		panel.add(panel_10);
+		panel_10.setLayout(null);
+		panel_11.setBackground(Color.WHITE);
+		panel_11.setBounds(0, 0, 1008, 391);
+		
+		panel_10.add(panel_11);
+		panel_11.setLayout(null);
+		label_3.setBounds(5, 5, 188, 24);
+		label_3.setForeground(new Color(6, 121, 159));
+		label_3.setFont(new Font("Arial", Font.BOLD, 20));
+		
+		panel_11.add(label_3);
 
 	}
 
