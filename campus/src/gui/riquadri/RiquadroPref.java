@@ -33,7 +33,8 @@ public class RiquadroPref extends Riquadro {
 	private JLabel univ;
 	private JLabel corso;
 	private JPanel utente;
-	private JLabel proprietario;
+	private JLabel proprietario_cognome;
+	private JLabel proprietario_nome;
 	private RimuoviButton rimuovi;
 
 	private static Color colore_stella = new Color(255,222,87);
@@ -44,7 +45,7 @@ public class RiquadroPref extends Riquadro {
 		this.setBorder(super.getRiquadroBorder());	
 		// Riquadro Anteprima
 		anteprima = new JPanel();
-		anteprima.setBounds(20, 16, 116, 170);
+		anteprima.setBounds(20, 45, 100, 141);
 		anteprima.setBackground(Color.WHITE);
 		anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -58,7 +59,7 @@ public class RiquadroPref extends Riquadro {
 
 		// JPanel tipo
 		tipo = new JPanel();
-		tipo.setBounds(10, 30, 58, 20);
+		tipo.setBounds(10, 56, 58, 20);
 		tipo.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		tipo.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
@@ -98,19 +99,19 @@ public class RiquadroPref extends Riquadro {
 		// Label facolta
 		facolta = new JLabel(doc.getProprietario().getFacolta().getNome());
 		facolta.setHorizontalAlignment(SwingConstants.LEFT);
-		facolta.setBounds(276, 153, 154, 20);
+		facolta.setBounds(130, 147, 154, 20);
 
 		// Label università
 		univ = new JLabel(doc.getProprietario().getFacolta().getUniversita()
 				.getNome());
 		univ.setHorizontalAlignment(SwingConstants.LEFT);
-		univ.setBounds(276, 175, 154, 20);
+		univ.setBounds(130, 169, 154, 20);
 
 		// Pannello Rimuovi
 		pulsanti = new JPanel();
 		pulsanti.setBackground(null);
 		pulsanti.setSize(128, 52);
-		pulsanti.setLocation(308, 5);
+		pulsanti.setLocation(302, 13);
 		pulsanti.setLayout(null);
 		RimuoviButton r = new RimuoviButton("Rimuovi il documento dai Preferiti");
 		r.setLocation(75, 0);
@@ -125,19 +126,19 @@ public class RiquadroPref extends Riquadro {
 		
 		// Label title
 		titolo = new JLabel(doc.getNome());
-		titolo.setBounds(154, 5, 133, 40);
+		titolo.setBounds(10, 5, 298, 40);
 		titolo.setFont(new Font("Monotype Corsiva", Font.PLAIN, 25));
 		titolo.setForeground(Color.WHITE);
 		
 		// Label descrizione
 		descrizione = new JLabel(doc.getDescrizione());
-		descrizione.setLocation(154, 80);
-		descrizione.setSize(245, 41);
+		descrizione.setLocation(130, 76);
+		descrizione.setSize(300, 52);
 
 		// Label corso
 		corso = new JLabel(doc.getCorso().getNome());
 		corso.setHorizontalAlignment(SwingConstants.LEFT);
-		corso.setLocation(276, 132);
+		corso.setLocation(130, 126);
 		corso.setSize(154, 20);
 		
 		// Panel stelle
@@ -155,7 +156,7 @@ public class RiquadroPref extends Riquadro {
 			stelle.add(stella);
 		}
 		stelle.add(colore);
-		stelle.setLocation(154, 45);
+		stelle.setLocation(130, 45);
 		stelle.setSize(150, 30);
 		colore.setBackground(colore_stella);
 		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
@@ -163,13 +164,17 @@ public class RiquadroPref extends Riquadro {
 		
 		// Panel utente
 		utente = new JPanel();
-		utente.setLocation(154, 118);
+		utente.setLocation(278, 139);
 		utente.setSize(50, 50);
 
 		// Label proprietario
-		proprietario = new JLabel(doc.getProprietario().getNome());
-		proprietario.setLocation(154, 175);
-		proprietario.setSize(100, 20);
+		proprietario_cognome = new JLabel(doc.getProprietario().getCognome());
+		proprietario_cognome.setLocation(330, 169);
+		proprietario_cognome.setSize(100, 20);
+		
+		proprietario_nome = new JLabel(doc.getProprietario().getNome());
+		proprietario_nome.setLocation(330, 150);
+		proprietario_nome.setSize(100, 20);
 		
 		add(titolo);
 		add(corso);
@@ -179,9 +184,11 @@ public class RiquadroPref extends Riquadro {
 		add(pulsanti);
 		add(stelle);
 		add(utente);
-		add(proprietario);
+		add(proprietario_cognome);
 		add(tipo);
 		add(anteprima);
+		add(proprietario_nome);
+				
 	}
 	
 	public RimuoviButton getRimuovi(){
