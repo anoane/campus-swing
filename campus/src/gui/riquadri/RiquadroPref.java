@@ -99,14 +99,16 @@ public class RiquadroPref extends Riquadro {
 			break;
 		}
 		// Label facolta
-		facolta = new JLabel(doc.getProprietario().getFacolta().getNome());
+		//facolta = new JLabel(doc.getProprietario().getFacolta().getNome());
+		facolta = new JLabel(doc.getFacolta().getNome());
 		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
 		facolta.setHorizontalAlignment(SwingConstants.LEFT);
 		facolta.setBounds(130, 147, 138, 20);
 
 		// Label università
-		univ = new JLabel(doc.getProprietario().getFacolta().getUniversita()
-				.getNome());
+		//univ = new JLabel(doc.getProprietario().getFacolta().getUniversita()
+		//		.getNome());
+		univ = new JLabel(doc.getFacolta().getUniversita().getNome());
 		univ.setFont(new Font("Arial", Font.PLAIN, 12));
 		univ.setHorizontalAlignment(SwingConstants.LEFT);
 		univ.setBounds(130, 169, 138, 20);
