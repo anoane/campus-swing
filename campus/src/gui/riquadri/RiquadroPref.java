@@ -16,7 +16,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
@@ -28,7 +30,7 @@ public class RiquadroPref extends Riquadro {
 	private JPanel pulsanti;
 	private JPanel stelle;
 	private JLabel titolo;
-	private JLabel descrizione;
+	private JTextArea descrizione;
 	private JLabel facolta;
 	private JLabel univ;
 	private JLabel corso;
@@ -98,12 +100,14 @@ public class RiquadroPref extends Riquadro {
 		}
 		// Label facolta
 		facolta = new JLabel(doc.getProprietario().getFacolta().getNome());
+		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
 		facolta.setHorizontalAlignment(SwingConstants.LEFT);
 		facolta.setBounds(130, 147, 138, 20);
 
 		// Label università
 		univ = new JLabel(doc.getProprietario().getFacolta().getUniversita()
 				.getNome());
+		univ.setFont(new Font("Arial", Font.PLAIN, 12));
 		univ.setHorizontalAlignment(SwingConstants.LEFT);
 		univ.setBounds(130, 169, 138, 20);
 
@@ -127,16 +131,27 @@ public class RiquadroPref extends Riquadro {
 		// Label title
 		titolo = new JLabel(doc.getNome());
 		titolo.setBounds(10, 5, 298, 40);
-		titolo.setFont(new Font("Monotype Corsiva", Font.PLAIN, 25));
+		titolo.setFont(new Font("Arial", Font.BOLD, 25));
 		titolo.setForeground(Color.WHITE);
 		
-		// Label descrizione
-		descrizione = new JLabel(doc.getDescrizione());
+		// TextArea descrizione
+		descrizione = new JTextArea(doc.getDescrizione());
+		if (doc.getDescrizione().length() > 125) {
+			descrizione = new JTextArea(doc.getDescrizione().substring(0, 124).concat("..."));
+		}
+		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
+		descrizione.setEditable(false);
 		descrizione.setLocation(130, 76);
 		descrizione.setSize(300, 52);
+		descrizione.setLineWrap(true);
+		descrizione.setBorder(new EmptyBorder(0,0,0,0));
+		descrizione.setWrapStyleWord(true);
+		descrizione.setHighlighter(null);
+		descrizione.setBackground(super.getPreferitoBgColor());
 
 		// Label corso
 		corso = new JLabel(doc.getCorso().getNome());
+		corso.setFont(new Font("Arial", Font.PLAIN, 12));
 		corso.setHorizontalAlignment(SwingConstants.LEFT);
 		corso.setLocation(130, 126);
 		corso.setSize(138, 20);
@@ -169,10 +184,12 @@ public class RiquadroPref extends Riquadro {
 
 		// Label proprietario
 		proprietario_cognome = new JLabel(doc.getProprietario().getCognome());
+		proprietario_cognome.setFont(new Font("Arial", Font.PLAIN, 12));
 		proprietario_cognome.setLocation(330, 174);
 		proprietario_cognome.setSize(100, 20);
 		
 		proprietario_nome = new JLabel(doc.getProprietario().getNome());
+		proprietario_nome.setFont(new Font("Arial", Font.PLAIN, 12));
 		proprietario_nome.setLocation(330, 157);
 		proprietario_nome.setSize(100, 20);
 		

@@ -49,6 +49,8 @@ import modello_di_dominio.Universita;
 
 import org.orm.PersistentException;
 
+import util.JTextFieldLimit;
+
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -90,7 +92,7 @@ public class CaricaMateriale extends Pagina  {
 	final static JList list_1 = new JList();
 	final static JList list_2 = new JList();
 	final static JList list_3 = new JList();
-	final JTextPane textPane = new JTextPane();
+	final JTextField textPane = new JTextField();
 	final JButton btnScegliFile = new JButton("Scegli file...");
 	
 	private JTextField textField_1;
@@ -234,6 +236,7 @@ public class CaricaMateriale extends Pagina  {
 		textField.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(textField, "4, 3, fill, default");
 		textField.setColumns(10);
+		textField.setDocument(new JTextFieldLimit(254));
 		
 		JLabel lblNewLabel_2 = new JLabel("Descrizione");
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -243,6 +246,7 @@ public class CaricaMateriale extends Pagina  {
 		textArea.setLineWrap(true);
 		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		textArea.setWrapStyleWord(true);
+		textArea.setDocument(new JTextFieldLimit(254));
 		JScrollPane scrollPane = new JScrollPane(textArea); 
 		panel_1.add(scrollPane, "4, 5, fill, fill");
 		
@@ -263,6 +267,7 @@ public class CaricaMateriale extends Pagina  {
 		textField_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_2.setEditable(false);
 		textField_2.setBackground(UIManager.getColor("TextField.backgroud"));
+		textField_2.setDocument(new JTextFieldLimit(254));
 		textField_2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -310,6 +315,7 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.add(lblNewLabel_5, "3, 8, left, default");
 		
 		textField_3 = new JTextField();
+		textField_3.setDocument(new JTextFieldLimit(254));
 		textField_3.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
 				    changed();
@@ -358,6 +364,7 @@ public class CaricaMateriale extends Pagina  {
 		textField_4.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_4.setEditable(false);
 		textField_4.setBackground(UIManager.getColor("TextField.backgroud"));
+		textField_4.setDocument(new JTextFieldLimit(254));
 		textField_4.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -449,6 +456,7 @@ public class CaricaMateriale extends Pagina  {
 		panel.add(lblNonHaiUno);*/
 		
 		JTextPane txtpnNonHaiUno = new JTextPane();
+		//txtpnNonHaiUno.setDocument(new JTextFieldLimit(254));
 		txtpnNonHaiUno.setEditable(false);
 		txtpnNonHaiUno.setFont(new Font("Arial", Font.BOLD, 20));
 		txtpnNonHaiUno.setForeground(new Color(6, 121, 159));
@@ -705,6 +713,7 @@ public class CaricaMateriale extends Pagina  {
 																panel_13.add(lblNewLabel_9, "2, 2, left, center");
 																
 																textField_1 = new JTextField();
+																textField_1.setDocument(new JTextFieldLimit(254));
 																textField_1.setFont(new Font("Arial", Font.PLAIN, 14));
 																panel_13.add(textField_1, "4, 2, fill, default");
 																textField_1.setColumns(10);
@@ -715,7 +724,7 @@ public class CaricaMateriale extends Pagina  {
 																panel_13.add(lblNewLabel_10, "2, 4, left, top");
 																textArea_1.setWrapStyleWord(true);
 																textArea_1.setLineWrap(true);
-																
+																textArea_1.setDocument(new JTextFieldLimit(254));
 																textArea_1.setFont(new Font("Arial", Font.PLAIN, 14));
 																JScrollPane areaScrollPane = new JScrollPane(textArea_1);
 																areaScrollPane.setPreferredSize(new Dimension(185, 53));
@@ -731,6 +740,7 @@ public class CaricaMateriale extends Pagina  {
 																textField_5.setFont(new Font("Arial", Font.PLAIN, 14));
 																panel_13.add(textField_5, "4, 6, fill, default");
 																textField_5.setColumns(10);
+																textField_5.setDocument(new JTextFieldLimit(254));
 																aggiungiListnerMouseOver(textField_1);
 																aggiungiListnerMouseOver(textField_5);
 																aggiungiListnerMouseOver(textArea_1);
@@ -972,6 +982,7 @@ public class CaricaMateriale extends Pagina  {
 								panel_9.add(lblNewLabel_13, "2, 2");
 								
 								textPane.setFont(new Font("Arial", Font.PLAIN, 14));
+								textPane.setDocument(new JTextFieldLimit(254));
 								panel_9.add(textPane, "4, 2, fill, default");
 								aggiungiListnerMouseOver(textPane);
 								aggiungiListnerMouseOver(crea_univ);
@@ -1149,6 +1160,7 @@ public class CaricaMateriale extends Pagina  {
 										panel_15.add(lblNewLabel_12, "2, 2");
 										
 										textField_6 = new JTextField();
+										textField_6.setDocument(new JTextFieldLimit(254));
 										textField_6.addFocusListener(new FocusAdapter() {
 											@Override
 											public void focusLost(FocusEvent arg0) {
