@@ -147,7 +147,7 @@ public class ControllerDocumento extends AbstractController{
 	 * @return
 	 * @throws PersistentException
 	 */
-	public ArrayList<Documento> getListAllDocumentiByStringSearch(String ricerca, boolean soloFac, String sorting) throws PersistentException {
+	public ArrayList<Documento> getListAllDocumentiByStringSearch(String ricerca, boolean soloFac, String filtro, String sorting) throws PersistentException {
 		TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
 		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca+"*");
 		if (temp != null) {
@@ -176,7 +176,7 @@ public class ControllerDocumento extends AbstractController{
 		if (soloFac) {
 			docs = filtraSoloUnaFac(docs, ControllerUtente.getInstance().getUtente(1).getFacolta().getID());
 		}
-		return sortBy(docs,sorting);
+		return sortBy(filtraPerTipo(docs,filtro),sorting);
 	}
 	/**
 	 * getListAllDocumentiByCorso
@@ -184,10 +184,11 @@ public class ControllerDocumento extends AbstractController{
 	 * @param indexCorso
 	 * @param soloFac
 	 * @param sorting
+	 * @param sorting2 
 	 * @return
 	 * @throws PersistentException
 	 */
-	public ArrayList<Documento> getListAllDocumentiByCorso(int indexFac, int indexCorso, boolean soloFac, String sorting) throws PersistentException {
+	public ArrayList<Documento> getListAllDocumentiByCorso(int indexFac, int indexCorso, boolean soloFac, String filtro, String sorting) throws PersistentException {
 		Documento[] temp = ControllerCorso.getInstance().getCorso(indexCorso).documentoCorso.toArray();
 		ArrayList<Documento> docs = new ArrayList<Documento>();
 		for (int i=0; temp.length > i; i++) {
@@ -207,7 +208,7 @@ public class ControllerDocumento extends AbstractController{
 		if (soloFac) {
 			docs = filtraSoloUnaFac(docs, indexFac);
 		}
-		return sortBy(docs,sorting);
+		return sortBy(filtraPerTipo(docs,filtro),sorting);
 	}
 	/**
 	 * TODO: Questa funzione ha bisogno di un'ampia ristrutturazione
@@ -221,6 +222,16 @@ public class ControllerDocumento extends AbstractController{
 		ArrayList<Documento> newdocs = new ArrayList<Documento>();
 		for (int i=0; docs.size() > i; i++) {
 			if (docs.get(i).getFacolta().getID() == index) {
+				newdocs.add(docs.get(i));
+			}
+		}
+		return newdocs;
+	}
+	
+	private ArrayList<Documento> filtraPerTipo(ArrayList<Documento> docs, String filtro) {
+		ArrayList<Documento> newdocs = new ArrayList<Documento>();
+		for (int i=0; docs.size() > i; i++) {
+			if (filtro.matches("all") || docs.get(i).getDiscriminator().matches(filtro)) {
 				newdocs.add(docs.get(i));
 			}
 		}

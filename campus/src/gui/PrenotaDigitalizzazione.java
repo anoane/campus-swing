@@ -90,8 +90,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 		
 		JTextField txtNomeDoc = new JTextField();
 		GridBagConstraints gbc_txtNomeDoc = new GridBagConstraints();
-		gbc_txtNomeDoc.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNomeDoc.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNomeDoc.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNomeDoc.gridx = 1;
 		gbc_txtNomeDoc.gridy = 0;
 		formPanel.add(txtNomeDoc, gbc_txtNomeDoc);
@@ -144,8 +144,8 @@ public class PrenotaDigitalizzazione extends Pagina {
         
 		JTextField txtNumPag = new JTextField();
 		GridBagConstraints gbc_txtNumPag = new GridBagConstraints();
-		gbc_txtNumPag.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNumPag.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNumPag.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNumPag.gridx = 1;
 		gbc_txtNumPag.gridy = 2;
 		formPanel.add(txtNumPag, gbc_txtNumPag);
@@ -165,12 +165,15 @@ public class PrenotaDigitalizzazione extends Pagina {
 		
 		final Corso[] corsi = ControllerCorso.getInstance().getAllCorsi();
 		JComboBox comboBoxCorsi = new JComboBox();
-		
-		//if(corsi.length != 0){
+		String temp = corsi[0].getNome();
+		if (corsi[0].getNome().length() > 40) {
+			temp = corsi[0].getNome().substring(0, 39).concat("...");
+		}
+		final String temp2 = temp;
 		
 		comboBoxCorsi.setModel(new ComboBoxModel<String>() {
 			//TODO: Fix
-			private String selected = corsi[0].getNome();
+			private String selected = temp2;
 			
 			@Override
 			public void addListDataListener(ListDataListener arg0) {
@@ -180,6 +183,9 @@ public class PrenotaDigitalizzazione extends Pagina {
 
 			@Override
 			public String getElementAt(int arg0) {
+				if (corsi[arg0].getNome().length() > 40) {
+					return corsi[arg0].getNome().substring(0, 39).concat("...");
+				}
 				return corsi[arg0].getNome();
 			}
 
@@ -209,8 +215,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 
 		
 		GridBagConstraints gbc_lstCorso = new GridBagConstraints();
-		gbc_lstCorso.insets = new Insets(0, 0, 5, 0);
 		gbc_lstCorso.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lstCorso.insets = new Insets(0, 0, 5, 0);
 		gbc_lstCorso.gridx = 1;
 		gbc_lstCorso.gridy = 3;
 		formPanel.add(comboBoxCorsi,gbc_lstCorso);
@@ -230,8 +236,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 		comboBoxCop.setSelectedIndex(4);
 		
 		GridBagConstraints gbc_lstcopisteria = new GridBagConstraints();
-		gbc_lstcopisteria.insets = new Insets(0, 0, 5, 0);
 		gbc_lstcopisteria.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lstcopisteria.insets = new Insets(0, 0, 5, 0);
 		gbc_lstcopisteria.gridx = 1;
 		gbc_lstcopisteria.gridy = 5;
 		formPanel.add(comboBoxCop,gbc_lstcopisteria);
@@ -251,8 +257,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 		comboBoxCitta.setSelectedIndex(4);
 		
 		GridBagConstraints gbc_citta = new GridBagConstraints();
-		gbc_citta.insets = new Insets(0, 0, 5, 0);
 		gbc_citta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_citta.insets = new Insets(0, 0, 5, 0);
 		gbc_citta.gridx = 1;
 		gbc_citta.gridy = 4;
 		formPanel.add(comboBoxCitta,gbc_citta);
@@ -263,8 +269,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 		
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 6;
-		formPanel.add(inviaRichiesta, gbc_btnNewButton);
-		//formPanel.add(btnNewButton, gbc_btnNewButton);
+		//formPanel.add(inviaRichiesta, gbc_btnNewButton);
+		formPanel.add(btnNewButton, gbc_btnNewButton);
 		
 		
 	}

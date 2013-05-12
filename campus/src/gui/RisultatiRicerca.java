@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
@@ -49,6 +50,8 @@ import javax.swing.JTabbedPane;
 import java.awt.FlowLayout;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 //TODO:filtro facolta
 
@@ -69,6 +72,7 @@ public class RisultatiRicerca extends Pagina {
 	private int dbIndexCorso = -1;
 	private int indexCorsoByFac = -1;
 	private int dbIndexCorsoByFac = -1;
+	private String tempRicerca = "";
 	private boolean fileSelezionato = false;
 	private Path target;
 	static Universita[] listaUniversita = ControllerUniversita.getInstance()
@@ -96,6 +100,7 @@ public class RisultatiRicerca extends Pagina {
 	private final GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 	private final GroupLayout gl_panel_2 = new GroupLayout(panel_3);
 	private boolean is_ricerca_guidata_open = false;
+	private boolean is_ricerca_by_corso_in_progress = false;
 	private final JPanel panel_risultati_bycorso = new JPanel();
 	private final JLabel lblNewLabel = new JLabel("");
 	private final JLabel label_2 = new JLabel("");
@@ -107,16 +112,19 @@ public class RisultatiRicerca extends Pagina {
 	private final JPanel panel_7 = new JPanel();
 	private final JPanel panel_8 = new JPanel();
 	private final JPanel panel_9 = new JPanel();
-	private final JComboBox comboBox_1 = new JComboBox();
 	private final JPanel panel_10 = new JPanel();
 	private final JPanel panel_11 = new JPanel();
 	private final JLabel label_3 = new JLabel("Risultati trovati per:");
 	private final JPanel panel_12 = new JPanel();
 	private final JLabel label_5 = new JLabel("");
-	private final JLabel label_6 = new JLabel("Risultati trovati per:");
+	private final JLabel lblDocumentiTrovatiPer = new JLabel("Documenti trovati per il corso:");
+	private final JComboBox comboBox = new JComboBox();
+	private final JComboBox comboBox_1 = new JComboBox();
+	private final JComboBox comboBox_2 = new JComboBox();
 	
 	
 	public void resetPanel(String ricerca) {
+		tempRicerca = ricerca;
 		panel.setBounds(0, 0, 1008, 429);
 		panel_risultati_bycorso.setVisible(false);
 		panel_risultati.setVisible(true);
@@ -135,6 +143,11 @@ public class RisultatiRicerca extends Pagina {
 		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
 		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
 		panel_10.setVisible(false);
+		lblDocumentiTrovatiPer.setText("Documenti trovati per:");
+		label_5.setBounds(225, 9, 770, 25);
+		lblDocumentiTrovatiPer.setBounds(10, 9, 215, 25);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
+		is_ricerca_by_corso_in_progress = false;
 		Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
 		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
 		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
@@ -142,28 +155,35 @@ public class RisultatiRicerca extends Pagina {
 				.getAllFacoltaByUniv(-1);
 		listaCorsi = ControllerCorso.getInstance().getAllCorsi();
 		listaCorsiByFac = null;
-		lblNewLabel.setText("'"+ricerca+"'");
+		label_5.setText("'"+ricerca+"'");
 		reloadUniv();
 		//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
 		try {
-			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca, false, "nome"));
+			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca, false, "all", "nomeUP"));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		is_ricerca_guidata_open = false;
+		Home.forceResizeEvent();
 	}
 	
-	private void showRisultatiByCorso(int index_facolta, int index_corso, boolean soloFac, String sorting) {
+	private void showRisultatiByCorso(int index_facolta, int index_corso, boolean soloFac, String filtro, String sorting) {
 		panel_risultati.setVisible(false);
 		panel_risultati_bycorso.setVisible(true);
-		is_ricerca_guidata_open = false;
-		label_2.setText(ControllerCorso.getInstance().getCorso(index_corso).getNome());
+		lblDocumentiTrovatiPer.setText("Documenti trovati per il corso:");
+		label_5.setText(ControllerCorso.getInstance().getCorso(index_corso).getNome());
+		label_5.setBounds(301, 9, 694, 25);
+		lblDocumentiTrovatiPer.setBounds(10, 9, 288, 25);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella facolt\u00E0 selezionata"}));
+		is_ricerca_by_corso_in_progress = true;
 		try {
-			adjustDocsByCorso(ControllerDocumento.getInstance().getListAllDocumentiByCorso(index_facolta,index_corso,soloFac,sorting));
+			adjustDocsByCorso(ControllerDocumento.getInstance().getListAllDocumentiByCorso(index_facolta,index_corso,soloFac,filtro,sorting));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}//.getListAllDocumenti());
+		is_ricerca_guidata_open = false;
 		Home.forceResizeEvent();
 	}
 
@@ -285,6 +305,7 @@ public class RisultatiRicerca extends Pagina {
 				panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
 				panel_9.setVisible(false);
 				panel_10.setVisible(true);
+				//label_6.setText("Risultati trovati per:");
 			}
 		});
 		
@@ -307,6 +328,7 @@ public class RisultatiRicerca extends Pagina {
 				panel_6.setBackground(Home.BLUE_SEARCH_BAR);
 				panel_10.setVisible(false);
 				panel_9.setVisible(true);
+				//label_6.setText("Risultati trovati per:");
 			}
 		});
 		panel_7.setLayout(null);
@@ -329,63 +351,75 @@ public class RisultatiRicerca extends Pagina {
 		label_5.setForeground(new Color(6, 121, 159));
 		label_5.setFont(new Font("Arial", Font.BOLD, 20));
 		label_5.setBackground(Color.WHITE);
-		label_5.setBounds(205, 9, 790, 25);
+		label_5.setBounds(301, 9, 694, 25);
 		
 		panel_12.add(label_5);
-		label_6.setForeground(new Color(6, 121, 159));
-		label_6.setFont(new Font("Arial", Font.BOLD, 20));
-		label_6.setBounds(10, 9, 188, 25);
+		lblDocumentiTrovatiPer.setForeground(new Color(6, 121, 159));
+		lblDocumentiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
+		lblDocumentiTrovatiPer.setBounds(10, 9, 288, 25);
 		
-		panel_12.add(label_6);
+		panel_12.add(lblDocumentiTrovatiPer);
 		panel_8.setBounds(0, 38, 1008, 38);
 		panel_9.add(panel_8);
 		panel_8.setBackground(Color.WHITE);
 		panel_8.setLayout(null);
-		label_4.setBounds(736, 9, 108, 25);
+		label_4.setBounds(740, 10, 108, 25);
 		panel_8.add(label_4);
 		label_4.setForeground(new Color(6, 121, 159));
 		label_4.setFont(new Font("Arial", Font.BOLD, 20));
-		lblCercaIn.setBounds(10, 9, 85, 25);
+		lblCercaIn.setBounds(10, 10, 85, 25);
 		panel_8.add(lblCercaIn);
 		lblCercaIn.setForeground(new Color(6, 121, 159));
 		lblCercaIn.setFont(new Font("Arial", Font.BOLD, 20));
 		separator_10.setBackground(new Color(6, 121, 159));
-		separator_10.setBounds(350, 8, 1, 28);
+		separator_10.setBounds(440, 8, 1, 28);
 		panel_8.add(separator_10);
 		separator_10.setOrientation(SwingConstants.VERTICAL);
 		separator_10.setForeground(new Color(6, 121, 159));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Arial", Font.BOLD, 14));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i documenti del corso", "Solo documenti della facolt\u00E0 selezionata"}));
-		comboBox.setBounds(97, 8, 246, 30);
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				reloadRisultati();
+			}
+		});
+		comboBox.setFont(new Font("Arial", Font.BOLD, 16));
+		comboBox.setBounds(97, 8, 336, 30);
 		comboBox.setBackground(new Color(255,255,255));
 		panel_8.add(comboBox);
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));
-		comboBox_1.setFont(new Font("Arial", Font.BOLD, 14));
+		comboBox_1.setFont(new Font("Arial", Font.BOLD, 16));
 		comboBox_1.setBounds(854, 8, 144, 30);
 		comboBox_1.setBackground(new Color(255,255,255));
-		
+		comboBox_1.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				reloadRisultati();
+			}
+		});
 		panel_8.add(comboBox_1);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setOrientation(SwingConstants.VERTICAL);
 		separator_4.setForeground(new Color(6, 121, 159));
 		separator_4.setBackground(new Color(6, 121, 159));
-		separator_4.setBounds(730, 8, 1, 28);
+		separator_4.setBounds(733, 8, 1, 28);
 		panel_8.add(separator_4);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Esercizi", "Slide", "Dispense"}));
-		comboBox_2.setFont(new Font("Arial", Font.BOLD, 14));
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Qualsiasi tipo", "Solo appunti", "Solo esercizi", "Solo slide", "Solo dispense"}));
+		comboBox_2.setFont(new Font("Arial", Font.BOLD, 16));
 		comboBox_2.setBackground(Color.WHITE);
-		comboBox_2.setBounds(593, 8, 127, 30);
+		comboBox_2.setBounds(584, 7, 142, 30);
+		comboBox_2.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				reloadRisultati();
+			}
+		});
 		panel_8.add(comboBox_2);
 		
 		JLabel lblFiltraPerTipo = new JLabel("Filtra per tipo:");
 		lblFiltraPerTipo.setForeground(new Color(6, 121, 159));
 		lblFiltraPerTipo.setFont(new Font("Arial", Font.BOLD, 20));
-		lblFiltraPerTipo.setBounds(449, 9, 134, 25);
+		lblFiltraPerTipo.setBounds(447, 10, 134, 25);
 		panel_8.add(lblFiltraPerTipo);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -568,7 +602,7 @@ public class RisultatiRicerca extends Pagina {
 					// textField_4.setText(s);
 					indexCorso = list_1.getSelectedIndex();
 					dbIndexCorsoByFac = listaCorsiByFac[indexCorso].getID();
-					showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac,false,"nome");
+					showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac,false,"all","nomeUP");
 				}
 			}
 		});
@@ -614,6 +648,63 @@ public class RisultatiRicerca extends Pagina {
 		label_3.setFont(new Font("Arial", Font.BOLD, 20));
 		
 		panel_11.add(label_3);
+
+	}
+
+	protected void reloadRisultati() {
+		System.out.println(is_ricerca_by_corso_in_progress);
+		boolean fac = false;
+		if (comboBox.getSelectedIndex()==1) {
+			fac = true;
+		}
+		String filtro = "all";
+		if (comboBox_2.getSelectedIndex()==1) {
+			filtro = "Appunti";
+		}
+		if (comboBox_2.getSelectedIndex()==2) {
+			filtro = "Esercizi";
+		}
+		if (comboBox_2.getSelectedIndex()==3) {
+			filtro = "Slide";
+		}
+		if (comboBox_2.getSelectedIndex()==4) {
+			filtro = "Dispense";
+		}
+				
+		String sorting = "nomeUP";
+		if (comboBox_1.getSelectedIndex()==0) {
+			sorting = "votoUP";
+		}
+		if (comboBox_1.getSelectedIndex()==1) {
+			sorting = "timestampUP";
+		}
+		if (comboBox_1.getSelectedIndex()==2) {
+			sorting = "downloadUP";
+		}
+		if (comboBox_1.getSelectedIndex()==3) {
+			sorting = "votoDOWN";
+		}
+		if (comboBox_1.getSelectedIndex()==4) {
+			sorting = "timestampDOWN";
+		}
+		if (comboBox_1.getSelectedIndex()==5) {
+			sorting = "downloadDOWN";
+		}
+		
+		if (is_ricerca_by_corso_in_progress) {
+			try {
+				adjustDocsByCorso(ControllerDocumento.getInstance().getListAllDocumentiByCorso(dbIndexFac,dbIndexCorsoByFac,fac,filtro,sorting));
+			} catch (PersistentException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(tempRicerca, fac, filtro,sorting));
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 	}
 
