@@ -363,11 +363,11 @@ public class RisultatiRicerca extends Pagina {
 		panel_9.add(panel_8);
 		panel_8.setBackground(Color.WHITE);
 		panel_8.setLayout(null);
-		label_4.setBounds(740, 10, 108, 25);
+		label_4.setBounds(740, 9, 108, 25);
 		panel_8.add(label_4);
 		label_4.setForeground(new Color(6, 121, 159));
 		label_4.setFont(new Font("Arial", Font.BOLD, 20));
-		lblCercaIn.setBounds(10, 10, 85, 25);
+		lblCercaIn.setBounds(10, 9, 85, 25);
 		panel_8.add(lblCercaIn);
 		lblCercaIn.setForeground(new Color(6, 121, 159));
 		lblCercaIn.setFont(new Font("Arial", Font.BOLD, 20));
@@ -408,7 +408,7 @@ public class RisultatiRicerca extends Pagina {
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Qualsiasi tipo", "Solo appunti", "Solo esercizi", "Solo slide", "Solo dispense"}));
 		comboBox_2.setFont(new Font("Arial", Font.BOLD, 16));
 		comboBox_2.setBackground(Color.WHITE);
-		comboBox_2.setBounds(584, 7, 142, 30);
+		comboBox_2.setBounds(584, 8, 142, 30);
 		comboBox_2.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				reloadRisultati();
@@ -419,7 +419,7 @@ public class RisultatiRicerca extends Pagina {
 		JLabel lblFiltraPerTipo = new JLabel("Filtra per tipo:");
 		lblFiltraPerTipo.setForeground(new Color(6, 121, 159));
 		lblFiltraPerTipo.setFont(new Font("Arial", Font.BOLD, 20));
-		lblFiltraPerTipo.setBounds(447, 10, 134, 25);
+		lblFiltraPerTipo.setBounds(447, 9, 134, 25);
 		panel_8.add(lblFiltraPerTipo);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
