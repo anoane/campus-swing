@@ -1,6 +1,6 @@
 package gui;
 
-import gui.riquadri.RiquadroPref;
+import gui.riquadri.RiquadroDoc;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -92,7 +92,7 @@ public class Preferiti extends Pagina {
 			int row = i%2;
 			int col = (int) Math.floor(i/2);
 			final Documento d = docs.get(i);
-			final RiquadroPref preferito = new RiquadroPref(d);
+			final RiquadroDoc preferito = new RiquadroDoc(d,true,false);
 			preferito.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(preferito);
 			

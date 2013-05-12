@@ -726,7 +726,7 @@ public class RisultatiRicerca extends Pagina {
 		int col = 0;
 		for (int i = 0; i < docs.size(); i++) {
 			final Documento d = docs.get(i);
-			final RiquadroDoc documento = new RiquadroDoc(d, false);// createFavourite(docs.get(i));
+			final RiquadroDoc documento = new RiquadroDoc(d, false, true);// createFavourite(docs.get(i));
 			col = (int) Math.floor(i / 2);
 			int row = i % 2;
 			documento.setLocation((32 + (485 * row)), 32 + (230 * col));
@@ -763,7 +763,7 @@ public class RisultatiRicerca extends Pagina {
 		int col = 0;
 		for (int i = 0; i < docs.size(); i++) {
 			final Documento d = docs.get(i);
-			final RiquadroDoc documento = new RiquadroDoc(d, false);// createFavourite(docs.get(i));
+			final RiquadroDoc documento = new RiquadroDoc(d, false,true);// createFavourite(docs.get(i));
 			col = (int) Math.floor(i / 2);
 			int row = i % 2;
 			documento.setLocation((32 + (485 * row)), 32 + (230 * col));

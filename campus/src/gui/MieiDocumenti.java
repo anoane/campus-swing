@@ -98,7 +98,7 @@ public class MieiDocumenti extends Pagina {
 			int row = i%2;
 			int col = (int) Math.floor(i/2);
 			final Documento d = docs.get(i);
-			final RiquadroDoc documento = new RiquadroDoc(d,true);//createFavourite(docs.get(i));
+			final RiquadroDoc documento = new RiquadroDoc(d,false,false);//createFavourite(docs.get(i));
 			documento.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(documento);
 			

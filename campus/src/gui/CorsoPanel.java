@@ -223,7 +223,7 @@ public class CorsoPanel extends Pagina {
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
 			final Documento d = docs[i];
-			final RiquadroDoc documento = new RiquadroDoc(d,false);
+			final RiquadroDoc documento = new RiquadroDoc(d,false,true);
 			documento.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(documento);
 		}
