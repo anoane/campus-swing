@@ -269,8 +269,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 		
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 6;
-		//formPanel.add(inviaRichiesta, gbc_btnNewButton);
-		formPanel.add(btnNewButton, gbc_btnNewButton);
+		formPanel.add(inviaRichiesta, gbc_btnNewButton);
+		//formPanel.add(btnNewButton, gbc_btnNewButton);
 		
 		
 	}
