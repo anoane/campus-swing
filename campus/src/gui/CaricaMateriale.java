@@ -1,8 +1,11 @@
 package gui;
 
 
+import gui.helpers.JTextFieldLimit;
+
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +37,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -49,8 +53,6 @@ import modello_di_dominio.Universita;
 
 import org.orm.PersistentException;
 
-import util.JTextFieldLimit;
-
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -61,8 +63,6 @@ import controller.ControllerDocumento;
 import controller.ControllerFacolta;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Dimension;
 
 //TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
 
