@@ -55,6 +55,10 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		downloads = new IntegerExpression("downloads", this.getDetachedCriteria());
 	}
 	
+	public FacoltaDetachedCriteria createFacoltaCriteria() {
+		return new FacoltaDetachedCriteria(createCriteria("facolta"));
+	}
+	
 	public modello_di_dominio.CorrezioneDetachedCriteria createCorrezionesCriteria() {
 		return new modello_di_dominio.CorrezioneDetachedCriteria(createCriteria("ORM_Correziones"));
 	}
@@ -63,12 +67,16 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new CorsoDetachedCriteria(createCriteria("corso"));
 	}
 	
-	public FacoltaDetachedCriteria createFacoltaCriteria() {
-		return new FacoltaDetachedCriteria(createCriteria("facolta"));
-	}
-	
 	public modello_di_dominio.UtenteDetachedCriteria createUtentePreferitoCriteria() {
 		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_UtentePreferito"));
+	}
+	
+	public modello_di_dominio.VotoDetachedCriteria createVotosCriteria() {
+		return new modello_di_dominio.VotoDetachedCriteria(createCriteria("ORM_Votos"));
+	}
+	
+	public modello_di_dominio.CommentoDetachedCriteria createCommentosCriteria() {
+		return new modello_di_dominio.CommentoDetachedCriteria(createCriteria("ORM_Commentos"));
 	}
 	
 	public UtenteDetachedCriteria createProprietarioCriteria() {

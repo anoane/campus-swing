@@ -18,43 +18,41 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
-public class CorrezioneCriteria extends AbstractORMCriteria {
+public class CommentoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression testo;
-	public final DateExpression data;
-	public final BooleanExpression approvato;
+	public final StringExpression commento;
+	public final IntegerExpression rootID;
 	
-	public CorrezioneCriteria(Criteria criteria) {
+	public CommentoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		testo = new StringExpression("testo", this);
-		data = new DateExpression("data", this);
-		approvato = new BooleanExpression("approvato", this);
+		commento = new StringExpression("commento", this);
+		rootID = new IntegerExpression("rootID", this);
 	}
 	
-	public CorrezioneCriteria(PersistentSession session) {
-		this(session.createCriteria(Correzione.class));
+	public CommentoCriteria(PersistentSession session) {
+		this(session.createCriteria(Commento.class));
 	}
 	
-	public CorrezioneCriteria() throws PersistentException {
+	public CommentoCriteria() throws PersistentException {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
-	}
-	
-	public UtenteCriteria createUtenteCriteria() {
-		return new UtenteCriteria(createCriteria("ORM_Utente"));
 	}
 	
 	public DocumentoCriteria createDocumentoCriteria() {
 		return new DocumentoCriteria(createCriteria("ORM_Documento"));
 	}
 	
-	public Correzione uniqueCorrezione() {
-		return (Correzione) super.uniqueResult();
+	public UtenteCriteria createUtenteCriteria() {
+		return new UtenteCriteria(createCriteria("ORM_Utente"));
 	}
 	
-	public Correzione[] listCorrezione() {
+	public Commento uniqueCommento() {
+		return (Commento) super.uniqueResult();
+	}
+	
+	public Commento[] listCommento() {
 		java.util.List list = super.list();
-		return (Correzione[]) list.toArray(new Correzione[list.size()]);
+		return (Commento[]) list.toArray(new Commento[list.size()]);
 	}
 }
 

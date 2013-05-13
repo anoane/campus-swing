@@ -281,6 +281,10 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Documento documento)throws PersistentException {
 		try {
+			if(documento.getFacolta() != null) {
+				documento.getFacolta().documento.remove(documento);
+			}
+			
 			modello_di_dominio.Correzione[] lCorrezioness = documento.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);
@@ -289,13 +293,17 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
-			if(documento.getFacolta() != null) {
-				documento.getFacolta().documento.remove(documento);
-			}
-			
 			modello_di_dominio.Utente[] lUtentePreferitos = documento.utentePreferito.toArray();
 			for(int i = 0; i < lUtentePreferitos.length; i++) {
 				lUtentePreferitos[i].documentiPreferiti.remove(documento);
+			}
+			modello_di_dominio.Voto[] lVotoss = documento.votos.toArray();
+			for(int i = 0; i < lVotoss.length; i++) {
+				lVotoss[i].setDocumento(null);
+			}
+			modello_di_dominio.Commento[] lCommentoss = documento.commentos.toArray();
+			for(int i = 0; i < lCommentoss.length; i++) {
+				lCommentoss[i].setDocumento(null);
 			}
 			if(documento.getProprietario() != null) {
 				documento.getProprietario().documentiUtente.remove(documento);
@@ -311,6 +319,10 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Documento documento, org.orm.PersistentSession session)throws PersistentException {
 		try {
+			if(documento.getFacolta() != null) {
+				documento.getFacolta().documento.remove(documento);
+			}
+			
 			modello_di_dominio.Correzione[] lCorrezioness = documento.correziones.toArray();
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setDocumento(null);
@@ -319,13 +331,17 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
-			if(documento.getFacolta() != null) {
-				documento.getFacolta().documento.remove(documento);
-			}
-			
 			modello_di_dominio.Utente[] lUtentePreferitos = documento.utentePreferito.toArray();
 			for(int i = 0; i < lUtentePreferitos.length; i++) {
 				lUtentePreferitos[i].documentiPreferiti.remove(documento);
+			}
+			modello_di_dominio.Voto[] lVotoss = documento.votos.toArray();
+			for(int i = 0; i < lVotoss.length; i++) {
+				lVotoss[i].setDocumento(null);
+			}
+			modello_di_dominio.Commento[] lCommentoss = documento.commentos.toArray();
+			for(int i = 0; i < lCommentoss.length; i++) {
+				lCommentoss[i].setDocumento(null);
 			}
 			if(documento.getProprietario() != null) {
 				documento.getProprietario().documentiUtente.remove(documento);

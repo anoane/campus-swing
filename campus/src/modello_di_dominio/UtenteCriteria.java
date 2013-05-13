@@ -66,6 +66,14 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentiPreferiti"));
 	}
 	
+	public modello_di_dominio.VotoCriteria createVotosCriteria() {
+		return new modello_di_dominio.VotoCriteria(createCriteria("ORM_Votos"));
+	}
+	
+	public modello_di_dominio.CommentoCriteria createCommentosCriteria() {
+		return new modello_di_dominio.CommentoCriteria(createCriteria("ORM_Commentos"));
+	}
+	
 	public Utente uniqueUtente() {
 		return (Utente) super.uniqueResult();
 	}

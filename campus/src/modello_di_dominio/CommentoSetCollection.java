@@ -15,12 +15,12 @@ package modello_di_dominio;
 
 import org.orm.*;
 
-public class DocumentoSetCollection extends org.orm.util.ORMSet {
-	public DocumentoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
+public class CommentoSetCollection extends org.orm.util.ORMSet {
+	public CommentoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
 		super(owner, adapter, ownerKey, targetKey, true, collType);
 	}
 	
-	public DocumentoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int collType) {
+	public CommentoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int collType) {
 		super(owner, adapter, ownerKey, -1, false, collType);
 	}
 	
@@ -36,7 +36,7 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * Add the specified persistent object to ORMSet
 	 * @param value the persistent object
 	 */
-	public void add(Documento value) {
+	public void add(Commento value) {
 		if (value != null) {
 			super.add(value, value._ormAdapter);
 		}
@@ -46,7 +46,7 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * Remove the specified persistent object from ORMSet
 	 * @param value the persistent object
 	 */
-	public void remove(Documento value) {
+	public void remove(Commento value) {
 		super.remove(value, value._ormAdapter);
 	}
 	
@@ -55,7 +55,7 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * @param value the persistent object
 	 * @return True if this contains the specified persistent object
 	 */
-	public boolean contains(Documento value) {
+	public boolean contains(Commento value) {
 		return super.contains(value);
 	}
 	
@@ -63,26 +63,20 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * Return an array containing all of the persistent objects in ORMSet
 	 * @return The persistent objects array
 	 */
-	public Documento[] toArray() {
-		return (Documento[]) super.toArray(new Documento[size()]);
+	public Commento[] toArray() {
+		return (Commento[]) super.toArray(new Commento[size()]);
 	}
 	
 	/**
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>nome</li>
-	 * <li>descrizione</li>
-	 * <li>path</li>
-	 * <li>discriminator</li>
-	 * <li>voto</li>
-	 * <li>num_voti</li>
-	 * <li>timestamp</li>
-	 * <li>downloads</li>
+	 * <li>commento</li>
+	 * <li>rootID</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
-	public Documento[] toArray(String propertyName) {
+	public Commento[] toArray(String propertyName) {
 		return toArray(propertyName, true);
 	}
 	
@@ -90,20 +84,14 @@ public class DocumentoSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>nome</li>
-	 * <li>descrizione</li>
-	 * <li>path</li>
-	 * <li>discriminator</li>
-	 * <li>voto</li>
-	 * <li>num_voti</li>
-	 * <li>timestamp</li>
-	 * <li>downloads</li>
+	 * <li>commento</li>
+	 * <li>rootID</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
 	 */
-	public Documento[] toArray(String propertyName, boolean ascending) {
-		return (Documento[]) super.toArray(new Documento[size()], propertyName, ascending);
+	public Commento[] toArray(String propertyName, boolean ascending) {
+		return (Commento[]) super.toArray(new Commento[size()], propertyName, ascending);
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {

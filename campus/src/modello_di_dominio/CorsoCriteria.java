@@ -23,6 +23,7 @@ public class CorsoCriteria extends AbstractORMCriteria {
 	public final StringExpression nome;
 	public final StringExpression descrizione;
 	public final StringExpression immagine;
+	public final StringExpression path;
 	
 	public CorsoCriteria(Criteria criteria) {
 		super(criteria);
@@ -30,6 +31,7 @@ public class CorsoCriteria extends AbstractORMCriteria {
 		nome = new StringExpression("nome", this);
 		descrizione = new StringExpression("descrizione", this);
 		immagine = new StringExpression("immagine", this);
+		path = new StringExpression("path", this);
 	}
 	
 	public CorsoCriteria(PersistentSession session) {

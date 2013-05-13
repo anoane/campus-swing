@@ -14,6 +14,10 @@
 package modello_di_dominio;
 
 public interface ORMConstants extends org.orm.util.ORMBaseConstants {
+	final int KEY_COMMENTO_DOCUMENTO = -1262265563;
+	
+	final int KEY_COMMENTO_UTENTE = 1887465768;
+	
 	final int KEY_CORREZIONE_DOCUMENTO = -2076459533;
 	
 	final int KEY_CORREZIONE_UTENTE = 796504346;
@@ -23,6 +27,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_CORSO_FACOLTA = 1649113877;
 	
 	final int KEY_CORSO_UTENTECORSO = 853938028;
+	
+	final int KEY_DOCUMENTO_COMMENTOS = 1524966552;
 	
 	final int KEY_DOCUMENTO_CORREZIONES = 919177418;
 	
@@ -34,6 +40,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_DOCUMENTO_UTENTEPREFERITO = 1117411568;
 	
+	final int KEY_DOCUMENTO_VOTOS = -1262771564;
+	
 	final int KEY_FACOLTA_CORSO = -195828779;
 	
 	final int KEY_FACOLTA_DOCUMENTO = -1683489113;
@@ -44,6 +52,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_UNIVERSITA_FACOLTA = -511289495;
 	
+	final int KEY_UTENTE_COMMENTOS = -1098483747;
+	
 	final int KEY_UTENTE_CORREZIONES = 929242831;
 	
 	final int KEY_UTENTE_CORSO = -1264608580;
@@ -53,5 +63,11 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_UTENTE_DOCUMENTIUTENTE = 1570270241;
 	
 	final int KEY_UTENTE_FACOLTA = -1860336148;
+	
+	final int KEY_UTENTE_VOTOS = -1247059879;
+	
+	final int KEY_VOTO_DOCUMENTO = -1377146071;
+	
+	final int KEY_VOTO_UTENTE = 1667170212;
 	
 }

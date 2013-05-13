@@ -69,6 +69,14 @@ public class UtenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new modello_di_dominio.DocumentoDetachedCriteria(createCriteria("ORM_DocumentiPreferiti"));
 	}
 	
+	public modello_di_dominio.VotoDetachedCriteria createVotosCriteria() {
+		return new modello_di_dominio.VotoDetachedCriteria(createCriteria("ORM_Votos"));
+	}
+	
+	public modello_di_dominio.CommentoDetachedCriteria createCommentosCriteria() {
+		return new modello_di_dominio.CommentoDetachedCriteria(createCriteria("ORM_Commentos"));
+	}
+	
 	public Utente uniqueUtente(PersistentSession session) {
 		return (Utente) super.createExecutableCriteria(session).uniqueResult();
 	}

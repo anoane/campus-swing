@@ -23,6 +23,7 @@ public class CorsoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression nome;
 	public final StringExpression descrizione;
 	public final StringExpression immagine;
+	public final StringExpression path;
 	
 	public CorsoDetachedCriteria() {
 		super(modello_di_dominio.Corso.class, modello_di_dominio.CorsoCriteria.class);
@@ -30,6 +31,7 @@ public class CorsoDetachedCriteria extends AbstractORMDetachedCriteria {
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		immagine = new StringExpression("immagine", this.getDetachedCriteria());
+		path = new StringExpression("path", this.getDetachedCriteria());
 	}
 	
 	public CorsoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -38,6 +40,7 @@ public class CorsoDetachedCriteria extends AbstractORMDetachedCriteria {
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		immagine = new StringExpression("immagine", this.getDetachedCriteria());
+		path = new StringExpression("path", this.getDetachedCriteria());
 	}
 	
 	public modello_di_dominio.UtenteDetachedCriteria createUtenteCorsoCriteria() {

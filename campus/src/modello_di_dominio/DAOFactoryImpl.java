@@ -47,5 +47,15 @@ public class DAOFactoryImpl extends DAOFactory {
 		return _correzioneDAO;
 	}
 	
+	private VotoDAO _votoDAO = new VotoDAOImpl();
+	public VotoDAO getVotoDAO() {
+		return _votoDAO;
+	}
+	
+	private CommentoDAO _commentoDAO = new CommentoDAOImpl();
+	public CommentoDAO getCommentoDAO() {
+		return _commentoDAO;
+	}
+	
 }
 

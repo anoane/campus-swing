@@ -40,12 +40,12 @@ public class CorrezioneDetachedCriteria extends AbstractORMDetachedCriteria {
 		approvato = new BooleanExpression("approvato", this.getDetachedCriteria());
 	}
 	
-	public DocumentoDetachedCriteria createDocumentoCriteria() {
-		return new DocumentoDetachedCriteria(createCriteria("documento"));
+	public UtenteDetachedCriteria createUtenteCriteria() {
+		return new UtenteDetachedCriteria(createCriteria("ORM_Utente"));
 	}
 	
-	public UtenteDetachedCriteria createUtenteCriteria() {
-		return new UtenteDetachedCriteria(createCriteria("utente"));
+	public DocumentoDetachedCriteria createDocumentoCriteria() {
+		return new DocumentoDetachedCriteria(createCriteria("ORM_Documento"));
 	}
 	
 	public Correzione uniqueCorrezione(PersistentSession session) {

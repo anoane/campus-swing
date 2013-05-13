@@ -18,35 +18,39 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
-public class UniversitaCriteria extends AbstractORMCriteria {
+public class VotoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression nome;
+	public final IntegerExpression valore;
 	
-	public UniversitaCriteria(Criteria criteria) {
+	public VotoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		nome = new StringExpression("nome", this);
+		valore = new IntegerExpression("valore", this);
 	}
 	
-	public UniversitaCriteria(PersistentSession session) {
-		this(session.createCriteria(Universita.class));
+	public VotoCriteria(PersistentSession session) {
+		this(session.createCriteria(Voto.class));
 	}
 	
-	public UniversitaCriteria() throws PersistentException {
+	public VotoCriteria() throws PersistentException {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
-	public modello_di_dominio.FacoltaCriteria createFacoltaCriteria() {
-		return new modello_di_dominio.FacoltaCriteria(createCriteria("ORM_Facolta"));
+	public DocumentoCriteria createDocumentoCriteria() {
+		return new DocumentoCriteria(createCriteria("ORM_Documento"));
 	}
 	
-	public Universita uniqueUniversita() {
-		return (Universita) super.uniqueResult();
+	public UtenteCriteria createUtenteCriteria() {
+		return new UtenteCriteria(createCriteria("ORM_Utente"));
 	}
 	
-	public Universita[] listUniversita() {
+	public Voto uniqueVoto() {
+		return (Voto) super.uniqueResult();
+	}
+	
+	public Voto[] listVoto() {
 		java.util.List list = super.list();
-		return (Universita[]) list.toArray(new Universita[list.size()]);
+		return (Voto[]) list.toArray(new Voto[list.size()]);
 	}
 }
 

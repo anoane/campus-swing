@@ -30,6 +30,12 @@ public class Utente {
 		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI) {
 			return ORM_documentiPreferiti;
 		}
+		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_VOTOS) {
+			return ORM_votos;
+		}
+		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_COMMENTOS) {
+			return ORM_commentos;
+		}
 		
 		return null;
 	}
@@ -74,6 +80,10 @@ public class Utente {
 	private java.util.Set ORM_correziones = new java.util.HashSet();
 	
 	private java.util.Set ORM_documentiPreferiti = new java.util.HashSet();
+	
+	private java.util.Set ORM_votos = new java.util.HashSet();
+	
+	private java.util.Set ORM_commentos = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -179,7 +189,7 @@ public class Utente {
 		return facolta;
 	}
 	
-	public modello_di_dominio.Documento[] getDocumentos() {
+	public modello_di_dominio.Documento[] getDocumentosCorrezione() {
 		java.util.ArrayList lValues = new java.util.ArrayList(5);
 		for(java.util.Iterator lIter = correziones.getIterator();lIter.hasNext();) {
 			lValues.add(((modello_di_dominio.Correzione)lIter.next()).getDocumento());
@@ -187,7 +197,7 @@ public class Utente {
 		return (modello_di_dominio.Documento[])lValues.toArray(new modello_di_dominio.Documento[lValues.size()]);
 	}
 	
-	public void removeDocumento(modello_di_dominio.Documento aDocumento) {
+	public void removeDocumentoCorrezione(modello_di_dominio.Documento aDocumento) {
 		modello_di_dominio.Correzione[] lCorreziones = correziones.toArray();
 		for(int i = 0; i < lCorreziones.length; i++) {
 			if(lCorreziones[i].getDocumento().equals(aDocumento)) {
@@ -230,6 +240,90 @@ public class Utente {
 	}
 	
 	public final modello_di_dominio.DocumentoSetCollection documentiPreferiti = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFERITO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	
+	public modello_di_dominio.Documento[] getDocumentosVoto() {
+		java.util.ArrayList lValues = new java.util.ArrayList(5);
+		for(java.util.Iterator lIter = votos.getIterator();lIter.hasNext();) {
+			lValues.add(((modello_di_dominio.Voto)lIter.next()).getDocumento());
+		}
+		return (modello_di_dominio.Documento[])lValues.toArray(new modello_di_dominio.Documento[lValues.size()]);
+	}
+	
+	public void removeDocumentoVoto(modello_di_dominio.Documento aDocumento) {
+		modello_di_dominio.Voto[] lVotos = votos.toArray();
+		for(int i = 0; i < lVotos.length; i++) {
+			if(lVotos[i].getDocumento().equals(aDocumento)) {
+				votos.remove(lVotos[i]);
+			}
+		}
+	}
+	
+	public void addDocumento(modello_di_dominio.Voto aVoto, modello_di_dominio.Documento aDocumento) {
+		aVoto.setDocumento(aDocumento);
+		votos.add(aVoto);
+	}
+	
+	public modello_di_dominio.Voto getVotoByDocumento(modello_di_dominio.Documento aDocumento) {
+		modello_di_dominio.Voto[] lVotos = votos.toArray();
+		for(int i = 0; i < lVotos.length; i++) {
+			if(lVotos[i].getDocumento().equals(aDocumento)) {
+				return lVotos[i];
+			}
+		}
+		return null;
+	}
+	
+	private void setORM_Votos(java.util.Set value) {
+		this.ORM_votos = value;
+	}
+	
+	private java.util.Set getORM_Votos() {
+		return ORM_votos;
+	}
+	
+	public final modello_di_dominio.VotoSetCollection votos = new modello_di_dominio.VotoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_VOTOS, modello_di_dominio.ORMConstants.KEY_VOTO_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	public modello_di_dominio.Documento[] getDocumentosCommento() {
+		java.util.ArrayList lValues = new java.util.ArrayList(5);
+		for(java.util.Iterator lIter = commentos.getIterator();lIter.hasNext();) {
+			lValues.add(((modello_di_dominio.Commento)lIter.next()).getDocumento());
+		}
+		return (modello_di_dominio.Documento[])lValues.toArray(new modello_di_dominio.Documento[lValues.size()]);
+	}
+	
+	public void removeDocumentoCommento(modello_di_dominio.Documento aDocumento) {
+		modello_di_dominio.Commento[] lCommentos = commentos.toArray();
+		for(int i = 0; i < lCommentos.length; i++) {
+			if(lCommentos[i].getDocumento().equals(aDocumento)) {
+				commentos.remove(lCommentos[i]);
+			}
+		}
+	}
+	
+	public void addDocumento(modello_di_dominio.Commento aCommento, modello_di_dominio.Documento aDocumento) {
+		aCommento.setDocumento(aDocumento);
+		commentos.add(aCommento);
+	}
+	
+	public modello_di_dominio.Commento getCommentoByDocumento(modello_di_dominio.Documento aDocumento) {
+		modello_di_dominio.Commento[] lCommentos = commentos.toArray();
+		for(int i = 0; i < lCommentos.length; i++) {
+			if(lCommentos[i].getDocumento().equals(aDocumento)) {
+				return lCommentos[i];
+			}
+		}
+		return null;
+	}
+	
+	private void setORM_Commentos(java.util.Set value) {
+		this.ORM_commentos = value;
+	}
+	
+	private java.util.Set getORM_Commentos() {
+		return ORM_commentos;
+	}
+	
+	public final modello_di_dominio.CommentoSetCollection commentos = new modello_di_dominio.CommentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_COMMENTOS, modello_di_dominio.ORMConstants.KEY_COMMENTO_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());
