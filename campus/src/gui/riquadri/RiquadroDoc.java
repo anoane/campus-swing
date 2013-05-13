@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 import controller.ControllerUtente;
 
 import modello_di_dominio.Documento;
+import javax.swing.JSeparator;
 
 public class RiquadroDoc extends Riquadro {
 
@@ -105,7 +106,7 @@ public class RiquadroDoc extends Riquadro {
 		facolta = new JLabel(doc.getFacolta().getNome());
 		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
 		facolta.setHorizontalAlignment(SwingConstants.LEFT);
-		facolta.setBounds(130, 147, 138, 20);
+		facolta.setBounds(130, 169, 138, 20);
 
 		// Label università
 		//univ = new JLabel(doc.getProprietario().getFacolta().getUniversita()
@@ -113,7 +114,7 @@ public class RiquadroDoc extends Riquadro {
 		univ = new JLabel(doc.getFacolta().getUniversita().getNome());
 		univ.setFont(new Font("Arial", Font.PLAIN, 12));
 		univ.setHorizontalAlignment(SwingConstants.LEFT);
-		univ.setBounds(130, 169, 138, 20);
+		univ.setBounds(130, 135, 138, 40);
 
 		// Pannello Rimuovi
 		pulsanti = new JPanel();
@@ -145,7 +146,7 @@ public class RiquadroDoc extends Riquadro {
 		}
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setEditable(false);
-		descrizione.setLocation(130, 76);
+		descrizione.setLocation(130, 66);
 		descrizione.setSize(300, 52);
 		descrizione.setLineWrap(true);
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
@@ -157,8 +158,8 @@ public class RiquadroDoc extends Riquadro {
 		corso = new JLabel(doc.getCorso().getNome());
 		corso.setFont(new Font("Arial", Font.PLAIN, 12));
 		corso.setHorizontalAlignment(SwingConstants.LEFT);
-		corso.setLocation(130, 126);
-		corso.setSize(138, 20);
+		corso.setLocation(130, 115);
+		corso.setSize(300, 20);
 		
 		// Panel stelle
 		stelle = new JPanel();
@@ -176,26 +177,26 @@ public class RiquadroDoc extends Riquadro {
 		}
 		stelle.add(colore);
 		stelle.setLocation(130, 45);
-		stelle.setSize(150, 30);
+		stelle.setSize(150, 20);
 		colore.setBackground(colore_stella);
 		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
 		
 		
 		// Panel utente
 		utente = new JPanel();
-		utente.setLocation(278, 139);
+		utente.setLocation(284, 140);
 		utente.setSize(50, 50);
 
 		// Label proprietario
 		proprietario_cognome = new JLabel(doc.getProprietario().getCognome());
 		proprietario_cognome.setFont(new Font("Arial", Font.PLAIN, 12));
-		proprietario_cognome.setLocation(330, 174);
-		proprietario_cognome.setSize(100, 20);
+		proprietario_cognome.setLocation(340, 175);
+		proprietario_cognome.setSize(90, 20);
 		
 		proprietario_nome = new JLabel(doc.getProprietario().getNome());
 		proprietario_nome.setFont(new Font("Arial", Font.PLAIN, 12));
-		proprietario_nome.setLocation(330, 157);
-		proprietario_nome.setSize(100, 20);
+		proprietario_nome.setLocation(340, 160);
+		proprietario_nome.setSize(90, 20);
 		
 		add(titolo);
 		add(corso);
@@ -209,6 +210,13 @@ public class RiquadroDoc extends Riquadro {
 		add(tipo);
 		add(anteprima);
 		add(proprietario_nome);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(274, 140, 1, 58);
+		separator.setBackground(new Color(0x1B, 0x32, 0x80));
+		separator.setForeground(new Color(0x1B, 0x32, 0x80));
+		add(separator);
 				
 		pulsanti.setVisible(false);
 		if (!soloVisualizzazione) {
