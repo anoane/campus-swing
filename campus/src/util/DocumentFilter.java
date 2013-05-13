@@ -14,7 +14,9 @@ public class DocumentFilter extends FileFilter {
 
 	    String extension = EstensioneFile.getExtension(f);
 	    if (extension != null) {
-	        if (extension.equals(EstensioneFile.pdf) ||
+	        if (extension.equals(EstensioneFile.txt) ||
+	        	extension.equals(EstensioneFile.rtf) ||
+	        	extension.equals(EstensioneFile.pdf) ||
 	            extension.equals(EstensioneFile.doc) ||
 	            extension.equals(EstensioneFile.docx) ||
 	            extension.equals(EstensioneFile.ppt) ||

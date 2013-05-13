@@ -16,11 +16,14 @@ public class EstensioneFile {
     public final static String xls = "xls";
     public final static String xlsx = "xlsx";
     public final static String pdf = "pdf";
+    public final static String txt = "txt";
+    public final static String rtf = "rtf";
     public final static String ods = "ods";
     public final static String odp = "odp";
     public final static String odt = "odt";
     public final static String rar = "rar";
     public final static String zip = "zip";
+    public final static String sevenZip = "7z";
 
     /*
      * Get the extension of a file.
