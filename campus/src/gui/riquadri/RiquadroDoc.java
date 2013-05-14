@@ -3,6 +3,7 @@ package gui.riquadri;
 import gui.Home;
 import gui.buttons.ModificaButton;
 import gui.buttons.RimuoviButton;
+import gui.buttons.RimuoviPrefButton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -124,13 +125,16 @@ public class RiquadroDoc extends Riquadro {
 		pulsanti.setLayout(null);
 		RimuoviButton r = new RimuoviButton("Rimuovi il documento dai Preferiti");
 		r.setLocation(75, 0);
+		RimuoviPrefButton rp = new RimuoviPrefButton("Rimuovi il documento dai Preferiti");
+		r.setLocation(75, 0);
+		rp.setLocation(75, 0);
 		//r.setSize(19,26);
 		ModificaButton m = new ModificaButton();
 		m.setLocation(15, 0);
 		//m.setSize(19,26);
 		pulsanti.add(m);
 		pulsanti.add(r);
-		
+		pulsanti.add(rp);
 		
 		
 		// Label title
@@ -223,9 +227,13 @@ public class RiquadroDoc extends Riquadro {
 			if (documentoFalse_preferitoTrue) {
 				pulsanti.setVisible(true);
 				m.setVisible(false);
+				rp.setVisible(true);
+				r.setVisible(false);
 			} else {
 				if (doc.getProprietario().getID() == ControllerUtente.getInstance().getUtente(1).getID()) {
 					pulsanti.setVisible(true);
+					r.setVisible(true);
+					rp.setVisible(false);
 				}
 			}
 		}
@@ -233,6 +241,10 @@ public class RiquadroDoc extends Riquadro {
 	
 	public RimuoviButton getRimuovi(){
 		return (RimuoviButton) this.pulsanti.getComponent(1);
+	}
+	
+	public RimuoviPrefButton getRimuoviPref(){
+		return (RimuoviPrefButton) this.pulsanti.getComponent(2);
 	}
 	
 	private float calcolaVoto(int num, int voto){

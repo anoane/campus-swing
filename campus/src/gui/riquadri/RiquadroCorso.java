@@ -2,6 +2,7 @@ package gui.riquadri;
 
 import gui.Home;
 import gui.buttons.RimuoviButton;
+import gui.buttons.RimuoviCorsoSeguito;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -26,7 +27,7 @@ public class RiquadroCorso extends Riquadro {
 	private JLabel titolo;
 	private JTextPane descrizione;
 	private JLabel facolta;
-	private RimuoviButton rimuovi;
+	private RimuoviCorsoSeguito rimuovi;
 	
 	/**
 	 * 
@@ -70,7 +71,7 @@ public class RiquadroCorso extends Riquadro {
 		facolta.setSize(245, 40);
 		facolta.setForeground(Color.WHITE);
 		
-		rimuovi = new RimuoviButton("Cancella il documento");
+		rimuovi = new RimuoviCorsoSeguito("Cancella il documento");
 		rimuovi.setToolTipText("Rimuovi il corso dai preferiti");
 		rimuovi.setLocation(385, 5);
 		
@@ -82,7 +83,7 @@ public class RiquadroCorso extends Riquadro {
 		add(rimuovi);
 	}
 	
-	public RimuoviButton getRimuovi(){
+	public RimuoviCorsoSeguito getRimuovi(){
 		return this.rimuovi;
 	}
 }
