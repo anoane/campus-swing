@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
+import modello_di_dominio.Voto;
 
 import com.sun.pdfview.PDFViewer;
 
@@ -62,26 +64,7 @@ public class DocumentoPanel extends Pagina {
 		lblPreferiti.setBounds(10, 10, 200, 25);
 		panel.add(lblPreferiti);
 		
-		stelle.setLayout(null);
 		
-		for(int i=0; i<5; ++i){
-			//Label contenente la singola stella
-			JLabel stella = new JLabel();
-			stella.setAlignmentY(Component.TOP_ALIGNMENT);
-			stella.setBounds(i*30, 0, 30, 30);
-			stella.setIcon(new ImageIcon("./newimage/white_star_big.png"));
-			stelle.add(stella);
-			stella.addMouseListener(new MouseAdapter() {
-				public void mouseEntered(MouseEvent arg0) {
-					
-				};
-			});
-		}
-		stelle.add(colore);
-		stelle.setLocation(205, 10);
-		stelle.setSize(150, 30);
-		colore.setBackground(new Color(255,222,87));
-		panel.add(stelle);
 		
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(147, 53, 134, 23);
@@ -234,13 +217,15 @@ public class DocumentoPanel extends Pagina {
         }
 	}
 	
-	private float calcolaVoto(int num, int voto){
-		if(voto == 0 && num == 0)
+	private float calcolaVoto(Voto[] voti){
+		if(voti.length == 0)
 			return 0;
-		else{
-			float media = voto / num;
-			return media/10;
+		int voto = 0;
+		for(int i=0; i<voti.length; ++i){
+			voto += voti[i].getValore();
 		}
+		float media = voto/voti.length;
+		return media/10;
 	}
 	
 	/**
@@ -265,7 +250,7 @@ public class DocumentoPanel extends Pagina {
 		// TODO Auto-generated method stub
 		final Documento d = ((Documento) o);
 		lblPreferiti.setText(d.getNome());
-		colore.setSize((int) (stelle.getWidth()*calcolaVoto(d.getNum_voti(), d.getVoto())), 30);
+		final int backup_colore = colore.getWidth();
 		lblNewLabel_1.setText(d.getCorso().getNome());
 		switch(d.getDiscriminator()){
 		case "Appunti":
@@ -298,6 +283,43 @@ public class DocumentoPanel extends Pagina {
 				Home.getPagina("preferiti");
 			}
 		});
+		
+		stelle.setLayout(null);
+		
+		for(int i=0; i<5; ++i){
+			//Label contenente la singola stella
+			final JLabel stella = new JLabel();
+			stella.setAlignmentY(Component.TOP_ALIGNMENT);
+			stella.setBounds(i*30, 0, 30, 30);
+			stella.setIcon(new ImageIcon("./newimage/white_star_big.png"));
+			stelle.add(stella);
+		}			
+		for(int i=0; i<5; ++i){
+			final int j = i+1;
+			if(d.getVotoByUtente(ControllerUtente.getInstance().getUtente(1)) == null){
+				stelle.getComponent(i).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				stelle.getComponent(i).addMouseListener(new MouseAdapter() {
+					public void mouseEntered(MouseEvent arg0){
+						colore.setSize(30*j,30);
+						colore.validate();
+						colore.repaint();
+					}
+				});
+				stelle.getComponent(i).addMouseListener(new MouseAdapter() {
+					public void mouseExited(MouseEvent arg0){
+						colore.setSize(backup_colore,30);
+						colore.validate();
+						colore.repaint();
+					}
+				});
+			}
+		}
+		stelle.setLocation(205, 10);
+		stelle.setSize(150, 30);
+		colore.setBackground(new Color(255,222,87));
+		colore.setSize((int) (stelle.getWidth()*calcolaVoto(d.votos.toArray())),30);
+		stelle.add(colore);
+		panel.add(stelle);
 		
 	}
 
