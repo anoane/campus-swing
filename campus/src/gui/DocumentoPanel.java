@@ -303,6 +303,8 @@ public class DocumentoPanel extends Pagina {
 						colore.setSize(30*j,30);
 						colore.validate();
 						colore.repaint();
+						stelle.validate();
+						stelle.repaint();
 					}
 				});
 				stelle.getComponent(i).addMouseListener(new MouseAdapter() {
@@ -310,6 +312,8 @@ public class DocumentoPanel extends Pagina {
 						colore.setSize(backup_colore,30);
 						colore.validate();
 						colore.repaint();
+						stelle.validate();
+						stelle.repaint();
 					}
 				});
 			}
