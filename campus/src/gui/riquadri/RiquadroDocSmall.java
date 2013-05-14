@@ -25,7 +25,7 @@ import controller.ControllerUtente;
 
 import modello_di_dominio.Documento;
 
-public class RiquadroDocSmall extends Riquadro {
+public class RiquadroDocSmall extends RiquadroSmall {
 	private JPanel tipo;
 	private JPanel stelle;
 	private JLabel titolo;
@@ -107,13 +107,13 @@ public class RiquadroDocSmall extends Riquadro {
 			//Label contenente la singola stella
 			JLabel stella = new JLabel();
 			stella.setAlignmentY(Component.TOP_ALIGNMENT);
-			stella.setBounds(i*30, 0, 30, 30);
-			stella.setIcon(new ImageIcon("./newimage/star.png"));
+			stella.setBounds(i*15, 0, 15, 15);
+			stella.setIcon(new ImageIcon("./newimage/star_small.png"));
 			stelle.add(stella);
 		}
 		stelle.add(colore);
 		stelle.setLocation(162, 35);
-		stelle.setSize(138, 20);
+		stelle.setSize(75, 15);
 		colore.setBackground(colore_stella);
 		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
 		

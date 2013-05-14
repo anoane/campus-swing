@@ -1,30 +1,46 @@
 package gui;
 
 
+import gui.riquadri.RiquadroCorsoSmall;
+import gui.riquadri.RiquadroDocSmall;
+
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import controller.ControllerUtente;
+
+import modello_di_dominio.Corso;
+import modello_di_dominio.Documento;
+import modello_di_dominio.Utente;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class HomePage extends Pagina {
 	private JPanel panel;
-	private JTextField textField;
 	private final static JPanel panel_1 = new JPanel();
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
 	private static String homeBottomText = "prova";
 	private final static JLabel label_6 = new JLabel("new label");
+	private final JPanel panel_corsi_seguiti = new JPanel();
+	private final JPanel panel_preferiti_recenti = new JPanel();
+	private final JPanel panel_miei_doc = new JPanel();
 	
 	
 	public static String getHomeBottomText() {
@@ -33,16 +49,110 @@ public class HomePage extends Pagina {
 		
 	}
 	
-	public static void setHomeBottomText(String a) {
-		homeBottomText=a;
-	}
-	
 	public void reload() {
 		panel.setBounds(0, 0, 1008, 429);
 		
-		label_6.setText(getHomeBottomText());
+		adjustCorsiRec(getCorsiRec());
+		adjustMieiPref(getMieiPref());
+		adjustMieiDocs(getMieiDocs());
+	}
+	
+	private ArrayList<Corso> getCorsiRec() {
+		Utente u = ControllerUtente.getInstance().getUtente(1);
+		
+		if(u == null){
+			return new ArrayList<Corso>();
+		}
+		
+		return new ArrayList<Corso>(u.getFacolta().corso.getCollection());
+	}
+	
+	private ArrayList<Documento> getMieiPref() {
+		Utente u = ControllerUtente.getInstance().getUtente(1);
+		
+		if(u == null){
+			return new ArrayList<Documento>();
+		}
+		
+		return new ArrayList<Documento>(u.documentiPreferiti.getCollection());
+	}
+	
+	private ArrayList<Documento> getMieiDocs() {
+		Utente u = ControllerUtente.getInstance().getUtente(1);
+		
+		if(u == null){
+			return new ArrayList<Documento>();
+		}
+		
+		return new ArrayList<Documento>(u.documentiPreferiti.getCollection());
 	}
 
+	private void adjustCorsiRec(final ArrayList<Corso> corsi){
+		panel_corsi_seguiti.removeAll();
+		panel_corsi_seguiti.validate();
+		panel_corsi_seguiti.repaint();
+		addCorsiRec(corsi);
+	}
+	
+	private void adjustMieiPref(final ArrayList<Documento> docs){
+		panel_preferiti_recenti.removeAll();
+		panel_preferiti_recenti.validate();
+		panel_preferiti_recenti.repaint();
+		addMieiPref(docs);
+	}
+	
+	private void adjustMieiDocs(final ArrayList<Documento> docs){
+		panel_miei_doc.removeAll();
+		panel_miei_doc.validate();
+		panel_miei_doc.repaint();
+		addMieiDocs(docs);
+	}
+	
+	public void addCorsiRec(final ArrayList<Corso> corsi){
+		int colmax = (int) Math.ceil((float)corsi.size());
+		int altezza = 230*colmax;
+		panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),altezza);
+		panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),800);
+		//panel.setSize(panel.getWidth(), altezza+71);
+
+		for(int i = 0;i < corsi.size();i++){
+			final Corso d = corsi.get(i);
+			final RiquadroCorsoSmall corso = new RiquadroCorsoSmall(d);
+			corso.setLocation(0, (107*i));
+			panel_corsi_seguiti.add(corso);
+		}
+	}
+	
+	public void addMieiPref(final ArrayList<Documento> docs){
+		int colmax = (int) Math.ceil((float)docs.size());
+		int altezza = 230*colmax;
+		panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),altezza);
+		panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),800);
+		//panel.setSize(panel.getWidth(), altezza+71);
+
+		for(int i = 0;i < docs.size();i++){
+			final Documento d = docs.get(i);
+			final RiquadroDocSmall documento = new RiquadroDocSmall(d,true,false);
+			documento.setLocation(0, (107*i));
+			panel_preferiti_recenti.add(documento);
+		}
+	}
+	
+	public void addMieiDocs(final ArrayList<Documento> docs){
+		int colmax = (int) Math.ceil((float)docs.size());
+		int altezza = 230*colmax;
+		panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),altezza);
+		panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),800);
+		//panel.setSize(panel.getWidth(), altezza+71);
+
+		for(int i = 0;i < docs.size();i++){
+			final Documento d = docs.get(i);
+			final RiquadroDocSmall documento = new RiquadroDocSmall(d,true,false);
+			documento.setLocation(0, (107*i));
+			panel_miei_doc.add(documento);
+		}
+	}
+	
 	/**
 	 * Create the panel.
 	 */
@@ -183,32 +293,20 @@ public class HomePage extends Pagina {
 		JLabel label_8 = new JLabel("New label");
 		panel_4.add(label_8);
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(10, 52, 310, 97);
-		panel.add(panel_5);
+		panel_corsi_seguiti.setBackground(Color.WHITE);
+		panel_corsi_seguiti.setBounds(10, 52, 310, 194);
+		panel.add(panel_corsi_seguiti);
+		panel_corsi_seguiti.setLayout(null);
 		
-		JPanel panel_6 = new JPanel();
-		panel_6.setBounds(10, 159, 310, 97);
-		panel.add(panel_6);
+		panel_preferiti_recenti.setBackground(Color.WHITE);
+		panel_preferiti_recenti.setBounds(340, 52, 310, 194);
+		panel.add(panel_preferiti_recenti);
+		panel_preferiti_recenti.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setText("Cambia valore label TEST");
-		textField.setColumns(10);
-		textField.setBounds(350, 72, 132, 40);
-		panel.add(textField);
-		
-		JButton button = new JButton("Cambia");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setHomeBottomText(textField.getText());
-			}
-		});
-		button.setBounds(492, 81, 89, 23);
-		panel.add(button);
-		
-		JLabel lblAdattativa = new JLabel("ADATTATIVA");
-		lblAdattativa.setBounds(364, 168, 170, 14);
-		panel.add(lblAdattativa);
+		panel_miei_doc.setBackground(Color.WHITE);
+		panel_miei_doc.setBounds(670, 53, 310, 194);
+		panel.add(panel_miei_doc);
+		panel_miei_doc.setLayout(null);
 
 		
 		reload();
