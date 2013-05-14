@@ -69,8 +69,13 @@ public class DocumentoPanel extends Pagina {
 			JLabel stella = new JLabel();
 			stella.setAlignmentY(Component.TOP_ALIGNMENT);
 			stella.setBounds(i*30, 0, 30, 30);
-			stella.setIcon(new ImageIcon("./newimage/star3.png"));
+			stella.setIcon(new ImageIcon("./newimage/white_star_big.png"));
 			stelle.add(stella);
+			stella.addMouseListener(new MouseAdapter() {
+				public void mouseEntered(MouseEvent arg0) {
+					
+				};
+			});
 		}
 		stelle.add(colore);
 		stelle.setLocation(205, 10);
