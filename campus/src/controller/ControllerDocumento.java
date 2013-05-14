@@ -103,9 +103,11 @@ public class ControllerDocumento extends AbstractController{
 		try {
 			//XXX:Serve?
 			d.setProprietario(null); 
-			documentoDAO.delete(d);
 			ControllerRicerca.getInstance().removeDocumento(d);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
+			d.getFacolta().documento.remove(d);
+			d.getCorso().documentoCorso.remove(d);
+			documentoDAO.delete(d);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

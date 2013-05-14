@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
@@ -31,6 +32,7 @@ public class DocumentoPanel extends Pagina {
 	boolean suggestOpened = false;
 	private JPanel riquadrodx;
 	private JPanel panel ;
+	private JButton btnAggiungiAiPreferiti;
 	JLabel lblPreferiti = new JLabel();
 	// Panel stelle
 	JPanel stelle = new JPanel();
@@ -67,8 +69,13 @@ public class DocumentoPanel extends Pagina {
 			JLabel stella = new JLabel();
 			stella.setAlignmentY(Component.TOP_ALIGNMENT);
 			stella.setBounds(i*30, 0, 30, 30);
-			stella.setIcon(new ImageIcon("./newimage/star3.png"));
+			stella.setIcon(new ImageIcon("./newimage/white_star_big.png"));
 			stelle.add(stella);
+			stella.addMouseListener(new MouseAdapter() {
+				public void mouseEntered(MouseEvent arg0) {
+					
+				};
+			});
 		}
 		stelle.add(colore);
 		stelle.setLocation(205, 10);
@@ -161,19 +168,13 @@ public class DocumentoPanel extends Pagina {
 		//pdfDoc.setBackground(Color.WHITE);
 		
 		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton btnAggiungiAiPreferiti = buttonCreator.createButton("Aggiungi ai preferiti",409, 49, 230, 34,false,true);
+		btnAggiungiAiPreferiti = buttonCreator.createButton("Aggiungi ai preferiti",409, 49, 230, 34,false,true);
 		panel.add(btnAggiungiAiPreferiti);
 		
 		if(ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
 			btnAggiungiAiPreferiti.setVisible(false);
 		
-		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				ControllerUtente u = ControllerUtente.getInstance();
-				u.aggiungiDocumentoPreferito(u.getUtente(1), d);
-				Home.getPagina("preferiti");
-			}
-		});
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("tipo_img");
 		lblNewLabel_2.setBounds(84, 53, 57, 23);
@@ -262,7 +263,7 @@ public class DocumentoPanel extends Pagina {
 	@Override
 	public void reload(Object o) {
 		// TODO Auto-generated method stub
-		Documento d = ((Documento) o);
+		final Documento d = ((Documento) o);
 		lblPreferiti.setText(d.getNome());
 		colore.setSize((int) (stelle.getWidth()*calcolaVoto(d.getNum_voti(), d.getVoto())), 30);
 		lblNewLabel_1.setText(d.getCorso().getNome());
@@ -290,6 +291,13 @@ public class DocumentoPanel extends Pagina {
 		}
 		lblUniversit.setText(d.getFacolta().getNome());
 		panel_3.setText(d.getDescrizione());
+		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ControllerUtente u = ControllerUtente.getInstance();
+				u.aggiungiDocumentoPreferito(u.getUtente(1), d);
+				Home.getPagina("preferiti");
+			}
+		});
 		
 	}
 
