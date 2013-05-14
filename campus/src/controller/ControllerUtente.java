@@ -5,6 +5,8 @@ package controller;
 
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 //import modello_di_dominio.Appunti;
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
@@ -148,9 +150,9 @@ public class ControllerUtente extends AbstractController{
 	public void rimuoviDocumento(Utente u, Documento d){
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		ControllerDocumento s = ControllerDocumento.getInstance();
-		s.removeDocumento(d);
 		u.documentiUtente.remove(d);
-		
+		u.documentiPreferiti.remove(d);
+		s.removeDocumento(d);
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {
 			utenteDAO.save(u);
