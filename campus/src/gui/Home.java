@@ -348,7 +348,7 @@ public class Home {
 				Home.openCaricaMateriale(false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);
 			}
 		});
-		carica_materiale.setText("Carica materiale");
+		carica_materiale.setText("Carica documento");
 		carica_materiale.setFont(new Font("Arial", Font.BOLD, 18));
 		carica_materiale.setForeground(Color.WHITE);
 		carica_materiale.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

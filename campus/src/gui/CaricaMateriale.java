@@ -157,7 +157,7 @@ public class CaricaMateriale extends Pagina  {
 			}
 		});
 		
-		JLabel lblUltimiCorsiSeguiti = new JLabel("Carica materiale");
+		JLabel lblUltimiCorsiSeguiti = new JLabel("Carica documento");
 		lblUltimiCorsiSeguiti.setForeground(new Color(6, 121, 159));
 		lblUltimiCorsiSeguiti.setFont(new Font("Arial", Font.BOLD, 20));
 		lblUltimiCorsiSeguiti.setBounds(10, 10, 310, 25);
@@ -398,7 +398,7 @@ public class CaricaMateriale extends Pagina  {
 		
 		
 		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton btnCaricaMateriale = buttonCreator.createButton("Carica materiale", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
+		JButton btnCaricaMateriale = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 		//btnCaricaMateriale.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnCaricaMateriale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
