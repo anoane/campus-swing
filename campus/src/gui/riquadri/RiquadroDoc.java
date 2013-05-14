@@ -175,13 +175,13 @@ public class RiquadroDoc extends Riquadro {
 			//Label contenente la singola stella
 			JLabel stella = new JLabel();
 			stella.setAlignmentY(Component.TOP_ALIGNMENT);
-			stella.setBounds(i*30, 0, 30, 30);
-			stella.setIcon(new ImageIcon("./newimage/star.png"));
+			stella.setBounds(i*20, 0, 20, 20);
+			stella.setIcon(new ImageIcon("./newimage/star_med.png"));
 			stelle.add(stella);
 		}
 		stelle.add(colore);
 		stelle.setLocation(130, 45);
-		stelle.setSize(150, 20);
+		stelle.setSize(100, 20);
 		colore.setBackground(colore_stella);
 		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
 		
