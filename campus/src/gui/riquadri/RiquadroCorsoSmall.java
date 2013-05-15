@@ -13,7 +13,9 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 
 import modello_di_dominio.Corso;
 /**
@@ -25,8 +27,9 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 	
 	private JPanel anteprima;
 	private JLabel titolo;
-	private JTextPane descrizione;
-	private JLabel facolta;
+	private JTextArea descrizione;
+	private JTextArea facolta;
+	private RimuoviCorsoSeguito rimuovi;
 	
 	/**
 	 * 
@@ -38,7 +41,7 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 
 		
 		anteprima = new JPanel();
-		anteprima.setBounds(10, 34, 128, 128);
+		anteprima.setBounds(10, 41, 45, 45);
 		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		anteprima.addMouseListener(new MouseAdapter() {
 			@Override
@@ -48,33 +51,56 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		});
 
 		titolo = new JLabel(c.getNome());
-		titolo.setFont(new Font("Monotype Corsiva", Font.PLAIN, 25));
+		titolo.setFont(new Font("Arial", Font.BOLD, 20));
 		titolo.setForeground(Color.WHITE);
-		titolo.setBounds(158, 11, 217, 40);
+		titolo.setBounds(10, 5, 290, 40);
 		
-		descrizione = new JTextPane();
+		descrizione = new JTextArea(c.getDescrizione());
 		descrizione.setToolTipText("Descrizione Corso");
 		descrizione.setDisabledTextColor(Color.WHITE);
 		descrizione.setBackground(super.getCorsoBgColor());
 		descrizione.setEnabled(false);
 		descrizione.setEditable(false);
 		descrizione.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		descrizione.setText(c.getDescrizione());
 		descrizione.setAlignmentY(Component.TOP_ALIGNMENT);
-		descrizione.setLocation(158, 62);
-		descrizione.setSize(217, 76);
+		descrizione.setLocation(65, 41);
+		descrizione.setSize(235, 30);
 		descrizione.setForeground(Color.WHITE);
+		descrizione.setLineWrap(true);
+		descrizione.setBorder(new EmptyBorder(0,0,0,0));
+		descrizione.setWrapStyleWord(true);
+		descrizione.setHighlighter(null);
+		descrizione.setEditable(false);
+		descrizione.setBackground(super.getCorsoBgColor());
+		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
+		descrizione.setText(util.StringUtility.truncateLines(descrizione,2));
 		
-		facolta = new JLabel(c.facolta.toArray()[0].getNome());
-		facolta.setLocation(158, 138);
-		facolta.setSize(245, 40);
+		facolta = new JTextArea(c.facolta.toArray()[0].getNome());
+		facolta.setLocation(64, 73);
+		facolta.setSize(236, 19);
 		facolta.setForeground(Color.WHITE);
+		facolta.setLineWrap(true);
+		facolta.setBorder(new EmptyBorder(0,0,0,0));
+		facolta.setWrapStyleWord(true);
+		facolta.setHighlighter(null);
+		facolta.setEditable(false);
+		facolta.setBackground(super.getCorsoBgColor());
+		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
+		facolta.setText(util.StringUtility.truncateLines(facolta,1));
+		
+		rimuovi = new RimuoviCorsoSeguito("Cancella il documento");
+		rimuovi.setToolTipText("Rimuovi il corso dai preferiti");
+		rimuovi.setLocation(385, 5);
 		
 		add(anteprima);
 		add(titolo);
 		add(descrizione);
+		
 		add(facolta);
+		add(rimuovi);
 	}
 	
-
+	public RimuoviCorsoSeguito getRimuovi(){
+		return this.rimuovi;
+	}
 }

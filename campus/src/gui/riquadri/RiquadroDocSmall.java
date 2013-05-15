@@ -24,18 +24,21 @@ import javax.swing.border.LineBorder;
 import controller.ControllerUtente;
 
 import modello_di_dominio.Documento;
+import javax.swing.JSeparator;
 
 public class RiquadroDocSmall extends RiquadroSmall {
 	private JPanel tipo;
 	private JPanel stelle;
 	private JLabel titolo;
-	private JLabel corso;
+	private JTextArea corso;
 	private JPanel utente;
 	private JLabel proprietario_cognome;
 	private JLabel proprietario_nome;
 	private RimuoviButton rimuovi;
 
 	private static Color colore_stella = new Color(255,222,87);
+	private JPanel ext;
+	private JLabel label;
 
 	public RiquadroDocSmall(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
 		super();
@@ -58,27 +61,27 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		case "Appunti":
 			lblNewLabel.setText("Appunti");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
 			break;
 		case "Esercizi":
 			lblNewLabel.setText("Esercizi");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
 			break;
 		default:
 			lblNewLabel.setText("Documento");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
 			break;
 		}
 		
@@ -91,11 +94,18 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		titolo.setForeground(Color.WHITE);
 
 		// Label corso
-		corso = new JLabel(doc.getCorso().getNome());
+		corso = new JTextArea(doc.getCorso().getNome());
+		corso = new JTextArea("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		corso.setFont(new Font("Arial", Font.PLAIN, 12));
-		corso.setHorizontalAlignment(SwingConstants.LEFT);
-		corso.setLocation(10, 66);
-		corso.setSize(138, 20);
+		corso.setLineWrap(true);
+		corso.setBorder(new EmptyBorder(0,0,0,0));
+		corso.setWrapStyleWord(true);
+		corso.setHighlighter(null);
+		corso.setEditable(false);
+		corso.setBackground(super.getPreferitoBgColor());
+		corso.setLocation(10, 60);
+		corso.setSize(146, 30);
+		corso.setText(util.StringUtility.truncateLines(corso,2));
 		
 		// Panel stelle
 		stelle = new JPanel();
@@ -112,7 +122,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 			stelle.add(stella);
 		}
 		stelle.add(colore);
-		stelle.setLocation(162, 35);
+		stelle.setLocation(144, 37);
 		stelle.setSize(75, 15);
 		colore.setBackground(colore_stella);
 		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
@@ -120,18 +130,18 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		
 		// Panel utente
 		utente = new JPanel();
-		utente.setLocation(162, 56);
+		utente.setLocation(166, 58);
 		utente.setSize(30, 30);
 
 		// Label proprietario
 		proprietario_cognome = new JLabel(doc.getProprietario().getCognome());
 		proprietario_cognome.setFont(new Font("Arial", Font.PLAIN, 12));
-		proprietario_cognome.setLocation(200, 70);
+		proprietario_cognome.setLocation(200, 72);
 		proprietario_cognome.setSize(100, 20);
 		
 		proprietario_nome = new JLabel(doc.getProprietario().getNome());
 		proprietario_nome.setFont(new Font("Arial", Font.PLAIN, 12));
-		proprietario_nome.setLocation(200, 54);
+		proprietario_nome.setLocation(200, 56);
 		proprietario_nome.setSize(100, 20);
 		
 		add(titolo);
@@ -141,6 +151,17 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		add(proprietario_cognome);
 		add(tipo);
 		add(proprietario_nome);
+		
+		ext = new JPanel();
+		ext.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
+		ext.setBounds(78, 35, 58, 20);
+		add(ext);
+		ext.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+		
+		label = new JLabel();
+		label.setAlignmentY(1.0f);
+		label.setAlignmentX(0.5f);
+		ext.add(label);
 
 	}
 	

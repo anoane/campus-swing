@@ -38,7 +38,7 @@ public class RiquadroDoc extends Riquadro {
 	private JLabel titolo;
 	private JTextArea descrizione;
 	private JLabel facolta;
-	private JLabel univ;
+	private JTextArea univ;
 	private JLabel corso;
 	private JPanel utente;
 	private JLabel proprietario_cognome;
@@ -53,7 +53,7 @@ public class RiquadroDoc extends Riquadro {
 		this.setBorder(super.getRiquadroBorder());	
 		// Riquadro Anteprima
 		anteprima = new JPanel();
-		anteprima.setBounds(20, 45, 100, 141);
+		anteprima.setBounds(15, 45, 100, 141);
 		anteprima.setBackground(Color.WHITE);
 		anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -109,16 +109,20 @@ public class RiquadroDoc extends Riquadro {
 		facolta = new JLabel(doc.getFacolta().getNome());
 		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
 		facolta.setHorizontalAlignment(SwingConstants.LEFT);
-		facolta.setBounds(130, 169, 138, 20);
+		facolta.setBounds(125, 169, 143, 20);
 
 		// Label università
-		//univ = new JLabel(doc.getProprietario().getFacolta().getUniversita()
-		//		.getNome());
-		univ = new JLabel(doc.getFacolta().getUniversita().getNome());
+		univ = new JTextArea(doc.getFacolta().getUniversita().getNome());
 		univ.setFont(new Font("Arial", Font.PLAIN, 12));
-		univ.setHorizontalAlignment(SwingConstants.LEFT);
-		univ.setBounds(130, 135, 138, 40);
-
+		univ.setLineWrap(true);
+		univ.setBorder(new EmptyBorder(0,0,0,0));
+		univ.setWrapStyleWord(true);
+		univ.setHighlighter(null);
+		univ.setEditable(false);
+		univ.setBackground(super.getPreferitoBgColor());
+		univ.setBounds(125, 135, 143, 40);
+		univ.setText(util.StringUtility.truncateLines(univ,2));
+		
 		// Pannello Rimuovi
 		pulsanti = new JPanel();
 		pulsanti.setBackground(null);
@@ -147,32 +151,25 @@ public class RiquadroDoc extends Riquadro {
 		
 		// TextArea descrizione
 		
-		descrizione = new JTextArea("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-
+		descrizione = new JTextArea(doc.getDescrizione());
 		descrizione.setCaretPosition(0);
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setEditable(false);
-		descrizione.setLocation(130, 68);
-		descrizione.setSize(300, 47);
+		descrizione.setLocation(125, 68);
+		descrizione.setSize(305, 47);
 		descrizione.setLineWrap(true);
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
 		descrizione.setWrapStyleWord(true);
 		descrizione.setHighlighter(null);
 		descrizione.setBackground(super.getPreferitoBgColor());
-
-
-		//descrizione = new JTextArea(doc.getDescrizione());
-		//if (doc.getDescrizione().length() > 125) {
-		//	descrizione = new JTextArea(doc.getDescrizione().substring(0, 124).concat("..."));
-		//}
-		
+		descrizione.setText(util.StringUtility.truncateLines(descrizione,3));
 		
 		// Label corso
 		corso = new JLabel(doc.getCorso().getNome());
 		corso.setFont(new Font("Arial", Font.PLAIN, 12));
 		corso.setHorizontalAlignment(SwingConstants.LEFT);
-		corso.setLocation(130, 115);
-		corso.setSize(300, 20);
+		corso.setLocation(125, 115);
+		corso.setSize(305, 20);
 		
 		// Panel stelle
 		stelle = new JPanel();
@@ -189,7 +186,7 @@ public class RiquadroDoc extends Riquadro {
 			stelle.add(stella);
 		}
 		stelle.add(colore);
-		stelle.setLocation(130, 45);
+		stelle.setLocation(125, 45);
 		stelle.setSize(100, 20);
 		colore.setBackground(colore_stella);
 		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);

@@ -27,18 +27,22 @@ public class StringUtility {
 		    return noLines;
 		  }
 	  
-	  public static String truncateLines(JTextArea textArea) {
+	  public static String truncateLines(JTextArea textArea,int lineNumber) {
 			boolean truncate = true;
 			String temp = textArea.getText();
 			System.out.println(StringUtility.countLines(textArea));
-			for (int i=0; truncate; i++) {
-				if (textArea.getLineCount() < 2) {
-					return temp;
-					//descrizione.setText(descrizione.getText().concat("..."));
-				} else {
-					temp = temp.substring(0, temp.length()-5);
-					textArea.setText(temp);
-					System.out.println(temp);
+			if (StringUtility.countLines(textArea) > lineNumber) {
+				for (int i=0; truncate; i++) {
+					if (StringUtility.countLines(textArea) <= lineNumber) {
+						if (temp.length()>5) {
+							temp = temp.substring(0, temp.length()-4).concat("...");
+						}
+						return temp;
+						//descrizione.setText(descrizione.getText().concat("..."));
+					} else {
+						temp = temp.substring(0, temp.length()-5);
+						textArea.setText(temp);
+					}
 				}
 			}
 			return textArea.getText();
