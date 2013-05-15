@@ -27,6 +27,8 @@ import controller.ControllerUtente;
 import modello_di_dominio.Documento;
 import javax.swing.JSeparator;
 
+import util.StringUtility;
+
 public class RiquadroDoc extends Riquadro {
 
 	private JPanel anteprima;
@@ -144,20 +146,27 @@ public class RiquadroDoc extends Riquadro {
 		titolo.setForeground(Color.WHITE);
 		
 		// TextArea descrizione
-		descrizione = new JTextArea(doc.getDescrizione());
-		if (doc.getDescrizione().length() > 125) {
-			descrizione = new JTextArea(doc.getDescrizione().substring(0, 124).concat("..."));
-		}
+		
+		descrizione = new JTextArea("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+
+		descrizione.setCaretPosition(0);
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setEditable(false);
-		descrizione.setLocation(130, 66);
-		descrizione.setSize(300, 52);
+		descrizione.setLocation(130, 68);
+		descrizione.setSize(300, 47);
 		descrizione.setLineWrap(true);
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
 		descrizione.setWrapStyleWord(true);
 		descrizione.setHighlighter(null);
 		descrizione.setBackground(super.getPreferitoBgColor());
 
+
+		//descrizione = new JTextArea(doc.getDescrizione());
+		//if (doc.getDescrizione().length() > 125) {
+		//	descrizione = new JTextArea(doc.getDescrizione().substring(0, 124).concat("..."));
+		//}
+		
+		
 		// Label corso
 		corso = new JLabel(doc.getCorso().getNome());
 		corso.setFont(new Font("Arial", Font.PLAIN, 12));
