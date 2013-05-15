@@ -95,7 +95,6 @@ public class RiquadroDocSmall extends RiquadroSmall {
 
 		// Label corso
 		corso = new JTextArea(doc.getCorso().getNome());
-		corso = new JTextArea("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		corso.setFont(new Font("Arial", Font.PLAIN, 12));
 		corso.setLineWrap(true);
 		corso.setBorder(new EmptyBorder(0,0,0,0));
