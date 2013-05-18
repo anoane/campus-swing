@@ -75,6 +75,14 @@ public class ControllerRicerca extends AbstractController {
 		genIndex.removeDocumento(doc);
 	}
 	/**
+	 * updateDocumento
+	 * @param doc
+	 */
+	public void updateDocumento(Documento doc){
+		rimuoviDocumento(doc);
+		aggiungiDocumento(doc);
+	}
+	/**
 	 * aggiungiCorso
 	 * @param cor
 	 */
@@ -82,6 +90,23 @@ public class ControllerRicerca extends AbstractController {
 		corIndex.addCorso(cor);
 		genIndex.addCorso(cor);
 	}
+	/**
+	 * rimuoviCorso
+	 * @param cor
+	 */
+	public void rimuoviCorso(Corso cor){
+		corIndex.removeCorso(cor);
+		genIndex.removeCorso(cor);
+	}
+	/**
+	 * updateCorso
+	 * @param cor
+	 */
+	public void updateCorso(Corso cor){
+		rimuoviCorso(cor);
+		aggiungiCorso(cor);
+	}
+	
 	/**
 	 * @throws ParseException 
 	 * 
@@ -141,9 +166,54 @@ public class ControllerRicerca extends AbstractController {
 	 * @return
 	 */
 	public Corso[] cercaCorso(String field,String stQuery){
-		//TODO: Da implementare
-		return null;
+		IndexReader ir = null;
+		Corso[] corsi = null;
+		
+		try {
+			
+			ir = DirectoryReader.open(corIndex.getDir());
+			IndexSearcher is = new IndexSearcher(ir);
+			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
+			
+			//QueryParser qp = new QueryParser(Version.LUCENE_42,field,analyzer);
+			//Query query= qp.parse(stQuery);
+			
+			Term term = new Term(field, stQuery);
+			Query query = new WildcardQuery(term);
+			
+			TopDocs result = is.search(query, 2147483647);
+			ScoreDoc[] hits = result.scoreDocs;
+			
+			corsi = new Corso[hits.length];
+			
+			for(int i= 0; i < hits.length;i++){
+				/**
+				 * Per prendere un singolo documento ...
+				 * 
+				 */
+				Document doc = is.doc(hits[i].doc);
+				corsi[i] = ControllerCorso.getInstance().getCorso(Integer.parseInt(doc.get("ID")));
+				
+			}
+			
+
+			
+			/**
+			 * Da questo documento ho tutte le informazioni
+			 * e posso caricare i risultati, sembra macchinoso ma è veloce e potente
+			 * FIXME:sta classe ha troppe responsabilità
+			 */
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}finally{
+			
+		}
+		
+		return corsi;
 	}
+	
 	/**
 	 * ricercaGenerica
 	 * @param field
