@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class HomePage extends Pagina {
@@ -37,7 +38,7 @@ public class HomePage extends Pagina {
 	private final static JSeparator separator_3 = new JSeparator();
 	private final static JSeparator separator_4 = new JSeparator();
 	private static String homeBottomText = "prova";
-	private final static JLabel label_6 = new JLabel("new label");
+	private final static JLabel label_6 = new JLabel("");
 	private final JPanel panel_corsi_seguiti = new JPanel();
 	private final JPanel panel_preferiti_recenti = new JPanel();
 	private final JPanel panel_miei_doc = new JPanel();
@@ -276,22 +277,91 @@ public class HomePage extends Pagina {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(10, 40, 310, 31);
 		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+		label_6.setBounds(0, 0, 310, 31);
+		label_6.setIcon(new ImageIcon("./newimage/ordine_stampa_1.png"));
 		
 		panel_2.add(label_6);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(10, 81, 310, 31);
 		panel_1.add(panel_3);
+		panel_3.setLayout(null);
 		
-		JLabel label_7 = new JLabel("New label");
+		JLabel label_7 = new JLabel("");
+		label_7.setIcon(new ImageIcon("./newimage/ordine_stampa_2.png"));
+		label_7.setBounds(0, 0, 310, 31);
 		panel_3.add(label_7);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(10, 122, 310, 31);
 		panel_1.add(panel_4);
+		panel_4.setLayout(null);
 		
-		JLabel label_8 = new JLabel("New label");
+		JLabel label_8 = new JLabel("");
+		label_8.setBounds(0, 0, 310, 31);
+		label_8.setIcon(new ImageIcon("./newimage/ordine_stampa_3.png"));
 		panel_4.add(label_8);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(340, 122, 310, 31);
+		panel_1.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JLabel label_9 = new JLabel("");
+		label_9.setBounds(0, 0, 310, 31);
+		label_9.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_3.png"));
+		panel_5.add(label_9);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBounds(340, 81, 310, 31);
+		panel_1.add(panel_6);
+		panel_6.setLayout(null);
+		
+		JLabel label_10 = new JLabel("");
+		label_10.setBounds(0, 0, 310, 31);
+		label_10.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_2.png"));
+		panel_6.add(label_10);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBounds(340, 40, 310, 31);
+		panel_1.add(panel_7);
+		panel_7.setLayout(null);
+		
+		JLabel label_11 = new JLabel("");
+		label_11.setBounds(0, 0, 310, 31);
+		label_11.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_1.png"));
+		panel_7.add(label_11);
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBounds(669, 122, 310, 31);
+		panel_1.add(panel_8);
+		panel_8.setLayout(null);
+		
+		JLabel label_12 = new JLabel("");
+		label_12.setBounds(0, 0, 310, 31);
+		label_12.setIcon(new ImageIcon("./newimage/classifica_utente_3.png"));
+		panel_8.add(label_12);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBounds(669, 81, 310, 31);
+		panel_1.add(panel_9);
+		panel_9.setLayout(null);
+		
+		JLabel label_13 = new JLabel("");
+		label_13.setBounds(0, 0, 310, 31);
+		label_13.setIcon(new ImageIcon("./newimage/classifica_utente_2.png"));
+		panel_9.add(label_13);
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBounds(669, 40, 310, 31);
+		panel_1.add(panel_10);
+		panel_10.setLayout(null);
+		
+		JLabel label_14 = new JLabel("");
+		label_14.setBounds(0, 0, 310, 31);
+		label_14.setIcon(new ImageIcon("./newimage/classifica_utente_1.png"));
+		panel_10.add(label_14);
 		
 		panel_corsi_seguiti.setBackground(Color.WHITE);
 		panel_corsi_seguiti.setBounds(10, 52, 310, 194);
