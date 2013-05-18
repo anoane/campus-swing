@@ -53,7 +53,7 @@ public class RiquadroCorso extends Riquadro {
 		titolo = new JLabel(c.getNome());
 		titolo.setFont(new Font("Arial", Font.BOLD, 25));
 		titolo.setForeground(Color.WHITE);
-		titolo.setBounds(10, 5, 365, 40);
+		titolo.setBounds(10, 5, 357, 40);
 		
 		descrizione = new JTextArea(c.getDescrizione());
 		descrizione.setToolTipText("Descrizione Corso");
@@ -90,7 +90,7 @@ public class RiquadroCorso extends Riquadro {
 		
 		rimuovi = new RimuoviCorsoSeguito("Cancella il documento");
 		rimuovi.setToolTipText("Rimuovi il corso dai preferiti");
-		rimuovi.setLocation(385, 5);
+		rimuovi.setLocation(377, 5);
 		
 		add(anteprima);
 		add(titolo);
