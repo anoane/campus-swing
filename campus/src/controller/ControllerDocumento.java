@@ -122,6 +122,19 @@ public class ControllerDocumento extends AbstractController{
 			ControllerDocumento.instance = new ControllerDocumento();
 		return ControllerDocumento.instance;
 	}
+	
+	public boolean controlloVotato(Documento doc,Utente utente){
+		boolean giaVotato = false;
+		for(Utente u: doc.getUtentesVoto())
+			if(u.equals(utente))
+				giaVotato = true;
+		return giaVotato;
+	}
+	
+	public void votaDocumento(Documento d, Utente u, int voto){
+		if(controlloVotato(d, u) == false)
+			ControllerVoto.getInstance().votaDocumento(d, u, voto);
+	}
 	/**
 	 * getListAllDocumenti
 	 * @return
