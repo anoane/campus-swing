@@ -90,15 +90,22 @@ public class Main {
 			@Override
 			public void run(){
 				ArrayList<Documento> docs = ControllerDocumento.getInstance().getListAllDocumenti();
+				ArrayList<Corso> corsi = ControllerCorso.getInstance().getListAllCorsi();
 				
 				ControllerRicerca cr = ControllerRicerca.getInstance();
 				
 				for(Documento doc : docs){
-					
 					cr.aggiungiDocumento(doc);
-					
 				}
 				
+				for(Corso corso : corsi){
+					cr.aggiungiCorso(corso);
+				}
+				
+				cr.commitIndexingDocumento();
+				
+				
+				/* TESTING ONLY
 				cr.removeDocumento(docs.get(docs.size()-1));
 				cr.commitIndexingDocumento();
 				
@@ -108,7 +115,7 @@ public class Main {
 				
 				for(Documento doc : result){
 					System.out.println(doc.getNome());
-				}
+				}*/
 			}
 		});
 		
