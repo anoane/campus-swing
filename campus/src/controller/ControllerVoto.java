@@ -3,7 +3,13 @@
  */
 package controller;
 
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
+
 import modello_di_dominio.DAOFactory;
+import modello_di_dominio.Documento;
+import modello_di_dominio.Utente;
+import modello_di_dominio.Voto;
 import modello_di_dominio.dao.VotoDAO;
 
 /**
@@ -35,5 +41,19 @@ public class ControllerVoto extends AbstractController {
 			ControllerVoto.instance = new ControllerVoto();
 		return ControllerVoto.instance;
 	}
+	
+	public void votaDocumento(Documento documento, Utente utente, int i) {
+		try {
+			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			Voto v = votoDAO.createVoto();
+			v.setDocumento(documento);
+			v.setUtente(utente);
+			v.setValore(i);
+			t.commit();
+		}catch(PersistentException e) {
+			e.printStackTrace();}
+	}
+		
+	 	
 	
 }
