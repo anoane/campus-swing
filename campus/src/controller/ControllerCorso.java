@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
@@ -10,6 +11,7 @@ import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
 import modello_di_dominio.dao.FacoltaDAO;
 
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 /**
@@ -236,5 +238,24 @@ public class ControllerCorso extends AbstractController {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	public ArrayList<Corso> getListCorsoByString(String campoRicerca) throws ParseException {
+		TreeMap<Integer,Corso> treecorso = new TreeMap<Integer,Corso>();
+		Corso[] temp = null;
+		temp = ControllerRicerca.getInstance().cercaCorso("Nome", campoRicerca+"*");
+		if (temp != null) {
+			for (int i=0; temp.length > i; i++) {
+				treecorso.put(temp[i].getID(), temp[i]);
+			}
+		}
+		temp = ControllerRicerca.getInstance().cercaCorso("Descrizione", campoRicerca+"*");
+		if (temp != null) {
+			for (int i=0; temp.length > i; i++) {
+				treecorso.put(temp[i].getID(), temp[i]);
+			}
+		}
+		ArrayList<Corso> corsi = new ArrayList<Corso>(treecorso.values());
+
+		return corsi;
 	}
 }

@@ -1,5 +1,6 @@
 package gui;
 
+import gui.riquadri.RiquadroCorso;
 import gui.riquadri.RiquadroDoc;
 
 import java.awt.BorderLayout;
@@ -37,6 +38,7 @@ import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
 
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.orm.PersistentException;
 
 import controller.ControllerCorso;
@@ -95,10 +97,14 @@ public class RisultatiRicerca extends Pagina {
 	private final JPanel panel_2 = new JPanel();
 	private final JPanel panel_3 = new JPanel();
 	private final JPanel panel_4 = new JPanel();
+	private final JPanel panel_14 = new JPanel();
+	private final JPanel panel_15 = new JPanel();
+	private final JScrollPane scrollPane_2 = new JScrollPane(panel_14);
 	private final JScrollPane scrollPane = new JScrollPane(panel_1);
 	private final JScrollPane scrollPane_1 = new JScrollPane(panel_3);
 	private final GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 	private final GroupLayout gl_panel_2 = new GroupLayout(panel_3);
+	private final GroupLayout gl_panel_3 = new GroupLayout(panel_14);
 	private boolean is_ricerca_guidata_open = false;
 	private boolean is_ricerca_by_corso_in_progress = false;
 	private final JPanel panel_risultati_bycorso = new JPanel();
@@ -121,7 +127,11 @@ public class RisultatiRicerca extends Pagina {
 	private final JComboBox comboBox = new JComboBox();
 	private final JComboBox comboBox_1 = new JComboBox();
 	private final JComboBox comboBox_2 = new JComboBox();
+	private final ButtonStandard buttonCreator = new ButtonStandard();
 	
+	private final JButton btnNewButton = buttonCreator.createButton("Mostra la ricerca guidata!", 652, 7, 310, 28, false, true);
+	private final JPanel panel_13 = new JPanel();
+	private final JLabel label_6 = new JLabel("");
 	
 	public void resetPanel(String ricerca) {
 		tempRicerca = ricerca;
@@ -143,6 +153,12 @@ public class RisultatiRicerca extends Pagina {
 		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
 		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
 		panel_10.setVisible(false);
+		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
+		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
+		Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
+		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_10.setVisible(false);
+		panel_9.setVisible(true);
 		lblDocumentiTrovatiPer.setText("Documenti trovati per:");
 		label_5.setBounds(225, 9, 770, 25);
 		lblDocumentiTrovatiPer.setBounds(10, 9, 215, 25);
@@ -203,23 +219,30 @@ public class RisultatiRicerca extends Pagina {
 			public void componentResized(ComponentEvent e) {
 				int dimensione_fill_home_bottom = (panel.getParent()
 						.getHeight() - Home.MIN_DIMENSION_Y + 300);
+				panel_10.setBounds(panel_10.getX(), panel_10.getY(), panel_10.getWidth(),
+						panel_10.getHeight() + dimensione_fill_home_bottom+184);
+				panel_13.setBounds(0, 38, panel_13.getWidth(),
+						dimensione_fill_home_bottom+184);
+				scrollPane_2.setBounds(scrollPane_2.getX(), scrollPane_2.getY(),
+						scrollPane_2.getWidth(), panel_13.getHeight());
 				if (is_ricerca_guidata_open) {
 					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
 							panel.getHeight() + dimensione_fill_home_bottom);
 					panel_9.setBounds(panel_9.getX(), panel_9.getY(), panel_9.getWidth(),
 							panel_9.getHeight() + dimensione_fill_home_bottom);
 					panel_risultati.setBounds(0, 76, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -76);
+							dimensione_fill_home_bottom -8 -76);
 					panel_risultati_bycorso.setBounds(0, 76, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -76);
+							dimensione_fill_home_bottom -8 -76);
 					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
 							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
 					scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
 							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
 					panel_ricerca_guidata.setBounds(0,
-							dimensione_fill_home_bottom + 20 - 38,
+							dimensione_fill_home_bottom + 20 - 28,
 							panel_ricerca_guidata.getWidth(),
 							panel_ricerca_guidata.getHeight());
+					btnNewButton.setText("Nascondi la ricerca guidata!");
 				} else {
 					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
 							panel.getHeight() + dimensione_fill_home_bottom );
@@ -237,6 +260,7 @@ public class RisultatiRicerca extends Pagina {
 							dimensione_fill_home_bottom + 20 + 200 - 38,
 							panel_ricerca_guidata.getWidth(),
 							panel_ricerca_guidata.getHeight());
+					btnNewButton.setText("Mostra la ricerca guidata!");
 				}
 
 			}
@@ -305,7 +329,9 @@ public class RisultatiRicerca extends Pagina {
 				panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
 				panel_9.setVisible(false);
 				panel_10.setVisible(true);
-				//label_6.setText("Risultati trovati per:");
+				String campoRicerca = Home.getRicercaTestuale().getText();
+				label_6.setText("'"+campoRicerca+"'");
+				loadRisultatiCorsi(campoRicerca);
 			}
 		});
 		
@@ -328,6 +354,7 @@ public class RisultatiRicerca extends Pagina {
 				panel_6.setBackground(Home.BLUE_SEARCH_BAR);
 				panel_10.setVisible(false);
 				panel_9.setVisible(true);
+				resetPanel(Home.getRicercaTestuale().getText());
 				//label_6.setText("Risultati trovati per:");
 			}
 		});
@@ -339,7 +366,67 @@ public class RisultatiRicerca extends Pagina {
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
 		panel_7.add(lblNewLabel_1);
+		panel_10.setBackground(Color.WHITE);
+		panel_10.setBounds(0, 38, 1008, 391);
 		
+		panel.add(panel_10);
+		panel_10.setLayout(null);
+		panel_11.setBackground(Color.WHITE);
+		panel_11.setBounds(0, 0, 1008, 38);
+		
+		panel_10.add(panel_11);
+		panel_11.setLayout(null);
+		label_3.setBounds(5, 5, 188, 24);
+		label_3.setForeground(new Color(6, 121, 159));
+		label_3.setFont(new Font("Arial", Font.BOLD, 20));
+		
+		panel_11.add(label_3);
+		label_6.setForeground(new Color(6, 121, 159));
+		label_6.setFont(new Font("Arial", Font.BOLD, 20));
+		label_6.setBackground(Color.WHITE);
+		label_6.setBounds(196, 5, 802, 24);
+		
+		panel_11.add(label_6);
+		panel_13.setLayout(null);
+		panel_13.setBackground(Color.WHITE);
+		panel_13.setBounds(0, 38, 1008, 313);
+		
+		panel_10.add(panel_13);
+		
+		
+		
+		
+		
+		
+		gl_panel_3.setHorizontalGroup(
+				gl_panel_3.createParallelGroup(Alignment.LEADING)
+					.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
+						.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(22, Short.MAX_VALUE))
+			);
+		gl_panel_3.setVerticalGroup(
+					gl_panel_3.createParallelGroup(Alignment.LEADING)
+					.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
+						.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(223, Short.MAX_VALUE))
+			);
+			panel_13.setBounds(0, 38, 1008, 313);
+			
+					panel_13.setBackground(Color.WHITE);
+					panel_13.setLayout(null);
+																	panel_14.setBackground(Color.WHITE);
+																	panel_14.setBounds(56, 81, 525, 300);
+																	scrollPane_2.setBorder(new LineBorder(new Color(27, 50, 128)));
+																	
+																	scrollPane_2
+																					.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+																			panel_15.setBorder(new EmptyBorder(0, 0, 0, 0));
+																			panel_15.setBackground(Color.WHITE);
+																			panel_15.setLayout(null);
+																			panel_14.setLayout(gl_panel_3);
+																			scrollPane_2.setBounds(0, 0, 1006, 313);
+																			panel_13.add(scrollPane_2, BorderLayout.CENTER);
+	
 		panel_9.setBounds(0, 38, 1008, 391);
 		panel.add(panel_9);
 		panel_9.setLayout(null);
@@ -448,7 +535,7 @@ public class RisultatiRicerca extends Pagina {
 																		panel_2.setBackground(Color.WHITE);
 																		panel_2.setLayout(null);
 																		panel_1.setLayout(gl_panel_1);
-																		scrollPane.setBounds(0, 0, 1007, 313);
+																		scrollPane.setBounds(0, 0, 1006, 313);
 																		panel_risultati.add(scrollPane, BorderLayout.CENTER);
 		gl_panel_2.setHorizontalGroup(
 				gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -469,7 +556,7 @@ public class RisultatiRicerca extends Pagina {
 		panel_risultati_bycorso.setBackground(Color.WHITE);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_1.setBorder(new LineBorder(new Color(27, 50, 128)));
-		scrollPane_1.setBounds(0, 0, 1007, 313);
+		scrollPane_1.setBounds(0, 0, 1006, 313);
 		
 		panel_risultati_bycorso.add(scrollPane_1);
 		separator_11.setForeground(new Color(27, 50, 128));
@@ -482,31 +569,27 @@ public class RisultatiRicerca extends Pagina {
 		panel_4.setBackground(Color.WHITE);
 		panel_4.setLayout(null);
 		panel_3.setLayout(gl_panel_2);
-		panel_ricerca_guidata.setBounds(0, 350, 1008, 247);
+		panel_ricerca_guidata.setForeground(Color.WHITE);
+		panel_ricerca_guidata.setBounds(0, 350, 1008, 235);
 		panel_9.add(panel_ricerca_guidata);
 
-		panel_ricerca_guidata.setBackground(Color.WHITE);
+		panel_ricerca_guidata.setBackground(Home.BLUE_BUTTON_PRESSED);
 		panel_ricerca_guidata.setLayout(null);
 		label.setBounds(319, 130, 12, 20);
 		panel_ricerca_guidata.add(label);
-		label.setIcon(new ImageIcon("./newimage/freccia_right.png"));
+		label.setIcon(new ImageIcon("./newimage/freccia_right_blue.png"));
 		label_1.setBounds(640, 130, 12, 20);
 		panel_ricerca_guidata.add(label_1);
-		label_1.setIcon(new ImageIcon("./newimage/freccia_right.png"));
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 41, 963, 2);
-		panel_ricerca_guidata.add(separator);
-		separator.setForeground(new Color(27, 50, 128));
+		label_1.setIcon(new ImageIcon("./newimage/freccia_right_blue.png"));
 
 		JLabel lblRicercaAvanzata = new JLabel(
-				"Non sei riuscito a trovare quello che cercavi? Prova la ricerca guidata!");
-		lblRicercaAvanzata.setBounds(10, 10, 678, 25);
+				"Non sei riuscito a trovare quello che cercavi?");
+		lblRicercaAvanzata.setBounds(10, 10, 428, 25);
 		panel_ricerca_guidata.add(lblRicercaAvanzata);
-		lblRicercaAvanzata.setForeground(new Color(6, 121, 159));
+		lblRicercaAvanzata.setForeground(Color.WHITE);
 		lblRicercaAvanzata.setFont(new Font("Arial", Font.BOLD, 20));
 		scegli_univ.setBorder(new LineBorder(new Color(0, 0, 0)));
-		scegli_univ.setBounds(10, 51, 310, 180);
+		scegli_univ.setBounds(10, 41, 310, 180);
 		panel_ricerca_guidata.add(scegli_univ);
 
 		scegli_univ.setLayout(null);
@@ -545,7 +628,7 @@ public class RisultatiRicerca extends Pagina {
 
 		scegli_univ.add(lblUniversit);
 		scegli_fac.setBorder(new LineBorder(new Color(0, 0, 0)));
-		scegli_fac.setBounds(331, 51, 310, 180);
+		scegli_fac.setBounds(331, 41, 310, 180);
 		panel_ricerca_guidata.add(scegli_fac);
 		scegli_fac.setBackground(new Color(67, 136, 204));
 		scegli_fac.setLayout(null);
@@ -586,7 +669,7 @@ public class RisultatiRicerca extends Pagina {
 
 		scegli_fac.add(separator_2);
 		scegli_corso.setBorder(new LineBorder(new Color(0, 0, 0)));
-		scegli_corso.setBounds(652, 51, 310, 180);
+		scegli_corso.setBounds(652, 41, 310, 180);
 		panel_ricerca_guidata.add(scegli_corso);
 
 		scegli_corso.setLayout(null);
@@ -625,30 +708,60 @@ public class RisultatiRicerca extends Pagina {
 
 		scegli_corso.add(separator_3);
 		
-		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showAndHideBarraGuidata();
 			}
 		});
-		btnNewButton.setBounds(688, 14, 89, 23);
+		//btnNewButton.setBounds(688, 7, 310, 28);
 		panel_ricerca_guidata.add(btnNewButton);
-		panel_10.setBackground(Color.WHITE);
-		panel_10.setBounds(0, 38, 1008, 391);
-		
-		panel.add(panel_10);
-		panel_10.setLayout(null);
-		panel_11.setBackground(Color.WHITE);
-		panel_11.setBounds(0, 0, 1008, 391);
-		
-		panel_10.add(panel_11);
-		panel_11.setLayout(null);
-		label_3.setBounds(5, 5, 188, 24);
-		label_3.setForeground(new Color(6, 121, 159));
-		label_3.setFont(new Font("Arial", Font.BOLD, 20));
-		
-		panel_11.add(label_3);
 
+	}
+
+	protected void loadRisultatiCorsi(String campoRicerca) {
+		try {
+			adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void addCorsiSearch(final ArrayList<Corso> corsi) {
+
+		if (corsi == null) {
+			return;
+		}
+
+		int col = 0;
+		for (int i = 0; i < corsi.size(); i++) {
+			final Corso d = corsi.get(i);
+			final RiquadroCorso corso = new RiquadroCorso(d,false);//
+			col = (int) Math.floor(i / 2);
+			int row = i % 2;
+			corso.setLocation((32 + (485 * row)), 32 + (230 * col));
+			panel_15.add(corso);
+
+		}
+		int altezza = 252 + (230 * col);
+
+		panel_15.setSize(panel_15.getWidth(), altezza);
+
+		gl_panel_3.setVerticalGroup(gl_panel_3.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				gl_panel_3
+						.createSequentialGroup()
+						.addComponent(panel_15, GroupLayout.PREFERRED_SIZE,
+								altezza, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(0, Short.MAX_VALUE)));
+
+	}
+
+	private void adjustCorsiSearch(final ArrayList<Corso> corsi) {
+		panel_15.removeAll();
+		panel_15.validate();
+		panel_15.repaint();
+		addCorsiSearch(corsi);
 	}
 
 	protected void reloadRisultati() {

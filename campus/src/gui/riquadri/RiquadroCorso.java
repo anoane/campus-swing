@@ -34,7 +34,7 @@ public class RiquadroCorso extends Riquadro {
 	/**
 	 * 
 	 */
-	public RiquadroCorso(final Corso c) {
+	public RiquadroCorso(final Corso c, boolean pulsantiVisible) {
 		super();
 		this.setBackground(super.getCorsoBgColor());
 		this.setBorder(super.getRiquadroBorder());	
@@ -88,16 +88,19 @@ public class RiquadroCorso extends Riquadro {
 		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
 		facolta.setText(util.StringUtility.truncateLines(facolta,2));
 		
+		add(anteprima);
+		add(titolo);
+		add(descrizione);
+		add(facolta);
+		
 		rimuovi = new RimuoviCorsoSeguito("Cancella il documento");
 		rimuovi.setToolTipText("Rimuovi il corso dai preferiti");
 		rimuovi.setLocation(377, 5);
 		
-		add(anteprima);
-		add(titolo);
-		add(descrizione);
-		
-		add(facolta);
-		add(rimuovi);
+		if (pulsantiVisible) {
+			add(rimuovi);
+		}
+
 	}
 	
 	public RimuoviCorsoSeguito getRimuovi(){

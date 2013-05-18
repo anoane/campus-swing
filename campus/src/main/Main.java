@@ -103,6 +103,7 @@ public class Main {
 				}
 				
 				cr.commitIndexingDocumento();
+				cr.commitIndexingCorso();
 				
 				
 				/* TESTING ONLY

@@ -70,7 +70,7 @@ public class CorsiSeguiti extends Pagina {
 			int row = i%2;
 			int col = (int) Math.floor(i/2);
 			final Corso c = course.get(i);
-			final RiquadroCorso corsi = new RiquadroCorso(c);
+			final RiquadroCorso corsi = new RiquadroCorso(c,true);
 
 			corsi.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(corsi);
