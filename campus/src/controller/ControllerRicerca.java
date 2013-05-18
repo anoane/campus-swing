@@ -13,14 +13,17 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.WildcardQuery;
 import org.apache.lucene.util.Version;
 
+import util.StringUtility;
 import util.search.CorsoIndexer;
 import util.search.DocumentoIndexer;
 import util.search.GeneralIndexer;
@@ -83,7 +86,7 @@ public class ControllerRicerca extends AbstractController {
 	 * @throws ParseException 
 	 * 
 	 */
-	public Documento[] cercaDocumento(String field,String stQuery) {
+	public Documento[] cercaDocumento(String field,String stQuery) throws ParseException {
 		IndexReader ir = null;
 		Documento[] docs = null;
 		
@@ -93,10 +96,13 @@ public class ControllerRicerca extends AbstractController {
 			IndexSearcher is = new IndexSearcher(ir);
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
 			
-			QueryParser qp = new QueryParser(Version.LUCENE_42,field,analyzer);
+			//QueryParser qp = new QueryParser(Version.LUCENE_42,field,analyzer);
+			//Query query= qp.parse(stQuery);
 			
-			Query query= qp.parse(stQuery);
-			TopDocs result = is.search(query, null,5);
+			Term term = new Term(field, stQuery);
+			Query query = new WildcardQuery(term);
+			
+			TopDocs result = is.search(query, 2147483647);
 			ScoreDoc[] hits = result.scoreDocs;
 			
 			docs = new Documento[hits.length];
@@ -121,8 +127,6 @@ public class ControllerRicerca extends AbstractController {
 			
 		} catch (IOException e) {
 			
-			e.printStackTrace();
-		}catch ( ParseException e){
 			e.printStackTrace();
 		}finally{
 			

@@ -13,6 +13,7 @@ import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.DocumentoDAO;
 
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
@@ -151,24 +152,22 @@ public class ControllerDocumento extends AbstractController{
 	 */
 	public ArrayList<Documento> getListAllDocumentiByStringSearch(String ricerca, boolean soloFac, String filtro, String sorting) throws PersistentException {
 		TreeMap<Integer,Documento> treedocs = new TreeMap<Integer,Documento>();
-		Documento[] temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca+"*");
+		Documento[] temp = null;
+		try {
+			temp = ControllerRicerca.getInstance().cercaDocumento("Nome", ricerca+"*");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		if (temp != null) {
 			for (int i=0; temp.length > i; i++) {
 				treedocs.put(temp[i].getID(), temp[i]);
 			}
-			/*if (soloFac) {
-				for (int i=0; temp.length > i; i++) {
-					if (temp[i].getFacolta() == ControllerUtente.getInstance().getUtente(1).getFacolta()) {
-						treedocs.put(temp[i].getID(), temp[i]);
-					}
-				}
-			} else {
-				for (int i=0; temp.length > i; i++) {
-					treedocs.put(temp[i].getID(), temp[i]);
-				}
-			}*/
 		}
-		temp = ControllerRicerca.getInstance().cercaDocumento("Descrizione", ricerca+"*");
+		try {
+			temp = ControllerRicerca.getInstance().cercaDocumento("Descrizione", ricerca+"*");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		if (temp != null) {
 			for (int i=0; temp.length > i; i++) {
 				treedocs.put(temp[i].getID(), temp[i]);

@@ -1,7 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
+
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
+import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
@@ -196,6 +199,23 @@ public class ControllerCorso extends AbstractController {
 		modello_di_dominio.dao.CorsoDAO CorsoDao = lDAOFactory.getCorsoDAO();
 		try{
 			Corso[] corsi = CorsoDao.listCorsoByQuery(null, null);
+			return corsi;
+		}catch(PersistentException e){
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<Corso> getListAllCorsi() {
+		modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
+		modello_di_dominio.dao.CorsoDAO CorsoDao = lDAOFactory.getCorsoDAO();
+		try{
+			Corso[] temp = CorsoDao.listCorsoByQuery(null, null);
+			ArrayList<Corso> corsi = new ArrayList<Corso>();
+			for (int i=0; temp.length > i; i++) {
+				corsi.add(temp[i]);
+			}
 			return corsi;
 		}catch(PersistentException e){
 			e.printStackTrace();

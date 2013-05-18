@@ -30,7 +30,6 @@ public class StringUtility {
 	  public static String truncateLines(JTextArea textArea,int lineNumber) {
 			boolean truncate = true;
 			String temp = textArea.getText();
-			System.out.println(StringUtility.countLines(textArea));
 			if (StringUtility.countLines(textArea) > lineNumber) {
 				for (int i=0; truncate; i++) {
 					if (StringUtility.countLines(textArea) <= lineNumber) {
@@ -38,7 +37,6 @@ public class StringUtility {
 							temp = temp.substring(0, temp.length()-4).concat("...");
 						}
 						return temp;
-						//descrizione.setText(descrizione.getText().concat("..."));
 					} else {
 						temp = temp.substring(0, temp.length()-5);
 						textArea.setText(temp);
@@ -47,5 +45,4 @@ public class StringUtility {
 			}
 			return textArea.getText();
 	  }
-	
 }
