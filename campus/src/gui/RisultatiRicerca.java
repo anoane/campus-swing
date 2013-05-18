@@ -128,7 +128,8 @@ public class RisultatiRicerca extends Pagina {
 	private final JComboBox comboBox_1 = new JComboBox();
 	private final JComboBox comboBox_2 = new JComboBox();
 	private final ButtonStandard buttonCreator = new ButtonStandard();
-	
+	private final JLabel lblRicercaAvanzata = new JLabel(
+			"Non sei riuscito a trovare quello che cercavi?");
 	private final JButton btnNewButton = buttonCreator.createButton("Mostra la ricerca guidata!", 652, 7, 310, 28, false, true);
 	private final JPanel panel_13 = new JPanel();
 	private final JLabel label_6 = new JLabel("");
@@ -242,7 +243,8 @@ public class RisultatiRicerca extends Pagina {
 							dimensione_fill_home_bottom + 20 - 28,
 							panel_ricerca_guidata.getWidth(),
 							panel_ricerca_guidata.getHeight());
-					btnNewButton.setText("Nascondi la ricerca guidata!");
+					btnNewButton.setText("Nascondi la ricerca guidata");
+					lblRicercaAvanzata.setText("Ricerca guidata");
 				} else {
 					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
 							panel.getHeight() + dimensione_fill_home_bottom );
@@ -261,6 +263,7 @@ public class RisultatiRicerca extends Pagina {
 							panel_ricerca_guidata.getWidth(),
 							panel_ricerca_guidata.getHeight());
 					btnNewButton.setText("Mostra la ricerca guidata!");
+					lblRicercaAvanzata.setText("Non sei riuscito a trovare quello che cercavi?");
 				}
 
 			}
@@ -582,8 +585,7 @@ public class RisultatiRicerca extends Pagina {
 		panel_ricerca_guidata.add(label_1);
 		label_1.setIcon(new ImageIcon("./newimage/freccia_right_blue.png"));
 
-		JLabel lblRicercaAvanzata = new JLabel(
-				"Non sei riuscito a trovare quello che cercavi?");
+
 		lblRicercaAvanzata.setBounds(10, 10, 428, 25);
 		panel_ricerca_guidata.add(lblRicercaAvanzata);
 		lblRicercaAvanzata.setForeground(Color.WHITE);
