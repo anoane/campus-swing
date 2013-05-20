@@ -595,11 +595,11 @@ public class RisultatiRicerca extends Pagina {
 		panel_ricerca_guidata.add(scegli_univ);
 
 		scegli_univ.setLayout(null);
-		scegli_univ.setBackground(new Color(67, 136, 204));
+		scegli_univ.setBackground(Color.WHITE);
 
-		list_2.setForeground(Color.WHITE);
+		list_2.setForeground(Color.DARK_GRAY);
 		list_2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		list_2.setBackground(new Color(67, 136, 204));
+		list_2.setBackground(Color.WHITE);
 
 		list_2.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
@@ -620,19 +620,19 @@ public class RisultatiRicerca extends Pagina {
 		scegli_univ.add(pane_list_2);
 		aggiungiListnerMouseOver(scegli_univ);
 		aggiungiListnerMouseOver(list_2);
-		separator_1.setForeground(Color.LIGHT_GRAY);
+		separator_1.setForeground(Home.BLUE_BUTTON_PRESSED);
 		separator_1.setBounds(10, 28, 290, 1);
 
 		scegli_univ.add(separator_1);
 		lblUniversit.setFont(new Font("Arial", Font.BOLD, 14));
-		lblUniversit.setForeground(Color.LIGHT_GRAY);
+		lblUniversit.setForeground(Home.BLUE_BUTTON_PRESSED);
 		lblUniversit.setBounds(10, 11, 83, 14);
 
 		scegli_univ.add(lblUniversit);
 		scegli_fac.setBorder(new LineBorder(new Color(0, 0, 0)));
 		scegli_fac.setBounds(331, 41, 310, 180);
 		panel_ricerca_guidata.add(scegli_fac);
-		scegli_fac.setBackground(new Color(67, 136, 204));
+		scegli_fac.setBackground(Color.WHITE);
 		scegli_fac.setLayout(null);
 
 		list.addListSelectionListener(new ListSelectionListener() {
@@ -647,8 +647,8 @@ public class RisultatiRicerca extends Pagina {
 			}
 		});
 
-		list.setForeground(Color.WHITE);
-		list.setBackground(new Color(67, 136, 204));
+		list.setForeground(Color.DARK_GRAY);
+		list.setBackground(Color.WHITE);
 		list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane pane_list = new JScrollPane(list);
@@ -661,12 +661,12 @@ public class RisultatiRicerca extends Pagina {
 
 		aggiungiListnerMouseOver(scegli_fac);
 		aggiungiListnerMouseOver(list);
-		lblFacolt.setForeground(Color.LIGHT_GRAY);
+		lblFacolt.setForeground(Home.BLUE_BUTTON_PRESSED);
 		lblFacolt.setFont(new Font("Arial", Font.BOLD, 14));
 		lblFacolt.setBounds(10, 11, 83, 14);
 
 		scegli_fac.add(lblFacolt);
-		separator_2.setForeground(Color.LIGHT_GRAY);
+		separator_2.setForeground(Home.BLUE_BUTTON_PRESSED);
 		separator_2.setBounds(10, 28, 290, 1);
 
 		scegli_fac.add(separator_2);
@@ -675,11 +675,11 @@ public class RisultatiRicerca extends Pagina {
 		panel_ricerca_guidata.add(scegli_corso);
 
 		scegli_corso.setLayout(null);
-		scegli_corso.setBackground(new Color(67, 136, 204));
+		scegli_corso.setBackground(Color.WHITE);
 
-		list_1.setForeground(Color.WHITE);
+		list_1.setForeground(Color.DARK_GRAY);
 		list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		list_1.setBackground(new Color(67, 136, 204));
+		list_1.setBackground(Color.WHITE);
 		list_1.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (list_1.getSelectedIndex() != -1) {
@@ -700,12 +700,12 @@ public class RisultatiRicerca extends Pagina {
 		scegli_corso.add(pane_list_1);
 		aggiungiListnerMouseOver(scegli_corso);
 		aggiungiListnerMouseOver(list_1);
-		lblCorso.setForeground(Color.LIGHT_GRAY);
+		lblCorso.setForeground(Home.BLUE_BUTTON_PRESSED);
 		lblCorso.setFont(new Font("Arial", Font.BOLD, 14));
 		lblCorso.setBounds(10, 11, 83, 14);
 
 		scegli_corso.add(lblCorso);
-		separator_3.setForeground(Color.LIGHT_GRAY);
+		separator_3.setForeground(Home.BLUE_BUTTON_PRESSED);
 		separator_3.setBounds(10, 28, 290, 1);
 
 		scegli_corso.add(separator_3);

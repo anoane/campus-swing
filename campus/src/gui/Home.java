@@ -125,6 +125,7 @@ public class Home {
 	// private final static JPanel drawingPane = new JPanel();
 	private final static JScrollPane scroller = new JScrollPane(
 			pannello_verticale);
+
 	
 	public Home() {
 		try {
@@ -391,6 +392,7 @@ public class Home {
 		pannello_verticale.setForeground(Color.BLACK);
 		scroller.setLocation(0, 0);
 		scroller.setSize(1004, 386);
+		scroller.getVerticalScrollBar().setUnitIncrement(16);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scroller.setBorder(BorderFactory.createEmptyBorder());
 		scroller.setViewportView(pannello_verticale);
