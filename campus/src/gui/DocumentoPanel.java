@@ -27,6 +27,7 @@ import com.sun.pdfview.PDFViewer;
 
 import controller.ControllerDocumento;
 import controller.ControllerUtente;
+import controller.ControllerVoto;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -226,16 +227,6 @@ public class DocumentoPanel extends Pagina {
 		}
 	}
 
-	private float calcolaVoto(Voto[] voti) {
-		if (voti.length == 0)
-			return 0;
-		int voto = 0;
-		for (int i = 0; i < voti.length; ++i) {
-			voto += voti[i].getValore();
-		}
-		float media = voto / voti.length;
-		return media / 10;
-	}
 
 	/**
 	 * Metodo che nasconde i riquadri della descrizione del documento, il
@@ -257,10 +248,10 @@ public class DocumentoPanel extends Pagina {
 
 	@Override
 	public void reload(Object o) {
+		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
 		lblPreferiti.setText(d.getNome());
-		final int backup_colore = (int) (stelle.getWidth() * calcolaVoto(d.votos
-				.toArray()));
+		final int backup_colore = (int) (stelle.getWidth() * contrVoto.calcolaVoto(d));
 		colore.setSize(backup_colore, 30);
 		lblNewLabel_1.setText(d.getCorso().getNome());
 		switch (d.getDiscriminator()) {
