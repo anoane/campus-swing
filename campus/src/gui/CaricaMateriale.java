@@ -552,7 +552,7 @@ public class CaricaMateriale extends Pagina  {
 																list_3.addListSelectionListener(new ListSelectionListener() {
 																	public void valueChanged(ListSelectionEvent arg0) {
 																		if (list_3.getSelectedIndex() != -1) {
-																			//btnConfermaSelezione.setEnabled(true);
+																			btnConfermaSelezione.setVisible(true);
 																		}
 																	}
 																});
@@ -1363,7 +1363,7 @@ public class CaricaMateriale extends Pagina  {
 		textField_2.setText("");
 		textField_3.setText("");
 		textField_4.setText("");
-		
+		btnConfermaSelezione.setVisible(false);
 		textPane.setText("");
 		textField_1.setText("");
 		textField_5.setText("");
