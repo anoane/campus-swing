@@ -502,115 +502,336 @@ public class CaricaMateriale extends Pagina  {
 		panel_2.setBounds(388, 54, 367, 348);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
-																aggiungiListnerMouseOver(aggiungi_corso);
-																
-																aggiungi_corso.setBounds(1, 2, 365, 345);
-																panel_2.add(aggiungi_corso);
-																aggiungi_corso.setLayout(null);
-																aggiungi_corso.setBackground(new Color(67, 136, 204));
-																
-																JButton btnAggiungiNuovoCorso = new JButton();
-																btnAggiungiNuovoCorso.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent arg0) {
-																		CaricaMateriale.reloadTuttiCorsi();
-																		CaricaMateriale.nascondiTutto();
-																		panel_2.setVisible(true);
-																		panel_5.setVisible(true);
-																		crea_corso.setVisible(true);
-																		panel_13.setVisible(true);
-																	}
-																});
-																btnAggiungiNuovoCorso.setText("Crea nuovo corso");
-																btnAggiungiNuovoCorso.setForeground(Color.WHITE);
-																btnAggiungiNuovoCorso.setFont(new Font("Arial", Font.BOLD, 18));
-																btnAggiungiNuovoCorso.setFocusPainted(false);
-																btnAggiungiNuovoCorso.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-																btnAggiungiNuovoCorso.setBackground(new Color(46, 93, 140));
-																btnAggiungiNuovoCorso.setBounds(185, 304, 170, 30);
-																aggiungi_corso.add(btnAggiungiNuovoCorso);
-																
-																JLabel lblIlTuoCorso = new JLabel("Il tuo corso non \u00E8 presente nella lista?");
-																lblIlTuoCorso.setForeground(Color.WHITE);
-																lblIlTuoCorso.setFont(new Font("Arial", Font.BOLD, 14));
-																lblIlTuoCorso.setBounds(10, 285, 302, 14);
-																aggiungi_corso.add(lblIlTuoCorso);
-																
-																JSeparator separator_8 = new JSeparator();
-																separator_8.setForeground(Color.BLACK);
-																separator_8.setBackground(Color.BLACK);
-																separator_8.setBounds(10, 280, 345, 1);
-																aggiungi_corso.add(separator_8);
-																
-																JScrollPane scrollPane_1 = new JScrollPane(list_3);
-																scrollPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-																scrollPane_1.setBounds(10, 10, 345, 219);
-																aggiungi_corso.add(scrollPane_1);
-																
-																list_3.setForeground(Color.WHITE);
-																list_3.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-																list_3.setBackground(new Color(67, 136, 204));
-																list_3.addListSelectionListener(new ListSelectionListener() {
-																	public void valueChanged(ListSelectionEvent arg0) {
-																		if (list_3.getSelectedIndex() != -1) {
-																			btnConfermaSelezione.setVisible(true);
-																		}
-																	}
-																});
-																aggiungiListnerMouseOver(btnAggiungiNuovoCorso);
-																aggiungiListnerMouseOver(list_3);
-																
-																JButton button_2 = new JButton();
-																button_2.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
-																		CaricaMateriale.reloadCorsoByFac(dbIndexFac);
-																		CaricaMateriale.nascondiTutto();
-																		panel_2.setVisible(true);
-																		panel_5.setVisible(true);
-																		scegli_corso.setVisible(true);
-																	}
-																});
-																button_2.setText("Indietro");
-																button_2.setForeground(Color.WHITE);
-																button_2.setFont(new Font("Arial", Font.BOLD, 18));
-																button_2.setFocusPainted(false);
-																button_2.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-																button_2.setBackground(new Color(46, 93, 140));
-																button_2.setBounds(10, 304, 165, 30);
-																aggiungi_corso.add(button_2);
-																
-																btnConfermaSelezione.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
-																		if (list_3.getSelectedIndex() != -1) {
-																			String s = (String) list_3.getSelectedValue();
-																			textField_4.setText(s);
-																			indexCorso = list_3.getSelectedIndex();
-																			dbIndexCorso = listaCorsi[indexCorso].getID();
-																			CaricaMateriale.collegaCorso(dbIndexCorso,dbIndexFac);
-																			CaricaMateriale.reloadCorsoByFac(dbIndexFac);
-																			CaricaMateriale.nascondiTutto();
-																			panel_2.setVisible(true);
-																			panel_5.setVisible(true);
-																			scegli_corso.setVisible(true);
-																			int index = -1;
-																			index = list_1.getNextMatch(s, 0, javax.swing.text.Position.Bias.Forward );
-																			if (index >= 0) {
-																				list_1.ensureIndexIsVisible(index);
+																		aggiungiListnerMouseOver(aggiungi_corso);
+																		
+																		aggiungi_corso.setBounds(1, 2, 365, 345);
+																		panel_2.add(aggiungi_corso);
+																		aggiungi_corso.setLayout(null);
+																		aggiungi_corso.setBackground(new Color(67, 136, 204));
+																		
+																		JButton btnAggiungiNuovoCorso = new JButton();
+																		btnAggiungiNuovoCorso.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent arg0) {
+																				CaricaMateriale.reloadTuttiCorsi();
+																				CaricaMateriale.nascondiTutto();
+																				panel_2.setVisible(true);
+																				panel_5.setVisible(true);
+																				crea_corso.setVisible(true);
+																				panel_13.setVisible(true);
 																			}
-																			list_1.setSelectedIndex(index);
-																			//reload corso by fac
-																		} else {
-																			JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima selezionare un corso", "Attenzione", JOptionPane.WARNING_MESSAGE);
-																		}
-																	}
-																});
-																btnConfermaSelezione.setText("Conferma selezione");
-																btnConfermaSelezione.setForeground(Color.WHITE);
-																btnConfermaSelezione.setFont(new Font("Arial", Font.BOLD, 18));
-																btnConfermaSelezione.setFocusPainted(false);
-																btnConfermaSelezione.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-																btnConfermaSelezione.setBackground(new Color(46, 93, 140));
-																btnConfermaSelezione.setBounds(10, 240, 345, 30);
-																aggiungi_corso.add(btnConfermaSelezione);
+																		});
+																		btnAggiungiNuovoCorso.setText("Crea nuovo corso");
+																		btnAggiungiNuovoCorso.setForeground(Color.WHITE);
+																		btnAggiungiNuovoCorso.setFont(new Font("Arial", Font.BOLD, 18));
+																		btnAggiungiNuovoCorso.setFocusPainted(false);
+																		btnAggiungiNuovoCorso.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+																		btnAggiungiNuovoCorso.setBackground(new Color(46, 93, 140));
+																		btnAggiungiNuovoCorso.setBounds(185, 304, 170, 30);
+																		aggiungi_corso.add(btnAggiungiNuovoCorso);
+																		
+																		JLabel lblIlTuoCorso = new JLabel("Il tuo corso non \u00E8 presente nella lista?");
+																		lblIlTuoCorso.setForeground(Color.WHITE);
+																		lblIlTuoCorso.setFont(new Font("Arial", Font.BOLD, 14));
+																		lblIlTuoCorso.setBounds(10, 285, 302, 14);
+																		aggiungi_corso.add(lblIlTuoCorso);
+																		
+																		JSeparator separator_8 = new JSeparator();
+																		separator_8.setForeground(Color.BLACK);
+																		separator_8.setBackground(Color.BLACK);
+																		separator_8.setBounds(10, 280, 345, 1);
+																		aggiungi_corso.add(separator_8);
+																		
+																		JScrollPane scrollPane_1 = new JScrollPane(list_3);
+																		scrollPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+																		scrollPane_1.setBounds(10, 31, 345, 198);
+																		aggiungi_corso.add(scrollPane_1);
+																		
+																		list_3.setForeground(Color.WHITE);
+																		list_3.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																		list_3.setBackground(new Color(67, 136, 204));
+																		list_3.addListSelectionListener(new ListSelectionListener() {
+																			public void valueChanged(ListSelectionEvent arg0) {
+																				if (list_3.getSelectedIndex() != -1) {
+																					btnConfermaSelezione.setVisible(true);
+																				}
+																			}
+																		});
+																		aggiungiListnerMouseOver(btnAggiungiNuovoCorso);
+																		aggiungiListnerMouseOver(list_3);
+																		
+																		JButton button_2 = new JButton();
+																		button_2.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent e) {
+																				CaricaMateriale.reloadCorsoByFac(dbIndexFac);
+																				CaricaMateriale.nascondiTutto();
+																				panel_2.setVisible(true);
+																				panel_5.setVisible(true);
+																				scegli_corso.setVisible(true);
+																			}
+																		});
+																		button_2.setText("Indietro");
+																		button_2.setForeground(Color.WHITE);
+																		button_2.setFont(new Font("Arial", Font.BOLD, 18));
+																		button_2.setFocusPainted(false);
+																		button_2.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+																		button_2.setBackground(new Color(46, 93, 140));
+																		button_2.setBounds(10, 304, 165, 30);
+																		aggiungi_corso.add(button_2);
+																		
+																		btnConfermaSelezione.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent e) {
+																				if (list_3.getSelectedIndex() != -1) {
+																					String s = (String) list_3.getSelectedValue();
+																					textField_4.setText(s);
+																					indexCorso = list_3.getSelectedIndex();
+																					dbIndexCorso = listaCorsi[indexCorso].getID();
+																					CaricaMateriale.collegaCorso(dbIndexCorso,dbIndexFac);
+																					CaricaMateriale.reloadCorsoByFac(dbIndexFac);
+																					CaricaMateriale.nascondiTutto();
+																					panel_2.setVisible(true);
+																					panel_5.setVisible(true);
+																					scegli_corso.setVisible(true);
+																					int index = -1;
+																					index = list_1.getNextMatch(s, 0, javax.swing.text.Position.Bias.Forward );
+																					if (index >= 0) {
+																						list_1.ensureIndexIsVisible(index);
+																					}
+																					list_1.setSelectedIndex(index);
+																					//reload corso by fac
+																				} else {
+																					JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima selezionare un corso", "Attenzione", JOptionPane.WARNING_MESSAGE);
+																				}
+																			}
+																		});
+																		btnConfermaSelezione.setText("Conferma selezione");
+																		btnConfermaSelezione.setForeground(Color.WHITE);
+																		btnConfermaSelezione.setFont(new Font("Arial", Font.BOLD, 18));
+																		btnConfermaSelezione.setFocusPainted(false);
+																		btnConfermaSelezione.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+																		btnConfermaSelezione.setBackground(new Color(46, 93, 140));
+																		btnConfermaSelezione.setBounds(10, 240, 345, 30);
+																		aggiungi_corso.add(btnConfermaSelezione);
+																		aggiungiListnerMouseOver(btnConfermaSelezione);
+																		
+																		JLabel lblCorsiGiEsistenti = new JLabel("Corsi gi\u00E0 esistenti");
+																		lblCorsiGiEsistenti.setForeground(Color.LIGHT_GRAY);
+																		lblCorsiGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
+																		lblCorsiGiEsistenti.setBounds(10, 11, 345, 14);
+																		aggiungi_corso.add(lblCorsiGiEsistenti);
+																		
+
+																		scegli_fac.setBounds(1, 2, 365, 345);
+																		scegli_fac.setBackground(new Color(67, 136, 204));
+																		panel_2.add(scegli_fac);
+																		scegli_fac.setLayout(null);
+																		
+																		btnAggiungiFacolt.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent e) {
+																				//textField_2.requestFocus();
+																				CaricaMateriale.nascondiTutto();
+																				panel_2.setVisible(true);
+																				panel_4.setVisible(true);
+																				crea_fac.setVisible(true);
+																				panel_15.setVisible(true);
+																				
+																			}
+																		});
+																		
+																		btnAggiungiFacolt.setText("Aggiungi facolt\u00E0");
+																		btnAggiungiFacolt.setForeground(Color.WHITE);
+																		btnAggiungiFacolt.setFont(new Font("Arial", Font.BOLD, 18));
+																		btnAggiungiFacolt.setFocusPainted(false);
+																		btnAggiungiFacolt.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+																		btnAggiungiFacolt.setBackground(new Color(0x2E, 0x5D, 0x8C));
+																		btnAggiungiFacolt.setBounds(10, 304, 345, 30);
+																		scegli_fac.add(btnAggiungiFacolt);
+																		
+																		JLabel lblNewLabel_8 = new JLabel("Non trovi la tua facolt\u00E0?");
+																		lblNewLabel_8.setForeground(Color.WHITE);
+																		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 14));
+																		lblNewLabel_8.setBounds(10, 285, 302, 14);
+																		scegli_fac.add(lblNewLabel_8);
+																		
+																		JSeparator separator_2 = new JSeparator();
+																		separator_2.setBackground(Color.BLACK);
+																		separator_2.setForeground(Color.BLACK);
+																		separator_2.setBounds(10, 280, 345, 1);
+																		scegli_fac.add(separator_2);
+																		
+																		list.addListSelectionListener(new ListSelectionListener() {
+																			public void valueChanged(ListSelectionEvent arg0) {
+																				if (list.getSelectedIndex() != -1) {
+																					String s = (String) list.getSelectedValue();
+																					textField_2.setText(s);
+																					indexFac = list.getSelectedIndex();
+																					dbIndexFac = listaFacoltaByUniv[indexFac].getID();
+																				}
+																			}
+																		});
+																		
+																		
+																								
+																								list.setForeground(Color.WHITE);
+																								list.setBackground(new Color(67, 136, 204));
+																								list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																								
+																								JScrollPane pane_list = new JScrollPane(list);  
+																								pane_list.setBounds(10, 31, 345, 243);
+																								pane_list.setBorder(new EmptyBorder(0, 0, 0, 0));
+																								
+																								
+																								
+																								scegli_fac.add(pane_list);
+																								scegli_fac.setFocusable(false);
+																								list.setFocusable(false);
+																								
+																								
+																								
+																								
+																								aggiungiListnerMouseOver(scegli_fac);
+																								aggiungiListnerMouseOver(btnAggiungiFacolt);
+																								aggiungiListnerMouseOver(list);
+																								
+																								JLabel lblFacoltGiEsistenti = new JLabel("Facolt\u00E0 gi\u00E0 esistenti");
+																								lblFacoltGiEsistenti.setForeground(Color.LIGHT_GRAY);
+																								lblFacoltGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
+																								lblFacoltGiEsistenti.setBounds(10, 11, 345, 14);
+																								scegli_fac.add(lblFacoltGiEsistenti);
+																		
+																		scegli_univ.setLayout(null);
+																		scegli_univ.setBackground(new Color(67, 136, 204));
+																		scegli_univ.setBounds(1, 2, 365, 345);
+																		panel_2.add(scegli_univ);
+																		
+																		JButton btnAggiungiUniversit = new JButton();
+																		btnAggiungiUniversit.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent arg0) {
+																				CaricaMateriale.nascondiTutto();
+																				panel_2.setVisible(true);
+																				panel_3.setVisible(true);
+																				crea_univ.setVisible(true);
+																				panel_9.setVisible(true);
+																			}
+																		});
+																		btnAggiungiUniversit.setText("Aggiungi universit\u00E0");
+																		btnAggiungiUniversit.setForeground(Color.WHITE);
+																		btnAggiungiUniversit.setFont(new Font("Arial", Font.BOLD, 18));
+																		btnAggiungiUniversit.setFocusPainted(false);
+																		btnAggiungiUniversit.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+																		btnAggiungiUniversit.setBackground(new Color(46, 93, 140));
+																		btnAggiungiUniversit.setBounds(10, 304, 345, 30);
+																		scegli_univ.add(btnAggiungiUniversit);
+																		
+																		JLabel lblNonTroviLa = new JLabel("Non trovi la tua universit\u00E0?");
+																		lblNonTroviLa.setForeground(Color.WHITE);
+																		lblNonTroviLa.setFont(new Font("Arial", Font.BOLD, 14));
+																		lblNonTroviLa.setBounds(10, 285, 302, 14);
+																		scegli_univ.add(lblNonTroviLa);
+																		
+																		JSeparator separator_6 = new JSeparator();
+																		separator_6.setForeground(Color.BLACK);
+																		separator_6.setBackground(Color.BLACK);
+																		separator_6.setBounds(10, 280, 345, 1);
+																		scegli_univ.add(separator_6);
+																		
+
+																		list_2.setForeground(Color.WHITE);
+																		list_2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																		list_2.setBackground(new Color(67, 136, 204));
+																		
+																		list_2.addListSelectionListener(new ListSelectionListener() {
+																			public void valueChanged(ListSelectionEvent arg0) {
+																				//System.out.println("sss");
+																				if (list_2.getSelectedIndex() != -1) {
+																					String s = (String) list_2.getSelectedValue();
+																					textField_3.setText(s);
+																					indexUniv = list_2.getSelectedIndex();
+																					dbIndexUniv = listaUniversita[indexUniv].getID();
+																				}
+																			}
+																		});
+																		JScrollPane pane_list_2 = new JScrollPane(list_2);  
+																		pane_list_2.setBounds(10, 31, 345, 243);
+																		pane_list_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+																		
+																		scegli_univ.add(pane_list_2);
+																		aggiungiListnerMouseOver(scegli_univ);
+																		aggiungiListnerMouseOver(list_2);
+																		aggiungiListnerMouseOver(btnAggiungiUniversit);
+																		
+																		JLabel lblUniversitGiEsistenti = new JLabel("Universit\u00E0 gi\u00E0 esistenti");
+																		lblUniversitGiEsistenti.setForeground(Color.LIGHT_GRAY);
+																		lblUniversitGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
+																		lblUniversitGiEsistenti.setBounds(10, 11, 345, 14);
+																		scegli_univ.add(lblUniversitGiEsistenti);
+																
+																		scegli_corso.setLayout(null);
+																		scegli_corso.setBackground(new Color(67, 136, 204));
+																		scegli_corso.setBounds(1, 2, 365, 345);
+																		panel_2.add(scegli_corso);
+																		
+																		JButton btnAggiungiCorso = new JButton();
+																		btnAggiungiCorso.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent arg0) {
+																				CaricaMateriale.reloadTuttiCorsi();
+																				CaricaMateriale.nascondiTutto();
+																				panel_2.setVisible(true);
+																				panel_5.setVisible(true);
+																				aggiungi_corso.setVisible(true);
+																				//crea_corso.setVisible(true);
+																				//panel_13.setVisible(true);
+																			}
+																		});
+																		btnAggiungiCorso.setText("Aggiungi corso");
+																		btnAggiungiCorso.setForeground(Color.WHITE);
+																		btnAggiungiCorso.setFont(new Font("Arial", Font.BOLD, 18));
+																		btnAggiungiCorso.setFocusPainted(false);
+																		btnAggiungiCorso.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
+																		btnAggiungiCorso.setBackground(new Color(46, 93, 140));
+																		btnAggiungiCorso.setBounds(10, 304, 345, 30);
+																		scegli_corso.add(btnAggiungiCorso);
+																		
+																		JLabel lblNonTroviIl = new JLabel("Non trovi il tuo corso?");
+																		lblNonTroviIl.setForeground(Color.WHITE);
+																		lblNonTroviIl.setFont(new Font("Arial", Font.BOLD, 14));
+																		lblNonTroviIl.setBounds(10, 285, 302, 14);
+																		scegli_corso.add(lblNonTroviIl);
+																		
+																		JSeparator separator_5 = new JSeparator();
+																		separator_5.setForeground(Color.BLACK);
+																		separator_5.setBackground(Color.BLACK);
+																		separator_5.setBounds(10, 280, 345, 1);
+																		scegli_corso.add(separator_5);
+																		
+																		list_1.setForeground(Color.WHITE);
+																		list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																		list_1.setBackground(new Color(67, 136, 204));
+																		list_1.addListSelectionListener(new ListSelectionListener() {
+																			public void valueChanged(ListSelectionEvent arg0) {
+																				if (list_1.getSelectedIndex() != -1) {
+																					String s = (String) list_1.getSelectedValue();
+																					textField_4.setText(s);
+																					indexCorso = list_1.getSelectedIndex();
+																					dbIndexCorso = listaCorsi[indexCorso].getID();
+																				}
+																			}
+																		});
+																		
+																		JScrollPane pane_list_1 = new JScrollPane(list_1);  
+																		pane_list_1.setBounds(10, 31, 345, 243);
+																		pane_list_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+																		
+																		
+																		scegli_corso.add(pane_list_1);
+																		aggiungiListnerMouseOver(scegli_corso);
+																		aggiungiListnerMouseOver(btnAggiungiCorso);
+																		aggiungiListnerMouseOver(list_1);
+																		
+																		JLabel lblCorsiGiAppartenenti = new JLabel("Corsi gi\u00E0 appartenenti alla facolt\u00E0 selezionata");
+																		lblCorsiGiAppartenenti.setForeground(Color.LIGHT_GRAY);
+																		lblCorsiGiAppartenenti.setFont(new Font("Arial", Font.BOLD, 14));
+																		lblCorsiGiAppartenenti.setBounds(10, 11, 345, 14);
+																		scegli_corso.add(lblCorsiGiAppartenenti);
 														
 																crea_corso.setBounds(1, 2, 365, 345);
 																panel_2.add(crea_corso);
@@ -747,7 +968,6 @@ public class CaricaMateriale extends Pagina  {
 																aggiungiListnerMouseOver(crea_corso);
 																aggiungiListnerMouseOver(btnCreaCorso);
 																aggiungiListnerMouseOver(btnIndietro);
-																aggiungiListnerMouseOver(btnConfermaSelezione);
 																aggiungiListnerMouseOver(panel_13);
 																
 																textField_1.addFocusListener(new FocusAdapter() {
@@ -773,129 +993,6 @@ public class CaricaMateriale extends Pagina  {
 																textArea_1.setFocusable(true);
 																lblNewLabel_11.setVisible(false);
 																textField_5.setVisible(false);
-												
-														scegli_corso.setLayout(null);
-														scegli_corso.setBackground(new Color(67, 136, 204));
-														scegli_corso.setBounds(1, 2, 365, 345);
-														panel_2.add(scegli_corso);
-														
-														JButton btnAggiungiCorso = new JButton();
-														btnAggiungiCorso.addActionListener(new ActionListener() {
-															public void actionPerformed(ActionEvent arg0) {
-																CaricaMateriale.reloadTuttiCorsi();
-																CaricaMateriale.nascondiTutto();
-																panel_2.setVisible(true);
-																panel_5.setVisible(true);
-																aggiungi_corso.setVisible(true);
-																//crea_corso.setVisible(true);
-																//panel_13.setVisible(true);
-															}
-														});
-														btnAggiungiCorso.setText("Aggiungi corso");
-														btnAggiungiCorso.setForeground(Color.WHITE);
-														btnAggiungiCorso.setFont(new Font("Arial", Font.BOLD, 18));
-														btnAggiungiCorso.setFocusPainted(false);
-														btnAggiungiCorso.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-														btnAggiungiCorso.setBackground(new Color(46, 93, 140));
-														btnAggiungiCorso.setBounds(10, 304, 345, 30);
-														scegli_corso.add(btnAggiungiCorso);
-														
-														JLabel lblNonTroviIl = new JLabel("Non trovi il tuo corso?");
-														lblNonTroviIl.setForeground(Color.WHITE);
-														lblNonTroviIl.setFont(new Font("Arial", Font.BOLD, 14));
-														lblNonTroviIl.setBounds(10, 285, 302, 14);
-														scegli_corso.add(lblNonTroviIl);
-														
-														JSeparator separator_5 = new JSeparator();
-														separator_5.setForeground(Color.BLACK);
-														separator_5.setBackground(Color.BLACK);
-														separator_5.setBounds(10, 280, 345, 1);
-														scegli_corso.add(separator_5);
-														
-														list_1.setForeground(Color.WHITE);
-														list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-														list_1.setBackground(new Color(67, 136, 204));
-														list_1.addListSelectionListener(new ListSelectionListener() {
-															public void valueChanged(ListSelectionEvent arg0) {
-																if (list_1.getSelectedIndex() != -1) {
-																	String s = (String) list_1.getSelectedValue();
-																	textField_4.setText(s);
-																	indexCorso = list_1.getSelectedIndex();
-																	dbIndexCorso = listaCorsi[indexCorso].getID();
-																}
-															}
-														});
-														
-														JScrollPane pane_list_1 = new JScrollPane(list_1);  
-														pane_list_1.setBounds(10, 10, 345, 264);
-														pane_list_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-														
-														
-														scegli_corso.add(pane_list_1);
-														aggiungiListnerMouseOver(scegli_corso);
-														aggiungiListnerMouseOver(btnAggiungiCorso);
-														aggiungiListnerMouseOver(list_1);
-								
-								scegli_univ.setLayout(null);
-								scegli_univ.setBackground(new Color(67, 136, 204));
-								scegli_univ.setBounds(1, 2, 365, 345);
-								panel_2.add(scegli_univ);
-								
-								JButton btnAggiungiUniversit = new JButton();
-								btnAggiungiUniversit.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent arg0) {
-										CaricaMateriale.nascondiTutto();
-										panel_2.setVisible(true);
-										panel_3.setVisible(true);
-										crea_univ.setVisible(true);
-										panel_9.setVisible(true);
-									}
-								});
-								btnAggiungiUniversit.setText("Aggiungi universit\u00E0");
-								btnAggiungiUniversit.setForeground(Color.WHITE);
-								btnAggiungiUniversit.setFont(new Font("Arial", Font.BOLD, 18));
-								btnAggiungiUniversit.setFocusPainted(false);
-								btnAggiungiUniversit.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-								btnAggiungiUniversit.setBackground(new Color(46, 93, 140));
-								btnAggiungiUniversit.setBounds(10, 304, 345, 30);
-								scegli_univ.add(btnAggiungiUniversit);
-								
-								JLabel lblNonTroviLa = new JLabel("Non trovi la tua universit\u00E0?");
-								lblNonTroviLa.setForeground(Color.WHITE);
-								lblNonTroviLa.setFont(new Font("Arial", Font.BOLD, 14));
-								lblNonTroviLa.setBounds(10, 285, 302, 14);
-								scegli_univ.add(lblNonTroviLa);
-								
-								JSeparator separator_6 = new JSeparator();
-								separator_6.setForeground(Color.BLACK);
-								separator_6.setBackground(Color.BLACK);
-								separator_6.setBounds(10, 280, 345, 1);
-								scegli_univ.add(separator_6);
-								
-
-								list_2.setForeground(Color.WHITE);
-								list_2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-								list_2.setBackground(new Color(67, 136, 204));
-								
-								list_2.addListSelectionListener(new ListSelectionListener() {
-									public void valueChanged(ListSelectionEvent arg0) {
-										//System.out.println("sss");
-										if (list_2.getSelectedIndex() != -1) {
-											String s = (String) list_2.getSelectedValue();
-											textField_3.setText(s);
-											indexUniv = list_2.getSelectedIndex();
-											dbIndexUniv = listaUniversita[indexUniv].getID();
-										}
-									}
-								});
-								JScrollPane pane_list_2 = new JScrollPane(list_2);  
-								pane_list_2.setBounds(10, 10, 345, 264);
-								pane_list_2.setBorder(new EmptyBorder(0, 0, 0, 0));
-								
-								scegli_univ.add(pane_list_2);
-								aggiungiListnerMouseOver(scegli_univ);
-								aggiungiListnerMouseOver(list_2);
-								aggiungiListnerMouseOver(btnAggiungiUniversit);
 						
 								crea_univ.setBounds(1, 2, 365, 345);
 								panel_2.add(crea_univ);
@@ -998,79 +1095,6 @@ public class CaricaMateriale extends Pagina  {
 									}
 								});
 								textPane.setFocusable(true);
-						
-
-						scegli_fac.setBounds(1, 2, 365, 345);
-						scegli_fac.setBackground(new Color(67, 136, 204));
-						panel_2.add(scegli_fac);
-						scegli_fac.setLayout(null);
-						
-						btnAggiungiFacolt.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								//textField_2.requestFocus();
-								CaricaMateriale.nascondiTutto();
-								panel_2.setVisible(true);
-								panel_4.setVisible(true);
-								crea_fac.setVisible(true);
-								panel_15.setVisible(true);
-								
-							}
-						});
-						
-						btnAggiungiFacolt.setText("Aggiungi facolt\u00E0");
-						btnAggiungiFacolt.setForeground(Color.WHITE);
-						btnAggiungiFacolt.setFont(new Font("Arial", Font.BOLD, 18));
-						btnAggiungiFacolt.setFocusPainted(false);
-						btnAggiungiFacolt.setBorder(new LineBorder(new Color(0x1D, 0x3B, 0x59), 2));
-						btnAggiungiFacolt.setBackground(new Color(0x2E, 0x5D, 0x8C));
-						btnAggiungiFacolt.setBounds(10, 304, 345, 30);
-						scegli_fac.add(btnAggiungiFacolt);
-						
-						JLabel lblNewLabel_8 = new JLabel("Non trovi la tua facolt\u00E0?");
-						lblNewLabel_8.setForeground(Color.WHITE);
-						lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 14));
-						lblNewLabel_8.setBounds(10, 285, 302, 14);
-						scegli_fac.add(lblNewLabel_8);
-						
-						JSeparator separator_2 = new JSeparator();
-						separator_2.setBackground(Color.BLACK);
-						separator_2.setForeground(Color.BLACK);
-						separator_2.setBounds(10, 280, 345, 1);
-						scegli_fac.add(separator_2);
-						
-						list.addListSelectionListener(new ListSelectionListener() {
-							public void valueChanged(ListSelectionEvent arg0) {
-								if (list.getSelectedIndex() != -1) {
-									String s = (String) list.getSelectedValue();
-									textField_2.setText(s);
-									indexFac = list.getSelectedIndex();
-									dbIndexFac = listaFacoltaByUniv[indexFac].getID();
-								}
-							}
-						});
-						
-						
-												
-												list.setForeground(Color.WHITE);
-												list.setBackground(new Color(67, 136, 204));
-												list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-												
-												JScrollPane pane_list = new JScrollPane(list);  
-												pane_list.setBounds(10, 10, 345, 264);
-												pane_list.setBorder(new EmptyBorder(0, 0, 0, 0));
-												
-												
-												
-												scegli_fac.add(pane_list);
-												scegli_fac.setFocusable(false);
-												list.setFocusable(false);
-												
-												
-												
-												
-												aggiungiListnerMouseOver(scegli_fac);
-												aggiungiListnerMouseOver(btnAggiungiFacolt);
-												aggiungiListnerMouseOver(list);
 						
 						crea_fac.setLayout(null);
 						crea_fac.setBackground(new Color(67, 136, 204));
