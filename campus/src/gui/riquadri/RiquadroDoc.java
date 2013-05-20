@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.DefaultCaret;
 
 import controller.ControllerUtente;
 
@@ -112,7 +113,11 @@ public class RiquadroDoc extends Riquadro {
 		facolta.setBounds(125, 169, 143, 20);
 
 		// Label università
-		univ = new JTextArea(doc.getFacolta().getUniversita().getNome());
+
+		univ = new JTextArea();
+		DefaultCaret caret = (DefaultCaret) univ.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		univ.setText(doc.getFacolta().getUniversita().getNome());
 		univ.setFont(new Font("Arial", Font.PLAIN, 12));
 		univ.setLineWrap(true);
 		univ.setBorder(new EmptyBorder(0,0,0,0));
@@ -122,6 +127,7 @@ public class RiquadroDoc extends Riquadro {
 		univ.setBackground(super.getPreferitoBgColor());
 		univ.setBounds(125, 135, 143, 40);
 		univ.setText(util.StringUtility.truncateLines(univ,2));
+
 		
 		// Pannello Rimuovi
 		pulsanti = new JPanel();
@@ -150,8 +156,11 @@ public class RiquadroDoc extends Riquadro {
 		titolo.setForeground(Color.WHITE);
 		
 		// TextArea descrizione
-		
-		descrizione = new JTextArea(doc.getDescrizione());
+
+		descrizione = new JTextArea();
+		DefaultCaret caret2 = (DefaultCaret) descrizione.getCaret();
+		caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		descrizione.setText(doc.getDescrizione());
 		descrizione.setCaretPosition(0);
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setEditable(false);
@@ -163,6 +172,7 @@ public class RiquadroDoc extends Riquadro {
 		descrizione.setHighlighter(null);
 		descrizione.setBackground(super.getPreferitoBgColor());
 		descrizione.setText(util.StringUtility.truncateLines(descrizione,3));
+
 		
 		// Label corso
 		corso = new JLabel(doc.getCorso().getNome());

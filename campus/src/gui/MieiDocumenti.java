@@ -120,7 +120,7 @@ public class MieiDocumenti extends Pagina {
 		contenuto_pagina.removeAll();
 		contenuto_pagina.validate();
 		contenuto_pagina.repaint();
-		addDocumenti(docs);		
+		addDocumenti(docs);
 	}
 	@Override
 	public void reload(Object o) {

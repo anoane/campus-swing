@@ -279,7 +279,7 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		label_6.setBounds(0, 0, 310, 31);
-		label_6.setIcon(new ImageIcon("./newimage/ordine_stampa_1.png"));
+		label_6.setIcon(new ImageIcon("./newimage/ordine_stampa_1_new.png"));
 		
 		panel_2.add(label_6);
 		
@@ -289,7 +289,7 @@ public class HomePage extends Pagina {
 		panel_3.setLayout(null);
 		
 		JLabel label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon("./newimage/ordine_stampa_2.png"));
+		label_7.setIcon(new ImageIcon("./newimage/ordine_stampa_2_new.png"));
 		label_7.setBounds(0, 0, 310, 31);
 		panel_3.add(label_7);
 		
@@ -300,7 +300,7 @@ public class HomePage extends Pagina {
 		
 		JLabel label_8 = new JLabel("");
 		label_8.setBounds(0, 0, 310, 31);
-		label_8.setIcon(new ImageIcon("./newimage/ordine_stampa_3.png"));
+		label_8.setIcon(new ImageIcon("./newimage/ordine_stampa_3_new.png"));
 		panel_4.add(label_8);
 		
 		JPanel panel_5 = new JPanel();
@@ -310,7 +310,7 @@ public class HomePage extends Pagina {
 		
 		JLabel label_9 = new JLabel("");
 		label_9.setBounds(0, 0, 310, 31);
-		label_9.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_3.png"));
+		label_9.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_3_new.png"));
 		panel_5.add(label_9);
 		
 		JPanel panel_6 = new JPanel();
@@ -320,7 +320,7 @@ public class HomePage extends Pagina {
 		
 		JLabel label_10 = new JLabel("");
 		label_10.setBounds(0, 0, 310, 31);
-		label_10.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_2.png"));
+		label_10.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_2_new.png"));
 		panel_6.add(label_10);
 		
 		JPanel panel_7 = new JPanel();
@@ -330,7 +330,7 @@ public class HomePage extends Pagina {
 		
 		JLabel label_11 = new JLabel("");
 		label_11.setBounds(0, 0, 310, 31);
-		label_11.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_1.png"));
+		label_11.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_1_new.png"));
 		panel_7.add(label_11);
 		
 		JPanel panel_8 = new JPanel();
