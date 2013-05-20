@@ -53,6 +53,18 @@ public class ControllerVoto extends AbstractController {
 		}catch(PersistentException e) {
 			e.printStackTrace();}
 	}
+	
+	public float calcolaVoto(Documento d) {
+		Voto[] voti = d.votos.toArray();
+		if (voti.length == 0)
+			return 0;
+		int voto = 0;
+		for (int i = 0; i < voti.length; ++i) {
+			voto += voti[i].getValore();
+		}
+		float media = voto / voti.length;
+		return media / 10;
+	}
 		
 	 	
 	
