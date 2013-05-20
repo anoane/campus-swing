@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.text.DefaultCaret;
 
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
@@ -52,10 +53,14 @@ public class Preferiti extends Pagina {
 	 * 
 	 */
 	public Preferiti() {
+		
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		panel = new JPanel();
+		
+		
+		
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(new Rectangle(0, 0, 1008, 429));
 		add(panel);

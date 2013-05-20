@@ -458,7 +458,7 @@ public class Home {
 							gl_pannello_verticale.createParallelGroup(vAlignment)
 								.addComponent(pagina, vMinSize, pagina.getAltezzaPagina(), vMaxSize)
 						);
-					
+
 				}
 				
 				@Override
