@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 
 import modello_di_dominio.Corso;
 /**
@@ -55,7 +56,10 @@ public class RiquadroCorso extends Riquadro {
 		titolo.setForeground(Color.WHITE);
 		titolo.setBounds(10, 5, 357, 40);
 		
-		descrizione = new JTextArea(c.getDescrizione());
+		descrizione = new JTextArea();
+		DefaultCaret caret = (DefaultCaret) descrizione.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		descrizione.setText(c.getDescrizione());
 		descrizione.setToolTipText("Descrizione Corso");
 		descrizione.setDisabledTextColor(Color.WHITE);
 		descrizione.setBackground(super.getCorsoBgColor());
@@ -75,7 +79,10 @@ public class RiquadroCorso extends Riquadro {
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setText(util.StringUtility.truncateLines(descrizione,6));
 		
-		facolta = new JTextArea(c.facolta.toArray()[0].getNome());
+		facolta = new JTextArea();
+		DefaultCaret caret2 = (DefaultCaret) facolta.getCaret();
+		caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		facolta.setText(c.facolta.toArray()[0].getNome());
 		facolta.setLocation(155, 158);
 		facolta.setSize(275, 30);
 		facolta.setForeground(Color.WHITE);
