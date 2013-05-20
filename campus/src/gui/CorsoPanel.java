@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -39,7 +41,9 @@ public class CorsoPanel extends Pagina {
 	private JLabel lblPage;
 	
 	private JPanel contenuto_pagina;
-
+	ButtonStandard buttonCreator = new ButtonStandard();
+	JButton seguiButton = buttonCreator.createButton("Segui Corso", 300, 11, 157, 34, false, true);
+	
 	JLabel labelName = new JLabel();
 	JTextPane descrizione = new JTextPane();
 	ArrayList<String> univ = new ArrayList<String>();
@@ -64,7 +68,7 @@ public class CorsoPanel extends Pagina {
 		//Label
 		labelName.setForeground(new Color(6, 121, 159));
 		labelName.setFont(new Font("Arial", Font.BOLD, 20));
-		labelName.setBounds(10, 10, 200, 25);
+		labelName.setBounds(10, 10, 280, 25);
 		panel.add(labelName);
 		
 		JSeparator separator = new JSeparator();
@@ -72,15 +76,8 @@ public class CorsoPanel extends Pagina {
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
-		
-		ButtonStandard buttonCreator = new ButtonStandard();
-		JButton seguiButton = buttonCreator.createButton("Segui Corso", 220, 11, 157, 34, false, true);
 		panel.add(seguiButton);
-		
-		if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){
-			seguiButton.setVisible(false);
-		}
-		
+				
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(10, 53, 988, 275);
@@ -238,8 +235,20 @@ public class CorsoPanel extends Pagina {
 	
 	@Override
 	public void reload(Object c) {
-		Corso corso = (Corso)c;
+		final Corso corso = (Corso)c;
 		adjustDocs(corso);
+		if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){
+			seguiButton.setVisible(false);
+		}
+		else{
+			seguiButton.setVisible(true);
+			seguiButton.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0){
+					ControllerUtente.getInstance().aggiungiCorsoSeguito(ControllerUtente.getInstance().getUtente(1), corso);
+					Home.openCorso(false, corso);
+				}
+			});
+		}
 		labelName.setText(corso.getNome());
 		descrizione.setText(corso.getDescrizione());
 		for(int i=0; i< corso.facolta.size(); ++i)

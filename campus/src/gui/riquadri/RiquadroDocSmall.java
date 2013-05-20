@@ -1,30 +1,22 @@
 package gui.riquadri;
 
-import gui.Home;
-import gui.buttons.ModificaButton;
 import gui.buttons.RimuoviButton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import controller.ControllerUtente;
-
 import modello_di_dominio.Documento;
-import javax.swing.JSeparator;
+import controller.ControllerVoto;
 
 public class RiquadroDocSmall extends RiquadroSmall {
 	private JPanel tipo;
@@ -124,7 +116,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		stelle.setLocation(144, 37);
 		stelle.setSize(75, 15);
 		colore.setBackground(colore_stella);
-		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
+		colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
 		
 		
 		// Panel utente
@@ -164,13 +156,5 @@ public class RiquadroDocSmall extends RiquadroSmall {
 
 	}
 	
-	private float calcolaVoto(int num, int voto){
-		if(voto == 0 && num == 0)
-			return 0;
-		else{
-			float media = voto / num;
-			return media/10;
-		}
-		
-	}
+	
 }
