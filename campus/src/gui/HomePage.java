@@ -42,13 +42,16 @@ public class HomePage extends Pagina {
 	private final JPanel panel_corsi_seguiti = new JPanel();
 	private final JPanel panel_preferiti_recenti = new JPanel();
 	private final JPanel panel_miei_doc = new JPanel();
-	
+	private int num_corsi = 0;
+	private int num_pref = 0;
+	private int num_miei_doc = 0;
 	
 	public static String getHomeBottomText() {
 		
 		return homeBottomText;
 		
 	}
+	
 	
 	public void reload() {
 		panel.setBounds(0, 0, 1008, 429);
@@ -110,6 +113,7 @@ public class HomePage extends Pagina {
 	}
 	
 	public void addCorsiRec(final ArrayList<Corso> corsi){
+		num_corsi = corsi.size();
 		int colmax = (int) Math.ceil((float)corsi.size());
 		int altezza = 230*colmax;
 		panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),altezza);
@@ -125,6 +129,7 @@ public class HomePage extends Pagina {
 	}
 	
 	public void addMieiPref(final ArrayList<Documento> docs){
+		num_pref = docs.size();
 		int colmax = (int) Math.ceil((float)docs.size());
 		int altezza = 230*colmax;
 		panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),altezza);
@@ -140,6 +145,7 @@ public class HomePage extends Pagina {
 	}
 	
 	public void addMieiDocs(final ArrayList<Documento> docs){
+		num_miei_doc = docs.size();
 		int colmax = (int) Math.ceil((float)docs.size());
 		int altezza = 230*colmax;
 		panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),altezza);

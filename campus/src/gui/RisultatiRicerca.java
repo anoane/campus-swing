@@ -214,6 +214,10 @@ public class RisultatiRicerca extends Pagina {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
+		
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane_1.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane_2.getVerticalScrollBar().setUnitIncrement(16);
 
 		panel.getParent().addComponentListener(new ComponentListener() {
 			@Override
