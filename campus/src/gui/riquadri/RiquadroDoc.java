@@ -17,18 +17,16 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultCaret;
 
-import controller.ControllerUtente;
-
 import modello_di_dominio.Documento;
-import javax.swing.JSeparator;
-
-import util.StringUtility;
+import controller.ControllerUtente;
+import controller.ControllerVoto;
 
 public class RiquadroDoc extends Riquadro {
 
@@ -75,34 +73,34 @@ public class RiquadroDoc extends Riquadro {
 		// Label Tipo
 		// TODO: Modificare l'etichetta del documento
 		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblNewLabel.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		tipo.add(lblNewLabel,BorderLayout.CENTER);
 		switch (doc.getDiscriminator()) {
 		case "Appunti":
 			lblNewLabel.setText("Appunti");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		case "Esercizi":
 			lblNewLabel.setText("Esercizi");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		default:
 			lblNewLabel.setText("Documento");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
 		}
 		// Label facolta
@@ -199,7 +197,7 @@ public class RiquadroDoc extends Riquadro {
 		stelle.setLocation(125, 45);
 		stelle.setSize(100, 20);
 		colore.setBackground(colore_stella);
-		colore.setSize((int) (stelle.getWidth()*calcolaVoto(doc.getNum_voti(), doc.getVoto())), 30);
+		colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
 		
 		
 		// Panel utente
@@ -262,14 +260,5 @@ public class RiquadroDoc extends Riquadro {
 	public RimuoviPrefButton getRimuoviPref(){
 		return (RimuoviPrefButton) this.pulsanti.getComponent(2);
 	}
-	
-	private float calcolaVoto(int num, int voto){
-		if(voto == 0 && num == 0)
-			return 0;
-		else{
-			float media = voto / num;
-			return media/10;
-		}
-		
-	}
+
 }
