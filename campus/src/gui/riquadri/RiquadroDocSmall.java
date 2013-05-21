@@ -1,5 +1,6 @@
 package gui.riquadri;
 
+import gui.Home;
 import gui.buttons.RimuoviButton;
 
 import java.awt.BorderLayout;
@@ -7,6 +8,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -36,7 +39,12 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		super();
 		this.setBackground(super.getPreferitoBgColor());
 		this.setBorder(super.getRiquadroBorder());
-
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
 		// JPanel tipo
 		tipo = new JPanel();
 		tipo.setBounds(10, 35, 58, 20);

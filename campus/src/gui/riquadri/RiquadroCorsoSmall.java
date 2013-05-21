@@ -38,17 +38,17 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		super();
 		this.setBackground(super.getCorsoBgColor());
 		this.setBorder(super.getRiquadroBorder());	
-
-		
-		anteprima = new JPanel();
-		anteprima.setBounds(10, 41, 45, 45);
-		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		anteprima.addMouseListener(new MouseAdapter() {
+		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openCorso(false,c);
 			}
 		});
+		
+		anteprima = new JPanel();
+		anteprima.setBounds(10, 41, 45, 45);
+		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
 
 		titolo = new JLabel(c.getNome());
 		titolo.setFont(new Font("Arial", Font.BOLD, 20));
