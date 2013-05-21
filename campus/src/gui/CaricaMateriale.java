@@ -692,10 +692,10 @@ public class CaricaMateriale extends Pagina  {
 																								aggiungiListnerMouseOver(btnAggiungiFacolt);
 																								aggiungiListnerMouseOver(list);
 																								
-																								JLabel lblFacoltGiEsistenti = new JLabel("Facolt\u00E0 gi\u00E0 esistenti");
+																								JLabel lblFacoltGiEsistenti = new JLabel("Facolt\u00E0 gi\u00E0 presenti nell'Universit\u00E0 selezionata");
 																								lblFacoltGiEsistenti.setForeground(Color.LIGHT_GRAY);
 																								lblFacoltGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
-																								lblFacoltGiEsistenti.setBounds(10, 11, 345, 14);
+																								lblFacoltGiEsistenti.setBounds(10, 11, 345, 15);
 																								scegli_fac.add(lblFacoltGiEsistenti);
 																		
 																		scegli_univ.setLayout(null);
@@ -830,7 +830,7 @@ public class CaricaMateriale extends Pagina  {
 																		JLabel lblCorsiGiAppartenenti = new JLabel("Corsi gi\u00E0 appartenenti alla facolt\u00E0 selezionata");
 																		lblCorsiGiAppartenenti.setForeground(Color.LIGHT_GRAY);
 																		lblCorsiGiAppartenenti.setFont(new Font("Arial", Font.BOLD, 14));
-																		lblCorsiGiAppartenenti.setBounds(10, 11, 345, 14);
+																		lblCorsiGiAppartenenti.setBounds(10, 11, 345, 15);
 																		scegli_corso.add(lblCorsiGiAppartenenti);
 														
 																crea_corso.setBounds(1, 2, 365, 345);
@@ -1247,7 +1247,8 @@ public class CaricaMateriale extends Pagina  {
 
 	protected static boolean salvaFac(String facolta, int indexUniv) {
 		if(ControllerFacolta.getInstance().isFacoltaByUnivAlreadyPresent(facolta,indexUniv)) {
-			JOptionPane.showMessageDialog(Home.getFrame(), "Facoltà già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(Home.getFrame(), "" +
+					" già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		ControllerFacolta.getInstance().createFacolta(facolta,indexUniv);
