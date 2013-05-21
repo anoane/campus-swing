@@ -6,6 +6,7 @@ import gui.buttons.RimuoviButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -38,6 +39,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 	public RiquadroDocSmall(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
 		super();
 		this.setBackground(super.getPreferitoBgColor());
+		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setBorder(super.getRiquadroBorder());
 		this.addMouseListener(new MouseAdapter() {
 			@Override

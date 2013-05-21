@@ -38,6 +38,7 @@ public class DocumentoPanel extends Pagina {
 	private JPanel panel;
 	private JButton btnAggiungiAiPreferiti;
 	JLabel lblPreferiti = new JLabel();
+	JLabel lbltipo;
 	// Panel stelle
 	private JPanel stelle;
 
@@ -152,9 +153,9 @@ public class DocumentoPanel extends Pagina {
 				.contains(d))
 			btnAggiungiAiPreferiti.setVisible(false);
 
-		JLabel lblNewLabel_2 = new JLabel("tipo_img");
-		lblNewLabel_2.setBounds(84, 53, 57, 23);
-		panel.add(lblNewLabel_2);
+		lbltipo = new JLabel();
+		lbltipo.setBounds(84, 53, 57, 23);
+		panel.add(lbltipo);
 
 		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 13));
 		lblUniversit.setBounds(290, 53, 121, 23);
@@ -250,6 +251,25 @@ public class DocumentoPanel extends Pagina {
 	public void reload(Object o) {
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
+		if(d.getPath() != null && !d.getPath().equals("/")){
+			String strTipo = d.getPath().split("\\.")[1];
+			switch(strTipo){
+			case "pdf":
+				lbltipo.setIcon(new ImageIcon("./newimage/pdf.png"));
+				break;
+			case "ppt":
+				lbltipo.setIcon(new ImageIcon("./newimage/ppt.png"));
+				break;
+			case "doc":
+				lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+				break;
+			default:
+				lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+				break;
+			}
+		}
+		else
+			lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
 		lblPreferiti.setText(d.getNome());
 		final int backup_colore = (int) (stelle.getWidth() * contrVoto.calcolaVoto(d));
 		colore.setSize(backup_colore, 30);

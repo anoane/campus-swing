@@ -36,6 +36,7 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 	 */
 	public RiquadroCorsoSmall(final Corso c) {
 		super();
+		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setBackground(super.getCorsoBgColor());
 		this.setBorder(super.getRiquadroBorder());	
 		this.addMouseListener(new MouseAdapter() {
@@ -47,8 +48,6 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		
 		anteprima = new JPanel();
 		anteprima.setBounds(10, 41, 45, 45);
-		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
 
 		titolo = new JLabel(c.getNome());
 		titolo.setFont(new Font("Arial", Font.BOLD, 20));
