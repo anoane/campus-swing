@@ -147,7 +147,6 @@ public class ControllerUtente extends AbstractController{
 		try {
 			Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
 			udDAO.delete(ud);
-			udDAO.save(ud);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -186,7 +185,6 @@ public class ControllerUtente extends AbstractController{
 		try {
 			Corso_Utente cu = cuDAO.getCorso_UtenteByORMID(ControllerCorso.getInstance().getIdCorsoSeguito(u,c));
 			cuDAO.delete(cu);
-			cuDAO.save(cu);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
