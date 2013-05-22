@@ -76,7 +76,7 @@ public class CorsiSeguiti extends Pagina {
 					if(n==0){
 					course.remove(c);
 					ControllerUtente u = ControllerUtente.getInstance();
-					//u.rimuoviCorsoSeguito(u.getUtente(1), c);
+					ControllerUtente.getInstance().rimuoviCorsoSeguito(u.getUtente(1), c);
 					adjustCourse(course);}
 				}
 				});
