@@ -24,6 +24,8 @@ import java.nio.file.StandardCopyOption;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -1204,10 +1206,10 @@ public class CaricaMateriale extends Pagina  {
 
 		
 		JButton btnPrenotaDigitalizzazione = buttonCreator.createButton("<html><center>Prenota<br>digitalizzazione</center></html>", 776, 164, 203, 86, false, true);
-		//btnPrenotaDigitalizzazione.setFont(new Font("Arial", Font.BOLD, 14));//= new JButton();
-		
+		//.createButton("<html><center>Prenota<br>digitalizzazione</center></html>", 776, 164, 203, 86, "", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 		btnPrenotaDigitalizzazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Home.loadPages(Home.getPaginaCorrispondente("prenotazione_digitalizzazione"), Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
 			}
 		});
 		//btnPrenotaDigitalizzazione.setText("Prenota digitalizzazione");
