@@ -106,7 +106,7 @@ public class Corso {
 		return ORM_utenteCorso;
 	}
 	
-	public final modello_di_dominio.UtenteSetCollection utenteCorso = new modello_di_dominio.UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_CORSO_UTENTECORSO, modello_di_dominio.ORMConstants.KEY_UTENTE_CORSO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	public final modello_di_dominio.Corso_UtenteSetCollection utenteCorso = new modello_di_dominio.Corso_UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_CORSO_UTENTECORSO, modello_di_dominio.ORMConstants.KEY_CORSO_UTENTE_CORSO, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_DocumentoCorso(java.util.Set value) {
 		this.ORM_documentoCorso = value;

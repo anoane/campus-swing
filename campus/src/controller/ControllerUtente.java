@@ -5,19 +5,19 @@ package controller;
 
 import java.util.Date;
 
-import javax.swing.JOptionPane;
-
-//import modello_di_dominio.Appunti;
 import modello_di_dominio.Corso;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
-//import modello_di_dominio.Slide;
 import modello_di_dominio.Utente;
+import modello_di_dominio.Utente_Documento;
 import modello_di_dominio.dao.UtenteDAO;
+import modello_di_dominio.dao.Utente_DocumentoDAO;
 
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
+//import modello_di_dominio.Appunti;
+//import modello_di_dominio.Slide;
 
 /**
  * @author mw
@@ -127,10 +127,14 @@ public class ControllerUtente extends AbstractController{
 	
 	public void aggiungiDocumentoPreferito(Utente u, Documento d){
 		DAOFactory factory = DAOFactory.getDAOFactory();
-		UtenteDAO utenteDAO = factory.getUtenteDAO();
-		u.documentiPreferiti.add(d);
+		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+		Utente_Documento ud = udDAO.createUtente_Documento();
+		ud.setDocumento(d);
+		ud.setUtentePreferito(u);
+		ud.
+		
 		try {
-			utenteDAO.save(u);
+			
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

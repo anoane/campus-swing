@@ -26,11 +26,6 @@ License Type: Purchased
 		<property name="num_voti" column="Num_voti" type="integer" length="11" not-null="true" lazy="false"/>
 		<property name="timestamp" column="Timestamp" type="timestamp" not-null="false" lazy="false"/>
 		<property name="downloads" column="Downloads" type="integer" length="11" not-null="true" lazy="false"/>
-		<set name="ORM_UtentePreferito" table="Utente_Documento" lazy="true" cascade="save-update,lock" inverse="true">
-			<key column="DocumentoID" not-null="true"/>
-			<many-to-many column="UtenteID" class="modello_di_dominio.Utente">
-			</many-to-many>
-		</set>
 		<set name="ORM_Votos" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="DocumentoID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Voto"/>
@@ -41,5 +36,9 @@ License Type: Purchased
 		</set>
 		<many-to-one name="proprietario" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
+		<set name="ORM_UtentePreferito" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="DocumentoID" not-null="true"/>
+			<one-to-many class="modello_di_dominio.Utente_Documento"/>
+		</set>
 	</class>
 </hibernate-mapping>

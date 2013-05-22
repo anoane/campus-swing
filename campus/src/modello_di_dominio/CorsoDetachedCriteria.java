@@ -43,8 +43,8 @@ public class CorsoDetachedCriteria extends AbstractORMDetachedCriteria {
 		path = new StringExpression("path", this.getDetachedCriteria());
 	}
 	
-	public modello_di_dominio.UtenteDetachedCriteria createUtenteCorsoCriteria() {
-		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_UtenteCorso"));
+	public modello_di_dominio.Corso_UtenteDetachedCriteria createUtenteCorsoCriteria() {
+		return new modello_di_dominio.Corso_UtenteDetachedCriteria(createCriteria("ORM_UtenteCorso"));
 	}
 	
 	public modello_di_dominio.DocumentoDetachedCriteria createDocumentoCorsoCriteria() {

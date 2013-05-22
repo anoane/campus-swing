@@ -293,10 +293,6 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
-			modello_di_dominio.Utente[] lUtentePreferitos = documento.utentePreferito.toArray();
-			for(int i = 0; i < lUtentePreferitos.length; i++) {
-				lUtentePreferitos[i].documentiPreferiti.remove(documento);
-			}
 			modello_di_dominio.Voto[] lVotoss = documento.votos.toArray();
 			for(int i = 0; i < lVotoss.length; i++) {
 				lVotoss[i].setDocumento(null);
@@ -309,6 +305,10 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getProprietario().documentiUtente.remove(documento);
 			}
 			
+			modello_di_dominio.Utente_Documento[] lUtentePreferitos = documento.utentePreferito.toArray();
+			for(int i = 0; i < lUtentePreferitos.length; i++) {
+				lUtentePreferitos[i].setDocumento(null);
+			}
 			return delete(documento);
 		}
 		catch(Exception e) {
@@ -331,10 +331,6 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getCorso().documentoCorso.remove(documento);
 			}
 			
-			modello_di_dominio.Utente[] lUtentePreferitos = documento.utentePreferito.toArray();
-			for(int i = 0; i < lUtentePreferitos.length; i++) {
-				lUtentePreferitos[i].documentiPreferiti.remove(documento);
-			}
 			modello_di_dominio.Voto[] lVotoss = documento.votos.toArray();
 			for(int i = 0; i < lVotoss.length; i++) {
 				lVotoss[i].setDocumento(null);
@@ -347,6 +343,10 @@ public class DocumentoDAOImpl implements modello_di_dominio.dao.DocumentoDAO {
 				documento.getProprietario().documentiUtente.remove(documento);
 			}
 			
+			modello_di_dominio.Utente_Documento[] lUtentePreferitos = documento.utentePreferito.toArray();
+			for(int i = 0; i < lUtentePreferitos.length; i++) {
+				lUtentePreferitos[i].setDocumento(null);
+			}
 			try {
 				session.delete(documento);
 				return true;

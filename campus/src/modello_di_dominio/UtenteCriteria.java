@@ -50,10 +50,6 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		return new FacoltaCriteria(createCriteria("facolta"));
 	}
 	
-	public modello_di_dominio.CorsoCriteria createCorsoCriteria() {
-		return new modello_di_dominio.CorsoCriteria(createCriteria("ORM_Corso"));
-	}
-	
 	public modello_di_dominio.DocumentoCriteria createDocumentiUtenteCriteria() {
 		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentiUtente"));
 	}
@@ -62,8 +58,8 @@ public class UtenteCriteria extends AbstractORMCriteria {
 		return new modello_di_dominio.CorrezioneCriteria(createCriteria("ORM_Correziones"));
 	}
 	
-	public modello_di_dominio.DocumentoCriteria createDocumentiPreferitiCriteria() {
-		return new modello_di_dominio.DocumentoCriteria(createCriteria("ORM_DocumentiPreferiti"));
+	public modello_di_dominio.Utente_DocumentoCriteria createDocumentiPreferitiCriteria() {
+		return new modello_di_dominio.Utente_DocumentoCriteria(createCriteria("ORM_DocumentiPreferiti"));
 	}
 	
 	public modello_di_dominio.VotoCriteria createVotosCriteria() {
@@ -72,6 +68,10 @@ public class UtenteCriteria extends AbstractORMCriteria {
 	
 	public modello_di_dominio.CommentoCriteria createCommentosCriteria() {
 		return new modello_di_dominio.CommentoCriteria(createCriteria("ORM_Commentos"));
+	}
+	
+	public modello_di_dominio.Corso_UtenteCriteria createCorsoCriteria() {
+		return new modello_di_dominio.Corso_UtenteCriteria(createCriteria("ORM_Corso"));
 	}
 	
 	public Utente uniqueUtente() {

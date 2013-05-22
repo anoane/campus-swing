@@ -285,10 +285,6 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 				utente.getFacolta().iscritto.remove(utente);
 			}
 			
-			modello_di_dominio.Corso[] lCorsos = utente.corso.toArray();
-			for(int i = 0; i < lCorsos.length; i++) {
-				lCorsos[i].utenteCorso.remove(utente);
-			}
 			modello_di_dominio.Documento[] lDocumentiUtentes = utente.documentiUtente.toArray();
 			for(int i = 0; i < lDocumentiUtentes.length; i++) {
 				lDocumentiUtentes[i].setProprietario(null);
@@ -297,9 +293,9 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setUtente(null);
 			}
-			modello_di_dominio.Documento[] lDocumentiPreferitis = utente.documentiPreferiti.toArray();
+			modello_di_dominio.Utente_Documento[] lDocumentiPreferitis = utente.documentiPreferiti.toArray();
 			for(int i = 0; i < lDocumentiPreferitis.length; i++) {
-				lDocumentiPreferitis[i].utentePreferito.remove(utente);
+				lDocumentiPreferitis[i].setUtentePreferito(null);
 			}
 			modello_di_dominio.Voto[] lVotoss = utente.votos.toArray();
 			for(int i = 0; i < lVotoss.length; i++) {
@@ -308,6 +304,10 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			modello_di_dominio.Commento[] lCommentoss = utente.commentos.toArray();
 			for(int i = 0; i < lCommentoss.length; i++) {
 				lCommentoss[i].setUtente(null);
+			}
+			modello_di_dominio.Corso_Utente[] lCorsos = utente.corso.toArray();
+			for(int i = 0; i < lCorsos.length; i++) {
+				lCorsos[i].setUtente(null);
 			}
 			return delete(utente);
 		}
@@ -323,10 +323,6 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 				utente.getFacolta().iscritto.remove(utente);
 			}
 			
-			modello_di_dominio.Corso[] lCorsos = utente.corso.toArray();
-			for(int i = 0; i < lCorsos.length; i++) {
-				lCorsos[i].utenteCorso.remove(utente);
-			}
 			modello_di_dominio.Documento[] lDocumentiUtentes = utente.documentiUtente.toArray();
 			for(int i = 0; i < lDocumentiUtentes.length; i++) {
 				lDocumentiUtentes[i].setProprietario(null);
@@ -335,9 +331,9 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			for(int i = 0; i < lCorrezioness.length; i++) {
 				lCorrezioness[i].setUtente(null);
 			}
-			modello_di_dominio.Documento[] lDocumentiPreferitis = utente.documentiPreferiti.toArray();
+			modello_di_dominio.Utente_Documento[] lDocumentiPreferitis = utente.documentiPreferiti.toArray();
 			for(int i = 0; i < lDocumentiPreferitis.length; i++) {
-				lDocumentiPreferitis[i].utentePreferito.remove(utente);
+				lDocumentiPreferitis[i].setUtentePreferito(null);
 			}
 			modello_di_dominio.Voto[] lVotoss = utente.votos.toArray();
 			for(int i = 0; i < lVotoss.length; i++) {
@@ -346,6 +342,10 @@ public class UtenteDAOImpl implements modello_di_dominio.dao.UtenteDAO {
 			modello_di_dominio.Commento[] lCommentoss = utente.commentos.toArray();
 			for(int i = 0; i < lCommentoss.length; i++) {
 				lCommentoss[i].setUtente(null);
+			}
+			modello_di_dominio.Corso_Utente[] lCorsos = utente.corso.toArray();
+			for(int i = 0; i < lCorsos.length; i++) {
+				lCorsos[i].setUtente(null);
 			}
 			try {
 				session.delete(utente);

@@ -18,10 +18,7 @@ public class Utente {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_CORSO) {
-			return ORM_corso;
-		}
-		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIUTENTE) {
+		if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIUTENTE) {
 			return ORM_documentiUtente;
 		}
 		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_CORREZIONES) {
@@ -35,6 +32,9 @@ public class Utente {
 		}
 		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_COMMENTOS) {
 			return ORM_commentos;
+		}
+		else if (key == modello_di_dominio.ORMConstants.KEY_UTENTE_CORSO) {
+			return ORM_corso;
 		}
 		
 		return null;
@@ -73,8 +73,6 @@ public class Utente {
 	
 	private String username;
 	
-	private java.util.Set ORM_corso = new java.util.HashSet();
-	
 	private java.util.Set ORM_documentiUtente = new java.util.HashSet();
 	
 	private java.util.Set ORM_correziones = new java.util.HashSet();
@@ -84,6 +82,8 @@ public class Utente {
 	private java.util.Set ORM_votos = new java.util.HashSet();
 	
 	private java.util.Set ORM_commentos = new java.util.HashSet();
+	
+	private java.util.Set ORM_corso = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -144,16 +144,6 @@ public class Utente {
 	public String getUsername() {
 		return username;
 	}
-	
-	private void setORM_Corso(java.util.Set value) {
-		this.ORM_corso = value;
-	}
-	
-	private java.util.Set getORM_Corso() {
-		return ORM_corso;
-	}
-	
-	public final modello_di_dominio.CorsoSetCollection corso = new modello_di_dominio.CorsoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_CORSO, modello_di_dominio.ORMConstants.KEY_CORSO_UTENTECORSO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	private void setORM_DocumentiUtente(java.util.Set value) {
 		this.ORM_documentiUtente = value;
@@ -239,7 +229,7 @@ public class Utente {
 		return ORM_documentiPreferiti;
 	}
 	
-	public final modello_di_dominio.DocumentoSetCollection documentiPreferiti = new modello_di_dominio.DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI, modello_di_dominio.ORMConstants.KEY_DOCUMENTO_UTENTEPREFERITO, modello_di_dominio.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	public final modello_di_dominio.Utente_DocumentoSetCollection documentiPreferiti = new modello_di_dominio.Utente_DocumentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTIPREFERITI, modello_di_dominio.ORMConstants.KEY_UTENTE_DOCUMENTO_UTENTEPREFERITO, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public modello_di_dominio.Documento[] getDocumentosVoto() {
 		java.util.ArrayList lValues = new java.util.ArrayList(5);
@@ -324,6 +314,16 @@ public class Utente {
 	}
 	
 	public final modello_di_dominio.CommentoSetCollection commentos = new modello_di_dominio.CommentoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_COMMENTOS, modello_di_dominio.ORMConstants.KEY_COMMENTO_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Corso(java.util.Set value) {
+		this.ORM_corso = value;
+	}
+	
+	private java.util.Set getORM_Corso() {
+		return ORM_corso;
+	}
+	
+	public final modello_di_dominio.Corso_UtenteSetCollection corso = new modello_di_dominio.Corso_UtenteSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_CORSO, modello_di_dominio.ORMConstants.KEY_CORSO_UTENTE_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

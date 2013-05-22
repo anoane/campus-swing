@@ -67,10 +67,6 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new CorsoDetachedCriteria(createCriteria("corso"));
 	}
 	
-	public modello_di_dominio.UtenteDetachedCriteria createUtentePreferitoCriteria() {
-		return new modello_di_dominio.UtenteDetachedCriteria(createCriteria("ORM_UtentePreferito"));
-	}
-	
 	public modello_di_dominio.VotoDetachedCriteria createVotosCriteria() {
 		return new modello_di_dominio.VotoDetachedCriteria(createCriteria("ORM_Votos"));
 	}
@@ -81,6 +77,10 @@ public class DocumentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public UtenteDetachedCriteria createProprietarioCriteria() {
 		return new UtenteDetachedCriteria(createCriteria("proprietario"));
+	}
+	
+	public modello_di_dominio.Utente_DocumentoDetachedCriteria createUtentePreferitoCriteria() {
+		return new modello_di_dominio.Utente_DocumentoDetachedCriteria(createCriteria("ORM_UtentePreferito"));
 	}
 	
 	public Documento uniqueDocumento(PersistentSession session) {

@@ -57,5 +57,15 @@ public class DAOFactoryImpl extends DAOFactory {
 		return _commentoDAO;
 	}
 	
+	private Corso_UtenteDAO _corso_UtenteDAO = new Corso_UtenteDAOImpl();
+	public Corso_UtenteDAO getCorso_UtenteDAO() {
+		return _corso_UtenteDAO;
+	}
+	
+	private Utente_DocumentoDAO _utente_DocumentoDAO = new Utente_DocumentoDAOImpl();
+	public Utente_DocumentoDAO getUtente_DocumentoDAO() {
+		return _utente_DocumentoDAO;
+	}
+	
 }
 

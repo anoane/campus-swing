@@ -13,44 +13,8 @@
  */
 package modello_di_dominio;
 
-import java.io.Serializable;
-public class Correzione implements Serializable {
+public class Correzione {
 	public Correzione() {
-	}
-	
-	public boolean equals(Object aObj) {
-		if (aObj == this)
-			return true;
-		if (!(aObj instanceof Correzione))
-			return false;
-		Correzione correzione = (Correzione)aObj;
-		if (getID() != correzione.getID())
-			return false;
-		if (getUtente() == null) {
-			if (correzione.getUtente() != null)
-				return false;
-		}
-		else if (!getUtente().equals(correzione.getUtente()))
-			return false;
-		if (getDocumento() == null) {
-			if (correzione.getDocumento() != null)
-				return false;
-		}
-		else if (!getDocumento().equals(correzione.getDocumento()))
-			return false;
-		return true;
-	}
-	
-	public int hashCode() {
-		int hashcode = 0;
-		hashcode = hashcode + (int) getID();
-		if (getUtente() != null) {
-			hashcode = hashcode + (int) getUtente().getORMID();
-		}
-		if (getDocumento() != null) {
-			hashcode = hashcode + (int) getDocumento().getORMID();
-		}
-		return hashcode;
 	}
 	
 	private void this_setOwner(Object owner, int key) {
@@ -78,36 +42,20 @@ public class Correzione implements Serializable {
 	
 	private boolean approvato;
 	
-	private modello_di_dominio.Utente utente;
-	
-	private int utenteId;
-	
-	private void setUtenteId(int value) {
-		this.utenteId = value;
-	}
-	
-	public int getUtenteId() {
-		return utenteId;
-	}
-	
 	private modello_di_dominio.Documento documento;
 	
-	private int documentoId;
+	private modello_di_dominio.Utente utente;
 	
-	private void setDocumentoId(int value) {
-		this.documentoId = value;
-	}
-	
-	public int getDocumentoId() {
-		return documentoId;
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setTesto(String value) {
@@ -183,7 +131,7 @@ public class Correzione implements Serializable {
 	}
 	
 	public String toString() {
-		return String.valueOf(getID() + " " + ((getUtente() == null) ? "" : String.valueOf(getUtente().getORMID())) + " " + ((getDocumento() == null) ? "" : String.valueOf(getDocumento().getORMID())));
+		return String.valueOf(getID());
 	}
 	
 }

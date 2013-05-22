@@ -42,8 +42,8 @@ public class CorsoCriteria extends AbstractORMCriteria {
 		this(modello_di_dominio.ProjectfinalPersistentManager.instance().getSession());
 	}
 	
-	public modello_di_dominio.UtenteCriteria createUtenteCorsoCriteria() {
-		return new modello_di_dominio.UtenteCriteria(createCriteria("ORM_UtenteCorso"));
+	public modello_di_dominio.Corso_UtenteCriteria createUtenteCorsoCriteria() {
+		return new modello_di_dominio.Corso_UtenteCriteria(createCriteria("ORM_UtenteCorso"));
 	}
 	
 	public modello_di_dominio.DocumentoCriteria createDocumentoCorsoCriteria() {

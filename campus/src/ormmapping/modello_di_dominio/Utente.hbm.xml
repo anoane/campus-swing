@@ -18,11 +18,6 @@ License Type: Purchased
 		<property name="sesso" column="Sesso" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="immagine" column="Immagine" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="username" column="Username" type="string" length="255" not-null="false" lazy="false"/>
-		<set name="ORM_Corso" table="Corso_Utente" lazy="true" cascade="save-update,lock" inverse="true">
-			<key column="UtenteID" not-null="true"/>
-			<many-to-many column="CorsoID" class="modello_di_dominio.Corso">
-			</many-to-many>
-		</set>
 		<set name="ORM_DocumentiUtente" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Documento"/>
@@ -31,10 +26,9 @@ License Type: Purchased
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Correzione"/>
 		</set>
-		<set name="ORM_DocumentiPreferiti" table="Utente_Documento" lazy="true" cascade="save-update,lock">
+		<set name="ORM_DocumentiPreferiti" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
-			<many-to-many column="DocumentoID" class="modello_di_dominio.Documento">
-			</many-to-many>
+			<one-to-many class="modello_di_dominio.Utente_Documento"/>
 		</set>
 		<set name="ORM_Votos" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
@@ -43,6 +37,10 @@ License Type: Purchased
 		<set name="ORM_Commentos" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="UtenteID" not-null="true"/>
 			<one-to-many class="modello_di_dominio.Commento"/>
+		</set>
+		<set name="ORM_Corso" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="UtenteID" not-null="true"/>
+			<one-to-many class="modello_di_dominio.Corso_Utente"/>
 		</set>
 	</class>
 </hibernate-mapping>

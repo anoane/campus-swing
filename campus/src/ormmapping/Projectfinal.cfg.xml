@@ -26,10 +26,12 @@ License Type: Purchased
 		<mapping resource="ormmapping/modello_di_dominio/Commento.hbm.xml" />
 		<mapping resource="ormmapping/modello_di_dominio/Correzione.hbm.xml" />
 		<mapping resource="ormmapping/modello_di_dominio/Corso.hbm.xml" />
+		<mapping resource="ormmapping/modello_di_dominio/Corso_Utente.hbm.xml" />
 		<mapping resource="ormmapping/modello_di_dominio/Documento.hbm.xml" />
 		<mapping resource="ormmapping/modello_di_dominio/Facolta.hbm.xml" />
 		<mapping resource="ormmapping/modello_di_dominio/Universita.hbm.xml" />
 		<mapping resource="ormmapping/modello_di_dominio/Utente.hbm.xml" />
+		<mapping resource="ormmapping/modello_di_dominio/Utente_Documento.hbm.xml" />
 		<mapping resource="ormmapping/modello_di_dominio/Voto.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

@@ -281,9 +281,9 @@ public class CorsoDAOImpl implements modello_di_dominio.dao.CorsoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Corso corso)throws PersistentException {
 		try {
-			modello_di_dominio.Utente[] lUtenteCorsos = corso.utenteCorso.toArray();
+			modello_di_dominio.Corso_Utente[] lUtenteCorsos = corso.utenteCorso.toArray();
 			for(int i = 0; i < lUtenteCorsos.length; i++) {
-				lUtenteCorsos[i].corso.remove(corso);
+				lUtenteCorsos[i].setCorso(null);
 			}
 			modello_di_dominio.Documento[] lDocumentoCorsos = corso.documentoCorso.toArray();
 			for(int i = 0; i < lDocumentoCorsos.length; i++) {
@@ -303,9 +303,9 @@ public class CorsoDAOImpl implements modello_di_dominio.dao.CorsoDAO {
 	
 	public boolean deleteAndDissociate(modello_di_dominio.Corso corso, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			modello_di_dominio.Utente[] lUtenteCorsos = corso.utenteCorso.toArray();
+			modello_di_dominio.Corso_Utente[] lUtenteCorsos = corso.utenteCorso.toArray();
 			for(int i = 0; i < lUtenteCorsos.length; i++) {
-				lUtenteCorsos[i].corso.remove(corso);
+				lUtenteCorsos[i].setCorso(null);
 			}
 			modello_di_dominio.Documento[] lDocumentoCorsos = corso.documentoCorso.toArray();
 			for(int i = 0; i < lDocumentoCorsos.length; i++) {

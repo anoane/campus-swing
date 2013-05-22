@@ -30,5 +30,7 @@ public abstract class DAOFactory {
 	public abstract CorrezioneDAO getCorrezioneDAO();
 	public abstract VotoDAO getVotoDAO();
 	public abstract CommentoDAO getCommentoDAO();
+	public abstract Corso_UtenteDAO getCorso_UtenteDAO();
+	public abstract Utente_DocumentoDAO getUtente_DocumentoDAO();
 }
 
