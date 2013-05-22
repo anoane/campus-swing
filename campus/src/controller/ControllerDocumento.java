@@ -310,7 +310,7 @@ public class ControllerDocumento extends AbstractController{
 
 			@Override
 		    public int compare(Documento obj1, Documento obj2) {
-		        return Integer.compare(obj1.getVoto(), obj2.getVoto());
+		        return Float.compare(ControllerVoto.getInstance().calcolaVoto(obj1), ControllerVoto.getInstance().calcolaVoto(obj2));
 		    }
 		};
 		
@@ -344,10 +344,10 @@ public class ControllerDocumento extends AbstractController{
 			Collections.sort(docs, timestamp);
 			Collections.reverse(docs);
 		}
-		if (sorting.matches("votoUP")) {
+		if (sorting.matches("votoDOWN")) {
 			Collections.sort(docs, voto);
 		}
-		if (sorting.matches("votoDOWN")) {
+		if (sorting.matches("votoUP")) {
 			Collections.sort(docs, voto);
 			Collections.reverse(docs);
 		}
