@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="modello_di_dominio.Corso_Utente" table="Corso_Utente" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="utente" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="corso" cascade="lock" column="CorsoID" class="modello_di_dominio.Corso" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="timestamp" type="timestamp" not-null="true" lazy="false">
+			<column name="Timestamp" default="CURRENT_TIMESTAMP"/>
+		</property>
+	</class>
+</hibernate-mapping>
