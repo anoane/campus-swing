@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import controller.ControllerCorso;
+import controller.ControllerDocumento;
 import controller.ControllerUtente;
 
 import modello_di_dominio.Corso;
@@ -29,6 +31,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
@@ -68,7 +72,7 @@ public class HomePage extends Pagina {
 			return new ArrayList<Corso>();
 		}
 		
-		return new ArrayList<Corso>(u.getFacolta().corso.getCollection());
+		return new ArrayList<Corso>(u.corso.getCollection());
 	}
 	
 	private ArrayList<Documento> getMieiPref() {
@@ -77,8 +81,8 @@ public class HomePage extends Pagina {
 		if(u == null){
 			return new ArrayList<Documento>();
 		}
-		
 		return new ArrayList<Documento>(u.documentiPreferiti.getCollection());
+		
 	}
 	
 	private ArrayList<Documento> getMieiDocs() {
@@ -87,8 +91,8 @@ public class HomePage extends Pagina {
 		if(u == null){
 			return new ArrayList<Documento>();
 		}
-		
-		return new ArrayList<Documento>(u.documentiPreferiti.getCollection());
+		ArrayList<Documento> doclist = new ArrayList<Documento>(u.documentiUtente.getCollection());
+		return ControllerDocumento.getInstance().sortBy(doclist, "timestampUP");
 	}
 
 	private void adjustCorsiRec(final ArrayList<Corso> corsi){
@@ -187,22 +191,7 @@ public class HomePage extends Pagina {
 						panel_1.getHeight());
 				separator_3.setBounds(330, 48, 1, dimensione_fill_home_bottom+29);
 				separator_4.setBounds(660, 48, 1, dimensione_fill_home_bottom+29);
-				/*
-				int max = 0;
-				if (num_corsi >= num_pref) {
-					max = num_corsi;
-					if (num_corsi < num_miei_doc) {
-						max = num_miei_doc;
-					}
-				} else {
-					max = num_pref;
-					if (num_pref < num_miei_doc) {
-						max = num_miei_doc;
-					}
-				}
-				*/
-				//System.out.println();
-				//int altezza_pannelli_interni = 200;
+
 				int size_temp = dimensione_fill_home_bottom+45;
 				int size_contenuti = 0;
 				for (int i=0; i<=size_temp;i=i+107) {
@@ -212,8 +201,6 @@ public class HomePage extends Pagina {
 				panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),size_contenuti);
 				panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),size_contenuti);
 				panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),size_contenuti);
-				//panel_miei_doc.
-				//panel_preferiti_recenti.
 			}
 
 			@Override
