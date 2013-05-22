@@ -7,11 +7,15 @@ import java.util.List;
 import java.util.TreeMap;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.Corso_Utente;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
+import modello_di_dominio.Utente_Documento;
+import modello_di_dominio.dao.Corso_UtenteDAO;
 import modello_di_dominio.dao.DocumentoDAO;
+import modello_di_dominio.dao.Utente_DocumentoDAO;
 
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.orm.PersistentException;
@@ -135,6 +139,46 @@ public class ControllerDocumento extends AbstractController{
 		if(controlloVotato(d, u) == false)
 			ControllerVoto.getInstance().votaDocumento(d, u, voto);
 	}
+	
+	public ArrayList<Documento> getDocumentiPreferiti(Utente u) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+		Utente_Documento ud = null;
+		try {
+			Utente_Documento[] temp = udDAO.listUtente_DocumentoByQuery("UtenteID = " + u.getID(), null);
+			ArrayList<Documento> docs = new ArrayList<Documento>();
+			for (int i=0; temp.length > i; i++) {
+				docs.add(temp[i].getDocumento());
+			}
+			return docs;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return null;
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Integer getIdDocumentoPreferito(Utente u, Documento d) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+		Utente_Documento ud = null;
+		try {
+			ud = udDAO.loadUtente_DocumentoByQuery("DocumentoID = " + d.getID() + "AND UtenteID = " +u.getID(), null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return null;
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			return null;
+		}
+		return ud.getID();
+	}
+	
+	
 	/**
 	 * getListAllDocumenti
 	 * @return

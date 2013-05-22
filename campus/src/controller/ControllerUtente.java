@@ -145,7 +145,7 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
 		try {
-			Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(getDocumentoPreferito(u,d));
+			Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
 			udDAO.delete(ud);
 			udDAO.save(ud);
 		} catch (PersistentException e) {
@@ -184,7 +184,7 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
 		try {
-			Corso_Utente cu = cuDAO.getCorso_UtenteByORMID(getCorsoPreferito(u,c));
+			Corso_Utente cu = cuDAO.getCorso_UtenteByORMID(ControllerCorso.getInstance().getIdCorsoSeguito(u,c));
 			cuDAO.delete(cu);
 			cuDAO.save(cu);
 		} catch (PersistentException e) {
@@ -198,42 +198,8 @@ public class ControllerUtente extends AbstractController{
 		return ControllerUtente.instance;
 	}
 	
-	private Integer getDocumentoPreferito(Utente u, Documento d) {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
-		Utente_Documento ud = null;
-		try {
-			ud = udDAO.loadUtente_DocumentoByQuery("DocumentoID = " + d.getID() + "AND UtenteID = " +u.getID(), null);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			return null;
-		} catch (NullPointerException e) {
-			//e.printStackTrace();
-			return null;
-		}
-		return ud.getID();
-	}
-	
-	private Integer getCorsoPreferito(Utente u, Corso c) {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
-		Corso_Utente cu = null;
-		try {
-			cu = cuDAO.loadCorso_UtenteByQuery("UtenteID = " + u.getID() + "AND CorsoID = " +c.getID(), null);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			return null;
-		} catch (NullPointerException e) {
-			//e.printStackTrace();
-			return null;
-		}
-		return cu.getID();
-	}
-	
-	public boolean containCorsoPreferito(Utente u, Corso c) {
-		Integer res = getCorsoPreferito(u,c);
+	public boolean containCorsoSeguito(Utente u, Corso c) {
+		Integer res = ControllerCorso.getInstance().getIdCorsoSeguito(u,c);
 		if (res != null) {
 			return true;
 		}
@@ -241,7 +207,7 @@ public class ControllerUtente extends AbstractController{
 	}
 	
 	public boolean containDocumentoPreferito(Utente u, Documento d) {
-		Integer res = getDocumentoPreferito(u,d);
+		Integer res = ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d);
 		if (res != null) {
 			return true;
 		}

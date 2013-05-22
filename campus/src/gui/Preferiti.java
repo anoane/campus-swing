@@ -17,6 +17,7 @@ import javax.swing.text.DefaultCaret;
 
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
+import controller.ControllerDocumento;
 import controller.ControllerUtente;
 
 public class Preferiti extends Pagina {
@@ -40,13 +41,10 @@ public class Preferiti extends Pagina {
 	}
 	
 	private ArrayList<Documento> getDocs() {
-		Utente u = ControllerUtente.getInstance().getUtente(1);
-		
-		if(u == null){
+		if(ControllerUtente.getInstance().getUtente(1) == null){
 			return new ArrayList<Documento>();
 		}
-		
-		return new ArrayList<Documento>(u.documentiPreferiti.getCollection());
+		return ControllerDocumento.getInstance().getDocumentiPreferiti(ControllerUtente.getInstance().getUtente(1));
 	}
 	
 	/**

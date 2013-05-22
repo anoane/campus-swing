@@ -16,6 +16,7 @@ import javax.swing.JSeparator;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Utente;
+import controller.ControllerCorso;
 import controller.ControllerUtente;
 
 @SuppressWarnings("serial")
@@ -45,15 +46,10 @@ public class CorsiSeguiti extends Pagina {
 	 * @return ArrayList<Corso>
 	 */
 	private ArrayList<Corso> getCorsi() {
-		
-		Utente u = ControllerUtente.getInstance().getUtente(1);
-
-		if(u == null){
+		if(ControllerUtente.getInstance().getUtente(1) == null){
 			return new ArrayList<Corso>();
 		}
-
-		return new ArrayList<Corso>(u.corso.getCollection());
-
+		return ControllerCorso.getInstance().getCorsiSeguiti(ControllerUtente.getInstance().getUtente(1));
 	}
 	
 	/**

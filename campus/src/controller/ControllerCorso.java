@@ -6,11 +6,13 @@ import java.util.Comparator;
 import java.util.TreeMap;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.Corso_Utente;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CorsoDAO;
+import modello_di_dominio.dao.Corso_UtenteDAO;
 import modello_di_dominio.dao.FacoltaDAO;
 
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -171,25 +173,43 @@ public class ControllerCorso extends AbstractController {
 			e.printStackTrace();
 		}
 	}
-	/**
-	 * 
-	 * @param u Utente
-	 * @return 
-	 */
-	public Corso[] getCorsiSeguiti(Utente u){
-		
-		modello_di_dominio.DAOFactory lDAOFactory = modello_di_dominio.DAOFactory.getDAOFactory();
-		modello_di_dominio.dao.CorsoDAO CorsoDao = lDAOFactory.getCorsoDAO();
-		try{
-			//TODO cancellare
-			Corso[] corsi = CorsoDao.listCorsoByQuery("", null);
-			return corsi;
-		}catch(PersistentException e){
-			e.printStackTrace();
+
+	public Integer getIdCorsoSeguito(Utente u, Corso c) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
+		Corso_Utente cu = null;
+		try {
+			cu = cuDAO.loadCorso_UtenteByQuery("UtenteID = " + u.getID() + "AND CorsoID = " +c.getID(), null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return null;
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			return null;
 		}
-		
-		return null;
-		
+		return cu.getID();
+	}
+	
+	public ArrayList<Corso> getCorsiSeguiti(Utente u) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
+		Corso_Utente cu = null;
+		try {
+			Corso_Utente[] temp = cuDAO.listCorso_UtenteByQuery("UtenteID = " + u.getID(), null);
+			ArrayList<Corso> corsi = new ArrayList<Corso>();
+			for (int i=0; temp.length > i; i++) {
+				corsi.add(temp[i].getCorso());
+			}
+			return corsi;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return null;
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public static ControllerCorso getInstance(){
