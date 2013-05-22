@@ -182,6 +182,7 @@ public class RisultatiRicerca extends Pagina {
 			e.printStackTrace();
 		}
 		is_ricerca_guidata_open = false;
+		reloadRisultati();
 		Home.forceResizeEvent();
 	}
 	
