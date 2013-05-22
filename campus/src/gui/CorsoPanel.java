@@ -92,8 +92,8 @@ public class CorsoPanel extends Pagina {
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBackground(new Color(0x1B, 0x32, 0x80));
-		separator_1.setBounds(488, 10, 2, 275);
+		separator_1.setForeground(new Color(0x1B, 0x32, 0x80));
+		separator_1.setBounds(488, 10, 1, 275);
 		panel_1.add(separator_1);
 		
 		JLabel lblDescrizione = new JLabel("Descrizione");
