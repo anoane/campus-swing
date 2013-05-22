@@ -145,7 +145,7 @@ public class ControllerDocumento extends AbstractController{
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
 		Utente_Documento ud = null;
 		try {
-			Utente_Documento[] temp = udDAO.listUtente_DocumentoByQuery("UtenteID = " + u.getID(), null);
+			Utente_Documento[] temp = udDAO.listUtente_DocumentoByQuery("UtenteID = " + u.getID(), "timestamp DESC");
 			ArrayList<Documento> docs = new ArrayList<Documento>();
 			for (int i=0; temp.length > i; i++) {
 				docs.add(temp[i].getDocumento());

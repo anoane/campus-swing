@@ -9,25 +9,36 @@ import javax.swing.JTextArea;
 
 public class StringUtility {
 
+	  public static boolean isJTextAreaEmpty(JTextArea textArea) {
+		  if (textArea.getText().isEmpty()) {
+			  return true;
+		  }
+		  return false;
+	  }
+	
 	  public static int countLines(JTextArea textArea) {
-		    AttributedString text = new AttributedString(textArea.getText());
-		    FontRenderContext frc = textArea.getFontMetrics(textArea.getFont())
-		        .getFontRenderContext();
-		    AttributedCharacterIterator charIt = text.getIterator();
-		    LineBreakMeasurer lineMeasurer = new LineBreakMeasurer(charIt, frc);
-		    float formatWidth = (float) textArea.getSize().width;
-		    lineMeasurer.setPosition(charIt.getBeginIndex());
+		    if (!isJTextAreaEmpty(textArea)) {
+			    AttributedString text = new AttributedString(textArea.getText());
+			    FontRenderContext frc = textArea.getFontMetrics(textArea.getFont())
+			        .getFontRenderContext();
+			    AttributedCharacterIterator charIt = text.getIterator();
+			    LineBreakMeasurer lineMeasurer = new LineBreakMeasurer(charIt, frc);
+			    float formatWidth = (float) textArea.getSize().width;
+			    lineMeasurer.setPosition(charIt.getBeginIndex());
 
-		    int noLines = 0;
-		    while (lineMeasurer.getPosition() < charIt.getEndIndex()) {
-		      lineMeasurer.nextLayout(formatWidth);
-		      noLines++;
+			    int noLines = 0;
+			    while (lineMeasurer.getPosition() < charIt.getEndIndex()) {
+			      lineMeasurer.nextLayout(formatWidth);
+			      noLines++;
+			    }
+
+			    return noLines;
 		    }
-
-		    return noLines;
+		    return 0;
 		  }
 	  
 	  public static String truncateLines(JTextArea textArea,int lineNumber) {
+		  
 			boolean truncate = true;
 			String temp = textArea.getText();
 			if (StringUtility.countLines(textArea) > lineNumber) {

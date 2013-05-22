@@ -82,7 +82,9 @@ public class RiquadroCorso extends Riquadro {
 		facolta = new JTextArea();
 		DefaultCaret caret2 = (DefaultCaret) facolta.getCaret();
 		caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-		facolta.setText(c.facolta.toArray()[0].getNome());
+		if (!c.facolta.isEmpty()) {
+			facolta.setText(c.facolta.toArray()[0].getNome());
+		}
 		facolta.setLocation(155, 158);
 		facolta.setSize(275, 30);
 		facolta.setForeground(Color.WHITE);

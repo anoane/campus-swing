@@ -196,7 +196,7 @@ public class ControllerCorso extends AbstractController {
 		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
 		Corso_Utente cu = null;
 		try {
-			Corso_Utente[] temp = cuDAO.listCorso_UtenteByQuery("UtenteID = " + u.getID(), null);
+			Corso_Utente[] temp = cuDAO.listCorso_UtenteByQuery("UtenteID = " + u.getID(), "timestamp DESC");
 			ArrayList<Corso> corsi = new ArrayList<Corso>();
 			for (int i=0; temp.length > i; i++) {
 				corsi.add(temp[i].getCorso());

@@ -407,8 +407,6 @@ public class Home {
 	}
 	
 	protected static void cerca(String text) {
-		// TODO Auto-generated method stub
-		System.out.println("Ricerca in corso");
 		Home.resetMenuColors();
 		Home.resetPagina();
 		Home.openRisultatiRicerca(getRicercaTestuale().getText(),false, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE);

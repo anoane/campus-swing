@@ -74,7 +74,13 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setText(util.StringUtility.truncateLines(descrizione,2));
 		
-		facolta = new JTextArea(c.facolta.toArray()[0].getNome());
+		
+		facolta = new JTextArea();
+		
+		if (!c.facolta.isEmpty()) {
+			facolta.setText(c.facolta.toArray()[0].getNome());
+		}
+		
 		facolta.setLocation(64, 73);
 		facolta.setSize(236, 19);
 		facolta.setForeground(Color.WHITE);

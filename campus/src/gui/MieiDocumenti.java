@@ -17,6 +17,7 @@ import org.hibernate.type.YesNoType;
 
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
+import controller.ControllerDocumento;
 import controller.ControllerUtente;
 
 public class MieiDocumenti extends Pagina {
@@ -48,8 +49,8 @@ public class MieiDocumenti extends Pagina {
 		if(u == null){
 			return new ArrayList<Documento>();
 		}
-		
-		return new ArrayList<Documento>(u.documentiUtente.getCollection());
+		ArrayList<Documento> doclist = new ArrayList<Documento>(u.documentiUtente.getCollection());
+		return ControllerDocumento.getInstance().sortBy(doclist, "timestampDOWN");
 		
 	}
 	

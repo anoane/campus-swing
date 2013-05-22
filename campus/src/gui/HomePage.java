@@ -87,7 +87,7 @@ public class HomePage extends Pagina {
 			return new ArrayList<Documento>();
 		}
 		ArrayList<Documento> doclist = new ArrayList<Documento>(u.documentiUtente.getCollection());
-		return ControllerDocumento.getInstance().sortBy(doclist, "timestampUP");
+		return ControllerDocumento.getInstance().sortBy(doclist, "timestampDOWN");
 	}
 
 	private void adjustCorsiRec(final ArrayList<Corso> corsi){
@@ -192,7 +192,6 @@ public class HomePage extends Pagina {
 				for (int i=0; i<=size_temp;i=i+107) {
 					size_contenuti = i;
 				}
-				System.out.println(size_contenuti);
 				panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),size_contenuti);
 				panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),size_contenuti);
 				panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),size_contenuti);
