@@ -23,6 +23,9 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import org.orm.PersistentException;
+
+import controller.ControllerDocumento;
 import controller.ControllerUtente;
 
 import modello_di_dominio.Corso;
@@ -208,18 +211,24 @@ public class CorsoPanel extends Pagina {
 	}
 	
 	public void addDocumenti(Corso corso){
-		Documento[] docs = corso.documentoCorso.toArray(); 
-		int colmax = (int) Math.ceil((float)docs.length/2);
+		ArrayList<Documento> docs = null;
+		try {
+			docs = ControllerDocumento.getInstance().getListAllDocumentiByCorso(0, corso.getID(), false, "all", "timestampUP");
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		int colmax = (int) Math.ceil((float)docs.size()/2);
 		int altezza = 230*colmax;
 		
 		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
 		panel.setSize(panel.getWidth(), 420+altezza);
 		doc.setSize(doc.getWidth(), 420+altezza);
 		
-		for(int i = 0;i < docs.length; i++){
+		for(int i = 0;i < docs.size(); i++){
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
-			final Documento d = docs[i];
+			final Documento d = docs.get(i);
 			final RiquadroDoc documento = new RiquadroDoc(d,false,true);
 			documento.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(documento);

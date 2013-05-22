@@ -30,6 +30,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
+import controller.ControllerUtente;
+
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
 import util.GUIConfig;

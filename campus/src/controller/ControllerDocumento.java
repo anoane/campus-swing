@@ -252,17 +252,6 @@ public class ControllerDocumento extends AbstractController{
 		for (int i=0; temp.length > i; i++) {
 			docs.add(temp[i]);
 		}
-		/*if (soloFac) {
-			for (int i=0; temp.length > i; i++) {
-				if (temp[i].getFacolta() == ControllerFacolta.getInstance().getFacolta(indexFac)) {
-					docs.add(temp[i]);
-				}
-			}
-		} else {
-			for (int i=0; temp.length > i; i++) {
-				docs.add(temp[i]);
-			}
-		}*/
 		if (soloFac) {
 			docs = filtraSoloUnaFac(docs, indexFac);
 		}
