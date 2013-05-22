@@ -6,11 +6,13 @@ package controller;
 import java.util.Date;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.Corso_Utente;
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.Utente_Documento;
+import modello_di_dominio.dao.Corso_UtenteDAO;
 import modello_di_dominio.dao.UtenteDAO;
 import modello_di_dominio.dao.Utente_DocumentoDAO;
 
@@ -137,15 +139,15 @@ public class ControllerUtente extends AbstractController{
 			e.printStackTrace();
 		}
 	}
+
 	
 	public void rimuoviDocumentoPreferito(Utente u, Documento d){
-		
-		//u.documentiPreferiti.remove(d);
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
-		udDAO.
 		try {
-			utenteDAO.save(u);
+			Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(getDocumentoPreferito(u,d));
+			udDAO.delete(ud);
+			udDAO.save(ud);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -155,7 +157,7 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		ControllerDocumento s = ControllerDocumento.getInstance();
 		u.documentiUtente.remove(d);
-		u.documentiPreferiti.remove(d);
+		rimuoviDocumentoPreferito(u, d);
 		s.removeDocumento(d);
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {
@@ -167,10 +169,12 @@ public class ControllerUtente extends AbstractController{
 	
 	public void aggiungiCorsoSeguito(Utente u, Corso c){
 		DAOFactory factory = DAOFactory.getDAOFactory();
-		UtenteDAO utenteDAO = factory.getUtenteDAO();
-		u.corso.add(c);
+		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
+		Corso_Utente cu = cuDAO.createCorso_Utente();
+		cu.setCorso(c);
+		cu.setUtente(u);
 		try {
-			utenteDAO.save(u);
+			cuDAO.save(cu);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -178,10 +182,11 @@ public class ControllerUtente extends AbstractController{
 	
 	public void rimuoviCorsoSeguito(Utente u, Corso c){
 		DAOFactory factory = DAOFactory.getDAOFactory();
-		UtenteDAO utenteDAO = factory.getUtenteDAO();
-		u.corso.remove(c);
+		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
 		try {
-			utenteDAO.save(u);
+			Corso_Utente cu = cuDAO.getCorso_UtenteByORMID(getCorsoPreferito(u,c));
+			cuDAO.delete(cu);
+			cuDAO.save(cu);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -191,6 +196,56 @@ public class ControllerUtente extends AbstractController{
 		if(ControllerUtente.instance == null)
 			ControllerUtente.instance = new ControllerUtente();
 		return ControllerUtente.instance;
+	}
+	
+	private Integer getDocumentoPreferito(Utente u, Documento d) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+		Utente_Documento ud = null;
+		try {
+			ud = udDAO.loadUtente_DocumentoByQuery("DocumentoID = " + d.getID() + "AND UtenteID = " +u.getID(), null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return null;
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			return null;
+		}
+		return ud.getID();
+	}
+	
+	private Integer getCorsoPreferito(Utente u, Corso c) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
+		Corso_Utente cu = null;
+		try {
+			cu = cuDAO.loadCorso_UtenteByQuery("UtenteID = " + u.getID() + "AND CorsoID = " +c.getID(), null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return null;
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			return null;
+		}
+		return cu.getID();
+	}
+	
+	public boolean containCorsoPreferito(Utente u, Corso c) {
+		Integer res = getCorsoPreferito(u,c);
+		if (res != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean containDocumentoPreferito(Utente u, Documento d) {
+		Integer res = getDocumentoPreferito(u,d);
+		if (res != null) {
+			return true;
+		}
+		return false;
 	}
 	
 }

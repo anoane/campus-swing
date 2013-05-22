@@ -237,7 +237,8 @@ public class CorsoPanel extends Pagina {
 	public void reload(Object c) {
 		final Corso corso = (Corso)c;
 		adjustDocs(corso);
-		if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){
+		//if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){
+		if(ControllerUtente.getInstance().containCorsoPreferito(ControllerUtente.getInstance().getUtente(1), corso)) {
 			seguiButton.setVisible(false);
 		}
 		else{

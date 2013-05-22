@@ -23,16 +23,22 @@ public class RiquadroUtenteDoc extends JPanel{
 		//.setIcon(new ImageIcon(u.getImmagine()));
 		immagine.setBounds(5, 5, 100, 100);
 		immagine.setBackground(Color.LIGHT_GRAY);
-		nome = new JLabel(u.getNome()+" "+u.getCognome());
+		
+		nome = new JLabel();
 		nome.setBounds(5, 120,168, 30);
 		
-		universita = new JLabel("Università: "+u.getFacolta().getUniversita().getNome());
+		universita = new JLabel();
 		universita.setBounds(5, 160,168, 30);
 		
-		facolta = new JLabel("Facoltà: "+u.getFacolta().getNome());
+		facolta = new JLabel();
 		facolta.setBounds(5, 200,168, 30);
 		
-		
+		if (u != null) {
+			nome.setText(u.getNome()+" "+u.getCognome());
+			universita.setText("Università: "+u.getFacolta().getUniversita().getNome());
+			facolta.setText("Facoltà: "+u.getFacolta().getNome());
+		}
+
 		add(immagine);
 		add(nome);
 		add(universita);

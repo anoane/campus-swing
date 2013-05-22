@@ -149,8 +149,8 @@ public class DocumentoPanel extends Pagina {
 				"Aggiungi ai preferiti", 409, 49, 230, 34, false, true);
 		panel.add(btnAggiungiAiPreferiti);
 
-		if (ControllerUtente.getInstance().getUtente(1).documentiPreferiti
-				.contains(d))
+		//if (ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
+		if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d))
 			btnAggiungiAiPreferiti.setVisible(false);
 
 		lbltipo = new JLabel();

@@ -165,53 +165,54 @@ public class PrenotaDigitalizzazione extends Pagina {
 		
 		final Corso[] corsi = ControllerCorso.getInstance().getAllCorsi();
 		JComboBox comboBoxCorsi = new JComboBox();
-		String temp = corsi[0].getNome();
-		if (corsi[0].getNome().length() > 40) {
-			temp = corsi[0].getNome().substring(0, 39).concat("...");
-		}
-		final String temp2 = temp;
-		
-		comboBoxCorsi.setModel(new ComboBoxModel<String>() {
-			//TODO: Fix
-			private String selected = temp2;
-			
-			@Override
-			public void addListDataListener(ListDataListener arg0) {
-				// TODO Auto-generated method stub
-				
+		if (corsi.length != 0) {
+			String temp = corsi[0].getNome();
+			if (corsi[0].getNome().length() > 40) {
+				temp = corsi[0].getNome().substring(0, 39).concat("...");
 			}
-
-			@Override
-			public String getElementAt(int arg0) {
-				if (corsi[arg0].getNome().length() > 40) {
-					return corsi[arg0].getNome().substring(0, 39).concat("...");
+			final String temp2 = temp;
+			
+			comboBoxCorsi.setModel(new ComboBoxModel<String>() {
+				//TODO: Fix
+				private String selected = temp2;
+				
+				@Override
+				public void addListDataListener(ListDataListener arg0) {
+					// TODO Auto-generated method stub
+					
 				}
-				return corsi[arg0].getNome();
-			}
 
-			@Override
-			public int getSize() {
-				return corsi.length;
-			}
+				@Override
+				public String getElementAt(int arg0) {
+					if (corsi[arg0].getNome().length() > 40) {
+						return corsi[arg0].getNome().substring(0, 39).concat("...");
+					}
+					return corsi[arg0].getNome();
+				}
 
-			@Override
-			public void removeListDataListener(ListDataListener arg0) {
-				// TODO Auto-generated method stub
+				@Override
+				public int getSize() {
+					return corsi.length;
+				}
+
+				@Override
+				public void removeListDataListener(ListDataListener arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public Object getSelectedItem() {
+					return selected;
+				}
+
+				@Override
+				public void setSelectedItem(Object anItem) {
+					selected = (String) anItem;
+				}
 				
-			}
-
-			@Override
-			public Object getSelectedItem() {
-				return selected;
-			}
-
-			@Override
-			public void setSelectedItem(Object anItem) {
-				selected = (String) anItem;
-			}
-			
-		});
-		
+			});
+		}
 
 		
 		GridBagConstraints gbc_lstCorso = new GridBagConstraints();
