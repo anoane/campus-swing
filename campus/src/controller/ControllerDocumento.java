@@ -286,7 +286,7 @@ public class ControllerDocumento extends AbstractController{
 		return newdocs;
 	}
 	
-	private ArrayList<Documento> filtraPerTipo(ArrayList<Documento> docs, String filtro) {
+	public ArrayList<Documento> filtraPerTipo(ArrayList<Documento> docs, String filtro) {
 		ArrayList<Documento> newdocs = new ArrayList<Documento>();
 		for (int i=0; docs.size() > i; i++) {
 			if (filtro.matches("all") || docs.get(i).getDiscriminator().matches(filtro)) {

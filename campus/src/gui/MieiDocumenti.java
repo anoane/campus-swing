@@ -1,24 +1,31 @@
 package gui;
 
+import gui.helpers.Sorting;
 import gui.riquadri.RiquadroDoc;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import org.hibernate.type.YesNoType;
+import org.orm.PersistentException;
 
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
 import controller.ControllerDocumento;
 import controller.ControllerUtente;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
 
 public class MieiDocumenti extends Pagina {
 	
@@ -35,23 +42,77 @@ public class MieiDocumenti extends Pagina {
 	 * Pannello che contiene tutti i documenti caricati dall'utente
 	 */
 	private JPanel contenuto_pagina;
+	private JPanel panel_1;
+	private JLabel label;
+	private JSeparator separator_1;
+	private JComboBox comboBox_1;
+	private JSeparator separator_2;
+	private JComboBox comboBox_2;
+	private JLabel label_2;
 	
-	public void reload() {
-		adjustDocs(getDocs());
+	public void reload(Object sorting) {
+		adjustDocs(getDocs(((Sorting) sorting).getSorting(),((Sorting) sorting).getFilter()));
 	}
+	
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
+		reloadRisultati();
+	}
+	
+	
 	/**
 	 * getDocs()
 	 * @return
 	 */
-	private ArrayList<Documento> getDocs() {	
+	private ArrayList<Documento> getDocs(String sorting,String filter) {	
 		Utente u = ControllerUtente.getInstance().getUtente(1);
 			
 		if(u == null){
 			return new ArrayList<Documento>();
 		}
 		ArrayList<Documento> doclist = new ArrayList<Documento>(u.documentiUtente.getCollection());
-		return ControllerDocumento.getInstance().sortBy(doclist, "timestampDOWN");
-		
+		return ControllerDocumento.getInstance().filtraPerTipo(ControllerDocumento.getInstance().sortBy(doclist, sorting),filter);
+	}
+	
+	protected void reloadRisultati() {
+		String filtro = "all";
+		if (comboBox_2.getSelectedIndex()==0) {
+			filtro = "all";
+		}
+		if (comboBox_2.getSelectedIndex()==1) {
+			filtro = "Appunti";
+		}
+		if (comboBox_2.getSelectedIndex()==2) {
+			filtro = "Esercizi";
+		}
+		if (comboBox_2.getSelectedIndex()==3) {
+			filtro = "Slide";
+		}
+		if (comboBox_2.getSelectedIndex()==4) {
+			filtro = "Dispense";
+		}
+				
+		String sorting = "timestampDOWN";
+		if (comboBox_1.getSelectedIndex()==0) {
+			sorting = "votoUP";
+		}
+		if (comboBox_1.getSelectedIndex()==1) {
+			sorting = "timestampUP";
+		}
+		if (comboBox_1.getSelectedIndex()==2) {
+			sorting = "downloadUP";
+		}
+		if (comboBox_1.getSelectedIndex()==3) {
+			sorting = "votoDOWN";
+		}
+		if (comboBox_1.getSelectedIndex()==4) {
+			sorting = "timestampDOWN";
+		}
+		if (comboBox_1.getSelectedIndex()==5) {
+			sorting = "downloadDOWN";
+		}
+		reload(new Sorting(sorting,filtro));
 	}
 	
 	/**
@@ -75,7 +136,7 @@ public class MieiDocumenti extends Pagina {
 		
 		separator = new JSeparator();
 		separator.setForeground(new Color(27, 50, 128));
-		separator.setBounds(0, 41, 170, 1);
+		separator.setBounds(0, 41, 1006, 1);
 		panel.add(separator);
 		
 		contenuto_pagina = new JPanel();
@@ -83,6 +144,63 @@ public class MieiDocumenti extends Pagina {
 		contenuto_pagina.setBackground(Color.WHITE);
 		panel.add(contenuto_pagina);
 		
+		panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 1008, 38);
+		panel.add(panel_1);
+		
+		label = new JLabel("Ordina per:");
+		label.setForeground(new Color(6, 121, 159));
+		label.setFont(new Font("Arial", Font.BOLD, 20));
+		label.setBounds(740, 9, 108, 25);
+		panel_1.add(label);
+		
+		separator_1 = new JSeparator();
+		separator_1.setOrientation(SwingConstants.VERTICAL);
+		separator_1.setForeground(new Color(6, 121, 159));
+		separator_1.setBackground(new Color(6, 121, 159));
+		separator_1.setBounds(440, 8, 1, 28);
+		panel_1.add(separator_1);
+		
+		comboBox_1 = new JComboBox();
+		comboBox_1.setFont(new Font("Arial", Font.BOLD, 16));
+		comboBox_1.setBackground(Color.WHITE);
+		comboBox_1.setBounds(854, 8, 144, 30);
+		panel_1.add(comboBox_1);
+		
+		separator_2 = new JSeparator();
+		separator_2.setOrientation(SwingConstants.VERTICAL);
+		separator_2.setForeground(new Color(6, 121, 159));
+		separator_2.setBackground(new Color(6, 121, 159));
+		separator_2.setBounds(733, 8, 1, 28);
+		panel_1.add(separator_2);
+		
+		comboBox_2 = new JComboBox();
+		comboBox_2.setFont(new Font("Arial", Font.BOLD, 16));
+		comboBox_2.setBackground(Color.WHITE);
+		comboBox_2.setBounds(584, 8, 142, 30);
+		panel_1.add(comboBox_2);
+		
+		label_2 = new JLabel("Filtra per tipo:");
+		label_2.setForeground(new Color(6, 121, 159));
+		label_2.setFont(new Font("Arial", Font.BOLD, 20));
+		label_2.setBounds(447, 9, 134, 25);
+		panel_1.add(label_2);
+		
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Qualsiasi tipo", "Solo appunti", "Solo esercizi", "Solo slide", "Solo dispense"}));
+		
+		comboBox_1.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				reloadRisultati();
+			}
+		});
+		comboBox_2.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				reloadRisultati();
+			}
+		});
 	}
 
 	/**
@@ -123,11 +241,7 @@ public class MieiDocumenti extends Pagina {
 		contenuto_pagina.repaint();
 		addDocumenti(docs);
 	}
-	@Override
-	public void reload(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public int getAltezzaPagina() {
 		return panel.getHeight();
