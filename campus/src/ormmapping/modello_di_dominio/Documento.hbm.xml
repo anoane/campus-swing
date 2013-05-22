@@ -24,7 +24,9 @@ License Type: Purchased
 		<property name="discriminator" column="Discriminator" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="voto" column="Voto" type="integer" length="11" not-null="true" lazy="false"/>
 		<property name="num_voti" column="Num_voti" type="integer" length="11" not-null="true" lazy="false"/>
-		<property name="timestamp" column="Timestamp" type="timestamp" not-null="false" lazy="false"/>
+		<property name="timestamp" type="timestamp" not-null="true" lazy="false">
+			<column name="Timestamp" default="CURRENT_TIMESTAMP"/>
+		</property>
 		<property name="downloads" column="Downloads" type="integer" length="11" not-null="true" lazy="false"/>
 		<set name="ORM_Votos" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="DocumentoID" not-null="true"/>

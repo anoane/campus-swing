@@ -131,19 +131,19 @@ public class ControllerUtente extends AbstractController{
 		Utente_Documento ud = udDAO.createUtente_Documento();
 		ud.setDocumento(d);
 		ud.setUtentePreferito(u);
-		ud.
-		
 		try {
-			
+			udDAO.save(ud);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void rimuoviDocumentoPreferito(Utente u, Documento d){
-		u.documentiPreferiti.remove(d);
+		
+		//u.documentiPreferiti.remove(d);
 		DAOFactory factory = DAOFactory.getDAOFactory();
-		UtenteDAO utenteDAO = factory.getUtenteDAO();
+		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+		udDAO.
 		try {
 			utenteDAO.save(u);
 		} catch (PersistentException e) {

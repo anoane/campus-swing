@@ -211,10 +211,11 @@
       <ForeignKey>false</ForeignKey>
       <Type>22</Type>
       <Length>0</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
+      <DefaultValue>CURRENT_TIMESTAMP</DefaultValue>
       <UserTypes/>
     </Column>
     <Column name="Downloads">
@@ -564,10 +565,11 @@
       <ForeignKey>false</ForeignKey>
       <Type>22</Type>
       <Length>0</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
+      <DefaultValue>CURRENT_TIMESTAMP</DefaultValue>
       <UserTypes/>
     </Column>
   </Entity>
@@ -612,10 +614,11 @@
       <ForeignKey>false</ForeignKey>
       <Type>22</Type>
       <Length>0</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
+      <DefaultValue>CURRENT_TIMESTAMP</DefaultValue>
       <UserTypes/>
     </Column>
   </Entity>
