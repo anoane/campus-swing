@@ -337,10 +337,10 @@ public class ControllerDocumento extends AbstractController{
 			Collections.sort(docs, nome);
 			Collections.reverse(docs);
 		}
-		if (sorting.matches("timestampUP")) {
+		if (sorting.matches("timestampDOWN")) {
 			Collections.sort(docs, timestamp);
 		}
-		if (sorting.matches("timestampDOWN")) {
+		if (sorting.matches("timestampUP")) {
 			Collections.sort(docs, timestamp);
 			Collections.reverse(docs);
 		}

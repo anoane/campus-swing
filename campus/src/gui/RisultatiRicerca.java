@@ -176,7 +176,7 @@ public class RisultatiRicerca extends Pagina {
 		reloadUniv();
 		//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
 		try {
-			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca, false, "all", "nomeUP"));
+			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca, false, "all", "timestampDOWN"));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -691,7 +691,7 @@ public class RisultatiRicerca extends Pagina {
 					// textField_4.setText(s);
 					indexCorso = list_1.getSelectedIndex();
 					dbIndexCorsoByFac = listaCorsiByFac[indexCorso].getID();
-					showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac,false,"all","nomeUP");
+					showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac,false,"all","timestampDOWN");
 				}
 			}
 		});
@@ -790,7 +790,7 @@ public class RisultatiRicerca extends Pagina {
 			filtro = "Dispense";
 		}
 				
-		String sorting = "nomeUP";
+		String sorting = "timestampDOWN";
 		if (comboBox_1.getSelectedIndex()==0) {
 			sorting = "votoUP";
 		}
