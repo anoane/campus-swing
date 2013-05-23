@@ -197,7 +197,12 @@ public class ControllerUtente extends AbstractController{
 	}
 	
 	public boolean containCorsoSeguito(Utente u, Corso c) {
-		Integer res = ControllerCorso.getInstance().getIdCorsoSeguito(u,c);
+		Integer res = null;
+		try {
+			res = ControllerCorso.getInstance().getIdCorsoSeguito(u,c);
+		} catch (NullPointerException ex) {
+			return true;
+		}
 		if (res != null) {
 			return true;
 		}
@@ -205,7 +210,12 @@ public class ControllerUtente extends AbstractController{
 	}
 	
 	public boolean containDocumentoPreferito(Utente u, Documento d) {
-		Integer res = ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d);
+		Integer res = null;
+		try {
+			res = ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d);
+		} catch (NullPointerException ex) {
+			return true;
+		}
 		if (res != null) {
 			return true;
 		}
