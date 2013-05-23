@@ -43,6 +43,7 @@ public class RiquadroDoc extends Riquadro {
 	private JLabel proprietario_cognome;
 	private JLabel proprietario_nome;
 	private RimuoviButton rimuovi;
+	private JLabel lbltipo;
 
 	private static Color colore_stella = new Color(255,222,87);
 
@@ -216,6 +217,30 @@ public class RiquadroDoc extends Riquadro {
 		proprietario_nome.setLocation(340, 160);
 		proprietario_nome.setSize(90, 20);
 		
+		//Label contenente l'estenzione del documento
+		lbltipo = new JLabel();
+		lbltipo.setBounds(70, 160, 43, 23);
+		
+		if(doc.getPath() != null && !doc.getPath().equals("/")){
+			String strTipo = doc.getPath().split("\\.")[1];
+			switch(strTipo){
+			case "pdf":
+				lbltipo.setIcon(new ImageIcon("./newimage/pdf.png"));
+				break;
+			case "ppt":
+				lbltipo.setIcon(new ImageIcon("./newimage/ppt.png"));
+				break;
+			case "doc":
+				lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+				break;
+			default:
+				lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+				break;
+			}
+		}
+		else
+			lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+		
 		add(titolo);
 		add(corso);
 		add(facolta);
@@ -226,8 +251,11 @@ public class RiquadroDoc extends Riquadro {
 		add(utente);
 		add(proprietario_cognome);
 		add(tipo);
+		add(lbltipo);
 		add(anteprima);
+		//anteprima.setLayout(null);
 		add(proprietario_nome);
+		
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
