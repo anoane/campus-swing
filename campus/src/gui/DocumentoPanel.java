@@ -249,8 +249,11 @@ public class DocumentoPanel extends Pagina {
 
 	@Override
 	public void reload(Object o) {
+		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
+		if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d))
+			btnAggiungiAiPreferiti.setVisible(false);
 		if(d.getPath() != null && !d.getPath().equals("/")){
 			String strTipo = d.getPath().split("\\.")[1];
 			switch(strTipo){
