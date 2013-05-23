@@ -89,7 +89,9 @@ public class RiquadroCorso extends Riquadro {
 					facolta.setText(c.facolta.toArray()[0].getNome());
 					++i;
 				}
-				facolta.setText(facolta.getText()+" , "+c.facolta.toArray()[i].getNome());
+				if (i<c.facolta.size()) {
+					facolta.setText(facolta.getText()+" , "+c.facolta.toArray()[i].getNome());
+				}
 			}
 			//facolta.setText(c.facolta.toArray()[0].getNome());
 		}
