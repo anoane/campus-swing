@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -35,6 +36,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 	private static Color colore_stella = new Color(255,222,87);
 	private JPanel ext;
 	private JLabel label;
+	private JLabel lbltipo;
 
 	public RiquadroDocSmall(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
 		super();
@@ -145,6 +147,30 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		proprietario_nome.setLocation(200, 56);
 		proprietario_nome.setSize(100, 20);
 		
+		lbltipo = new JLabel();
+		lbltipo.setBounds(78, 35, 40, 20);
+		
+
+		if(doc.getPath() != null && !doc.getPath().equals("/")){
+			String strTipo = doc.getPath().split("\\.")[1];
+			switch(strTipo){
+			case "pdf":
+				lbltipo.setIcon(new ImageIcon("./newimage/pdf-small.png"));
+				break;
+			case "ppt":
+				lbltipo.setIcon(new ImageIcon("./newimage/ppt-small.png"));
+				break;
+			case "doc":
+				lbltipo.setIcon(new ImageIcon("./newimage/doc-small.png"));
+				break;
+			default:
+				lbltipo.setIcon(new ImageIcon("./newimage/doc-small.png"));
+				break;
+			}
+		}
+		else{
+			lbltipo.setIcon(new ImageIcon("./newimage/doc-small.png"));
+		}
 		add(titolo);
 		add(corso);
 		add(stelle);
@@ -152,17 +178,18 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		add(proprietario_cognome);
 		add(tipo);
 		add(proprietario_nome);
+		add(lbltipo);
 		
 		ext = new JPanel();
 		ext.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		ext.setBounds(78, 35, 58, 20);
-		add(ext);
+		//add(ext);
 		ext.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		label = new JLabel();
 		label.setAlignmentY(1.0f);
 		label.setAlignmentX(0.5f);
-		ext.add(label);
+		//ext.add(label);
 
 	}
 	
