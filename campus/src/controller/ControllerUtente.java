@@ -201,7 +201,7 @@ public class ControllerUtente extends AbstractController{
 		try {
 			res = ControllerCorso.getInstance().getIdCorsoSeguito(u,c);
 		} catch (NullPointerException ex) {
-			return true;
+			return false;
 		}
 		if (res != null) {
 			return true;
@@ -214,7 +214,7 @@ public class ControllerUtente extends AbstractController{
 		try {
 			res = ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d);
 		} catch (NullPointerException ex) {
-			return true;
+			return false;
 		}
 		if (res != null) {
 			return true;
