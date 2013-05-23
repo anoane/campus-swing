@@ -305,7 +305,8 @@ public class DocumentoPanel extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				ControllerUtente u = ControllerUtente.getInstance();
 				u.aggiungiDocumentoPreferito(u.getUtente(1), d);
-				Home.getPagina("preferiti");
+				//Home.getPagina("preferiti");
+				btnAggiungiAiPreferiti.setVisible(false);
 			}
 		});
 		lblVoti.setText(Integer.toString(d.votos.size()));
