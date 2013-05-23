@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultCaret;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.Facolta;
 /**
  * 
  * @author mw
@@ -83,7 +84,14 @@ public class RiquadroCorso extends Riquadro {
 		DefaultCaret caret2 = (DefaultCaret) facolta.getCaret();
 		caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		if (!c.facolta.isEmpty()) {
-			facolta.setText(c.facolta.toArray()[0].getNome());
+			for(int i=0; i<c.facolta.size(); ++i){
+				if(i == 0){
+					facolta.setText(c.facolta.toArray()[0].getNome());
+					++i;
+				}
+				facolta.setText(facolta.getText()+" , "+c.facolta.toArray()[i].getNome());
+			}
+			//facolta.setText(c.facolta.toArray()[0].getNome());
 		}
 		facolta.setLocation(155, 158);
 		facolta.setSize(275, 30);

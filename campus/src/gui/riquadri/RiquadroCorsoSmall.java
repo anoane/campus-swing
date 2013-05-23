@@ -78,7 +78,13 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		facolta = new JTextArea();
 		
 		if (!c.facolta.isEmpty()) {
-			facolta.setText(c.facolta.toArray()[0].getNome());
+			for(int i=0; i<c.facolta.size(); ++i){
+				if(i == 0){
+					facolta.setText(c.facolta.toArray()[0].getNome());
+					++i;
+				}
+				facolta.setText(facolta.getText()+" , "+c.facolta.toArray()[i].getNome());
+			}
 		}
 		
 		facolta.setLocation(64, 73);
