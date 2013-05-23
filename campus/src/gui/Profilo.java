@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,11 +24,13 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import org.orm.PersistentException;
+
+import controller.ControllerDocumento;
 import controller.ControllerUtente;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
-import modello_di_dominio.Utente;
 
 @SuppressWarnings("serial")
 public class Profilo extends Pagina {
@@ -54,9 +57,9 @@ public class Profilo extends Pagina {
 	/**
 	 * Create the panel.
 	 */
-	//public Profilo(Utente utente) {
+	//public CorsoPanel(Corso corso) {
 	public Profilo() {
-			
+				
 		//Absolute layout
 		setLayout(null);
 		
@@ -192,7 +195,7 @@ public class Profilo extends Pagina {
 		panel.add(doc);
 		
 		
-		lblPage = new JLabel("Materiale relativo al corso");
+		lblPage = new JLabel("Caricamenti");
 		lblPage.setForeground(new Color(6, 121, 159));
 		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
 		lblPage.setBounds(32, 10, 260, 25);
@@ -210,18 +213,18 @@ public class Profilo extends Pagina {
 	}
 	
 	public void addDocumenti(Corso corso){
-		Documento[] docs = corso.documentoCorso.toArray(); 
-		int colmax = (int) Math.ceil((float)docs.length/2);
+		ArrayList<Documento> docs = new ArrayList<Documento>(Arrays.asList(ControllerUtente.getInstance().getUtente(1).documentiUtente.toArray()));
+		int colmax = (int) Math.ceil((float)docs.size()/2);
 		int altezza = 230*colmax;
 		
 		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
 		panel.setSize(panel.getWidth(), 420+altezza);
 		doc.setSize(doc.getWidth(), 420+altezza);
 		
-		for(int i = 0;i < docs.length; i++){
+		for(int i = 0;i < docs.size(); i++){
 			int col = (int) Math.floor(i/2);
 			int row = i%2;
-			final Documento d = docs[i];
+			final Documento d = docs.get(i);
 			final RiquadroDoc documento = new RiquadroDoc(d,false,true);
 			documento.setLocation((32+(485*row)), (230*col));
 			contenuto_pagina.add(documento);
