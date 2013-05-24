@@ -149,39 +149,39 @@ public class Preferiti extends Pagina {
 		label = new JLabel("Ordina per:");
 		label.setForeground(new Color(6, 121, 159));
 		label.setFont(new Font("Arial", Font.BOLD, 20));
-		label.setBounds(740, 9, 108, 25);
+		label.setBounds(700, 9, 108, 25);
 		panel_1.add(label);
 		
 		separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1.setForeground(new Color(6, 121, 159));
 		separator_1.setBackground(new Color(6, 121, 159));
-		separator_1.setBounds(440, 8, 1, 28);
+		separator_1.setBounds(400, 8, 1, 28);
 		panel_1.add(separator_1);
 		
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 16));
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(854, 8, 144, 30);
+		comboBox.setBounds(814, 8, 144, 30);
 		panel_1.add(comboBox);
 		
 		separator_2 = new JSeparator();
 		separator_2.setOrientation(SwingConstants.VERTICAL);
 		separator_2.setForeground(new Color(6, 121, 159));
 		separator_2.setBackground(new Color(6, 121, 159));
-		separator_2.setBounds(733, 8, 1, 28);
+		separator_2.setBounds(693, 8, 1, 28);
 		panel_1.add(separator_2);
 		
 		comboBox_2 = new JComboBox();
 		comboBox_2.setFont(new Font("Arial", Font.BOLD, 16));
 		comboBox_2.setBackground(Color.WHITE);
-		comboBox_2.setBounds(584, 8, 142, 30);
+		comboBox_2.setBounds(544, 8, 142, 30);
 		panel_1.add(comboBox_2);
 		
 		label_1 = new JLabel("Filtra per tipo:");
 		label_1.setForeground(new Color(6, 121, 159));
 		label_1.setFont(new Font("Arial", Font.BOLD, 20));
-		label_1.setBounds(447, 9, 134, 25);
+		label_1.setBounds(407, 9, 134, 25);
 		panel_1.add(label_1);
 
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));

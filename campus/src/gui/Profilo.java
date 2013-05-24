@@ -46,7 +46,6 @@ public class Profilo extends Pagina {
 	
 	private JPanel contenuto_pagina;
 	ButtonStandard buttonCreator = new ButtonStandard();
-	JButton seguiButton = buttonCreator.createButton("Segui Corso", 300, 11, 157, 34, false, true);
 	
 	JLabel labelName = new JLabel();
 	JTextPane descrizione = new JTextPane();
@@ -80,8 +79,6 @@ public class Profilo extends Pagina {
 		separator.setForeground(new Color(27, 50, 128));
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
-		
-		panel.add(seguiButton);
 				
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -242,19 +239,6 @@ public class Profilo extends Pagina {
 	public void reload(Object c) {
 		final Corso corso = (Corso)c;
 		adjustDocs(corso);
-		//if(ControllerUtente.getInstance().getUtente(1).corso.contains(corso)){
-		if(ControllerUtente.getInstance().containCorsoSeguito(ControllerUtente.getInstance().getUtente(1), corso)) {
-			seguiButton.setVisible(false);
-		}
-		else{
-			seguiButton.setVisible(true);
-			seguiButton.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0){
-					ControllerUtente.getInstance().aggiungiCorsoSeguito(ControllerUtente.getInstance().getUtente(1), corso);
-					Home.openCorso(false, corso);
-				}
-			});
-		}
 		labelName.setText(corso.getNome());
 		descrizione.setText(corso.getDescrizione());
 		for(int i=0; i< corso.facolta.size(); ++i)
