@@ -129,7 +129,7 @@ public class RiquadroStampa extends JPanel {
 		
 		JLabel lblImage = new JLabel();
 		lblImage.setBounds(841, 10, 25, 25);
-		lblImage.setIcon(new ImageIcon("./newimage/stampa2.png"));
+		lblImage.setIcon(new ImageIcon("./newimage/stampa.png"));
 		add(lblImage);
 		
 		JLabel lblNewLabel_1 = new JLabel("In stampa");
