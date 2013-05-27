@@ -252,6 +252,8 @@ public class ControllerCorso extends AbstractController {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		CorsoDAO corsoDAO = factory.getCorsoDAO();
 		try {
+			nomeCorso = nomeCorso.replace("\'", "\'\'");
+			
 			if (corsoDAO.listCorsoByQuery("Nome='"+nomeCorso+"'",null).length != 0) {
 				return true;
 			}

@@ -6,6 +6,8 @@ import modello_di_dominio.dao.UniversitaDAO;
 
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
+
+import com.mysql.jdbc.StringUtils;
 /**
  * 
  * @author mw
@@ -92,6 +94,9 @@ public class ControllerUniversita extends AbstractController {
 	public boolean isUniversitaAlreadyPresent(String univ){
 		//Trovo l'univesita
 		try {
+			
+			univ = univ.replace("\'","\'\'");
+			
 			if (universitaDAO.listUniversitaByQuery("Nome='"+univ+"'",null).length != 0) {
 				return true;
 			}

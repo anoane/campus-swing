@@ -85,6 +85,9 @@ public class ControllerFacolta extends AbstractController {
 		FacoltaDAO facoltaDAO = factory.getFacoltaDAO();
 		//Trovo l'univesita
 		try {
+			
+			facolta = facolta.replace("\'", "\'\'");
+			
 			if (facoltaDAO.listFacoltaByQuery("UniversitaID="+indexUniv+" AND "+"Nome='"+facolta+"'",null).length != 0) {
 				return true;
 			}
