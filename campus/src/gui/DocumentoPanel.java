@@ -37,6 +37,7 @@ public class DocumentoPanel extends Pagina {
 	private JPanel riquadrodx;
 	private JPanel panel;
 	private JButton btnAggiungiAiPreferiti;
+	private JButton btnRimuoviDaiPreferiti;
 	JLabel lblPreferiti = new JLabel();
 	JLabel lbltipo;
 	// Panel stelle
@@ -148,11 +149,25 @@ public class DocumentoPanel extends Pagina {
 		btnAggiungiAiPreferiti = buttonCreator.createButton(
 				"Aggiungi ai preferiti", 409, 49, 230, 34, false, true);
 		panel.add(btnAggiungiAiPreferiti);
+		btnRimuoviDaiPreferiti = buttonCreator.createButton(
+				"Rimuovi dai preferiti", 409, 49, 230, 34, false, true);
+		panel.add(btnRimuoviDaiPreferiti);
 
 		//if (ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
-		if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d))
-			btnAggiungiAiPreferiti.setVisible(false);
-
+		if(d != null){
+			if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d)){
+				btnAggiungiAiPreferiti.setVisible(false);
+				btnRimuoviDaiPreferiti.setVisible(true);
+				panel.validate();
+				panel.repaint();
+			}
+			else{
+				btnAggiungiAiPreferiti.setVisible(true);
+				btnRimuoviDaiPreferiti.setVisible(false);
+				panel.validate();
+				panel.repaint();
+			}
+		}
 		lbltipo = new JLabel();
 		lbltipo.setBounds(84, 53, 57, 23);
 		panel.add(lbltipo);
@@ -221,10 +236,10 @@ public class DocumentoPanel extends Pagina {
 	}
 
 	public void setPDF(String pdfPath) {
-		if (pdfPath != null) {
+		if (pdfPath != null && !pdfPath.equals("/")) {
 			pdfDoc.doOpen(pdfPath);
 		} else {
-			pdfDoc.doOpen();
+			//pdfDoc.doOpen();
 		}
 	}
 
@@ -252,8 +267,21 @@ public class DocumentoPanel extends Pagina {
 		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
-		if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d))
-			btnAggiungiAiPreferiti.setVisible(false);
+		if(d != null){
+			if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d)){
+				btnAggiungiAiPreferiti.setVisible(false);
+				btnRimuoviDaiPreferiti.setVisible(true);
+				panel.validate();
+				panel.repaint();
+			}
+			else{
+				btnAggiungiAiPreferiti.setVisible(true);
+				btnRimuoviDaiPreferiti.setVisible(false);
+				panel.validate();
+				panel.repaint();
+				
+			}
+		}
 		if(d.getPath() != null && !d.getPath().equals("/")){
 			String strTipo = d.getPath().split("\\.")[1];
 			switch(strTipo){
@@ -307,6 +335,19 @@ public class DocumentoPanel extends Pagina {
 				u.aggiungiDocumentoPreferito(u.getUtente(1), d);
 				//Home.getPagina("preferiti");
 				btnAggiungiAiPreferiti.setVisible(false);
+				btnRimuoviDaiPreferiti.setVisible(true);
+				validate();
+				repaint();
+			}
+		});
+		btnRimuoviDaiPreferiti.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ControllerUtente u = ControllerUtente.getInstance();
+				u.rimuoviDocumentoPreferito(u.getUtente(1),d);
+				btnAggiungiAiPreferiti.setVisible(true);
+				btnRimuoviDaiPreferiti.setVisible(false);
+				validate();
+				repaint();
 			}
 		});
 		lblVoti.setText(Integer.toString(d.votos.size()));
