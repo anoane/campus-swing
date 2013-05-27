@@ -6,14 +6,19 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.util.TreeMap;
 
 import javax.swing.BorderFactory;
@@ -140,8 +145,18 @@ public class Home {
 	}
 
 	private void initialize() {
+		        
 		setFrame(new JFrame());
 
+		getFrame().addWindowStateListener(new WindowStateListener() {
+
+			@Override
+			public void windowStateChanged(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				Home.forceResizeEvent();
+			}
+        });
+		
 		// resizable
 		getFrame().setResizable(true);
 
@@ -548,10 +563,18 @@ public class Home {
 	}
 	
 	static void forceResizeEvent() {
-		Rectangle old_rect = getFrame().getBounds();
-		getFrame().setBounds((int)getFrame().getBounds().getX(),(int)getFrame().getBounds().getY(),(int)getFrame().getBounds().getWidth(),(int)getFrame().getBounds().getHeight()+1);
+		/*Rectangle old_rect = getFrame().getBounds();
+		int jframe_old_state = getFrame().getExtendedState();
+		if (jframe_old_state == JFrame.MAXIMIZED_BOTH) {
+			getFrame().revalidate();
+			getFrame().repaint();
+		} else {
+			getFrame().setBounds((int)getFrame().getBounds().getX(),(int)getFrame().getBounds().getY(),(int)getFrame().getBounds().getWidth(),(int)getFrame().getBounds().getHeight()+1);
+			getFrame().revalidate();
+			getFrame().setBounds(old_rect);
+		}*/
 		getFrame().revalidate();
-		getFrame().setBounds(old_rect);
+		getFrame().repaint();
 		spaghettiResize();
 	}
 
