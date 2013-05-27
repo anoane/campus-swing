@@ -4,6 +4,8 @@
 package gui.buttons;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -16,6 +18,7 @@ import javax.swing.JLabel;
 public class RimuoviCorsoSeguito extends CustomButton {
 	
 	protected static String iconPath = "./newimage/eliminaCorsoSeguito.png";
+	protected static String iconPathOver = "./newimage/eliminaCorsoSeguitoOver.png";
 	
 	public RimuoviCorsoSeguito(String s) {
 		super();
@@ -23,18 +26,110 @@ public class RimuoviCorsoSeguito extends CustomButton {
 		setBackground(null);
 		setLayout(null);
 		setToolTipText(s);
-		JLabel lblX = new JLabel();
+		final JLabel lblX = new JLabel();
 		lblX.setIcon(new ImageIcon(iconPath));
 		lblX.setForeground(Color.WHITE);
 		lblX.setBounds(17, 0, 19, 26);
 		lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
 		add(lblX);
 		
-		JLabel lblRimuovi = new JLabel("Rimuovi");
+		final JLabel lblRimuovi = new JLabel("Rimuovi");
 		lblRimuovi.setForeground(Color.WHITE);
 		lblRimuovi.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblRimuovi.setBounds(0, 34, 56, 14);
 		add(lblRimuovi);
+		
+		lblRimuovi.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				lblRimuovi.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				lblRimuovi.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblRimuovi.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblRimuovi.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblRimuovi.getParent().dispatchEvent(e);
+				
+			}
+		});
+		
+		lblX.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				lblX.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				lblX.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblX.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblX.getParent().dispatchEvent(e);
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblX.getParent().dispatchEvent(e);
+				
+			}
+		});
+		
+		this.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblRimuovi.setForeground(new Color(67,136,204));
+				lblX.setIcon(new ImageIcon(iconPathOver));
+				lblX.setToolTipText("Rimuovi dai corsi seguiti");
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblRimuovi.setForeground(Color.WHITE);
+				lblX.setIcon(new ImageIcon(iconPath));
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			
+		});
 	}
 	
 	

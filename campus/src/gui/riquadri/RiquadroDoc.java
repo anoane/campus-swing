@@ -56,9 +56,9 @@ public class RiquadroDoc extends Riquadro {
 		anteprima.setBounds(15, 45, 100, 141);
 		anteprima.setBackground(Color.WHITE);
 		anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
-		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		// Event listener
-		anteprima.addMouseListener(new MouseAdapter() {
+		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openDocument(true,doc);
@@ -134,13 +134,13 @@ public class RiquadroDoc extends Riquadro {
 		pulsanti.setSize(128, 52);
 		pulsanti.setLocation(302, 13);
 		pulsanti.setLayout(null);
-		RimuoviButton r = new RimuoviButton("Rimuovi il documento dai Preferiti");
+		RimuoviButton r = new RimuoviButton("Rimuovi il documento");
 		r.setLocation(75, 0);
-		RimuoviPrefButton rp = new RimuoviPrefButton("Rimuovi il documento dai Preferiti");
+		RimuoviPrefButton rp = new RimuoviPrefButton("Rimuovi il documento dai preferiti");
 		r.setLocation(75, 0);
 		rp.setLocation(75, 0);
 		//r.setSize(19,26);
-		ModificaButton m = new ModificaButton();
+		ModificaButton m = new ModificaButton("Modifica il documento");
 		m.setLocation(15, 0);
 		//m.setSize(19,26);
 		pulsanti.add(m);
@@ -255,7 +255,104 @@ public class RiquadroDoc extends Riquadro {
 		add(anteprima);
 		//anteprima.setLayout(null);
 		add(proprietario_nome);
-		
+		/*
+		titolo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		titolo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		corso.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		corso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		facolta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		facolta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		univ.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		univ.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		descrizione.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		descrizione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		stelle.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		stelle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		utente.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		utente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		proprietario_cognome.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		proprietario_cognome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		tipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		tipo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		lbltipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		lbltipo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		anteprima.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});
+		proprietario_nome.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		// Event listener
+		proprietario_nome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openDocument(true,doc);
+			}
+		});*/
+
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);

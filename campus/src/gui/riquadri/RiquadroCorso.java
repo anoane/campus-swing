@@ -44,8 +44,8 @@ public class RiquadroCorso extends Riquadro {
 		
 		anteprima = new JPanel();
 		anteprima.setBounds(15, 56, 130, 130);
-		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		anteprima.addMouseListener(new MouseAdapter() {
+		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openCorso(false,c);
@@ -113,7 +113,7 @@ public class RiquadroCorso extends Riquadro {
 		add(facolta);
 		
 		rimuovi = new RimuoviCorsoSeguito("Cancella il documento");
-		rimuovi.setToolTipText("Rimuovi il corso dai preferiti");
+		rimuovi.setToolTipText("Rimuovi dai corsi seguiti");
 		rimuovi.setLocation(377, 5);
 		
 		if (pulsantiVisible) {
