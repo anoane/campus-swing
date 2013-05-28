@@ -113,9 +113,9 @@ public class ControllerDocumento extends AbstractController{
 			ControllerRicerca.getInstance().removeDocumento(d);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
 			
-			//rimuoviVotiAssociatiADocumento(d);
+			rimuoviVotiAssociatiADocumento(d);
 			rimuoviDocumentoDaTuttiPreferiti(d);
-			
+			//d.utentePreferito.clear();
 			d.getFacolta().documento.remove(d);
 			d.getCorso().documentoCorso.remove(d);
 			d.getProprietario().documentiUtente.remove(d);
@@ -133,7 +133,9 @@ public class ControllerDocumento extends AbstractController{
 			voto = votoDAO.listVotoByQuery("DocumentoID = " + d.getID(), null);
 			if (voto.length!=0) {
 				for (int i=0; i<voto.length; i++) {
-					ControllerVoto.getInstance().rimuoviVotoDocumento(d, voto[i].getUtente());
+					voto[i].getUtente().votos.remove(voto[i]);
+					voto[i].getDocumento().votos.remove(voto[i]);
+					votoDAO.delete(voto[i]);
 				}
 			}
 		} catch (PersistentException e) {
@@ -150,7 +152,8 @@ public class ControllerDocumento extends AbstractController{
 			ud = udDAO.listUtente_DocumentoByQuery("DocumentoID = " + d.getID(), null);
 			if (ud.length!=0) {
 				for (int i=0; i<ud.length; i++) {
-					System.out.println(ud[i].getID());
+					ud[i].getDocumento().utentePreferito.remove(ud[i]);
+					ud[i].getUtentePreferito().documentiPreferiti.remove(ud[i]);
 					udDAO.delete(ud[i]);
 				}
 			}
