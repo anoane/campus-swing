@@ -147,21 +147,9 @@ public class ControllerUtente extends AbstractController{
 		try {
 			if(containDocumentoPreferito(u,d)) {
 				Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
+				System.out.println(ud.getID());
 				udDAO.delete(ud);
 			}
-		} catch (PersistentException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void rimuoviDocumento(Utente u, Documento d){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		ControllerDocumento s = ControllerDocumento.getInstance();
-		u.documentiUtente.remove(d);
-		s.removeDocumento(d);
-		UtenteDAO utenteDAO = factory.getUtenteDAO();
-		try {
-			utenteDAO.save(u);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

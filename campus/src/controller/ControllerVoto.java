@@ -63,7 +63,7 @@ public class ControllerVoto extends AbstractController {
 			if(containVotoDocumento(documento,utente)) {
 				Voto voto = votoDAO.getVotoByORMID(ControllerDocumento.getInstance().getIdVotoDocumento(documento,utente));
 				//documento.votos.remove(voto);
-				//votoDAO.delete(voto);
+				votoDAO.delete(voto);
 			}
 		} catch (PersistentException e) {
 			e.printStackTrace();

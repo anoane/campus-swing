@@ -226,8 +226,8 @@ public class MieiDocumenti extends Pagina {
 					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sicuro di voler cancellare il documento?","Attenzione",0);
 					if(n==0){
 						docs.remove(d);
-						ControllerUtente u = ControllerUtente.getInstance();
-						u.rimuoviDocumento(u.getUtente(1), d);
+						ControllerDocumento cd = ControllerDocumento.getInstance();
+						cd.removeDocumento(d);
 						adjustDocs(docs);}
 					}
 				});

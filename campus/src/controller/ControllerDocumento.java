@@ -112,10 +112,10 @@ public class ControllerDocumento extends AbstractController{
 			d.setProprietario(null); 
 			ControllerRicerca.getInstance().removeDocumento(d);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
-			rimuoviVotiAssociatiADocumento(d);
+			//rimuoviVotiAssociatiADocumento(d);
 			rimuoviDocumentoDaTuttiPreferiti(d);
-			d.getFacolta().documento.remove(d);
-			d.getCorso().documentoCorso.remove(d);
+			//d.getFacolta().documento.remove(d);
+			//d.getCorso().documentoCorso.remove(d);
 			documentoDAO.delete(d);
 		} catch (PersistentException e) {
 			e.printStackTrace();
