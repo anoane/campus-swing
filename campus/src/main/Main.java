@@ -2,7 +2,7 @@ package main;
 import gui.Home;
 
 import java.awt.EventQueue;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -69,8 +69,9 @@ public class Main {
 		u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(4));
 		
 		u.aggiungiCorsoSeguito(utente,corso);
+		Date data = new Date();
+		ControllerCorrezione.getInstance().creaCorrezione("Hai fatto una marea di errori", new Timestamp(data.getTime()), ControllerDocumento.getInstance().getDocumento(1), ControllerUtente.getInstance().getUtente(1));
 		*/
-		//ControllerCorrezione.getInstance().creaCorrezione("Hai fatto una marea di errori", new Date(new Date().getTime()), ControllerDocumento.getInstance().getDocumento(1), ControllerUtente.getInstance().getUtente(1));
 		//Window thread
 		EventQueue.invokeLater(new Runnable() {
 			@Override
