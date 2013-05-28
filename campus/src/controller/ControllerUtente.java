@@ -67,7 +67,7 @@ public class ControllerUtente extends AbstractController{
 	 */
 	public void deleteUtente(int ID) {
 		try{
-			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
+			//PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			
 			DAOFactory factory = DAOFactory.getDAOFactory();
 			UtenteDAO utenteDAO = factory.getUtenteDAO();
@@ -79,7 +79,7 @@ public class ControllerUtente extends AbstractController{
 			utenteDAO.delete(utente);
 			
 			//Commit
-			t.commit();
+			//t.commit();
 			
 		} catch (PersistentException e) {
 			
@@ -128,16 +128,22 @@ public class ControllerUtente extends AbstractController{
 	}
 	
 	public void aggiungiDocumentoPreferito(Utente u, Documento d){
+		
+
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
 		Utente_Documento ud = udDAO.createUtente_Documento();
 		ud.setDocumento(d);
 		ud.setUtentePreferito(u);
 		try {
+			//PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			udDAO.save(ud);
+			
+			//t.commit();
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	
@@ -147,7 +153,7 @@ public class ControllerUtente extends AbstractController{
 		try {
 			if(containDocumentoPreferito(u,d)) {
 				Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
-				System.out.println(ud.getID());
+				System.out.println(ud.getID());		
 				udDAO.delete(ud);
 			}
 		} catch (PersistentException e) {

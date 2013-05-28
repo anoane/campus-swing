@@ -109,13 +109,16 @@ public class ControllerDocumento extends AbstractController{
 	public void removeDocumento(Documento d){
 		try {
 			//XXX:Serve?
-			d.setProprietario(null); 
+			//d.setProprietario(null); 
 			ControllerRicerca.getInstance().removeDocumento(d);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
+			
 			//rimuoviVotiAssociatiADocumento(d);
 			rimuoviDocumentoDaTuttiPreferiti(d);
-			//d.getFacolta().documento.remove(d);
-			//d.getCorso().documentoCorso.remove(d);
+			
+			d.getFacolta().documento.remove(d);
+			d.getCorso().documentoCorso.remove(d);
+			d.getProprietario().documentiUtente.remove(d);
 			documentoDAO.delete(d);
 		} catch (PersistentException e) {
 			e.printStackTrace();
@@ -147,7 +150,8 @@ public class ControllerDocumento extends AbstractController{
 			ud = udDAO.listUtente_DocumentoByQuery("DocumentoID = " + d.getID(), null);
 			if (ud.length!=0) {
 				for (int i=0; i<ud.length; i++) {
-					ControllerUtente.getInstance().rimuoviDocumentoPreferito(ud[i].getUtentePreferito(), d);
+					System.out.println(ud[i].getID());
+					udDAO.delete(ud[i]);
 				}
 			}
 		} catch (PersistentException e) {
