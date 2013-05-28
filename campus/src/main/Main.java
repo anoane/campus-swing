@@ -30,7 +30,6 @@ public class Main {
 	 */
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		
 		/*
 		ControllerUniversita univ = ControllerUniversita.getInstance();
 		
@@ -69,9 +68,11 @@ public class Main {
 		u.aggiungiDocumentoPreferito(u.getUtente(1), d.getDocumento(4));
 		
 		u.aggiungiCorsoSeguito(utente,corso);
-		Date data = new Date();
-		ControllerCorrezione.getInstance().creaCorrezione("Hai fatto una marea di errori", new Timestamp(data.getTime()), ControllerDocumento.getInstance().getDocumento(1), ControllerUtente.getInstance().getUtente(1));
+		
+		
 		*/
+		//Date data = new Date();
+		//ControllerCorrezione.getInstance().creaCorrezione("Cambia il font del documento perchè la tarantino dice che quello fa schifo!", new Timestamp(data.getTime()), ControllerDocumento.getInstance().getDocumento(1), ControllerUtente.getInstance().getUtente(1));
 		//Window thread
 		EventQueue.invokeLater(new Runnable() {
 			@Override

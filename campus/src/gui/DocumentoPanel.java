@@ -50,6 +50,8 @@ public class DocumentoPanel extends Pagina {
 	JLabel lblUniversit = new JLabel();
 	JLabel lblVoti = new JLabel();
 	JTextPane panel_3 = new JTextPane();
+	private PannelloSuggerimenti suggerimenti;
+	private JButton btnNewButton;
 
 	public DocumentoPanel(final Documento d) {
 		setBackground(Color.WHITE);
@@ -86,63 +88,6 @@ public class DocumentoPanel extends Pagina {
 		lblNewLabel.setBounds(5, 2, 83, 20);
 		panel_2.add(lblNewLabel);
 
-		final JPanel doc_panel = new JPanel();
-		doc_panel.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
-		doc_panel.setBackground(Color.WHITE);
-		doc_panel.setBounds(10, 100, 594, 484);
-		panel.add(doc_panel);
-		doc_panel.setLayout(null);
-
-		final JPanel suggerimenti = new JPanel();
-		suggerimenti.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
-		suggerimenti.setBackground(Color.WHITE);
-		suggerimenti.setBounds(519, 0, 75, 484);
-		doc_panel.add(suggerimenti);
-		suggerimenti.setLayout(null);
-
-		final JButton btnNewButton = new JButton(">");
-
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (suggestOpened) {
-					suggestOpened = false;
-					doc_panel.setBounds(10, 100, 594, 484);
-					suggerimenti.setBounds(519, 0, 75, 484);
-					btnNewButton.setText(">");
-				} else {
-					suggestOpened = true;
-					doc_panel.setBounds(10, 100, 594 + 376, 484);
-					suggerimenti.setBounds(519 + 376, 0, 75, 484);
-					btnNewButton.setText("<");
-				}
-				toggleInfo();
-			}
-		});
-		btnNewButton.setBounds(2, 2, 71, 71);
-		suggerimenti.add(btnNewButton);
-
-		JPanel doc = new JPanel();
-		doc.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
-		doc.setBackground(Color.WHITE);
-		doc.setBounds(0, 0, 521, 484);
-		doc_panel.add(doc);
-		doc.setLayout(null);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(2, 2, 517, 480);
-		doc.add(panel_1);
-		panel_1.setLayout(null);
-
-		// CopyOfPDFViewer pdfDoc = new CopyOfPDFViewer(true);
-		// pdfDoc.setBackground(Color.WHITE);
-		// pdfDoc.setBounds(2, 2, 517, 480);
-		// doc.add(pdfDoc);
-
-		pdfDoc.setBounds(0, -48, 518, 529);
-		panel_1.add(pdfDoc);
-		pdfDoc.setBorder(null);
-
 		// pdfDoc.setBackground(Color.WHITE);
 
 		ButtonStandard buttonCreator = new ButtonStandard();
@@ -168,6 +113,38 @@ public class DocumentoPanel extends Pagina {
 				panel.repaint();
 			}
 		}
+				
+						JPanel doc = new JPanel();
+						doc.setBounds(0, 100, 521, 484);
+						panel.add(doc);
+						doc.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
+						doc.setBackground(Color.WHITE);
+						doc.setLayout(null);
+						
+								JPanel panel_1 = new JPanel();
+								panel_1.setBounds(2, 2, 517, 480);
+								doc.add(panel_1);
+								panel_1.setLayout(null);
+								
+										// CopyOfPDFViewer pdfDoc = new CopyOfPDFViewer(true);
+										// pdfDoc.setBackground(Color.WHITE);
+										// pdfDoc.setBounds(2, 2, 517, 480);
+										// doc.add(pdfDoc);
+								
+										pdfDoc.setBounds(0, -48, 518, 529);
+										panel_1.add(pdfDoc);
+										pdfDoc.setBorder(null);
+		
+				suggerimenti = new PannelloSuggerimenti();
+				suggerimenti.setBounds(575, 100, 400, 500);
+				suggerimenti.setVisible(false);
+				panel.add(suggerimenti);
+				suggerimenti.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
+				suggerimenti.setBackground(Color.WHITE);
+		
+
+		
+		
 		lbltipo = new JLabel();
 		lbltipo.setBounds(84, 53, 57, 23);
 		panel.add(lbltipo);
@@ -204,17 +181,22 @@ public class DocumentoPanel extends Pagina {
 		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
 				188, 251, 178, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
+		
+		JPanel panelCommenti = new JPanel();
+		panelCommenti.setBounds(624, 390, 200, 200);
+		panel.add(panelCommenti);
+		panelCommenti.setLayout(null);
 
 		JLabel lblCommenti = new JLabel("Commenti");
+		lblCommenti.setBounds(0, 0, 200, 25);
+		panelCommenti.add(lblCommenti);
 		lblCommenti.setForeground(new Color(6, 121, 159));
 		lblCommenti.setFont(new Font("Arial", Font.BOLD, 18));
-		lblCommenti.setBounds(624, 390, 200, 25);
-		panel.add(lblCommenti);
 
 		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(0, 25, 170, 1);
+		panelCommenti.add(separator_1);
 		separator_1.setForeground(new Color(27, 50, 128));
-		separator_1.setBounds(614, 414, 170, 1);
-		panel.add(separator_1);
 		stelle = new JPanel();
 		stelle.setBounds(205, 10, 150, 30);
 		stelle.setLayout(null);
@@ -264,9 +246,36 @@ public class DocumentoPanel extends Pagina {
 
 	@Override
 	public void reload(Object o) {
+		btnNewButton = new JButton(">");
+		panel.add(btnNewButton);
+		btnNewButton.setBounds(521, 100, 45, 45);
 		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
+		riquadrodx.setVisible(true);
+		suggerimenti.load(d);
+		suggerimenti.setVisible(false);
+		validate();
+		repaint();
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (suggestOpened) {
+					suggestOpened = false;
+					suggerimenti.setVisible(false);
+					btnNewButton.setText(">");
+				} else {
+					suggestOpened = true;
+					suggerimenti.setVisible(true);
+					btnNewButton.setText("<");
+				}
+				toggleInfo();
+				validate();
+				repaint();
+			}
+			
+		});
+		
 		if(d != null){
 			if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d)){
 				btnAggiungiAiPreferiti.setVisible(false);
