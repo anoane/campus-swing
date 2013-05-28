@@ -43,6 +43,7 @@ public class CorsoPanel extends Pagina {
 	private JPanel panelsx;
 	private JPanel doc;
 	private int altezzaPagina=0;
+	private JTextPane facolta = new JTextPane();
 	
 	//Label Pagina
 	private JLabel lblPage;
@@ -96,9 +97,9 @@ public class CorsoPanel extends Pagina {
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 14));
 		
 		descrizione.setBackground(Color.WHITE);
-		descrizione.setMargin(new Insets(5, 5, 5, 5));
+		descrizione.setMargin(new Insets(0, 0, 0, 0));
 		descrizione.setEditable(false);
-		descrizione.setBounds(0, 49, 478, 62);
+		descrizione.setBounds(0, 38, 478, 73);
 		panel_1.add(descrizione);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -229,7 +230,7 @@ public class CorsoPanel extends Pagina {
 		
 		
 		
-		JLabel lblProgramma = new JLabel("Docenti che tengono il corso: ");
+		JLabel lblProgramma = new JLabel("Docenti che tengono il corso");
 		lblProgramma.setForeground(new Color(0x06, 0x79, 0x9F));
 		lblProgramma.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblProgramma.setAlignmentX(0.5f);
@@ -241,26 +242,13 @@ public class CorsoPanel extends Pagina {
 		separator_2.setBounds(500, 38, 460, 1);
 		panel_1.add(separator_2);
 		
-		JTextPane facolta = new JTextPane();
 		facolta.setFont(new Font("Arial", Font.PLAIN, 14));
-		facolta.setMargin(new Insets(5, 5, 5, 5));
+		facolta.setMargin(new Insets(0, 0, 0, 0));
 		facolta.setEditable(false);
 		facolta.setBackground(Color.WHITE);
-		facolta.setBounds(0, 161, 478, 63);
+		facolta.setBounds(0, 150, 478, 74);
 		panel_1.add(facolta);
-		if (corso != null) {
-			if (!corso.facolta.isEmpty()) {
-				for(int i=0; i<corso.facolta.size(); ++i){
-					if(i == 0){
-						facolta.setText(corso.facolta.toArray()[0].getNome());
-						++i;
-					}
-					if (i<corso.facolta.size()) {
-						facolta.setText(facolta.getText()+" , "+corso.facolta.toArray()[i].getNome());
-					}
-				}
-			}
-		}
+
 
 		
 		JLabel lblFacolt = new JLabel("Facolt\u00E0");
@@ -304,6 +292,11 @@ public class CorsoPanel extends Pagina {
 		contenuto_pagina.setLayout(null);
 		contenuto_pagina.setBackground(Color.WHITE);
 		doc.add(contenuto_pagina);
+	
+		separator_2.setVisible(false);
+		separator_4.setVisible(false);
+		separator_5.setVisible(false);
+
 	}
 	
 	public void addDocumenti(Corso corso){
@@ -371,6 +364,19 @@ public class CorsoPanel extends Pagina {
 		comboBox.setModel(newModel);
 		addDocumenti(corso);
 		
+		if (corso != null) {
+			if (!corso.facolta.isEmpty()) {
+				for(int i=0; i<corso.facolta.size(); ++i){
+					if(i == 0){
+						facolta.setText(corso.facolta.toArray()[0].getNome());
+						++i;
+					}
+					if (i<corso.facolta.size()) {
+						facolta.setText(facolta.getText()+" , "+corso.facolta.toArray()[i].getNome());
+					}
+				}
+			}
+		}
 	}
 	
 	public int getAltezzaPagina(){
