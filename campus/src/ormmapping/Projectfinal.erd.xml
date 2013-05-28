@@ -370,10 +370,10 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="Data">
+    <Column name="Timestamp">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>17</Type>
+      <Type>22</Type>
       <Length>0</Length>
       <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
