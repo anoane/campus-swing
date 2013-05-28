@@ -58,7 +58,7 @@ import java.awt.event.ItemEvent;
 //TODO:filtro facolta
 
 public class RisultatiRicerca extends Pagina {
-	private final static JPanel panel = new JPanel();
+	private final JPanel panel = new JPanel();
 	private static JPanel scegli_fac = new JPanel();
 	private static JPanel scegli_corso = new JPanel();
 	private static JPanel scegli_univ = new JPanel();
@@ -223,53 +223,7 @@ public class RisultatiRicerca extends Pagina {
 		panel.getParent().addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				int dimensione_fill_home_bottom = (panel.getParent()
-						.getHeight() - Home.MIN_DIMENSION_Y + 300);
-				panel_10.setBounds(panel_10.getX(), panel_10.getY(), panel_10.getWidth(),
-						panel_10.getHeight() + dimensione_fill_home_bottom+184);
-				panel_13.setBounds(0, 38, panel_13.getWidth(),
-						dimensione_fill_home_bottom+184);
-				scrollPane_2.setBounds(scrollPane_2.getX(), scrollPane_2.getY(),
-						scrollPane_2.getWidth(), panel_13.getHeight());
-				if (is_ricerca_guidata_open) {
-					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
-							panel.getHeight() + dimensione_fill_home_bottom);
-					panel_9.setBounds(panel_9.getX(), panel_9.getY(), panel_9.getWidth(),
-							panel_9.getHeight() + dimensione_fill_home_bottom);
-					panel_risultati.setBounds(0, 76, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -8 -76);
-					panel_risultati_bycorso.setBounds(0, 76, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -8 -76);
-					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
-					scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
-					panel_ricerca_guidata.setBounds(0,
-							dimensione_fill_home_bottom + 20 - 28,
-							panel_ricerca_guidata.getWidth(),
-							panel_ricerca_guidata.getHeight());
-					btnNewButton.setText("Nascondi la ricerca guidata");
-					lblRicercaAvanzata.setText("Ricerca guidata");
-				} else {
-					panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
-							panel.getHeight() + dimensione_fill_home_bottom );
-					panel_9.setBounds(panel_9.getX(), panel_9.getY(), panel_9.getWidth(),
-							panel_9.getHeight() + dimensione_fill_home_bottom );
-					panel_risultati.setBounds(0, 76, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -76 + 200);
-					panel_risultati_bycorso.setBounds(0, 76, panel_risultati.getWidth(),
-							dimensione_fill_home_bottom -18 -76 + 200);
-					scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
-					scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
-							scrollPane.getWidth(), panel_risultati.getHeight() - 0);
-					panel_ricerca_guidata.setBounds(0,
-							dimensione_fill_home_bottom + 20 + 200 - 38,
-							panel_ricerca_guidata.getWidth(),
-							panel_ricerca_guidata.getHeight());
-					btnNewButton.setText("Mostra la ricerca guidata!");
-					lblRicercaAvanzata.setText("Non sei riuscito a trovare quello che cercavi?");
-				}
+				spaghettiResize();
 
 			}
 
@@ -725,6 +679,57 @@ public class RisultatiRicerca extends Pagina {
 
 	}
 
+	protected void spaghettiResize() {
+		int dimensione_fill_home_bottom = (panel.getParent()
+				.getHeight() - Home.MIN_DIMENSION_Y + 300);
+		panel_10.setBounds(panel_10.getX(), panel_10.getY(), panel_10.getWidth(),
+				panel_10.getHeight() + dimensione_fill_home_bottom+184);
+		panel_13.setBounds(0, 38, panel_13.getWidth(),
+				dimensione_fill_home_bottom+184);
+		scrollPane_2.setBounds(scrollPane_2.getX(), scrollPane_2.getY(),
+				scrollPane_2.getWidth(), panel_13.getHeight());
+		if (is_ricerca_guidata_open) {
+			panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
+					panel.getHeight() + dimensione_fill_home_bottom);
+			panel_9.setBounds(panel_9.getX(), panel_9.getY(), panel_9.getWidth(),
+					panel_9.getHeight() + dimensione_fill_home_bottom);
+			panel_risultati.setBounds(0, 76, panel_risultati.getWidth(),
+					dimensione_fill_home_bottom -8 -76);
+			panel_risultati_bycorso.setBounds(0, 76, panel_risultati.getWidth(),
+					dimensione_fill_home_bottom -8 -76);
+			scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
+					scrollPane.getWidth(), panel_risultati.getHeight() - 0);
+			scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
+					scrollPane.getWidth(), panel_risultati.getHeight() - 0);
+			panel_ricerca_guidata.setBounds(0,
+					dimensione_fill_home_bottom + 20 - 28,
+					panel_ricerca_guidata.getWidth(),
+					panel_ricerca_guidata.getHeight());
+			btnNewButton.setText("Nascondi la ricerca guidata");
+			lblRicercaAvanzata.setText("Ricerca guidata");
+		} else {
+			panel.setBounds(panel.getX(), panel.getY(), panel.getWidth(),
+					panel.getHeight() + dimensione_fill_home_bottom );
+			panel_9.setBounds(panel_9.getX(), panel_9.getY(), panel_9.getWidth(),
+					panel_9.getHeight() + dimensione_fill_home_bottom );
+			panel_risultati.setBounds(0, 76, panel_risultati.getWidth(),
+					dimensione_fill_home_bottom -18 -76 + 200);
+			panel_risultati_bycorso.setBounds(0, 76, panel_risultati.getWidth(),
+					dimensione_fill_home_bottom -18 -76 + 200);
+			scrollPane.setBounds(scrollPane.getX(), scrollPane.getY(),
+					scrollPane.getWidth(), panel_risultati.getHeight() - 0);
+			scrollPane_1.setBounds(scrollPane.getX(), scrollPane.getY(),
+					scrollPane.getWidth(), panel_risultati.getHeight() - 0);
+			panel_ricerca_guidata.setBounds(0,
+					dimensione_fill_home_bottom + 20 + 200 - 38,
+					panel_ricerca_guidata.getWidth(),
+					panel_ricerca_guidata.getHeight());
+			btnNewButton.setText("Mostra la ricerca guidata!");
+			lblRicercaAvanzata.setText("Non sei riuscito a trovare quello che cercavi?");
+		}
+		
+	}
+
 	protected void loadRisultatiCorsi(String campoRicerca) {
 		try {
 			adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca));
@@ -837,7 +842,10 @@ public class RisultatiRicerca extends Pagina {
 		} else {
 			is_ricerca_guidata_open = true;
 		}
+		panel.revalidate();
+		panel.repaint();
 		Home.forceResizeEvent();
+		spaghettiResize();
 	}
 
 	public void addDocumentiSearch(final ArrayList<Documento> docs) {
