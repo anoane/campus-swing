@@ -13,9 +13,11 @@ import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Utente;
 import modello_di_dominio.Utente_Documento;
+import modello_di_dominio.Voto;
 import modello_di_dominio.dao.Corso_UtenteDAO;
 import modello_di_dominio.dao.DocumentoDAO;
 import modello_di_dominio.dao.Utente_DocumentoDAO;
+import modello_di_dominio.dao.VotoDAO;
 
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.orm.PersistentException;
@@ -110,10 +112,46 @@ public class ControllerDocumento extends AbstractController{
 			d.setProprietario(null); 
 			ControllerRicerca.getInstance().removeDocumento(d);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
+			rimuoviVotiAssociatiADocumento(d);
+			rimuoviDocumentoDaTuttiPreferiti(d);
 			d.getFacolta().documento.remove(d);
 			d.getCorso().documentoCorso.remove(d);
 			documentoDAO.delete(d);
 		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void rimuoviVotiAssociatiADocumento(Documento d) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		VotoDAO votoDAO = factory.getVotoDAO();
+		Voto[] voto = null;
+		try {
+			voto = votoDAO.listVotoByQuery("DocumentoID = " + d.getID(), null);
+			if (voto.length!=0) {
+				for (int i=0; i<voto.length; i++) {
+					ControllerVoto.getInstance().rimuoviVotoDocumento(d, voto[i].getUtente());
+				}
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void rimuoviDocumentoDaTuttiPreferiti(Documento d) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+		Utente_Documento[] ud = null;
+		try {
+			ud = udDAO.listUtente_DocumentoByQuery("DocumentoID = " + d.getID(), null);
+			if (ud.length!=0) {
+				for (int i=0; i<ud.length; i++) {
+					ControllerUtente.getInstance().rimuoviDocumentoPreferito(ud[i].getUtentePreferito(), d);
+				}
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -161,12 +199,31 @@ public class ControllerDocumento extends AbstractController{
 		}
 	}
 	
+	public Integer getIdVotoDocumento(Documento d, Utente u) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		VotoDAO votoDAO = factory.getVotoDAO();
+		Voto voto = null;
+		try {
+			System.out.println("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID());
+			voto = votoDAO.loadVotoByQuery("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID(), null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			return null;
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			return null;
+		}
+		return voto.getID();
+	}
+	
 	public Integer getIdDocumentoPreferito(Utente u, Documento d) {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
 		Utente_Documento ud = null;
 		try {
-			ud = udDAO.loadUtente_DocumentoByQuery("DocumentoID = " + d.getID() + "AND UtenteID = " +u.getID(), null);
+			System.out.println("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID());
+			ud = udDAO.loadUtente_DocumentoByQuery("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID(), null);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -349,4 +406,6 @@ public class ControllerDocumento extends AbstractController{
 		}
 		return docs;
 	}
+
+
 }

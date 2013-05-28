@@ -179,7 +179,7 @@ public class ControllerCorso extends AbstractController {
 		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
 		Corso_Utente cu = null;
 		try {
-			cu = cuDAO.loadCorso_UtenteByQuery("UtenteID = " + u.getID() + "AND CorsoID = " +c.getID(), null);
+			cu = cuDAO.loadCorso_UtenteByQuery("UtenteID = " + u.getID() + " AND CorsoID = " +c.getID(), null);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();

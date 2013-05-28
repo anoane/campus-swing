@@ -145,8 +145,10 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
 		try {
-			Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
-			udDAO.delete(ud);
+			if(containDocumentoPreferito(u,d)) {
+				Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
+				udDAO.delete(ud);
+			}
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -156,7 +158,6 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		ControllerDocumento s = ControllerDocumento.getInstance();
 		u.documentiUtente.remove(d);
-		rimuoviDocumentoPreferito(u, d);
 		s.removeDocumento(d);
 		UtenteDAO utenteDAO = factory.getUtenteDAO();
 		try {
@@ -183,8 +184,10 @@ public class ControllerUtente extends AbstractController{
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
 		try {
-			Corso_Utente cu = cuDAO.getCorso_UtenteByORMID(ControllerCorso.getInstance().getIdCorsoSeguito(u,c));
-			cuDAO.delete(cu);
+			if(containCorsoSeguito(u,c)) {
+				Corso_Utente cu = cuDAO.getCorso_UtenteByORMID(ControllerCorso.getInstance().getIdCorsoSeguito(u,c));
+				cuDAO.delete(cu);
+			}
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
