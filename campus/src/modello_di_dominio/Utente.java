@@ -273,7 +273,7 @@ public class Utente {
 	
 	public final modello_di_dominio.VotoSetCollection votos = new modello_di_dominio.VotoSetCollection(this, _ormAdapter, modello_di_dominio.ORMConstants.KEY_UTENTE_VOTOS, modello_di_dominio.ORMConstants.KEY_VOTO_UTENTE, modello_di_dominio.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	public modello_di_dominio.Documento[] getDocumentosCommento() {
+	public modello_di_dominio.Documento[] getDocumentos() {
 		java.util.ArrayList lValues = new java.util.ArrayList(5);
 		for(java.util.Iterator lIter = commentos.getIterator();lIter.hasNext();) {
 			lValues.add(((modello_di_dominio.Commento)lIter.next()).getDocumento());
@@ -281,7 +281,7 @@ public class Utente {
 		return (modello_di_dominio.Documento[])lValues.toArray(new modello_di_dominio.Documento[lValues.size()]);
 	}
 	
-	public void removeDocumentoCommento(modello_di_dominio.Documento aDocumento) {
+	public void removeDocumento(modello_di_dominio.Documento aDocumento) {
 		modello_di_dominio.Commento[] lCommentos = commentos.toArray();
 		for(int i = 0; i < lCommentos.length; i++) {
 			if(lCommentos[i].getDocumento().equals(aDocumento)) {

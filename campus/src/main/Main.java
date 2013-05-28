@@ -2,6 +2,7 @@ package main;
 import gui.Home;
 
 import java.awt.EventQueue;
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
 import modello_di_dominio.Utente;
+import controller.ControllerCorrezione;
 import controller.ControllerCorso;
 import controller.ControllerDocumento;
 import controller.ControllerFacolta;
@@ -26,6 +28,7 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
 		/*
@@ -67,8 +70,7 @@ public class Main {
 		
 		u.aggiungiCorsoSeguito(utente,corso);
 		*/
-
-		
+		//ControllerCorrezione.getInstance().creaCorrezione("Hai fatto una marea di errori", new Date(new Date().getTime()), ControllerDocumento.getInstance().getDocumento(1), ControllerUtente.getInstance().getUtente(1));
 		//Window thread
 		EventQueue.invokeLater(new Runnable() {
 			@Override

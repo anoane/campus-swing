@@ -2,6 +2,7 @@ package controller;
 /**
  * 
  */
+import java.sql.Timestamp;
 import java.util.Date;
 /**
  * 
@@ -44,13 +45,13 @@ public class ControllerCorrezione extends AbstractController {
 	 * @param d
 	 * @param utente
 	 */
-	public void creaCorrezione(String testo, Date data, Documento d, Utente utente){
+	public void creaCorrezione(String testo, Timestamp data, Documento d, Utente utente){
 		try{
 			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			Correzione correzione = correzioneDAO.createCorrezione();
 			correzione.setDocumento(d);
 			correzione.setTesto(testo);
-			correzione.setData(data);
+			correzione.setTimestamp(data);
 			correzione.setUtente(utente);
 			correzione.setApprovato(false);
 			correzioneDAO.save(correzione);
@@ -58,6 +59,17 @@ public class ControllerCorrezione extends AbstractController {
 		}catch (PersistentException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Correzione getCorrezioneByID(int ID){
+		try {
+			return correzioneDAO.getCorrezioneByORMID(ID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 	/**
 	 * approvaCorrezione

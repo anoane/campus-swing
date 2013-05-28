@@ -21,14 +21,14 @@ import org.orm.criteria.*;
 public class CorrezioneDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression testo;
-	public final DateExpression data;
+	public final TimestampExpression timestamp;
 	public final BooleanExpression approvato;
 	
 	public CorrezioneDetachedCriteria() {
 		super(modello_di_dominio.Correzione.class, modello_di_dominio.CorrezioneCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		testo = new StringExpression("testo", this.getDetachedCriteria());
-		data = new DateExpression("data", this.getDetachedCriteria());
+		timestamp = new TimestampExpression("timestamp", this.getDetachedCriteria());
 		approvato = new BooleanExpression("approvato", this.getDetachedCriteria());
 	}
 	
@@ -36,7 +36,7 @@ public class CorrezioneDetachedCriteria extends AbstractORMDetachedCriteria {
 		super(aDetachedCriteria, modello_di_dominio.CorrezioneCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		testo = new StringExpression("testo", this.getDetachedCriteria());
-		data = new DateExpression("data", this.getDetachedCriteria());
+		timestamp = new TimestampExpression("timestamp", this.getDetachedCriteria());
 		approvato = new BooleanExpression("approvato", this.getDetachedCriteria());
 	}
 	

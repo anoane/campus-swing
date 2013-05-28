@@ -38,7 +38,7 @@ public class Correzione {
 	
 	private String testo;
 	
-	private java.util.Date data;
+	private java.sql.Timestamp timestamp;
 	
 	private boolean approvato;
 	
@@ -66,12 +66,12 @@ public class Correzione {
 		return testo;
 	}
 	
-	public void setData(java.util.Date value) {
-		this.data = value;
+	public void setTimestamp(java.sql.Timestamp value) {
+		this.timestamp = value;
 	}
 	
-	public java.util.Date getData() {
-		return data;
+	public java.sql.Timestamp getTimestamp() {
+		return timestamp;
 	}
 	
 	public void setApprovato(boolean value) {

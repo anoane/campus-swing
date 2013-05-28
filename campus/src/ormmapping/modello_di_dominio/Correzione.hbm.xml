@@ -11,7 +11,7 @@ License Type: Purchased
 			</generator>
 		</id>
 		<property name="testo" column="Testo" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="data" column="Data" type="date" not-null="false" lazy="false"/>
+		<property name="timestamp" column="Timestamp" type="timestamp" not-null="false" lazy="false"/>
 		<property name="approvato" column="Approvato" type="boolean" length="1" not-null="true" lazy="false"/>
 		<many-to-one name="ORM_Documento" cascade="lock" column="DocumentoID" class="modello_di_dominio.Documento" not-null="true" lazy="false">
 		</many-to-one>

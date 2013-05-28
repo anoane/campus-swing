@@ -21,14 +21,14 @@ import org.orm.criteria.*;
 public class CorrezioneCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression testo;
-	public final DateExpression data;
+	public final TimestampExpression timestamp;
 	public final BooleanExpression approvato;
 	
 	public CorrezioneCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		testo = new StringExpression("testo", this);
-		data = new DateExpression("data", this);
+		timestamp = new TimestampExpression("timestamp", this);
 		approvato = new BooleanExpression("approvato", this);
 	}
 	
