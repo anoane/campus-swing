@@ -128,8 +128,6 @@ public class ControllerUtente extends AbstractController{
 	}
 	
 	public void aggiungiDocumentoPreferito(Utente u, Documento d){
-		
-
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
 		Utente_Documento ud = udDAO.createUtente_Documento();
@@ -138,7 +136,6 @@ public class ControllerUtente extends AbstractController{
 		try {
 			//PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			udDAO.save(ud);
-			
 			//t.commit();
 		} catch (PersistentException e) {
 			e.printStackTrace();
@@ -153,7 +150,8 @@ public class ControllerUtente extends AbstractController{
 		try {
 			if(containDocumentoPreferito(u,d)) {
 				Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
-				System.out.println(ud.getID());		
+				d.utentePreferito.remove(ud);
+				u.documentiPreferiti.remove(ud);
 				udDAO.delete(ud);
 			}
 		} catch (PersistentException e) {

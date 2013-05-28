@@ -211,7 +211,7 @@ public class ControllerDocumento extends AbstractController{
 		VotoDAO votoDAO = factory.getVotoDAO();
 		Voto voto = null;
 		try {
-			System.out.println("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID());
+			//System.out.println("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID());
 			voto = votoDAO.loadVotoByQuery("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID(), null);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
@@ -229,7 +229,7 @@ public class ControllerDocumento extends AbstractController{
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
 		Utente_Documento ud = null;
 		try {
-			System.out.println("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID());
+			//System.out.println("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID());
 			ud = udDAO.loadUtente_DocumentoByQuery("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID(), null);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
