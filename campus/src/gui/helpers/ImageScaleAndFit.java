@@ -1,6 +1,11 @@
 package gui.helpers;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 
 public class ImageScaleAndFit {
 
@@ -30,6 +35,18 @@ public class ImageScaleAndFit {
 	    }
 
 	    return new Dimension(new_width, new_height);
+	}
+	
+	public static BufferedImage getScaledImage(BufferedImage srcImg, int w, int h, int bound_w, int bound_h){
+	    BufferedImage resizedImg = new BufferedImage(bound_w, bound_h, BufferedImage.TRANSLUCENT);
+	    Graphics2D g2 = resizedImg.createGraphics();
+	    Rectangle2D rect = new Rectangle2D.Double(0,0,bound_w,bound_h);
+	    g2.setColor(Color.LIGHT_GRAY);
+	    g2.fill(rect);
+	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+	    g2.drawImage(srcImg, (bound_w-w)/2, (bound_h-h)/2, w, h, null);
+	    g2.dispose();
+	    return resizedImg;
 	}
 	
 }

@@ -2,6 +2,7 @@ package gui;
 
 
 import gui.helpers.JTextFieldLimit;
+import gui.helpers.Pdf2Image;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -222,6 +223,9 @@ public class CaricaMateriale extends Pagina  {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(Home.getFrame(), "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
 					}
+		            if (util.EstensioneFile.getExtension(f).matches("pdf")) {
+		            	Pdf2Image.pdf2img(new File("files/"+newname));
+		            }
 		        } else {
 		        	JOptionPane.showMessageDialog(Home.getFrame(), "Non riesco ad aprire questo file", "Errore", JOptionPane.ERROR_MESSAGE);
 		        }
