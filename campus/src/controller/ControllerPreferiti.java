@@ -18,7 +18,11 @@ import org.orm.PersistentException;
  *
  */
 public class ControllerPreferiti extends AbstractController {
-
+	
+	protected Utente_DocumentoDAO utente_documentoDAO;
+	/**
+	 * 
+	 */
 	private static ControllerPreferiti instance;
 	
 	/**
@@ -80,6 +84,28 @@ public class ControllerPreferiti extends AbstractController {
 		} catch (NullPointerException e) {
 			//e.printStackTrace();
 			return null;
+		}
+	}
+	/**
+	 * 
+	 * @param d
+	 */
+	public void rimuoviDocumentoDaTuttiPreferiti(Documento d) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+		Utente_Documento[] ud = null;
+		try {
+			ud = udDAO.listUtente_DocumentoByQuery("DocumentoID = " + d.getID(), null);
+			if (ud.length!=0) {
+				for (int i=0; i<ud.length; i++) {
+					ud[i].getDocumento().utentePreferito.remove(ud[i]);
+					ud[i].getUtentePreferito().documentiPreferiti.remove(ud[i]);
+					udDAO.delete(ud[i]);
+				}
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

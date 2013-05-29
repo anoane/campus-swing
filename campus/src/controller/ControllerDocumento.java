@@ -112,56 +112,22 @@ public class ControllerDocumento extends AbstractController{
 			//d.setProprietario(null); 
 			ControllerRicerca.getInstance().removeDocumento(d);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
+			//Rimuovo i voti
+			ControllerVoto.getInstance().rimuoviVotiAssociatiADocumento(d);
+			//Rimuovo i preferiti
+			ControllerPreferiti.getInstance().rimuoviDocumentoDaTuttiPreferiti(d);
 			
-			rimuoviVotiAssociatiADocumento(d);
-			rimuoviDocumentoDaTuttiPreferiti(d);
-			//d.utentePreferito.clear();
 			d.getFacolta().documento.remove(d);
 			d.getCorso().documentoCorso.remove(d);
 			d.getProprietario().documentiUtente.remove(d);
+			
 			documentoDAO.delete(d);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void rimuoviVotiAssociatiADocumento(Documento d) {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		VotoDAO votoDAO = factory.getVotoDAO();
-		Voto[] voto = null;
-		try {
-			voto = votoDAO.listVotoByQuery("DocumentoID = " + d.getID(), null);
-			if (voto.length!=0) {
-				for (int i=0; i<voto.length; i++) {
-					voto[i].getUtente().votos.remove(voto[i]);
-					voto[i].getDocumento().votos.remove(voto[i]);
-					votoDAO.delete(voto[i]);
-				}
-			}
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	public void rimuoviDocumentoDaTuttiPreferiti(Documento d) {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
-		Utente_Documento[] ud = null;
-		try {
-			ud = udDAO.listUtente_DocumentoByQuery("DocumentoID = " + d.getID(), null);
-			if (ud.length!=0) {
-				for (int i=0; i<ud.length; i++) {
-					ud[i].getDocumento().utentePreferito.remove(ud[i]);
-					ud[i].getUtentePreferito().documentiPreferiti.remove(ud[i]);
-					udDAO.delete(ud[i]);
-				}
-			}
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	/**
 	 * getInstance
 	 * @return

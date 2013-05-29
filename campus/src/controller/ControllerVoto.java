@@ -62,9 +62,9 @@ public class ControllerVoto extends AbstractController {
 	 * @param utente
 	 */
 	public void rimuoviVotoDocumento(Documento documento, Utente utente) {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		VotoDAO votoDAO = factory.getVotoDAO();
+		
 		try {
+			
 			if(containVotoDocumento(documento,utente)) {
 				Voto voto = votoDAO.getVotoByORMID(ControllerDocumento.getInstance().getIdVotoDocumento(documento,utente));
 				//documento.votos.remove(voto);
@@ -87,7 +87,11 @@ public class ControllerVoto extends AbstractController {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param d
+	 * @return
+	 */
 	public float calcolaVoto(Documento d) {
 		Voto[] voti = d.votos.toArray();
 		if (voti.length == 0)
@@ -99,7 +103,28 @@ public class ControllerVoto extends AbstractController {
 		float media = voto / voti.length;
 		return media / 10;
 	}
-	
-	 	
+	/**
+	 * 
+	 * @param d Documento
+	 */
+	public void rimuoviVotiAssociatiADocumento(Documento d) {
+
+		Voto[] voto = null;
+		
+		try {
+			voto = votoDAO.listVotoByQuery("DocumentoID = " + d.getID(), null);
+			if (voto.length!=0) {
+				for (int i=0; i<voto.length; i++) {
+					voto[i].getUtente().votos.remove(voto[i]);
+					voto[i].getDocumento().votos.remove(voto[i]);
+					votoDAO.delete(voto[i]);
+				}
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 }
