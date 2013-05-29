@@ -47,7 +47,6 @@ public class ControllerDocumento extends AbstractController{
 	 */
 	public void creaDocumento(String nome, String descrizione,String path, String discriminator, Utente u, Corso c, Facolta f){
 		try {
-			PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
 			Documento documento = documentoDAO.createDocumento();
 			documento.setNome(nome);
 			documento.setDescrizione(descrizione);
@@ -62,8 +61,6 @@ public class ControllerDocumento extends AbstractController{
 			//documento.setDatetime(time);
 			documento.setDownloads(1);
 			documentoDAO.save(documento);
-			//Commit
-			t.commit();
 			ControllerRicerca.getInstance().aggiungiDocumento(documento);
 			ControllerRicerca.getInstance().commitIndexingDocumento();
 		} catch (PersistentException e) {

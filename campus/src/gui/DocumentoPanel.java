@@ -52,11 +52,14 @@ public class DocumentoPanel extends Pagina {
 	JTextPane panel_3 = new JTextPane();
 	private PannelloSuggerimenti suggerimenti;
 	private JButton btnNewButton;
-
-	public DocumentoPanel(final Documento d) {
+	Documento d = null;
+	
+	public DocumentoPanel(final Documento document) {
 		setBackground(Color.WHITE);
 		setLayout(null);
-
+		
+		d = document;
+		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(new Rectangle(0, 0, 1008, 585));
@@ -251,7 +254,7 @@ public class DocumentoPanel extends Pagina {
 		btnNewButton.setBounds(521, 100, 45, 45);
 		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
-		final Documento d = ((Documento) o);
+		d = ((Documento) o);
 		riquadrodx.setVisible(true);
 		suggerimenti.load(d);
 		suggerimenti.setVisible(false);

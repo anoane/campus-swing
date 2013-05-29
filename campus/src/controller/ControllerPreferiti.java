@@ -54,8 +54,10 @@ public class ControllerPreferiti extends AbstractController {
 		ud.setDocumento(d);
 		ud.setUtentePreferito(u);
 		try {
+			//System.out.println(d.getID());
+			ud.getDocumento().utentePreferito.add(ud);
+			ud.getUtentePreferito().documentiPreferiti.add(ud);
 			udDAO.save(ud);
-			
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
