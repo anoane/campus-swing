@@ -21,11 +21,11 @@ import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
-import modello_di_dominio.Voto;
 
 import com.sun.pdfview.PDFViewer;
 
 import controller.ControllerDocumento;
+import controller.ControllerPreferiti;
 import controller.ControllerUtente;
 import controller.ControllerVoto;
 
@@ -340,8 +340,9 @@ public class DocumentoPanel extends Pagina {
 		panel_3.setText(d.getDescrizione());
 		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				ControllerPreferiti pr = ControllerPreferiti.getInstance();
 				ControllerUtente u = ControllerUtente.getInstance();
-				u.aggiungiDocumentoPreferito(u.getUtente(1), d);
+				pr.aggiungiDocumentoPreferito(u.getUtente(1), d);
 				//Home.getPagina("preferiti");
 				btnAggiungiAiPreferiti.setVisible(false);
 				btnRimuoviDaiPreferiti.setVisible(true);

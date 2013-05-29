@@ -4,37 +4,26 @@ package gui;
 import gui.riquadri.RiquadroCorsoSmall;
 import gui.riquadri.RiquadroDocSmall;
 
-import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.JLabel;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import controller.ControllerCorso;
-import controller.ControllerDocumento;
-import controller.ControllerUtente;
-
-import modello_di_dominio.Corso;
-import modello_di_dominio.Corso_Utente;
-import modello_di_dominio.Documento;
-import modello_di_dominio.Utente;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+import modello_di_dominio.Corso;
+import modello_di_dominio.Documento;
+import modello_di_dominio.Utente;
+import controller.ControllerCorso;
+import controller.ControllerDocumento;
+import controller.ControllerPreferiti;
+import controller.ControllerUtente;
 
 @SuppressWarnings("serial")
 public class HomePage extends Pagina {
@@ -77,7 +66,7 @@ public class HomePage extends Pagina {
 		if(ControllerUtente.getInstance().getUtente(1) == null){
 			return new ArrayList<Documento>();
 		}
-		return ControllerDocumento.getInstance().getDocumentiPreferiti(ControllerUtente.getInstance().getUtente(1));
+		return ControllerPreferiti.getInstance().getDocumentiPreferiti(ControllerUtente.getInstance().getUtente(1));
 	}
 	
 	private ArrayList<Documento> getMieiDocs() {

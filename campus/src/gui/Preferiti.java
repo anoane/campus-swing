@@ -13,18 +13,17 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.text.DefaultCaret;
+import javax.swing.SwingConstants;
 
 import modello_di_dominio.Documento;
-import modello_di_dominio.Utente;
 import controller.ControllerDocumento;
+import controller.ControllerPreferiti;
 import controller.ControllerUtente;
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
 
 public class Preferiti extends Pagina {
 	
@@ -63,7 +62,7 @@ public class Preferiti extends Pagina {
 		if(ControllerUtente.getInstance().getUtente(1) == null){
 			return new ArrayList<Documento>();
 		}
-		ArrayList<Documento> doclist =  ControllerDocumento.getInstance().getDocumentiPreferiti(ControllerUtente.getInstance().getUtente(1));
+		ArrayList<Documento> doclist =  ControllerPreferiti.getInstance().getDocumentiPreferiti(ControllerUtente.getInstance().getUtente(1));
 		return ControllerDocumento.getInstance().filtraPerTipo(ControllerDocumento.getInstance().sortBy(doclist, sorting),filter);
 	}
 	

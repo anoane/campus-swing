@@ -185,45 +185,34 @@ public class ControllerDocumento extends AbstractController{
 			ControllerVoto.getInstance().votaDocumento(d, u, voto);
 	}
 	
-	public ArrayList<Documento> getDocumentiPreferiti(Utente u) {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
-		Utente_Documento ud = null;
-		try {
-			Utente_Documento[] temp = udDAO.listUtente_DocumentoByQuery("UtenteID = " + u.getID(), "timestamp DESC");
-			ArrayList<Documento> docs = new ArrayList<Documento>();
-			for (int i=0; temp.length > i; i++) {
-				docs.add(temp[i].getDocumento());
-			}
-			return docs;
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			return null;
-		} catch (NullPointerException e) {
-			//e.printStackTrace();
-			return null;
-		}
-	}
-	
+	/**
+	 * 
+	 * @param d
+	 * @param u
+	 * @return
+	 */
 	public Integer getIdVotoDocumento(Documento d, Utente u) {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		VotoDAO votoDAO = factory.getVotoDAO();
 		Voto voto = null;
 		try {
-			//System.out.println("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID());
+			
 			voto = votoDAO.loadVotoByQuery("DocumentoID = " + d.getID() + " AND UtenteID = " +u.getID(), null);
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		} catch (NullPointerException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
 		return voto.getID();
 	}
-	
+	/**
+	 * getIdDocumentoPreferito
+	 * @param u
+	 * @param d
+	 * @return
+	 */
 	public Integer getIdDocumentoPreferito(Utente u, Documento d) {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
@@ -239,28 +228,33 @@ public class ControllerDocumento extends AbstractController{
 			//e.printStackTrace();
 			return null;
 		}
+		
 		return ud.getID();
 	}
-	
-	
 	/**
 	 * getListAllDocumenti
 	 * @return
 	 */
 	public ArrayList<Documento> getListAllDocumenti() {
+		
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		DocumentoDAO documentoDAO = factory.getDocumentoDAO();
+		
 		try {
+			
 			Documento[] temp = documentoDAO.listDocumentoByQuery(null, null);
 			ArrayList<Documento> docs = new ArrayList<Documento>();
+			
 			for (int i=0; temp.length > i; i++) {
 				docs.add(temp[i]);
 			}
 			return docs;
+			
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
 	/**
@@ -338,7 +332,12 @@ public class ControllerDocumento extends AbstractController{
 		}
 		return newdocs;
 	}
-	
+	/**
+	 * 
+	 * @param docs
+	 * @param filtro
+	 * @return
+	 */
 	public ArrayList<Documento> filtraPerTipo(ArrayList<Documento> docs, String filtro) {
 		ArrayList<Documento> newdocs = new ArrayList<Documento>();
 		for (int i=0; docs.size() > i; i++) {
@@ -348,7 +347,12 @@ public class ControllerDocumento extends AbstractController{
 		}
 		return newdocs;
 	}
-	
+	/**
+	 * 
+	 * @param docs
+	 * @param sorting
+	 * @return
+	 */
 	public ArrayList<Documento> sortBy(ArrayList<Documento> docs, String sorting) {
 
 		

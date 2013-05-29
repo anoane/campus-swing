@@ -53,9 +53,14 @@ public class ControllerVoto extends AbstractController {
 			v.setValore(i);
 			t.commit();
 		}catch(PersistentException e) {
-			e.printStackTrace();}
+			e.printStackTrace();
+		}
 	}
-	
+	/**
+	 * rimuoviVotoDocumento
+	 * @param documento
+	 * @param utente
+	 */
 	public void rimuoviVotoDocumento(Documento documento, Utente utente) {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		VotoDAO votoDAO = factory.getVotoDAO();
@@ -94,7 +99,7 @@ public class ControllerVoto extends AbstractController {
 		float media = voto / voti.length;
 		return media / 10;
 	}
-		
+	
 	 	
 	
 }
