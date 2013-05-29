@@ -138,8 +138,8 @@ public class ControllerUtente extends AbstractController{
 		try {
 			if(containDocumentoPreferito(u,d)) {
 				Utente_Documento ud = udDAO.getUtente_DocumentoByORMID(ControllerDocumento.getInstance().getIdDocumentoPreferito(u,d));
-				d.utentePreferito.remove(ud);
-				u.documentiPreferiti.remove(ud);
+				ud.getDocumento().utentePreferito.remove(ud);
+				ud.getUtentePreferito().documentiPreferiti.remove(ud);
 				udDAO.delete(ud);
 			}
 		} catch (PersistentException e) {

@@ -3,16 +3,16 @@
  */
 package controller;
 
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
+import java.util.ArrayList;
 
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
-import modello_di_dominio.Utente_Documento;
 import modello_di_dominio.Voto;
-import modello_di_dominio.dao.Utente_DocumentoDAO;
 import modello_di_dominio.dao.VotoDAO;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 /**
  * @author mw
@@ -61,20 +61,26 @@ public class ControllerVoto extends AbstractController {
 	 * @param documento
 	 * @param utente
 	 */
-	public void rimuoviVotoDocumento(Documento documento, Utente utente) {
+	public void rimuoviVoto(Voto voto) {
 		
 		try {
 			
-			if(containVotoDocumento(documento,utente)) {
-				Voto voto = votoDAO.getVotoByORMID(ControllerDocumento.getInstance().getIdVotoDocumento(documento,utente));
-				//documento.votos.remove(voto);
-				votoDAO.delete(voto);
-			}
+			voto.getDocumento().votos.remove(voto);
+			voto.getUtente().votos.remove(voto);
+			votoDAO.delete(voto);
+			
 		} catch (PersistentException e) {
+			
 			e.printStackTrace();
+			
 		}
 	}
-	
+	/**
+	 * 
+	 * @param d
+	 * @param u
+	 * @return
+	 */
 	public boolean containVotoDocumento(Documento d, Utente u) {
 		Integer res = null;
 		try {
@@ -108,21 +114,11 @@ public class ControllerVoto extends AbstractController {
 	 * @param d Documento
 	 */
 	public void rimuoviVotiAssociatiADocumento(Documento d) {
-
-		Voto[] voto = null;
 		
-		try {
-			voto = votoDAO.listVotoByQuery("DocumentoID = " + d.getID(), null);
-			if (voto.length!=0) {
-				for (int i=0; i<voto.length; i++) {
-					voto[i].getUtente().votos.remove(voto[i]);
-					voto[i].getDocumento().votos.remove(voto[i]);
-					votoDAO.delete(voto[i]);
-				}
-			}
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<Voto> voti = new ArrayList<Voto>(d.votos.getCollection());
+		
+		for (int i=0; i<voti.size(); i++) {
+			rimuoviVoto(voti.get(i));
 		}
 		
 	}
