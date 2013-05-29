@@ -44,7 +44,8 @@ public class RiquadroDoc extends Riquadro {
 	private JLabel proprietario_nome;
 	private RimuoviButton rimuovi;
 	private JLabel lbltipo;
-
+	private JLabel img_anteprima = new JLabel();
+	
 	private static Color colore_stella = new Color(255,222,87);
 
 	public RiquadroDoc(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
@@ -56,6 +57,7 @@ public class RiquadroDoc extends Riquadro {
 		anteprima.setBounds(15, 45, 100, 141);
 		anteprima.setBackground(Color.WHITE);
 		anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
+		
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		// Event listener
 		this.addMouseListener(new MouseAdapter() {
@@ -241,6 +243,7 @@ public class RiquadroDoc extends Riquadro {
 		else
 			lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
 		
+		
 		add(titolo);
 		add(corso);
 		add(facolta);
@@ -255,6 +258,11 @@ public class RiquadroDoc extends Riquadro {
 		add(anteprima);
 		//anteprima.setLayout(null);
 		add(proprietario_nome);
+		anteprima.setLayout(null);
+		img_anteprima.setBounds(0, 0, 100, 141);
+		anteprima.add(img_anteprima);
+		System.out.println("./thumb/"+(doc.getPath().substring(6))+".png");
+		img_anteprima.setIcon(new ImageIcon("./thumb/"+(doc.getPath().substring(6))+".png"));
 		/*
 		titolo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		// Event listener
@@ -385,5 +393,4 @@ public class RiquadroDoc extends Riquadro {
 	public RimuoviPrefButton getRimuoviPref(){
 		return (RimuoviPrefButton) this.pulsanti.getComponent(2);
 	}
-
 }
