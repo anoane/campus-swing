@@ -1,11 +1,14 @@
 package gui.riquadri;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import modello_di_dominio.Correzione;
+import java.awt.Insets;
 
 public class RiquadroSuggerimento extends Riquadro {
 	private JLabel lblImmagineProfilo;
@@ -16,18 +19,19 @@ public class RiquadroSuggerimento extends Riquadro {
 	private JLabel lblApprova;
 	private JLabel lblCancel;
 	private JLabel lblCancella;
+	private JButton btnEspandi;
 
 	public RiquadroSuggerimento(Correzione c) {
 		super();
 		this.setBackground(super.getPreferitoBgColor());
 		this.setBorder(super.getRiquadroBorder());
 		this.setPreferredSize(new Dimension(390, 125));
-		
+		this.setSize(390,125);
 		lblImmagineProfilo = new JLabel("New label");
 		lblImmagineProfilo.setBounds(10, 10, 55, 55);
 		add(lblImmagineProfilo);
 		
-		lblAutore = new JLabel(c.getUtente().getUsername());
+		lblAutore = new JLabel(c.getUtente().getNome());
 		lblAutore.setBounds(10, 70, 98, 20);
 		add(lblAutore);
 		
@@ -36,6 +40,7 @@ public class RiquadroSuggerimento extends Riquadro {
 		add(lblData);
 		
 		txtTesto = new JTextArea();
+		txtTesto.setText(c.getTesto());
 		txtTesto.setEditable(false);
 		txtTesto.setWrapStyleWord(true);
 		txtTesto.setLineWrap(true);
@@ -59,5 +64,15 @@ public class RiquadroSuggerimento extends Riquadro {
 		lblCancella = new JLabel("Cancella");
 		lblCancella.setBounds(330, 100, 46, 14);
 		add(lblCancella);
+		
+		btnEspandi = new JButton("-");
+		btnEspandi.setMargin(new Insets(3, 5, 5, 5));
+		btnEspandi.setBounds(370, 0, 20, 20);
+		btnEspandi.setFont(new Font("Arial", Font.PLAIN, 8));
+		add(btnEspandi);
+	}
+	
+	public JButton getEspandi(){
+		return btnEspandi;
 	}
 }
