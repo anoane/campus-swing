@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -19,7 +20,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultCaret;
 
 import modello_di_dominio.Corso;
+import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.util.ArrayList;
+
+import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 /**
  * 
  * @author mw
@@ -32,6 +44,13 @@ public class RiquadroCorso extends Riquadro {
 	private JTextArea descrizione;
 	private JTextArea facolta;
 	private RimuoviCorsoSeguito rimuovi;
+	private JLabel img_1 = new JLabel();
+	private JLabel img_2 = new JLabel();
+	private JLabel img_3 = new JLabel();
+	private JLabel img_4 = new JLabel();
+	private JLabel img_5 = new JLabel();
+	private JLabel img_6 = new JLabel();
+	
 	
 	/**
 	 * 
@@ -43,7 +62,7 @@ public class RiquadroCorso extends Riquadro {
 
 		
 		anteprima = new JPanel();
-		anteprima.setBounds(15, 56, 130, 130);
+		anteprima.setBounds(15, 56, 138, 130);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.addMouseListener(new MouseAdapter() {
 			@Override
@@ -68,8 +87,8 @@ public class RiquadroCorso extends Riquadro {
 		descrizione.setEditable(false);
 		descrizione.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		descrizione.setAlignmentY(Component.TOP_ALIGNMENT);
-		descrizione.setLocation(155, 56);
-		descrizione.setSize(275, 91);
+		descrizione.setLocation(163, 56);
+		descrizione.setSize(267, 91);
 		descrizione.setForeground(Color.WHITE);
 		descrizione.setLineWrap(true);
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
@@ -95,8 +114,8 @@ public class RiquadroCorso extends Riquadro {
 			}
 			//facolta.setText(c.facolta.toArray()[0].getNome());
 		}
-		facolta.setLocation(155, 158);
-		facolta.setSize(275, 30);
+		facolta.setLocation(163, 158);
+		facolta.setSize(267, 30);
 		facolta.setForeground(Color.WHITE);
 		facolta.setLineWrap(true);
 		facolta.setBorder(new EmptyBorder(0,0,0,0));
@@ -108,6 +127,62 @@ public class RiquadroCorso extends Riquadro {
 		facolta.setText(util.StringUtility.truncateLines(facolta,2));
 		
 		add(anteprima);
+		anteprima.setLayout(null);
+		
+		img_1.setBounds(0, 0, 44, 64);
+		anteprima.add(img_1);
+		
+		img_2.setBounds(46, 0, 44, 64);
+		anteprima.add(img_2);
+		
+		img_3.setBounds(92, 0, 44, 64);
+		anteprima.add(img_3);
+		
+		img_4.setBounds(0, 66, 44, 64);
+		anteprima.add(img_4);
+		
+		img_5.setBounds(46, 66, 44, 64);
+		anteprima.add(img_5);
+		
+		img_6.setBounds(92, 66, 44, 64);
+		anteprima.add(img_6);
+		
+		if (!c.documentoCorso.isEmpty()) {
+			Documento[] doc_array = c.documentoCorso.toArray();
+			ArrayList<String> png_path = new ArrayList<String>();
+			for (int i=0; i<doc_array.length; i++) {
+				if (util.EstensioneFile.getExtension(doc_array[i].getPath()).matches("pdf")) {
+					png_path.add("./thumb/"+(doc_array[0].getPath().substring(6))+".png");
+				}
+			}
+			
+			int doc_size = png_path.size();
+			if (doc_size > 0) {
+				img_1.setIcon(new ImageIcon(png_path.get(0)));
+			}
+			if (doc_size > 1) {
+				img_2.setIcon(new ImageIcon(png_path.get(1)));
+			}
+			if (doc_size > 2) {
+				img_3.setIcon(new ImageIcon(png_path.get(2)));
+			}
+			if (doc_size > 3) {
+				img_4.setIcon(new ImageIcon(png_path.get(3)));
+			}
+			if (doc_size > 4) {
+				img_5.setIcon(new ImageIcon(png_path.get(4)));
+			}
+			if (doc_size > 5) {
+				img_6.setIcon(new ImageIcon(png_path.get(5)));
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
 		add(titolo);
 		add(descrizione);
 		add(facolta);
