@@ -71,7 +71,6 @@ public class ControllerPreferiti extends AbstractController {
 	public ArrayList<Documento> getDocumentiPreferiti(Utente u) {
 		DAOFactory factory = DAOFactory.getDAOFactory();
 		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
-		Utente_Documento ud = null;
 		try {
 			Utente_Documento[] temp = udDAO.listUtente_DocumentoByQuery("UtenteID = " + u.getID(), "timestamp DESC");
 			ArrayList<Documento> docs = new ArrayList<Documento>();
@@ -80,11 +79,10 @@ public class ControllerPreferiti extends AbstractController {
 			}
 			return docs;
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		} catch (NullPointerException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -106,7 +104,6 @@ public class ControllerPreferiti extends AbstractController {
 				}
 			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
