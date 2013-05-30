@@ -152,7 +152,7 @@ public class RiquadroCorso extends Riquadro {
 			ArrayList<String> png_path = new ArrayList<String>();
 			for (int i=0; i<doc_array.length; i++) {
 				if (util.EstensioneFile.getExtension(doc_array[i].getPath()).matches("pdf")) {
-					png_path.add("./thumb/"+(doc_array[0].getPath().substring(6))+".png");
+					png_path.add("./thumb/"+(doc_array[i].getPath().substring(6))+".png");
 				}
 			}
 			
