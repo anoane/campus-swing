@@ -5,8 +5,11 @@ import gui.riquadri.RiquadroUtenteDoc;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,6 +24,7 @@ import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
+import modello_di_dominio.Utente;
 
 import com.sun.pdfview.PDFViewer;
 
@@ -52,14 +56,11 @@ public class DocumentoPanel extends Pagina {
 	JTextPane panel_3 = new JTextPane();
 	private PannelloSuggerimenti suggerimenti;
 	private JButton btnNewButton;
-	Documento d = null;
-	
-	public DocumentoPanel(final Documento document) {
+
+	public DocumentoPanel(final Documento d) {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		
-		d = document;
-		
+
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(new Rectangle(0, 0, 1008, 585));
@@ -101,53 +102,52 @@ public class DocumentoPanel extends Pagina {
 				"Rimuovi dai preferiti", 409, 49, 230, 34, false, true);
 		panel.add(btnRimuoviDaiPreferiti);
 
-		//if (ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
-		if(d != null){
-			if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d)){
+		// if
+		// (ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
+		if (d != null) {
+			if (ControllerUtente.getInstance().containDocumentoPreferito(
+					ControllerUtente.getInstance().getUtente(1), d)) {
 				btnAggiungiAiPreferiti.setVisible(false);
 				btnRimuoviDaiPreferiti.setVisible(true);
 				panel.validate();
 				panel.repaint();
-			}
-			else{
+			} else {
 				btnAggiungiAiPreferiti.setVisible(true);
 				btnRimuoviDaiPreferiti.setVisible(false);
 				panel.validate();
 				panel.repaint();
 			}
 		}
-				
-						JPanel doc = new JPanel();
-						doc.setBounds(0, 100, 521, 484);
-						panel.add(doc);
-						doc.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
-						doc.setBackground(Color.WHITE);
-						doc.setLayout(null);
-						
-								JPanel panel_1 = new JPanel();
-								panel_1.setBounds(2, 2, 517, 480);
-								doc.add(panel_1);
-								panel_1.setLayout(null);
-								
-										// CopyOfPDFViewer pdfDoc = new CopyOfPDFViewer(true);
-										// pdfDoc.setBackground(Color.WHITE);
-										// pdfDoc.setBounds(2, 2, 517, 480);
-										// doc.add(pdfDoc);
-								
-										pdfDoc.setBounds(0, -48, 518, 529);
-										panel_1.add(pdfDoc);
-										pdfDoc.setBorder(null);
-		
-				suggerimenti = new PannelloSuggerimenti();
-				suggerimenti.setBounds(575, 100, 400, 500);
-				suggerimenti.setVisible(false);
-				panel.add(suggerimenti);
-				suggerimenti.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
-				suggerimenti.setBackground(Color.WHITE);
-		
 
-		
-		
+		JPanel doc = new JPanel();
+		doc.setBounds(0, 100, 521, 484);
+		panel.add(doc);
+		doc.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
+		doc.setBackground(Color.WHITE);
+		doc.setLayout(null);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(2, 2, 517, 480);
+		doc.add(panel_1);
+		panel_1.setLayout(null);
+
+		// CopyOfPDFViewer pdfDoc = new CopyOfPDFViewer(true);
+		// pdfDoc.setBackground(Color.WHITE);
+		// pdfDoc.setBounds(2, 2, 517, 480);
+		// doc.add(pdfDoc);
+
+		pdfDoc.setBounds(0, -48, 518, 529);
+		panel_1.add(pdfDoc);
+		pdfDoc.setBorder(null);
+
+		suggerimenti = new PannelloSuggerimenti();
+		//suggerimenti.setBounds(575, 100, 430, 400);
+		suggerimenti.setLocation(575,100);
+		suggerimenti.setVisible(false);
+		panel.add(suggerimenti);
+		suggerimenti.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
+		suggerimenti.setBackground(Color.WHITE);
+
 		lbltipo = new JLabel();
 		lbltipo.setBounds(84, 53, 57, 23);
 		panel.add(lbltipo);
@@ -184,7 +184,7 @@ public class DocumentoPanel extends Pagina {
 		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
 				188, 251, 178, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
-		
+
 		JPanel panelCommenti = new JPanel();
 		panelCommenti.setBounds(624, 390, 200, 200);
 		panel.add(panelCommenti);
@@ -215,7 +215,7 @@ public class DocumentoPanel extends Pagina {
 		colore.setBackground(new Color(255, 222, 87));
 		stelle.add(colore);
 		panel.add(stelle);
-		
+
 		lblVoti.setBounds(365, 20, 50, 20);
 		panel.add(lblVoti);
 	}
@@ -224,10 +224,9 @@ public class DocumentoPanel extends Pagina {
 		if (pdfPath != null && !pdfPath.equals("/")) {
 			pdfDoc.doOpen(pdfPath);
 		} else {
-			//pdfDoc.doOpen();
+			// pdfDoc.doOpen();
 		}
 	}
-
 
 	/**
 	 * Metodo che nasconde i riquadri della descrizione del documento, il
@@ -254,9 +253,23 @@ public class DocumentoPanel extends Pagina {
 		btnNewButton.setBounds(521, 100, 45, 45);
 		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
-		d = ((Documento) o);
+		final Documento d = ((Documento) o);
 		riquadrodx.setVisible(true);
+		//suggerimenti.setPreferredSize(new Dimension(440, 400));
+		
+		
 		suggerimenti.load(d);
+		
+		//adjustSuggerimenti();
+		/*
+		suggerimenti.getViewport().getComponent(0).addComponentListener(
+				new ComponentAdapter() {
+					@Override
+					public void componentResized(ComponentEvent arg0) {
+						adjustSuggerimenti();
+					}
+				});
+		*/
 		suggerimenti.setVisible(false);
 		validate();
 		repaint();
@@ -276,27 +289,27 @@ public class DocumentoPanel extends Pagina {
 				validate();
 				repaint();
 			}
-			
+
 		});
-		
-		if(d != null){
-			if (ControllerUtente.getInstance().containDocumentoPreferito(ControllerUtente.getInstance().getUtente(1), d)){
+
+		if (d != null) {
+			if (ControllerUtente.getInstance().containDocumentoPreferito(
+					ControllerUtente.getInstance().getUtente(1), d)) {
 				btnAggiungiAiPreferiti.setVisible(false);
 				btnRimuoviDaiPreferiti.setVisible(true);
 				panel.validate();
 				panel.repaint();
-			}
-			else{
+			} else {
 				btnAggiungiAiPreferiti.setVisible(true);
 				btnRimuoviDaiPreferiti.setVisible(false);
 				panel.validate();
 				panel.repaint();
-				
+
 			}
 		}
-		if(d.getPath() != null && !d.getPath().equals("/")){
+		if (d.getPath() != null && !d.getPath().equals("/")) {
 			String strTipo = d.getPath().split("\\.")[1];
-			switch(strTipo){
+			switch (strTipo) {
 			case "pdf":
 				lbltipo.setIcon(new ImageIcon("./newimage/pdf.png"));
 				break;
@@ -310,11 +323,11 @@ public class DocumentoPanel extends Pagina {
 				lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
 				break;
 			}
-		}
-		else
+		} else
 			lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
 		lblPreferiti.setText(d.getNome());
-		final int backup_colore = (int) (stelle.getWidth() * contrVoto.calcolaVoto(d));
+		final int backup_colore = (int) (stelle.getWidth() * contrVoto
+				.calcolaVoto(d));
 		colore.setSize(backup_colore, 30);
 		lblNewLabel_1.setText(d.getCorso().getNome());
 		switch (d.getDiscriminator()) {
@@ -343,10 +356,9 @@ public class DocumentoPanel extends Pagina {
 		panel_3.setText(d.getDescrizione());
 		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				ControllerPreferiti pr = ControllerPreferiti.getInstance();
-				ControllerUtente u = ControllerUtente.getInstance();
-				pr.aggiungiDocumentoPreferito(u.getUtente(1), d);
-				//Home.getPagina("preferiti");
+				Utente u = ControllerUtente.getInstance().getUtente(1);
+				ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(u, d);
+				// Home.getPagina("preferiti");
 				btnAggiungiAiPreferiti.setVisible(false);
 				btnRimuoviDaiPreferiti.setVisible(true);
 				validate();
@@ -356,7 +368,7 @@ public class DocumentoPanel extends Pagina {
 		btnRimuoviDaiPreferiti.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				ControllerUtente u = ControllerUtente.getInstance();
-				u.rimuoviDocumentoPreferito(u.getUtente(1),d);
+				u.rimuoviDocumentoPreferito(u.getUtente(1), d);
 				btnAggiungiAiPreferiti.setVisible(true);
 				btnRimuoviDaiPreferiti.setVisible(false);
 				validate();
@@ -419,8 +431,8 @@ public class DocumentoPanel extends Pagina {
 	public int getAltezzaPagina() {
 		return panel.getHeight();
 	}
-	
-	private void resetStelle(){
+
+	private void resetStelle() {
 		for (int i = 0; i < 5; ++i) {
 			stelle.remove(i);
 			JLabel stella = new JLabel();
@@ -429,5 +441,15 @@ public class DocumentoPanel extends Pagina {
 			stella.setIcon(new ImageIcon("./newimage/white_star_big.png"));
 			stelle.add(stella, i);
 		}
+	}
+	
+	private void adjustSuggerimenti(){
+		if(suggerimenti.getViewport().getComponent(0).getHeight() >= 484){
+
+			suggerimenti.setPreferredSize(new Dimension(400,484));
+			suggerimenti.setSize(440,484);
+		}
+		suggerimenti.validate();
+		suggerimenti.repaint();
 	}
 }
