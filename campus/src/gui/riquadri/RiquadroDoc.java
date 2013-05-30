@@ -261,7 +261,7 @@ public class RiquadroDoc extends Riquadro {
 		anteprima.setLayout(null);
 		img_anteprima.setBounds(0, 0, 100, 141);
 		anteprima.add(img_anteprima);
-		System.out.println("./thumb/"+(doc.getPath().substring(6))+".png");
+		//System.out.println("./thumb/"+(doc.getPath().substring(6))+".png");
 		img_anteprima.setIcon(new ImageIcon("./thumb/"+(doc.getPath().substring(6))+".png"));
 		/*
 		titolo.setCursor(new Cursor(Cursor.HAND_CURSOR));
