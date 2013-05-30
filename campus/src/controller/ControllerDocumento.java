@@ -346,8 +346,13 @@ public class ControllerDocumento extends AbstractController{
 
 			@Override
 		    public int compare(Documento obj1, Documento obj2) {
-				System.out.println("Timestamp1: "+obj1.getTimestamp() +" id: "+obj1.getID()+" - Timestamp2: "+obj2.getTimestamp());
-		        return obj1.getTimestamp().compareTo(obj2.getTimestamp());
+				if (obj1.getTimestamp()==null) {
+		        	return -1;
+		        }
+		        if (obj2.getTimestamp()==null) {
+		        	return 1;
+		        }
+				return obj1.getTimestamp().compareTo(obj2.getTimestamp());
 		    }
 		};
 		
