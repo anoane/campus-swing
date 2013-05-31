@@ -8,8 +8,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,6 +24,10 @@ import javax.swing.border.LineBorder;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
 
+import org.jopendocument.model.OpenDocument;
+import org.jopendocument.panel.ODSViewerPanel;
+import org.jopendocument.renderer.ODTRenderer;
+
 import com.sun.pdfview.PDFViewer;
 
 import controller.ControllerDocumento;
@@ -37,6 +39,10 @@ import controller.ControllerVoto;
 public class DocumentoPanel extends Pagina {
 
 	private PDFViewer pdfDoc = new PDFViewer(true);
+	private OpenDocument openDoc = new OpenDocument();
+	
+	private boolean pdfFile = true;
+	
 	boolean suggestOpened = false;
 	private JPanel riquadrodx;
 	private JPanel panel;
@@ -54,12 +60,15 @@ public class DocumentoPanel extends Pagina {
 	JLabel lblUniversit = new JLabel();
 	JLabel lblVoti = new JLabel();
 	JTextPane panel_3 = new JTextPane();
+	
+	private JPanel panel_1 = new JPanel();
 	private PannelloSuggerimenti suggerimenti;
 	private JButton btnNewButton;
 	private MenuSuggerimenti menuSuggerimenti;
 
 
 	public DocumentoPanel(final Documento d) {
+		
 		setBackground(Color.WHITE);
 		setLayout(null);
 
@@ -94,8 +103,6 @@ public class DocumentoPanel extends Pagina {
 		lblNewLabel.setBounds(5, 2, 83, 20);
 		panel_2.add(lblNewLabel);
 
-		// pdfDoc.setBackground(Color.WHITE);
-
 		ButtonStandard buttonCreator = new ButtonStandard();
 		btnAggiungiAiPreferiti = buttonCreator.createButton(
 				"Aggiungi ai preferiti", 409, 49, 230, 34, false, true);
@@ -128,16 +135,10 @@ public class DocumentoPanel extends Pagina {
 		doc.setBackground(Color.WHITE);
 		doc.setLayout(null);
 
-		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(2, 2, 517, 480);
 		doc.add(panel_1);
 		panel_1.setLayout(null);
-
-		// CopyOfPDFViewer pdfDoc = new CopyOfPDFViewer(true);
-		// pdfDoc.setBackground(Color.WHITE);
-		// pdfDoc.setBounds(2, 2, 517, 480);
-		// doc.add(pdfDoc);
-
+		
 		pdfDoc.setBounds(0, -48, 518, 529);
 		panel_1.add(pdfDoc);
 		pdfDoc.setBorder(null);
@@ -223,12 +224,49 @@ public class DocumentoPanel extends Pagina {
 	}
 
 	public void setPDF(String pdfPath) {
+		pdfFile = true;
 		if (pdfPath != null && !pdfPath.equals("/")) {
+			
+			panel_1.removeAll();
+			
 			pdfDoc.doOpen(pdfPath);
+			pdfDoc.setBounds(0, -48, 518, 529);
+			panel_1.add(pdfDoc);
+			pdfDoc.setBorder(null);
+			
 		} else {
 			// pdfDoc.doOpen();
 		}
 	}
+	
+	public void setOdsDoc(String docPath){
+		pdfFile = false;
+		if(docPath != null && !docPath.equals("/")) {
+			
+			//Reset Panel 1
+			panel_1.removeAll();
+			
+			openDoc.loadFrom(docPath);
+			ODSViewerPanel viewer = new ODSViewerPanel(openDoc);
+			viewer.setBounds(new Rectangle(0,0,518,529));
+			panel_1.add(viewer);
+		}
+	}
+	
+	public void setOdtDoc(String docPath){
+		pdfFile = false;
+		if(docPath != null && !docPath.equals("/")) {
+			
+			//Reset Panel 1
+			panel_1.removeAll();
+			
+			openDoc.loadFrom(docPath);
+			ODTRenderer odtRenderer = new ODTRenderer(openDoc);
+			odtRenderer.setBounds(new Rectangle(0,0,518,529));
+			panel_1.add(odtRenderer);
+		}
+	}
+	
 
 	/**
 	 * Metodo che nasconde i riquadri della descrizione del documento, il

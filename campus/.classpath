@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="lib/lucene/lucene-core-4.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/lucene/lucene-queryparser-4.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/lucene/lucene-analyzers-common-4.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jopendoc/jOpenDocument-1.3rc2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

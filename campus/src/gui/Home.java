@@ -667,7 +667,27 @@ public class Home {
 		} else {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
 		}*/
-		documento.setPDF(doc.getPath());
+		if (doc.getPath() != null && !doc.getPath().equals("/")) {
+			String strTipo = doc.getPath().split("\\.")[1];
+			
+			switch(strTipo.toLowerCase()){
+				case "pdf":
+					documento.setPDF(doc.getPath());
+					break;
+				case "ods":
+					documento.setOdsDoc(doc.getPath());
+					break;
+				case "odt":
+					documento.setOdtDoc(doc.getPath());
+					break;
+				default:
+					documento.setPDF(null);
+			}
+			
+		}else{
+			documento.setPDF(doc.getPath());
+		}
+		
 	}
 	
 	public static void openCorso(final Boolean altezzaDinamica,Corso c) {

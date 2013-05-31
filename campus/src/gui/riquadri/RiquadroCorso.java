@@ -1,7 +1,6 @@
 package gui.riquadri;
 
 import gui.Home;
-import gui.buttons.RimuoviButton;
 import gui.buttons.RimuoviCorsoSeguito;
 
 import java.awt.Color;
@@ -10,28 +9,17 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultCaret;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
-import modello_di_dominio.Facolta;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.util.ArrayList;
-
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 /**
  * 
  * @author mw
