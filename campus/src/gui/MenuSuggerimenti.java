@@ -1,30 +1,36 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.Cursor;
+import javax.swing.SwingConstants;
+
+import modello_di_dominio.Documento;
 
 public class MenuSuggerimenti extends JPanel {
 	
 	private JLabel imgNotificheSuggerimento;
 	private JLabel imgAggiungiSuggerimento;
-	private ImageIcon notificaModificaBlu = new ImageIcon("C:\\Users\\Simone\\workspace\\campus-swing\\campus\\newimage\\notifica_modifica.png");
-	private ImageIcon notificaModificaBianca = new ImageIcon("C:\\Users\\Simone\\workspace\\campus-swing\\campus\\newimage\\notifica_modifica1.png");
-	private ImageIcon aggiungiModificaBlu = new ImageIcon("C:\\Users\\Simone\\workspace\\campus-swing\\campus\\newimage\\aggiungi_modifica.png");
-	private ImageIcon aggiungiModificaBianca = new ImageIcon("C:\\Users\\Simone\\workspace\\campus-swing\\campus\\newimage\\aggiungi_modifica1.png");
+	private ImageIcon notificaModificaBlu = new ImageIcon("./newimage/notifica_modifica.png");
+	private ImageIcon notificaModificaBianca = new ImageIcon("./newimage/notifica_modifica1.png");
+	private ImageIcon aggiungiModificaBlu = new ImageIcon("./newimage/aggiungi_modifica.png");
+	private ImageIcon aggiungiModificaBianca = new ImageIcon("./newimage/aggiungi_modifica1.png");
+	private ImageIcon notifica = new ImageIcon("./newimage/notifica.png");
+	private JLabel lblNotifiche;
 	
 
 	public MenuSuggerimenti(boolean Proprietario){
 		setPreferredSize(new Dimension(23, 65));
 		setSize(23, 65);
 		setLayout(null);
-		setBackground(new Color(6403279));
+		setBackground(Color.WHITE);
 		
 		
 		imgNotificheSuggerimento = new JLabel("");
@@ -46,10 +52,25 @@ public class MenuSuggerimenti extends JPanel {
 				imgNotificheSuggerimento.repaint();
 			}
 		});
+		
+		lblNotifiche = new JLabel("");
+		lblNotifiche.setForeground(Color.WHITE);
+		lblNotifiche.setFont(new Font("Tahoma", Font.BOLD, 8));
+		lblNotifiche.setVerticalAlignment(SwingConstants.TOP);
+		lblNotifiche.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNotifiche.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNotifiche.setIcon(notifica);
+		lblNotifiche.setBounds(5, 0, 15, 15);
+		add(lblNotifiche);
 		add(imgNotificheSuggerimento);
 		
-		//if(!Proprietario){
-		imgAggiungiSuggerimento = new JLabel("");		
+		imgAggiungiSuggerimento = new JLabel("");
+		
+		if(Proprietario){
+			imgAggiungiSuggerimento.setVisible(false);
+		}
+		
+			
 		imgAggiungiSuggerimento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imgAggiungiSuggerimento.setToolTipText("Aggiungi suggerimento");
 		imgAggiungiSuggerimento.setIcon(aggiungiModificaBlu);
@@ -70,7 +91,25 @@ public class MenuSuggerimenti extends JPanel {
 				imgAggiungiSuggerimento.repaint();
 			}
 		});
-		add(imgAggiungiSuggerimento);
-		//}
+
+	}
+	
+	public JLabel getNotificaSuggerimento(){
+		return imgNotificheSuggerimento;
+	}
+	
+	public JLabel getAggiungiSuggerimento(){
+		return imgAggiungiSuggerimento;
+	}
+	
+	public void setNotifiche(int i){
+		if(i == 0){
+			lblNotifiche.setVisible(false);
+		}
+		else{
+			lblNotifiche.setText(String.valueOf(i));
+		}
+		lblNotifiche.validate();
+		lblNotifiche.repaint();
 	}
 }

@@ -62,7 +62,7 @@ public class DocumentoPanel extends Pagina {
 	JTextPane panel_3 = new JTextPane();
 	
 	private JPanel panel_1 = new JPanel();
-	private PannelloSuggerimenti suggerimenti;
+	private Suggerimenti suggerimenti;
 	private JButton btnNewButton;
 	private MenuSuggerimenti menuSuggerimenti;
 
@@ -190,7 +190,7 @@ public class DocumentoPanel extends Pagina {
 
 		JPanel panelCommenti = new JPanel();
 		panelCommenti.setBounds(624, 390, 200, 200);
-		panel.add(panelCommenti);
+		riquadrodx.add(panelCommenti);
 		panelCommenti.setLayout(null);
 
 		JLabel lblCommenti = new JLabel("Commenti");
@@ -221,6 +221,8 @@ public class DocumentoPanel extends Pagina {
 
 		lblVoti.setBounds(365, 20, 50, 20);
 		panel.add(lblVoti);
+		suggerimenti = new Suggerimenti();
+		panel.add(suggerimenti);
 	}
 
 	public void setPDF(String pdfPath) {
@@ -288,9 +290,9 @@ public class DocumentoPanel extends Pagina {
 
 	@Override
 	public void reload(Object o) {
-		btnNewButton = new JButton(">");
-		panel.add(btnNewButton);
-		btnNewButton.setBounds(521, 165, 45, 45);
+		//btnNewButton = new JButton(">");
+		//panel.add(btnNewButton);
+		//btnNewButton.setBounds(521, 165, 45, 45);
 		//menuSuggerimenti = new MenuSuggerimenti(false);
 		//menuSuggerimenti.setLocation(521, 100);
 		//panel.add(menuSuggerimenti);
@@ -298,6 +300,11 @@ public class DocumentoPanel extends Pagina {
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
 		riquadrodx.setVisible(true);
+		panel.remove(suggerimenti);
+		suggerimenti = new Suggerimenti();
+		suggerimenti.setLocation(521, 93);
+		suggerimenti.load(d);
+		panel.add(suggerimenti);
 		//suggerimenti.setPreferredSize(new Dimension(440, 400));
 		
 		
@@ -314,6 +321,7 @@ public class DocumentoPanel extends Pagina {
 				});
 		
 		suggerimenti.setVisible(false);*/
+		toggleInfo();
 		validate();
 		repaint();
 		/*btnNewButton.addMouseListener(new MouseAdapter() {
@@ -485,7 +493,7 @@ public class DocumentoPanel extends Pagina {
 			stelle.add(stella, i);
 		}
 	}
-	
+	/*
 	private void adjustSuggerimenti(){
 		if(suggerimenti.getViewport().getComponent(0).getHeight() >= 484){
 
@@ -494,5 +502,5 @@ public class DocumentoPanel extends Pagina {
 		}
 		suggerimenti.validate();
 		suggerimenti.repaint();
-	}
+	}*/
 }
