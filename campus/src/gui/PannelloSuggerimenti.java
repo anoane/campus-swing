@@ -80,24 +80,24 @@ public class PannelloSuggerimenti extends JScrollPane {
 	}
 	
 	private void aggiornaAltezza(){
-		int altezza = 0;
+		int altezza = 5;
 		if(pannello.getComponents().length == 0){
 			pannello.setPreferredSize(new Dimension(390,200));
 			pannello.setSize(390, 200);
 		}
 		else{
 			for(int i=0; i<pannello.getComponents().length; ++i){
-				altezza += pannello.getComponent(i).getHeight()+10;
+				altezza += pannello.getComponent(i).getHeight()+5;
 			}
 			pannello.setPreferredSize(new Dimension(390,altezza));
 			pannello.setSize(390, altezza);
 		}
 		if((altezza+10) < 484){
-			setPreferredSize(new Dimension(440, altezza+5));
+			setPreferredSize(new Dimension(420, altezza+5));
 			setSize(larghezza,altezza+5);
 		}
 		else{
-			setPreferredSize(new Dimension(440, 484));
+			setPreferredSize(new Dimension(420, 484));
 			setSize(larghezza,484);
 		}
 	}

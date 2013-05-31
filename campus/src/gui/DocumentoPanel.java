@@ -56,6 +56,8 @@ public class DocumentoPanel extends Pagina {
 	JTextPane panel_3 = new JTextPane();
 	private PannelloSuggerimenti suggerimenti;
 	private JButton btnNewButton;
+	private MenuSuggerimenti menuSuggerimenti;
+
 
 	public DocumentoPanel(final Documento d) {
 		setBackground(Color.WHITE);
@@ -140,13 +142,13 @@ public class DocumentoPanel extends Pagina {
 		panel_1.add(pdfDoc);
 		pdfDoc.setBorder(null);
 
-		suggerimenti = new PannelloSuggerimenti();
+		//suggerimenti = new PannelloSuggerimenti();
 		//suggerimenti.setBounds(575, 100, 430, 400);
-		suggerimenti.setLocation(575,100);
-		suggerimenti.setVisible(false);
-		panel.add(suggerimenti);
-		suggerimenti.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
-		suggerimenti.setBackground(Color.WHITE);
+		//suggerimenti.setLocation(575,100);
+		//suggerimenti.setVisible(false);
+		//panel.add(suggerimenti);
+		//suggerimenti.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
+		//suggerimenti.setBackground(Color.WHITE);
 
 		lbltipo = new JLabel();
 		lbltipo.setBounds(84, 53, 57, 23);
@@ -250,7 +252,10 @@ public class DocumentoPanel extends Pagina {
 	public void reload(Object o) {
 		btnNewButton = new JButton(">");
 		panel.add(btnNewButton);
-		btnNewButton.setBounds(521, 100, 45, 45);
+		btnNewButton.setBounds(521, 165, 45, 45);
+		menuSuggerimenti = new MenuSuggerimenti(false);
+		menuSuggerimenti.setLocation(521, 100);
+		panel.add(menuSuggerimenti);
 		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
@@ -258,19 +263,19 @@ public class DocumentoPanel extends Pagina {
 		//suggerimenti.setPreferredSize(new Dimension(440, 400));
 		
 		
-		suggerimenti.load(d);
+		//suggerimenti.load(d);
 		
 		//adjustSuggerimenti();
-		/*
-		suggerimenti.getViewport().getComponent(0).addComponentListener(
+		
+		/*suggerimenti.getViewport().getComponent(0).addComponentListener(
 				new ComponentAdapter() {
 					@Override
 					public void componentResized(ComponentEvent arg0) {
 						adjustSuggerimenti();
 					}
 				});
-		*/
-		suggerimenti.setVisible(false);
+		
+		suggerimenti.setVisible(false);*/
 		validate();
 		repaint();
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -446,7 +451,7 @@ public class DocumentoPanel extends Pagina {
 	private void adjustSuggerimenti(){
 		if(suggerimenti.getViewport().getComponent(0).getHeight() >= 484){
 
-			suggerimenti.setPreferredSize(new Dimension(400,484));
+			suggerimenti.setPreferredSize(new Dimension(440,484));
 			suggerimenti.setSize(440,484);
 		}
 		suggerimenti.validate();
