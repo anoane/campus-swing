@@ -105,7 +105,7 @@ public class Home {
 	private final static Preferiti pagina_preferiti = new Preferiti();
 	private final static CaricaMateriale pagina_carica_materiale = new CaricaMateriale();
 	private final static MieiDocumenti pagina_miei_documenti = new MieiDocumenti();
-	private final static Profilo pagina_profilo = new Profilo(null);
+	private static Profilo pagina_profilo = null;
 	private final static GestioneStampa pagina_gestione_stampa = new GestioneStampa();
 	private final static PrenotaDigitalizzazione pagina_prenota_digitalizzazione = new PrenotaDigitalizzazione();
 	private final static PrenotaLibro pagina_prenota_libri = new PrenotaLibro();
@@ -145,7 +145,13 @@ public class Home {
 	}
 
 	private void initialize() {
-		        
+		
+		if (ControllerUtente.getInstance().getUtente(1) != null ) {
+			pagina_profilo = new Profilo(ControllerUtente.getInstance().getUtente(1));
+		} else {
+			pagina_profilo = new Profilo(null);
+		}
+		
 		setFrame(new JFrame());
 
 		getFrame().addWindowStateListener(new WindowStateListener() {
