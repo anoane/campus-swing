@@ -27,10 +27,10 @@ public class MenuSuggerimenti extends JPanel {
 	
 
 	public MenuSuggerimenti(boolean Proprietario){
-		setPreferredSize(new Dimension(23, 65));
-		setSize(23, 65);
+		setPreferredSize(new Dimension(23, 484));
+		setSize(23, 484);
 		setLayout(null);
-		setBackground(Color.WHITE);
+		setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		
 		
 		imgNotificheSuggerimento = new JLabel("");

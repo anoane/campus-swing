@@ -20,7 +20,7 @@ public class RiquadroSuggerimentoSmall extends Riquadro {
 	private JTextArea txtTesto;
 	private JLabel lblOK;
 	private JLabel lblCancel;
-	private JButton btnEspandi;
+	private JLabel btnEspandi;
 
 	public RiquadroSuggerimentoSmall(Correzione c) {
 		super();
@@ -57,15 +57,13 @@ public class RiquadroSuggerimentoSmall extends Riquadro {
 		lblCancel.setBounds(335, 45, 30, 28);
 		add(lblCancel);
 		
-		btnEspandi = new JButton("+");
-		btnEspandi.setMargin(new Insets(3, 5, 5, 5));
-		btnEspandi.setVerticalAlignment(SwingConstants.TOP);
-		btnEspandi.setFont(new Font("Arial", Font.PLAIN, 8));
-		btnEspandi.setBounds(370, 0, 20, 20);
+		btnEspandi = new JLabel();
+		btnEspandi.setIcon(new ImageIcon("./newimage/expand.png"));
+		btnEspandi.setBounds(365, 2, 23, 23);
 		add(btnEspandi);
 	}
 	
-	public JButton getEspandi(){
+	public JLabel getEspandi(){
 		return btnEspandi;
 	}
 }

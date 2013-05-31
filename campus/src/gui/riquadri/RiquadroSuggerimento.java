@@ -19,7 +19,7 @@ public class RiquadroSuggerimento extends Riquadro {
 	private JLabel lblApprova;
 	private JLabel lblCancel;
 	private JLabel lblCancella;
-	private JButton btnEspandi;
+	private JLabel btnEspandi;
 
 	public RiquadroSuggerimento(Correzione c) {
 		super();
@@ -65,14 +65,13 @@ public class RiquadroSuggerimento extends Riquadro {
 		lblCancella.setBounds(330, 100, 46, 14);
 		add(lblCancella);
 		
-		btnEspandi = new JButton("-");
-		btnEspandi.setMargin(new Insets(3, 5, 5, 5));
-		btnEspandi.setBounds(370, 0, 20, 20);
-		btnEspandi.setFont(new Font("Arial", Font.PLAIN, 8));
+		btnEspandi = new JLabel();
+		btnEspandi.setIcon(new ImageIcon("./newimage/reduce.png"));
+		btnEspandi.setBounds(365, 2, 23, 23);
 		add(btnEspandi);
 	}
 	
-	public JButton getEspandi(){
+	public JLabel getEspandi(){
 		return btnEspandi;
 	}
 }

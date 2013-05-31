@@ -5,7 +5,6 @@ import gui.riquadri.RiquadroUtenteDoc;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -71,7 +70,6 @@ public class DocumentoPanel extends Pagina {
 		
 		setBackground(Color.WHITE);
 		setLayout(null);
-
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(new Rectangle(0, 0, 1008, 585));
@@ -302,7 +300,7 @@ public class DocumentoPanel extends Pagina {
 		riquadrodx.setVisible(true);
 		panel.remove(suggerimenti);
 		suggerimenti = new Suggerimenti();
-		suggerimenti.setLocation(521, 93);
+		suggerimenti.setLocation(521, 100);
 		suggerimenti.load(d);
 		panel.add(suggerimenti);
 		//suggerimenti.setPreferredSize(new Dimension(440, 400));

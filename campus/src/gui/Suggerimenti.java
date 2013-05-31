@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Correzione;
 import modello_di_dominio.Documento;
@@ -20,7 +19,7 @@ public class Suggerimenti extends JPanel {
 
 	private MenuSuggerimenti menuSuggerimenti;
 	private PannelloSuggerimenti pannelloSuggerimenti;
-	private Dimension minDimension = new Dimension(30, 65);
+	private Dimension minDimension = new Dimension(30, 484);
 	private JLabel imgFreccia;
 
 	public Suggerimenti() {
@@ -29,7 +28,7 @@ public class Suggerimenti extends JPanel {
 		setLayout(null);
 		//setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
 		setBackground(Color.WHITE);
-		setMaximumSize(new Dimension(480,494));
+		setMaximumSize(new Dimension(480,484));
 	}
 
 	public void load(final Documento d) {
@@ -38,6 +37,7 @@ public class Suggerimenti extends JPanel {
 		menuSuggerimenti.setLocation(2, 5);
 		menuSuggerimenti.setNotifiche(notificheNonLette(d));
 		add(menuSuggerimenti);
+
 
 		imgFreccia = new JLabel("");
 		imgFreccia.setIcon(new ImageIcon("./newimage/freccia_left_blu_sugg.png"));
