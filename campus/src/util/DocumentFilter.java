@@ -23,9 +23,7 @@ public class DocumentFilter extends FileFilter {
 	            extension.equals(EstensioneFile.pptx) ||
 	            extension.equals(EstensioneFile.xls) ||
 	            extension.equals(EstensioneFile.xlsx) ||
-	            extension.equals(EstensioneFile.ods) ||
-	            extension.equals(EstensioneFile.odt) ||
-	            extension.equals(EstensioneFile.odp)){
+	            extension.equals(EstensioneFile.ods)){
 	                return true;
 	        } else {
 	            return false;
