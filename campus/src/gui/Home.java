@@ -672,6 +672,7 @@ public class Home {
 			
 			switch(strTipo.toLowerCase()){
 				case "pdf":
+					documento.reload(doc);
 					documento.setPDF(doc.getPath());
 					break;
 				case "ods":
