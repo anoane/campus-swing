@@ -253,9 +253,9 @@ public class DocumentoPanel extends Pagina {
 		btnNewButton = new JButton(">");
 		panel.add(btnNewButton);
 		btnNewButton.setBounds(521, 165, 45, 45);
-		menuSuggerimenti = new MenuSuggerimenti(false);
-		menuSuggerimenti.setLocation(521, 100);
-		panel.add(menuSuggerimenti);
+		//menuSuggerimenti = new MenuSuggerimenti(false);
+		//menuSuggerimenti.setLocation(521, 100);
+		//panel.add(menuSuggerimenti);
 		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 		final Documento d = ((Documento) o);
@@ -278,7 +278,7 @@ public class DocumentoPanel extends Pagina {
 		suggerimenti.setVisible(false);*/
 		validate();
 		repaint();
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		/*btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (suggestOpened) {
@@ -295,7 +295,7 @@ public class DocumentoPanel extends Pagina {
 				repaint();
 			}
 
-		});
+		});*/
 
 		if (d != null) {
 			if (ControllerUtente.getInstance().containDocumentoPreferito(
