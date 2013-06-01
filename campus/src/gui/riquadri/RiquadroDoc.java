@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -47,6 +48,7 @@ public class RiquadroDoc extends Riquadro {
 	private JLabel img_anteprima = new JLabel();
 	
 	private static Color colore_stella = new Color(255,222,87);
+	private JLabel imgUtente;
 
 	public RiquadroDoc(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
 		super();
@@ -252,6 +254,17 @@ public class RiquadroDoc extends Riquadro {
 		add(pulsanti);
 		add(stelle);
 		add(utente);
+		utente.setLayout(null);
+		
+		imgUtente = new JLabel("");
+		imgUtente.setBounds(0, 0, 50, 50);
+		
+		if (doc != null) {
+			Image resized = new ImageIcon("."+doc.getProprietario().getImmagine()).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);  
+			imgUtente.setIcon(new ImageIcon(resized));
+		}
+		
+		utente.add(imgUtente);
 		add(proprietario_cognome);
 		add(tipo);
 		add(lbltipo);

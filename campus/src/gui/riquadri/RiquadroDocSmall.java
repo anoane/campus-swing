@@ -37,6 +37,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 	private JPanel ext;
 	private JLabel label;
 	private JLabel lbltipo;
+	private JLabel imgUtente;
 
 	public RiquadroDocSmall(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
 		super();
@@ -175,6 +176,17 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		add(corso);
 		add(stelle);
 		add(utente);
+		utente.setLayout(null);
+		
+		imgUtente = new JLabel("");
+		imgUtente.setBounds(0, 0, 30, 30);
+		
+		if (doc != null) {
+			Image resized = new ImageIcon("."+doc.getProprietario().getImmagine()).getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);  
+			imgUtente.setIcon(new ImageIcon(resized));
+		}
+		
+		utente.add(imgUtente);
 		add(proprietario_cognome);
 		add(tipo);
 		add(proprietario_nome);
