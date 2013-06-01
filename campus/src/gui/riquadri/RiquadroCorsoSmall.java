@@ -40,15 +40,36 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 	 */
 	public RiquadroCorsoSmall(final Corso c) {
 		super();
+		
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setBackground(super.getCorsoBgColor());
 		this.setBorder(super.getRiquadroBorder());	
-		this.addMouseListener(new MouseAdapter() {
+		
+		final Color exitedColor = super.getCorsoBgColor();
+		final Color enteredColor = super.getCorsoOverBgColor();
+		
+		MouseAdapter comportamento = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openCorso(false,c);
 			}
-		});
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				setBackground(enteredColor);
+
+				descrizione.setBackground(enteredColor);
+				facolta.setBackground(enteredColor);
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				setBackground(exitedColor);
+
+				descrizione.setBackground(exitedColor);
+				facolta.setBackground(exitedColor);
+			}
+		};
+		
+		this.addMouseListener(comportamento);
 		
 		anteprima = new JPanel();
 		anteprima.setBackground(Color.LIGHT_GRAY);
@@ -78,6 +99,7 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		descrizione.setBackground(super.getCorsoBgColor());
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setText(util.StringUtility.truncateLines(descrizione,2));
+		descrizione.addMouseListener(comportamento);
 		
 		
 		facolta = new JTextArea();
@@ -105,6 +127,7 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		facolta.setBackground(super.getCorsoBgColor());
 		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
 		facolta.setText(util.StringUtility.truncateLines(facolta,1));
+		facolta.addMouseListener(comportamento);
 		
 		rimuovi = new RimuoviCorsoSeguito("Cancella il documento");
 		rimuovi.setToolTipText("Rimuovi il corso dai preferiti");

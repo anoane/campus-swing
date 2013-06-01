@@ -52,12 +52,31 @@ public class RiquadroCorso extends Riquadro {
 		anteprima = new JPanel();
 		anteprima.setBounds(15, 56, 138, 130);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.addMouseListener(new MouseAdapter() {
+		final Color exitedColor = super.getCorsoBgColor();
+		final Color enteredColor = super.getCorsoOverBgColor();
+		
+		MouseAdapter comportamento = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openCorso(false,c);
 			}
-		});
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				setBackground(enteredColor);
+
+				descrizione.setBackground(enteredColor);
+				facolta.setBackground(enteredColor);
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				setBackground(exitedColor);
+
+				descrizione.setBackground(exitedColor);
+				facolta.setBackground(exitedColor);
+			}
+		};
+		
+		this.addMouseListener(comportamento);
 
 		titolo = new JLabel(c.getNome());
 		titolo.setFont(new Font("Arial", Font.BOLD, 25));
@@ -86,22 +105,9 @@ public class RiquadroCorso extends Riquadro {
 		descrizione.setBackground(super.getCorsoBgColor());
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setText(util.StringUtility.truncateLines(descrizione,6));
-		descrizione.addMouseListener(new MouseAdapter()
-        {
-            public void mouseClicked(MouseEvent me)
-            {
-            	Home.openCorso(false,c);
-            }
-        });
+		descrizione.addMouseListener(comportamento);
 		
 		facolta = new JTextArea();
-		facolta.addMouseListener(new MouseAdapter()
-        {
-            public void mouseClicked(MouseEvent me)
-            {
-            	Home.openCorso(false,c);
-            }
-        });
 		DefaultCaret caret2 = (DefaultCaret) facolta.getCaret();
 		caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		if (!c.facolta.isEmpty()) {
@@ -127,6 +133,7 @@ public class RiquadroCorso extends Riquadro {
 		facolta.setBackground(super.getCorsoBgColor());
 		facolta.setFont(new Font("Arial", Font.PLAIN, 12));
 		facolta.setText(util.StringUtility.truncateLines(facolta,2));
+		facolta.addMouseListener(comportamento);
 		
 		add(anteprima);
 		anteprima.setLayout(null);

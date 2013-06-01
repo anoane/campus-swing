@@ -41,6 +41,7 @@ public class RiquadroSmall extends JPanel {
 	 * 
 	 */
 	private static Color corsoBgColor = new Color(0x22,0x44,0x66);
+	private static Color corsoOverBgColor = new Color(54,88,122);
 	
 	private static LineBorder riquadroBorder = new LineBorder(new Color(0x1B, 0x32, 0x80), 2);
 	
@@ -61,7 +62,7 @@ public class RiquadroSmall extends JPanel {
 	/**
 	 * @param preferitoBgColor the preferitoBgColor to set
 	 */
-	public static void setPreferitoOverBgColor(Color preferitoBgColor) {
+	public static void setPreferitoOverBgColor(Color preferitoOverBgColor) {
 		RiquadroSmall.preferitoOverBgColor = preferitoOverBgColor;
 	}
 	
@@ -77,6 +78,20 @@ public class RiquadroSmall extends JPanel {
 	 */
 	public static void setCorsoBgColor(Color corsoBgColor) {
 		RiquadroSmall.corsoBgColor = corsoBgColor;
+	}
+	
+	/**
+	 * @return the corsoBgColor
+	 */
+	public static Color getCorsoOverBgColor() {
+		return corsoOverBgColor;
+	}
+
+	/**
+	 * @param corsoBgColor the corsoBgColor to set
+	 */
+	public static void setCorsoOverBgColor(Color corsoOverBgColor) {
+		RiquadroSmall.corsoOverBgColor = corsoOverBgColor;
 	}
 
 	/**
