@@ -86,8 +86,22 @@ public class RiquadroCorso extends Riquadro {
 		descrizione.setBackground(super.getCorsoBgColor());
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 12));
 		descrizione.setText(util.StringUtility.truncateLines(descrizione,6));
+		descrizione.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent me)
+            {
+            	Home.openCorso(false,c);
+            }
+        });
 		
 		facolta = new JTextArea();
+		facolta.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent me)
+            {
+            	Home.openCorso(false,c);
+            }
+        });
 		DefaultCaret caret2 = (DefaultCaret) facolta.getCaret();
 		caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		if (!c.facolta.isEmpty()) {

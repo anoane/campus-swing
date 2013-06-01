@@ -294,6 +294,12 @@ public class Profilo extends Pagina {
 		gbc_lblPunti.gridy = 5;
 		panel_2.add(lblPunti, gbc_lblPunti);
 		
+		JPanel recenti = new JPanel();
+		recenti.setBackground(Color.WHITE);
+		recenti.setBounds(671, 49, 289, 176);
+		panel_1.add(recenti);
+		recenti.setLayout(null);
+		
 
 
 	}

@@ -46,12 +46,15 @@ public class RiquadroDoc extends Riquadro {
 	private RimuoviButton rimuovi;
 	private JLabel lbltipo;
 	private JLabel img_anteprima = new JLabel();
+	private JPanel colore = new JPanel();
 	
 	private static Color colore_stella = new Color(255,222,87);
 	private JLabel imgUtente;
 
 	public RiquadroDoc(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
 		super();
+		final Color exitedColor = super.getPreferitoBgColor();
+		final Color enteredColor =super.getPreferitoOverBgColor();
 		this.setBackground(super.getPreferitoBgColor());
 		this.setBorder(super.getRiquadroBorder());	
 		// Riquadro Anteprima
@@ -62,12 +65,102 @@ public class RiquadroDoc extends Riquadro {
 		
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		// Event listener
-		this.addMouseListener(new MouseAdapter() {
+		
+		MouseAdapter comportamento = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openDocument(true,doc);
 			}
-		});
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				setBackground(enteredColor);
+				stelle.removeAll();
+				for(int i=0; i<5; ++i){
+					//Label contenente la singola stella
+					JLabel stella = new JLabel();
+					stella.setAlignmentY(Component.TOP_ALIGNMENT);
+					stella.setBounds(i*20, 0, 20, 20);
+					stella.setIcon(new ImageIcon("./newimage/star_med_light.png"));
+					stelle.add(stella);
+					
+				}
+				stelle.add(colore);
+				stelle.setLocation(125, 45);
+				stelle.setSize(100, 20);
+				colore.setBackground(colore_stella);
+				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
+				univ.setBackground(enteredColor);
+				descrizione.setBackground(enteredColor);
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				setBackground(exitedColor);
+				stelle.removeAll();
+				for(int i=0; i<5; ++i){
+					//Label contenente la singola stella
+					JLabel stella = new JLabel();
+					stella.setAlignmentY(Component.TOP_ALIGNMENT);
+					stella.setBounds(i*20, 0, 20, 20);
+					stella.setIcon(new ImageIcon("./newimage/star_med.png"));
+					stelle.add(stella);
+				}
+				stelle.add(colore);
+				stelle.setLocation(125, 45);
+				stelle.setSize(100, 20);
+				colore.setBackground(colore_stella);
+				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
+				univ.setBackground(exitedColor);
+				descrizione.setBackground(exitedColor);
+				
+			}
+		};
+		
+		MouseAdapter comportamento2 = new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				setBackground(enteredColor);
+				stelle.removeAll();
+				for(int i=0; i<5; ++i){
+					//Label contenente la singola stella
+					JLabel stella = new JLabel();
+					stella.setAlignmentY(Component.TOP_ALIGNMENT);
+					stella.setBounds(i*20, 0, 20, 20);
+					stella.setIcon(new ImageIcon("./newimage/star_med_light.png"));
+					stelle.add(stella);
+					
+				}
+				stelle.add(colore);
+				stelle.setLocation(125, 45);
+				stelle.setSize(100, 20);
+				colore.setBackground(colore_stella);
+				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
+				univ.setBackground(enteredColor);
+				descrizione.setBackground(enteredColor);
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				setBackground(exitedColor);
+				stelle.removeAll();
+				for(int i=0; i<5; ++i){
+					//Label contenente la singola stella
+					JLabel stella = new JLabel();
+					stella.setAlignmentY(Component.TOP_ALIGNMENT);
+					stella.setBounds(i*20, 0, 20, 20);
+					stella.setIcon(new ImageIcon("./newimage/star_med.png"));
+					stelle.add(stella);
+				}
+				stelle.add(colore);
+				stelle.setLocation(125, 45);
+				stelle.setSize(100, 20);
+				colore.setBackground(colore_stella);
+				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
+				univ.setBackground(exitedColor);
+				descrizione.setBackground(exitedColor);
+				
+			}
+		};
+		
+		this.addMouseListener(comportamento);
 
 		// JPanel tipo
 		tipo = new JPanel();
@@ -127,9 +220,10 @@ public class RiquadroDoc extends Riquadro {
 		univ.setWrapStyleWord(true);
 		univ.setHighlighter(null);
 		univ.setEditable(false);
-		univ.setBackground(super.getPreferitoBgColor());
 		univ.setBounds(125, 135, 143, 40);
 		univ.setText(util.StringUtility.truncateLines(univ,2));
+		univ.addMouseListener(comportamento);
+
 
 		
 		// Pannello Rimuovi
@@ -151,7 +245,12 @@ public class RiquadroDoc extends Riquadro {
 		pulsanti.add(r);
 		pulsanti.add(rp);
 		
-		
+		m.addMouseListener(comportamento2);
+
+		r.addMouseListener(comportamento2);
+
+		rp.addMouseListener(comportamento2);
+
 		// Label title
 		titolo = new JLabel(doc.getNome());
 		titolo.setBounds(10, 5, 298, 40);
@@ -173,9 +272,11 @@ public class RiquadroDoc extends Riquadro {
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
 		descrizione.setWrapStyleWord(true);
 		descrizione.setHighlighter(null);
-		descrizione.setBackground(super.getPreferitoBgColor());
 		descrizione.setText(util.StringUtility.truncateLines(descrizione,3));
+		descrizione.addMouseListener(comportamento);
 
+		univ.setBackground(exitedColor);
+		descrizione.setBackground(exitedColor);
 		
 		// Label corso
 		corso = new JLabel(doc.getCorso().getNome());
@@ -187,7 +288,6 @@ public class RiquadroDoc extends Riquadro {
 		// Panel stelle
 		stelle = new JPanel();
 		// Panel contenente il colore di riempimento delle stelle
-		JPanel colore = new JPanel();
 		stelle.setLayout(null);
 		
 		for(int i=0; i<5; ++i){
@@ -276,108 +376,10 @@ public class RiquadroDoc extends Riquadro {
 		img_anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		
 		anteprima.add(img_anteprima);
-		//System.out.println("./thumb/"+(doc.getPath().substring(6))+".png");
+		
 		if(!doc.getPath().equals("/"))
 			img_anteprima.setIcon(new ImageIcon("./thumb/"+(doc.getPath().substring(6))+".png"));
-		/*
-		titolo.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		titolo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		corso.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		corso.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		facolta.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		facolta.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		univ.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		univ.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		descrizione.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		descrizione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		stelle.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		stelle.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		utente.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		utente.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		proprietario_cognome.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		proprietario_cognome.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		tipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		tipo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		lbltipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		lbltipo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		anteprima.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		anteprima.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});
-		proprietario_nome.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		// Event listener
-		proprietario_nome.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
-			}
-		});*/
 
-		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setBounds(274, 140, 1, 58);

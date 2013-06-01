@@ -27,7 +27,6 @@ public class RiquadroDocSmall extends RiquadroSmall {
 	private JPanel tipo;
 	private JPanel stelle;
 	private JLabel titolo;
-	private JTextArea corso;
 	private JPanel utente;
 	private JLabel proprietario_cognome;
 	private JLabel proprietario_nome;
@@ -38,18 +37,73 @@ public class RiquadroDocSmall extends RiquadroSmall {
 	private JLabel label;
 	private JLabel lbltipo;
 	private JLabel imgUtente;
+	private JPanel colore = new JPanel();
+	private JTextArea corso = new JTextArea();
+	
 
 	public RiquadroDocSmall(final Documento doc, boolean documentoFalse_preferitoTrue, boolean soloVisualizzazione) {
 		super();
+		
+		final Color exitedColor = super.getPreferitoBgColor();
+		final Color enteredColor =super.getPreferitoOverBgColor();
+		
 		this.setBackground(super.getPreferitoBgColor());
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setBorder(super.getRiquadroBorder());
-		this.addMouseListener(new MouseAdapter() {
+		
+		
+		
+		MouseAdapter comportamento = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openDocument(true,doc);
 			}
-		});
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				setBackground(enteredColor);
+				stelle.removeAll();
+				for(int i=0; i<5; ++i){
+					//Label contenente la singola stella
+					JLabel stella = new JLabel();
+					stella.setAlignmentY(Component.TOP_ALIGNMENT);
+					stella.setBounds(i*15, 0, 15, 15);
+					stella.setIcon(new ImageIcon("./newimage/star_little_light.png"));
+					stelle.add(stella);
+				}
+				stelle.add(colore);
+				stelle.setLocation(144, 37);
+				stelle.setSize(75, 15);
+				colore.setBackground(colore_stella);
+				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
+				corso.setBackground(enteredColor);
+
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				setBackground(exitedColor);
+				stelle.removeAll();
+				for(int i=0; i<5; ++i){
+					//Label contenente la singola stella
+					JLabel stella = new JLabel();
+					stella.setAlignmentY(Component.TOP_ALIGNMENT);
+					stella.setBounds(i*15, 0, 15, 15);
+					stella.setIcon(new ImageIcon("./newimage/star_small.png"));
+					stelle.add(stella);
+				}
+				stelle.add(colore);
+				stelle.setLocation(144, 37);
+				stelle.setSize(75, 15);
+				colore.setBackground(colore_stella);
+				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
+				corso.setBackground(exitedColor);
+				
+			}
+		};
+		
+		
+		
+		
+		this.addMouseListener(comportamento);
 		// JPanel tipo
 		tipo = new JPanel();
 		tipo.setBounds(10, 35, 58, 20);
@@ -99,22 +153,22 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		titolo.setForeground(Color.WHITE);
 
 		// Label corso
-		corso = new JTextArea(doc.getCorso().getNome());
+		corso.setText(doc.getCorso().getNome());
 		corso.setFont(new Font("Arial", Font.PLAIN, 12));
 		corso.setLineWrap(true);
 		corso.setBorder(new EmptyBorder(0,0,0,0));
 		corso.setWrapStyleWord(true);
 		corso.setHighlighter(null);
 		corso.setEditable(false);
-		corso.setBackground(super.getPreferitoBgColor());
+		corso.setBackground(exitedColor);
 		corso.setLocation(10, 60);
 		corso.setSize(146, 30);
 		corso.setText(util.StringUtility.truncateLines(corso,2));
+		corso.addMouseListener(comportamento);
 		
 		// Panel stelle
 		stelle = new JPanel();
 		// Panel contenente il colore di riempimento delle stelle
-		JPanel colore = new JPanel();
 		stelle.setLayout(null);
 		
 		for(int i=0; i<5; ++i){

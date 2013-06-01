@@ -36,6 +36,8 @@ public class Riquadro extends JPanel {
 	 * 
 	 */
 	private static Color preferitoBgColor = new Color(67, 136, 204);
+	private static Color preferitoOverBgColor = new Color(87, 156, 224);
+	
 	/**
 	 * 
 	 */
@@ -76,6 +78,20 @@ public class Riquadro extends JPanel {
 	 */
 	public static void setPreferitoBgColor(Color preferitoBgColor) {
 		Riquadro.preferitoBgColor = preferitoBgColor;
+	}
+	
+	/**
+	 * @return the preferitoBgColor
+	 */
+	public static Color getPreferitoOverBgColor() {
+		return preferitoOverBgColor;
+	}
+
+	/**
+	 * @param preferitoBgColor the preferitoBgColor to set
+	 */
+	public static void setPreferitoOverBgColor(Color preferitoBgColor) {
+		Riquadro.preferitoOverBgColor = preferitoOverBgColor;
 	}
 
 	/**
