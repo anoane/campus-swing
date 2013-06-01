@@ -699,9 +699,9 @@ public class Home {
 				case "ods":
 					documento.setOdsDoc(doc.getPath());
 					break;
-				case "odt":
-					documento.setOdtDoc(doc.getPath());
-					break;
+				//case "odt":
+				//	documento.setOdtDoc(doc.getPath());
+				//	break;
 				default:
 					documento.unsetAllPreviewer();
 			}
