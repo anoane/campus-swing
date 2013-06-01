@@ -34,6 +34,7 @@ import controller.ControllerDocumento;
 import controller.ControllerPreferiti;
 import controller.ControllerUtente;
 import controller.ControllerVoto;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -135,6 +136,7 @@ public class DocumentoPanel extends Pagina {
 		panel_1.setBounds(2, 2, 517, 480);
 		doc.add(panel_1);
 		panel_1.setLayout(null);
+
 		
 		pdfDoc.setBounds(0, -48, 518, 529);
 		panel_1.add(pdfDoc);
@@ -219,6 +221,17 @@ public class DocumentoPanel extends Pagina {
 		panel.add(lblVoti);
 		suggerimenti = new Suggerimenti();
 		panel.add(suggerimenti);
+	}
+	
+	public void unsetAllPreviewer() {
+		setPDF(null);
+		panel_1.removeAll();
+		JLabel templabel = new JLabel("Anteprima non disponibile");
+		templabel.setBackground(Color.LIGHT_GRAY);
+		templabel.setHorizontalAlignment(SwingConstants.CENTER);
+		templabel.setFont(new Font("Arial", Font.BOLD, 20));
+		templabel.setBounds(0, 0, 518, 481);
+		panel_1.add(templabel);
 	}
 
 	public void setPDF(String pdfPath) {

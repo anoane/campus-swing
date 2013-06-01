@@ -690,10 +690,10 @@ public class Home {
 		}*/
 		if (doc.getPath() != null && !doc.getPath().equals("/")) {
 			String strTipo = doc.getPath().split("\\.")[1];
+			documento.reload(new DocFlag(doc,modificaAttiva));
 			
 			switch(strTipo.toLowerCase()){
 				case "pdf":
-					documento.reload(new DocFlag(doc,modificaAttiva));
 					documento.setPDF(doc.getPath());
 					break;
 				case "ods":
@@ -703,8 +703,7 @@ public class Home {
 					documento.setOdtDoc(doc.getPath());
 					break;
 				default:
-					//documento.reload(new DocFlag(doc,modificaAttiva));
-					documento.setPDF(null);
+					documento.unsetAllPreviewer();
 			}
 			
 		}else{
