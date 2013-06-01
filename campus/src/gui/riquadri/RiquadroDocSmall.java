@@ -67,7 +67,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 					JLabel stella = new JLabel();
 					stella.setAlignmentY(Component.TOP_ALIGNMENT);
 					stella.setBounds(i*15, 0, 15, 15);
-					stella.setIcon(new ImageIcon("./newimage/star_little_light.png"));
+					stella.setIcon(new ImageIcon("./newimage/star_small_light.png"));
 					stelle.add(stella);
 				}
 				stelle.add(colore);
