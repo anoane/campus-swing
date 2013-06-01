@@ -5,6 +5,7 @@ import gui.riquadri.RiquadroDoc;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -300,7 +301,80 @@ public class Profilo extends Pagina {
 		panel_1.add(recenti);
 		recenti.setLayout(null);
 		
-
+		JLabel lblHaCaricato = new JLabel("Ha caricato");
+		lblHaCaricato.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblHaCaricato.setBounds(10, 11, 71, 14);
+		recenti.add(lblHaCaricato);
+		
+		JLabel lblAppuntiDiFisica = new JLabel("Appunti di Fisica I");
+		lblAppuntiDiFisica.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblAppuntiDiFisica.setFont(new Font("Arial", Font.BOLD, 14));
+		lblAppuntiDiFisica.setForeground(Home.BLUE_BUTTON_PRESSED);
+		lblAppuntiDiFisica.setBounds(91, 11, 159, 14);
+		recenti.add(lblAppuntiDiFisica);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBounds(0, 36, 289, 1);
+		separator_5.setForeground(Home.BLUE_BUTTON_PRESSED);
+		separator_5.setBackground(Home.BLUE_BUTTON_PRESSED);
+		recenti.add(separator_5);
+		
+		JLabel lblHaCommentato = new JLabel("Ha commentato");
+		lblHaCommentato.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblHaCommentato.setBounds(10, 48, 98, 14);
+		recenti.add(lblHaCommentato);
+		
+		JLabel lblSlideMicroeconomia = new JLabel("Slide Microeconomia");
+		lblSlideMicroeconomia.setForeground(Color.BLACK);
+		lblSlideMicroeconomia.setFont(new Font("Arial", Font.BOLD, 14));
+		lblSlideMicroeconomia.setBounds(118, 48, 161, 14);
+		lblSlideMicroeconomia.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblSlideMicroeconomia.setForeground(Home.BLUE_BUTTON_PRESSED);
+		recenti.add(lblSlideMicroeconomia);
+		
+		JSeparator separator_6 = new JSeparator();
+		separator_6.setBounds(0, 73, 289, 1);
+		separator_6.setForeground(Home.BLUE_BUTTON_PRESSED);
+		separator_6.setBackground(Home.BLUE_BUTTON_PRESSED);
+		recenti.add(separator_6);
+		
+		JLabel lblHaAggiuntoUn = new JLabel("Ha aggiunto un suggerimento su");
+		lblHaAggiuntoUn.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblHaAggiuntoUn.setBounds(10, 85, 205, 17);
+		recenti.add(lblHaAggiuntoUn);
+		
+		JLabel label = new JLabel("Ingegneria degli algoritmi");
+		label.setForeground(Color.BLACK);
+		label.setFont(new Font("Arial", Font.BOLD, 14));
+		label.setForeground(Home.BLUE_BUTTON_PRESSED);
+		label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		label.setBounds(10, 106, 205, 17);
+		recenti.add(label);
+		
+		JSeparator separator_7 = new JSeparator();
+		separator_7.setForeground(Color.BLACK);
+		separator_7.setBackground(Color.BLACK);
+		separator_7.setBounds(0, 134, 289, 1);
+		recenti.add(separator_7);
+		
+		JLabel lblHaVotato = new JLabel("Ha votato");
+		lblHaVotato.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblHaVotato.setBounds(10, 146, 60, 14);
+		recenti.add(lblHaVotato);
+		
+		JLabel lblEserciziAnalisiIi = new JLabel("Esercizi Analisi II");
+		lblEserciziAnalisiIi.setForeground(Color.BLACK);
+		lblEserciziAnalisiIi.setFont(new Font("Arial", Font.BOLD, 14));
+		lblEserciziAnalisiIi.setBounds(80, 146, 159, 14);
+		lblEserciziAnalisiIi.setForeground(Home.BLUE_BUTTON_PRESSED);
+		lblEserciziAnalisiIi.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		recenti.add(lblEserciziAnalisiIi);
+		
+		JSeparator separator_8 = new JSeparator();
+		separator_8.setForeground(Color.BLACK);
+		separator_8.setBackground(Color.BLACK);
+		separator_8.setBounds(0, 171, 289, 1);
+		recenti.add(separator_8);
 
 	}
 	
