@@ -36,6 +36,7 @@ import modello_di_dominio.Utente;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class Profilo extends Pagina {
@@ -105,7 +106,7 @@ public class Profilo extends Pagina {
 		lblNomeUtente.setForeground(new Color(0x06, 0x79, 0x9F));
 		lblNomeUtente.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNomeUtente.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNomeUtente.setBounds(0, 10, 102, 28);
+		lblNomeUtente.setBounds(0, 10, 478, 28);
 		panel_1.add(lblNomeUtente);
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.insets = new Insets(0, 0, 5, 0);
@@ -124,7 +125,7 @@ public class Profilo extends Pagina {
 		lblProgramma.setForeground(new Color(0x06, 0x79, 0x9F));
 		lblProgramma.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblProgramma.setAlignmentX(0.5f);
-		lblProgramma.setBounds(500, 10, 243, 28);
+		lblProgramma.setBounds(500, 10, 460, 28);
 		panel_1.add(lblProgramma);
 		
 		JSeparator separator_2 = new JSeparator();
@@ -168,7 +169,9 @@ public class Profilo extends Pagina {
 		lblNomeUtente.setText(utente.getNome()+" "+utente.getCognome());
 		
 		JLabel imgUtente = new JLabel("");
+		imgUtente.setIcon(new ImageIcon("."+utente.getImmagine()));
 		imgUtente.setBounds(10, 50, 175, 175);
+		imgUtente.setBorder(new LineBorder(Color.black));
 		panel_1.add(imgUtente);
 		
 		JPanel panel_2 = new JPanel();
@@ -188,7 +191,8 @@ public class Profilo extends Pagina {
 		int colmax = (int) Math.ceil((float)docs.size()/2);
 		int altezza = 230*colmax;
 		contenuto_pagina.setBounds(panel.getX(),panel.getY()+71,panel.getWidth(),altezza);
-		//panel.setSize(panel.getWidth(), altezza+71);
+		panel.setSize(panel.getWidth(), altezza+370);
+		doc.setSize(doc.getWidth(), altezza+370);
 		
 		for(int i = 0;i < docs.size();i++){
 			int row = i%2;
@@ -213,14 +217,13 @@ public class Profilo extends Pagina {
 	}
 	
 	private void adjustDocs(final ArrayList<Documento> docs){
-		System.out.println(docs.size());
 		contenuto_pagina.removeAll();
 		contenuto_pagina.validate();
 		contenuto_pagina.repaint();
 		addDocumenti(docs);		
 	}
 	
-	private ArrayList<Documento> getDocs(String sorting,String filter) {	
+	private ArrayList<Documento> getDocs(String filter,String sorting) {	
 		Utente u = ControllerUtente.getInstance().getUtente(1);
 			
 		if(u == null){
