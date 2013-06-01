@@ -273,6 +273,8 @@ public class RiquadroDoc extends Riquadro {
 		add(proprietario_nome);
 		anteprima.setLayout(null);
 		img_anteprima.setBounds(0, 0, 100, 141);
+		img_anteprima.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
+		
 		anteprima.add(img_anteprima);
 		//System.out.println("./thumb/"+(doc.getPath().substring(6))+".png");
 		if(!doc.getPath().equals("/"))
