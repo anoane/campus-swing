@@ -69,7 +69,7 @@ public class RiquadroDoc extends Riquadro {
 		MouseAdapter comportamento = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Home.openDocument(true,doc);
+				Home.openDocument(true,doc,false);
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {

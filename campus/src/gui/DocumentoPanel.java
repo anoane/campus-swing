@@ -1,5 +1,6 @@
 package gui;
 
+import gui.helpers.DocFlag;
 import gui.riquadri.RiquadroUtenteDoc;
 
 import java.awt.Color;
@@ -66,7 +67,7 @@ public class DocumentoPanel extends Pagina {
 	private MenuSuggerimenti menuSuggerimenti;
 
 
-	public DocumentoPanel(final Documento d) {
+	public DocumentoPanel(final Documento d, boolean modificaAttiva) {
 		
 		setBackground(Color.WHITE);
 		setLayout(null);
@@ -293,7 +294,8 @@ public class DocumentoPanel extends Pagina {
 		//panel.add(menuSuggerimenti);
 		resetStelle();
 		ControllerVoto contrVoto = ControllerVoto.getInstance(); 
-		final Documento d = ((Documento) o);
+		final Documento d = ((DocFlag)o).getDoc();
+		final boolean flagModifica = ((DocFlag)o).getFlag();
 		riquadrodx.setVisible(true);
 		panel.remove(suggerimenti);
 		suggerimenti = new Suggerimenti();
@@ -458,7 +460,7 @@ public class DocumentoPanel extends Pagina {
 							Home.getUtenteLoggato(), j * 2);
 					resetStelle();
 					JOptionPane.showMessageDialog(null, "Voto salvato!");
-					Home.openDocument(true, d);
+					reload(new DocFlag(d,false));
 				}
 			};
 			if (!giaVotato) {

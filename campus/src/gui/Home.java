@@ -1,6 +1,8 @@
 package gui;
 
 
+import gui.helpers.DocFlag;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -112,7 +114,7 @@ public class Home {
 	private final static PrenotaLibro pagina_prenota_libri = new PrenotaLibro();
 	private final static RisultatiRicerca pagina_risultati_ricerca = new RisultatiRicerca();
 	
-	private final static DocumentoPanel documento = new DocumentoPanel(null);
+	private final static DocumentoPanel documento = new DocumentoPanel(null,false);
 	private final static CorsoPanel corso = new CorsoPanel(null);
 	
 	private final static TreeMap<String, Pagina> relazionePaginaBottone = new TreeMap<String, Pagina>();
@@ -671,11 +673,14 @@ public class Home {
 		}
 	}
 	
-	public static void openDocument(final Boolean altezzaDinamica, Documento doc) {
+	public static void openDocument(final Boolean altezzaDinamica, Documento doc, boolean modificaAttiva) {
 		//resetPagina();
 		//Home.unloadDocumento();
 		//TODO:aggiungere parametri del documento
-		documento.reload(doc);
+		
+		
+		
+		documento.reload(new DocFlag(doc,modificaAttiva));
 		Home.pulsantiNormali();
 		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 		/*if (altezzaDinamica) {
@@ -688,7 +693,7 @@ public class Home {
 			
 			switch(strTipo.toLowerCase()){
 				case "pdf":
-					documento.reload(doc);
+					documento.reload(new DocFlag(doc,modificaAttiva));
 					documento.setPDF(doc.getPath());
 					break;
 				case "ods":
@@ -698,6 +703,7 @@ public class Home {
 					documento.setOdtDoc(doc.getPath());
 					break;
 				default:
+					//documento.reload(new DocFlag(doc,modificaAttiva));
 					documento.setPDF(null);
 			}
 			

@@ -33,12 +33,7 @@ public class Suggerimenti extends JPanel {
 
 	public void load(final Documento d) {
 		removeAll();
-		menuSuggerimenti = new MenuSuggerimenti(d.getProprietario().equals(Home.getUtenteLoggato()));
-		menuSuggerimenti.setLocation(2, 5);
-		menuSuggerimenti.setNotifiche(notificheNonLette(d));
-		add(menuSuggerimenti);
-
-
+		
 		imgFreccia = new JLabel("");
 		imgFreccia.setIcon(new ImageIcon("./newimage/freccia_left_blu_sugg.png"));
 		imgFreccia.setBounds(25, 10, 11, 20);
@@ -62,27 +57,35 @@ public class Suggerimenti extends JPanel {
 		
 
 		add(pannelloSuggerimenti);
-		menuSuggerimenti.getNotificaSuggerimento().addMouseListener(
-				new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						if (pannelloSuggerimenti.isVisible()) {
-							pannelloSuggerimenti.setVisible(false);
-							imgFreccia.setVisible(false);
-							Suggerimenti.this.setSize(minDimension);
-							Suggerimenti.this.validate();
-							Suggerimenti.this.repaint();
-						} else {
-							pannelloSuggerimenti.load(d);
-							pannelloSuggerimenti.setVisible(true);
-							imgFreccia.setVisible(true);
-							Suggerimenti.this.setSize(480,
-									pannelloSuggerimenti.getHeight()+Suggerimenti.this.getY());
-							Suggerimenti.this.validate();
-							Suggerimenti.this.repaint();
+		
+		if (d!=null) {
+			menuSuggerimenti = new MenuSuggerimenti(d.getProprietario().equals(Home.getUtenteLoggato()));
+			menuSuggerimenti.setLocation(2, 5);
+			menuSuggerimenti.setNotifiche(notificheNonLette(d));
+			add(menuSuggerimenti);
+			menuSuggerimenti.getNotificaSuggerimento().addMouseListener(
+					new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if (pannelloSuggerimenti.isVisible()) {
+								pannelloSuggerimenti.setVisible(false);
+								imgFreccia.setVisible(false);
+								Suggerimenti.this.setSize(minDimension);
+								Suggerimenti.this.validate();
+								Suggerimenti.this.repaint();
+							} else {
+								pannelloSuggerimenti.load(d);
+								pannelloSuggerimenti.setVisible(true);
+								imgFreccia.setVisible(true);
+								Suggerimenti.this.setSize(480,
+										pannelloSuggerimenti.getHeight()+Suggerimenti.this.getY());
+								Suggerimenti.this.validate();
+								Suggerimenti.this.repaint();
+							}
 						}
-					}
-				});
+					});
+		}
+
 	}
 	
 	private int notificheNonLette(Documento d){
