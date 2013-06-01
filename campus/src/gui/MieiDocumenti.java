@@ -66,12 +66,10 @@ public class MieiDocumenti extends Pagina {
 	 * @return
 	 */
 	private ArrayList<Documento> getDocs(String sorting,String filter) {	
-		Utente u = ControllerUtente.getInstance().getUtente(1);
-			
-		if(u == null){
+		if(Home.getUtenteLoggato() == null){
 			return new ArrayList<Documento>();
 		}
-		ArrayList<Documento> doclist = new ArrayList<Documento>(u.documentiUtente.getCollection());
+		ArrayList<Documento> doclist = new ArrayList<Documento>(Home.getUtenteLoggato().documentiUtente.getCollection());
 		return ControllerDocumento.getInstance().filtraPerTipo(ControllerDocumento.getInstance().sortBy(doclist, sorting),filter);
 	}
 	

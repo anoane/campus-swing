@@ -33,7 +33,7 @@ public class Suggerimenti extends JPanel {
 
 	public void load(final Documento d) {
 		removeAll();
-		menuSuggerimenti = new MenuSuggerimenti(d.getProprietario().equals(ControllerUtente.getInstance().getUtente(1)));
+		menuSuggerimenti = new MenuSuggerimenti(d.getProprietario().equals(Home.getUtenteLoggato()));
 		menuSuggerimenti.setLocation(2, 5);
 		menuSuggerimenti.setNotifiche(notificheNonLette(d));
 		add(menuSuggerimenti);

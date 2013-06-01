@@ -46,10 +46,10 @@ public class CorsiSeguiti extends Pagina {
 	 * @return ArrayList<Corso>
 	 */
 	private ArrayList<Corso> getCorsi() {
-		if(ControllerUtente.getInstance().getUtente(1) == null){
+		if(Home.getUtenteLoggato() == null){
 			return new ArrayList<Corso>();
 		}
-		return ControllerCorso.getInstance().getCorsiSeguiti(ControllerUtente.getInstance().getUtente(1));
+		return ControllerCorso.getInstance().getCorsiSeguiti(Home.getUtenteLoggato());
 	}
 	
 	/**
@@ -75,8 +75,7 @@ public class CorsiSeguiti extends Pagina {
 					int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler rimuovere dai Corsi Seguiti il corso?","Attenzione",0);
 					if(n==0){
 					course.remove(c);
-					ControllerUtente u = ControllerUtente.getInstance();
-					ControllerUtente.getInstance().rimuoviCorsoSeguito(u.getUtente(1), c);
+					ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), c);
 					adjustCourse(course);}
 				}
 				});

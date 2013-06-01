@@ -378,7 +378,7 @@ public class RiquadroDoc extends Riquadro {
 				rp.setVisible(true);
 				r.setVisible(false);
 			} else {
-				if (doc.getProprietario().getID() == ControllerUtente.getInstance().getUtente(1).getID()) {
+				if (doc.getProprietario().getID() == Home.getUtenteLoggato().getID()) {
 					pulsanti.setVisible(true);
 					r.setVisible(true);
 					rp.setVisible(false);

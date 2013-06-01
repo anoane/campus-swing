@@ -51,12 +51,14 @@ public class Profilo extends Pagina {
 	private JLabel lblPage;
 	
 	private JPanel contenuto_pagina;
-	ButtonStandard buttonCreator = new ButtonStandard();
+	private ButtonStandard buttonCreator = new ButtonStandard();
 	//JButton seguiButton = buttonCreator.createButton("Aggiungi ai corsi seguiti", 740, 8, 230, 28, false, true);
 	//JButton nonSeguiButton = buttonCreator.createButton("Rimuovi dai corsi seguiti", 740, 8, 230, 28, false, true);
+	private JLabel lblNomeUtente = new JLabel();
+	private JLabel imgUtente = new JLabel();
 	
-	JLabel labelName = new JLabel();
-	ArrayList<String> univ = new ArrayList<String>();
+	private JLabel labelName = new JLabel();
+	private ArrayList<String> univ = new ArrayList<String>();
 
 	
 	/**
@@ -102,7 +104,6 @@ public class Profilo extends Pagina {
 		separator_1.setBounds(488, 10, 1, 215);
 		panel_1.add(separator_1);
 		
-		JLabel lblNomeUtente = new JLabel("");
 		lblNomeUtente.setForeground(new Color(0x06, 0x79, 0x9F));
 		lblNomeUtente.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNomeUtente.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -166,10 +167,7 @@ public class Profilo extends Pagina {
 		separator_2.setVisible(true);
 		separator_4.setVisible(true);
 		
-		lblNomeUtente.setText(utente.getNome()+" "+utente.getCognome());
-		
-		JLabel imgUtente = new JLabel("");
-		imgUtente.setIcon(new ImageIcon("."+utente.getImmagine()));
+
 		imgUtente.setBounds(10, 50, 175, 175);
 		imgUtente.setBorder(new LineBorder(Color.black));
 		panel_1.add(imgUtente);
@@ -223,9 +221,7 @@ public class Profilo extends Pagina {
 		addDocumenti(docs);		
 	}
 	
-	private ArrayList<Documento> getDocs(String filter,String sorting) {	
-		Utente u = ControllerUtente.getInstance().getUtente(1);
-			
+	private ArrayList<Documento> getDocs(Utente u, String filter,String sorting) {	
 		if(u == null){
 			return new ArrayList<Documento>();
 		}
@@ -234,8 +230,12 @@ public class Profilo extends Pagina {
 	}
 	
 	@Override
-	public void reload(Object d) {
-
+	public void reload(Object u) {
+		Utente utente = (Utente) u;
+		lblNomeUtente.setText(utente.getNome()+" "+utente.getCognome());
+		imgUtente.setIcon(new ImageIcon("."+utente.getImmagine()));
+		
+		adjustDocs(getDocs(utente, "all","timestampDOWN"));
 
 	}
 	
@@ -245,7 +245,6 @@ public class Profilo extends Pagina {
 
 	@Override
 	public void reload() {
-		adjustDocs(getDocs("all","timestampDOWN"));
-		//addDocumenti(documento);
+
 	}
 }

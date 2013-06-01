@@ -335,12 +335,12 @@ public class CorsoPanel extends Pagina {
 	public void reload(Object c) {
 		final Corso corso = (Corso)c;
 		adjustDocs(corso);
-		if(ControllerUtente.getInstance().containCorsoSeguito(ControllerUtente.getInstance().getUtente(1), corso)) {
+		if(ControllerUtente.getInstance().containCorsoSeguito(Home.getUtenteLoggato(), corso)) {
 			seguiButton.setVisible(false);
 			nonSeguiButton.setVisible(true);
 			nonSeguiButton.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					ControllerUtente.getInstance().rimuoviCorsoSeguito(ControllerUtente.getInstance().getUtente(1), corso);
+					ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), corso);
 					Home.openCorso(false, corso);
 				}
 			});
@@ -350,7 +350,7 @@ public class CorsoPanel extends Pagina {
 			nonSeguiButton.setVisible(false);
 			seguiButton.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					ControllerUtente.getInstance().aggiungiCorsoSeguito(ControllerUtente.getInstance().getUtente(1), corso);
+					ControllerUtente.getInstance().aggiungiCorsoSeguito(Home.getUtenteLoggato(), corso);
 					Home.openCorso(false, corso);
 				}
 			});

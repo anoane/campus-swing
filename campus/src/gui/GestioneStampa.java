@@ -42,15 +42,15 @@ public class GestioneStampa extends Pagina {
 		separator_1.setBounds(55, 90, 900, 1);
 		panel.add(separator_1);
 		
-		RiquadroStampa r1 = new RiquadroStampa("Appunti","doc", "Sistemi", 1, "Flash Copy", "12/12/13", "In stampa");
+		RiquadroStampa r1 = new RiquadroStampa("Appunti","doc", "Fisica I", 1, "Flash Copy", "24/06/13", "In stampa");
 		r1.setLocation(55, 109);
 		panel.add(r1);
 		
-		RiquadroStampa r2 = new RiquadroStampa("Esercizi","ppt", "Sistemi", 1, "Flash Copy", "12/12/13", "In stampa");
+		RiquadroStampa r2 = new RiquadroStampa("Esercizi","pdf", "Analisi II", 1, "Flash Copy", "18/06/13", "In stampa");
 		r2.setLocation(55, 189);
 		panel.add(r2);
 		
-		RiquadroStampa r3 = new RiquadroStampa("Slide","pdf", "Sistemi", 1, "Flash Copy", "12/12/13", "In stampa");
+		RiquadroStampa r3 = new RiquadroStampa("Slide","ppt", "Economia", 1, "Flash Copy", "1605/13", "Ritirato");
 		r3.setLocation(55, 269);
 		panel.add(r3);
 		

@@ -6,6 +6,7 @@ import gui.riquadri.RiquadroDocSmall;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -24,6 +25,8 @@ import controller.ControllerCorso;
 import controller.ControllerDocumento;
 import controller.ControllerPreferiti;
 import controller.ControllerUtente;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class HomePage extends Pagina {
@@ -56,26 +59,24 @@ public class HomePage extends Pagina {
 	}
 	
 	private ArrayList<Corso> getCorsiRec() {
-		if(ControllerUtente.getInstance().getUtente(1) == null){
+		if(Home.getUtenteLoggato() == null){
 			return new ArrayList<Corso>();
 		}
-		return ControllerCorso.getInstance().getCorsiSeguiti(ControllerUtente.getInstance().getUtente(1));
+		return ControllerCorso.getInstance().getCorsiSeguiti(Home.getUtenteLoggato());
 	}
 	
 	private ArrayList<Documento> getMieiPref() {
-		if(ControllerUtente.getInstance().getUtente(1) == null){
+		if(Home.getUtenteLoggato() == null){
 			return new ArrayList<Documento>();
 		}
-		return ControllerPreferiti.getInstance().getDocumentiPreferiti(ControllerUtente.getInstance().getUtente(1));
+		return ControllerPreferiti.getInstance().getDocumentiPreferiti(Home.getUtenteLoggato());
 	}
 	
 	private ArrayList<Documento> getMieiDocs() {
-		Utente u = ControllerUtente.getInstance().getUtente(1);
-		
-		if(u == null){
+		if(Home.getUtenteLoggato() == null){
 			return new ArrayList<Documento>();
 		}
-		ArrayList<Documento> doclist = new ArrayList<Documento>(u.documentiUtente.getCollection());
+		ArrayList<Documento> doclist = new ArrayList<Documento>(Home.getUtenteLoggato().documentiUtente.getCollection());
 		return ControllerDocumento.getInstance().sortBy(doclist, "timestampDOWN");
 	}
 
@@ -362,6 +363,12 @@ public class HomePage extends Pagina {
 		panel_10.setLayout(null);
 		
 		JLabel label_14 = new JLabel("");
+		label_14.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		label_14.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		label_14.setBounds(0, 0, 310, 31);
 		label_14.setIcon(new ImageIcon("./newimage/classifica_utente_1.png"));
 		panel_10.add(label_14);

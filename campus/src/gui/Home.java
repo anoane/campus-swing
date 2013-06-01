@@ -39,6 +39,7 @@ import controller.ControllerUtente;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
+import modello_di_dominio.Utente;
 import util.GUIConfig;
 
 public class Home {
@@ -105,7 +106,7 @@ public class Home {
 	private final static Preferiti pagina_preferiti = new Preferiti();
 	private final static CaricaMateriale pagina_carica_materiale = new CaricaMateriale();
 	private final static MieiDocumenti pagina_miei_documenti = new MieiDocumenti();
-	private static Profilo pagina_profilo = null;
+	private final static Profilo pagina_profilo = new Profilo(null);
 	private final static GestioneStampa pagina_gestione_stampa = new GestioneStampa();
 	private final static PrenotaDigitalizzazione pagina_prenota_digitalizzazione = new PrenotaDigitalizzazione();
 	private final static PrenotaLibro pagina_prenota_libri = new PrenotaLibro();
@@ -143,14 +144,19 @@ public class Home {
 		
 		initialize();
 	}
+	
+	public static Utente getUtenteLoggato() {
+		if (ControllerUtente.getInstance().getUtente(1) != null ) {
+			return ControllerUtente.getInstance().getUtente(1);
+		}
+		return null;
+	}
 
 	private void initialize() {
 		
-		if (ControllerUtente.getInstance().getUtente(1) != null ) {
-			pagina_profilo = new Profilo(ControllerUtente.getInstance().getUtente(1));
-		} else {
-			pagina_profilo = new Profilo(null);
-		}
+		
+		
+
 		
 		setFrame(new JFrame());
 
@@ -196,6 +202,10 @@ public class Home {
 			}
 		});
 
+		if (getUtenteLoggato() != null ) {
+			pagina_profilo.reload(getUtenteLoggato());
+		}
+		
 		// inizializzo i colori
 		oldColorState.put("home", BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("corsi_seguiti", BLUE_BUTTON_UNPRESSED);
@@ -709,6 +719,14 @@ public class Home {
 		} else {
 			Home.loadPages(corso, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE);
 		}*/
+	}
+	
+	public static void openProfilo(Utente u) {
+		// TODO Auto-generated method stub
+		//resetPagina();
+		pagina_profilo.reload(u);
+		Home.pulsantiNormali();
+		Home.loadPages(pagina_profilo, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 	}
 
 	public static JTextField getRicercaTestuale() {

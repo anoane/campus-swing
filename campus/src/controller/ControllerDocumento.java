@@ -1,5 +1,7 @@
 package controller;
 
+import gui.Home;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -253,7 +255,7 @@ public class ControllerDocumento extends AbstractController{
 		}
 		ArrayList<Documento> docs = new ArrayList<Documento>(treedocs.values());
 		if (soloFac) {
-			docs = filtraSoloUnaFac(docs, ControllerUtente.getInstance().getUtente(1).getFacolta().getID());
+			docs = filtraSoloUnaFac(docs, Home.getUtenteLoggato().getFacolta().getID());
 		}
 		return sortBy(filtraPerTipo(docs,filtro),sorting);
 	}

@@ -59,10 +59,10 @@ public class Preferiti extends Pagina {
 	}
 	
 	private ArrayList<Documento> getDocs(String sorting,String filter) {
-		if(ControllerUtente.getInstance().getUtente(1) == null){
+		if(Home.getUtenteLoggato() == null){
 			return new ArrayList<Documento>();
 		}
-		ArrayList<Documento> doclist =  ControllerPreferiti.getInstance().getDocumentiPreferiti(ControllerUtente.getInstance().getUtente(1));
+		ArrayList<Documento> doclist =  ControllerPreferiti.getInstance().getDocumentiPreferiti(Home.getUtenteLoggato());
 		return ControllerDocumento.getInstance().filtraPerTipo(ControllerDocumento.getInstance().sortBy(doclist, sorting),filter);
 	}
 	
@@ -222,7 +222,7 @@ public class Preferiti extends Pagina {
 					if(n==0){
 					docs.remove(d);
 					ControllerUtente u = ControllerUtente.getInstance();
-					u.rimuoviDocumentoPreferito(u.getUtente(1), d);
+					u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), d);
 					adjustDocs(docs);}
 				}
 			});

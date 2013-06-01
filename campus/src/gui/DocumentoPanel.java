@@ -109,11 +109,9 @@ public class DocumentoPanel extends Pagina {
 				"Rimuovi dai preferiti", 409, 49, 230, 34, false, true);
 		panel.add(btnRimuoviDaiPreferiti);
 
-		// if
-		// (ControllerUtente.getInstance().getUtente(1).documentiPreferiti.contains(d))
 		if (d != null) {
 			if (ControllerUtente.getInstance().containDocumentoPreferito(
-					ControllerUtente.getInstance().getUtente(1), d)) {
+					Home.getUtenteLoggato(), d)) {
 				btnAggiungiAiPreferiti.setVisible(false);
 				btnRimuoviDaiPreferiti.setVisible(true);
 				panel.validate();
@@ -170,8 +168,7 @@ public class DocumentoPanel extends Pagina {
 		panel_3.setBounds(0, 0, 178, 240);
 		riquadrodx.add(panel_3);
 
-		RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(ControllerUtente
-				.getInstance().getUtente(1));
+		RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(Home.getUtenteLoggato());
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_4.setBackground(Color.WHITE);
@@ -342,8 +339,7 @@ public class DocumentoPanel extends Pagina {
 		});*/
 
 		if (d != null) {
-			if (ControllerUtente.getInstance().containDocumentoPreferito(
-					ControllerUtente.getInstance().getUtente(1), d)) {
+			if (ControllerUtente.getInstance().containDocumentoPreferito(Home.getUtenteLoggato(), d)) {
 				btnAggiungiAiPreferiti.setVisible(false);
 				btnRimuoviDaiPreferiti.setVisible(true);
 				panel.validate();
@@ -405,8 +401,7 @@ public class DocumentoPanel extends Pagina {
 		panel_3.setText(d.getDescrizione());
 		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				Utente u = ControllerUtente.getInstance().getUtente(1);
-				ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(u, d);
+				ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(Home.getUtenteLoggato(), d);
 				// Home.getPagina("preferiti");
 				btnAggiungiAiPreferiti.setVisible(false);
 				btnRimuoviDaiPreferiti.setVisible(true);
@@ -417,7 +412,7 @@ public class DocumentoPanel extends Pagina {
 		btnRimuoviDaiPreferiti.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				ControllerUtente u = ControllerUtente.getInstance();
-				u.rimuoviDocumentoPreferito(u.getUtente(1), d);
+				u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), d);
 				btnAggiungiAiPreferiti.setVisible(true);
 				btnRimuoviDaiPreferiti.setVisible(false);
 				validate();
@@ -427,7 +422,7 @@ public class DocumentoPanel extends Pagina {
 		lblVoti.setText(Integer.toString(d.votos.size()));
 
 		boolean giaVotato = ControllerDocumento.getInstance().controlloVotato(
-				d, ControllerUtente.getInstance().getUtente(1));
+				d, Home.getUtenteLoggato());
 		for (int i = 0; i < 5; ++i) {
 			final int j = i + 1;
 			MouseListener m = new MouseListener() {
@@ -460,7 +455,7 @@ public class DocumentoPanel extends Pagina {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					ControllerDocumento.getInstance().votaDocumento(d,
-							ControllerUtente.getInstance().getUtente(1), j * 2);
+							Home.getUtenteLoggato(), j * 2);
 					resetStelle();
 					JOptionPane.showMessageDialog(null, "Voto salvato!");
 					Home.openDocument(true, d);

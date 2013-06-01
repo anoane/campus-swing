@@ -1,5 +1,7 @@
 package controller;
 
+import gui.Home;
+
 import org.orm.PersistentException;
 
 import modello_di_dominio.Commento;
@@ -64,6 +66,6 @@ public class ControllerCommento extends AbstractController {
 	 * @param d
 	 */
 	public void aggiungiCommento(String text,Documento d){
-		this.aggiungiCommento(text, d, ControllerUtente.getInstance().getUtente(1));
+		this.aggiungiCommento(text, d, Home.getUtenteLoggato());
 	}
 }
