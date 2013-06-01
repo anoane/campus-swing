@@ -12,6 +12,7 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ import org.orm.PersistentException;
 import controller.ControllerCorso;
 import controller.ControllerDocumento;
 import controller.ControllerUtente;
+import controller.ControllerVoto;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
@@ -37,6 +39,7 @@ import modello_di_dominio.Utente;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+import java.awt.GridLayout;
 
 @SuppressWarnings("serial")
 public class Profilo extends Pagina {
@@ -60,6 +63,10 @@ public class Profilo extends Pagina {
 	private JLabel labelName = new JLabel();
 	private ArrayList<String> univ = new ArrayList<String>();
 
+	private JLabel lblEta = new JLabel();
+	private JLabel lblUniv = new JLabel();
+	private JLabel lblFac = new JLabel();
+	private JLabel lblVoto = new JLabel();
 	
 	/**
 	 * Create the panel.
@@ -101,13 +108,13 @@ public class Profilo extends Pagina {
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1.setForeground(new Color(0x1B, 0x32, 0x80));
-		separator_1.setBounds(488, 10, 1, 215);
+		separator_1.setBounds(660, 10, 1, 215);
 		panel_1.add(separator_1);
 		
 		lblNomeUtente.setForeground(new Color(0x06, 0x79, 0x9F));
 		lblNomeUtente.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNomeUtente.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNomeUtente.setBounds(0, 10, 478, 28);
+		lblNomeUtente.setBounds(0, 10, 650, 28);
 		panel_1.add(lblNomeUtente);
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.insets = new Insets(0, 0, 5, 0);
@@ -126,17 +133,17 @@ public class Profilo extends Pagina {
 		lblProgramma.setForeground(new Color(0x06, 0x79, 0x9F));
 		lblProgramma.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblProgramma.setAlignmentX(0.5f);
-		lblProgramma.setBounds(500, 10, 460, 28);
+		lblProgramma.setBounds(671, 10, 289, 28);
 		panel_1.add(lblProgramma);
 		
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setForeground(new Color(27, 50, 128));
-		separator_2.setBounds(500, 38, 460, 1);
+		separator_2.setBounds(671, 38, 289, 1);
 		panel_1.add(separator_2);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setForeground(new Color(27, 50, 128));
-		separator_4.setBounds(0, 38, 475, 1);
+		separator_4.setBounds(0, 38, 650, 1);
 		panel_1.add(separator_4);
 		
 
@@ -174,14 +181,120 @@ public class Profilo extends Pagina {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(195, 50, 283, 175);
+		panel_2.setBounds(195, 50, 455, 175);
 		panel_1.add(panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0};
-		gbl_panel_2.rowHeights = new int[]{0};
-		gbl_panel_2.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{Double.MIN_VALUE};
+		gbl_panel_2.columnWidths = new int[]{152, 297, 0};
+		gbl_panel_2.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 0};
+		gbl_panel_2.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
+		
+		JLabel lblEt = new JLabel("Et\u00E0");
+		lblEt.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblEt = new GridBagConstraints();
+		gbc_lblEt.anchor = GridBagConstraints.WEST;
+		gbc_lblEt.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEt.gridx = 0;
+		gbc_lblEt.gridy = 0;
+		panel_2.add(lblEt, gbc_lblEt);
+		
+		GridBagConstraints gbc_lblEta = new GridBagConstraints();
+		lblEta.setFont(new Font("Arial", Font.PLAIN, 14));
+		
+		gbc_lblEta.anchor = GridBagConstraints.WEST;
+		gbc_lblEta.insets = new Insets(0, 0, 5, 0);
+		gbc_lblEta.gridx = 1;
+		gbc_lblEta.gridy = 0;
+		panel_2.add(lblEta, gbc_lblEta);
+		
+		JLabel lblNewLabel = new JLabel("Universit\u00E0");
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 1;
+		panel_2.add(lblNewLabel, gbc_lblNewLabel);
+		
+		GridBagConstraints gbc_lblUniv = new GridBagConstraints();
+		gbc_lblUniv.anchor = GridBagConstraints.WEST;
+		gbc_lblUniv.insets = new Insets(0, 0, 5, 0);
+		gbc_lblUniv.gridx = 1;
+		gbc_lblUniv.gridy = 1;
+		lblUniv.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_2.add(lblUniv, gbc_lblUniv);
+		
+		JLabel lblNewLabel_1 = new JLabel("Facolt\u00E0");
+		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 2;
+		panel_2.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		GridBagConstraints gbc_lblFac = new GridBagConstraints();
+		gbc_lblFac.anchor = GridBagConstraints.WEST;
+		gbc_lblFac.insets = new Insets(0, 0, 5, 0);
+		gbc_lblFac.gridx = 1;
+		gbc_lblFac.gridy = 2;
+		lblFac.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_2.add(lblFac, gbc_lblFac);
+		
+		JLabel lblNewLabel_2 = new JLabel("Media voto esami");
+		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 0;
+		gbc_lblNewLabel_2.gridy = 3;
+		panel_2.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		JLabel lblEsami = new JLabel("28.7/30");
+		lblEsami.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblEsami = new GridBagConstraints();
+		gbc_lblEsami.anchor = GridBagConstraints.WEST;
+		gbc_lblEsami.insets = new Insets(0, 0, 5, 0);
+		gbc_lblEsami.gridx = 1;
+		gbc_lblEsami.gridy = 3;
+		panel_2.add(lblEsami, gbc_lblEsami);
+		
+		JLabel lblNewLabel_3 = new JLabel("Media voto documenti");
+		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 0;
+		gbc_lblNewLabel_3.gridy = 4;
+		panel_2.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		GridBagConstraints gbc_lblVoto = new GridBagConstraints();
+		gbc_lblVoto.anchor = GridBagConstraints.WEST;
+		gbc_lblVoto.insets = new Insets(0, 0, 5, 0);
+		gbc_lblVoto.gridx = 1;
+		gbc_lblVoto.gridy = 4;
+		lblVoto.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_2.add(lblVoto, gbc_lblVoto);
+		
+		JLabel lblNewLabel_4 = new JLabel("Punti");
+		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_4.gridx = 0;
+		gbc_lblNewLabel_4.gridy = 5;
+		panel_2.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		JLabel lblPunti = new JLabel("175");
+		lblPunti.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblPunti = new GridBagConstraints();
+		gbc_lblPunti.anchor = GridBagConstraints.WEST;
+		gbc_lblPunti.gridx = 1;
+		gbc_lblPunti.gridy = 5;
+		panel_2.add(lblPunti, gbc_lblPunti);
+		
+
 
 	}
 	
@@ -232,11 +345,35 @@ public class Profilo extends Pagina {
 	@Override
 	public void reload(Object u) {
 		Utente utente = (Utente) u;
+		
+		Calendar rightNow = Calendar.getInstance();
+		Calendar dataNascita = Calendar.getInstance();
+		dataNascita.setTime(utente.getDatadinascita());
+		lblEta.setText(rightNow.get(Calendar.YEAR)-dataNascita.get(Calendar.YEAR)+"");
+		
+		lblUniv.setText(utente.getFacolta().getUniversita().getNome());
+		lblFac.setText(utente.getFacolta().getNome());
+		
 		lblNomeUtente.setText(utente.getNome()+" "+utente.getCognome());
+		
 		imgUtente.setIcon(new ImageIcon("."+utente.getImmagine()));
 		
 		adjustDocs(getDocs(utente, "all","timestampDOWN"));
-
+		
+		float somma = 0;
+		float temp = 0;
+		int num = 0;
+		ArrayList<Documento> doclist = new ArrayList<Documento>(utente.documentiUtente.getCollection());
+		for (int i=0; i<doclist.size(); i++) {
+			temp = ControllerVoto.getInstance().calcolaVoto(doclist.get(i));
+			if (temp > 0) {
+				temp = temp *10;
+				num++;
+				somma = somma + temp;
+			}
+		}
+		lblVoto.setText(somma/num+"/10");
+				
 	}
 	
 	public int getAltezzaPagina(){
