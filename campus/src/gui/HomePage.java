@@ -12,6 +12,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -366,9 +368,51 @@ public class HomePage extends Pagina {
 		label_14.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				Home.openProfilo(ControllerUtente.getInstance().getUtente(1));
 			}
 		});
 		label_14.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		label_13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openProfilo(ControllerUtente.getInstance().getUtente(2));
+			}
+		});
+		label_13.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		label_12.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openProfilo(ControllerUtente.getInstance().getUtente(3));
+			}
+		});
+		label_12.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		label_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				openGestioneStampa();
+			}
+		});
+		label_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		label_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				openGestioneStampa();
+			}
+		});
+		label_7.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		label_8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				openGestioneStampa();
+			}
+		});
+		label_8.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		
+		
 		label_14.setBounds(0, 0, 310, 31);
 		label_14.setIcon(new ImageIcon("./newimage/classifica_utente_1.png"));
 		panel_10.add(label_14);
@@ -391,6 +435,11 @@ public class HomePage extends Pagina {
 		
 		reload();
 	}
+	
+	public void openGestioneStampa() {
+		Home.loadPages(Home.getPaginaCorrispondente("gestione_stampa"), Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
+	}
+	
 	/**
 	 * @wbp.factory
 	 * @wbp.factory.parameter.source arg0 label_6
