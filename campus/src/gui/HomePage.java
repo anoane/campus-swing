@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
@@ -294,7 +296,7 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel label_7 = new JLabel("");
+		final JLabel label_7 = new JLabel("");
 		label_7.setIcon(new ImageIcon("./newimage/ordine_stampa_2_new.png"));
 		label_7.setBounds(0, 0, 310, 31);
 		panel_3.add(label_7);
@@ -304,7 +306,7 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_4);
 		panel_4.setLayout(null);
 		
-		JLabel label_8 = new JLabel("");
+		final JLabel label_8 = new JLabel("");
 		label_8.setBounds(0, 0, 310, 31);
 		label_8.setIcon(new ImageIcon("./newimage/ordine_stampa_3_new.png"));
 		panel_4.add(label_8);
@@ -344,7 +346,7 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_8);
 		panel_8.setLayout(null);
 		
-		JLabel label_12 = new JLabel("");
+		final JLabel label_12 = new JLabel("");
 		label_12.setBounds(0, 0, 310, 31);
 		label_12.setIcon(new ImageIcon("./newimage/classifica_utente_3.png"));
 		panel_8.add(label_12);
@@ -354,7 +356,7 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_9);
 		panel_9.setLayout(null);
 		
-		JLabel label_13 = new JLabel("");
+		final JLabel label_13 = new JLabel("");
 		label_13.setBounds(0, 0, 310, 31);
 		label_13.setIcon(new ImageIcon("./newimage/classifica_utente_2.png"));
 		panel_9.add(label_13);
@@ -364,33 +366,70 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_10);
 		panel_10.setLayout(null);
 		
-		JLabel label_14 = new JLabel("");
+		final JLabel label_14 = new JLabel("");
 		label_14.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openProfilo(ControllerUtente.getInstance().getUtente(1));
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_14.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_14.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+			}
 		});
+		
 		label_14.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		label_13.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openProfilo(ControllerUtente.getInstance().getUtente(2));
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_13.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_13.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+			}
 		});
+		
 		label_13.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		label_12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openProfilo(ControllerUtente.getInstance().getUtente(3));
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_12.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_12.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+			}
 		});
+		label_12.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+		label_13.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+		label_14.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
 		label_12.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		label_6.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				openGestioneStampa();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_6.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_6.setBorder(new EmptyBorder(0, 0, 0, 0));
 			}
 		});
 		label_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -400,6 +439,14 @@ public class HomePage extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				openGestioneStampa();
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_7.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_7.setBorder(new EmptyBorder(0, 0, 0, 0));
+			}
 		});
 		label_7.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
@@ -407,6 +454,14 @@ public class HomePage extends Pagina {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				openGestioneStampa();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_8.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_8.setBorder(new EmptyBorder(0, 0, 0, 0));
 			}
 		});
 		label_8.setCursor(new Cursor(Cursor.HAND_CURSOR));
