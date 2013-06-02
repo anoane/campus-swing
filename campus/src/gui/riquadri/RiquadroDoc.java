@@ -178,27 +178,29 @@ public class RiquadroDoc extends Riquadro {
 		case "Appunti":
 			lblNewLabel.setText("Appunti");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
+			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
 			break;
 		case "Esercizi":
 			lblNewLabel.setText("Esercizi");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
+			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
 			break;
 		default:
 			lblNewLabel.setText("Documento");
-			lblNewLabel.getParent().setBackground(new Color(0x00, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 56, 58, 24);
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
+			lblNewLabel.getParent().setBounds(10, 56, 58, 20);
 			break;
 		}
 		// Label facolta

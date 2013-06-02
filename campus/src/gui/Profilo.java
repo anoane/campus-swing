@@ -457,7 +457,7 @@ public class Profilo extends Pagina {
 		
 		imgUtente.setIcon(new ImageIcon("."+utente.getImmagine()));
 		
-		adjustDocs(getDocs(utente, "all","timestampDOWN"));
+		adjustDocs(getDocs(utente, "all","timestampUP"));
 		
 		float somma = 0;
 		float temp = 0;

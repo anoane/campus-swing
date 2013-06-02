@@ -420,6 +420,7 @@ public class DocumentoPanel extends Pagina {
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
+			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
 			break;
 		case "Esercizi":
@@ -428,6 +429,7 @@ public class DocumentoPanel extends Pagina {
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
+			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
 			break;
 		default:

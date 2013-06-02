@@ -81,7 +81,7 @@ public class HomePage extends Pagina {
 			return new ArrayList<Documento>();
 		}
 		ArrayList<Documento> doclist = new ArrayList<Documento>(Home.getUtenteLoggato().documentiUtente.getCollection());
-		return ControllerDocumento.getInstance().sortBy(doclist, "timestampDOWN");
+		return ControllerDocumento.getInstance().sortBy(doclist, "timestampUP");
 	}
 
 	private void adjustCorsiRec(final ArrayList<Corso> corsi){
