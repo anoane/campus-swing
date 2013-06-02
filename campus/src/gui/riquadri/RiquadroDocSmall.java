@@ -161,7 +161,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		corso.setHighlighter(null);
 		corso.setEditable(false);
 		corso.setBackground(exitedColor);
-		corso.setLocation(10, 37);
+		corso.setLocation(10, 35);
 		corso.setSize(146, 30);
 		corso.setText(util.StringUtility.truncateLines(corso,2));
 		corso.addMouseListener(comportamento);
