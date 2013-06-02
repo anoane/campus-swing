@@ -227,6 +227,7 @@ public class DocumentoPanel extends Pagina {
 		setPDF(null);
 		panel_1.removeAll();
 		JLabel templabel = new JLabel("Anteprima non disponibile");
+		templabel.setForeground(Home.BLUE_BUTTON_PRESSED);
 		templabel.setBackground(Color.LIGHT_GRAY);
 		templabel.setHorizontalAlignment(SwingConstants.CENTER);
 		templabel.setFont(new Font("Arial", Font.BOLD, 20));

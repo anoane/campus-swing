@@ -71,7 +71,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 					stelle.add(stella);
 				}
 				stelle.add(colore);
-				stelle.setLocation(144, 37);
+				stelle.setLocation(166, 37);
 				stelle.setSize(75, 15);
 				colore.setBackground(colore_stella);
 				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
@@ -91,7 +91,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 					stelle.add(stella);
 				}
 				stelle.add(colore);
-				stelle.setLocation(144, 37);
+				stelle.setLocation(166, 37);
 				stelle.setSize(75, 15);
 				colore.setBackground(colore_stella);
 				colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
@@ -106,7 +106,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		this.addMouseListener(comportamento);
 		// JPanel tipo
 		tipo = new JPanel();
-		tipo.setBounds(10, 35, 58, 20);
+		tipo.setBounds(10, 68, 58, 20);
 		tipo.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80), 2));
 		tipo.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
@@ -120,27 +120,27 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		case "Appunti":
 			lblNewLabel.setText("Appunti");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
-			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		case "Esercizi":
 			lblNewLabel.setText("Esercizi");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
-			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		default:
 			lblNewLabel.setText("Documento");
 			lblNewLabel.getParent().setBackground(new Color(0x00, 0x00, 0x00));
-			lblNewLabel.getParent().setBounds(10, 35, 58, 20);
+			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		}
 		
@@ -161,7 +161,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		corso.setHighlighter(null);
 		corso.setEditable(false);
 		corso.setBackground(exitedColor);
-		corso.setLocation(10, 60);
+		corso.setLocation(10, 37);
 		corso.setSize(146, 30);
 		corso.setText(util.StringUtility.truncateLines(corso,2));
 		corso.addMouseListener(comportamento);
@@ -180,7 +180,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 			stelle.add(stella);
 		}
 		stelle.add(colore);
-		stelle.setLocation(144, 37);
+		stelle.setLocation(166, 37);
 		stelle.setSize(75, 15);
 		colore.setBackground(colore_stella);
 		colore.setSize((int) (stelle.getWidth()*ControllerVoto.getInstance().calcolaVoto(doc)), 30);
@@ -203,7 +203,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		proprietario_nome.setSize(100, 20);
 		
 		lbltipo = new JLabel();
-		lbltipo.setBounds(78, 35, 40, 20);
+		lbltipo.setBounds(98, 68, 40, 20);
 		
 
 		if(doc.getPath() != null && !doc.getPath().equals("/")){
