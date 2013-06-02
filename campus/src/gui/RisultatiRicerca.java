@@ -121,10 +121,10 @@ public class RisultatiRicerca extends Pagina {
 	private final JPanel panel_9 = new JPanel();
 	private final JPanel panel_10 = new JPanel();
 	private final JPanel panel_11 = new JPanel();
-	private final JLabel label_3 = new JLabel("Risultati trovati per:");
+	private final JLabel lblCorsiTrovatiPer = new JLabel("Corsi trovati per:");
 	private final JPanel panel_12 = new JPanel();
 	private final JLabel label_5 = new JLabel("");
-	private final JLabel lblDocumentiTrovatiPer = new JLabel("Documenti trovati per il corso:");
+	private final JLabel lblDocumentiTrovatiPer = new JLabel("Documenti trovati relativi al corso:");
 	private final JComboBox comboBox = new JComboBox();
 	private final JComboBox comboBox_1 = new JComboBox();
 	private final JComboBox comboBox_2 = new JComboBox();
@@ -136,7 +136,7 @@ public class RisultatiRicerca extends Pagina {
 	private final JLabel label_6 = new JLabel("");
 	
 	public void resetPanel(String ricerca) {
-		tempRicerca = ricerca;
+		tempRicerca = ricerca.trim();
 		panel.setBounds(0, 0, 1008, 429);
 		panel_risultati_bycorso.setVisible(false);
 		panel_risultati.setVisible(true);
@@ -164,7 +164,7 @@ public class RisultatiRicerca extends Pagina {
 		panel_10.setVisible(false);
 		panel_9.setVisible(true);
 		lblDocumentiTrovatiPer.setText("Documenti trovati per:");
-		label_5.setBounds(225, 9, 770, 25);
+		label_5.setBounds(230, 9, 770, 25);
 		lblDocumentiTrovatiPer.setBounds(10, 9, 215, 25);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
 		is_ricerca_by_corso_in_progress = false;
@@ -175,11 +175,11 @@ public class RisultatiRicerca extends Pagina {
 				.getAllFacoltaByUniv(-1);
 		listaCorsi = ControllerCorso.getInstance().getAllCorsi();
 		listaCorsiByFac = null;
-		label_5.setText("'"+ricerca+"'");
+		label_5.setText("'"+ricerca.trim()+"'");
 		reloadUniv();
 		//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
 		try {
-			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca.toLowerCase(), false, "all", "timestampDOWN"));
+			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca.trim().toLowerCase(), false, "all", "timestampDOWN"));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -220,10 +220,6 @@ public class RisultatiRicerca extends Pagina {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		add(panel);
-		
-		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-		scrollPane_1.getVerticalScrollBar().setUnitIncrement(16);
-		scrollPane_2.getVerticalScrollBar().setUnitIncrement(16);
 
 		panel.getParent().addComponentListener(new ComponentListener() {
 			@Override
@@ -335,6 +331,10 @@ public class RisultatiRicerca extends Pagina {
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
 		panel_7.add(lblNewLabel_1);
+		
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane_1.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane_2.getVerticalScrollBar().setUnitIncrement(16);
 		panel_10.setBackground(Color.WHITE);
 		panel_10.setBounds(0, 38, 1008, 391);
 		
@@ -345,15 +345,15 @@ public class RisultatiRicerca extends Pagina {
 		
 		panel_10.add(panel_11);
 		panel_11.setLayout(null);
-		label_3.setBounds(5, 5, 188, 24);
-		label_3.setForeground(new Color(6, 121, 159));
-		label_3.setFont(new Font("Arial", Font.BOLD, 20));
+		lblCorsiTrovatiPer.setBounds(10, 9, 161, 24);
+		lblCorsiTrovatiPer.setForeground(new Color(6, 121, 159));
+		lblCorsiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
 		
-		panel_11.add(label_3);
+		panel_11.add(lblCorsiTrovatiPer);
 		label_6.setForeground(new Color(6, 121, 159));
 		label_6.setFont(new Font("Arial", Font.BOLD, 20));
 		label_6.setBackground(Color.WHITE);
-		label_6.setBounds(196, 5, 802, 24);
+		label_6.setBounds(181, 9, 817, 24);
 		
 		panel_11.add(label_6);
 		panel_13.setLayout(null);
@@ -379,311 +379,311 @@ public class RisultatiRicerca extends Pagina {
 						.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(223, Short.MAX_VALUE))
 			);
-			panel_13.setBounds(0, 38, 1008, 313);
-			
-					panel_13.setBackground(Color.WHITE);
-					panel_13.setLayout(null);
-																	panel_14.setBackground(Color.WHITE);
-																	panel_14.setBounds(56, 81, 525, 300);
-																	scrollPane_2.setBorder(new LineBorder(new Color(27, 50, 128)));
-																	
-																	scrollPane_2
-																					.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-																			panel_15.setBorder(new EmptyBorder(0, 0, 0, 0));
-																			panel_15.setBackground(Color.WHITE);
-																			panel_15.setLayout(null);
-																			panel_14.setLayout(gl_panel_3);
-																			scrollPane_2.setBounds(0, 0, 1006, 313);
-																			panel_13.add(scrollPane_2, BorderLayout.CENTER);
+		panel_13.setBounds(0, 38, 1008, 313);
+		
+				panel_13.setBackground(Color.WHITE);
+				panel_13.setLayout(null);
+				panel_14.setBackground(Color.WHITE);
+				panel_14.setBounds(56, 81, 525, 300);
+				scrollPane_2.setBorder(new LineBorder(new Color(27, 50, 128)));
+				
+				scrollPane_2
+								.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				panel_15.setBorder(new EmptyBorder(0, 0, 0, 0));
+				panel_15.setBackground(Color.WHITE);
+				panel_15.setLayout(null);
+				panel_14.setLayout(gl_panel_3);
+				scrollPane_2.setBounds(0, 0, 1006, 313);
+				panel_13.add(scrollPane_2, BorderLayout.CENTER);
 		panel_9.setBackground(Color.WHITE);
-	
-		panel_9.setBounds(0, 38, 1008, 391);
-		panel.add(panel_9);
-		panel_9.setLayout(null);
-		panel_12.setLayout(null);
-		panel_12.setBackground(Color.WHITE);
-		panel_12.setBounds(0, 0, 1008, 38);
 		
-		panel_9.add(panel_12);
-		label_5.setForeground(new Color(6, 121, 159));
-		label_5.setFont(new Font("Arial", Font.BOLD, 20));
-		label_5.setBackground(Color.WHITE);
-		label_5.setBounds(301, 9, 694, 25);
-		
-		panel_12.add(label_5);
-		lblDocumentiTrovatiPer.setForeground(new Color(6, 121, 159));
-		lblDocumentiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
-		lblDocumentiTrovatiPer.setBounds(10, 9, 288, 25);
-		
-		panel_12.add(lblDocumentiTrovatiPer);
-		panel_8.setBounds(0, 38, 1008, 38);
-		panel_9.add(panel_8);
-		panel_8.setBackground(Color.WHITE);
-		panel_8.setLayout(null);
-		label_4.setBounds(740, 6, 108, 25);
-		panel_8.add(label_4);
-		label_4.setForeground(new Color(6, 121, 159));
-		label_4.setFont(new Font("Arial", Font.BOLD, 20));
-		lblCercaIn.setBounds(10, 6, 85, 25);
-		panel_8.add(lblCercaIn);
-		lblCercaIn.setForeground(new Color(6, 121, 159));
-		lblCercaIn.setFont(new Font("Arial", Font.BOLD, 20));
-		separator_10.setBackground(new Color(6, 121, 159));
-		separator_10.setBounds(440, 5, 1, 28);
-		panel_8.add(separator_10);
-		separator_10.setOrientation(SwingConstants.VERTICAL);
-		separator_10.setForeground(new Color(6, 121, 159));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
-		
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				reloadRisultati();
-			}
-		});
-		comboBox.setFont(new Font("Arial", Font.BOLD, 16));
-		comboBox.setBounds(97, 5, 336, 30);
-		comboBox.setBackground(new Color(255,255,255));
-		panel_8.add(comboBox);
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));
-		comboBox_1.setFont(new Font("Arial", Font.BOLD, 16));
-		comboBox_1.setBounds(854, 5, 144, 30);
-		comboBox_1.setBackground(new Color(255,255,255));
-		comboBox_1.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				reloadRisultati();
-			}
-		});
-		panel_8.add(comboBox_1);
-		
-		JSeparator separator_4 = new JSeparator();
-		separator_4.setOrientation(SwingConstants.VERTICAL);
-		separator_4.setForeground(new Color(6, 121, 159));
-		separator_4.setBackground(new Color(6, 121, 159));
-		separator_4.setBounds(733, 5, 1, 28);
-		panel_8.add(separator_4);
-		
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Qualsiasi tipo", "Solo appunti", "Solo esercizi", "Solo slide", "Solo dispense"}));
-		comboBox_2.setFont(new Font("Arial", Font.BOLD, 16));
-		comboBox_2.setBackground(Color.WHITE);
-		comboBox_2.setBounds(584, 5, 142, 30);
-		comboBox_2.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				reloadRisultati();
-			}
-		});
-		panel_8.add(comboBox_2);
-		
-		JLabel lblFiltraPerTipo = new JLabel("Filtra per tipo:");
-		lblFiltraPerTipo.setForeground(new Color(6, 121, 159));
-		lblFiltraPerTipo.setFont(new Font("Arial", Font.BOLD, 20));
-		lblFiltraPerTipo.setBounds(447, 6, 134, 25);
-		panel_8.add(lblFiltraPerTipo);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(22, Short.MAX_VALUE))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(223, Short.MAX_VALUE))
-		);
-		panel_risultati.setBounds(0, 76, 1008, 186);
-		panel_9.add(panel_risultati);
-		
-				panel_risultati.setBackground(Color.WHITE);
-				panel_risultati.setLayout(null);
-																panel_1.setBackground(Color.WHITE);
-																panel_1.setBounds(56, 81, 525, 300);
-																scrollPane.setBorder(new LineBorder(new Color(27, 50, 128)));
-																
-																		scrollPane
-																				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-																		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
-																		panel_2.setBackground(Color.WHITE);
-																		panel_2.setLayout(null);
-																		panel_1.setLayout(gl_panel_1);
-																		scrollPane.setBounds(0, 0, 1006, 313);
-																		panel_risultati.add(scrollPane, BorderLayout.CENTER);
-		gl_panel_2.setHorizontalGroup(
-				gl_panel_2.createParallelGroup(Alignment.LEADING)
-					.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
-						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
+			panel_9.setBounds(0, 38, 1008, 391);
+			panel.add(panel_9);
+			panel_9.setLayout(null);
+			panel_12.setLayout(null);
+			panel_12.setBackground(Color.WHITE);
+			panel_12.setBounds(0, 0, 1008, 38);
+			
+			panel_9.add(panel_12);
+			label_5.setForeground(new Color(6, 121, 159));
+			label_5.setFont(new Font("Arial", Font.BOLD, 20));
+			label_5.setBackground(Color.WHITE);
+			label_5.setBounds(346, 9, 649, 25);
+			
+			panel_12.add(label_5);
+			lblDocumentiTrovatiPer.setForeground(new Color(6, 121, 159));
+			lblDocumentiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
+			lblDocumentiTrovatiPer.setBounds(10, 9, 326, 25);
+			
+			panel_12.add(lblDocumentiTrovatiPer);
+			panel_8.setBounds(0, 38, 1008, 38);
+			panel_9.add(panel_8);
+			panel_8.setBackground(Color.WHITE);
+			panel_8.setLayout(null);
+			label_4.setBounds(740, 6, 108, 25);
+			panel_8.add(label_4);
+			label_4.setForeground(new Color(6, 121, 159));
+			label_4.setFont(new Font("Arial", Font.BOLD, 20));
+			lblCercaIn.setBounds(10, 6, 85, 25);
+			panel_8.add(lblCercaIn);
+			lblCercaIn.setForeground(new Color(6, 121, 159));
+			lblCercaIn.setFont(new Font("Arial", Font.BOLD, 20));
+			separator_10.setBackground(new Color(6, 121, 159));
+			separator_10.setBounds(440, 5, 1, 28);
+			panel_8.add(separator_10);
+			separator_10.setOrientation(SwingConstants.VERTICAL);
+			separator_10.setForeground(new Color(6, 121, 159));
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
+			
+			comboBox.addItemListener(new ItemListener() {
+				public void itemStateChanged(ItemEvent arg0) {
+					reloadRisultati();
+				}
+			});
+			comboBox.setFont(new Font("Arial", Font.BOLD, 16));
+			comboBox.setBounds(97, 5, 336, 30);
+			comboBox.setBackground(new Color(255,255,255));
+			panel_8.add(comboBox);
+			comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));
+			comboBox_1.setFont(new Font("Arial", Font.BOLD, 16));
+			comboBox_1.setBounds(854, 5, 144, 30);
+			comboBox_1.setBackground(new Color(255,255,255));
+			comboBox_1.addItemListener(new ItemListener() {
+				public void itemStateChanged(ItemEvent arg0) {
+					reloadRisultati();
+				}
+			});
+			panel_8.add(comboBox_1);
+			
+			JSeparator separator_4 = new JSeparator();
+			separator_4.setOrientation(SwingConstants.VERTICAL);
+			separator_4.setForeground(new Color(6, 121, 159));
+			separator_4.setBackground(new Color(6, 121, 159));
+			separator_4.setBounds(733, 5, 1, 28);
+			panel_8.add(separator_4);
+			
+			comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Qualsiasi tipo", "Solo appunti", "Solo esercizi", "Solo slide", "Solo dispense"}));
+			comboBox_2.setFont(new Font("Arial", Font.BOLD, 16));
+			comboBox_2.setBackground(Color.WHITE);
+			comboBox_2.setBounds(584, 5, 142, 30);
+			comboBox_2.addItemListener(new ItemListener() {
+				public void itemStateChanged(ItemEvent arg0) {
+					reloadRisultati();
+				}
+			});
+			panel_8.add(comboBox_2);
+			
+			JLabel lblFiltraPerTipo = new JLabel("Filtra per tipo:");
+			lblFiltraPerTipo.setForeground(new Color(6, 121, 159));
+			lblFiltraPerTipo.setFont(new Font("Arial", Font.BOLD, 20));
+			lblFiltraPerTipo.setBounds(447, 6, 134, 25);
+			panel_8.add(lblFiltraPerTipo);
+			gl_panel_1.setHorizontalGroup(
+				gl_panel_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(22, Short.MAX_VALUE))
 			);
-		gl_panel_2.setVerticalGroup(
-				gl_panel_2.createParallelGroup(Alignment.LEADING)
-					.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
-						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
+			gl_panel_1.setVerticalGroup(
+				gl_panel_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(223, Short.MAX_VALUE))
 			);
-		panel_risultati_bycorso.setBounds(0, 76, 1008, 186);
-		panel_9.add(panel_risultati_bycorso);
-		
-		panel_risultati_bycorso.setLayout(null);
-		panel_risultati_bycorso.setBackground(Color.WHITE);
-		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBorder(new LineBorder(new Color(27, 50, 128)));
-		scrollPane_1.setBounds(0, 0, 1006, 313);
-		
-		panel_risultati_bycorso.add(scrollPane_1);
-		separator_11.setForeground(new Color(27, 50, 128));
-		separator_11.setBounds(0, 41, 170, 1);
-		
-		panel_risultati_bycorso.add(separator_11);
-		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(56, 81, 525, 300);
-		panel_4.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel_4.setBackground(Color.WHITE);
-		panel_4.setLayout(null);
-		panel_3.setLayout(gl_panel_2);
-		panel_ricerca_guidata.setForeground(Color.WHITE);
-		panel_ricerca_guidata.setBounds(0, 350, 1008, 235);
-		panel_9.add(panel_ricerca_guidata);
-
-		panel_ricerca_guidata.setBackground(Home.BLUE_BUTTON_PRESSED);
-		panel_ricerca_guidata.setLayout(null);
-		label.setBounds(319, 130, 12, 20);
-		panel_ricerca_guidata.add(label);
-		label.setIcon(new ImageIcon("./newimage/freccia_right_blue.png"));
-		label_1.setBounds(640, 130, 12, 20);
-		panel_ricerca_guidata.add(label_1);
-		label_1.setIcon(new ImageIcon("./newimage/freccia_right_blue.png"));
-
-
-		lblRicercaAvanzata.setBounds(10, 10, 428, 25);
-		panel_ricerca_guidata.add(lblRicercaAvanzata);
-		lblRicercaAvanzata.setForeground(Color.WHITE);
-		lblRicercaAvanzata.setFont(new Font("Arial", Font.BOLD, 20));
-		scegli_univ.setBorder(new LineBorder(new Color(0, 0, 0)));
-		scegli_univ.setBounds(10, 41, 310, 180);
-		panel_ricerca_guidata.add(scegli_univ);
-
-		scegli_univ.setLayout(null);
-		scegli_univ.setBackground(Color.WHITE);
-
-		list_2.setForeground(Color.DARK_GRAY);
-		list_2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		list_2.setBackground(Color.WHITE);
-
-		list_2.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				// System.out.println("sss");
-				if (list_2.getSelectedIndex() != -1) {
-					String s = (String) list_2.getSelectedValue();
-					// textField_3.setText(s);
-					indexUniv = list_2.getSelectedIndex();
-					dbIndexUniv = listaUniversita[indexUniv].getID();
-					RisultatiRicerca.reloadFac(dbIndexUniv);
-				}
-			}
-		});
-		JScrollPane pane_list_2 = new JScrollPane(list_2);
-		pane_list_2.setBounds(10, 40, 290, 130);
-		pane_list_2.setBorder(new EmptyBorder(0, 0, 0, 0));
-
-		scegli_univ.add(pane_list_2);
-		aggiungiListnerMouseOver(scegli_univ);
-		aggiungiListnerMouseOver(list_2);
-		separator_1.setForeground(Home.BLUE_BUTTON_PRESSED);
-		separator_1.setBounds(10, 28, 290, 1);
-
-		scegli_univ.add(separator_1);
-		lblUniversit.setFont(new Font("Arial", Font.BOLD, 14));
-		lblUniversit.setForeground(Home.BLUE_BUTTON_PRESSED);
-		lblUniversit.setBounds(10, 11, 83, 14);
-
-		scegli_univ.add(lblUniversit);
-		scegli_fac.setBorder(new LineBorder(new Color(0, 0, 0)));
-		scegli_fac.setBounds(331, 41, 310, 180);
-		panel_ricerca_guidata.add(scegli_fac);
-		scegli_fac.setBackground(Color.WHITE);
-		scegli_fac.setLayout(null);
-
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				if (list.getSelectedIndex() != -1) {
-					String s = (String) list.getSelectedValue();
-					// textField_2.setText(s);
-					indexFac = list.getSelectedIndex();
-					dbIndexFac = listaFacoltaByUniv[indexFac].getID();
-					RisultatiRicerca.reloadCorsoByFac(dbIndexFac);
-				}
-			}
-		});
-
-		list.setForeground(Color.DARK_GRAY);
-		list.setBackground(Color.WHITE);
-		list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-
-		JScrollPane pane_list = new JScrollPane(list);
-		pane_list.setBounds(10, 40, 290, 130);
-		pane_list.setBorder(new EmptyBorder(0, 0, 0, 0));
-
-		scegli_fac.add(pane_list);
-		scegli_fac.setFocusable(false);
-		list.setFocusable(false);
-
-		aggiungiListnerMouseOver(scegli_fac);
-		aggiungiListnerMouseOver(list);
-		lblFacolt.setForeground(Home.BLUE_BUTTON_PRESSED);
-		lblFacolt.setFont(new Font("Arial", Font.BOLD, 14));
-		lblFacolt.setBounds(10, 11, 83, 14);
-
-		scegli_fac.add(lblFacolt);
-		separator_2.setForeground(Home.BLUE_BUTTON_PRESSED);
-		separator_2.setBounds(10, 28, 290, 1);
-
-		scegli_fac.add(separator_2);
-		scegli_corso.setBorder(new LineBorder(new Color(0, 0, 0)));
-		scegli_corso.setBounds(652, 41, 310, 180);
-		panel_ricerca_guidata.add(scegli_corso);
-
-		scegli_corso.setLayout(null);
-		scegli_corso.setBackground(Color.WHITE);
-
-		list_1.setForeground(Color.DARK_GRAY);
-		list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		list_1.setBackground(Color.WHITE);
-		list_1.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				if (list_1.getSelectedIndex() != -1) {
-					String s = (String) list_1.getSelectedValue();
-					// textField_4.setText(s);
-					indexCorso = list_1.getSelectedIndex();
-					dbIndexCorsoByFac = listaCorsiByFac[indexCorso].getID();
-					showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac,false,"all","timestampDOWN");
-				}
-			}
-		});
-
-		JScrollPane pane_list_1 = new JScrollPane(list_1);
-
-		pane_list_1.setBounds(10, 40, 290, 130);
-		pane_list_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-
-		scegli_corso.add(pane_list_1);
-		aggiungiListnerMouseOver(scegli_corso);
-		aggiungiListnerMouseOver(list_1);
-		lblCorso.setForeground(Home.BLUE_BUTTON_PRESSED);
-		lblCorso.setFont(new Font("Arial", Font.BOLD, 14));
-		lblCorso.setBounds(10, 11, 83, 14);
-
-		scegli_corso.add(lblCorso);
-		separator_3.setForeground(Home.BLUE_BUTTON_PRESSED);
-		separator_3.setBounds(10, 28, 290, 1);
-
-		scegli_corso.add(separator_3);
+			panel_risultati.setBounds(0, 76, 1008, 186);
+			panel_9.add(panel_risultati);
+			
+					panel_risultati.setBackground(Color.WHITE);
+					panel_risultati.setLayout(null);
+					panel_1.setBackground(Color.WHITE);
+					panel_1.setBounds(56, 81, 525, 300);
+					scrollPane.setBorder(new LineBorder(new Color(27, 50, 128)));
+					
+							scrollPane
+									.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+							panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+							panel_2.setBackground(Color.WHITE);
+							panel_2.setLayout(null);
+							panel_1.setLayout(gl_panel_1);
+							scrollPane.setBounds(0, 0, 1006, 313);
+							panel_risultati.add(scrollPane, BorderLayout.CENTER);
+							gl_panel_2.setHorizontalGroup(
+									gl_panel_2.createParallelGroup(Alignment.LEADING)
+										.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+											.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
+											.addContainerGap(22, Short.MAX_VALUE))
+								);
+							gl_panel_2.setVerticalGroup(
+									gl_panel_2.createParallelGroup(Alignment.LEADING)
+										.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+											.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
+											.addContainerGap(223, Short.MAX_VALUE))
+								);
+							panel_risultati_bycorso.setBounds(0, 76, 1008, 186);
+							panel_9.add(panel_risultati_bycorso);
+							
+							panel_risultati_bycorso.setLayout(null);
+							panel_risultati_bycorso.setBackground(Color.WHITE);
+							scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+							scrollPane_1.setBorder(new LineBorder(new Color(27, 50, 128)));
+							scrollPane_1.setBounds(0, 0, 1006, 313);
+							
+							panel_risultati_bycorso.add(scrollPane_1);
+							separator_11.setForeground(new Color(27, 50, 128));
+							separator_11.setBounds(0, 41, 170, 1);
+							
+							panel_risultati_bycorso.add(separator_11);
+							panel_3.setBackground(Color.WHITE);
+							panel_3.setBounds(56, 81, 525, 300);
+							panel_4.setBorder(new EmptyBorder(0, 0, 0, 0));
+							panel_4.setBackground(Color.WHITE);
+							panel_4.setLayout(null);
+							panel_3.setLayout(gl_panel_2);
+							panel_ricerca_guidata.setForeground(Color.WHITE);
+							panel_ricerca_guidata.setBounds(0, 350, 1008, 235);
+							panel_9.add(panel_ricerca_guidata);
+							
+									panel_ricerca_guidata.setBackground(Home.BLUE_BUTTON_PRESSED);
+									panel_ricerca_guidata.setLayout(null);
+									label.setBounds(319, 130, 12, 20);
+									panel_ricerca_guidata.add(label);
+									label.setIcon(new ImageIcon("./newimage/freccia_right_blue.png"));
+									label_1.setBounds(640, 130, 12, 20);
+									panel_ricerca_guidata.add(label_1);
+									label_1.setIcon(new ImageIcon("./newimage/freccia_right_blue.png"));
+									
+									
+											lblRicercaAvanzata.setBounds(10, 10, 428, 25);
+											panel_ricerca_guidata.add(lblRicercaAvanzata);
+											lblRicercaAvanzata.setForeground(Color.WHITE);
+											lblRicercaAvanzata.setFont(new Font("Arial", Font.BOLD, 20));
+											scegli_univ.setBorder(new LineBorder(new Color(0, 0, 0)));
+											scegli_univ.setBounds(10, 41, 310, 180);
+											panel_ricerca_guidata.add(scegli_univ);
+											
+													scegli_univ.setLayout(null);
+													scegli_univ.setBackground(Color.WHITE);
+													
+															list_2.setForeground(Color.DARK_GRAY);
+															list_2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+															list_2.setBackground(Color.WHITE);
+															
+																	list_2.addListSelectionListener(new ListSelectionListener() {
+																		public void valueChanged(ListSelectionEvent arg0) {
+																			// System.out.println("sss");
+																			if (list_2.getSelectedIndex() != -1) {
+																				String s = (String) list_2.getSelectedValue();
+																				// textField_3.setText(s);
+																				indexUniv = list_2.getSelectedIndex();
+																				dbIndexUniv = listaUniversita[indexUniv].getID();
+																				RisultatiRicerca.reloadFac(dbIndexUniv);
+																			}
+																		}
+																	});
+																	JScrollPane pane_list_2 = new JScrollPane(list_2);
+																	pane_list_2.setBounds(10, 40, 290, 130);
+																	pane_list_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+																	
+																			scegli_univ.add(pane_list_2);
+																			aggiungiListnerMouseOver(scegli_univ);
+																			aggiungiListnerMouseOver(list_2);
+																			separator_1.setForeground(Home.BLUE_BUTTON_PRESSED);
+																			separator_1.setBounds(10, 28, 290, 1);
+																			
+																					scegli_univ.add(separator_1);
+																					lblUniversit.setFont(new Font("Arial", Font.BOLD, 14));
+																					lblUniversit.setForeground(Home.BLUE_BUTTON_PRESSED);
+																					lblUniversit.setBounds(10, 11, 83, 14);
+																					
+																							scegli_univ.add(lblUniversit);
+																							scegli_fac.setBorder(new LineBorder(new Color(0, 0, 0)));
+																							scegli_fac.setBounds(331, 41, 310, 180);
+																							panel_ricerca_guidata.add(scegli_fac);
+																							scegli_fac.setBackground(Color.WHITE);
+																							scegli_fac.setLayout(null);
+																							
+																									list.addListSelectionListener(new ListSelectionListener() {
+																										public void valueChanged(ListSelectionEvent arg0) {
+																											if (list.getSelectedIndex() != -1) {
+																												String s = (String) list.getSelectedValue();
+																												// textField_2.setText(s);
+																												indexFac = list.getSelectedIndex();
+																												dbIndexFac = listaFacoltaByUniv[indexFac].getID();
+																												RisultatiRicerca.reloadCorsoByFac(dbIndexFac);
+																											}
+																										}
+																									});
+																									
+																											list.setForeground(Color.DARK_GRAY);
+																											list.setBackground(Color.WHITE);
+																											list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																											
+																													JScrollPane pane_list = new JScrollPane(list);
+																													pane_list.setBounds(10, 40, 290, 130);
+																													pane_list.setBorder(new EmptyBorder(0, 0, 0, 0));
+																													
+																															scegli_fac.add(pane_list);
+																															scegli_fac.setFocusable(false);
+																															list.setFocusable(false);
+																															
+																																	aggiungiListnerMouseOver(scegli_fac);
+																																	aggiungiListnerMouseOver(list);
+																																	lblFacolt.setForeground(Home.BLUE_BUTTON_PRESSED);
+																																	lblFacolt.setFont(new Font("Arial", Font.BOLD, 14));
+																																	lblFacolt.setBounds(10, 11, 83, 14);
+																																	
+																																			scegli_fac.add(lblFacolt);
+																																			separator_2.setForeground(Home.BLUE_BUTTON_PRESSED);
+																																			separator_2.setBounds(10, 28, 290, 1);
+																																			
+																																					scegli_fac.add(separator_2);
+																																					scegli_corso.setBorder(new LineBorder(new Color(0, 0, 0)));
+																																					scegli_corso.setBounds(652, 41, 310, 180);
+																																					panel_ricerca_guidata.add(scegli_corso);
+																																					
+																																							scegli_corso.setLayout(null);
+																																							scegli_corso.setBackground(Color.WHITE);
+																																							
+																																									list_1.setForeground(Color.DARK_GRAY);
+																																									list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																																									list_1.setBackground(Color.WHITE);
+																																									list_1.addListSelectionListener(new ListSelectionListener() {
+																																										public void valueChanged(ListSelectionEvent arg0) {
+																																											if (list_1.getSelectedIndex() != -1) {
+																																												String s = (String) list_1.getSelectedValue();
+																																												// textField_4.setText(s);
+																																												indexCorso = list_1.getSelectedIndex();
+																																												dbIndexCorsoByFac = listaCorsiByFac[indexCorso].getID();
+																																												showRisultatiByCorso(dbIndexFac,dbIndexCorsoByFac,false,"all","timestampDOWN");
+																																											}
+																																										}
+																																									});
+																																									
+																																											JScrollPane pane_list_1 = new JScrollPane(list_1);
+																																											
+																																													pane_list_1.setBounds(10, 40, 290, 130);
+																																													pane_list_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+																																													
+																																															scegli_corso.add(pane_list_1);
+																																															aggiungiListnerMouseOver(scegli_corso);
+																																															aggiungiListnerMouseOver(list_1);
+																																															lblCorso.setForeground(Home.BLUE_BUTTON_PRESSED);
+																																															lblCorso.setFont(new Font("Arial", Font.BOLD, 14));
+																																															lblCorso.setBounds(10, 11, 83, 14);
+																																															
+																																																	scegli_corso.add(lblCorso);
+																																																	separator_3.setForeground(Home.BLUE_BUTTON_PRESSED);
+																																																	separator_3.setBounds(10, 28, 290, 1);
+																																																	
+																																																			scegli_corso.add(separator_3);
+																																																			//btnNewButton.setBounds(688, 7, 310, 28);
+																																																			panel_ricerca_guidata.add(btnNewButton);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showAndHideBarraGuidata();
 			}
 		});
-		//btnNewButton.setBounds(688, 7, 310, 28);
-		panel_ricerca_guidata.add(btnNewButton);
 
 	}
 
@@ -740,7 +740,7 @@ public class RisultatiRicerca extends Pagina {
 
 	protected void loadRisultatiCorsi(String campoRicerca) {
 		try {
-			adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca.toLowerCase()));
+			adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca.trim().toLowerCase()));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
