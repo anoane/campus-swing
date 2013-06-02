@@ -119,6 +119,14 @@ public class HomePage extends Pagina {
 			corso.setLocation(0, (107*i));
 			panel_corsi_seguiti.add(corso);
 		}
+		if (num_corsi == 0) {
+			JLabel lblNoCorsiSeg = new JLabel("Nessun corso seguito");
+			lblNoCorsiSeg.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoCorsiSeg.setBounds(0, 0, 310, 57);
+			lblNoCorsiSeg.setForeground(Color.LIGHT_GRAY);
+			panel_corsi_seguiti.add(lblNoCorsiSeg);
+		}
+		
 	}
 	
 	public void addMieiPref(final ArrayList<Documento> docs){
@@ -135,6 +143,14 @@ public class HomePage extends Pagina {
 			documento.setLocation(0, (107*i));
 			panel_preferiti_recenti.add(documento);
 		}
+		
+		if (num_pref == 0) {
+			JLabel lblNoPref = new JLabel("Nessun documento preferito");
+			lblNoPref.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoPref.setBounds(0, 0, 310, 57);
+			lblNoPref.setForeground(Color.LIGHT_GRAY);
+			panel_preferiti_recenti.add(lblNoPref);
+		}
 	}
 	
 	public void addMieiDocs(final ArrayList<Documento> docs){
@@ -150,6 +166,14 @@ public class HomePage extends Pagina {
 			final RiquadroDocSmall documento = new RiquadroDocSmall(d,true,false);
 			documento.setLocation(0, (107*i));
 			panel_miei_doc.add(documento);
+		}
+		
+		if (num_miei_doc == 0) {
+			JLabel lblNoDoc = new JLabel("Nessun documento preferito");
+			lblNoDoc.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoDoc.setBounds(0, 0, 310, 57);
+			lblNoDoc.setForeground(Color.LIGHT_GRAY);
+			panel_miei_doc.add(lblNoDoc);
 		}
 	}
 	
@@ -512,6 +536,8 @@ public class HomePage extends Pagina {
 		panel_corsi_seguiti.setBounds(10, 52, 310, 194);
 		panel.add(panel_corsi_seguiti);
 		panel_corsi_seguiti.setLayout(null);
+		
+
 		
 		panel_preferiti_recenti.setBackground(Color.WHITE);
 		panel_preferiti_recenti.setBounds(340, 52, 310, 194);
