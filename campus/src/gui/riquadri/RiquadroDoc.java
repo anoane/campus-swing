@@ -220,7 +220,7 @@ public class RiquadroDoc extends Riquadro {
 		univ.setWrapStyleWord(true);
 		univ.setHighlighter(null);
 		univ.setEditable(false);
-		univ.setBounds(125, 135, 143, 40);
+		univ.setBounds(125, 138, 143, 32);
 		univ.setText(util.StringUtility.truncateLines(univ,2));
 		univ.addMouseListener(comportamento);
 

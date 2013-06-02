@@ -47,6 +47,7 @@ public class DocumentoIndexer extends AbstractIndexer {
 		    */
 		   d.add(new TextField("Descrizione",doc.getDescrizione(),Field.Store.YES));
 		   d.add(new TextField("Nome",doc.getNome(),Field.Store.YES));
+		   d.add(new TextField("Corso",doc.getCorso().getNome(),Field.Store.YES));
 		   d.add(new TextField("ID", ""+doc.getID(), Field.Store.YES));
 		   
 		   iw.addDocument(d);

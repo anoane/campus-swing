@@ -80,11 +80,11 @@ public class DocumentoPanel extends Pagina {
 
 		lblPreferiti.setForeground(new Color(6, 121, 159));
 		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblPreferiti.setBounds(10, 10, 200, 25);
+		lblPreferiti.setBounds(10, 10, 730, 25);
 		panel.add(lblPreferiti);
 
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(147, 53, 134, 23);
+		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(147, 59, 373, 23);
 		panel.add(lblNewLabel_1);
 
 		JSeparator separator = new JSeparator();
@@ -94,7 +94,7 @@ public class DocumentoPanel extends Pagina {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.ORANGE);
-		panel_2.setBounds(10, 52, 67, 24);
+		panel_2.setBounds(10, 59, 67, 24);
 		panel.add(panel_2);
 		panel_2.setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
 		panel_2.setLayout(null);
@@ -105,10 +105,10 @@ public class DocumentoPanel extends Pagina {
 
 		ButtonStandard buttonCreator = new ButtonStandard();
 		btnAggiungiAiPreferiti = buttonCreator.createButton(
-				"Aggiungi ai preferiti", 409, 49, 230, 34, false, true);
+				"Aggiungi ai preferiti", 750, 8, 230, 28, false, true);
 		panel.add(btnAggiungiAiPreferiti);
 		btnRimuoviDaiPreferiti = buttonCreator.createButton(
-				"Rimuovi dai preferiti", 409, 49, 230, 34, false, true);
+				"Rimuovi dai preferiti", 750, 8, 230, 28, false, true);
 		panel.add(btnRimuoviDaiPreferiti);
 
 		if (d != null) {
@@ -151,11 +151,11 @@ public class DocumentoPanel extends Pagina {
 		//suggerimenti.setBackground(Color.WHITE);
 
 		lbltipo = new JLabel();
-		lbltipo.setBounds(84, 53, 57, 23);
+		lbltipo.setBounds(84, 59, 57, 23);
 		panel.add(lbltipo);
 
-		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 13));
-		lblUniversit.setBounds(290, 53, 121, 23);
+		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblUniversit.setBounds(531, 59, 289, 23);
 		panel.add(lblUniversit);
 
 		riquadrodx = new JPanel();
@@ -202,7 +202,7 @@ public class DocumentoPanel extends Pagina {
 		panelCommenti.add(separator_1);
 		separator_1.setForeground(new Color(27, 50, 128));
 		stelle = new JPanel();
-		stelle.setBounds(205, 10, 150, 30);
+		stelle.setBounds(830, 56, 150, 30);
 		stelle.setLayout(null);
 		colore = new JPanel();
 		for (int i = 0; i < 5; ++i) {
@@ -218,9 +218,16 @@ public class DocumentoPanel extends Pagina {
 		panel.add(stelle);
 
 		lblVoti.setBounds(365, 20, 50, 20);
+		lblVoti.setVisible(false);
 		panel.add(lblVoti);
 		suggerimenti = new Suggerimenti();
 		panel.add(suggerimenti);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setOrientation(SwingConstants.VERTICAL);
+		separator_2.setForeground(new Color(27, 50, 128));
+		separator_2.setBounds(520, 59, 1, 23);
+		panel.add(separator_2);
 	}
 	
 	public void unsetAllPreviewer() {
@@ -502,14 +509,4 @@ public class DocumentoPanel extends Pagina {
 			stelle.add(stella, i);
 		}
 	}
-	/*
-	private void adjustSuggerimenti(){
-		if(suggerimenti.getViewport().getComponent(0).getHeight() >= 484){
-
-			suggerimenti.setPreferredSize(new Dimension(440,484));
-			suggerimenti.setSize(440,484);
-		}
-		suggerimenti.validate();
-		suggerimenti.repaint();
-	}*/
 }

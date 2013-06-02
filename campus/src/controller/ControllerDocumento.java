@@ -253,6 +253,16 @@ public class ControllerDocumento extends AbstractController{
 				treedocs.put(temp[i].getID(), temp[i]);
 			}
 		}
+		try {
+			temp = ControllerRicerca.getInstance().cercaDocumento("Corso", ricerca+"*");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		if (temp != null) {
+			for (int i=0; temp.length > i; i++) {
+				treedocs.put(temp[i].getID(), temp[i]);
+			}
+		}
 		ArrayList<Documento> docs = new ArrayList<Documento>(treedocs.values());
 		if (soloFac) {
 			docs = filtraSoloUnaFac(docs, Home.getUtenteLoggato().getFacolta().getID());
