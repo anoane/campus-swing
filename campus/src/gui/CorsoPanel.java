@@ -121,9 +121,9 @@ public class CorsoPanel extends Pagina {
 		panel_1.add(programma);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
 		gbl_formPanel.columnWidths = new int[] {145, 171, 0};
-		gbl_formPanel.rowHeights = new int[]{30, 30, 60, 60, 0};
+		gbl_formPanel.rowHeights = new int[]{30, 30, 60, 50, 0};
 		gbl_formPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_formPanel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		programma.setLayout(gbl_formPanel);
 		
 		JLabel lblNewLabel = new JLabel("Universit\u00E0");
@@ -147,42 +147,29 @@ public class CorsoPanel extends Pagina {
 		gbc_comboBox.gridy = 0;
 		comboBox.setFont(new Font("Arial", Font.PLAIN, 14));
 		programma.add(comboBox, gbc_comboBox);
-		
-		JTextArea textArea = new JTextArea();
-		GridBagConstraints gbc_textArea = new GridBagConstraints();
-		gbc_textArea.insets = new Insets(0, 0, 5, 0);
-		gbc_textArea.fill = GridBagConstraints.BOTH;
-		gbc_textArea.gridx = 2;
-		gbc_textArea.gridy = 0;
-		//programma.add(textArea, gbc_textArea);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
-		textArea.setLineWrap(true);
-		textArea.setEnabled(false);
-		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-		textArea.setWrapStyleWord(true);
-		textArea.setDocument(new JTextFieldLimit(254));
-		textArea_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		textArea_1.setLineWrap(true);
-		textArea_1.setEnabled(false);
-		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-		textArea_1.setWrapStyleWord(true);
-		textArea_1.setDocument(new JTextFieldLimit(254));
+		GridBagConstraints gbc_txtrProgrammaBreveDel = new GridBagConstraints();
+		gbc_txtrProgrammaBreveDel.insets = new Insets(0, 0, 5, 0);
+		gbc_txtrProgrammaBreveDel.fill = GridBagConstraints.BOTH;
+		gbc_txtrProgrammaBreveDel.gridx = 2;
+		gbc_txtrProgrammaBreveDel.gridy = 0;
 		GridBagConstraints gbc_textArea_1 = new GridBagConstraints();
 		gbc_textArea_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textArea_1.fill = GridBagConstraints.BOTH;
 		gbc_textArea_1.gridx = 2;
 		gbc_textArea_1.gridy = 1;
-		//programma.add(textArea_1, gbc_textArea_1);
 		
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 2;
-		programma.add(scrollPane, gbc_scrollPane);
+		JTextArea txtrProgrammaBreveDel = new JTextArea();
+		txtrProgrammaBreveDel.setLineWrap(true);
+		txtrProgrammaBreveDel.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtrProgrammaBreveDel.setWrapStyleWord(true);
+		txtrProgrammaBreveDel.setHighlighter(null);
+		txtrProgrammaBreveDel.setText("Approfondimenti avanzati dei temi trattati nel corso precedente.");
+		//GridBagConstraints gbc_txtrProgrammaBreveDel = new GridBagConstraints();
+		gbc_txtrProgrammaBreveDel.fill = GridBagConstraints.BOTH;
+		gbc_txtrProgrammaBreveDel.insets = new Insets(0, 0, 5, 0);
+		gbc_txtrProgrammaBreveDel.gridx = 1;
+		gbc_txtrProgrammaBreveDel.gridy = 2;
+		programma.add(txtrProgrammaBreveDel, gbc_txtrProgrammaBreveDel);
 		
 		JLabel lblNewLabel_3 = new JLabel("Modalit\u00E0 d'esame");
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -204,6 +191,7 @@ public class CorsoPanel extends Pagina {
 		
 		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Laura Tarantino", "Daniele Frigioni", "Serafino Cicerone"}));
 		comboBox_1.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
@@ -221,12 +209,15 @@ public class CorsoPanel extends Pagina {
 		gbc_lblNewLabel_1.gridy = 1;
 		programma.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JScrollPane scrollPane_1 = new JScrollPane(textArea_1);
-		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
-		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_1.gridx = 1;
-		gbc_scrollPane_1.gridy = 3;
-		programma.add(scrollPane_1, gbc_scrollPane_1);
+		JTextArea txtrScrittoEOrale = new JTextArea();
+		txtrScrittoEOrale.setText("Scritto e orale.");
+		txtrScrittoEOrale.setHighlighter(null);
+		txtrScrittoEOrale.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_txtrScrittoEOrale = new GridBagConstraints();
+		gbc_txtrScrittoEOrale.fill = GridBagConstraints.BOTH;
+		gbc_txtrScrittoEOrale.gridx = 1;
+		gbc_txtrScrittoEOrale.gridy = 3;
+		programma.add(txtrScrittoEOrale, gbc_txtrScrittoEOrale);
 		
 		
 		

@@ -166,15 +166,19 @@ public class PrenotaDigitalizzazione extends Pagina {
 		final Corso[] corsi = ControllerCorso.getInstance().getAllCorsi();
 		JComboBox comboBoxCorsi = new JComboBox();
 		if (corsi.length != 0) {
-			String temp = corsi[0].getNome();
-			if (corsi[0].getNome().length() > 40) {
-				temp = corsi[0].getNome().substring(0, 39).concat("...");
-			}
-			final String temp2 = temp;
+			final String temp[] = new String[corsi.length];
+			for (int i=0;corsi.length>i;i++) {
+				//System.out.println("ss");
+				if (corsi[i].getNome().length() > 20) {
+					temp[i] = corsi[i].getNome().substring(0, 19).concat("...");
+				} else {
+					temp[i] = corsi[i].getNome();
+				}
+			}			
 			
 			comboBoxCorsi.setModel(new ComboBoxModel<String>() {
 				//TODO: Fix
-				private String selected = temp2;
+				private String selected = temp[0];
 				
 				@Override
 				public void addListDataListener(ListDataListener arg0) {
@@ -184,15 +188,16 @@ public class PrenotaDigitalizzazione extends Pagina {
 
 				@Override
 				public String getElementAt(int arg0) {
-					if (corsi[arg0].getNome().length() > 40) {
-						return corsi[arg0].getNome().substring(0, 39).concat("...");
-					}
-					return corsi[arg0].getNome();
+					//if (corsi[arg0].getNome().length() > 40) {
+					//	return corsi[arg0].getNome().substring(0, 39).concat("...");
+					//}
+					//return corsi[arg0].getNome();
+					return temp[arg0];
 				}
 
 				@Override
 				public int getSize() {
-					return corsi.length;
+					return temp.length;
 				}
 
 				@Override
