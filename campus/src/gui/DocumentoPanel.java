@@ -49,6 +49,9 @@ public class DocumentoPanel extends Pagina {
 	private JPanel panel;
 	private JButton btnAggiungiAiPreferiti;
 	private JButton btnRimuoviDaiPreferiti;
+	private JButton btnAttivaModifica;
+	private JButton btnTerminaModifica;
+	
 	JLabel lblPreferiti = new JLabel();
 	JLabel lbltipo;
 	// Panel stelle
@@ -80,11 +83,11 @@ public class DocumentoPanel extends Pagina {
 
 		lblPreferiti.setForeground(new Color(6, 121, 159));
 		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 20));
-		lblPreferiti.setBounds(10, 10, 730, 25);
+		lblPreferiti.setBounds(10, 10, 490, 25);
 		panel.add(lblPreferiti);
 
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(147, 59, 373, 23);
+		lblNewLabel_1.setBounds(147, 59, 353, 23);
 		panel.add(lblNewLabel_1);
 
 		JSeparator separator = new JSeparator();
@@ -110,7 +113,13 @@ public class DocumentoPanel extends Pagina {
 		btnRimuoviDaiPreferiti = buttonCreator.createButton(
 				"Rimuovi dai preferiti", 750, 8, 230, 28, false, true);
 		panel.add(btnRimuoviDaiPreferiti);
-
+		btnAttivaModifica = buttonCreator.createButton(
+				"Modifica il documento", 510, 8, 230, 28, false, true);
+		panel.add(btnAttivaModifica);
+		btnTerminaModifica = buttonCreator.createButton(
+				"Termina la modifica", 510, 8, 230, 28, false, true);
+		panel.add(btnTerminaModifica);
+		btnTerminaModifica.setVisible(false);
 		if (d != null) {
 			if (ControllerUtente.getInstance().containDocumentoPreferito(
 					Home.getUtenteLoggato(), d)) {
@@ -121,6 +130,11 @@ public class DocumentoPanel extends Pagina {
 			} else {
 				btnAggiungiAiPreferiti.setVisible(true);
 				btnRimuoviDaiPreferiti.setVisible(false);
+				panel.validate();
+				panel.repaint();
+			}
+			if (d.getProprietario().getID()==Home.getUtenteLoggato().getID()) {
+				btnAttivaModifica.setVisible(true);
 				panel.validate();
 				panel.repaint();
 			}
@@ -155,7 +169,7 @@ public class DocumentoPanel extends Pagina {
 		panel.add(lbltipo);
 
 		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblUniversit.setBounds(531, 59, 289, 23);
+		lblUniversit.setBounds(522, 59, 298, 23);
 		panel.add(lblUniversit);
 
 		riquadrodx = new JPanel();
@@ -226,7 +240,7 @@ public class DocumentoPanel extends Pagina {
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setOrientation(SwingConstants.VERTICAL);
 		separator_2.setForeground(new Color(27, 50, 128));
-		separator_2.setBounds(520, 59, 1, 23);
+		separator_2.setBounds(511, 59, 1, 23);
 		panel.add(separator_2);
 	}
 	
@@ -307,6 +321,7 @@ public class DocumentoPanel extends Pagina {
 
 	@Override
 	public void reload(Object o) {
+		btnTerminaModifica.setVisible(false);
 		//btnNewButton = new JButton(">");
 		//panel.add(btnNewButton);
 		//btnNewButton.setBounds(521, 165, 45, 45);
