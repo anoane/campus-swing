@@ -6,6 +6,7 @@ import gui.riquadri.RiquadroDoc;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -152,6 +153,8 @@ public class RisultatiRicerca extends Pagina {
 		fileSelezionato = false;
 		Path target = null;
 		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panel_7.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
 		panel_10.setVisible(false);
 		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
@@ -184,6 +187,8 @@ public class RisultatiRicerca extends Pagina {
 		is_ricerca_guidata_open = false;
 		reloadRisultati();
 		Home.forceResizeEvent();
+		panel.revalidate();
+		panel.repaint();
 	}
 	
 	private void showRisultatiByCorso(int index_facolta, int index_corso, boolean soloFac, String filtro, String sorting) {
@@ -316,7 +321,8 @@ public class RisultatiRicerca extends Pagina {
 				panel_6.setBackground(Home.BLUE_SEARCH_BAR);
 				panel_10.setVisible(false);
 				panel_9.setVisible(true);
-				resetPanel(Home.getRicercaTestuale().getText());
+				reload();
+				//resetPanel(Home.getRicercaTestuale().getText());
 				//label_6.setText("Risultati trovati per:");
 			}
 		});
@@ -388,6 +394,7 @@ public class RisultatiRicerca extends Pagina {
 																			panel_14.setLayout(gl_panel_3);
 																			scrollPane_2.setBounds(0, 0, 1006, 313);
 																			panel_13.add(scrollPane_2, BorderLayout.CENTER);
+		panel_9.setBackground(Color.WHITE);
 	
 		panel_9.setBounds(0, 38, 1008, 391);
 		panel.add(panel_9);

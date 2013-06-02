@@ -47,6 +47,9 @@ public class ButtonStandard  {
 				} else {
 					Home.loadPages(Home.getPaginaCorrispondente(action), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, vPrefSize, vMaxSize);
 				}
+				if (action.matches("profilo")) {
+					Home.openProfilo(Home.getUtenteLoggato());
+				}
 			}
 		});
 		return button;
