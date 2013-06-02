@@ -72,7 +72,7 @@ public class CorsiSeguiti extends Pagina {
 			contenuto_pagina.add(corsi);
 			corsi.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler rimuovere dai Corsi Seguiti il corso?","Attenzione",0);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sicuro di voler rimuovere dai Corsi Seguiti il corso?","Attenzione",0);
 					if(n==0){
 					course.remove(c);
 					ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), c);
@@ -80,6 +80,17 @@ public class CorsiSeguiti extends Pagina {
 				}
 				});
 		}
+		
+		if (course.size() == 0) {
+			contenuto_pagina.setBounds(panel.getX()+10,panel.getY()+35,panel.getWidth(),80);
+			panel.setSize(panel.getWidth(), 80);
+			JLabel lblNoCor = new JLabel("Nessun corso trovato");
+			lblNoCor.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoCor.setBounds(0, 0, 310, 57);
+			lblNoCor.setForeground(Color.LIGHT_GRAY);
+			contenuto_pagina.add(lblNoCor);
+		}
+		
 	}
 	/**
 	 * 

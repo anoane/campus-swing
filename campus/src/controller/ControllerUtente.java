@@ -148,15 +148,17 @@ public class ControllerUtente extends AbstractController{
 	}
 	
 	public void aggiungiCorsoSeguito(Utente u, Corso c){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
-		Corso_Utente cu = cuDAO.createCorso_Utente();
-		cu.setCorso(c);
-		cu.setUtente(u);
-		try {
-			cuDAO.save(cu);
-		} catch (PersistentException e) {
-			e.printStackTrace();
+		if (!containCorsoSeguito(u,c)) {
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			Corso_UtenteDAO cuDAO = factory.getCorso_UtenteDAO();
+			Corso_Utente cu = cuDAO.createCorso_Utente();
+			cu.setCorso(c);
+			cu.setUtente(u);
+			try {
+				cuDAO.save(cu);
+			} catch (PersistentException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -166,6 +168,8 @@ public class ControllerUtente extends AbstractController{
 		try {
 			if(containCorsoSeguito(u,c)) {
 				Corso_Utente cu = cuDAO.getCorso_UtenteByORMID(ControllerCorso.getInstance().getIdCorsoSeguito(u,c));
+				u.corso.remove(cu);
+				c.utenteCorso.remove(cu);
 				cuDAO.delete(cu);
 			}
 		} catch (PersistentException e) {

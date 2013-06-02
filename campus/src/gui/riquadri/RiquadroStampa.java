@@ -128,13 +128,14 @@ public class RiquadroStampa extends JPanel {
 		add(tipo);
 		
 		JLabel lblImage = new JLabel();
-		lblImage.setBounds(841, 10, 25, 25);
+		lblImage.setBounds(838, 10, 25, 25);
 		lblImage.setIcon(new ImageIcon("./newimage/stampa.png"));
 		add(lblImage);
 		
 		JLabel lblNewLabel_1 = new JLabel("In stampa");
+		lblNewLabel_1.setText(stato);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(817, 35, 73, 20);
+		lblNewLabel_1.setBounds(815, 35, 73, 20);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 14));
 		add(lblNewLabel_1);

@@ -176,7 +176,7 @@ public class RisultatiRicerca extends Pagina {
 		reloadUniv();
 		//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
 		try {
-			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca, false, "all", "timestampDOWN"));
+			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca.toLowerCase(), false, "all", "timestampDOWN"));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -732,7 +732,7 @@ public class RisultatiRicerca extends Pagina {
 
 	protected void loadRisultatiCorsi(String campoRicerca) {
 		try {
-			adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca));
+			adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca.toLowerCase()));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -755,6 +755,15 @@ public class RisultatiRicerca extends Pagina {
 			panel_15.add(corso);
 
 		}
+		
+		if (corsi.size() == 0) {
+			JLabel lblNoCor = new JLabel("Nessun corso trovato");
+			lblNoCor.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoCor.setBounds(0, 0, 310, 57);
+			lblNoCor.setForeground(Color.LIGHT_GRAY);
+			panel_15.add(lblNoCor);
+		}
+		
 		int altezza = 252 + (230 * col);
 
 		panel_15.setSize(panel_15.getWidth(), altezza);
@@ -864,6 +873,15 @@ public class RisultatiRicerca extends Pagina {
 			panel_2.add(documento);
 
 		}
+		
+		if (docs.size() == 0) {
+			JLabel lblNoDoc = new JLabel("Nessun documento trovato");
+			lblNoDoc.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoDoc.setBounds(0, 0, 310, 57);
+			lblNoDoc.setForeground(Color.LIGHT_GRAY);
+			panel_2.add(lblNoDoc);
+		}
+		
 		int altezza = 252 + (230 * col);
 
 		panel_2.setSize(panel_2.getWidth(), altezza);
@@ -901,6 +919,15 @@ public class RisultatiRicerca extends Pagina {
 			panel_4.add(documento);
 
 		}
+		
+		if (docs.size() == 0) {
+			JLabel lblNoDocCorso = new JLabel("Nessun documento trovato");
+			lblNoDocCorso.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoDocCorso.setBounds(0, 0, 310, 57);
+			lblNoDocCorso.setForeground(Color.LIGHT_GRAY);
+			panel_4.add(lblNoDocCorso);
+		}
+		
 		int altezza = 252 + (230 * col);
 
 		panel_4.setSize(panel_4.getWidth(), altezza);

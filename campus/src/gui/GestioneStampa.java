@@ -50,7 +50,7 @@ public class GestioneStampa extends Pagina {
 		r2.setLocation(55, 189);
 		panel.add(r2);
 		
-		RiquadroStampa r3 = new RiquadroStampa("Slide","ppt", "Economia", 1, "Flash Copy", "1605/13", "Ritirato");
+		RiquadroStampa r3 = new RiquadroStampa("Slide","ppt", "Economia", 1, "Flash Copy", "16/05/13", "Ritirato");
 		r3.setLocation(55, 269);
 		panel.add(r3);
 		
