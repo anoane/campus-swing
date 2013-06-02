@@ -321,7 +321,8 @@ public class RisultatiRicerca extends Pagina {
 				panel_6.setBackground(Home.BLUE_SEARCH_BAR);
 				panel_10.setVisible(false);
 				panel_9.setVisible(true);
-				reload();
+				Home.cerca(Home.getRicercaTestuale().getText());
+				//reload();
 				//resetPanel(Home.getRicercaTestuale().getText());
 				//label_6.setText("Risultati trovati per:");
 			}
