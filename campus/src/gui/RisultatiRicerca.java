@@ -759,7 +759,7 @@ public class RisultatiRicerca extends Pagina {
 		if (corsi.size() == 0) {
 			JLabel lblNoCor = new JLabel("Nessun corso trovato");
 			lblNoCor.setFont(new Font("Arial", Font.BOLD, 20));
-			lblNoCor.setBounds(0, 0, 310, 57);
+			lblNoCor.setBounds(10, 0, 310, 57);
 			lblNoCor.setForeground(Color.LIGHT_GRAY);
 			panel_15.add(lblNoCor);
 		}
@@ -877,7 +877,7 @@ public class RisultatiRicerca extends Pagina {
 		if (docs.size() == 0) {
 			JLabel lblNoDoc = new JLabel("Nessun documento trovato");
 			lblNoDoc.setFont(new Font("Arial", Font.BOLD, 20));
-			lblNoDoc.setBounds(0, 0, 310, 57);
+			lblNoDoc.setBounds(10, 0, 310, 57);
 			lblNoDoc.setForeground(Color.LIGHT_GRAY);
 			panel_2.add(lblNoDoc);
 		}
@@ -923,7 +923,7 @@ public class RisultatiRicerca extends Pagina {
 		if (docs.size() == 0) {
 			JLabel lblNoDocCorso = new JLabel("Nessun documento trovato");
 			lblNoDocCorso.setFont(new Font("Arial", Font.BOLD, 20));
-			lblNoDocCorso.setBounds(0, 0, 310, 57);
+			lblNoDocCorso.setBounds(10, 0, 310, 57);
 			lblNoDocCorso.setForeground(Color.LIGHT_GRAY);
 			panel_4.add(lblNoDocCorso);
 		}

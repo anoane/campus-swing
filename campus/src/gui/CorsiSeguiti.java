@@ -82,9 +82,9 @@ public class CorsiSeguiti extends Pagina {
 		}
 		
 		if (course.size() == 0) {
-			contenuto_pagina.setBounds(panel.getX()+10,panel.getY()+35,panel.getWidth(),80);
-			panel.setSize(panel.getWidth(), 80);
-			JLabel lblNoCor = new JLabel("Nessun corso trovato");
+			contenuto_pagina.setBounds(panel.getX()+10,panel.getY()+52,panel.getWidth(),100);
+			panel.setSize(panel.getWidth(), 100);
+			JLabel lblNoCor = new JLabel("Nessun corso seguito");
 			lblNoCor.setFont(new Font("Arial", Font.BOLD, 20));
 			lblNoCor.setBounds(0, 0, 310, 57);
 			lblNoCor.setForeground(Color.LIGHT_GRAY);

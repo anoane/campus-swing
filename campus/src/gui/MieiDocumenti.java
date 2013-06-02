@@ -228,7 +228,17 @@ public class MieiDocumenti extends Pagina {
 						cd.removeDocumento(d);
 						adjustDocs(docs);}
 					}
-				});
+				});			
+		}
+		
+		if (docs.size() == 0) {
+			contenuto_pagina.setBounds(panel.getX()+10,panel.getY()+52,panel.getWidth(),100);
+			panel.setSize(panel.getWidth(), 100);
+			JLabel lblNoDoc = new JLabel("Nessun documento");
+			lblNoDoc.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoDoc.setBounds(0, 0, 310, 57);
+			lblNoDoc.setForeground(Color.LIGHT_GRAY);
+			contenuto_pagina.add(lblNoDoc);
 		}
 		
 	}
