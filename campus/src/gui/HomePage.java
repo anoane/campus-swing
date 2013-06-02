@@ -316,8 +316,19 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_5);
 		panel_5.setLayout(null);
 		
-		JLabel label_9 = new JLabel("");
+		final JLabel label_9 = new JLabel("");
 		label_9.setBounds(0, 0, 310, 31);
+		label_9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_9.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_9.setBorder(new EmptyBorder(0,0,0,0));
+			}
+		});
+		label_9.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		label_9.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_3_new.png"));
 		panel_5.add(label_9);
 		
@@ -326,8 +337,19 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_6);
 		panel_6.setLayout(null);
 		
-		JLabel label_10 = new JLabel("");
+		final JLabel label_10 = new JLabel("");
 		label_10.setBounds(0, 0, 310, 31);
+		label_10.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_10.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_10.setBorder(new EmptyBorder(0,0,0,0));
+			}
+		});
+		label_10.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		label_10.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_2_new.png"));
 		panel_6.add(label_10);
 		
@@ -336,7 +358,18 @@ public class HomePage extends Pagina {
 		panel_1.add(panel_7);
 		panel_7.setLayout(null);
 		
-		JLabel label_11 = new JLabel("");
+		final JLabel label_11 = new JLabel("");
+		label_11.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_11.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_11.setBorder(new EmptyBorder(0,0,0,0));
+			}
+		});
+		label_11.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		label_11.setBounds(0, 0, 310, 31);
 		label_11.setIcon(new ImageIcon("./newimage/ordine_digitalizzazione_1_new.png"));
 		panel_7.add(label_11);
@@ -378,7 +411,8 @@ public class HomePage extends Pagina {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				label_14.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+				//label_14.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+				label_14.setBorder(new EmptyBorder(0,0,0,0));
 			}
 		});
 		
@@ -394,7 +428,8 @@ public class HomePage extends Pagina {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				label_13.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+				//label_13.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+				label_13.setBorder(new EmptyBorder(0,0,0,0));
 			}
 		});
 		
@@ -410,12 +445,13 @@ public class HomePage extends Pagina {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				label_12.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+				//label_12.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+				label_12.setBorder(new EmptyBorder(0,0,0,0));
 			}
 		});
-		label_12.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
-		label_13.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
-		label_14.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+		//label_12.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+		//label_13.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+		//label_14.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
 		label_12.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		label_6.addMouseListener(new MouseAdapter() {
