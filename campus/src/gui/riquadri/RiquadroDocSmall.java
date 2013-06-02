@@ -119,24 +119,24 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		switch (doc.getDiscriminator()) {
 		case "Appunti":
 			lblNewLabel.setText("Appunti");
-			lblNewLabel.getParent().setBackground(new Color(0xFF, 0xB9, 0x20));
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
 			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
 			lblNewLabel.setForeground(Color.WHITE);
-			lblNewLabel.getParent().setBackground(new Color(0xEC, 0x53, 0xEC));
+			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
 			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		case "Esercizi":
 			lblNewLabel.setText("Esercizi");
-			lblNewLabel.getParent().setBackground(new Color(0x20, 0xB9, 0x00));
+			lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
 			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
 			lblNewLabel.setForeground(Color.WHITE);
-			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x20, 0x20));
+			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
 			lblNewLabel.getParent().setBounds(10, 68, 58, 20);
 			break;
 		default:
