@@ -94,8 +94,8 @@ public class RiquadroCorso extends Riquadro {
 		descrizione.setEditable(false);
 		descrizione.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		descrizione.setAlignmentY(Component.TOP_ALIGNMENT);
-		descrizione.setLocation(163, 56);
-		descrizione.setSize(267, 91);
+		descrizione.setLocation(163, 66);
+		descrizione.setSize(267, 88);
 		descrizione.setForeground(Color.WHITE);
 		descrizione.setLineWrap(true);
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
@@ -198,7 +198,7 @@ public class RiquadroCorso extends Riquadro {
 		
 		rimuovi = new RimuoviCorsoSeguito("Cancella il documento");
 		rimuovi.setToolTipText("Rimuovi dai corsi seguiti");
-		rimuovi.setLocation(377, 5);
+		rimuovi.setLocation(377, 13);
 		
 		if (pulsantiVisible) {
 			add(rimuovi);
