@@ -72,7 +72,7 @@ public class CorsiSeguiti extends Pagina {
 			contenuto_pagina.add(corsi);
 			corsi.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sicuro di voler rimuovere dai Corsi Seguiti il corso?","Attenzione",0);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler rimuovere dai Corsi Seguiti il corso?","Attenzione",0);
 					if(n==0){
 					course.remove(c);
 					ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), c);

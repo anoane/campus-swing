@@ -221,14 +221,23 @@ public class MieiDocumenti extends Pagina {
 			
 			documento.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sicuro di voler cancellare il documento?","Attenzione",0);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler cancellare il documento?","Attenzione",0);
 					if(n==0){
 						docs.remove(d);
 						ControllerDocumento cd = ControllerDocumento.getInstance();
 						cd.removeDocumento(d);
-						adjustDocs(docs);}
+						adjustDocs(docs);
 					}
-				});			
+				}
+			});		
+			documento.getModifica().addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0){
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler modificare il documento?","Attenzione",0);
+					if(n==0){
+						Home.openDocument(true,d,true);
+					}
+				}
+			});	
 		}
 		
 		if (docs.size() == 0) {

@@ -411,4 +411,8 @@ public class RiquadroDoc extends Riquadro {
 	public RimuoviPrefButton getRimuoviPref(){
 		return (RimuoviPrefButton) this.pulsanti.getComponent(2);
 	}
+
+	public Component getModifica() {
+		return (ModificaButton) this.pulsanti.getComponent(0);
+	}
 }
