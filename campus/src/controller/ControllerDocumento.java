@@ -71,6 +71,23 @@ public class ControllerDocumento extends AbstractController{
 			e.printStackTrace();
 		}
 	}
+	
+	public void modificaDocumento(int ID, String nome, String descrizione,String path){
+		try {
+			Documento documento = getDocumento(ID);
+			documento.setNome(nome);
+			documento.setDescrizione(descrizione);
+			documento.setPath(path);
+			Calendar cal = GregorianCalendar.getInstance();
+			Timestamp time = new Timestamp(cal.getTimeInMillis());
+			documento.setTimestamp(time);
+			documentoDAO.save(documento);
+			ControllerRicerca.getInstance().updateDocumento(documento);
+			ControllerRicerca.getInstance().commitIndexingDocumento();
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * Incrementa il download di un documento
 	 * @param docID

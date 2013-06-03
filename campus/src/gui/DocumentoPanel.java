@@ -1,6 +1,7 @@
 package gui;
 
 import gui.helpers.DocFlag;
+import gui.helpers.JTextFieldLimit;
 import gui.riquadri.RiquadroUtenteDoc;
 
 import java.awt.Color;
@@ -18,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
@@ -70,7 +72,8 @@ public class DocumentoPanel extends Pagina {
 	private Suggerimenti suggerimenti;
 	private JButton btnNewButton;
 	private MenuSuggerimenti menuSuggerimenti;
-
+	private JTextField tf_preferiti = new JTextField();
+	
 	private boolean canEliminate = true;
 	
 	private Documento nowDocumento = null;
@@ -327,6 +330,8 @@ public class DocumentoPanel extends Pagina {
 			//menuSuggerimenti = new MenuSuggerimenti(false);
 			//menuSuggerimenti.setLocation(521, 100);
 			//panel.add(menuSuggerimenti);
+
+			
 			resetStelle();
 			ControllerVoto contrVoto = ControllerVoto.getInstance(); 
 			setDocumento(((DocFlag)o).getDoc());
@@ -337,6 +342,8 @@ public class DocumentoPanel extends Pagina {
 			suggerimenti.setLocation(521, 100);
 			suggerimenti.load(getDocumento());
 			panel.add(suggerimenti);
+			
+			
 			//suggerimenti.setPreferredSize(new Dimension(440, 400));
 			
 			
@@ -479,6 +486,26 @@ public class DocumentoPanel extends Pagina {
 							Home.getPagina("miei_documenti");
 						}
 					}
+				}
+			});
+			btnAttivaModifica.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0) {
+					//label
+					lblPreferiti.setVisible(false);
+					tf_preferiti.setDocument(new JTextFieldLimit(254));
+					tf_preferiti.setText(getDocumento().getNome());
+					tf_preferiti.setForeground(new Color(6, 121, 159));
+					tf_preferiti.setFont(new Font("Arial", Font.BOLD, 20));
+					tf_preferiti.setBounds(10, 10, 250, 28);
+					panel.add(tf_preferiti);
+					btnAttivaModifica.setVisible(false);
+					btnTerminaModifica.setVisible(true);
+				}
+			});
+			btnTerminaModifica.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0) {
+					ControllerDocumento.getInstance().modificaDocumento(getDocumento().getID(),tf_preferiti.getText(),getDocumento().getDescrizione(),getDocumento().getPath());
+					reload(new DocFlag(getDocumento(),false));
 				}
 			});
 

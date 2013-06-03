@@ -163,6 +163,7 @@ public class CorsoPanel extends Pagina {
 		txtrProgrammaBreveDel.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtrProgrammaBreveDel.setWrapStyleWord(true);
 		txtrProgrammaBreveDel.setHighlighter(null);
+		txtrProgrammaBreveDel.setEditable(false);
 		txtrProgrammaBreveDel.setText("Approfondimenti avanzati dei temi trattati nel corso precedente.");
 		//GridBagConstraints gbc_txtrProgrammaBreveDel = new GridBagConstraints();
 		gbc_txtrProgrammaBreveDel.fill = GridBagConstraints.BOTH;
@@ -212,6 +213,7 @@ public class CorsoPanel extends Pagina {
 		JTextArea txtrScrittoEOrale = new JTextArea();
 		txtrScrittoEOrale.setText("Scritto e orale.");
 		txtrScrittoEOrale.setHighlighter(null);
+		txtrScrittoEOrale.setEditable(false);
 		txtrScrittoEOrale.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_txtrScrittoEOrale = new GridBagConstraints();
 		gbc_txtrScrittoEOrale.fill = GridBagConstraints.BOTH;
@@ -268,7 +270,7 @@ public class CorsoPanel extends Pagina {
 		panel.add(doc);
 		
 		
-		lblPage = new JLabel("Materiale relativo al corso");
+		lblPage = new JLabel("Documenti relativo al corso");
 		lblPage.setForeground(new Color(6, 121, 159));
 		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
 		lblPage.setBounds(10, 10, 260, 25);
