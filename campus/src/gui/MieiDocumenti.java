@@ -188,7 +188,7 @@ public class MieiDocumenti extends Pagina {
 		
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"I pi\u00F9 votati", "I pi\u00F9 recenti", "I pi\u00F9 scaricati", "I meno votati", "I meno recenti", "I meno scaricati"}));
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Qualsiasi tipo", "Solo appunti", "Solo esercizi", "Solo slide", "Solo dispense"}));
-		
+		comboBox_1.setSelectedIndex(1);
 		comboBox_1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				reloadRisultati();

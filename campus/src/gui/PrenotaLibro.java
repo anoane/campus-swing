@@ -6,9 +6,12 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -172,6 +175,48 @@ public class PrenotaLibro extends Pagina {
 		//formPanel.add(btnNewButton, gbc_btnNewButton);
 		formPanel.add(inviaRichiesta, gbc_btnNewButton);
 		
+		inviaRichiesta.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (textField.getText().matches("") || textField_1.getText().matches("") || textField_2.getText().matches("") || textField_3.getText().matches("") || textField_4.getText().matches("")) {
+						JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima riempire tutti i campi", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(Home.getFrame(), "Libro prenotato correttamente", "Prenotazione Libri", JOptionPane.INFORMATION_MESSAGE);
+						textField.setText("");
+						textField_1.setText("");
+						textField_2.setText("");
+						textField_3.setText("");
+						textField_4.setText("");
+					}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		//panel.add(inviaRichiesta);
 		
 	}

@@ -5,12 +5,15 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -88,7 +91,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		gbc_lblnumPag.gridy = 2;
 		formPanel.add(lblnumPag, gbc_lblnumPag);
 		
-		JTextField txtNomeDoc = new JTextField();
+		final JTextField txtNomeDoc = new JTextField();
 		GridBagConstraints gbc_txtNomeDoc = new GridBagConstraints();
 		gbc_txtNomeDoc.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtNomeDoc.insets = new Insets(0, 0, 5, 0);
@@ -124,7 +127,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		gbc_lblCopisteria.gridy = 5;
 		formPanel.add(lblCopisteria, gbc_lblCopisteria);
 		
-		JTextArea txtAreaDescrizione = new JTextArea();
+		final JTextArea txtAreaDescrizione = new JTextArea();
 		//txtAreaDescrizione.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		txtAreaDescrizione.setLineWrap(true);
 		txtAreaDescrizione.setWrapStyleWord(true);
@@ -142,7 +145,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.add(scrollPane, gbc_textarea);
         
         
-		JTextField txtNumPag = new JTextField();
+		final JTextField txtNumPag = new JTextField();
 		GridBagConstraints gbc_txtNumPag = new GridBagConstraints();
 		gbc_txtNumPag.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtNumPag.insets = new Insets(0, 0, 5, 0);
@@ -278,7 +281,46 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.add(inviaRichiesta, gbc_btnNewButton);
 		//formPanel.add(btnNewButton, gbc_btnNewButton);
 		
-		
+		inviaRichiesta.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (txtNomeDoc.getText().matches("") || txtAreaDescrizione.getText().matches("") || txtNumPag.getText().matches("")) {
+						JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima riempire tutti i campi", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(Home.getFrame(), "Digitalizzazione prenotata correttamente", "Prenotazione Digitalizzazione", JOptionPane.INFORMATION_MESSAGE);
+						txtNomeDoc.setText("");
+						txtAreaDescrizione.setText("");
+						txtNumPag.setText("");
+					}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
 	@Override
