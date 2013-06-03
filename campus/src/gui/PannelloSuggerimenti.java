@@ -22,14 +22,14 @@ public class PannelloSuggerimenti extends JScrollPane {
 
 	private JPanel pannello;
 	private JLabel lblNoSuggerimenti;
-	private static int larghezza = 420;
+	private static int larghezza = 440;
 
 	public PannelloSuggerimenti() {
 
 		pannello = new JPanel();
 		// pannello.setPreferredSize(new Dimension(390,200));
-		setPreferredSize(new Dimension(440, 220));
-		setSize(440, 220);
+		setPreferredSize(new Dimension(larghezza, 220));
+		setSize(larghezza, 220);
 		setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED, 1));
 		setViewportView(pannello);
 		// setBackground(Color.WHITE);
@@ -114,10 +114,10 @@ public class PannelloSuggerimenti extends JScrollPane {
 			pannello.setSize(390, altezza);
 		}
 		if ((altezza + 10) < 484) {
-			setPreferredSize(new Dimension(440, altezza + 5));
+			setPreferredSize(new Dimension(larghezza, altezza + 5));
 			setSize(larghezza, altezza + 5);
 		} else {
-			setPreferredSize(new Dimension(440, 484));
+			setPreferredSize(new Dimension(larghezza, 484));
 			setSize(larghezza, 484);
 		}
 		validate();

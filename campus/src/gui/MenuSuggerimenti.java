@@ -27,8 +27,8 @@ public class MenuSuggerimenti extends JPanel {
 	
 
 	public MenuSuggerimenti(boolean Proprietario){
-		setPreferredSize(new Dimension(23, 484));
-		setSize(23, 484);
+		setPreferredSize(new Dimension(30, 50));
+		setSize(30, 50);
 		setLayout(null);
 		setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		

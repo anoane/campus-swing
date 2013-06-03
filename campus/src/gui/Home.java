@@ -707,7 +707,7 @@ public class Home {
 			}
 			
 		}else{
-			documento.setPDF(doc.getPath());
+			documento.unsetAllPreviewer();
 		}
 		
 	}

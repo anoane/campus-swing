@@ -7,13 +7,12 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Correzione;
 import modello_di_dominio.Documento;
-import controller.ControllerUtente;
 
 public class Suggerimenti extends JPanel {
 
@@ -23,45 +22,39 @@ public class Suggerimenti extends JPanel {
 	private JLabel imgFreccia;
 
 	public Suggerimenti() {
-		setPreferredSize(minDimension);
+		setPreferredSize(new Dimension(480, 484));
 		setSize(minDimension);
 		setLayout(null);
-		//setBorder(new LineBorder(Home.BLUE_BUTTON_UNPRESSED, 2));
 		setBackground(Color.WHITE);
-		setMaximumSize(new Dimension(480,484));
+		setMaximumSize(new Dimension(480, 484));
 	}
 
 	public void load(final Documento d) {
 		removeAll();
-		
-		imgFreccia = new JLabel("");
-		imgFreccia.setIcon(new ImageIcon("./newimage/freccia_left_blu_sugg.png"));
-		imgFreccia.setBounds(25, 10, 11, 20);
-		imgFreccia.setVisible(false);
-		add(imgFreccia);
-		
+
 		pannelloSuggerimenti = new PannelloSuggerimenti();
-		pannelloSuggerimenti.setLocation(35, 5);
+		pannelloSuggerimenti.setLocation(0, 0);
+		pannelloSuggerimenti.setBorder(new LineBorder(
+				Home.BLUE_BUTTON_UNPRESSED, 2));
 		pannelloSuggerimenti.setVisible(false);
 		pannelloSuggerimenti.load(d);
-		pannelloSuggerimenti.addComponentListener(
-				new ComponentAdapter() {
-					@Override
-					public void componentResized(ComponentEvent arg0) {
-						Suggerimenti.this.setSize(480,
-								pannelloSuggerimenti.getHeight()+Suggerimenti.this.getY());
-						Suggerimenti.this.validate();
-						Suggerimenti.this.repaint();
-					}
-				});
-		
+		pannelloSuggerimenti.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				Suggerimenti.this.setSize(Suggerimenti.this.getWidth(), pannelloSuggerimenti.getHeight()
+						+ Suggerimenti.this.getY());
+				Suggerimenti.this.validate();
+				Suggerimenti.this.repaint();
+			}
+		});
 
 		add(pannelloSuggerimenti);
-		
-		if (d!=null) {
-			menuSuggerimenti = new MenuSuggerimenti(d.getProprietario().equals(Home.getUtenteLoggato()));
-			menuSuggerimenti.setLocation(2, 5);
-			menuSuggerimenti.setNotifiche(notificheNonLette(d));
+
+		if (d != null) {
+			menuSuggerimenti = new MenuSuggerimenti(d.getProprietario().equals(
+					Home.getUtenteLoggato()));
+			menuSuggerimenti.setLocation(0, 0);
+			// menuSuggerimenti.setNotifiche(notificheNonLette(d));
 			add(menuSuggerimenti);
 			menuSuggerimenti.getNotificaSuggerimento().addMouseListener(
 					new MouseAdapter() {
@@ -69,16 +62,17 @@ public class Suggerimenti extends JPanel {
 						public void mouseClicked(MouseEvent e) {
 							if (pannelloSuggerimenti.isVisible()) {
 								pannelloSuggerimenti.setVisible(false);
-								imgFreccia.setVisible(false);
 								Suggerimenti.this.setSize(minDimension);
+								menuSuggerimenti.setLocation(0, 0);
 								Suggerimenti.this.validate();
 								Suggerimenti.this.repaint();
 							} else {
 								pannelloSuggerimenti.load(d);
 								pannelloSuggerimenti.setVisible(true);
-								imgFreccia.setVisible(true);
 								Suggerimenti.this.setSize(480,
-										pannelloSuggerimenti.getHeight()+Suggerimenti.this.getY());
+										pannelloSuggerimenti.getHeight()
+												+ Suggerimenti.this.getY());
+								menuSuggerimenti.setLocation(440, 0);
 								Suggerimenti.this.validate();
 								Suggerimenti.this.repaint();
 							}
@@ -87,16 +81,16 @@ public class Suggerimenti extends JPanel {
 		}
 
 	}
-	
-	private int notificheNonLette(Documento d){
+
+	private int notificheNonLette(Documento d) {
 		int i = 0;
 		Correzione[] c = d.correziones.toArray();
-		for(int j=0; i<c.length; ++j){
-			if(!c[j].getApprovato())
+		for (int j = 0; i < c.length; ++j) {
+			if (!c[j].getApprovato())
 				++i;
 		}
 		return i;
-		
+
 	}
 
 }
