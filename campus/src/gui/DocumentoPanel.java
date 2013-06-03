@@ -173,7 +173,7 @@ public class DocumentoPanel extends Pagina {
 
 		riquadrodx = new JPanel();
 		riquadrodx.setBackground(Color.WHITE);
-		riquadrodx.setBounds(614, 100, 500, 280);
+		riquadrodx.setBounds(614, 100, 500, 484);
 		riquadrodx.setLayout(null);
 		panel.add(riquadrodx);
 
@@ -200,7 +200,7 @@ public class DocumentoPanel extends Pagina {
 		riquadrodx.add(btnPrenotaStampa);
 
 		JPanel panelCommenti = new JPanel();
-		panelCommenti.setBounds(624, 390, 200, 200);
+		panelCommenti.setBounds(0, 300, 366, 180);
 		riquadrodx.add(panelCommenti);
 		panelCommenti.setLayout(null);
 
@@ -360,7 +360,7 @@ public class DocumentoPanel extends Pagina {
 					});
 			
 			suggerimenti.setVisible(false);*/
-			toggleInfo();
+			//toggleInfo();
 			validate();
 			repaint();
 			/*btnNewButton.addMouseListener(new MouseAdapter() {
