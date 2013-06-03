@@ -71,6 +71,17 @@ public class DocumentoPanel extends Pagina {
 	private JButton btnNewButton;
 	private MenuSuggerimenti menuSuggerimenti;
 
+	private boolean canEliminate = true;
+	
+	private Documento nowDocumento = null;
+	
+	public void setEliminate(boolean b) {
+		canEliminate = b;
+	}
+	
+	public boolean getEliminate() {
+		return canEliminate;
+	}
 
 	public DocumentoPanel(final Documento d, boolean modificaAttiva) {
 		
@@ -308,8 +319,7 @@ public class DocumentoPanel extends Pagina {
 	@Override
 	public void reload(Object o) {
 		if (o!=null) {
-
-			
+			setEliminate(true);
 			btnTerminaModifica.setVisible(false);
 			//btnNewButton = new JButton(">");
 			//panel.add(btnNewButton);
@@ -319,13 +329,13 @@ public class DocumentoPanel extends Pagina {
 			//panel.add(menuSuggerimenti);
 			resetStelle();
 			ControllerVoto contrVoto = ControllerVoto.getInstance(); 
-			final Documento d = ((DocFlag)o).getDoc();
+			setDocumento(((DocFlag)o).getDoc());
 			final boolean flagModifica = ((DocFlag)o).getFlag();
 			riquadrodx.setVisible(true);
 			panel.remove(suggerimenti);
 			suggerimenti = new Suggerimenti();
 			suggerimenti.setLocation(521, 100);
-			suggerimenti.load(d);
+			suggerimenti.load(getDocumento());
 			panel.add(suggerimenti);
 			//suggerimenti.setPreferredSize(new Dimension(440, 400));
 			
@@ -365,16 +375,16 @@ public class DocumentoPanel extends Pagina {
 
 			});*/
 
-			if (d != null) {
+			if (getDocumento() != null) {
 				if (ControllerUtente.getInstance().containDocumentoPreferito(
-						Home.getUtenteLoggato(), d)) {
+						Home.getUtenteLoggato(), getDocumento())) {
 						btnAggiungiAiPreferiti.setVisible(false);
 						btnRimuoviDaiPreferiti.setVisible(true);
 					} else {
 						btnAggiungiAiPreferiti.setVisible(true);
 						btnRimuoviDaiPreferiti.setVisible(false);
 				}
-				if (d.getProprietario().getID()==Home.getUtenteLoggato().getID()) {
+				if (getDocumento().getProprietario().getID()==Home.getUtenteLoggato().getID()) {
 						lblPreferiti.setBounds(10, 10, 250, 25);
 						btnElimina.setVisible(true);
 						btnAttivaModifica.setVisible(true);
@@ -388,8 +398,8 @@ public class DocumentoPanel extends Pagina {
 				panel.validate();
 				panel.repaint();
 			}
-			if (d.getPath() != null && !d.getPath().equals("/")) {
-				String strTipo = d.getPath().split("\\.")[1];
+			if (getDocumento().getPath() != null && !getDocumento().getPath().equals("/")) {
+				String strTipo = getDocumento().getPath().split("\\.")[1];
 				switch (strTipo) {
 				case "pdf":
 					lbltipo.setIcon(new ImageIcon("./newimage/pdf.png"));
@@ -406,12 +416,12 @@ public class DocumentoPanel extends Pagina {
 				}
 			} else
 				lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
-			lblPreferiti.setText(d.getNome());
+			lblPreferiti.setText(getDocumento().getNome());
 			final int backup_colore = (int) (stelle.getWidth() * contrVoto
-					.calcolaVoto(d));
+					.calcolaVoto(getDocumento()));
 			colore.setSize(backup_colore, 30);
-			lblNewLabel_1.setText(d.getCorso().getNome());
-			switch (d.getDiscriminator()) {
+			lblNewLabel_1.setText(getDocumento().getCorso().getNome());
+			switch (getDocumento().getDiscriminator()) {
 			case "Appunti":
 				lblNewLabel.setText("Appunti");
 				lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
@@ -435,11 +445,11 @@ public class DocumentoPanel extends Pagina {
 				lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
 				break;
 			}
-			lblUniversit.setText(d.getFacolta().getNome());
-			panel_3.setText(d.getDescrizione());
+			lblUniversit.setText(getDocumento().getFacolta().getNome());
+			panel_3.setText(getDocumento().getDescrizione());
 			btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
-					ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(Home.getUtenteLoggato(), d);
+					ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
 					// Home.getPagina("preferiti");
 					btnAggiungiAiPreferiti.setVisible(false);
 					btnRimuoviDaiPreferiti.setVisible(true);
@@ -450,17 +460,32 @@ public class DocumentoPanel extends Pagina {
 			btnRimuoviDaiPreferiti.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
 					ControllerUtente u = ControllerUtente.getInstance();
-					u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), d);
+					u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
 					btnAggiungiAiPreferiti.setVisible(true);
 					btnRimuoviDaiPreferiti.setVisible(false);
 					validate();
 					repaint();
 				}
 			});
-			lblVoti.setText(Integer.toString(d.votos.size()));
+
+			btnElimina.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0) {
+					if (getEliminate()) {
+						int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler cancellare il documento?","Attenzione",0);
+						if(n==0){
+							setEliminate(false);
+							ControllerDocumento cd = ControllerDocumento.getInstance();
+							cd.removeDocumento(getDocumento());
+							Home.getPagina("miei_documenti");
+						}
+					}
+				}
+			});
+
+			lblVoti.setText(Integer.toString(getDocumento().votos.size()));
 
 			boolean giaVotato = ControllerDocumento.getInstance().controlloVotato(
-					d, Home.getUtenteLoggato());
+					getDocumento(), Home.getUtenteLoggato());
 			for (int i = 0; i < 5; ++i) {
 				final int j = i + 1;
 				MouseListener m = new MouseListener() {
@@ -492,11 +517,11 @@ public class DocumentoPanel extends Pagina {
 
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						ControllerDocumento.getInstance().votaDocumento(d,
+						ControllerDocumento.getInstance().votaDocumento(getDocumento(),
 								Home.getUtenteLoggato(), j * 2);
 						resetStelle();
 						JOptionPane.showMessageDialog(null, "Voto salvato!");
-						reload(new DocFlag(d,false));
+						reload(new DocFlag(getDocumento(),false));
 					}
 				};
 				if (!giaVotato) {
@@ -511,6 +536,14 @@ public class DocumentoPanel extends Pagina {
 		}
 	}
 
+	private void setDocumento(Documento doc) {
+		nowDocumento = doc;
+	}
+
+	private Documento getDocumento() {
+		return nowDocumento;
+	}
+	
 	@Override
 	public int getAltezzaPagina() {
 		return panel.getHeight();

@@ -118,10 +118,21 @@ public class ControllerDocumento extends AbstractController{
 			//Rimuovo i preferiti
 			ControllerPreferiti.getInstance().rimuoviDocumentoDaTuttiPreferiti(d);
 			
-			d.getFacolta().documento.remove(d);
-			d.getCorso().documentoCorso.remove(d);
-			d.getProprietario().documentiUtente.remove(d);
-			
+			try {
+				d.getFacolta().documento.remove(d);
+			} catch(NullPointerException ex) {
+				
+			}
+			try {
+				d.getCorso().documentoCorso.remove(d);
+			} catch(NullPointerException ex) {
+				
+			}
+			try {
+				d.getProprietario().documentiUtente.remove(d);
+			} catch(NullPointerException ex) {
+				
+			}
 			documentoDAO.delete(d);
 		} catch (PersistentException e) {
 			e.printStackTrace();
