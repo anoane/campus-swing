@@ -3,7 +3,10 @@
  */
 package controller;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import modello_di_dominio.Corso;
 import modello_di_dominio.Corso_Utente;
@@ -154,6 +157,9 @@ public class ControllerUtente extends AbstractController{
 			Corso_Utente cu = cuDAO.createCorso_Utente();
 			cu.setCorso(c);
 			cu.setUtente(u);
+			Calendar cal = GregorianCalendar.getInstance();
+			Timestamp time = new Timestamp(cal.getTimeInMillis());
+			cu.setTimestamp(time);
 			try {
 				cuDAO.save(cu);
 			} catch (PersistentException e) {

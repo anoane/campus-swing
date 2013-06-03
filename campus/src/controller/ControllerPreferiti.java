@@ -3,7 +3,10 @@
  */
 package controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
@@ -53,6 +56,9 @@ public class ControllerPreferiti extends AbstractController {
 		Utente_Documento ud = udDAO.createUtente_Documento();
 		ud.setDocumento(d);
 		ud.setUtentePreferito(u);
+		Calendar cal = GregorianCalendar.getInstance();
+		Timestamp time = new Timestamp(cal.getTimeInMillis());
+		ud.setTimestamp(time);
 		try {
 			//System.out.println(d.getID());
 			ud.getDocumento().utentePreferito.add(ud);

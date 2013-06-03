@@ -2,9 +2,12 @@ package controller;
 
 import gui.Home;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -57,10 +60,9 @@ public class ControllerDocumento extends AbstractController{
 			documento.setCorso(c);
 			documento.setFacolta(f);
 			documento.setDiscriminator(discriminator);
-			//Calendar cal = GregorianCalendar.getInstance();
-			//Timestamp time = Timestamp.valueOf("2007-09-23 10:10:10.0");
-			//System.out.println(time);
-			//documento.setDatetime(time);
+			Calendar cal = GregorianCalendar.getInstance();
+			Timestamp time = new Timestamp(cal.getTimeInMillis());
+			documento.setTimestamp(time);
 			documento.setDownloads(1);
 			documentoDAO.save(documento);
 			ControllerRicerca.getInstance().aggiungiDocumento(documento);
