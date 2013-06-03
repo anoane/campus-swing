@@ -103,7 +103,7 @@ public class DocumentoPanel extends Pagina {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(147, 59, 353, 23);
+		lblNewLabel_1.setBounds(307, 59, 353, 23);
 		panel.add(lblNewLabel_1);
 
 		JSeparator separator = new JSeparator();
@@ -168,7 +168,7 @@ public class DocumentoPanel extends Pagina {
 		panel.add(lbltipo);
 
 		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblUniversit.setBounds(522, 59, 298, 23);
+		lblUniversit.setBounds(682, 59, 298, 23);
 		panel.add(lblUniversit);
 
 		riquadrodx = new JPanel();
@@ -215,7 +215,7 @@ public class DocumentoPanel extends Pagina {
 		panelCommenti.add(separator_1);
 		separator_1.setForeground(new Color(27, 50, 128));
 		stelle = new JPanel();
-		stelle.setBounds(830, 56, 150, 30);
+		stelle.setBounds(147, 56, 150, 30);
 		stelle.setLayout(null);
 		colore = new JPanel();
 		for (int i = 0; i < 5; ++i) {
@@ -239,7 +239,7 @@ public class DocumentoPanel extends Pagina {
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setOrientation(SwingConstants.VERTICAL);
 		separator_2.setForeground(new Color(27, 50, 128));
-		separator_2.setBounds(511, 59, 1, 23);
+		separator_2.setBounds(671, 59, 1, 23);
 		panel.add(separator_2);
 		reload(d);
 	}
