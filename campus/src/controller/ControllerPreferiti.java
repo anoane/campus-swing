@@ -51,23 +51,24 @@ public class ControllerPreferiti extends AbstractController {
 	 * @param d
 	 */
 	public void aggiungiDocumentoPreferito(Utente u, Documento d){
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
-		Utente_Documento ud = udDAO.createUtente_Documento();
-		ud.setDocumento(d);
-		ud.setUtentePreferito(u);
-		Calendar cal = GregorianCalendar.getInstance();
-		Timestamp time = new Timestamp(cal.getTimeInMillis());
-		ud.setTimestamp(time);
-		try {
-			//System.out.println(d.getID());
-			ud.getDocumento().utentePreferito.add(ud);
-			ud.getUtentePreferito().documentiPreferiti.add(ud);
-			udDAO.save(ud);
-		} catch (PersistentException e) {
-			e.printStackTrace();
+		if (!ControllerUtente.getInstance().containDocumentoPreferito(u, d)) {
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			Utente_DocumentoDAO udDAO = factory.getUtente_DocumentoDAO();
+			Utente_Documento ud = udDAO.createUtente_Documento();
+			ud.setDocumento(d);
+			ud.setUtentePreferito(u);
+			Calendar cal = GregorianCalendar.getInstance();
+			Timestamp time = new Timestamp(cal.getTimeInMillis());
+			ud.setTimestamp(time);
+			try {
+				//System.out.println(d.getID());
+				ud.getDocumento().utentePreferito.add(ud);
+				ud.getUtentePreferito().documentiPreferiti.add(ud);
+				udDAO.save(ud);
+			} catch (PersistentException e) {
+				e.printStackTrace();
+			}
 		}
-		
 	}
 	/**
 	 * 
