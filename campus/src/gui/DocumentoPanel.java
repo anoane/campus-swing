@@ -427,7 +427,7 @@ public class DocumentoPanel extends Pagina {
 					});
 			
 			suggerimenti.setVisible(false);*/
-			toggleInfo();
+			//toggleInfo();
 			validate();
 			repaint();
 			/*btnNewButton.addMouseListener(new MouseAdapter() {

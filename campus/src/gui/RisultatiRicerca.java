@@ -152,15 +152,15 @@ public class RisultatiRicerca extends Pagina {
 		dbIndexCorsoByFac = -1;
 		fileSelezionato = false;
 		Path target = null;
-		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		panel_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_7.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
 		panel_10.setVisible(false);
 		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
 		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
-		Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
-		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
+		panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		panel_10.setVisible(false);
 		panel_9.setVisible(true);
 		lblDocumentiTrovatiPer.setText("Documenti trovati per:");
@@ -168,7 +168,7 @@ public class RisultatiRicerca extends Pagina {
 		lblDocumentiTrovatiPer.setBounds(10, 9, 215, 25);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
 		is_ricerca_by_corso_in_progress = false;
-		Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
+		Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
 		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
 		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
 		listaFacoltaByUniv = ControllerFacolta.getInstance()
@@ -267,7 +267,8 @@ public class RisultatiRicerca extends Pagina {
 		panel_5.add(separator_12);
 		panel_6.setBounds(505, 1, 503, 37);
 		panel_5.add(panel_6);
-		panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		//panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		panel_6.setLayout(null);
 		
 		JLabel lblCercaCorsi = new JLabel("Cerca corsi");
@@ -286,8 +287,8 @@ public class RisultatiRicerca extends Pagina {
 			}
 
 			public void mouseClicked(MouseEvent e) {
-				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_SEARCH_BAR);
-				panel_7.setBackground(Home.BLUE_SEARCH_BAR);
+				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_UNPRESSED);
+				panel_7.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_PRESSED);
 				panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
 				panel_9.setVisible(false);
@@ -300,7 +301,7 @@ public class RisultatiRicerca extends Pagina {
 		
 		panel_7.setBounds(0, 1, 503, 37);
 		panel_5.add(panel_7);
-		panel_7.setBackground(Home.BLUE_SEARCH_BAR);
+		panel_7.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		panel_7.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent arg0) {
 				panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
@@ -313,8 +314,8 @@ public class RisultatiRicerca extends Pagina {
 			public void mouseClicked(MouseEvent e) {
 				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
 				panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
-				Home.setOldButtonColor("ricerca_doc", Home.BLUE_SEARCH_BAR);
-				panel_6.setBackground(Home.BLUE_SEARCH_BAR);
+				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
+				panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 				panel_10.setVisible(false);
 				panel_9.setVisible(true);
 				Home.cerca(Home.getRicercaTestuale().getText());
@@ -334,67 +335,6 @@ public class RisultatiRicerca extends Pagina {
 		
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane_1.getVerticalScrollBar().setUnitIncrement(16);
-		scrollPane_2.getVerticalScrollBar().setUnitIncrement(16);
-		panel_10.setBackground(Color.WHITE);
-		panel_10.setBounds(0, 38, 1008, 391);
-		
-		panel.add(panel_10);
-		panel_10.setLayout(null);
-		panel_11.setBackground(Color.WHITE);
-		panel_11.setBounds(0, 0, 1008, 38);
-		
-		panel_10.add(panel_11);
-		panel_11.setLayout(null);
-		lblCorsiTrovatiPer.setBounds(10, 9, 161, 24);
-		lblCorsiTrovatiPer.setForeground(new Color(6, 121, 159));
-		lblCorsiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
-		
-		panel_11.add(lblCorsiTrovatiPer);
-		label_6.setForeground(new Color(6, 121, 159));
-		label_6.setFont(new Font("Arial", Font.BOLD, 20));
-		label_6.setBackground(Color.WHITE);
-		label_6.setBounds(181, 9, 817, 24);
-		
-		panel_11.add(label_6);
-		panel_13.setLayout(null);
-		panel_13.setBackground(Color.WHITE);
-		panel_13.setBounds(0, 38, 1008, 313);
-		
-		panel_10.add(panel_13);
-		
-		
-		
-		
-		
-		
-		gl_panel_3.setHorizontalGroup(
-				gl_panel_3.createParallelGroup(Alignment.LEADING)
-					.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
-						.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(22, Short.MAX_VALUE))
-			);
-		gl_panel_3.setVerticalGroup(
-					gl_panel_3.createParallelGroup(Alignment.LEADING)
-					.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
-						.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(223, Short.MAX_VALUE))
-			);
-		panel_13.setBounds(0, 38, 1008, 313);
-		
-				panel_13.setBackground(Color.WHITE);
-				panel_13.setLayout(null);
-				panel_14.setBackground(Color.WHITE);
-				panel_14.setBounds(56, 81, 525, 300);
-				scrollPane_2.setBorder(new LineBorder(new Color(27, 50, 128)));
-				
-				scrollPane_2
-								.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-				panel_15.setBorder(new EmptyBorder(0, 0, 0, 0));
-				panel_15.setBackground(Color.WHITE);
-				panel_15.setLayout(null);
-				panel_14.setLayout(gl_panel_3);
-				scrollPane_2.setBounds(0, 0, 1006, 313);
-				panel_13.add(scrollPane_2, BorderLayout.CENTER);
 		panel_9.setBackground(Color.WHITE);
 		
 			panel_9.setBounds(0, 38, 1008, 391);
@@ -678,6 +618,67 @@ public class RisultatiRicerca extends Pagina {
 																																																			scegli_corso.add(separator_3);
 																																																			//btnNewButton.setBounds(688, 7, 310, 28);
 																																																			panel_ricerca_guidata.add(btnNewButton);
+																																																			scrollPane_2.getVerticalScrollBar().setUnitIncrement(16);
+																																																			panel_10.setBackground(Color.WHITE);
+																																																			panel_10.setBounds(0, 38, 1008, 391);
+																																																			
+																																																			panel.add(panel_10);
+																																																			panel_10.setLayout(null);
+																																																			panel_11.setBackground(Color.WHITE);
+																																																			panel_11.setBounds(0, 0, 1008, 38);
+																																																			
+																																																			panel_10.add(panel_11);
+																																																			panel_11.setLayout(null);
+																																																			lblCorsiTrovatiPer.setBounds(10, 9, 161, 24);
+																																																			lblCorsiTrovatiPer.setForeground(new Color(6, 121, 159));
+																																																			lblCorsiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
+																																																			
+																																																			panel_11.add(lblCorsiTrovatiPer);
+																																																			label_6.setForeground(new Color(6, 121, 159));
+																																																			label_6.setFont(new Font("Arial", Font.BOLD, 20));
+																																																			label_6.setBackground(Color.WHITE);
+																																																			label_6.setBounds(181, 9, 817, 24);
+																																																			
+																																																			panel_11.add(label_6);
+																																																			panel_13.setLayout(null);
+																																																			panel_13.setBackground(Color.WHITE);
+																																																			panel_13.setBounds(0, 38, 1008, 313);
+																																																			
+																																																			panel_10.add(panel_13);
+																																																			
+																																																			
+																																																			
+																																																			
+																																																			
+																																																			
+																																																			gl_panel_3.setHorizontalGroup(
+																																																					gl_panel_3.createParallelGroup(Alignment.LEADING)
+																																																						.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
+																																																							.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE)
+																																																							.addContainerGap(22, Short.MAX_VALUE))
+																																																				);
+																																																			gl_panel_3.setVerticalGroup(
+																																																						gl_panel_3.createParallelGroup(Alignment.LEADING)
+																																																						.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
+																																																							.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
+																																																							.addContainerGap(223, Short.MAX_VALUE))
+																																																				);
+																																																			panel_13.setBounds(0, 38, 1008, 313);
+																																																			
+																																																					panel_13.setBackground(Color.WHITE);
+																																																					panel_13.setLayout(null);
+																																																					panel_14.setBackground(Color.WHITE);
+																																																					panel_14.setBounds(56, 81, 525, 300);
+																																																					scrollPane_2.setBorder(new LineBorder(new Color(27, 50, 128)));
+																																																					
+																																																					scrollPane_2
+																																																									.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+																																																					panel_15.setBorder(new EmptyBorder(0, 0, 0, 0));
+																																																					panel_15.setBackground(Color.WHITE);
+																																																					panel_15.setLayout(null);
+																																																					panel_14.setLayout(gl_panel_3);
+																																																					scrollPane_2.setBounds(0, 0, 1006, 313);
+																																																					panel_13.add(scrollPane_2, BorderLayout.CENTER);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
