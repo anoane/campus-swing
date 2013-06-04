@@ -1,5 +1,6 @@
 package gui;
 
+import gui.helpers.ZebraJListCWhite;
 import gui.riquadri.RiquadroCorso;
 import gui.riquadri.RiquadroDoc;
 
@@ -63,9 +64,9 @@ public class RisultatiRicerca extends Pagina {
 	private static JPanel scegli_fac = new JPanel();
 	private static JPanel scegli_corso = new JPanel();
 	private static JPanel scegli_univ = new JPanel();
-	final static JList list = new JList();
-	final static JList list_1 = new JList();
-	final static JList list_2 = new JList();
+	final static ZebraJListCWhite list = new ZebraJListCWhite();
+	final static ZebraJListCWhite list_1 = new ZebraJListCWhite();
+	final static ZebraJListCWhite list_2 = new ZebraJListCWhite();
 	static boolean isOverSelectionPanel = false;
 	private int indexUniv = -1;
 	private int dbIndexUniv = -1;

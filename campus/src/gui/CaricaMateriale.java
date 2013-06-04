@@ -3,6 +3,7 @@ package gui;
 
 import gui.helpers.JTextFieldLimit;
 import gui.helpers.Pdf2Image;
+import gui.helpers.ZebraJListBlue;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -89,10 +90,10 @@ public class CaricaMateriale extends Pagina  {
 	private static JPanel crea_fac = new JPanel();
 	private static JPanel panel_15 = new JPanel();
 	private static JPanel crea_univ = new JPanel();
-	final static JList list = new JList();
-	final static JList list_1 = new JList();
-	final static JList list_2 = new JList();
-	final static JList list_3 = new JList();
+	final static ZebraJListBlue list = new ZebraJListBlue();
+	final static ZebraJListBlue list_1 = new ZebraJListBlue();
+	final static ZebraJListBlue list_2 = new ZebraJListBlue();
+	final static ZebraJListBlue list_3 = new ZebraJListBlue();
 	final JTextField textPane = new JTextField();
 	final JButton btnScegliFile = new JButton("Scegli file...");
 	
