@@ -501,7 +501,7 @@ public class RisultatiRicerca extends Pagina {
 							panel_2.setBackground(Color.WHITE);
 							panel_2.setLayout(null);
 							panel_1.setLayout(gl_panel_1);
-							scrollPane.setBounds(0, 0, 1006, 313);
+							scrollPane.setBounds(-1, 0, 1006, 313);
 							panel_risultati.add(scrollPane, BorderLayout.CENTER);
 							gl_panel_2.setHorizontalGroup(
 									gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -522,7 +522,7 @@ public class RisultatiRicerca extends Pagina {
 							panel_risultati_bycorso.setBackground(Color.WHITE);
 							scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 							scrollPane_1.setBorder(new LineBorder(new Color(27, 50, 128)));
-							scrollPane_1.setBounds(0, 0, 1006, 313);
+							scrollPane_1.setBounds(-1, 0, 1006, 313);
 							
 							panel_risultati_bycorso.add(scrollPane_1);
 							separator_11.setForeground(new Color(27, 50, 128));
@@ -733,7 +733,7 @@ public class RisultatiRicerca extends Pagina {
 																																																					panel_15.setBackground(Color.WHITE);
 																																																					panel_15.setLayout(null);
 																																																					panel_14.setLayout(gl_panel_3);
-																																																					scrollPane_2.setBounds(0, 0, 1006, 313);
+																																																					scrollPane_2.setBounds(-1, 0, 1006, 313);
 																																																					panel_13.add(scrollPane_2, BorderLayout.CENTER);
 		
 		btnNewButton.addActionListener(new ActionListener() {
