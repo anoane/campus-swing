@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
@@ -37,6 +38,9 @@ import controller.ControllerPreferiti;
 import controller.ControllerUtente;
 import controller.ControllerVoto;
 import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -66,7 +70,7 @@ public class DocumentoPanel extends Pagina {
 	JLabel lblNewLabel = new JLabel();
 	JLabel lblUniversit = new JLabel();
 	JLabel lblVoti = new JLabel();
-	JTextPane panel_3 = new JTextPane();
+	JTextArea panel_3 = new JTextArea();
 	
 	private JPanel panel_1 = new JPanel();
 	private Suggerimenti suggerimenti;
@@ -75,8 +79,10 @@ public class DocumentoPanel extends Pagina {
 	private JTextField tf_preferiti = new JTextField();
 	
 	private boolean canEliminate = true;
+	private JSeparator separator_2 = new JSeparator();
 	
 	private Documento nowDocumento = null;
+	private final JPanel panel_6 = new JPanel();
 	
 	public void setEliminate(boolean b) {
 		canEliminate = b;
@@ -124,19 +130,19 @@ public class DocumentoPanel extends Pagina {
 
 		ButtonStandard buttonCreator = new ButtonStandard();
 		btnAggiungiAiPreferiti = buttonCreator.createButton(
-				"Aggiungi ai preferiti", 750, 8, 230, 28, false, true);
+				"Aggiungi ai preferiti", 783, 8, 195, 28, false, true);
 		panel.add(btnAggiungiAiPreferiti);
 		btnRimuoviDaiPreferiti = buttonCreator.createButton(
-				"Rimuovi dai preferiti", 750, 8, 230, 28, false, true);
+				"Rimuovi dai preferiti", 783, 8, 195, 28, false, true);
 		panel.add(btnRimuoviDaiPreferiti);
 		btnAttivaModifica = buttonCreator.createButton(
-				"Modifica il documento", 270, 8, 230, 28, false, true);
+				"Modifica il documento", 578, 56, 195, 28, false, true);
 		panel.add(btnAttivaModifica);
 		btnTerminaModifica = buttonCreator.createButton(
-				"Termina la modifica", 270, 8, 230, 28, false, true);
+				"Termina la modifica", 578, 56, 195, 28, false, true);
 		panel.add(btnTerminaModifica);
 		btnElimina = buttonCreator.createButton(
-				"Elimina il documento", 510, 8, 230, 28, false, true);
+				"Elimina il documento", 783, 56, 195, 28, false, true);
 		panel.add(btnElimina);
 		
 		JPanel doc = new JPanel();
@@ -168,39 +174,101 @@ public class DocumentoPanel extends Pagina {
 		panel.add(lbltipo);
 
 		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblUniversit.setBounds(682, 59, 298, 23);
+		lblUniversit.setBounds(682, 59, 297, 23);
 		panel.add(lblUniversit);
 
 		riquadrodx = new JPanel();
 		riquadrodx.setBackground(Color.WHITE);
-		riquadrodx.setBounds(614, 100, 500, 484);
+		riquadrodx.setBounds(578, 100, 430, 485);
 		riquadrodx.setLayout(null);
 		panel.add(riquadrodx);
+		panel_3.setFont(new Font("Arial", Font.PLAIN, 14));
 
 		panel_3.setEditable(false);
 		panel_3.setLayout(null);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(0, 0, 178, 240);
+		panel_3.setBounds(0, 0, 400, 90);
+		panel_3.setWrapStyleWord(true);
+		panel_3.setLineWrap(true);
+		panel_3.setHighlighter(null);
+		panel_3.setEditable(false);
 		riquadrodx.add(panel_3);
 
 		RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(Home.getUtenteLoggato());
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_4.setBackground(Color.WHITE);
-		panel_4.setBounds(188, 0, 178, 240);
+		panel_4.setBounds(0, 101, 400, 92);
 		riquadrodx.add(panel_4);
+		panel_6.setBackground(Color.WHITE);
+		panel_6.setBounds(95, 0, 305, 92);
+		
+		panel_4.add(panel_6);
+		GridBagLayout gbl_panel_6 = new GridBagLayout();
+		gbl_panel_6.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_6.rowHeights = new int[]{30, 30, 30, 0};
+		gbl_panel_6.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_6.setLayout(gbl_panel_6);
+		
+		JLabel lblNewLabel_2 = new JLabel("Et\u00E0");
+		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 0;
+		gbc_lblNewLabel_2.gridy = 0;
+		panel_6.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_5.gridx = 1;
+		gbc_lblNewLabel_5.gridy = 0;
+		panel_6.add(lblNewLabel_5, gbc_lblNewLabel_5);
+		
+		JLabel lblNewLabel_3 = new JLabel("Universit\u00E0");
+		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 0;
+		gbc_lblNewLabel_3.gridy = 1;
+		panel_6.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		JLabel lblNewLabel_6 = new JLabel("New label");
+		lblNewLabel_6.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_6.gridx = 1;
+		gbc_lblNewLabel_6.gridy = 1;
+		panel_6.add(lblNewLabel_6, gbc_lblNewLabel_6);
+		
+		JLabel lblNewLabel_4 = new JLabel("Facolt\u00E0");
+		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_4.gridx = 0;
+		gbc_lblNewLabel_4.gridy = 2;
+		panel_6.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setFont(new Font("Arial", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.gridx = 1;
+		gbc_lblNewLabel_7.gridy = 2;
+		panel_6.add(lblNewLabel_7, gbc_lblNewLabel_7);
 
-		JButton btnScarica = buttonCreator.createButton("Scarica", 0, 251, 178,
+		JButton btnScarica = buttonCreator.createButton("Scarica", 0, 251, 195,
 				28, false, true);
 		riquadrodx.add(btnScarica);
 
 		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
-				188, 251, 178, 28, false, true);
+				205, 251, 195, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
 
 		JPanel panelCommenti = new JPanel();
-		panelCommenti.setBounds(0, 300, 366, 180);
+		panelCommenti.setBounds(0, 300, 394, 180);
 		riquadrodx.add(panelCommenti);
 		panelCommenti.setLayout(null);
 
@@ -236,7 +304,6 @@ public class DocumentoPanel extends Pagina {
 		suggerimenti = new Suggerimenti();
 		panel.add(suggerimenti);
 		
-		JSeparator separator_2 = new JSeparator();
 		separator_2.setOrientation(SwingConstants.VERTICAL);
 		separator_2.setForeground(new Color(27, 50, 128));
 		separator_2.setBounds(671, 59, 1, 23);
@@ -339,7 +406,7 @@ public class DocumentoPanel extends Pagina {
 			riquadrodx.setVisible(true);
 			panel.remove(suggerimenti);
 			suggerimenti = new Suggerimenti();
-			suggerimenti.setLocation(521, 100);
+			suggerimenti.setLocation(519, 100);
 			suggerimenti.load(getDocumento());
 			panel.add(suggerimenti);
 			
@@ -360,7 +427,7 @@ public class DocumentoPanel extends Pagina {
 					});
 			
 			suggerimenti.setVisible(false);*/
-			//toggleInfo();
+			toggleInfo();
 			validate();
 			repaint();
 			/*btnNewButton.addMouseListener(new MouseAdapter() {
@@ -392,15 +459,23 @@ public class DocumentoPanel extends Pagina {
 						btnRimuoviDaiPreferiti.setVisible(false);
 				}
 				if (getDocumento().getProprietario().getID()==Home.getUtenteLoggato().getID()) {
+						lblNewLabel_1.setBounds(307, 59, 125, 23);
+						separator_2.setBounds(442, 59, 1, 23);
+						lblUniversit.setBounds(453, 59, 125, 23);
 						lblPreferiti.setBounds(10, 10, 250, 25);
 						btnElimina.setVisible(true);
 						btnAttivaModifica.setVisible(true);
 						btnTerminaModifica.setVisible(false);
+						
 					} else {
+						lblNewLabel_1.setBounds(307, 59, 353, 23);
+						separator_2.setBounds(671, 59, 1, 23);
+						lblUniversit.setBounds(682, 59, 297, 23);
 						lblPreferiti.setBounds(10, 10, 730, 25);
 						btnElimina.setVisible(false);
 						btnAttivaModifica.setVisible(false);
 						btnTerminaModifica.setVisible(false);
+						
 				}
 				panel.validate();
 				panel.repaint();

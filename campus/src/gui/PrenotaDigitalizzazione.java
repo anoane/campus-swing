@@ -238,8 +238,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 		copisterie[0] = "New Copy";
 		copisterie[1] = "Stella degli elfi";
 		copisterie[2] = "CopiaCopia";
-		copisterie[3] = "Dal magnaccia";
-		copisterie[4] = "Vieni da Zio";
+		copisterie[3] = "Copisteria Best Copy";
+		copisterie[4] = "NeoFlashCopy";
 		
 		JComboBox comboBoxCop = new JComboBox(copisterie);
 		comboBoxCop.setSelectedIndex(4);

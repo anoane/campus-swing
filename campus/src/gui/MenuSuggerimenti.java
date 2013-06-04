@@ -18,64 +18,55 @@ public class MenuSuggerimenti extends JPanel {
 	
 	private JLabel imgNotificheSuggerimento;
 	private JLabel imgAggiungiSuggerimento;
-	private ImageIcon notificaModificaBlu = new ImageIcon("./newimage/notifica_modifica.png");
-	private ImageIcon notificaModificaBianca = new ImageIcon("./newimage/notifica_modifica1.png");
-	private ImageIcon aggiungiModificaBlu = new ImageIcon("./newimage/aggiungi_modifica.png");
-	private ImageIcon aggiungiModificaBianca = new ImageIcon("./newimage/aggiungi_modifica1.png");
-	private ImageIcon notifica = new ImageIcon("./newimage/notifica.png");
-	private JLabel lblNotifiche;
+	private ImageIcon notificaBlu = new ImageIcon("./newimage/bulb_off.png");
+	private ImageIcon notificaBianca = new ImageIcon("./newimage/bulb_on.png");
+	private ImageIcon aggiungiSuggerimento = new ImageIcon("./newimage/bulb_plus.png");
+	private ImageIcon apriPannello = new ImageIcon("./newimage/frecce_apri.png");
+	private ImageIcon chiudiPannello = new ImageIcon("./newimage/frecce_chiudi.png");
+	private JLabel imgFrecce;
+
 	
 
 	public MenuSuggerimenti(boolean Proprietario){
-		setPreferredSize(new Dimension(30, 50));
-		setSize(30, 50);
+		setPreferredSize(new Dimension(50, 140));
+		setSize(50, 140);
 		setLayout(null);
 		setBackground(Home.BLUE_BUTTON_UNPRESSED);
 		
 		
-		imgNotificheSuggerimento = new JLabel("");
+		imgNotificheSuggerimento = new JLabel();
 		imgNotificheSuggerimento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imgNotificheSuggerimento.setToolTipText("Notifiche di suggerimenti");
-		imgNotificheSuggerimento.setIcon(notificaModificaBlu);
-		imgNotificheSuggerimento.setBounds(0, 0, 20, 30);
+		imgNotificheSuggerimento.setIcon(notificaBlu);
+		imgNotificheSuggerimento.setBounds(2, 0, 30, 47);
 		imgNotificheSuggerimento.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				imgNotificheSuggerimento.setIcon(notificaModificaBianca);
+				imgNotificheSuggerimento.setIcon(notificaBianca);
 				imgNotificheSuggerimento.validate();
 				imgNotificheSuggerimento.repaint();
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				imgNotificheSuggerimento.setIcon(notificaModificaBlu);
+				imgNotificheSuggerimento.setIcon(notificaBlu);
 				imgNotificheSuggerimento.validate();
 				imgNotificheSuggerimento.repaint();
 			}
 		});
 		
-		lblNotifiche = new JLabel("");
-		lblNotifiche.setForeground(Color.WHITE);
-		lblNotifiche.setFont(new Font("Tahoma", Font.BOLD, 8));
-		lblNotifiche.setVerticalAlignment(SwingConstants.TOP);
-		lblNotifiche.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNotifiche.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNotifiche.setIcon(notifica);
-		lblNotifiche.setBounds(5, 0, 15, 15);
-		add(lblNotifiche);
+
 		add(imgNotificheSuggerimento);
 		
-		imgAggiungiSuggerimento = new JLabel("");
+		imgAggiungiSuggerimento = new JLabel();
 		
-		if(Proprietario){
-			imgAggiungiSuggerimento.setVisible(false);
-		}
 		
 			
 		imgAggiungiSuggerimento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imgAggiungiSuggerimento.setToolTipText("Aggiungi suggerimento");
-		imgAggiungiSuggerimento.setIcon(aggiungiModificaBlu);
-		imgAggiungiSuggerimento.setBounds(0, 35, 23, 30);
-		imgAggiungiSuggerimento.addMouseListener(new MouseAdapter() {
+		imgAggiungiSuggerimento.setIcon(aggiungiSuggerimento);
+		imgAggiungiSuggerimento.setBounds(2, 50, 37, 47);
+		add(imgAggiungiSuggerimento);
+		/*imgAggiungiSuggerimento.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				imgAggiungiSuggerimento.setIcon(aggiungiModificaBianca);
@@ -90,7 +81,15 @@ public class MenuSuggerimenti extends JPanel {
 				imgAggiungiSuggerimento.validate();
 				imgAggiungiSuggerimento.repaint();
 			}
-		});
+		});*/
+		
+		imgFrecce = new JLabel();
+		imgFrecce.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		imgFrecce.setToolTipText("Apri Suggerimenti");
+		imgFrecce.setIcon(apriPannello);
+		imgFrecce.setBounds(3, 110, 35, 24);
+		imgFrecce.setName("aperto");
+		add(imgFrecce);
 
 	}
 	
@@ -102,14 +101,22 @@ public class MenuSuggerimenti extends JPanel {
 		return imgAggiungiSuggerimento;
 	}
 	
-	public void setNotifiche(int i){
-		if(i == 0){
-			lblNotifiche.setVisible(false);
+	public void cambiaFrecce(){
+		if(imgFrecce.getName().equals("aperto")){
+			imgFrecce.setIcon(chiudiPannello);
+			imgFrecce.setName("chiuso");
+			imgFrecce.setToolTipText("Chiudi Suggerimenti");
 		}
 		else{
-			lblNotifiche.setText(String.valueOf(i));
+			imgFrecce.setIcon(apriPannello);
+			imgFrecce.setName("aperto");
+			imgFrecce.setToolTipText("Apri Suggerimenti");
 		}
-		lblNotifiche.validate();
-		lblNotifiche.repaint();
 	}
+	
+	public JLabel getFrecce(){
+		return imgFrecce;
+	}
+	
+
 }

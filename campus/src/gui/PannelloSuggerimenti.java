@@ -9,6 +9,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 
 import modello_di_dominio.Documento;
@@ -16,15 +17,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class PannelloSuggerimenti extends JScrollPane {
 
 	private JPanel pannello;
+	private JPanel intestazione;
 	private JLabel lblNoSuggerimenti;
+	private JLabel lblSuggerimenti;
+	private JSeparator separator;
 	private static int larghezza = 440;
 
 	public PannelloSuggerimenti() {
+		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		pannello = new JPanel();
 		// pannello.setPreferredSize(new Dimension(390,200));
@@ -32,12 +38,31 @@ public class PannelloSuggerimenti extends JScrollPane {
 		setSize(larghezza, 220);
 		setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED, 1));
 		setViewportView(pannello);
-		// setBackground(Color.WHITE);
+		
 		FlowLayout fl_pannello = new FlowLayout();
 		fl_pannello.setAlignment(FlowLayout.LEFT);
+		fl_pannello.setHgap(10);
 		pannello.setLayout(fl_pannello);
-		pannello.setBackground(Color.WHITE);
+		pannello.setBackground(new Color(211, 211, 211));
+		
+		
+		intestazione = new JPanel(null);
+		intestazione.setPreferredSize(new Dimension(400, 50));
+		intestazione.setSize(400,50);
+		pannello.add(intestazione);
+		
+		lblSuggerimenti = new JLabel("Suggerimenti");
+		lblSuggerimenti.setBounds(0,0,200, 20);
+		lblSuggerimenti.setPreferredSize(new Dimension(200,20));
+		lblSuggerimenti.setForeground(new Color(6, 121, 159));
+		lblSuggerimenti.setFont(new Font("Arial", Font.BOLD, 18));
+		intestazione.add(lblSuggerimenti);
 
+		separator = new JSeparator();
+		separator.setForeground(new Color(27, 50, 128));
+		separator.setBounds(0,21,200, 20);
+		intestazione.add(separator);
+		
 		lblNoSuggerimenti = new JLabel(
 				"Non ci sono suggerimenti per il documento");
 		lblNoSuggerimenti.setForeground(Home.BLUE_BUTTON_PRESSED);

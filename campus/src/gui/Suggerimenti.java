@@ -18,7 +18,7 @@ public class Suggerimenti extends JPanel {
 
 	private MenuSuggerimenti menuSuggerimenti;
 	private PannelloSuggerimenti pannelloSuggerimenti;
-	private Dimension minDimension = new Dimension(30, 484);
+	private Dimension minDimension = new Dimension(40, 484);
 	private JLabel imgFreccia;
 
 	public Suggerimenti() {
@@ -64,6 +64,7 @@ public class Suggerimenti extends JPanel {
 								pannelloSuggerimenti.setVisible(false);
 								Suggerimenti.this.setSize(minDimension);
 								menuSuggerimenti.setLocation(0, 0);
+								menuSuggerimenti.cambiaFrecce();
 								Suggerimenti.this.validate();
 								Suggerimenti.this.repaint();
 							} else {
@@ -73,6 +74,31 @@ public class Suggerimenti extends JPanel {
 										pannelloSuggerimenti.getHeight()
 												+ Suggerimenti.this.getY());
 								menuSuggerimenti.setLocation(440, 0);
+								menuSuggerimenti.cambiaFrecce();
+								Suggerimenti.this.validate();
+								Suggerimenti.this.repaint();
+							}
+						}
+					});
+			menuSuggerimenti.getFrecce().addMouseListener(
+					new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if (pannelloSuggerimenti.isVisible()) {
+								pannelloSuggerimenti.setVisible(false);
+								Suggerimenti.this.setSize(minDimension);
+								menuSuggerimenti.setLocation(0, 0);
+								menuSuggerimenti.cambiaFrecce();
+								Suggerimenti.this.validate();
+								Suggerimenti.this.repaint();
+							} else {
+								pannelloSuggerimenti.load(d);
+								pannelloSuggerimenti.setVisible(true);
+								Suggerimenti.this.setSize(480,
+										pannelloSuggerimenti.getHeight()
+												+ Suggerimenti.this.getY());
+								menuSuggerimenti.setLocation(440, 0);
+								menuSuggerimenti.cambiaFrecce();
 								Suggerimenti.this.validate();
 								Suggerimenti.this.repaint();
 							}
