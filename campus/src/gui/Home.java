@@ -224,8 +224,8 @@ public class Home {
 		oldColorState.put("prenotazione_digitalizzazione",
 				BLUE_BUTTON_UNPRESSED);
 		oldColorState.put("prenotazione_libri", BLUE_BUTTON_UNPRESSED);
-		oldColorState.put("ricerca_doc", BLUE_SEARCH_BAR);
-		oldColorState.put("ricerca_corsi", BLUE_SEARCH_BAR);
+		oldColorState.put("ricerca_doc", BLUE_BUTTON_UNPRESSED);
+		oldColorState.put("ricerca_corsi", BLUE_BUTTON_UNPRESSED);
 		
 		relazionePaginaBottone.put("home", pagina_home);
 		relazionePaginaBottone.put("corsi_seguiti", pagina_corsi_seguiti);

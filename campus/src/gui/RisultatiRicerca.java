@@ -106,6 +106,7 @@ public class RisultatiRicerca extends Pagina {
 	private final GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 	private final GroupLayout gl_panel_2 = new GroupLayout(panel_3);
 	private final GroupLayout gl_panel_3 = new GroupLayout(panel_14);
+	private boolean is_ricerca_documento = true;
 	private boolean is_ricerca_guidata_open = false;
 	private boolean is_ricerca_by_corso_in_progress = false;
 	private final JPanel panel_risultati_bycorso = new JPanel();
@@ -136,59 +137,102 @@ public class RisultatiRicerca extends Pagina {
 	private final JLabel label_6 = new JLabel("");
 	
 	public void resetPanel(String ricerca) {
-		tempRicerca = ricerca.trim();
-		panel.setBounds(0, 0, 1008, 429);
-		panel_risultati_bycorso.setVisible(false);
-		panel_risultati.setVisible(true);
-		resetListe();
-		isOverSelectionPanel = false;
-		indexUniv = -1;
-		dbIndexUniv = -1;
-		indexFac = -1;
-		dbIndexFac = -1;
-		indexCorso = -1;
-		dbIndexCorso = -1;
-		indexCorsoByFac = -1;
-		dbIndexCorsoByFac = -1;
-		fileSelezionato = false;
-		Path target = null;
-		panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
-		panel_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		panel_7.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
-		panel_10.setVisible(false);
-		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
-		panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
-		Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
-		panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
-		panel_10.setVisible(false);
-		panel_9.setVisible(true);
-		lblDocumentiTrovatiPer.setText("Documenti trovati per:");
-		label_5.setBounds(230, 9, 770, 25);
-		lblDocumentiTrovatiPer.setBounds(10, 9, 215, 25);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i corsi di studio", "Solo nel mio corso di studi"}));
-		is_ricerca_by_corso_in_progress = false;
-		Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
-		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
-		listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
-		listaFacoltaByUniv = ControllerFacolta.getInstance()
-				.getAllFacoltaByUniv(-1);
-		listaCorsi = ControllerCorso.getInstance().getAllCorsi();
-		listaCorsiByFac = null;
-		label_5.setText("'"+ricerca.trim()+"'");
-		reloadUniv();
-		//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
-		try {
-			adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca.trim().toLowerCase(), false, "all", "timestampDOWN"));
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (is_ricerca_documento) {
+			tempRicerca = ricerca.trim();
+			panel.setBounds(0, 0, 1008, 429);
+			panel_risultati_bycorso.setVisible(false);
+			panel_risultati.setVisible(true);
+			resetListe();
+			isOverSelectionPanel = false;
+			indexUniv = -1;
+			dbIndexUniv = -1;
+			indexFac = -1;
+			dbIndexFac = -1;
+			indexCorso = -1;
+			dbIndexCorso = -1;
+			indexCorsoByFac = -1;
+			dbIndexCorsoByFac = -1;
+			fileSelezionato = false;
+			Path target = null;
+
+			panel_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			panel_7.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+			
+			Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
+			panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
+			Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
+			panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+			panel_10.setVisible(false);
+			panel_9.setVisible(true);
+			lblDocumentiTrovatiPer.setText("Documenti trovati per:");
+			label_5.setBounds(230, 9, 770, 25);
+			lblDocumentiTrovatiPer.setBounds(10, 9, 215, 25);
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i corsi di studio", "Solo nel mio corso di studi"}));
+			is_ricerca_by_corso_in_progress = false;
+		
+			listaUniversita = ControllerUniversita.getInstance().getAllUniversita();
+			listaFacoltaByUniv = ControllerFacolta.getInstance()
+					.getAllFacoltaByUniv(-1);
+			listaCorsi = ControllerCorso.getInstance().getAllCorsi();
+			listaCorsiByFac = null;
+			label_5.setText("'"+ricerca.trim()+"'");
+			reloadUniv();
+			//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
+			try {
+				adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca.trim().toLowerCase(), false, "all", "timestampDOWN"));
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			is_ricerca_guidata_open = false;
+			reloadRisultati();
+			Home.forceResizeEvent();
+			panel.revalidate();
+			panel.repaint();
+		} else {
+			tempRicerca = ricerca.trim();
+			panel.setBounds(0, 0, 1008, 429);
+			panel_risultati_bycorso.setVisible(false);
+			panel_risultati.setVisible(true);
+			resetListe();
+			isOverSelectionPanel = false;
+			indexUniv = -1;
+			dbIndexUniv = -1;
+			indexFac = -1;
+			dbIndexFac = -1;
+			indexCorso = -1;
+			dbIndexCorso = -1;
+			indexCorsoByFac = -1;
+			dbIndexCorsoByFac = -1;
+			fileSelezionato = false;
+			Path target = null;
+			panel_7.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+			panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
+			
+			panel_7.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			panel_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			
+			Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
+			//panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
+			
+			Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
+			//panel_7.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+			
+			panel_9.setVisible(false);
+			panel_10.setVisible(true);
+			
+			is_ricerca_by_corso_in_progress = true;
+			is_ricerca_guidata_open = false;
+			
+			label_6.setText("'"+ricerca.trim()+"'");
+			
+			loadRisultatiCorsi(ricerca.trim().toLowerCase());
+			Home.forceResizeEvent();
+			panel.revalidate();
+			panel.repaint();
 		}
-		is_ricerca_guidata_open = false;
-		reloadRisultati();
-		Home.forceResizeEvent();
-		panel.revalidate();
-		panel.repaint();
+		
 	}
 	
 	private void showRisultatiByCorso(int index_facolta, int index_corso, boolean soloFac, String filtro, String sorting) {
@@ -284,18 +328,23 @@ public class RisultatiRicerca extends Pagina {
 
 			public void mouseExited(MouseEvent arg0) {
 				panel_6.setBackground(Home.getOldButtonColor("ricerca_doc"));
+				if (!is_ricerca_documento) {
+					panel_6.setBackground(Home.getOldButtonColor("ricerca_corsi"));
+				}
 			}
 
 			public void mouseClicked(MouseEvent e) {
-				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_UNPRESSED);
+				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
+				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
 				panel_7.setBackground(Home.BLUE_BUTTON_UNPRESSED);
-				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_PRESSED);
 				panel_6.setBackground(Home.BLUE_BUTTON_PRESSED);
 				panel_9.setVisible(false);
 				panel_10.setVisible(true);
 				String campoRicerca = Home.getRicercaTestuale().getText();
 				label_6.setText("'"+campoRicerca+"'");
-				loadRisultatiCorsi(campoRicerca);
+				is_ricerca_documento = false;
+				Home.cerca(Home.getRicercaTestuale().getText());
+				
 			}
 		});
 		
@@ -308,16 +357,22 @@ public class RisultatiRicerca extends Pagina {
 			}
 
 			public void mouseExited(MouseEvent arg0) {
+
 				panel_7.setBackground(Home.getOldButtonColor("ricerca_corsi"));
+				if (!is_ricerca_documento) {
+					panel_7.setBackground(Home.getOldButtonColor("ricerca_doc"));
+				}
+				
 			}
 
 			public void mouseClicked(MouseEvent e) {
-				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
+				Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_UNPRESSED);
+				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_PRESSED);
 				panel_7.setBackground(Home.BLUE_BUTTON_PRESSED);
-				Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
 				panel_6.setBackground(Home.BLUE_BUTTON_UNPRESSED);
 				panel_10.setVisible(false);
 				panel_9.setVisible(true);
+				is_ricerca_documento = true;
 				Home.cerca(Home.getRicercaTestuale().getText());
 				//reload();
 				//resetPanel(Home.getRicercaTestuale().getText());
