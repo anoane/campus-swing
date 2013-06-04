@@ -142,7 +142,7 @@ public class CaricaMateriale extends Pagina  {
 				panel.setBounds(panel.getX(), panel.getY(),
 						panel.getWidth(),
 						panel.getHeight()+dimensione_fill_home_bottom);
-				//separator_1.setBounds(765, 48, 1, dimensione_fill_home_bottom+192);
+				separator_1.setBounds(765, 48, 1, dimensione_fill_home_bottom+192);
 			}
 
 			@Override
