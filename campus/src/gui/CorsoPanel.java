@@ -244,11 +244,11 @@ public class CorsoPanel extends Pagina {
 
 
 		
-		JLabel lblFacolt = new JLabel("Facolt\u00E0");
+		JLabel lblFacolt = new JLabel("Corso di studi");
 		lblFacolt.setForeground(new Color(6, 121, 159));
 		lblFacolt.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblFacolt.setAlignmentX(0.5f);
-		lblFacolt.setBounds(0, 122, 102, 28);
+		lblFacolt.setBounds(0, 122, 131, 28);
 		panel_1.add(lblFacolt);
 		
 		JSeparator separator_4 = new JSeparator();

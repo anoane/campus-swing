@@ -36,7 +36,7 @@ public class RiquadroUtenteDoc extends JPanel{
 		if (u != null) {
 			nome.setText(u.getNome()+" "+u.getCognome());
 			universita.setText("Università: "+u.getFacolta().getUniversita().getNome());
-			facolta.setText("Facoltà: "+u.getFacolta().getNome());
+			facolta.setText("Corso di studi: "+u.getFacolta().getNome());
 		}
 
 		add(immagine);

@@ -67,8 +67,6 @@ import controller.ControllerFacolta;
 import controller.ControllerUniversita;
 import controller.ControllerUtente;
 
-//TODO:utente, load univ e facolta in base alla facolta a cui è iscritto l'utente
-
 public class CaricaMateriale extends Pagina  {
 	private final static JPanel panel = new JPanel();
 	private JTextField textField;
@@ -144,7 +142,7 @@ public class CaricaMateriale extends Pagina  {
 				panel.setBounds(panel.getX(), panel.getY(),
 						panel.getWidth(),
 						panel.getHeight()+dimensione_fill_home_bottom);
-				separator_1.setBounds(765, 48, 1, dimensione_fill_home_bottom+192);
+				//separator_1.setBounds(765, 48, 1, dimensione_fill_home_bottom+192);
 			}
 
 			@Override
@@ -177,8 +175,8 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("max(3dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("right:max(55dlu;default)"),
-				ColumnSpec.decode("right:max(189dlu;default)"),},
+				ColumnSpec.decode("right:max(63dlu;default)"),
+				ColumnSpec.decode("right:max(180dlu;default)"),},
 			new RowSpec[] {
 				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
@@ -265,7 +263,7 @@ public class CaricaMateriale extends Pagina  {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Dispense", "Esercizi", "Slide"}));
 		panel_1.add(comboBox, "4, 7, fill, center");
 		
-		JLabel lblNewLabel_4 = new JLabel("Facolt\u00E0");
+		JLabel lblNewLabel_4 = new JLabel("Corso di studi");
 		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel_4, "3, 9, left, default");
 		
@@ -384,7 +382,7 @@ public class CaricaMateriale extends Pagina  {
 							scegli_corso.setVisible(true);
 						} else {
 							textField_2.requestFocus();
-							JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua facoltà", "Attenzione", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere il tuo corso di studi", "Attenzione", JOptionPane.WARNING_MESSAGE);
 						}
 					} else {
 						textField_3.requestFocus();
@@ -431,7 +429,7 @@ public class CaricaMateriale extends Pagina  {
 				}
 				if (textField_2.getText().matches("")) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna facoltà selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso di studi selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField_4.getText().matches("")) {
 					continua = false;
@@ -451,7 +449,7 @@ public class CaricaMateriale extends Pagina  {
 		
 		separator_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1.setForeground(new Color(27, 50, 128));
-		separator_1.setBounds(765, 48, 1, 198);
+		separator_1.setBounds(764, 48, 2, 356);
 		panel.add(separator_1);
 		
 		/*JLabel lblNonHaiUno = new JLabel("Non hai uno scanner? Non hai tempo per digitalizzare il tuo materiale?");
@@ -643,7 +641,7 @@ public class CaricaMateriale extends Pagina  {
 																			}
 																		});
 																		
-																		btnAggiungiFacolt.setText("Aggiungi facolt\u00E0");
+																		btnAggiungiFacolt.setText("Aggiungi corso di studi");
 																		btnAggiungiFacolt.setForeground(Color.WHITE);
 																		btnAggiungiFacolt.setFont(new Font("Arial", Font.BOLD, 18));
 																		btnAggiungiFacolt.setFocusPainted(false);
@@ -652,7 +650,7 @@ public class CaricaMateriale extends Pagina  {
 																		btnAggiungiFacolt.setBounds(10, 304, 345, 30);
 																		scegli_fac.add(btnAggiungiFacolt);
 																		
-																		JLabel lblNewLabel_8 = new JLabel("Non trovi la tua facolt\u00E0?");
+																		JLabel lblNewLabel_8 = new JLabel("Non trovi il tuo corso di studi?");
 																		lblNewLabel_8.setForeground(Color.WHITE);
 																		lblNewLabel_8.setFont(new Font("Arial", Font.BOLD, 14));
 																		lblNewLabel_8.setBounds(10, 285, 302, 14);
@@ -698,7 +696,7 @@ public class CaricaMateriale extends Pagina  {
 																								aggiungiListnerMouseOver(btnAggiungiFacolt);
 																								aggiungiListnerMouseOver(list);
 																								
-																								JLabel lblFacoltGiEsistenti = new JLabel("Facolt\u00E0 gi\u00E0 presenti nell'Universit\u00E0 selezionata");
+																								JLabel lblFacoltGiEsistenti = new JLabel("Corsi di studio gi\u00E0 presenti nell'Universit\u00E0 selezionata");
 																								lblFacoltGiEsistenti.setForeground(Color.LIGHT_GRAY);
 																								lblFacoltGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
 																								lblFacoltGiEsistenti.setBounds(10, 11, 345, 15);
@@ -833,7 +831,7 @@ public class CaricaMateriale extends Pagina  {
 																		aggiungiListnerMouseOver(btnAggiungiCorso);
 																		aggiungiListnerMouseOver(list_1);
 																		
-																		JLabel lblCorsiGiAppartenenti = new JLabel("Corsi gi\u00E0 appartenenti alla facolt\u00E0 selezionata");
+																		JLabel lblCorsiGiAppartenenti = new JLabel("Corsi gi\u00E0 già presenti nel corso di studi selezionato");
 																		lblCorsiGiAppartenenti.setForeground(Color.LIGHT_GRAY);
 																		lblCorsiGiAppartenenti.setFont(new Font("Arial", Font.BOLD, 14));
 																		lblCorsiGiAppartenenti.setBounds(10, 11, 345, 15);
@@ -958,7 +956,7 @@ public class CaricaMateriale extends Pagina  {
 																areaScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 																panel_13.add(areaScrollPane, "4, 4, default, fill");
 																
-																JLabel lblNewLabel_11 = new JLabel("Facolt\u00E0");
+																JLabel lblNewLabel_11 = new JLabel("Corso di studi");
 																lblNewLabel_11.setFont(new Font("Arial", Font.BOLD, 14));
 																lblNewLabel_11.setForeground(Color.WHITE);
 																panel_13.add(lblNewLabel_11, "2, 6, left, center");
@@ -1135,7 +1133,7 @@ public class CaricaMateriale extends Pagina  {
 												}
 											}
 										});
-										button.setText("Crea facolt\u00E0");
+										button.setText("Crea corso di studi");
 										button.setForeground(Color.WHITE);
 										button.setFont(new Font("Arial", Font.BOLD, 18));
 										button.setFocusPainted(false);
@@ -1184,7 +1182,7 @@ public class CaricaMateriale extends Pagina  {
 												RowSpec.decode("35dlu"),
 												RowSpec.decode("10dlu"),}));
 										
-										JLabel lblNewLabel_12 = new JLabel("Facolt\u00E0");
+										JLabel lblNewLabel_12 = new JLabel("Corso di studi");
 										lblNewLabel_12.setFont(new Font("Arial", Font.BOLD, 14));
 										lblNewLabel_12.setForeground(Color.WHITE);
 										panel_15.add(lblNewLabel_12, "2, 2");
@@ -1254,7 +1252,7 @@ public class CaricaMateriale extends Pagina  {
 	protected static boolean salvaFac(String facolta, int indexUniv) {
 		if(ControllerFacolta.getInstance().isFacoltaByUnivAlreadyPresent(facolta,indexUniv)) {
 			JOptionPane.showMessageDialog(Home.getFrame(), "" +
-					" già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					"Corso di studi già esistente", "Attenzione", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		ControllerFacolta.getInstance().createFacolta(facolta,indexUniv);
@@ -1274,7 +1272,7 @@ public class CaricaMateriale extends Pagina  {
 	
 	protected static boolean collegaCorso(int index_corso, int index_fac) {
 		if(ControllerCorso.getInstance().isCorsoAlreadyCollegato(index_corso,index_fac)) {
-			JOptionPane.showMessageDialog(Home.getFrame(), "Questo corso è collegato alla tua facoltà", "Attenzione", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(Home.getFrame(), "Questo corso è già collegato al tuo corso di studi", "Attenzione", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		ControllerCorso.getInstance().collegaCorsoFacolta(index_corso, index_fac);

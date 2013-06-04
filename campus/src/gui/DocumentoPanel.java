@@ -244,7 +244,7 @@ public class DocumentoPanel extends Pagina {
 		gbc_lblNewLabel_6.gridy = 1;
 		panel_6.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
-		JLabel lblNewLabel_4 = new JLabel("Facolt\u00E0");
+		JLabel lblNewLabel_4 = new JLabel("Corso di studi");
 		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);

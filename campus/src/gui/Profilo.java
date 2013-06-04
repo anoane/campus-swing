@@ -226,7 +226,7 @@ public class Profilo extends Pagina {
 		lblUniv.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_2.add(lblUniv, gbc_lblUniv);
 		
-		JLabel lblNewLabel_1 = new JLabel("Facolt\u00E0");
+		JLabel lblNewLabel_1 = new JLabel("Corso di studi");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;

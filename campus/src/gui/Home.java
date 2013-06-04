@@ -319,7 +319,7 @@ public class Home {
 		getRicercaTestuale().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (getRicercaTestuale().getText().equals(" Cerca")) {
+				if (getRicercaTestuale().getText().equals(" Cerca documenti o corsi")) {
 					getRicercaTestuale().setText("");
 				}
 			}
@@ -349,7 +349,7 @@ public class Home {
 					
 				}
 		);
-		getRicercaTestuale().setText(" Cerca");
+		getRicercaTestuale().setText(" Cerca documenti o corsi");
 		getRicercaTestuale().setFont(new Font("Arial", Font.BOLD, 14));
 		getRicercaTestuale().setBackground(Home.BLUE_SEARCH_BAR);
 		getRicercaTestuale().setForeground(Color.WHITE);
@@ -458,7 +458,7 @@ public class Home {
 	}
 	
 	protected static void openRisultatiRicerca(String ricerca,final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
-		Home.pulsantiNormali();
+		Home.pulsanteCerca();
 		pagina_risultati_ricerca.resetPanel(ricerca);
 		if (altezzaDinamica) {
 			Home.loadPages(Home.getPaginaCorrispondente("cerca"), hAlignment, hMinSize, hPrefSize, hMaxSize, vAlignment, vMinSize, Home.getAltezzaDinamica(), vMaxSize);	
@@ -567,12 +567,22 @@ public class Home {
 	}
 
 	protected static void pulsanteServiziEsterni() {
+		getRicercaTestuale().setText(" Cerca documenti o corsi");
 		//Home.resetMenuColors();
 		barra_servizi_esterni.setVisible(true);
 		Home.forceResizeEvent();
 	}
 
 	protected static void pulsantiNormali() {
+		getRicercaTestuale().setText(" Cerca documenti o corsi");
+		Home.resetMenuColors();
+		Home.resetMenu2Colors();
+		Home.resetPagina();
+		barra_servizi_esterni.setVisible(false);
+		Home.forceResizeEvent();
+	}
+	
+	protected static void pulsanteCerca() {
 		Home.resetMenuColors();
 		Home.resetMenu2Colors();
 		Home.resetPagina();

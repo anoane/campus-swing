@@ -88,7 +88,7 @@ public class RisultatiRicerca extends Pagina {
 	private final JLabel label_1 = new JLabel("New label");
 	private final JSeparator separator_1 = new JSeparator();
 	private final JLabel lblUniversit = new JLabel("Universit\u00E0");
-	private final JLabel lblFacolt = new JLabel("Facolt\u00E0");
+	private final JLabel lblFacolt = new JLabel("Corso di studi");
 	private final JSeparator separator_2 = new JSeparator();
 	private final JLabel lblCorso = new JLabel("Corso");
 	private final JSeparator separator_3 = new JSeparator();
@@ -166,7 +166,7 @@ public class RisultatiRicerca extends Pagina {
 		lblDocumentiTrovatiPer.setText("Documenti trovati per:");
 		label_5.setBounds(230, 9, 770, 25);
 		lblDocumentiTrovatiPer.setBounds(10, 9, 215, 25);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i corsi di studio", "Solo nel mio corso di studi"}));
 		is_ricerca_by_corso_in_progress = false;
 		Home.setOldButtonColor("ricerca_doc", Home.BLUE_BUTTON_UNPRESSED);
 		Home.setOldButtonColor("ricerca_corsi", Home.BLUE_BUTTON_PRESSED);
@@ -198,7 +198,7 @@ public class RisultatiRicerca extends Pagina {
 		label_5.setText(ControllerCorso.getInstance().getCorso(index_corso).getNome());
 		label_5.setBounds(301, 9, 694, 25);
 		lblDocumentiTrovatiPer.setBounds(10, 9, 288, 25);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella facolt\u00E0 selezionata"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i corsi di studio", "Solo nel corso di studi selezionato"}));
 		is_ricerca_by_corso_in_progress = true;
 		try {
 			adjustDocsByCorso(ControllerDocumento.getInstance().getListAllDocumentiByCorso(index_facolta,index_corso,soloFac,filtro,sorting));
@@ -373,7 +373,7 @@ public class RisultatiRicerca extends Pagina {
 			panel_8.add(separator_10);
 			separator_10.setOrientation(SwingConstants.VERTICAL);
 			separator_10.setForeground(new Color(6, 121, 159));
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutte le facolt\u00E0", "Solo nella mia facolt\u00E0"}));
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tutti i corsi di studio", "Solo il mio corso di studi"}));
 			
 			comboBox.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent arg0) {
@@ -570,7 +570,7 @@ public class RisultatiRicerca extends Pagina {
 																																	aggiungiListnerMouseOver(list);
 																																	lblFacolt.setForeground(Home.BLUE_BUTTON_PRESSED);
 																																	lblFacolt.setFont(new Font("Arial", Font.BOLD, 14));
-																																	lblFacolt.setBounds(10, 11, 83, 14);
+																																	lblFacolt.setBounds(10, 11, 121, 14);
 																																	
 																																			scegli_fac.add(lblFacolt);
 																																			separator_2.setForeground(Home.BLUE_BUTTON_PRESSED);
