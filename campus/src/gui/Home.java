@@ -43,6 +43,7 @@ import modello_di_dominio.Corso;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
 import util.GUIConfig;
+import javax.swing.border.MatteBorder;
 
 public class Home {
 
@@ -418,7 +419,7 @@ public class Home {
 		pannello_interno_servizi_esterni.add(prenotazione_digitalizzazione);
 		pannello_interno_servizi_esterni.add(prenotazione_libri);
 		pannello_contenuti.setBorder(null);
-		pannello_contenuti.setBackground(Color.LIGHT_GRAY);
+		pannello_contenuti.setBackground(Color.WHITE);
 		pannello_contenuti.setBounds(0, 130, 1004, 386);
 		pannello_intero.add(pannello_contenuti);
 		pannello_contenuti.setLayout(null);
@@ -429,7 +430,7 @@ public class Home {
 		scroller.setSize(1004, 386);
 		scroller.getVerticalScrollBar().setUnitIncrement(16);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scroller.setBorder(BorderFactory.createEmptyBorder());
+		scroller.setBorder(new MatteBorder(0, 1, 0, 1, new Color(27, 50, 128)));
 		scroller.setViewportView(pannello_verticale);
 		pannello_verticale.setLayout(gl_pannello_verticale);
 		pannello_contenuti.add(scroller, BorderLayout.CENTER);
