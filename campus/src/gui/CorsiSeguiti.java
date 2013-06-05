@@ -120,7 +120,7 @@ public class CorsiSeguiti extends Pagina {
 		
 		lblPage = new JLabel("Corsi Seguiti");
 		lblPage.setForeground(new Color(6, 121, 159));
-		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPage.setFont(new Font("Arial", Font.BOLD, 18));
 		lblPage.setBounds(10, 10, 200, 25);
 		panel.add(lblPage);
 		

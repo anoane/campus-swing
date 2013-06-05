@@ -41,7 +41,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		
 		JLabel label = new JLabel("Prenota Digitalizzazione");
 		label.setForeground(new Color(6, 121, 159));
-		label.setFont(new Font("Arial", Font.BOLD, 20));
+		label.setFont(new Font("Arial", Font.BOLD, 18));
 		label.setBounds(10, 10, 235, 25);
 		panel.add(label);
 		
@@ -57,14 +57,14 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.setBackground(null);
 		panel.add(formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
-		gbl_formPanel.columnWidths = new int[] {125, 280};
+		gbl_formPanel.columnWidths = new int[] {145, 260};
 		gbl_formPanel.rowHeights = new int[] {30, 140, 30, 30, 30, 30, 0};
 		gbl_formPanel.columnWeights = new double[]{0.0};
 		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lblNomedoc = new JLabel("Nome documento");
-		lblNomedoc.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNomedoc.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNomedoc = new GridBagConstraints();
 		gbc_lblNomedoc.anchor = GridBagConstraints.WEST;
 		gbc_lblNomedoc.insets = new Insets(0, 0, 5, 5);
@@ -73,7 +73,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.add(lblNomedoc, gbc_lblNomedoc);
 		
 		JLabel lblDesc = new JLabel("Descrizione");
-		lblDesc.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblDesc.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblDesc = new GridBagConstraints();
 		gbc_lblDesc.fill = GridBagConstraints.VERTICAL;
 		gbc_lblDesc.anchor = GridBagConstraints.WEST;
@@ -83,7 +83,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.add(lblDesc, gbc_lblDesc);
 		
 		JLabel lblnumPag = new JLabel("Numero di pagine");
-		lblnumPag.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblnumPag.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblnumPag = new GridBagConstraints();
 		gbc_lblnumPag.anchor = GridBagConstraints.WEST;
 		gbc_lblnumPag.insets = new Insets(0, 0, 5, 5);
@@ -101,7 +101,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		txtNomeDoc.setColumns(10);
 		
 		JLabel lblCorso = new JLabel("Materia");
-		lblCorso.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCorso.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblCorso = new GridBagConstraints();
 		gbc_lblCorso.anchor = GridBagConstraints.WEST;
 		gbc_lblCorso.insets = new Insets(0, 0, 5, 5);
@@ -110,7 +110,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.add(lblCorso, gbc_lblCorso);
 		
 		JLabel lblCitta = new JLabel("Citt\u00E0");
-		lblCitta.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCitta.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblCitta = new GridBagConstraints();
 		gbc_lblCitta.anchor = GridBagConstraints.WEST;
 		gbc_lblCitta.insets = new Insets(0, 0, 5, 5);
@@ -119,7 +119,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.add(lblCitta, gbc_lblCitta);
 		
 		JLabel lblCopisteria = new JLabel("Copisteria");
-		lblCopisteria.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCopisteria.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblCopisteria = new GridBagConstraints();
 		gbc_lblCopisteria.anchor = GridBagConstraints.WEST;
 		gbc_lblCopisteria.insets = new Insets(0, 0, 5, 5);

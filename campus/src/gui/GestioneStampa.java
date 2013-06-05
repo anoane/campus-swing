@@ -28,7 +28,7 @@ public class GestioneStampa extends Pagina {
 		
 		JLabel label = new JLabel("Gestione delle stampe prenotate");
 		label.setForeground(new Color(6, 121, 159));
-		label.setFont(new Font("Arial", Font.BOLD, 20));
+		label.setFont(new Font("Arial", Font.BOLD, 18));
 		label.setBounds(10, 10, 327, 25);
 		panel.add(label);
 		
@@ -56,28 +56,28 @@ public class GestioneStampa extends Pagina {
 		
 		JLabel lblFile = new JLabel("File in Stampa");
 		lblFile.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFile.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblFile.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblFile.setForeground(new Color(6,121,159));
 		lblFile.setBounds(55, 55, 132, 25);
 		panel.add(lblFile);
 		
 		JLabel lblCopie = new JLabel("N° Copie");
 		lblCopie.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCopie.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblCopie.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblCopie.setForeground(new Color(6,121,159));
 		lblCopie.setBounds(359, 55, 87, 25);
 		panel.add(lblCopie);
 		
 		JLabel lblCopisteria = new JLabel("Copisteria");
 		lblCopisteria.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCopisteria.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblCopisteria.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblCopisteria.setForeground(new Color(6,121,159));
 		lblCopisteria.setBounds(500, 55, 100, 25);
 		panel.add(lblCopisteria);
 		
 		JLabel lblRitiro = new JLabel("Data Ritiro");
 		lblRitiro.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRitiro.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblRitiro.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblRitiro.setForeground(new Color(6,121,159));
 		lblRitiro.setBounds(700, 55, 100, 25);
 		panel.add(lblRitiro);

@@ -230,7 +230,7 @@ public class HomePage extends Pagina {
 		
 		JLabel label = new JLabel("Ultimi corsi seguiti");
 		label.setForeground(new Color(6, 121, 159));
-		label.setFont(new Font("Arial", Font.BOLD, 20));
+		label.setFont(new Font("Arial", Font.BOLD, 18));
 		label.setBounds(10, 10, 200, 25);
 		panel.add(label);
 		
@@ -241,7 +241,7 @@ public class HomePage extends Pagina {
 		
 		JLabel label_1 = new JLabel("Preferiti recenti");
 		label_1.setForeground(new Color(6, 121, 159));
-		label_1.setFont(new Font("Arial", Font.BOLD, 20));
+		label_1.setFont(new Font("Arial", Font.BOLD, 18));
 		label_1.setBounds(350, 10, 200, 25);
 		panel.add(label_1);
 		
@@ -252,7 +252,7 @@ public class HomePage extends Pagina {
 		
 		JLabel label_2 = new JLabel("I miei documenti recenti");
 		label_2.setForeground(new Color(6, 121, 159));
-		label_2.setFont(new Font("Arial", Font.BOLD, 20));
+		label_2.setFont(new Font("Arial", Font.BOLD, 18));
 		label_2.setBounds(680, 10, 270, 25);
 		panel.add(label_2);
 		
@@ -290,19 +290,19 @@ public class HomePage extends Pagina {
 		
 		JLabel label_3 = new JLabel("Ordini stampa");
 		label_3.setForeground(Color.WHITE);
-		label_3.setFont(new Font("Arial", Font.BOLD, 20));
+		label_3.setFont(new Font("Arial", Font.BOLD, 18));
 		label_3.setBounds(10, 10, 200, 25);
 		panel_1.add(label_3);
 		
 		JLabel label_4 = new JLabel("Classifica utenti");
 		label_4.setForeground(Color.WHITE);
-		label_4.setFont(new Font("Arial", Font.BOLD, 20));
+		label_4.setFont(new Font("Arial", Font.BOLD, 18));
 		label_4.setBounds(670, 10, 273, 25);
 		panel_1.add(label_4);
 		
 		JLabel label_5 = new JLabel("Ordini digitalizzazione");
 		label_5.setForeground(Color.WHITE);
-		label_5.setFont(new Font("Arial", Font.BOLD, 20));
+		label_5.setFont(new Font("Arial", Font.BOLD, 18));
 		label_5.setBounds(340, 10, 263, 25);
 		panel_1.add(label_5);
 		

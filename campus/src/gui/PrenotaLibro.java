@@ -46,7 +46,7 @@ public class PrenotaLibro extends Pagina {
 		
 		JLabel lblPrenotazioneLibri = new JLabel("Prenotazione Libri");
 		lblPrenotazioneLibri.setForeground(new Color(6, 121, 159));
-		lblPrenotazioneLibri.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPrenotazioneLibri.setFont(new Font("Arial", Font.BOLD, 18));
 		lblPrenotazioneLibri.setBounds(10, 10, 200, 25);
 		panel.add(lblPrenotazioneLibri);
 		
@@ -61,14 +61,14 @@ public class PrenotaLibro extends Pagina {
 		formPanel.setBackground(null);
 		panel.add(formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
-		gbl_formPanel.columnWidths = new int[]{96, 310, 0};
+		gbl_formPanel.columnWidths = new int[] {116, 290, 0};
 		gbl_formPanel.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 0};
 		gbl_formPanel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lbltitolo = new JLabel("Titolo");
-		lbltitolo.setFont(new Font("Arial", Font.PLAIN, 14));
+		lbltitolo.setFont(new Font("Arial", Font.BOLD, 14));
 		lbltitolo.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_lbltitolo = new GridBagConstraints();
 		gbc_lbltitolo.anchor = GridBagConstraints.WEST;
@@ -88,7 +88,7 @@ public class PrenotaLibro extends Pagina {
 		textField.setColumns(10);
 		
 		JLabel lblAutore = new JLabel("Autore");
-		lblAutore.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblAutore.setFont(new Font("Arial", Font.BOLD, 14));
 		lblAutore.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_lblAutore = new GridBagConstraints();
 		gbc_lblAutore.anchor = GridBagConstraints.WEST;
@@ -108,7 +108,7 @@ public class PrenotaLibro extends Pagina {
 		textField_1.setColumns(10);
 		
 		JLabel lblCasaed = new JLabel("Casa editrice");
-		lblCasaed.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCasaed.setFont(new Font("Arial", Font.BOLD, 14));
 		lblCasaed.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_lblCasaed = new GridBagConstraints();
 		gbc_lblCasaed.anchor = GridBagConstraints.WEST;
@@ -128,7 +128,7 @@ public class PrenotaLibro extends Pagina {
 		textField_2.setColumns(10);
 		
 		JLabel lblCodISBN = new JLabel("Codice ISBN");
-		lblCodISBN.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCodISBN.setFont(new Font("Arial", Font.BOLD, 14));
 		lblCodISBN.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_lblCodISBN = new GridBagConstraints();
 		gbc_lblCodISBN.anchor = GridBagConstraints.WEST;
@@ -148,7 +148,7 @@ public class PrenotaLibro extends Pagina {
 		textField_3.setColumns(10);
 		
 		JLabel lblCitta = new JLabel("Citt\u00E0");
-		lblCitta.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCitta.setFont(new Font("Arial", Font.BOLD, 14));
 		lblCitta.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_lblCitta = new GridBagConstraints();
 		gbc_lblCitta.anchor = GridBagConstraints.WEST;

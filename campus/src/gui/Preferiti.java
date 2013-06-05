@@ -125,7 +125,7 @@ public class Preferiti extends Pagina {
 		
 		lblPage = new JLabel("Preferiti");
 		lblPage.setForeground(new Color(6, 121, 159));
-		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPage.setFont(new Font("Arial", Font.BOLD, 18));
 		lblPage.setBounds(10, 10, 200, 25);
 		panel.add(lblPage);
 		
@@ -147,7 +147,7 @@ public class Preferiti extends Pagina {
 		
 		label = new JLabel("Ordina per:");
 		label.setForeground(new Color(6, 121, 159));
-		label.setFont(new Font("Arial", Font.BOLD, 20));
+		label.setFont(new Font("Arial", Font.PLAIN, 18));
 		label.setBounds(700, 9, 108, 25);
 		panel_1.add(label);
 		
@@ -179,7 +179,7 @@ public class Preferiti extends Pagina {
 		
 		label_1 = new JLabel("Filtra per tipo:");
 		label_1.setForeground(new Color(6, 121, 159));
-		label_1.setFont(new Font("Arial", Font.BOLD, 20));
+		label_1.setFont(new Font("Arial", Font.PLAIN, 18));
 		label_1.setBounds(407, 9, 134, 25);
 		panel_1.add(label_1);
 

@@ -213,7 +213,7 @@ public class DocumentoPanel extends Pagina {
 		panel_6.setLayout(gbl_panel_6);
 		
 		JLabel lblNewLabel_2 = new JLabel("Et\u00E0");
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 0;
@@ -229,7 +229,7 @@ public class DocumentoPanel extends Pagina {
 		panel_6.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
 		JLabel lblNewLabel_3 = new JLabel("Universit\u00E0");
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 0;
@@ -245,7 +245,7 @@ public class DocumentoPanel extends Pagina {
 		panel_6.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
 		JLabel lblNewLabel_4 = new JLabel("Corso di studi");
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_4.gridx = 0;
@@ -276,7 +276,7 @@ public class DocumentoPanel extends Pagina {
 		lblCommenti.setBounds(0, 0, 200, 25);
 		panelCommenti.add(lblCommenti);
 		lblCommenti.setForeground(new Color(6, 121, 159));
-		lblCommenti.setFont(new Font("Arial", Font.BOLD, 18));
+		lblCommenti.setFont(new Font("Arial", Font.PLAIN, 18));
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(0, 25, 170, 1);

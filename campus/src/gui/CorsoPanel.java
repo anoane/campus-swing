@@ -82,7 +82,7 @@ public class CorsoPanel extends Pagina {
 		
 		//Label
 		labelName.setForeground(new Color(6, 121, 159));
-		labelName.setFont(new Font("Arial", Font.BOLD, 20));
+		labelName.setFont(new Font("Arial", Font.BOLD, 18));
 		labelName.setBounds(10, 10, 723, 25);
 		panel.add(labelName);
 		
@@ -272,7 +272,7 @@ public class CorsoPanel extends Pagina {
 		
 		lblPage = new JLabel("Documenti relativo al corso");
 		lblPage.setForeground(new Color(6, 121, 159));
-		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPage.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblPage.setBounds(10, 10, 260, 25);
 		doc.add(lblPage);
 		
