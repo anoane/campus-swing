@@ -386,7 +386,7 @@ public class Home {
 			}
 		});
 		carica_materiale.setText("Carica documento");
-		carica_materiale.setFont(new Font("Arial", Font.BOLD, 18));
+		carica_materiale.setFont(new Font("Arial", Font.BOLD, 16));
 		carica_materiale.setForeground(Color.WHITE);
 		carica_materiale.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		carica_materiale.addMouseListener(new MouseAdapter() {
