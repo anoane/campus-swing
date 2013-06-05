@@ -120,14 +120,14 @@ public class ControllerRicerca extends AbstractController {
 			ir = DirectoryReader.open(docIndex.getDir());
 			IndexSearcher is = new IndexSearcher(ir);
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
+			//Term term = new Term(field, stQuery);
+			//Query query = new WildcardQuery(term);
+			//TopDocs result = is.search(query, 2147483647);
 			
-			//QueryParser qp = new QueryParser(Version.LUCENE_42,field,analyzer);
-			//Query query= qp.parse(stQuery);
-			
-			Term term = new Term(field, stQuery);
-			Query query = new WildcardQuery(term);
-			
-			TopDocs result = is.search(query, 2147483647);
+			QueryParser qp = new QueryParser(Version.LUCENE_42,field,analyzer);
+			Query query= qp.parse(stQuery);
+			TopDocs result = is.search(query, null,5);
+
 			ScoreDoc[] hits = result.scoreDocs;
 			
 			docs = new Documento[hits.length];
@@ -175,13 +175,13 @@ public class ControllerRicerca extends AbstractController {
 			IndexSearcher is = new IndexSearcher(ir);
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
 			
-			//QueryParser qp = new QueryParser(Version.LUCENE_42,field,analyzer);
-			//Query query= qp.parse(stQuery);
+			//Term term = new Term(field, stQuery);
+			//Query query = new WildcardQuery(term);
+			//TopDocs result = is.search(query, 2147483647);
 			
-			Term term = new Term(field, stQuery);
-			Query query = new WildcardQuery(term);
-			
-			TopDocs result = is.search(query, 2147483647);
+			QueryParser qp = new QueryParser(Version.LUCENE_42,field,analyzer);
+			Query query= qp.parse(stQuery);
+			TopDocs result = is.search(query, null,5);
 			ScoreDoc[] hits = result.scoreDocs;
 			
 			corsi = new Corso[hits.length];
@@ -206,6 +206,9 @@ public class ControllerRicerca extends AbstractController {
 			
 		} catch (IOException e) {
 			
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			
