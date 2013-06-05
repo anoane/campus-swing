@@ -76,7 +76,7 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 		anteprima.setBounds(10, 41, 45, 45);
 
 		titolo = new JLabel(c.getNome());
-		titolo.setFont(new Font("Arial", Font.BOLD, 20));
+		titolo.setFont(new Font("Arial", Font.BOLD, 18));
 		titolo.setForeground(Color.WHITE);
 		titolo.setBounds(10, 5, 290, 40);
 		

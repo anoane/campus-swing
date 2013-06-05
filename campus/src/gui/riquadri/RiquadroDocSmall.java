@@ -151,7 +151,7 @@ public class RiquadroDocSmall extends RiquadroSmall {
 		// Label title
 		titolo = new JLabel(doc.getNome());
 		titolo.setBounds(10, 5, 290, 30);
-		titolo.setFont(new Font("Arial", Font.BOLD, 20));
+		titolo.setFont(new Font("Arial", Font.BOLD, 18));
 		titolo.setForeground(Color.WHITE);
 
 		// Label corso

@@ -51,21 +51,21 @@ public class RiquadroStampa extends JPanel {
 		JLabel lblNome = new JLabel(nome);
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNome.setForeground(Color.WHITE);
-		lblNome.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNome.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblNome.setBounds(170, 15, 120, 30);
 		add(lblNome);
 
 		JLabel lblcopie = new JLabel(String.valueOf(copie));
 		lblcopie.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcopie.setForeground(Color.WHITE);
-		lblcopie.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblcopie.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblcopie.setBounds(330, 15, 35, 30);
 		add(lblcopie);
 
 		JLabel label = new JLabel(copisteria);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Arial", Font.PLAIN, 18));
+		label.setFont(new Font("Arial", Font.PLAIN, 16));
 		label.setBounds(424, 15, 147, 30);
 		add(label);
 
@@ -78,7 +78,7 @@ public class RiquadroStampa extends JPanel {
 		JLabel label_1 = new JLabel(data);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Arial", Font.PLAIN, 18));
+		label_1.setFont(new Font("Arial", Font.PLAIN, 16));
 		label_1.setBounds(637, 15, 120, 30);
 		add(label_1);
 
