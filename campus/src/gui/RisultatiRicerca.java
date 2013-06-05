@@ -403,13 +403,13 @@ public class RisultatiRicerca extends Pagina {
 			
 			panel_9.add(panel_12);
 			label_5.setForeground(new Color(6, 121, 159));
-			label_5.setFont(new Font("Arial", Font.BOLD, 20));
+			label_5.setFont(new Font("Arial", Font.PLAIN, 18));
 			label_5.setBackground(Color.WHITE);
 			label_5.setBounds(346, 9, 649, 25);
 			
 			panel_12.add(label_5);
 			lblDocumentiTrovatiPer.setForeground(new Color(6, 121, 159));
-			lblDocumentiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
+			lblDocumentiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 18));
 			lblDocumentiTrovatiPer.setBounds(10, 9, 326, 25);
 			
 			panel_12.add(lblDocumentiTrovatiPer);
@@ -420,11 +420,11 @@ public class RisultatiRicerca extends Pagina {
 			label_4.setBounds(740, 6, 108, 25);
 			panel_8.add(label_4);
 			label_4.setForeground(new Color(6, 121, 159));
-			label_4.setFont(new Font("Arial", Font.BOLD, 20));
+			label_4.setFont(new Font("Arial", Font.PLAIN, 18));
 			lblCercaIn.setBounds(10, 6, 85, 25);
 			panel_8.add(lblCercaIn);
 			lblCercaIn.setForeground(new Color(6, 121, 159));
-			lblCercaIn.setFont(new Font("Arial", Font.BOLD, 20));
+			lblCercaIn.setFont(new Font("Arial", Font.PLAIN, 18));
 			separator_10.setBackground(new Color(6, 121, 159));
 			separator_10.setBounds(440, 5, 1, 28);
 			panel_8.add(separator_10);
@@ -472,7 +472,7 @@ public class RisultatiRicerca extends Pagina {
 			
 			JLabel lblFiltraPerTipo = new JLabel("Filtra per tipo:");
 			lblFiltraPerTipo.setForeground(new Color(6, 121, 159));
-			lblFiltraPerTipo.setFont(new Font("Arial", Font.BOLD, 20));
+			lblFiltraPerTipo.setFont(new Font("Arial", Font.PLAIN, 18));
 			lblFiltraPerTipo.setBounds(447, 6, 134, 25);
 			panel_8.add(lblFiltraPerTipo);
 			gl_panel_1.setHorizontalGroup(
@@ -553,7 +553,7 @@ public class RisultatiRicerca extends Pagina {
 											lblRicercaAvanzata.setBounds(10, 10, 428, 25);
 											panel_ricerca_guidata.add(lblRicercaAvanzata);
 											lblRicercaAvanzata.setForeground(Color.WHITE);
-											lblRicercaAvanzata.setFont(new Font("Arial", Font.BOLD, 20));
+											lblRicercaAvanzata.setFont(new Font("Arial", Font.BOLD, 18));
 											scegli_univ.setBorder(new LineBorder(new Color(0, 0, 0)));
 											scegli_univ.setBounds(10, 41, 310, 180);
 											panel_ricerca_guidata.add(scegli_univ);
@@ -688,11 +688,11 @@ public class RisultatiRicerca extends Pagina {
 																																																			panel_11.setLayout(null);
 																																																			lblCorsiTrovatiPer.setBounds(10, 9, 161, 24);
 																																																			lblCorsiTrovatiPer.setForeground(new Color(6, 121, 159));
-																																																			lblCorsiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 20));
+																																																			lblCorsiTrovatiPer.setFont(new Font("Arial", Font.BOLD, 18));
 																																																			
 																																																			panel_11.add(lblCorsiTrovatiPer);
 																																																			label_6.setForeground(new Color(6, 121, 159));
-																																																			label_6.setFont(new Font("Arial", Font.BOLD, 20));
+																																																			label_6.setFont(new Font("Arial", Font.PLAIN, 18));
 																																																			label_6.setBackground(Color.WHITE);
 																																																			label_6.setBounds(181, 9, 817, 24);
 																																																			

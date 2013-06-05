@@ -161,7 +161,7 @@ public class CaricaMateriale extends Pagina  {
 		
 		JLabel lblUltimiCorsiSeguiti = new JLabel("Carica documento");
 		lblUltimiCorsiSeguiti.setForeground(new Color(6, 121, 159));
-		lblUltimiCorsiSeguiti.setFont(new Font("Arial", Font.BOLD, 20));
+		lblUltimiCorsiSeguiti.setFont(new Font("Arial", Font.BOLD, 18));
 		lblUltimiCorsiSeguiti.setBounds(10, 10, 310, 25);
 		panel.add(lblUltimiCorsiSeguiti);
 		
@@ -192,7 +192,7 @@ public class CaricaMateriale extends Pagina  {
 				RowSpec.decode("max(20dlu;default)"),}));
 		
 		JLabel lblNewLabel = new JLabel("File");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel, "3, 2, left, default");
 		
 		btnScegliFile.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -234,7 +234,7 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.add(btnScegliFile, "4, 2, fill, default");
 		
 		JLabel lblNewLabel_1 = new JLabel("Titolo");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_1, "3, 3, left, default");
 		
 		textField = new JTextField();
@@ -244,7 +244,7 @@ public class CaricaMateriale extends Pagina  {
 		textField.setDocument(new JTextFieldLimit(254));
 		
 		JLabel lblNewLabel_2 = new JLabel("Descrizione");
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_2, "3, 5, left, top");
 		
 		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -256,7 +256,7 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.add(scrollPane, "4, 5, fill, fill");
 		
 		JLabel lblNewLabel_3 = new JLabel("Categoria");
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_3, "3, 7, left, center");
 		
 		final JComboBox comboBox = new JComboBox();
@@ -265,7 +265,7 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.add(comboBox, "4, 7, fill, center");
 		
 		JLabel lblNewLabel_4 = new JLabel("Corso di studi");
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_4, "3, 9, left, default");
 		
 		textField_2 = new JTextField();
@@ -316,7 +316,7 @@ public class CaricaMateriale extends Pagina  {
 		});
 		
 		JLabel lblNewLabel_5 = new JLabel("Universit\u00E0");
-		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_5, "3, 8, left, default");
 		
 		textField_3 = new JTextField();
@@ -362,7 +362,7 @@ public class CaricaMateriale extends Pagina  {
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Corso");
-		lblNewLabel_6.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_6.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_6, "3, 10, left, default");
 		
 		textField_4 = new JTextField();
@@ -618,8 +618,8 @@ public class CaricaMateriale extends Pagina  {
 																		aggiungi_corso.add(btnConfermaSelezione);
 																		aggiungiListnerMouseOver(btnConfermaSelezione);
 																		
-																		JLabel lblCorsiGiEsistenti = new JLabel("Corsi gi\u00E0 esistenti");
-																		lblCorsiGiEsistenti.setForeground(Color.LIGHT_GRAY);
+																		JLabel lblCorsiGiEsistenti = new JLabel("Corsi presenti nel sistema");
+																		lblCorsiGiEsistenti.setForeground(Color.WHITE);
 																		lblCorsiGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
 																		lblCorsiGiEsistenti.setBounds(10, 11, 345, 14);
 																		aggiungi_corso.add(lblCorsiGiEsistenti);
@@ -697,8 +697,8 @@ public class CaricaMateriale extends Pagina  {
 																								aggiungiListnerMouseOver(btnAggiungiFacolt);
 																								aggiungiListnerMouseOver(list);
 																								
-																								JLabel lblFacoltGiEsistenti = new JLabel("Corsi di studio gi\u00E0 presenti nell'Universit\u00E0 selezionata");
-																								lblFacoltGiEsistenti.setForeground(Color.LIGHT_GRAY);
+																								JLabel lblFacoltGiEsistenti = new JLabel("Corsi di studio presenti nel sistema e collegati all'Universit\u00E0 selezionata");
+																								lblFacoltGiEsistenti.setForeground(Color.WHITE);
 																								lblFacoltGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
 																								lblFacoltGiEsistenti.setBounds(10, 11, 345, 15);
 																								scegli_fac.add(lblFacoltGiEsistenti);
@@ -764,8 +764,8 @@ public class CaricaMateriale extends Pagina  {
 																		aggiungiListnerMouseOver(list_2);
 																		aggiungiListnerMouseOver(btnAggiungiUniversit);
 																		
-																		JLabel lblUniversitGiEsistenti = new JLabel("Universit\u00E0 gi\u00E0 esistenti");
-																		lblUniversitGiEsistenti.setForeground(Color.LIGHT_GRAY);
+																		JLabel lblUniversitGiEsistenti = new JLabel("Universit\u00E0 presenti nel sistema");
+																		lblUniversitGiEsistenti.setForeground(Color.WHITE);
 																		lblUniversitGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
 																		lblUniversitGiEsistenti.setBounds(10, 11, 345, 14);
 																		scegli_univ.add(lblUniversitGiEsistenti);
@@ -832,8 +832,8 @@ public class CaricaMateriale extends Pagina  {
 																		aggiungiListnerMouseOver(btnAggiungiCorso);
 																		aggiungiListnerMouseOver(list_1);
 																		
-																		JLabel lblCorsiGiAppartenenti = new JLabel("Corsi gi\u00E0 già presenti nel corso di studi selezionato");
-																		lblCorsiGiAppartenenti.setForeground(Color.LIGHT_GRAY);
+																		JLabel lblCorsiGiAppartenenti = new JLabel("Corsi presenti nel corso di studi selezionato");
+																		lblCorsiGiAppartenenti.setForeground(Color.WHITE);
 																		lblCorsiGiAppartenenti.setFont(new Font("Arial", Font.BOLD, 14));
 																		lblCorsiGiAppartenenti.setBounds(10, 11, 345, 15);
 																		scegli_corso.add(lblCorsiGiAppartenenti);

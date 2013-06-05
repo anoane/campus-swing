@@ -185,7 +185,7 @@ public class Profilo extends Pagina {
 		panel_2.setBounds(195, 50, 455, 175);
 		panel_1.add(panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{152, 297, 0};
+		gbl_panel_2.columnWidths = new int[] {182, 267, 0};
 		gbl_panel_2.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 0};
 		gbl_panel_2.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
