@@ -60,7 +60,7 @@ public class ButtonStandard  {
 		final JButton button = new JButton();
 		button.setText(text);
 		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Arial", Font.BOLD, 18));
+		button.setFont(new Font("Arial", Font.BOLD, 16));
 		button.setBounds(x, y, width, height);
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
@@ -90,7 +90,7 @@ public class ButtonStandard  {
 		final JButton button = new JButton();
 		button.setText(text);
 		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Arial", Font.BOLD, 18));
+		button.setFont(new Font("Arial", Font.BOLD, 16));
 		button.setBounds(x, y, width, height);
 		button.setFocusPainted(focusPainted);
 		button.setBorderPainted(borderPainted);
