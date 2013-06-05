@@ -87,7 +87,7 @@ public class Main {
 						new Timestamp(data.getTime()),
 						ControllerDocumento.getInstance().getDocumento(1),
 						ControllerUtente.getInstance().getUtente(1));
-		*/
+	*/
 		// Window thread
 		EventQueue.invokeLater(new Runnable() {
 			@Override

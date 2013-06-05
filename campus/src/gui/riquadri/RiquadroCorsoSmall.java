@@ -150,9 +150,13 @@ public class RiquadroCorsoSmall extends RiquadroSmall {
 			Documento[] doc_array = c.documentoCorso.toArray();
 			ArrayList<String> png_path = new ArrayList<String>();
 			for (int i=0; i<doc_array.length; i++) {
-				if (util.EstensioneFile.getExtension(doc_array[i].getPath()).matches("pdf")) {
-					png_path.add("./thumb/"+(doc_array[i].getPath().substring(6))+".png");
+				if (util.EstensioneFile.getExtension(doc_array[i].getPath())!=null){
+					if (util.EstensioneFile.getExtension(doc_array[i].getPath()).matches("pdf")) {
+						png_path.add("./thumb/"+(doc_array[i].getPath().substring(6))+".png");
+					}
 				}
+
+				
 			}
 			
 			int doc_size = png_path.size();
