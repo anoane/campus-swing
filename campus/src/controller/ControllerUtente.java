@@ -41,7 +41,7 @@ public class ControllerUtente extends AbstractController{
 	/**
 	 * 
 	 */
-	public void creaUtente(String nome, String cognome,String username, String sesso, Date date, Facolta facolta){
+	public void creaUtente(String nome, String cognome,String username, String sesso, Date date, Facolta facolta,String immagine){
 		if(this.getUtente(username) == null){ 
 			try {
 				PersistentTransaction t = modello_di_dominio.ProjectfinalPersistentManager.instance().getSession().beginTransaction();
@@ -53,6 +53,7 @@ public class ControllerUtente extends AbstractController{
 				utente.setSesso(sesso);
 				utente.setDatadinascita(date);
 				utente.setFacolta(facolta);
+				utente.setImmagine(immagine);
 				utenteDAO.save(utente);
 				//Commit
 				t.commit();

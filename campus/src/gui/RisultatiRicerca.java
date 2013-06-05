@@ -180,6 +180,7 @@ public class RisultatiRicerca extends Pagina {
 			label_5.setText("'"+ricerca.trim()+"'");
 			reloadUniv();
 			//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
+			//System.out.println(ricerca.trim().toLowerCase());
 			try {
 				adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca.trim().toLowerCase(), false, "all", "timestampDOWN"));
 			} catch (PersistentException e) {
