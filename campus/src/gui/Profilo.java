@@ -93,7 +93,7 @@ public class Profilo extends Pagina {
 		
 		//Label
 		labelName.setForeground(new Color(6, 121, 159));
-		labelName.setFont(new Font("Arial", Font.BOLD, 20));
+		labelName.setFont(new Font("Arial", Font.BOLD, 18));
 		labelName.setBounds(10, 10, 723, 25);
 		panel.add(labelName);
 		
@@ -158,7 +158,7 @@ public class Profilo extends Pagina {
 		
 		lblPage = new JLabel("Documenti caricati");
 		lblPage.setForeground(new Color(6, 121, 159));
-		lblPage.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPage.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblPage.setBounds(10, 10, 260, 25);
 		doc.add(lblPage);
 		
@@ -192,7 +192,7 @@ public class Profilo extends Pagina {
 		panel_2.setLayout(gbl_panel_2);
 		
 		JLabel lblEt = new JLabel("Et\u00E0");
-		lblEt.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblEt.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblEt = new GridBagConstraints();
 		gbc_lblEt.anchor = GridBagConstraints.WEST;
 		gbc_lblEt.insets = new Insets(0, 0, 5, 5);
@@ -210,7 +210,7 @@ public class Profilo extends Pagina {
 		panel_2.add(lblEta, gbc_lblEta);
 		
 		JLabel lblNewLabel = new JLabel("Universit\u00E0");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -227,7 +227,7 @@ public class Profilo extends Pagina {
 		panel_2.add(lblUniv, gbc_lblUniv);
 		
 		JLabel lblNewLabel_1 = new JLabel("Corso di studi");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
@@ -244,7 +244,7 @@ public class Profilo extends Pagina {
 		panel_2.add(lblFac, gbc_lblFac);
 		
 		JLabel lblNewLabel_2 = new JLabel("Media voto esami");
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
@@ -262,7 +262,7 @@ public class Profilo extends Pagina {
 		panel_2.add(lblEsami, gbc_lblEsami);
 		
 		JLabel lblNewLabel_3 = new JLabel("Media voto documenti");
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
@@ -279,7 +279,7 @@ public class Profilo extends Pagina {
 		panel_2.add(lblVoto, gbc_lblVoto);
 		
 		JLabel lblNewLabel_4 = new JLabel("Punti");
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_4.anchor = GridBagConstraints.WEST;

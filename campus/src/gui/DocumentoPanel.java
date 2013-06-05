@@ -103,7 +103,7 @@ public class DocumentoPanel extends Pagina {
 		panel.setLayout(null);
 
 		lblPreferiti.setForeground(new Color(6, 121, 159));
-		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 18));
 		lblPreferiti.setBounds(10, 10, 250, 25);
 		panel.add(lblPreferiti);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
