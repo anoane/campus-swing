@@ -34,7 +34,7 @@ public class RimuoviButton extends CustomButton {
 		lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
 		add(lblX);
 		
-		final JLabel lblRimuovi = new JLabel("Rimuovi");
+		final JLabel lblRimuovi = new JLabel(" Elimina");
 		lblRimuovi.setForeground(Color.WHITE);
 		lblRimuovi.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblRimuovi.setBounds(0, 34, 56, 14);
@@ -110,7 +110,7 @@ public class RimuoviButton extends CustomButton {
 			public void mouseEntered(MouseEvent e) {
 				lblRimuovi.setForeground(new Color(27,50,128));
 				lblX.setIcon(new ImageIcon(iconPathOver));
-				lblX.setToolTipText("Rimuovi il documento");
+				lblX.setToolTipText("Elimina il documento");
 			}
 
 			public void mouseExited(MouseEvent e) {
