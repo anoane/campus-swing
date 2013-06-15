@@ -40,8 +40,11 @@ import modello_di_dominio.Documento;
 import modello_di_dominio.Facolta;
 import modello_di_dominio.Universita;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.orm.PersistentException;
+
+import util.StringEscape;
 
 import controller.ControllerCorso;
 import controller.ControllerDocumento;
@@ -182,7 +185,7 @@ public class RisultatiRicerca extends Pagina {
 			//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
 			//System.out.println(ricerca.trim().toLowerCase());
 			try {
-				adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(ricerca.trim().toLowerCase(), false, "all", "timestampDOWN"));
+				adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(StringEscape.forLucene(ricerca).toLowerCase().trim(), false, "all", "timestampDOWN"));
 			} catch (PersistentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

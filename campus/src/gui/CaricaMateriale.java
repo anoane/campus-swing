@@ -176,8 +176,8 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("max(3dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("right:max(63dlu;default)"),
-				ColumnSpec.decode("right:max(180dlu;default)"),},
+				ColumnSpec.decode("right:max(68dlu;default)"),
+				ColumnSpec.decode("right:max(176dlu;default)"),},
 			new RowSpec[] {
 				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),

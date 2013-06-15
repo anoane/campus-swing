@@ -120,14 +120,14 @@ public class CorsoPanel extends Pagina {
 		programma.setBounds(500, 50, 460, 174);
 		panel_1.add(programma);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
-		gbl_formPanel.columnWidths = new int[] {145, 171, 0};
+		gbl_formPanel.columnWidths = new int[] {145, 298, 0};
 		gbl_formPanel.rowHeights = new int[]{30, 30, 60, 50, 0};
 		gbl_formPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		programma.setLayout(gbl_formPanel);
 		
 		JLabel lblNewLabel = new JLabel("Universit\u00E0");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNewLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -173,7 +173,7 @@ public class CorsoPanel extends Pagina {
 		programma.add(txtrProgrammaBreveDel, gbc_txtrProgrammaBreveDel);
 		
 		JLabel lblNewLabel_3 = new JLabel("Modalit\u00E0 d'esame");
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 0, 5);
@@ -182,7 +182,7 @@ public class CorsoPanel extends Pagina {
 		programma.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JLabel lblNewLabel_2 = new JLabel("Programma del corso");
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
@@ -202,7 +202,7 @@ public class CorsoPanel extends Pagina {
 		programma.add(comboBox_1, gbc_comboBox_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Docenti");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
