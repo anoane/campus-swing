@@ -185,6 +185,8 @@ public class RisultatiRicerca extends Pagina {
 			try {
 				if (!tempRicerca.matches("")) {
 					adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(tempRicerca, false, "all", "timestampDOWN"));
+				} else {
+					adjustDocsSearch(new ArrayList<Documento>());
 				}
 			} catch (PersistentException e) {
 				// TODO Auto-generated catch block
@@ -804,6 +806,8 @@ public class RisultatiRicerca extends Pagina {
 		try {
 			if (!campoRicerca.matches("")) {
 				adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca));
+			} else {
+				adjustCorsiSearch(new ArrayList<Corso>());
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -910,6 +914,8 @@ public class RisultatiRicerca extends Pagina {
 			try {
 				if (!tempRicerca.matches("")) {
 					adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(tempRicerca, fac, filtro,sorting));
+				} else {
+					adjustDocsSearch(new ArrayList<Documento>());
 				}
 			} catch (PersistentException e) {
 				// TODO Auto-generated catch block
