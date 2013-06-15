@@ -39,7 +39,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 410);
+		panel.setBounds(0, 0, 1008, 390);
 		add(panel);
 		
 		JLabel label = new JLabel("Prenota Digitalizzazione");
@@ -56,13 +56,13 @@ public class PrenotaDigitalizzazione extends Pagina {
 		JLabel label_1 = new JLabel("* Tutti i campi sono obbligatori.");
 		label_1.setForeground(new Color(128, 0, 0));
 		label_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		label_1.setBounds(10, 385, 350, 20);
+		label_1.setBounds(10, 368, 350, 20);
 		panel.add(label_1);
 		
 		//panel.add(inviaRichiesta);
 				
 		JPanel formPanel = new JPanel();
-		formPanel.setBounds(0, 48, 424, 356);
+		formPanel.setBounds(0, 30, 424, 356);
 		formPanel.setBackground(null);
 		panel.add(formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();

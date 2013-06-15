@@ -65,7 +65,7 @@ public class Home {
 	private final static ButtonServiziEsterni buttonCreatorSE = new ButtonServiziEsterni();
 	private final static JButton servizi_esterni = buttonCreatorSE.createButton("servizi_esterni", 604, 0, 155, 52, "./newimage/servizi_esterni.png","./newimage/servizi_esterni_up.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	
-	private final static ButtonStandard buttonCreatorBarra = new ButtonStandard();
+	private final static ButtonBarraServiziEsterni buttonCreatorBarra = new ButtonBarraServiziEsterni();
 	private final static JButton gestione_stampa = buttonCreatorBarra.createButton("gestione_stampa", 0, 2, 334, 36, "./newimage/gestione_stampa.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton prenotazione_digitalizzazione = buttonCreatorBarra.createButton("prenotazione_digitalizzazione", 336, 2, 334, 36, "./newimage/prenota_digitalizzazione.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	private final static JButton prenotazione_libri = buttonCreatorBarra.createButton("prenotazione_libri", 672, 2, 334, 36, "./newimage/prenota_libri.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
@@ -582,6 +582,17 @@ public class Home {
 		barra_servizi_esterni.setVisible(false);
 		Home.forceResizeEvent();
 	}
+	
+	protected static void pulsantiNormaliServiziEsterni() {
+		getRicercaTestuale().setText(" Cerca documenti o corsi");
+		Home.resetMenuColors();
+		Home.resetMenu2Colors();
+		Home.resetPagina();
+		Home.setOldButtonColor("servizi_esterni", Home.BLUE_BUTTON_PRESSED);
+		servizi_esterni.setBackground(Home.BLUE_BUTTON_PRESSED);
+		barra_servizi_esterni.setVisible(true);
+		Home.forceResizeEvent();
+	}
 
 	protected static void pulsantiNormali() {
 		getRicercaTestuale().setText(" Cerca documenti o corsi");
@@ -772,4 +783,6 @@ public class Home {
 		Home.setOldButtonColor(pagina, Home.BLUE_BUTTON_PRESSED);
 		Home.loadPages(Home.getPaginaCorrispondente(pagina),Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getPaginaCorrispondente(pagina).getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);
 	}
+
+
 }
