@@ -389,6 +389,7 @@ public class DocumentoPanel extends Pagina {
 	@Override
 	public void reload(Object o) {
 		if (o!=null) {
+			System.out.println("reload Documento: "+((DocFlag)o).getDoc().getID());
 			setEliminate(true);
 			btnTerminaModifica.setVisible(false);
 			//btnNewButton = new JButton(">");
@@ -541,12 +542,15 @@ public class DocumentoPanel extends Pagina {
 			});
 			btnRimuoviDaiPreferiti.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
-					ControllerUtente u = ControllerUtente.getInstance();
-					u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
-					btnAggiungiAiPreferiti.setVisible(true);
-					btnRimuoviDaiPreferiti.setVisible(false);
-					validate();
-					repaint();
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler rimuovere questo documento dai Preferiti?","Attenzione",0);
+					if(n==0){
+						ControllerUtente u = ControllerUtente.getInstance();
+						u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
+						btnAggiungiAiPreferiti.setVisible(true);
+						btnRimuoviDaiPreferiti.setVisible(false);
+						validate();
+						repaint();
+					}
 				}
 			});
 

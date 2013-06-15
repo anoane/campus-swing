@@ -691,9 +691,7 @@ public class Home {
 		
 		
 		
-		documento.reload(new DocFlag(doc,modificaAttiva));
-		Home.pulsantiNormali();
-		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
+		//documento.reload(new DocFlag(doc,modificaAttiva));
 		/*if (altezzaDinamica) {
 			Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);	
 		} else {
@@ -720,6 +718,9 @@ public class Home {
 		}else{
 			documento.unsetAllPreviewer();
 		}
+		Home.pulsantiNormali();
+		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
+		
 		
 	}
 	

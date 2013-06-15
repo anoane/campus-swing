@@ -333,8 +333,11 @@ public class CorsoPanel extends Pagina {
 			nonSeguiButton.setVisible(true);
 			nonSeguiButton.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), corso);
-					Home.openCorso(false, corso);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler rimuovere questo corso dai Corsi Seguiti?","Attenzione",0);
+					if(n==0){
+						ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), corso);
+						Home.openCorso(false, corso);
+					}
 				}
 			});
 		}
