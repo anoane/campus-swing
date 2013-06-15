@@ -177,8 +177,8 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("max(3dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("right:max(74dlu;default)"),
-				ColumnSpec.decode("right:max(170dlu;default)"),},
+				ColumnSpec.decode("right:max(70dlu;default)"),
+				ColumnSpec.decode("right:max(174dlu;default)"),},
 			new RowSpec[] {
 				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
@@ -192,7 +192,7 @@ public class CaricaMateriale extends Pagina  {
 				RowSpec.decode("max(20dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),}));
 		
-		JLabel lblNewLabel = new JLabel("File *");
+		JLabel lblNewLabel = new JLabel("File");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel, "3, 2, left, default");
 		
@@ -239,7 +239,7 @@ public class CaricaMateriale extends Pagina  {
 		btnScegliFile.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(btnScegliFile, "4, 2, fill, default");
 		
-		JLabel lblNewLabel_1 = new JLabel("Titolo *");
+		JLabel lblNewLabel_1 = new JLabel("Titolo");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_1, "3, 3, left, default");
 		
@@ -256,7 +256,7 @@ public class CaricaMateriale extends Pagina  {
 		textField.setColumns(10);
 		textField.setDocument(new JTextFieldLimit(254));
 		
-		JLabel lblNewLabel_2 = new JLabel("Descrizione *");
+		JLabel lblNewLabel_2 = new JLabel("Descrizione");
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_2, "3, 5, left, top");
 		textArea.addFocusListener(new FocusAdapter() {
@@ -275,7 +275,7 @@ public class CaricaMateriale extends Pagina  {
 		JScrollPane scrollPane = new JScrollPane(textArea); 
 		panel_1.add(scrollPane, "4, 5, fill, fill");
 		
-		JLabel lblNewLabel_3 = new JLabel("Categoria *");
+		JLabel lblNewLabel_3 = new JLabel("Categoria");
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_3, "3, 7, left, center");
 		
@@ -284,7 +284,7 @@ public class CaricaMateriale extends Pagina  {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Dispense", "Esercizi", "Slide"}));
 		panel_1.add(comboBox, "4, 7, fill, center");
 		
-		JLabel lblNewLabel_4 = new JLabel("Corso di studi *");
+		JLabel lblNewLabel_4 = new JLabel("Corso di studi");
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_4, "3, 9, left, default");
 		
@@ -337,7 +337,7 @@ public class CaricaMateriale extends Pagina  {
 				  }
 		});
 		
-		JLabel lblNewLabel_5 = new JLabel("Universit\u00E0 *");
+		JLabel lblNewLabel_5 = new JLabel("Universit\u00E0");
 		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_5, "3, 8, left, default");
 		
@@ -384,7 +384,7 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.add(textField_3, "4, 8, fill, default");
 		textField_3.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("Corso *");
+		JLabel lblNewLabel_6 = new JLabel("Corso");
 		lblNewLabel_6.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_6, "3, 10, left, default");
 		
@@ -1270,7 +1270,7 @@ public class CaricaMateriale extends Pagina  {
 		//panel_2.setFocusable(true);
 		aggiungiListnerMouseOver(panel_2);
 		
-		JLabel lblNewLabel_14 = new JLabel("Tutti i campi contrassegnati da asterisco (*) sono obbligatori.");
+		JLabel lblNewLabel_14 = new JLabel("* Tutti i campi sono obbligatori.");
 		lblNewLabel_14.setForeground(new Color(128, 0, 0));
 		lblNewLabel_14.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNewLabel_14.setBounds(10, 405, 395, 20);

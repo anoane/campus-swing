@@ -16,8 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class PrenotaLibro extends Pagina {
 	/**
@@ -55,6 +58,12 @@ public class PrenotaLibro extends Pagina {
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
 		
+		JLabel label = new JLabel("* Tutti i campi sono obbligatori.");
+		label.setForeground(new Color(128, 0, 0));
+		label.setFont(new Font("Arial", Font.PLAIN, 14));
+		label.setBounds(10, 240, 350, 20);
+		panel.add(label);
+		
 		JPanel formPanel = new JPanel();
 		formPanel.setBounds(0, 48, 430, 318);
 		formPanel.setBorder(new EmptyBorder(10,10,10,10));
@@ -79,6 +88,12 @@ public class PrenotaLibro extends Pagina {
 		formPanel.add(lbltitolo, gbc_lbltitolo);
 		
 		textField = new JTextField();
+		textField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textField.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -99,6 +114,12 @@ public class PrenotaLibro extends Pagina {
 		formPanel.add(lblAutore, gbc_lblAutore);
 		
 		textField_1 = new JTextField();
+		textField_1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textField_1.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
@@ -119,6 +140,12 @@ public class PrenotaLibro extends Pagina {
 		formPanel.add(lblCasaed, gbc_lblCasaed);
 		
 		textField_2 = new JTextField();
+		textField_2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textField_2.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
@@ -139,6 +166,12 @@ public class PrenotaLibro extends Pagina {
 		formPanel.add(lblCodISBN, gbc_lblCodISBN);
 		
 		textField_3 = new JTextField();
+		textField_3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textField_3.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
@@ -159,6 +192,12 @@ public class PrenotaLibro extends Pagina {
 		formPanel.add(lblCitta, gbc_lblCitta);
 		
 		textField_4 = new JTextField();
+		textField_4.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textField_4.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
@@ -180,8 +219,23 @@ public class PrenotaLibro extends Pagina {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
+				if (textField.getText().matches("")) {
+					textField.setBorder(new LineBorder(new Color(128,0,0),2));
+				}
+				if (textField_1.getText().matches("")) {
+					textField_1.setBorder(new LineBorder(new Color(128,0,0),2));
+				}
+				if (textField_2.getText().matches("")) {
+					textField_2.setBorder(new LineBorder(new Color(128,0,0),2));
+				}
+				if (textField_3.getText().matches("")) {
+					textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+				}
+				if (textField_4.getText().matches("")) {
+					textField_4.setBorder(new LineBorder(new Color(128,0,0),2));
+				}
 				if (textField.getText().matches("") || textField_1.getText().matches("") || textField_2.getText().matches("") || textField_3.getText().matches("") || textField_4.getText().matches("")) {
-						JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima riempire tutti i campi", "Attenzione", JOptionPane.WARNING_MESSAGE);
+						//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima riempire tutti i campi", "Attenzione", JOptionPane.WARNING_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(Home.getFrame(), "Libro prenotato correttamente", "Prenotazione Libri", JOptionPane.INFORMATION_MESSAGE);
 						textField.setText("");
@@ -189,6 +243,11 @@ public class PrenotaLibro extends Pagina {
 						textField_2.setText("");
 						textField_3.setText("");
 						textField_4.setText("");
+						textField.setBorder(UIManager.getBorder("TextField.border"));
+						textField_1.setBorder(UIManager.getBorder("TextField.border"));
+						textField_2.setBorder(UIManager.getBorder("TextField.border"));
+						textField_3.setBorder(UIManager.getBorder("TextField.border"));
+						textField_4.setBorder(UIManager.getBorder("TextField.border"));
 					}
 			}
 

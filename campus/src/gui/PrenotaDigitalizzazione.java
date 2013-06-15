@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
@@ -19,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListDataListener;
 
@@ -36,7 +39,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1008, 390);
+		panel.setBounds(0, 0, 1008, 410);
 		add(panel);
 		
 		JLabel label = new JLabel("Prenota Digitalizzazione");
@@ -49,6 +52,12 @@ public class PrenotaDigitalizzazione extends Pagina {
 		separator.setForeground(new Color(27, 50, 128));
 		separator.setBounds(0, 41, 170, 1);
 		panel.add(separator);
+		
+		JLabel label_1 = new JLabel("* Tutti i campi sono obbligatori.");
+		label_1.setForeground(new Color(128, 0, 0));
+		label_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		label_1.setBounds(10, 385, 350, 20);
+		panel.add(label_1);
 		
 		//panel.add(inviaRichiesta);
 				
@@ -281,18 +290,50 @@ public class PrenotaDigitalizzazione extends Pagina {
 		formPanel.add(inviaRichiesta, gbc_btnNewButton);
 		//formPanel.add(btnNewButton, gbc_btnNewButton);
 		
+		txtNomeDoc.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtNomeDoc.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
+		txtNumPag.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtNumPag.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
+		txtAreaDescrizione.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtAreaDescrizione.setBorder(UIManager.getBorder("TextArea.border"));
+			}
+		});
+		
 		inviaRichiesta.addMouseListener(new MouseListener(){
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
+				if (txtNomeDoc.getText().matches("")) {
+					txtNomeDoc.setBorder(new LineBorder(new Color(128,0,0),2));
+				}
+				if (txtAreaDescrizione.getText().matches("")) {
+					txtAreaDescrizione.setBorder(new LineBorder(new Color(128,0,0),2));
+				}	
+				if (txtNumPag.getText().matches("")) {
+					txtNumPag.setBorder(new LineBorder(new Color(128,0,0),2));
+				}
+				
 				if (txtNomeDoc.getText().matches("") || txtAreaDescrizione.getText().matches("") || txtNumPag.getText().matches("")) {
-						JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima riempire tutti i campi", "Attenzione", JOptionPane.WARNING_MESSAGE);
+						//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima riempire tutti i campi", "Attenzione", JOptionPane.WARNING_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(Home.getFrame(), "Digitalizzazione prenotata correttamente", "Prenotazione Digitalizzazione", JOptionPane.INFORMATION_MESSAGE);
 						txtNomeDoc.setText("");
 						txtAreaDescrizione.setText("");
 						txtNumPag.setText("");
+						txtNomeDoc.setBorder(UIManager.getBorder("TextField.border"));
+						txtAreaDescrizione.setBorder(UIManager.getBorder("TextArea.border"));
+						txtNumPag.setBorder(UIManager.getBorder("TextField.border"));
 					}
 			}
 
