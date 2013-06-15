@@ -63,7 +63,7 @@ public class Home {
 	//private final static JButton impostazioni = buttonCreator.createButton("impostazioni", 3000, 0, 110, 52, "./newimage/impostazioni.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 
 	private final static ButtonServiziEsterni buttonCreatorSE = new ButtonServiziEsterni();
-	private final static JButton servizi_esterni = buttonCreatorSE.createButton("servizi_esterni", 604, 0, 155, 52, "./newimage/servizi_esterni.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
+	private final static JButton servizi_esterni = buttonCreatorSE.createButton("servizi_esterni", 604, 0, 155, 52, "./newimage/servizi_esterni.png","./newimage/servizi_esterni_up.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
 	
 	private final static ButtonStandard buttonCreatorBarra = new ButtonStandard();
 	private final static JButton gestione_stampa = buttonCreatorBarra.createButton("gestione_stampa", 0, 2, 334, 36, "./newimage/gestione_stampa.png", false, false, true, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, Home.getAltezzaDinamica(), GroupLayout.PREFERRED_SIZE);
@@ -567,10 +567,19 @@ public class Home {
 			
 	}
 
-	protected static void pulsanteServiziEsterni() {
+	protected static void showServiziEsterni() {
+		//Home.resetMenuColors();
 		getRicercaTestuale().setText(" Cerca documenti o corsi");
 		//Home.resetMenuColors();
 		barra_servizi_esterni.setVisible(true);
+		Home.forceResizeEvent();
+	}
+	
+	protected static void hideServiziEsterni() {
+		//Home.resetMenuColors();
+		getRicercaTestuale().setText(" Cerca documenti o corsi");
+		//Home.resetMenuColors();
+		barra_servizi_esterni.setVisible(false);
 		Home.forceResizeEvent();
 	}
 
