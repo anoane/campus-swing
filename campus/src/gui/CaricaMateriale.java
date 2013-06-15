@@ -70,6 +70,7 @@ import controller.ControllerUtente;
 
 public class CaricaMateriale extends Pagina  {
 	private final static JPanel panel = new JPanel();
+	private static ButtonStandard buttonCreator = new ButtonStandard();
 	private JTextField textField;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -101,12 +102,12 @@ public class CaricaMateriale extends Pagina  {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextArea textArea_1 = new JTextArea();
-	final static JButton btnConfermaSelezione = new JButton();
+	final static JButton btnConfermaSelezione = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 	final JTextArea textArea = new JTextArea();
 	
-	final JButton btnAggiungiFacolt = new JButton();
-	final JButton button = new JButton();
-	final JButton button_1 = new JButton();
+	final static JButton btnAggiungiFacolt = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
+	final static JButton button = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
+	final static JButton button_1 = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 	static boolean isOverSelectionPanel =  false;
 	private int indexUniv = -1;
 	private int dbIndexUniv = -1;
@@ -176,8 +177,8 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("max(3dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("right:max(68dlu;default)"),
-				ColumnSpec.decode("right:max(176dlu;default)"),},
+				ColumnSpec.decode("right:max(74dlu;default)"),
+				ColumnSpec.decode("right:max(170dlu;default)"),},
 			new RowSpec[] {
 				RowSpec.decode("max(3dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),
@@ -191,7 +192,7 @@ public class CaricaMateriale extends Pagina  {
 				RowSpec.decode("max(20dlu;default)"),
 				RowSpec.decode("max(20dlu;default)"),}));
 		
-		JLabel lblNewLabel = new JLabel("File");
+		JLabel lblNewLabel = new JLabel("File *");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel, "3, 2, left, default");
 		
@@ -218,6 +219,11 @@ public class CaricaMateriale extends Pagina  {
 						fileSelezionato = true;
 						btnScegliFile.setText("..."+source.toString().substring(source.toString().length()-30));
 						btnScegliFile.setBackground(Color.GREEN);
+						btnScegliFile.setForeground(new Color(0, 0, 0));
+						//btnScegliFile.setBorder(new LineBorder(new Color(128,128,128),1));
+						//btnScegliFile.setBorder(UIManager.getBorder("Button.border"));
+						//btnScegliFile.setBorder(new EmptyBorder(0,0,0,0));
+						//btnScegliFile.setBorder(new LineBorder(new Color(50,50,50),2));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(Home.getFrame(), "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -233,19 +239,33 @@ public class CaricaMateriale extends Pagina  {
 		btnScegliFile.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(btnScegliFile, "4, 2, fill, default");
 		
-		JLabel lblNewLabel_1 = new JLabel("Titolo");
+		JLabel lblNewLabel_1 = new JLabel("Titolo *");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_1, "3, 3, left, default");
 		
 		textField = new JTextField();
+		textField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				textField.setBorder(UIManager.getBorder("TextField.border"));
+			}
+		});
+		textField.setText("");
 		textField.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_1.add(textField, "4, 3, fill, default");
 		textField.setColumns(10);
 		textField.setDocument(new JTextFieldLimit(254));
 		
-		JLabel lblNewLabel_2 = new JLabel("Descrizione");
+		JLabel lblNewLabel_2 = new JLabel("Descrizione *");
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_2, "3, 5, left, top");
+		textArea.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textArea.setBorder(UIManager.getBorder("TextArea.border"));
+			}
+		});
+		textArea.setText("");
 		
 		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
 		textArea.setLineWrap(true);
@@ -255,7 +275,7 @@ public class CaricaMateriale extends Pagina  {
 		JScrollPane scrollPane = new JScrollPane(textArea); 
 		panel_1.add(scrollPane, "4, 5, fill, fill");
 		
-		JLabel lblNewLabel_3 = new JLabel("Categoria");
+		JLabel lblNewLabel_3 = new JLabel("Categoria *");
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_3, "3, 7, left, center");
 		
@@ -264,11 +284,12 @@ public class CaricaMateriale extends Pagina  {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Appunti", "Dispense", "Esercizi", "Slide"}));
 		panel_1.add(comboBox, "4, 7, fill, center");
 		
-		JLabel lblNewLabel_4 = new JLabel("Corso di studi");
+		JLabel lblNewLabel_4 = new JLabel("Corso di studi *");
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_4, "3, 9, left, default");
 		
 		textField_2 = new JTextField();
+		textField_2.setText("");
 		textField_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_2.setEditable(false);
 		textField_2.setBackground(UIManager.getColor("TextField.backgroud"));
@@ -285,7 +306,8 @@ public class CaricaMateriale extends Pagina  {
 						scegli_fac.setVisible(true);
 					} else {
 						textField_3.requestFocus();
-						JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
+						textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+						//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			}
@@ -315,11 +337,12 @@ public class CaricaMateriale extends Pagina  {
 				  }
 		});
 		
-		JLabel lblNewLabel_5 = new JLabel("Universit\u00E0");
+		JLabel lblNewLabel_5 = new JLabel("Universit\u00E0 *");
 		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_5, "3, 8, left, default");
 		
 		textField_3 = new JTextField();
+		textField_3.setText("");
 		textField_3.setDocument(new JTextFieldLimit(254));
 		textField_3.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
@@ -361,11 +384,12 @@ public class CaricaMateriale extends Pagina  {
 		panel_1.add(textField_3, "4, 8, fill, default");
 		textField_3.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("Corso");
+		JLabel lblNewLabel_6 = new JLabel("Corso *");
 		lblNewLabel_6.setFont(new Font("Arial", Font.BOLD, 14));
 		panel_1.add(lblNewLabel_6, "3, 10, left, default");
 		
 		textField_4 = new JTextField();
+		textField_4.setText("");
 		textField_4.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_4.setEditable(false);
 		textField_4.setBackground(UIManager.getColor("TextField.backgroud"));
@@ -383,11 +407,13 @@ public class CaricaMateriale extends Pagina  {
 							scegli_corso.setVisible(true);
 						} else {
 							textField_2.requestFocus();
-							JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere il tuo corso di studi", "Attenzione", JOptionPane.WARNING_MESSAGE);
+							textField_2.setBorder(new LineBorder(new Color(128,0,0),2));
+							//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere il tuo corso di studi", "Attenzione", JOptionPane.WARNING_MESSAGE);
 						}
 					} else {
 						textField_3.requestFocus();
-						JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
+						textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+						//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			}
@@ -402,7 +428,6 @@ public class CaricaMateriale extends Pagina  {
 		textField_4.setColumns(10);
 		
 		
-		ButtonStandard buttonCreator = new ButtonStandard();
 		JButton btnCaricaMateriale = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 		//btnCaricaMateriale.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnCaricaMateriale.addActionListener(new ActionListener() {
@@ -410,31 +435,39 @@ public class CaricaMateriale extends Pagina  {
 				boolean continua = true;
 				if (!fileSelezionato) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessun file selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					btnScegliFile.setBackground(new Color(128, 0, 0));
+					btnScegliFile.setForeground(new Color(255, 255, 255));
+					
+					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessun file selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField.getText().matches("")) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessun titolo assegnato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					textField.setBorder(new LineBorder(new Color(128,0,0),2));
+					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessun titolo assegnato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textArea.getText().matches("")) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna descrizione immessa", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					textArea.setBorder(new LineBorder(new Color(128,0,0),2));
+					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna descrizione immessa", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (comboBox.getSelectedItem().toString().matches("")) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna tipologia selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna tipologia selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField_3.getText().matches("")) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna università selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna università selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField_2.getText().matches("")) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso di studi selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					textField_2.setBorder(new LineBorder(new Color(128,0,0),2));
+					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso di studi selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField_4.getText().matches("")) {
 					continua = false;
-					JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+					textField_4.setBorder(new LineBorder(new Color(128,0,0),2));
+					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (continua) {
 					ControllerDocumento.getInstance().creaDocumento(textField.getText(), textArea.getText(), target.toString(), comboBox.getSelectedItem().toString(), Home.getUtenteLoggato(), ControllerCorso.getInstance().getCorso(textField_4.getText()),ControllerFacolta.getInstance().getFacolta(dbIndexFac));
@@ -514,7 +547,7 @@ public class CaricaMateriale extends Pagina  {
 																		aggiungi_corso.setLayout(null);
 																		aggiungi_corso.setBackground(new Color(67, 136, 204));
 																		
-																		JButton btnAggiungiNuovoCorso = new JButton();
+																		JButton btnAggiungiNuovoCorso = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 																		btnAggiungiNuovoCorso.addActionListener(new ActionListener() {
 																			public void actionPerformed(ActionEvent arg0) {
 																				CaricaMateriale.reloadTuttiCorsi();
@@ -564,7 +597,7 @@ public class CaricaMateriale extends Pagina  {
 																		aggiungiListnerMouseOver(btnAggiungiNuovoCorso);
 																		aggiungiListnerMouseOver(list_3);
 																		
-																		JButton button_2 = new JButton();
+																		JButton button_2 = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 																		button_2.addActionListener(new ActionListener() {
 																			public void actionPerformed(ActionEvent e) {
 																				CaricaMateriale.reloadCorsoByFac(dbIndexFac);
@@ -588,6 +621,7 @@ public class CaricaMateriale extends Pagina  {
 																				if (list_3.getSelectedIndex() != -1) {
 																					String s = (String) list_3.getSelectedValue();
 																					textField_4.setText(s);
+																					textField_4.setBorder(UIManager.getBorder("TextField.border"));
 																					indexCorso = list_3.getSelectedIndex();
 																					dbIndexCorso = listaCorsi[indexCorso].getID();
 																					CaricaMateriale.collegaCorso(dbIndexCorso,dbIndexFac);
@@ -674,6 +708,7 @@ public class CaricaMateriale extends Pagina  {
 																				if (list.getSelectedIndex() != -1) {
 																					String s = (String) list.getSelectedValue();
 																					textField_2.setText(s);
+																					textField_2.setBorder(UIManager.getBorder("TextField.border"));
 																					indexFac = list.getSelectedIndex();
 																					dbIndexFac = listaFacoltaByUniv[indexFac].getID();
 																				}
@@ -714,7 +749,7 @@ public class CaricaMateriale extends Pagina  {
 																		scegli_univ.setBounds(1, 2, 365, 345);
 																		panel_2.add(scegli_univ);
 																		
-																		JButton btnAggiungiUniversit = new JButton();
+																		JButton btnAggiungiUniversit = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 																		btnAggiungiUniversit.addActionListener(new ActionListener() {
 																			public void actionPerformed(ActionEvent arg0) {
 																				CaricaMateriale.nascondiTutto();
@@ -756,6 +791,7 @@ public class CaricaMateriale extends Pagina  {
 																				if (list_2.getSelectedIndex() != -1) {
 																					String s = (String) list_2.getSelectedValue();
 																					textField_3.setText(s);
+																					textField_3.setBorder(UIManager.getBorder("TextField.border"));
 																					indexUniv = list_2.getSelectedIndex();
 																					dbIndexUniv = listaUniversita[indexUniv].getID();
 																				}
@@ -781,7 +817,7 @@ public class CaricaMateriale extends Pagina  {
 																		scegli_corso.setBounds(1, 2, 365, 345);
 																		panel_2.add(scegli_corso);
 																		
-																		JButton btnAggiungiCorso = new JButton();
+																		JButton btnAggiungiCorso = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 																		btnAggiungiCorso.addActionListener(new ActionListener() {
 																			public void actionPerformed(ActionEvent arg0) {
 																				CaricaMateriale.reloadTuttiCorsi();
@@ -822,6 +858,7 @@ public class CaricaMateriale extends Pagina  {
 																				if (list_1.getSelectedIndex() != -1) {
 																					String s = (String) list_1.getSelectedValue();
 																					textField_4.setText(s);
+																					textField_4.setBorder(UIManager.getBorder("TextField.border"));
 																					indexCorso = list_1.getSelectedIndex();
 																					dbIndexCorso = listaCorsi[indexCorso].getID();
 																				}
@@ -850,7 +887,8 @@ public class CaricaMateriale extends Pagina  {
 																crea_corso.setBackground(new Color(67, 136, 204));
 																
 
-																JButton btnCreaCorso = new JButton();
+																JButton btnCreaCorso = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
+																
 																btnCreaCorso.addActionListener(new ActionListener() {
 																	public void actionPerformed(ActionEvent e) {
 																		CaricaMateriale.salvaCorso(textField_1.getText(),textArea_1.getText(),dbIndexFac);
@@ -903,7 +941,7 @@ public class CaricaMateriale extends Pagina  {
 																separator_3.setBounds(10, 292, 345, 1);
 																crea_corso.add(separator_3);
 																
-																JButton btnIndietro = new JButton();
+																JButton btnIndietro = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 																btnIndietro.setText("Indietro");
 																btnIndietro.setForeground(Color.WHITE);
 																btnIndietro.setFont(new Font("Arial", Font.BOLD, 18));
@@ -1010,7 +1048,7 @@ public class CaricaMateriale extends Pagina  {
 								crea_univ.setBackground(new Color(67, 136, 204));
 								crea_univ.setLayout(null);
 								
-								JButton btnCreaUniversit = new JButton();
+								JButton btnCreaUniversit = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 								btnCreaUniversit.setText("Crea universit\u00E0");
 								btnCreaUniversit.setForeground(Color.WHITE);
 								btnCreaUniversit.setFont(new Font("Arial", Font.BOLD, 18));
@@ -1045,7 +1083,7 @@ public class CaricaMateriale extends Pagina  {
 								});
 								crea_univ.add(btnCreaUniversit);
 								
-								JButton button_3 = new JButton();
+								JButton button_3 = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 								button_3.setText("Indietro");
 								button_3.setForeground(Color.WHITE);
 								button_3.setFont(new Font("Arial", Font.BOLD, 18));
@@ -1232,6 +1270,12 @@ public class CaricaMateriale extends Pagina  {
 		//panel_2.setFocusable(true);
 		aggiungiListnerMouseOver(panel_2);
 		
+		JLabel lblNewLabel_14 = new JLabel("Tutti i campi contrassegnati da asterisco (*) sono obbligatori.");
+		lblNewLabel_14.setForeground(new Color(128, 0, 0));
+		lblNewLabel_14.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_14.setBounds(10, 405, 395, 20);
+		panel.add(lblNewLabel_14);
+		
 		/*aggiungiListnerMouseOver
 		aggiungiListnerMouseOver(
 		aggiungiListnerMouseOver
@@ -1394,13 +1438,19 @@ public class CaricaMateriale extends Pagina  {
 		panel.setBounds(0, 0, 1008, 429);
 		
 		btnScegliFile.setText("Scegli file...");
+		btnScegliFile.setForeground(new Color(0, 0, 0));
 		btnScegliFile.setBackground(new Color(240,240,240));
 		textField.setText("");
+		textField.setBorder(UIManager.getBorder("TextField.border"));
 		textField_2.setText("");
+		textField_2.setBorder(UIManager.getBorder("TextField.border"));
 		textField_3.setText("");
+		textField_3.setBorder(UIManager.getBorder("TextField.border"));
 		textField_4.setText("");
+		textField_4.setBorder(UIManager.getBorder("TextField.border"));
 		btnConfermaSelezione.setVisible(false);
 		textPane.setText("");
+		textArea.setBorder(UIManager.getBorder("TextArea.border"));
 		textField_1.setText("");
 		textField_5.setText("");
 		textField_6.setText("");
