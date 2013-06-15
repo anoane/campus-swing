@@ -142,7 +142,7 @@ public class RisultatiRicerca extends Pagina {
 	
 	public void resetPanel(String ricerca) {
 		if (is_ricerca_documento) {
-			tempRicerca = ricerca.trim();
+			tempRicerca = StringEscape.forLucene(ricerca).toLowerCase().trim();
 			panel.setBounds(0, 0, 1008, 429);
 			panel_risultati_bycorso.setVisible(false);
 			panel_risultati.setVisible(true);
@@ -182,10 +182,10 @@ public class RisultatiRicerca extends Pagina {
 			listaCorsiByFac = null;
 			label_5.setText("'"+ricerca.trim()+"'");
 			reloadUniv();
-			//adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumenti());
-			//System.out.println(ricerca.trim().toLowerCase());
 			try {
-				adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(StringEscape.forLucene(ricerca).toLowerCase().trim(), false, "all", "timestampDOWN"));
+				if (!tempRicerca.matches("")) {
+					adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(tempRicerca, false, "all", "timestampDOWN"));
+				}
 			} catch (PersistentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -196,7 +196,7 @@ public class RisultatiRicerca extends Pagina {
 			panel.revalidate();
 			panel.repaint();
 		} else {
-			tempRicerca = ricerca.trim();
+			tempRicerca = StringEscape.forLucene(ricerca).toLowerCase().trim();
 			panel.setBounds(0, 0, 1008, 429);
 			panel_risultati_bycorso.setVisible(false);
 			panel_risultati.setVisible(true);
@@ -232,7 +232,8 @@ public class RisultatiRicerca extends Pagina {
 			
 			label_6.setText("'"+ricerca.trim()+"'");
 			
-			loadRisultatiCorsi(ricerca.trim().toLowerCase());
+			loadRisultatiCorsi(tempRicerca);
+			
 			Home.forceResizeEvent();
 			panel.revalidate();
 			panel.repaint();
@@ -801,7 +802,9 @@ public class RisultatiRicerca extends Pagina {
 
 	protected void loadRisultatiCorsi(String campoRicerca) {
 		try {
-			adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca.trim().toLowerCase()));
+			if (!campoRicerca.matches("")) {
+				adjustCorsiSearch(ControllerCorso.getInstance().getListCorsoByString(campoRicerca));
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -905,7 +908,9 @@ public class RisultatiRicerca extends Pagina {
 			}
 		} else {
 			try {
-				adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(tempRicerca, fac, filtro,sorting));
+				if (!tempRicerca.matches("")) {
+					adjustDocsSearch(ControllerDocumento.getInstance().getListAllDocumentiByStringSearch(tempRicerca, fac, filtro,sorting));
+				}
 			} catch (PersistentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
