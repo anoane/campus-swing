@@ -73,7 +73,7 @@ public class DocumentoPanel extends Pagina {
 	JTextArea panel_3 = new JTextArea();
 	
 	private JPanel panel_1 = new JPanel();
-	private Suggerimenti suggerimenti;
+	//private Suggerimenti suggerimenti;
 	private JButton btnNewButton;
 	private MenuSuggerimenti menuSuggerimenti;
 	private JTextField tf_preferiti = new JTextField();
@@ -160,7 +160,7 @@ public class DocumentoPanel extends Pagina {
 		pdfDoc.setBounds(0, -48, 518, 529);
 		panel_1.add(pdfDoc);
 		pdfDoc.setBorder(null);
-
+		
 		//suggerimenti = new PannelloSuggerimenti();
 		//suggerimenti.setBounds(575, 100, 430, 400);
 		//suggerimenti.setLocation(575,100);
@@ -301,8 +301,8 @@ public class DocumentoPanel extends Pagina {
 		lblVoti.setBounds(365, 20, 50, 20);
 		lblVoti.setVisible(false);
 		panel.add(lblVoti);
-		suggerimenti = new Suggerimenti();
-		panel.add(suggerimenti);
+		//suggerimenti = new Suggerimenti();
+		//panel.add(suggerimenti);
 		
 		separator_2.setOrientation(SwingConstants.VERTICAL);
 		separator_2.setForeground(new Color(27, 50, 128));
@@ -326,14 +326,13 @@ public class DocumentoPanel extends Pagina {
 	public void setPDF(String pdfPath) {
 		pdfFile = true;
 		if (pdfPath != null && !pdfPath.equals("/")) {
-			
 			panel_1.removeAll();
-			
-			pdfDoc.doOpen(pdfPath);
 			pdfDoc.setBounds(0, -48, 518, 529);
 			panel_1.add(pdfDoc);
 			pdfDoc.setBorder(null);
-			
+			pdfDoc.revalidate();
+			pdfDoc.repaint();
+			pdfDoc.doOpen(pdfPath);
 		} else {
 			// pdfDoc.doOpen();
 		}
@@ -389,7 +388,6 @@ public class DocumentoPanel extends Pagina {
 	@Override
 	public void reload(Object o) {
 		if (o!=null) {
-			System.out.println("reload Documento: "+((DocFlag)o).getDoc().getID());
 			setEliminate(true);
 			btnTerminaModifica.setVisible(false);
 			//btnNewButton = new JButton(">");
@@ -405,11 +403,11 @@ public class DocumentoPanel extends Pagina {
 			setDocumento(((DocFlag)o).getDoc());
 			final boolean flagModifica = ((DocFlag)o).getFlag();
 			riquadrodx.setVisible(true);
-			panel.remove(suggerimenti);
-			suggerimenti = new Suggerimenti();
-			suggerimenti.setLocation(519, 100);
-			suggerimenti.load(getDocumento());
-			panel.add(suggerimenti);
+			//panel.remove(suggerimenti);
+			//suggerimenti = new Suggerimenti();
+			//suggerimenti.setLocation(519, 100);
+			//suggerimenti.load(getDocumento());
+			//panel.add(suggerimenti);
 			
 			
 			//suggerimenti.setPreferredSize(new Dimension(440, 400));
