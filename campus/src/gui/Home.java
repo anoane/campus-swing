@@ -731,6 +731,7 @@ public class Home {
 		}else{
 			documento.unsetAllPreviewer();
 		}
+		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 		
 		
 	}
