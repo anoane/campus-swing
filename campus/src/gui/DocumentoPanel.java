@@ -557,7 +557,7 @@ public class DocumentoPanel extends Pagina {
 			btnElimina.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
 					if (getEliminate()) {
-						int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler cancellare il documento?","Attenzione",0);
+						int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler cancellare il documento?","Attenzione",0,JOptionPane.WARNING_MESSAGE);
 						if(n==0){
 							setEliminate(false);
 							ControllerDocumento cd = ControllerDocumento.getInstance();

@@ -174,7 +174,7 @@ public class Home {
 		
 		// resizable
 		getFrame().setResizable(true);
-
+		getFrame().setTitle("Campus - La piattaforma di condivisione dei documenti");
 		// dimensione minima 1024x600 (600-40 perchè c'è la barra)
 		getFrame().setMinimumSize(new Dimension(MIN_DIMENSION_X, MIN_DIMENSION_Y));
 

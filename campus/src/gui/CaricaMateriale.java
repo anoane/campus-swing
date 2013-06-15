@@ -502,7 +502,7 @@ public class CaricaMateriale extends Pagina  {
 		
 		
 		
-		panel_2.setBackground(new Color(67, 136, 204));
+		panel_2.setBackground(new Color(50,91,132));
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_2.setBounds(388, 54, 367, 348);
 		panel.add(panel_2);
@@ -548,11 +548,11 @@ public class CaricaMateriale extends Pagina  {
 																		
 																		JScrollPane scrollPane_1 = new JScrollPane(list_3);
 																		scrollPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-																		scrollPane_1.setBounds(10, 31, 345, 198);
+																		scrollPane_1.setBounds(10, 20, 345, 209);
 																		aggiungi_corso.add(scrollPane_1);
 																		
 																		list_3.setForeground(Color.WHITE);
-																		list_3.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																		list_3.setFont(new Font("Arial", Font.ITALIC, 14));
 																		list_3.setBackground(new Color(67, 136, 204));
 																		list_3.addListSelectionListener(new ListSelectionListener() {
 																			public void valueChanged(ListSelectionEvent arg0) {
@@ -618,11 +618,17 @@ public class CaricaMateriale extends Pagina  {
 																		aggiungi_corso.add(btnConfermaSelezione);
 																		aggiungiListnerMouseOver(btnConfermaSelezione);
 																		
+																		JPanel panel_6 = new JPanel();
+																		panel_6.setBackground(new Color(50,91,132));
+																		panel_6.setBounds(0, 0, 365, 20);
+																		aggiungi_corso.add(panel_6);
+																		panel_6.setLayout(null);
+																		
 																		JLabel lblCorsiGiEsistenti = new JLabel("Corsi presenti nel sistema");
+																		lblCorsiGiEsistenti.setBounds(10, 0, 184, 17);
+																		panel_6.add(lblCorsiGiEsistenti);
 																		lblCorsiGiEsistenti.setForeground(Color.WHITE);
 																		lblCorsiGiEsistenti.setFont(new Font("Arial", Font.BOLD, 14));
-																		lblCorsiGiEsistenti.setBounds(10, 11, 345, 14);
-																		aggiungi_corso.add(lblCorsiGiEsistenti);
 																		
 
 																		scegli_fac.setBounds(1, 2, 365, 345);
