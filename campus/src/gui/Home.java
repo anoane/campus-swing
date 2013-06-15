@@ -707,6 +707,7 @@ public class Home {
 	
 	public static void openDocument(final Boolean altezzaDinamica, Documento doc, boolean modificaAttiva) {
 		Home.pulsantiNormali();
+		Home.unloadDocumento();
 		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 		
 		if (doc.getPath() != null && !doc.getPath().equals("/")) {
@@ -731,7 +732,7 @@ public class Home {
 		}else{
 			documento.unsetAllPreviewer();
 		}
-		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
+		//Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 		
 		
 	}
