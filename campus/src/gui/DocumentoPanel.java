@@ -408,6 +408,15 @@ public class DocumentoPanel extends Pagina {
 			setDocumento(((DocFlag)o).getDoc());
 			final boolean flagModifica = ((DocFlag)o).getFlag();
 			riquadrodx.setVisible(true);
+			
+			
+			
+
+			
+			
+			
+			
+			
 			//panel.remove(suggerimenti);
 			//suggerimenti = new Suggerimenti();
 			//suggerimenti.setLocation(519, 100);
@@ -581,16 +590,7 @@ public class DocumentoPanel extends Pagina {
 				public void mouseClicked(MouseEvent arg0) {
 					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+getDocumento().getNome()+"''?</font><br></html>","Attenzione",0);
 					if(n==0){
-						lblPreferiti.setVisible(false);
-						tf_preferiti.setDocument(new JTextFieldLimit(254));
-						tf_preferiti.setText(getDocumento().getNome());
-						tf_preferiti.setForeground(new Color(6, 121, 159));
-						tf_preferiti.setFont(new Font("Arial", Font.BOLD, 20));
-						tf_preferiti.setBounds(10, 10, 250, 28);
-						panel.add(tf_preferiti);
-						btnAttivaModifica.setVisible(false);
-						btnTerminaModifica.setVisible(true);
-						btnAnnullaModifica.setVisible(true);
+						reload(new DocFlag(getDocumento(),true));
 					}
 				}
 			});
@@ -662,8 +662,19 @@ public class DocumentoPanel extends Pagina {
 					stelle.setToolTipText("Hai già votato questo documento");
 				}
 			}
-		
-		}
+			if (flagModifica) {
+				lblPreferiti.setVisible(false);
+				tf_preferiti.setDocument(new JTextFieldLimit(254));
+				tf_preferiti.setText(getDocumento().getNome());
+				tf_preferiti.setForeground(new Color(6, 121, 159));
+				tf_preferiti.setFont(new Font("Arial", Font.BOLD, 20));
+				tf_preferiti.setBounds(10, 10, 250, 28);
+				panel.add(tf_preferiti);
+				btnAttivaModifica.setVisible(false);
+				btnTerminaModifica.setVisible(true);
+				btnAnnullaModifica.setVisible(true);
+			}
+		}		
 	}
 
 	private void setDocumento(Documento doc) {
