@@ -306,7 +306,7 @@ public class CaricaMateriale extends Pagina  {
 						scegli_fac.setVisible(true);
 					} else {
 						textField_3.requestFocus();
-						textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+						textField_3.setBorder(new LineBorder(new Color(255,0,0),2));
 						//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
 					}
 				}
@@ -407,12 +407,12 @@ public class CaricaMateriale extends Pagina  {
 							scegli_corso.setVisible(true);
 						} else {
 							textField_2.requestFocus();
-							textField_2.setBorder(new LineBorder(new Color(128,0,0),2));
+							textField_2.setBorder(new LineBorder(new Color(255,0,0),2));
 							//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere il tuo corso di studi", "Attenzione", JOptionPane.WARNING_MESSAGE);
 						}
 					} else {
 						textField_3.requestFocus();
-						textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+						textField_3.setBorder(new LineBorder(new Color(255,0,0),2));
 						//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima scegliere la tua università", "Attenzione", JOptionPane.WARNING_MESSAGE);
 					}
 				}
@@ -435,19 +435,19 @@ public class CaricaMateriale extends Pagina  {
 				boolean continua = true;
 				if (!fileSelezionato) {
 					continua = false;
-					btnScegliFile.setBackground(new Color(128, 0, 0));
+					btnScegliFile.setBackground(new Color(255, 0, 0));
 					btnScegliFile.setForeground(new Color(255, 255, 255));
 					
 					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessun file selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField.getText().matches("")) {
 					continua = false;
-					textField.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField.setBorder(new LineBorder(new Color(255,0,0),2));
 					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessun titolo assegnato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textArea.getText().matches("")) {
 					continua = false;
-					textArea.setBorder(new LineBorder(new Color(128,0,0),2));
+					textArea.setBorder(new LineBorder(new Color(255,0,0),2));
 					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna descrizione immessa", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (comboBox.getSelectedItem().toString().matches("")) {
@@ -456,17 +456,17 @@ public class CaricaMateriale extends Pagina  {
 				}
 				if (textField_3.getText().matches("")) {
 					continua = false;
-					textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField_3.setBorder(new LineBorder(new Color(255,0,0),2));
 					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna università selezionata", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField_2.getText().matches("")) {
 					continua = false;
-					textField_2.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField_2.setBorder(new LineBorder(new Color(255,0,0),2));
 					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso di studi selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (textField_4.getText().matches("")) {
 					continua = false;
-					textField_4.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField_4.setBorder(new LineBorder(new Color(255,0,0),2));
 					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna corso selezionato", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (continua) {
@@ -1271,7 +1271,7 @@ public class CaricaMateriale extends Pagina  {
 		aggiungiListnerMouseOver(panel_2);
 		
 		JLabel lblNewLabel_14 = new JLabel("* Tutti i campi sono obbligatori.");
-		lblNewLabel_14.setForeground(new Color(128, 0, 0));
+		lblNewLabel_14.setForeground(new Color(255, 0, 0));
 		lblNewLabel_14.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNewLabel_14.setBounds(10, 405, 395, 20);
 		panel.add(lblNewLabel_14);

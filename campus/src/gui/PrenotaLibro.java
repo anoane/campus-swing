@@ -59,7 +59,7 @@ public class PrenotaLibro extends Pagina {
 		panel.add(separator);
 		
 		JLabel label = new JLabel("* Tutti i campi sono obbligatori.");
-		label.setForeground(new Color(128, 0, 0));
+		label.setForeground(new Color(255, 0, 0));
 		label.setFont(new Font("Arial", Font.PLAIN, 14));
 		label.setBounds(10, 240, 350, 20);
 		panel.add(label);
@@ -220,19 +220,19 @@ public class PrenotaLibro extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				if (textField.getText().matches("")) {
-					textField.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				if (textField_1.getText().matches("")) {
-					textField_1.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField_1.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				if (textField_2.getText().matches("")) {
-					textField_2.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField_2.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				if (textField_3.getText().matches("")) {
-					textField_3.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField_3.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				if (textField_4.getText().matches("")) {
-					textField_4.setBorder(new LineBorder(new Color(128,0,0),2));
+					textField_4.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				if (textField.getText().matches("") || textField_1.getText().matches("") || textField_2.getText().matches("") || textField_3.getText().matches("") || textField_4.getText().matches("")) {
 						//JOptionPane.showMessageDialog(Home.getFrame(), "Devi prima riempire tutti i campi", "Attenzione", JOptionPane.WARNING_MESSAGE);

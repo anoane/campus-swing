@@ -54,7 +54,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		panel.add(separator);
 		
 		JLabel label_1 = new JLabel("* Tutti i campi sono obbligatori.");
-		label_1.setForeground(new Color(128, 0, 0));
+		label_1.setForeground(new Color(255, 0, 0));
 		label_1.setFont(new Font("Arial", Font.PLAIN, 14));
 		label_1.setBounds(10, 368, 350, 20);
 		panel.add(label_1);
@@ -315,13 +315,13 @@ public class PrenotaDigitalizzazione extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				if (txtNomeDoc.getText().matches("")) {
-					txtNomeDoc.setBorder(new LineBorder(new Color(128,0,0),2));
+					txtNomeDoc.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				if (txtAreaDescrizione.getText().matches("")) {
-					txtAreaDescrizione.setBorder(new LineBorder(new Color(128,0,0),2));
+					txtAreaDescrizione.setBorder(new LineBorder(new Color(255,0,0),2));
 				}	
 				if (txtNumPag.getText().matches("")) {
-					txtNumPag.setBorder(new LineBorder(new Color(128,0,0),2));
+					txtNumPag.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				
 				if (txtNomeDoc.getText().matches("") || txtAreaDescrizione.getText().matches("") || txtNumPag.getText().matches("")) {
