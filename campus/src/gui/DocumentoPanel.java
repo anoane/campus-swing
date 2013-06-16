@@ -24,6 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
+import javax.swing.text.DefaultHighlighter;
 
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
@@ -112,7 +113,7 @@ public class DocumentoPanel extends Pagina {
 
 		lblPreferiti.setForeground(new Color(6, 121, 159));
 		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 18));
-		lblPreferiti.setBounds(10, 10, 250, 25);
+		lblPreferiti.setBounds(10, 10, 511, 25);
 		panel.add(lblPreferiti);
 
 		JSeparator separator = new JSeparator();
@@ -133,22 +134,22 @@ public class DocumentoPanel extends Pagina {
 
 		ButtonStandard buttonCreator = new ButtonStandard();
 		btnAggiungiAiPreferiti = buttonCreator.createButton(
-				"Aggiungi ai preferiti", 783, 8, 195, 28, false, true);
+				"Aggiungi ai preferiti", 759, 8, 218, 28, false, true);
 		panel.add(btnAggiungiAiPreferiti);
 		btnRimuoviDaiPreferiti = buttonCreator.createButton(
-				"Rimuovi dai preferiti", 783, 8, 195, 28, false, true);
+				"Rimuovi dai preferiti", 759, 8, 218, 28, false, true);
 		panel.add(btnRimuoviDaiPreferiti);
 		btnAttivaModifica = buttonCreator.createButton(
-				"Modifica il documento", 578, 56, 195, 28, false, true);
+				"Modifica il documento", 531, 56, 218, 28, false, true);
 		panel.add(btnAttivaModifica);
 		btnTerminaModifica = buttonCreator.createButton(
-				"Termina la modifica", 578, 56, 195, 28, false, true);
+				"Termina la modifica", 531, 56, 218, 28, false, true);
 		panel.add(btnTerminaModifica);
 		btnAnnullaModifica = buttonCreator.createButton(
-				"Annulla la modifica", 578, 8, 195, 28, false, true);
+				"Annulla la modifica", 531, 8, 218, 28, false, true);
 		panel.add(btnAnnullaModifica);
 		btnElimina = buttonCreator.createButton(
-				"Elimina il documento", 783, 56, 195, 28, false, true);
+				"Elimina il documento", 759, 56, 218, 28, false, true);
 		panel.add(btnElimina);
 		
 		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
@@ -200,7 +201,7 @@ public class DocumentoPanel extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Le modifiche al documento sono irreversibili.<br>Sei sicuro di voler salvare le modifiche apportate?</font><br></html>","Attenzione",0);
 				if(n==0){
-					ControllerDocumento.getInstance().modificaDocumento(getDocumento().getID(),tf_preferiti.getText(),getDocumento().getDescrizione(),getDocumento().getPath());
+					ControllerDocumento.getInstance().modificaDocumento(getDocumento().getID(),tf_preferiti.getText(),panel_3.getText(),getDocumento().getPath());
 					reload(new DocFlag(getDocumento(),false));
 				}
 			}
@@ -244,34 +245,27 @@ public class DocumentoPanel extends Pagina {
 
 		riquadrodx = new JPanel();
 		riquadrodx.setBackground(Color.WHITE);
-		riquadrodx.setBounds(578, 100, 430, 485);
+		riquadrodx.setBounds(531, 100, 449, 485);
 		riquadrodx.setLayout(null);
 		panel.add(riquadrodx);
 		panel_3.setFont(new Font("Arial", Font.PLAIN, 14));
 
-		panel_3.setEditable(false);
-		panel_3.setLayout(null);
-		panel_3.setBorder(null);
-		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(0, 0, 400, 136);
-		panel_3.setWrapStyleWord(true);
-		panel_3.setLineWrap(true);
-		panel_3.setHighlighter(null);
-		panel_3.setEditable(false);
+		
+
 		riquadrodx.add(panel_3);
 
 		RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(Home.getUtenteLoggato());
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_4.setBackground(Color.WHITE);
-		panel_4.setBounds(0, 147, 400, 92);
+		panel_4.setBounds(0, 147, 446, 92);
 		riquadrodx.add(panel_4);
 		panel_6.setBackground(Color.WHITE);
-		panel_6.setBounds(95, 0, 305, 92);
+		panel_6.setBounds(95, 0, 351, 92);
 		
 		panel_4.add(panel_6);
 		GridBagLayout gbl_panel_6 = new GridBagLayout();
-		gbl_panel_6.columnWidths = new int[]{120, 179, 0};
+		gbl_panel_6.columnWidths = new int[]{120, 228, 0};
 		gbl_panel_6.rowHeights = new int[]{30, 30, 30, 0};
 		gbl_panel_6.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -335,17 +329,17 @@ public class DocumentoPanel extends Pagina {
 		imgUtente.setBounds(0, 0, 92, 92);
 		panel_5.add(imgUtente);
 
-		JButton btnScarica = buttonCreator.createButton("Scarica", 0, 250, 195,
+		JButton btnScarica = buttonCreator.createButton("Scarica", 0, 250, 218,
 				28, false, true);
 		riquadrodx.add(btnScarica);
 
 		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
-				205, 250, 195, 28, false, true);
+				228, 250, 218, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
 
 		JPanel panelCommenti = new JPanel();
 		panelCommenti.setBackground(Color.WHITE);
-		panelCommenti.setBounds(0, 289, 394, 196);
+		panelCommenti.setBounds(0, 289, 446, 196);
 		riquadrodx.add(panelCommenti);
 		panelCommenti.setLayout(null);
 
@@ -361,7 +355,7 @@ public class DocumentoPanel extends Pagina {
 		separator_1.setForeground(new Color(27, 50, 128));
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(0, 36, 394, 160);
+		panel_7.setBounds(0, 36, 446, 160);
 		panelCommenti.add(panel_7);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
@@ -387,14 +381,14 @@ public class DocumentoPanel extends Pagina {
 		
 		separator_2.setOrientation(SwingConstants.VERTICAL);
 		separator_2.setForeground(new Color(27, 50, 128));
-		separator_2.setBounds(671, 59, 1, 23);
+		separator_2.setBounds(643, 59, 1, 23);
 		panel.add(separator_2);
-		lblFac.setBounds(307, 59, 354, 23);
+		lblFac.setBounds(307, 59, 325, 23);
 		panel.add(lblFac);
 		lblFac.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 				lblFac.setFont(new Font("Arial", Font.PLAIN, 16));
-						lblUniversit.setBounds(682, 60, 298, 23);
+						lblUniversit.setBounds(653, 60, 325, 23);
 						panel.add(lblUniversit);
 				
 						lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -498,9 +492,18 @@ public class DocumentoPanel extends Pagina {
 			
 			
 
+			panel_3.setLayout(null);
+			panel_3.setBorder(null);
+			panel_3.setBackground(Color.WHITE);
+			panel_3.setBounds(0, 0, 446, 140);
+			panel_3.setWrapStyleWord(true);
+			panel_3.setLineWrap(true);
+			panel_3.setHighlighter(null);
+			//panel_3.setHighlighter(new DefaultHighlighter());
+			panel_3.setEditable(false);
 			
-			
-			
+			lblPreferiti.setVisible(true);
+			tf_preferiti.setVisible(false);
 			
 			
 			//panel.remove(suggerimenti);
@@ -558,20 +561,24 @@ public class DocumentoPanel extends Pagina {
 						btnRimuoviDaiPreferiti.setVisible(false);
 				}
 				if (getDocumento().getProprietario().getID()==Home.getUtenteLoggato().getID()) {
-						lblFac.setBounds(307, 59, 125, 23);
-						separator_2.setBounds(442, 59, 1, 23);
-						lblUniversit.setBounds(453, 59, 120, 23);
-						lblPreferiti.setBounds(10, 10, 250, 25);
+						lblFac.setBounds(307, 59, 214, 23);
+						//separator_2.setBounds(442, 59, 1, 23);
+						//lblUniversit.setBounds(453, 59, 120, 23);
+						separator_2.setVisible(false);
+						lblUniversit.setVisible(false);
+						lblPreferiti.setBounds(10, 10, 511, 25);
 						btnElimina.setVisible(true);
 						btnAttivaModifica.setVisible(true);
 						btnTerminaModifica.setVisible(false);
 						btnAnnullaModifica.setVisible(false);
 						
 					} else {
-						lblFac.setBounds(307, 59, 353, 23);
-						separator_2.setBounds(671, 59, 1, 23);
-						lblUniversit.setBounds(682, 59, 297, 23);
-						lblPreferiti.setBounds(10, 10, 730, 25);
+						lblFac.setBounds(307, 59, 325, 23);
+						separator_2.setVisible(true);
+						lblUniversit.setVisible(true);
+						separator_2.setBounds(643, 59, 1, 23);
+						lblUniversit.setBounds(653, 59, 325, 23);
+						lblPreferiti.setBounds(10, 10, 740, 25);
 						btnElimina.setVisible(false);
 						btnAttivaModifica.setVisible(false);
 						btnTerminaModifica.setVisible(false);
@@ -698,15 +705,23 @@ public class DocumentoPanel extends Pagina {
 			
 			if (flagModifica) {
 				lblPreferiti.setVisible(false);
+				tf_preferiti.setVisible(true);
 				tf_preferiti.setDocument(new JTextFieldLimit(254));
 				tf_preferiti.setText(getDocumento().getNome());
 				tf_preferiti.setForeground(new Color(6, 121, 159));
-				tf_preferiti.setFont(new Font("Arial", Font.BOLD, 20));
-				tf_preferiti.setBounds(10, 10, 250, 28);
+				tf_preferiti.setFont(new Font("Arial", Font.BOLD, 18));
+				tf_preferiti.setBounds(10, 10, 511, 28);
+				tf_preferiti.setBorder(new LineBorder(new Color(0,255,0),2));
 				panel.add(tf_preferiti);
 				btnAttivaModifica.setVisible(false);
 				btnTerminaModifica.setVisible(true);
 				btnAnnullaModifica.setVisible(true);
+				String tempText = panel_3.getText();
+				panel_3.setEditable(true);
+				panel_3.setBorder(new LineBorder(new Color(0,255,0),2));
+				panel_3.setDocument(new JTextFieldLimit(254));
+				panel_3.setHighlighter(new DefaultHighlighter());
+				panel_3.setText(tempText);
 			}
 		}		
 	}

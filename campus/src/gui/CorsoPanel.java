@@ -345,11 +345,11 @@ public class CorsoPanel extends Pagina {
 	public void reload(Object c) {
 		setCorso((Corso)c);
 		adjustDocs(getCorso());
+		//gui.helpers.ListenerHelper.removeListeners(nonSeguiButton);
+		//gui.helpers.ListenerHelper.removeListeners(seguiButton);
 		if(ControllerUtente.getInstance().containCorsoSeguito(Home.getUtenteLoggato(), getCorso())) {
 			seguiButton.setVisible(false);
 			nonSeguiButton.setVisible(true);
-			//gui.helpers.ListenerHelper.removeListeners(nonSeguiButton);
-			//gui.helpers.ListenerHelper.removeListeners(seguiButton);
 		}
 		else{
 			seguiButton.setVisible(true);
