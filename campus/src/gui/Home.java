@@ -142,6 +142,7 @@ public class Home {
 	public Home() {
 		try {
 	    	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    	
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

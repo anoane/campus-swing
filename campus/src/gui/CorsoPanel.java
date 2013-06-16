@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 import org.orm.PersistentException;
@@ -335,7 +336,7 @@ public class CorsoPanel extends Pagina {
 			gui.helpers.ListenerHelper.removeListeners(seguiButton);
 			nonSeguiButton.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler rimuovere questo corso dai Corsi Seguiti?","Attenzione",0);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler rimuovere ''"+corso.getNome()+"'' dai corsi seguiti?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso recuperare il corso utilizzando la funzione ''Cerca documenti o corsi''</em></font><br></html>","Attenzione",0);
 					if(n==0){
 						ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), corso);
 						Home.openCorso(false, corso);

@@ -72,7 +72,7 @@ public class CorsiSeguiti extends Pagina {
 			contenuto_pagina.add(corsi);
 			corsi.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler rimuovere questo corso dai Corsi Seguiti?","Attenzione",0);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler rimuovere ''"+c.getNome()+"'' dai corsi seguiti?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso recuperare il corso utilizzando la funzione ''Cerca documenti o corsi''</em></font><br></html>","Attenzione",0);
 					if(n==0){
 					course.remove(c);
 					ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), c);

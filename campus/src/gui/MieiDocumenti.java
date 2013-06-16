@@ -221,7 +221,7 @@ public class MieiDocumenti extends Pagina {
 			
 			documento.getRimuovi().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler cancellare il documento?","Attenzione",0,JOptionPane.WARNING_MESSAGE);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>L'eliminazione è irreversibile! Sei sicuro di voler eliminare definitivamente ''"+d.getNome()+"'' dal sistema?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso ricaricare il documento utilizzando la funzione ''Carica documento''</em></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
 					if(n==0){
 						docs.remove(d);
 						ControllerDocumento cd = ControllerDocumento.getInstance();
@@ -232,7 +232,7 @@ public class MieiDocumenti extends Pagina {
 			});		
 			documento.getModifica().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler modificare il documento?","Attenzione",0);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+d.getNome()+"''?</font><br></html>","Attenzione",0);
 					if(n==0){
 						Home.openDocument(true,d,true);
 					}

@@ -218,7 +218,7 @@ public class Preferiti extends Pagina {
 			
 			preferito.getRimuoviPref().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler rimuovere questo documento dai Preferiti?","Attenzione",0);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler rimuovere ''"+d.getNome()+"'' dai preferiti?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso recuperare il documento utilizzando la funzione ''Cerca documenti o corsi''</em></font><br></html>","Attenzione",0);
 					if(n==0){
 					docs.remove(d);
 					ControllerUtente u = ControllerUtente.getInstance();
