@@ -134,10 +134,10 @@ public class DocumentoPanel extends Pagina {
 
 		ButtonStandard buttonCreator = new ButtonStandard();
 		btnAggiungiAiPreferiti = buttonCreator.createButton(
-				"Aggiungi ai preferiti", 759, 8, 218, 28, false, true);
+				"Aggiungi ai preferiti", 759, 10, 218, 28, false, true);
 		panel.add(btnAggiungiAiPreferiti);
 		btnRimuoviDaiPreferiti = buttonCreator.createButton(
-				"Rimuovi dai preferiti", 759, 8, 218, 28, false, true);
+				"Rimuovi dai preferiti", 759, 10, 218, 28, false, true);
 		panel.add(btnRimuoviDaiPreferiti);
 		btnAttivaModifica = buttonCreator.createButton(
 				"Modifica il documento", 531, 56, 218, 28, false, true);
@@ -146,7 +146,7 @@ public class DocumentoPanel extends Pagina {
 				"Termina la modifica", 531, 56, 218, 28, false, true);
 		panel.add(btnTerminaModifica);
 		btnAnnullaModifica = buttonCreator.createButton(
-				"Annulla la modifica", 531, 8, 218, 28, false, true);
+				"Annulla la modifica", 531, 10, 218, 28, false, true);
 		panel.add(btnAnnullaModifica);
 		btnElimina = buttonCreator.createButton(
 				"Elimina il documento", 759, 56, 218, 28, false, true);
