@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -41,6 +42,7 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.Calendar;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -59,6 +61,11 @@ public class DocumentoPanel extends Pagina {
 	private JButton btnTerminaModifica;
 	private JButton btnAnnullaModifica;
 	private JButton btnElimina;
+	private JLabel lblNewLabel_7 = new JLabel("txtFac");
+	private JLabel lblNewLabel_5 = new JLabel("txtEta");
+	private JLabel lblNewLabel_6 = new JLabel("txtUniv");
+	private JLabel imgUtente = new JLabel("");
+	
 	
 	JLabel lblPreferiti = new JLabel();
 	JLabel lbltipo;
@@ -67,7 +74,7 @@ public class DocumentoPanel extends Pagina {
 
 	// Panel contenente il colore di riempimento delle stelle
 	private JPanel colore;
-	JLabel lblNewLabel_1 = new JLabel();
+	JLabel lblFac = new JLabel();
 	JLabel lblNewLabel = new JLabel();
 	JLabel lblUniversit = new JLabel();
 	JLabel lblVoti = new JLabel();
@@ -107,11 +114,6 @@ public class DocumentoPanel extends Pagina {
 		lblPreferiti.setFont(new Font("Arial", Font.BOLD, 18));
 		lblPreferiti.setBounds(10, 10, 250, 25);
 		panel.add(lblPreferiti);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
-
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(307, 59, 353, 23);
-		panel.add(lblNewLabel_1);
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(27, 50, 128));
@@ -177,10 +179,6 @@ public class DocumentoPanel extends Pagina {
 		lbltipo.setBounds(84, 59, 57, 23);
 		panel.add(lbltipo);
 
-		lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblUniversit.setBounds(682, 59, 297, 23);
-		panel.add(lblUniversit);
-
 		riquadrodx = new JPanel();
 		riquadrodx.setBackground(Color.WHITE);
 		riquadrodx.setBounds(578, 100, 430, 485);
@@ -190,9 +188,9 @@ public class DocumentoPanel extends Pagina {
 
 		panel_3.setEditable(false);
 		panel_3.setLayout(null);
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_3.setBorder(null);
 		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(0, 0, 400, 90);
+		panel_3.setBounds(0, 0, 400, 136);
 		panel_3.setWrapStyleWord(true);
 		panel_3.setLineWrap(true);
 		panel_3.setHighlighter(null);
@@ -203,76 +201,88 @@ public class DocumentoPanel extends Pagina {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_4.setBackground(Color.WHITE);
-		panel_4.setBounds(0, 101, 400, 92);
+		panel_4.setBounds(0, 147, 400, 92);
 		riquadrodx.add(panel_4);
 		panel_6.setBackground(Color.WHITE);
 		panel_6.setBounds(95, 0, 305, 92);
 		
 		panel_4.add(panel_6);
 		GridBagLayout gbl_panel_6 = new GridBagLayout();
-		gbl_panel_6.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_6.columnWidths = new int[]{120, 179, 0};
 		gbl_panel_6.rowHeights = new int[]{30, 30, 30, 0};
 		gbl_panel_6.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_6.setLayout(gbl_panel_6);
 		
-		JLabel lblNewLabel_2 = new JLabel("Et\u00E0");
+		JLabel lblNewLabel_2 = new JLabel("  Et\u00E0");
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 0;
 		panel_6.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
 		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+		gbc_lblNewLabel_5.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_5.gridx = 1;
 		gbc_lblNewLabel_5.gridy = 0;
 		panel_6.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		JLabel lblNewLabel_3 = new JLabel("Universit\u00E0");
+		JLabel lblNewLabel_3 = new JLabel("  Universit\u00E0");
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 0;
 		gbc_lblNewLabel_3.gridy = 1;
 		panel_6.add(lblNewLabel_3, gbc_lblNewLabel_3);
-		
-		JLabel lblNewLabel_6 = new JLabel("New label");
 		lblNewLabel_6.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_6.gridx = 1;
 		gbc_lblNewLabel_6.gridy = 1;
 		panel_6.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
-		JLabel lblNewLabel_4 = new JLabel("Corso di studi");
+		JLabel lblNewLabel_4 = new JLabel("  Corso di studi");
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_4.gridx = 0;
 		gbc_lblNewLabel_4.gridy = 2;
 		panel_6.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
-		JLabel lblNewLabel_7 = new JLabel("New label");
 		lblNewLabel_7.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_7.gridx = 1;
 		gbc_lblNewLabel_7.gridy = 2;
 		panel_6.add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.WHITE);
+		panel_5.setBounds(0, 0, 97, 92);
+		panel_4.add(panel_5);
+		panel_5.setLayout(null);
+		
+		imgUtente.setBounds(0, 0, 92, 92);
+		panel_5.add(imgUtente);
 
-		JButton btnScarica = buttonCreator.createButton("Scarica", 0, 251, 195,
+		JButton btnScarica = buttonCreator.createButton("Scarica", 0, 250, 195,
 				28, false, true);
 		riquadrodx.add(btnScarica);
 
 		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
-				205, 251, 195, 28, false, true);
+				205, 250, 195, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
 
 		JPanel panelCommenti = new JPanel();
-		panelCommenti.setBounds(0, 300, 394, 180);
+		panelCommenti.setBackground(Color.WHITE);
+		panelCommenti.setBounds(0, 289, 394, 196);
 		riquadrodx.add(panelCommenti);
 		panelCommenti.setLayout(null);
 
@@ -286,6 +296,10 @@ public class DocumentoPanel extends Pagina {
 		separator_1.setBounds(0, 25, 170, 1);
 		panelCommenti.add(separator_1);
 		separator_1.setForeground(new Color(27, 50, 128));
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBounds(0, 36, 394, 160);
+		panelCommenti.add(panel_7);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
 		stelle.setLayout(null);
@@ -312,6 +326,15 @@ public class DocumentoPanel extends Pagina {
 		separator_2.setForeground(new Color(27, 50, 128));
 		separator_2.setBounds(671, 59, 1, 23);
 		panel.add(separator_2);
+		lblFac.setBounds(307, 59, 354, 23);
+		panel.add(lblFac);
+		lblFac.setHorizontalAlignment(SwingConstants.TRAILING);
+		
+				lblFac.setFont(new Font("Arial", Font.PLAIN, 16));
+						lblUniversit.setBounds(682, 60, 298, 23);
+						panel.add(lblUniversit);
+				
+						lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
 		reload(d);
 	}
 	
@@ -472,9 +495,9 @@ public class DocumentoPanel extends Pagina {
 						btnRimuoviDaiPreferiti.setVisible(false);
 				}
 				if (getDocumento().getProprietario().getID()==Home.getUtenteLoggato().getID()) {
-						lblNewLabel_1.setBounds(307, 59, 125, 23);
+						lblFac.setBounds(307, 59, 125, 23);
 						separator_2.setBounds(442, 59, 1, 23);
-						lblUniversit.setBounds(453, 59, 125, 23);
+						lblUniversit.setBounds(453, 59, 120, 23);
 						lblPreferiti.setBounds(10, 10, 250, 25);
 						btnElimina.setVisible(true);
 						btnAttivaModifica.setVisible(true);
@@ -482,7 +505,7 @@ public class DocumentoPanel extends Pagina {
 						btnAnnullaModifica.setVisible(false);
 						
 					} else {
-						lblNewLabel_1.setBounds(307, 59, 353, 23);
+						lblFac.setBounds(307, 59, 353, 23);
 						separator_2.setBounds(671, 59, 1, 23);
 						lblUniversit.setBounds(682, 59, 297, 23);
 						lblPreferiti.setBounds(10, 10, 730, 25);
@@ -516,7 +539,7 @@ public class DocumentoPanel extends Pagina {
 			final int backup_colore = (int) (stelle.getWidth() * contrVoto
 					.calcolaVoto(getDocumento()));
 			colore.setSize(backup_colore, 30);
-			lblNewLabel_1.setText(getDocumento().getCorso().getNome());
+			lblFac.setText(getDocumento().getCorso().getNome());
 			switch (getDocumento().getDiscriminator()) {
 			case "Appunti":
 				lblNewLabel.setText("Appunti");
@@ -662,6 +685,15 @@ public class DocumentoPanel extends Pagina {
 					stelle.setToolTipText("Hai già votato questo documento");
 				}
 			}
+			Calendar rightNow = Calendar.getInstance();
+			Calendar dataNascita = Calendar.getInstance();
+			dataNascita.setTime(getDocumento().getProprietario().getDatadinascita());
+			lblNewLabel_5.setText(rightNow.get(Calendar.YEAR)-dataNascita.get(Calendar.YEAR)+"");
+			lblNewLabel_6.setText(getDocumento().getProprietario().getFacolta().getUniversita().getNome());
+			lblNewLabel_7.setText(getDocumento().getProprietario().getFacolta().getNome());
+			Image resized = new ImageIcon("."+getDocumento().getProprietario().getImmagine()).getImage().getScaledInstance(92, 92,  java.awt.Image.SCALE_SMOOTH);  
+			imgUtente.setIcon(new ImageIcon(resized));
+			
 			if (flagModifica) {
 				lblPreferiti.setVisible(false);
 				tf_preferiti.setDocument(new JTextFieldLimit(254));
