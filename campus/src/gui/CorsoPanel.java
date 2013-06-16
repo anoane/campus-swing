@@ -58,7 +58,7 @@ public class CorsoPanel extends Pagina {
 	JTextPane descrizione = new JTextPane();
 	ArrayList<String> univ = new ArrayList<String>();
 	JComboBox comboBox = new JComboBox();
-
+	private Corso nowCorso = null;
 	
 	/**
 	 * Create the panel.
@@ -291,6 +291,22 @@ public class CorsoPanel extends Pagina {
 		separator_4.setVisible(false);
 		separator_5.setVisible(false);
 
+		seguiButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0){
+				ControllerUtente.getInstance().aggiungiCorsoSeguito(Home.getUtenteLoggato(), getCorso());
+				Home.openCorso(false, getCorso());
+			}
+		});
+		nonSeguiButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0){
+				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler rimuovere ''"+getCorso().getNome()+"'' dai corsi seguiti?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso recuperare il corso utilizzando la funzione ''Cerca documenti o corsi''</em></font><br></html>","Attenzione",0);
+				if(n==0){
+					ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), getCorso());
+					Home.openCorso(false, getCorso());
+				}
+			}
+		});
+		
 	}
 	
 	public void addDocumenti(Corso corso){
@@ -327,55 +343,48 @@ public class CorsoPanel extends Pagina {
 	
 	@Override
 	public void reload(Object c) {
-		final Corso corso = (Corso)c;
-		adjustDocs(corso);
-		if(ControllerUtente.getInstance().containCorsoSeguito(Home.getUtenteLoggato(), corso)) {
+		setCorso((Corso)c);
+		adjustDocs(getCorso());
+		if(ControllerUtente.getInstance().containCorsoSeguito(Home.getUtenteLoggato(), getCorso())) {
 			seguiButton.setVisible(false);
 			nonSeguiButton.setVisible(true);
-			gui.helpers.ListenerHelper.removeListeners(nonSeguiButton);
-			gui.helpers.ListenerHelper.removeListeners(seguiButton);
-			nonSeguiButton.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0){
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler rimuovere ''"+corso.getNome()+"'' dai corsi seguiti?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso recuperare il corso utilizzando la funzione ''Cerca documenti o corsi''</em></font><br></html>","Attenzione",0);
-					if(n==0){
-						ControllerUtente.getInstance().rimuoviCorsoSeguito(Home.getUtenteLoggato(), corso);
-						Home.openCorso(false, corso);
-					}
-				}
-			});
+			//gui.helpers.ListenerHelper.removeListeners(nonSeguiButton);
+			//gui.helpers.ListenerHelper.removeListeners(seguiButton);
 		}
 		else{
 			seguiButton.setVisible(true);
 			nonSeguiButton.setVisible(false);
-			seguiButton.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0){
-					ControllerUtente.getInstance().aggiungiCorsoSeguito(Home.getUtenteLoggato(), corso);
-					Home.openCorso(false, corso);
-				}
-			});
 		}
-		labelName.setText(corso.getNome());
-		descrizione.setText(corso.getDescrizione());
-		for(int i=0; i< corso.facolta.size(); ++i)
-			univ.add(i, corso.facolta.toArray()[i].getNome()); 
+		labelName.setText(getCorso().getNome());
+		descrizione.setText(getCorso().getDescrizione());
+		for(int i=0; i< getCorso().facolta.size(); ++i)
+			univ.add(i, getCorso().facolta.toArray()[i].getNome()); 
 		
 		DefaultComboBoxModel newModel = new DefaultComboBoxModel(univ.toArray());
 		comboBox.setModel(newModel);
-		addDocumenti(corso);
+		addDocumenti(getCorso());
 		
-		if (corso != null) {
-			if (!corso.facolta.isEmpty()) {
-				for(int i=0; i<corso.facolta.size(); ++i){
+		if (getCorso() != null) {
+			if (!getCorso().facolta.isEmpty()) {
+				for(int i=0; i<getCorso().facolta.size(); ++i){
 					if(i == 0){
-						facolta.setText(corso.facolta.toArray()[0].getNome());
+						facolta.setText(getCorso().facolta.toArray()[0].getNome());
 						++i;
 					}
-					if (i<corso.facolta.size()) {
-						facolta.setText(facolta.getText()+" , "+corso.facolta.toArray()[i].getNome());
+					if (i<getCorso().facolta.size()) {
+						facolta.setText(facolta.getText()+" , "+getCorso().facolta.toArray()[i].getNome());
 					}
 				}
 			}
 		}
+	}
+	
+	private void setCorso(Corso corso) {
+		nowCorso = corso;
+	}
+
+	private Corso getCorso() {
+		return nowCorso;
 	}
 	
 	public int getAltezzaPagina(){

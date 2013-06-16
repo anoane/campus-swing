@@ -151,6 +151,69 @@ public class DocumentoPanel extends Pagina {
 				"Elimina il documento", 783, 56, 195, 28, false, true);
 		panel.add(btnElimina);
 		
+		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
+				// Home.getPagina("preferiti");
+				btnAggiungiAiPreferiti.setVisible(false);
+				btnRimuoviDaiPreferiti.setVisible(true);
+				validate();
+				repaint();
+			}
+		});
+		btnRimuoviDaiPreferiti.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler rimuovere ''"+getDocumento().getNome()+"'' dai preferiti?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso recuperare il documento utilizzando la funzione ''Cerca documenti o corsi''</em></font><br></html>","Attenzione",0);
+				if(n==0){
+					ControllerUtente u = ControllerUtente.getInstance();
+					u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
+					btnAggiungiAiPreferiti.setVisible(true);
+					btnRimuoviDaiPreferiti.setVisible(false);
+					validate();
+					repaint();
+				}
+			}
+		});
+
+		btnElimina.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				if (getEliminate()) {
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>L'eliminazione è irreversibile! Sei sicuro di voler eliminare definitivamente ''"+getDocumento().getNome()+"'' dal sistema?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso ricaricare il documento utilizzando la funzione ''Carica documento''</em></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
+					if(n==0){
+						setEliminate(false);
+						ControllerDocumento cd = ControllerDocumento.getInstance();
+						cd.removeDocumento(getDocumento());
+						Home.getPagina("miei_documenti");
+					}
+				}
+			}
+		});
+		btnAttivaModifica.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+getDocumento().getNome()+"''?</font><br></html>","Attenzione",0);
+				if(n==0){
+					reload(new DocFlag(getDocumento(),true));
+				}
+			}
+		});
+		btnTerminaModifica.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Le modifiche al documento sono irreversibili.<br>Sei sicuro di voler salvare le modifiche apportate?</font><br></html>","Attenzione",0);
+				if(n==0){
+					ControllerDocumento.getInstance().modificaDocumento(getDocumento().getID(),tf_preferiti.getText(),getDocumento().getDescrizione(),getDocumento().getPath());
+					reload(new DocFlag(getDocumento(),false));
+				}
+			}
+		});
+		btnAnnullaModifica.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler annullare le modifiche apportate?<br>Non verrà apportata nessuna modifica al documento.</font><br></html>","Attenzione",0);
+				if(n==0){
+					reload(new DocFlag(getDocumento(),false));
+				}
+			}
+		});
+		
 		JPanel doc = new JPanel();
 		doc.setBounds(0, 100, 521, 484);
 		panel.add(doc);
@@ -566,74 +629,13 @@ public class DocumentoPanel extends Pagina {
 			}
 			lblUniversit.setText(getDocumento().getFacolta().getNome());
 			panel_3.setText(getDocumento().getDescrizione());
-			gui.helpers.ListenerHelper.removeListeners(btnAggiungiAiPreferiti);
-			gui.helpers.ListenerHelper.removeListeners(btnRimuoviDaiPreferiti);
-			gui.helpers.ListenerHelper.removeListeners(btnElimina);
-			gui.helpers.ListenerHelper.removeListeners(btnAttivaModifica);
-			gui.helpers.ListenerHelper.removeListeners(btnTerminaModifica);
-			gui.helpers.ListenerHelper.removeListeners(btnAnnullaModifica);
-			btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
-					ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
-					// Home.getPagina("preferiti");
-					btnAggiungiAiPreferiti.setVisible(false);
-					btnRimuoviDaiPreferiti.setVisible(true);
-					validate();
-					repaint();
-				}
-			});
-			btnRimuoviDaiPreferiti.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler rimuovere ''"+getDocumento().getNome()+"'' dai preferiti?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso recuperare il documento utilizzando la funzione ''Cerca documenti o corsi''</em></font><br></html>","Attenzione",0);
-					if(n==0){
-						ControllerUtente u = ControllerUtente.getInstance();
-						u.rimuoviDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
-						btnAggiungiAiPreferiti.setVisible(true);
-						btnRimuoviDaiPreferiti.setVisible(false);
-						validate();
-						repaint();
-					}
-				}
-			});
-
-			btnElimina.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
-					if (getEliminate()) {
-						int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>L'eliminazione è irreversibile! Sei sicuro di voler eliminare definitivamente ''"+getDocumento().getNome()+"'' dal sistema?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso ricaricare il documento utilizzando la funzione ''Carica documento''</em></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
-						if(n==0){
-							setEliminate(false);
-							ControllerDocumento cd = ControllerDocumento.getInstance();
-							cd.removeDocumento(getDocumento());
-							Home.getPagina("miei_documenti");
-						}
-					}
-				}
-			});
-			btnAttivaModifica.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+getDocumento().getNome()+"''?</font><br></html>","Attenzione",0);
-					if(n==0){
-						reload(new DocFlag(getDocumento(),true));
-					}
-				}
-			});
-			btnTerminaModifica.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Le modifiche al documento sono irreversibili.<br>Sei sicuro di voler salvare le modifiche apportate?</font><br></html>","Attenzione",0);
-					if(n==0){
-						ControllerDocumento.getInstance().modificaDocumento(getDocumento().getID(),tf_preferiti.getText(),getDocumento().getDescrizione(),getDocumento().getPath());
-						reload(new DocFlag(getDocumento(),false));
-					}
-				}
-			});
-			btnAnnullaModifica.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent arg0) {
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler annullare le modifiche apportate?<br>Non verrà apportata nessuna modifica al documento.</font><br></html>","Attenzione",0);
-					if(n==0){
-						reload(new DocFlag(getDocumento(),false));
-					}
-				}
-			});
+			//gui.helpers.ListenerHelper.removeListeners(btnAggiungiAiPreferiti);
+			//gui.helpers.ListenerHelper.removeListeners(btnRimuoviDaiPreferiti);
+			//gui.helpers.ListenerHelper.removeListeners(btnElimina);
+			//gui.helpers.ListenerHelper.removeListeners(btnAttivaModifica);
+			//gui.helpers.ListenerHelper.removeListeners(btnTerminaModifica);
+			//gui.helpers.ListenerHelper.removeListeners(btnAnnullaModifica);
+			
 			lblVoti.setText(Integer.toString(getDocumento().votos.size()));
 
 			boolean giaVotato = ControllerDocumento.getInstance().controlloVotato(
