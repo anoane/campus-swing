@@ -568,7 +568,7 @@ public class RisultatiRicerca extends Pagina {
 													scegli_univ.setBackground(Color.WHITE);
 													
 															list_2.setForeground(Color.DARK_GRAY);
-															list_2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+															list_2.setFont(new Font("Arial", Font.PLAIN, 15));
 															list_2.setBackground(Color.WHITE);
 															
 																	list_2.addListSelectionListener(new ListSelectionListener() {
@@ -594,9 +594,9 @@ public class RisultatiRicerca extends Pagina {
 																			separator_1.setBounds(10, 28, 290, 1);
 																			
 																					scegli_univ.add(separator_1);
-																					lblUniversit.setFont(new Font("Arial", Font.BOLD, 14));
+																					lblUniversit.setFont(new Font("Arial", Font.BOLD, 16));
 																					lblUniversit.setForeground(Home.BLUE_BUTTON_PRESSED);
-																					lblUniversit.setBounds(10, 11, 83, 14);
+																					lblUniversit.setBounds(10, 11, 91, 14);
 																					
 																							scegli_univ.add(lblUniversit);
 																							scegli_fac.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -619,7 +619,7 @@ public class RisultatiRicerca extends Pagina {
 																									
 																											list.setForeground(Color.DARK_GRAY);
 																											list.setBackground(Color.WHITE);
-																											list.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																											list.setFont(new Font("Arial", Font.PLAIN, 15));
 																											
 																													JScrollPane pane_list = new JScrollPane(list);
 																													pane_list.setBounds(10, 40, 290, 130);
@@ -632,8 +632,8 @@ public class RisultatiRicerca extends Pagina {
 																																	aggiungiListnerMouseOver(scegli_fac);
 																																	aggiungiListnerMouseOver(list);
 																																	lblFacolt.setForeground(Home.BLUE_BUTTON_PRESSED);
-																																	lblFacolt.setFont(new Font("Arial", Font.BOLD, 14));
-																																	lblFacolt.setBounds(10, 11, 121, 14);
+																																	lblFacolt.setFont(new Font("Arial", Font.BOLD, 16));
+																																	lblFacolt.setBounds(10, 11, 133, 14);
 																																	
 																																			scegli_fac.add(lblFacolt);
 																																			separator_2.setForeground(Home.BLUE_BUTTON_PRESSED);
@@ -648,7 +648,7 @@ public class RisultatiRicerca extends Pagina {
 																																							scegli_corso.setBackground(Color.WHITE);
 																																							
 																																									list_1.setForeground(Color.DARK_GRAY);
-																																									list_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+																																									list_1.setFont(new Font("Arial", Font.PLAIN, 15));
 																																									list_1.setBackground(Color.WHITE);
 																																									list_1.addListSelectionListener(new ListSelectionListener() {
 																																										public void valueChanged(ListSelectionEvent arg0) {
@@ -671,8 +671,8 @@ public class RisultatiRicerca extends Pagina {
 																																															aggiungiListnerMouseOver(scegli_corso);
 																																															aggiungiListnerMouseOver(list_1);
 																																															lblCorso.setForeground(Home.BLUE_BUTTON_PRESSED);
-																																															lblCorso.setFont(new Font("Arial", Font.BOLD, 14));
-																																															lblCorso.setBounds(10, 11, 83, 14);
+																																															lblCorso.setFont(new Font("Arial", Font.BOLD, 16));
+																																															lblCorso.setBounds(10, 11, 94, 14);
 																																															
 																																																	scegli_corso.add(lblCorso);
 																																																	separator_3.setForeground(Home.BLUE_BUTTON_PRESSED);

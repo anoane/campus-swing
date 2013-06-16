@@ -139,6 +139,7 @@ public class ZebraJListBlue
             rowColors[0].getBlue( ), null );
         final float[] selHSB  = java.awt.Color.RGBtoHSB(
             sel.getRed( ), sel.getGreen( ), sel.getBlue( ), null );
-        rowColors[1] = new Color(102,152,202) ;
+        //rowColors[1] = new Color(102,152,202) ;
+        rowColors[1] = new Color(0x3a,0x77,0xb3) ;
     }
 }
