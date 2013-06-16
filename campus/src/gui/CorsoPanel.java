@@ -331,6 +331,8 @@ public class CorsoPanel extends Pagina {
 		if(ControllerUtente.getInstance().containCorsoSeguito(Home.getUtenteLoggato(), corso)) {
 			seguiButton.setVisible(false);
 			nonSeguiButton.setVisible(true);
+			gui.helpers.ListenerHelper.removeListeners(nonSeguiButton);
+			gui.helpers.ListenerHelper.removeListeners(seguiButton);
 			nonSeguiButton.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
 					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler rimuovere questo corso dai Corsi Seguiti?","Attenzione",0);

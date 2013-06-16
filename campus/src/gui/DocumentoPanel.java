@@ -528,6 +528,11 @@ public class DocumentoPanel extends Pagina {
 			}
 			lblUniversit.setText(getDocumento().getFacolta().getNome());
 			panel_3.setText(getDocumento().getDescrizione());
+			gui.helpers.ListenerHelper.removeListeners(btnAggiungiAiPreferiti);
+			gui.helpers.ListenerHelper.removeListeners(btnRimuoviDaiPreferiti);
+			gui.helpers.ListenerHelper.removeListeners(btnElimina);
+			gui.helpers.ListenerHelper.removeListeners(btnAttivaModifica);
+			gui.helpers.ListenerHelper.removeListeners(btnTerminaModifica);
 			btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
 					ControllerPreferiti.getInstance().aggiungiDocumentoPreferito(Home.getUtenteLoggato(), getDocumento());
@@ -631,6 +636,7 @@ public class DocumentoPanel extends Pagina {
 				if (!giaVotato) {
 					stelle.getComponent(i).setCursor(
 							Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+					gui.helpers.ListenerHelper.removeListeners(stelle.getComponent(i));
 					stelle.getComponent(i).addMouseListener(m);
 				} else {
 					stelle.setToolTipText("Hai già votato questo documento");
