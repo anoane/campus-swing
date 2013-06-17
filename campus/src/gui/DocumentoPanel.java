@@ -47,6 +47,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.Calendar;
 import java.util.Map;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -95,6 +96,8 @@ public class DocumentoPanel extends Pagina {
 	
 	private Documento nowDocumento = null;
 	private final JPanel panel_6 = new JPanel();
+	private final JScrollPane scrollPane = new JScrollPane();
+	private JTextArea txtScriviUnCommento;
 	
 	public void setEliminate(boolean b) {
 		canEliminate = b;
@@ -378,7 +381,7 @@ public class DocumentoPanel extends Pagina {
 
 		JPanel panelCommenti = new JPanel();
 		panelCommenti.setBackground(Color.WHITE);
-		panelCommenti.setBounds(0, 289, 446, 196);
+		panelCommenti.setBounds(0, 289, 446, 195);
 		riquadrodx.add(panelCommenti);
 		panelCommenti.setLayout(null);
 
@@ -394,8 +397,43 @@ public class DocumentoPanel extends Pagina {
 		separator_1.setForeground(new Color(27, 50, 128));
 		
 		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(Color.WHITE);
 		panel_7.setBounds(0, 36, 446, 160);
 		panelCommenti.add(panel_7);
+		panel_7.setLayout(null);
+		scrollPane.setBounds(0, 0, 446, 104);
+		
+		panel_7.add(scrollPane);
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBounds(0, 105, 446, 54);
+		panel_7.add(panel_8);
+		panel_8.setLayout(null);
+		
+		JLabel imgMia = new JLabel("");
+		imgMia.setBounds(4, 4, 46, 46);
+		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(46, 46,  java.awt.Image.SCALE_SMOOTH);  
+		imgMia.setIcon(new ImageIcon(resized));
+		
+		panel_8.add(imgMia);
+		txtScriviUnCommento = new JTextArea();
+		txtScriviUnCommento.setDocument(new JTextFieldLimit(254));
+		JScrollPane scrollPane_1 = new JScrollPane(txtScriviUnCommento);
+		scrollPane_1.setBounds(60, 4, 311, 36);
+		scrollPane_1.setBorder(new EmptyBorder(0,0,0,0));
+		panel_8.add(scrollPane_1);
+		
+		txtScriviUnCommento.setText("Scrivi un commento...");
+		txtScriviUnCommento.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtScriviUnCommento.setBounds(60, 4, 376, 30);
+		//panel_8.add(txtScriviUnCommento);
+		txtScriviUnCommento.setWrapStyleWord(true);
+		txtScriviUnCommento.setLineWrap(true);
+		txtScriviUnCommento.setColumns(10);
+		
+		JButton btnInviaCommento = new JButton("");
+		btnInviaCommento.setBounds(381, 4, 55, 23);
+		panel_8.add(btnInviaCommento);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
 		stelle.setLayout(null);
