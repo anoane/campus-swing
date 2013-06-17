@@ -681,7 +681,7 @@ public class DocumentoPanel extends Pagina {
 						ControllerDocumento.getInstance().votaDocumento(getDocumento(),
 								Home.getUtenteLoggato(), j * 2);
 						resetStelle();
-						JOptionPane.showMessageDialog(null, "Voto salvato!");
+						//JOptionPane.showMessageDialog(null, "Voto salvato!");
 						reload(new DocFlag(getDocumento(),false));
 					}
 				};
