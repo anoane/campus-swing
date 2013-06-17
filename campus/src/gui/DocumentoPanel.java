@@ -111,6 +111,7 @@ public class DocumentoPanel extends Pagina {
 	private JPanel panel_4 = new JPanel();
 	private JButton btnScarica;
 	private JButton btnPrenotaStampa;
+	private JPanel panelCommenti = new JPanel();
 	
 	public void setEliminate(boolean b) {
 		canEliminate = b;
@@ -393,9 +394,8 @@ public class DocumentoPanel extends Pagina {
 				228, 250, 218, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
 
-		JPanel panelCommenti = new JPanel();
 		panelCommenti.setBackground(Color.WHITE);
-		panelCommenti.setBounds(0, 289, 446, 195);
+		panelCommenti.setBounds(0, 289, 446, 130);
 		riquadrodx.add(panelCommenti);
 		panelCommenti.setLayout(null);
 
@@ -409,15 +409,9 @@ public class DocumentoPanel extends Pagina {
 		separator_1.setBounds(0, 25, 170, 1);
 		panelCommenti.add(separator_1);
 		separator_1.setForeground(new Color(27, 50, 128));
-		
-		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(Color.WHITE);
-		panel_7.setBounds(0, 36, 446, 160);
-		panelCommenti.add(panel_7);
-		panel_7.setLayout(null);
-		scrollPane.setBounds(0, 0, 446, 93);
+		scrollPane.setBounds(0, 36, 446, 93);
+		panelCommenti.add(scrollPane);
 		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
-		panel_7.add(scrollPane);
 		pannelloCommentiInterni.setBackground(new Color(237,239,244));
 		
 		pannelloCommentiInterni.setBounds(0, 0, 446, 93);
@@ -432,16 +426,58 @@ public class DocumentoPanel extends Pagina {
 				.addGap(0, 10, Short.MAX_VALUE)
 		);
 		pannelloCommentiInterni.setLayout(gl_pannelloCommentiInterni);
+		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
+		
+		
+		btnInviaCommento.setFont(new Font("Arial", Font.BOLD, 14));
+		btnInviaCommento.setBounds(365, 31, 71, 26);
+		btnInviaCommento.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (txtScriviUnCommento.getText().matches("")||txtScriviUnCommento.getText().matches("Scrivi un commento...")) {
+					scrollPane_1.setBorder(new LineBorder(new Color(255,0,0),2));
+				} else {
+					ControllerCommento.getInstance().aggiungiCommento(txtScriviUnCommento.getText(), getDocumento(), Home.getUtenteLoggato());
+					reload(new DocFlag(getDocumento(),false,commentiEspansi));
+				}
+			}
+
+		});
+		espandi.setBackground(new Color(237,239,244));
+		espandi.setFocusPainted(false);
+		espandi.setBorderPainted(false);
+		espandi.setIcon(new ImageIcon("./newimage/espandi.png"));
+		espandi.setBounds(374, 14, 72, 22);
+		espandi.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		espandi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (commentiEspansi) {
+					mostraCommenti();
+				} else {
+					nascondiCommenti();
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				espandi.setBackground(new Color(207,209,214));
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				espandi.setBackground(new Color(237,239,244));
+			}
+		});
+		
+		panelCommenti.add(espandi);
 		
 		JPanel panel_8 = new JPanel();
+		panel_8.setBounds(0, 422, 446, 62);
+		riquadrodx.add(panel_8);
 		panel_8.setBackground(new Color(237,239,244));
-		panel_8.setBounds(0, 97, 446, 62);
-		panel_7.add(panel_8);
 		panel_8.setLayout(null);
 		
 		JLabel imgMia = new JLabel("");
 		imgMia.setBounds(4, 4, 54, 54);
-		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
 		imgMia.setIcon(new ImageIcon(resized));
 		
 		panel_8.add(imgMia);
@@ -471,49 +507,7 @@ public class DocumentoPanel extends Pagina {
 		txtScriviUnCommento.setWrapStyleWord(true);
 		txtScriviUnCommento.setLineWrap(true);
 		txtScriviUnCommento.setColumns(10);
-		
-		
-		btnInviaCommento.setFont(new Font("Arial", Font.BOLD, 14));
-		btnInviaCommento.setBounds(365, 31, 71, 26);
-		btnInviaCommento.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (txtScriviUnCommento.getText().matches("")||txtScriviUnCommento.getText().matches("Scrivi un commento...")) {
-					scrollPane_1.setBorder(new LineBorder(new Color(255,0,0),2));
-				} else {
-					ControllerCommento.getInstance().aggiungiCommento(txtScriviUnCommento.getText(), getDocumento(), Home.getUtenteLoggato());
-					reload(new DocFlag(getDocumento(),false,commentiEspansi));
-				}
-			}
-
-		});
 		panel_8.add(btnInviaCommento);
-		espandi.setBackground(new Color(237,239,244));
-		espandi.setFocusPainted(false);
-		espandi.setBorderPainted(false);
-		espandi.setIcon(new ImageIcon("./newimage/espandi.png"));
-		espandi.setBounds(374, 14, 72, 22);
-		espandi.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		espandi.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (commentiEspansi) {
-					mostraCommenti();
-				} else {
-					nascondiCommenti();
-				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				espandi.setBackground(new Color(207,209,214));
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				espandi.setBackground(new Color(237,239,244));
-			}
-		});
-		
-		panelCommenti.add(espandi);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
 		stelle.setLayout(null);
@@ -918,6 +912,8 @@ public class DocumentoPanel extends Pagina {
 		btnPrenotaStampa.setVisible(false);
 		espandi.setIcon(new ImageIcon("./newimage/riduci.png"));
 		commentiEspansi = true;
+		panelCommenti.setBounds(0, 0, 446, 419);
+		scrollPane.setBounds(0, 36, 446, 419);
 	}
 	
 	private void mostraCommenti() {
@@ -927,6 +923,7 @@ public class DocumentoPanel extends Pagina {
 		btnPrenotaStampa.setVisible(true);
 		espandi.setIcon(new ImageIcon("./newimage/espandi.png"));
 		commentiEspansi = false;
+		panelCommenti.setBounds(0, 289, 446, 130);
 	}
 	
 	private void resetStelle() {
