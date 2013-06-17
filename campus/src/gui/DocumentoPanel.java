@@ -37,6 +37,7 @@ import org.jopendocument.renderer.ODTRenderer;
 
 import com.sun.pdfview.PDFViewer;
 
+import controller.ControllerCommento;
 import controller.ControllerDocumento;
 import controller.ControllerPreferiti;
 import controller.ControllerUtente;
@@ -92,6 +93,7 @@ public class DocumentoPanel extends Pagina {
 	private JPanel panel_1 = new JPanel();
 	//private Suggerimenti suggerimenti;
 	private JButton btnNewButton;
+	private JButton btnInviaCommento;
 	private MenuSuggerimenti menuSuggerimenti;
 	private JTextField tf_preferiti = new JTextField();
 	
@@ -101,7 +103,8 @@ public class DocumentoPanel extends Pagina {
 	private Documento nowDocumento = null;
 	private final JPanel panel_6 = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
-	private JTextArea txtScriviUnCommento;
+	private JTextArea txtScriviUnCommento = new JTextArea();
+	private JScrollPane scrollPane_1 = new JScrollPane(txtScriviUnCommento);
 	
 	public void setEliminate(boolean b) {
 		canEliminate = b;
@@ -161,6 +164,8 @@ public class DocumentoPanel extends Pagina {
 		btnElimina = buttonCreator.createButton(
 				"Elimina il documento", 759, 56, 218, 28, false, true);
 		panel.add(btnElimina);
+		btnInviaCommento = buttonCreator.createButton(
+				"Pubblica", 365, 4, 71, 36, false, true);
 		
 		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
@@ -435,10 +440,11 @@ public class DocumentoPanel extends Pagina {
 		imgMia.setIcon(new ImageIcon(resized));
 		
 		panel_8.add(imgMia);
-		txtScriviUnCommento = new JTextArea();
+		
 		txtScriviUnCommento.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
+				scrollPane_1.setBorder(new LineBorder(new Color(189,199,216),1));
 				if (txtScriviUnCommento.getText().matches("Scrivi un commento...")) {
 					txtScriviUnCommento.setText("");
 					txtScriviUnCommento.setForeground(Color.BLACK);
@@ -446,7 +452,6 @@ public class DocumentoPanel extends Pagina {
 			}
 		});
 		txtScriviUnCommento.setDocument(new JTextFieldLimit(254));
-		JScrollPane scrollPane_1 = new JScrollPane(txtScriviUnCommento);
 		scrollPane_1.setBounds(60, 4, 295, 36);
 		//scrollPane_1.setBorder(new EmptyBorder(0,0,0,0));
 		scrollPane_1.setBorder(new LineBorder(new Color(189,199,216),1));
@@ -462,11 +467,21 @@ public class DocumentoPanel extends Pagina {
 		txtScriviUnCommento.setLineWrap(true);
 		txtScriviUnCommento.setColumns(10);
 		
-		JButton btnInviaCommento = buttonCreator.createButton(
-				"Pubblica", 365, 4, 71, 36, false, true);
 		
 		btnInviaCommento.setFont(new Font("Arial", Font.BOLD, 14));
 		btnInviaCommento.setBounds(365, 4, 71, 36);
+		btnInviaCommento.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (txtScriviUnCommento.getText().matches("")||txtScriviUnCommento.getText().matches("Scrivi un commento...")) {
+					scrollPane_1.setBorder(new LineBorder(new Color(255,0,0),2));
+				} else {
+					ControllerCommento.getInstance().aggiungiCommento(txtScriviUnCommento.getText(), getDocumento(), Home.getUtenteLoggato());
+					reload(new DocFlag(getDocumento(),false));
+				}
+			}
+
+		});
 		panel_8.add(btnInviaCommento);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
