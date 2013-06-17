@@ -102,10 +102,15 @@ public class DocumentoPanel extends Pagina {
 	
 	private Documento nowDocumento = null;
 	private final JPanel panel_6 = new JPanel();
-	private final JScrollPane scrollPane = new JScrollPane();
+	private JPanel pannelloCommentiInterni = new JPanel();
+	private final JScrollPane scrollPane = new JScrollPane(pannelloCommentiInterni);
 	private JTextArea txtScriviUnCommento = new JTextArea();
 	private JScrollPane scrollPane_1 = new JScrollPane(txtScriviUnCommento);
-	private final JButton btnNewButton_1 = new JButton("New button");
+	private final JButton espandi = new JButton("");
+	private boolean commentiEspansi = false;
+	private JPanel panel_4 = new JPanel();
+	private JButton btnScarica;
+	private JButton btnPrenotaStampa;
 	
 	public void setEliminate(boolean b) {
 		canEliminate = b;
@@ -209,7 +214,7 @@ public class DocumentoPanel extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+getDocumento().getNome()+"''?</font><br></html>","Attenzione",0);
 				if(n==0){
-					reload(new DocFlag(getDocumento(),true));
+					reload(new DocFlag(getDocumento(),true,commentiEspansi));
 				}
 			}
 		});
@@ -218,7 +223,7 @@ public class DocumentoPanel extends Pagina {
 				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Le modifiche al documento sono irreversibili.<br>Sei sicuro di voler salvare le modifiche apportate?</font><br></html>","Attenzione",0);
 				if(n==0){
 					ControllerDocumento.getInstance().modificaDocumento(getDocumento().getID(),tf_preferiti.getText(),panel_3.getText(),getDocumento().getPath());
-					reload(new DocFlag(getDocumento(),false));
+					reload(new DocFlag(getDocumento(),false,commentiEspansi));
 				}
 			}
 		});
@@ -226,7 +231,7 @@ public class DocumentoPanel extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler annullare le modifiche apportate?<br>Non verrà apportata nessuna modifica al documento.</font><br></html>","Attenzione",0);
 				if(n==0){
-					reload(new DocFlag(getDocumento(),false));
+					reload(new DocFlag(getDocumento(),false,commentiEspansi));
 				}
 			}
 		});
@@ -288,7 +293,6 @@ public class DocumentoPanel extends Pagina {
 
 		riquadrodx.add(panel_3);
 
-		final RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(Home.getUtenteLoggato());
 		panel_4.setLayout(null);
 		panel_4.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel_4.setBackground(Color.WHITE);
@@ -381,11 +385,11 @@ public class DocumentoPanel extends Pagina {
 		imgUtente.setBounds(0, 0, 92, 92);
 		panel_5.add(imgUtente);
 
-		JButton btnScarica = buttonCreator.createButton("Scarica", 0, 250, 218,
+		btnScarica = buttonCreator.createButton("Scarica", 0, 250, 218,
 				28, false, true);
 		riquadrodx.add(btnScarica);
-
-		JButton btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
+		
+		btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
 				228, 250, 218, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
 
@@ -411,13 +415,13 @@ public class DocumentoPanel extends Pagina {
 		panel_7.setBounds(0, 36, 446, 160);
 		panelCommenti.add(panel_7);
 		panel_7.setLayout(null);
-		scrollPane.setBounds(0, 0, 446, 84);
-		
+		scrollPane.setBounds(0, 0, 446, 93);
+		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
 		panel_7.add(scrollPane);
+		pannelloCommentiInterni.setBackground(new Color(237,239,244));
 		
-		JPanel pannelloCommentiInterni = new JPanel();
-		pannelloCommentiInterni.setBounds(0, 0, 10, 10);
-		panel_7.add(pannelloCommentiInterni);
+		pannelloCommentiInterni.setBounds(0, 0, 446, 93);
+		//panel_7.add(pannelloCommentiInterni);
 		GroupLayout gl_pannelloCommentiInterni = new GroupLayout(pannelloCommentiInterni);
 		gl_pannelloCommentiInterni.setHorizontalGroup(
 			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
@@ -478,15 +482,38 @@ public class DocumentoPanel extends Pagina {
 					scrollPane_1.setBorder(new LineBorder(new Color(255,0,0),2));
 				} else {
 					ControllerCommento.getInstance().aggiungiCommento(txtScriviUnCommento.getText(), getDocumento(), Home.getUtenteLoggato());
-					reload(new DocFlag(getDocumento(),false));
+					reload(new DocFlag(getDocumento(),false,commentiEspansi));
 				}
 			}
 
 		});
 		panel_8.add(btnInviaCommento);
-		btnNewButton_1.setBounds(357, 11, 89, 23);
+		espandi.setBackground(new Color(237,239,244));
+		espandi.setFocusPainted(false);
+		espandi.setBorderPainted(false);
+		espandi.setIcon(new ImageIcon("./newimage/espandi.png"));
+		espandi.setBounds(374, 14, 72, 22);
+		espandi.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		espandi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (commentiEspansi) {
+					mostraCommenti();
+				} else {
+					nascondiCommenti();
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				espandi.setBackground(new Color(207,209,214));
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				espandi.setBackground(new Color(237,239,244));
+			}
+		});
 		
-		panelCommenti.add(btnNewButton_1);
+		panelCommenti.add(espandi);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
 		stelle.setLayout(null);
@@ -621,7 +648,7 @@ public class DocumentoPanel extends Pagina {
 			final boolean flagModifica = ((DocFlag)o).getFlag();
 			riquadrodx.setVisible(true);
 			
-			
+
 			
 
 			panel_3.setLayout(null);
@@ -636,6 +663,7 @@ public class DocumentoPanel extends Pagina {
 			
 			lblPreferiti.setVisible(true);
 			tf_preferiti.setVisible(false);
+			
 			
 			
 			//panel.remove(suggerimenti);
@@ -662,6 +690,16 @@ public class DocumentoPanel extends Pagina {
 			
 			suggerimenti.setVisible(false);*/
 			//toggleInfo();
+			
+			
+			commentiEspansi = ((DocFlag)o).getCommentiAperti();
+			if (commentiEspansi) {
+				nascondiCommenti();
+				
+			} else {
+				mostraCommenti();
+			}
+			
 			validate();
 			repaint();
 			/*btnNewButton.addMouseListener(new MouseAdapter() {
@@ -814,7 +852,7 @@ public class DocumentoPanel extends Pagina {
 								Home.getUtenteLoggato(), j * 2);
 						resetStelle();
 						//JOptionPane.showMessageDialog(null, "Voto salvato!");
-						reload(new DocFlag(getDocumento(),false));
+						reload(new DocFlag(getDocumento(),false,commentiEspansi));
 					}
 				};
 				if (!giaVotato) {
@@ -873,6 +911,24 @@ public class DocumentoPanel extends Pagina {
 		return panel.getHeight();
 	}
 
+	private void nascondiCommenti() {
+		panel_3.setVisible(false);
+		panel_4.setVisible(false);
+		btnScarica.setVisible(false);
+		btnPrenotaStampa.setVisible(false);
+		espandi.setIcon(new ImageIcon("./newimage/riduci.png"));
+		commentiEspansi = true;
+	}
+	
+	private void mostraCommenti() {
+		panel_3.setVisible(true);
+		panel_4.setVisible(true);
+		btnScarica.setVisible(true);
+		btnPrenotaStampa.setVisible(true);
+		espandi.setIcon(new ImageIcon("./newimage/espandi.png"));
+		commentiEspansi = false;
+	}
+	
 	private void resetStelle() {
 		for (int i = 0; i < 5; ++i) {
 			stelle.remove(i);

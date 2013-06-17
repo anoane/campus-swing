@@ -486,7 +486,7 @@ public class Profilo extends Pagina {
 				public void mouseClicked(MouseEvent arg0){
 					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"Sei sicuro di voler modificare il documento?","Attenzione",0);
 					if(n==0){
-						Home.openDocument(true,d,true);
+						Home.openDocument(true,d,true,false);
 					}
 				}
 			});	

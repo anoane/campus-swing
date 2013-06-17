@@ -234,7 +234,7 @@ public class MieiDocumenti extends Pagina {
 				public void mouseClicked(MouseEvent arg0){
 					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+d.getNome()+"''?</font><br></html>","Attenzione",0);
 					if(n==0){
-						Home.openDocument(true,d,true);
+						Home.openDocument(true,d,true, false);
 					}
 				}
 			});	

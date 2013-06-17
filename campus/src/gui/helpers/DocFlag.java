@@ -6,10 +6,12 @@ public class DocFlag {
 
 	private Documento doc;
 	private boolean attivaModifica;
+	private boolean commentiAperti;
 
-	public DocFlag(Documento doc, boolean attivaModifica) {
+	public DocFlag(Documento doc, boolean attivaModifica, boolean commentiAperti) {
 		this.doc = doc;
 		this.attivaModifica = attivaModifica;
+		this.commentiAperti = commentiAperti;
 	}
 	
 	public Documento getDoc() {
@@ -18,6 +20,10 @@ public class DocFlag {
 	
 	public boolean getFlag() {
 		return attivaModifica;
+	}
+	
+	public boolean getCommentiAperti() {
+		return commentiAperti;
 	}
 	
 }

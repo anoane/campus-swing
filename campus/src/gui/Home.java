@@ -706,11 +706,11 @@ public class Home {
 		}
 	}
 	
-	public static void openDocument(final Boolean altezzaDinamica, Documento doc, boolean modificaAttiva) {
+	public static void openDocument(final Boolean altezzaDinamica, Documento doc, boolean modificaAttiva, boolean commentiAperti) {
 		Home.pulsantiNormali();
 		Home.unloadDocumento();
 		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
-		documento.reload(new DocFlag(doc,modificaAttiva));
+		documento.reload(new DocFlag(doc,modificaAttiva,commentiAperti));
 		
 		if (doc.getPath() != null && !doc.getPath().equals("/")) {
 			String strTipo = doc.getPath().split("\\.")[1];
