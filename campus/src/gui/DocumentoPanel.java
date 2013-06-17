@@ -214,7 +214,11 @@ public class DocumentoPanel extends Pagina {
 				}
 			}
 		});
-		
+		lblFac.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openCorso(false,getDocumento().getCorso());
+			}
+		});
 		JPanel doc = new JPanel();
 		doc.setBounds(0, 100, 521, 484);
 		panel.add(doc);
@@ -387,10 +391,11 @@ public class DocumentoPanel extends Pagina {
 		panel.add(lblFac);
 		lblFac.setHorizontalAlignment(SwingConstants.TRAILING);
 		
-				lblFac.setFont(new Font("Arial", Font.PLAIN, 16));
+				lblFac.setFont(new Font("Arial", Font.BOLD, 16));
 						lblUniversit.setBounds(653, 60, 325, 23);
 						panel.add(lblUniversit);
-				
+				lblFac.setForeground(Home.BLUE_BUTTON_PRESSED);
+				lblFac.setCursor(new Cursor(Cursor.HAND_CURSOR));
 						lblUniversit.setFont(new Font("Arial", Font.PLAIN, 16));
 		reload(d);
 	}
