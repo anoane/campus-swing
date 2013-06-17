@@ -711,14 +711,16 @@ public class DocumentoPanel extends Pagina {
 				tf_preferiti.setForeground(new Color(6, 121, 159));
 				tf_preferiti.setFont(new Font("Arial", Font.BOLD, 18));
 				tf_preferiti.setBounds(10, 10, 511, 28);
-				tf_preferiti.setBorder(new LineBorder(new Color(0,255,0),2));
+				//tf_preferiti.setBorder(new LineBorder(new Color(0,255,0),2));
+				tf_preferiti.setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED,1));
 				panel.add(tf_preferiti);
 				btnAttivaModifica.setVisible(false);
 				btnTerminaModifica.setVisible(true);
 				btnAnnullaModifica.setVisible(true);
 				String tempText = panel_3.getText();
 				panel_3.setEditable(true);
-				panel_3.setBorder(new LineBorder(new Color(0,255,0),2));
+				//panel_3.setBorder(new LineBorder(new Color(0,255,0),2));
+				panel_3.setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED,1));
 				panel_3.setDocument(new JTextFieldLimit(254));
 				panel_3.setHighlighter(new DefaultHighlighter());
 				panel_3.setText(tempText);
