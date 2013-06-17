@@ -48,6 +48,10 @@ import java.awt.Insets;
 import java.util.Calendar;
 import java.util.Map;
 import javax.swing.JScrollPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -405,7 +409,22 @@ public class DocumentoPanel extends Pagina {
 		
 		panel_7.add(scrollPane);
 		
+		JPanel pannelloCommentiInterni = new JPanel();
+		pannelloCommentiInterni.setBounds(0, 0, 10, 10);
+		panel_7.add(pannelloCommentiInterni);
+		GroupLayout gl_pannelloCommentiInterni = new GroupLayout(pannelloCommentiInterni);
+		gl_pannelloCommentiInterni.setHorizontalGroup(
+			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 10, Short.MAX_VALUE)
+		);
+		gl_pannelloCommentiInterni.setVerticalGroup(
+			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 10, Short.MAX_VALUE)
+		);
+		pannelloCommentiInterni.setLayout(gl_pannelloCommentiInterni);
+		
 		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(237,239,244));
 		panel_8.setBounds(0, 105, 446, 54);
 		panel_7.add(panel_8);
 		panel_8.setLayout(null);
@@ -417,22 +436,37 @@ public class DocumentoPanel extends Pagina {
 		
 		panel_8.add(imgMia);
 		txtScriviUnCommento = new JTextArea();
+		txtScriviUnCommento.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (txtScriviUnCommento.getText().matches("Scrivi un commento...")) {
+					txtScriviUnCommento.setText("");
+					txtScriviUnCommento.setForeground(Color.BLACK);
+				}
+			}
+		});
 		txtScriviUnCommento.setDocument(new JTextFieldLimit(254));
 		JScrollPane scrollPane_1 = new JScrollPane(txtScriviUnCommento);
-		scrollPane_1.setBounds(60, 4, 311, 36);
-		scrollPane_1.setBorder(new EmptyBorder(0,0,0,0));
+		scrollPane_1.setBounds(60, 4, 295, 36);
+		//scrollPane_1.setBorder(new EmptyBorder(0,0,0,0));
+		scrollPane_1.setBorder(new LineBorder(new Color(189,199,216),1));
 		panel_8.add(scrollPane_1);
 		
 		txtScriviUnCommento.setText("Scrivi un commento...");
 		txtScriviUnCommento.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtScriviUnCommento.setForeground(Color.GRAY);
+		
 		txtScriviUnCommento.setBounds(60, 4, 376, 30);
 		//panel_8.add(txtScriviUnCommento);
 		txtScriviUnCommento.setWrapStyleWord(true);
 		txtScriviUnCommento.setLineWrap(true);
 		txtScriviUnCommento.setColumns(10);
 		
-		JButton btnInviaCommento = new JButton("");
-		btnInviaCommento.setBounds(381, 4, 55, 23);
+		JButton btnInviaCommento = buttonCreator.createButton(
+				"Pubblica", 365, 4, 71, 36, false, true);
+		
+		btnInviaCommento.setFont(new Font("Arial", Font.BOLD, 14));
+		btnInviaCommento.setBounds(365, 4, 71, 36);
 		panel_8.add(btnInviaCommento);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
@@ -559,7 +593,8 @@ public class DocumentoPanel extends Pagina {
 			//menuSuggerimenti = new MenuSuggerimenti(false);
 			//menuSuggerimenti.setLocation(521, 100);
 			//panel.add(menuSuggerimenti);
-
+			txtScriviUnCommento.setText("Scrivi un commento...");
+			txtScriviUnCommento.setForeground(Color.GRAY);
 			
 			resetStelle();
 			ControllerVoto contrVoto = ControllerVoto.getInstance(); 
