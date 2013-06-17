@@ -53,6 +53,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.FlowLayout;
+import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -409,23 +411,13 @@ public class DocumentoPanel extends Pagina {
 		separator_1.setBounds(0, 25, 170, 1);
 		panelCommenti.add(separator_1);
 		separator_1.setForeground(new Color(27, 50, 128));
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 36, 446, 93);
 		panelCommenti.add(scrollPane);
 		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
 		pannelloCommentiInterni.setBackground(new Color(237,239,244));
 		
 		pannelloCommentiInterni.setBounds(0, 0, 446, 93);
-		//panel_7.add(pannelloCommentiInterni);
-		GroupLayout gl_pannelloCommentiInterni = new GroupLayout(pannelloCommentiInterni);
-		gl_pannelloCommentiInterni.setHorizontalGroup(
-			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 10, Short.MAX_VALUE)
-		);
-		gl_pannelloCommentiInterni.setVerticalGroup(
-			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 10, Short.MAX_VALUE)
-		);
-		pannelloCommentiInterni.setLayout(gl_pannelloCommentiInterni);
 		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
 		
 		
@@ -467,6 +459,31 @@ public class DocumentoPanel extends Pagina {
 				espandi.setBackground(new Color(237,239,244));
 			}
 		});
+		
+		JPanel internissimo = new JPanel();
+		internissimo.setBounds(0, 0, 382, 800);
+		pannelloCommentiInterni.add(internissimo);
+		internissimo.setLayout(null);
+		
+		JLabel lblNewLabelNew = new JLabel("New labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew label");
+		lblNewLabelNew.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabelNew.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabelNew.setBounds(0, 0, 700, 700);
+		internissimo.add(lblNewLabelNew);
+		GroupLayout gl_pannelloCommentiInterni = new GroupLayout(pannelloCommentiInterni);
+		gl_pannelloCommentiInterni.setHorizontalGroup(
+			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloCommentiInterni.createSequentialGroup()
+					.addComponent(internissimo, GroupLayout.PREFERRED_SIZE, 427, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(19, Short.MAX_VALUE))
+		);
+		gl_pannelloCommentiInterni.setVerticalGroup(
+			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloCommentiInterni.createSequentialGroup()
+					.addComponent(internissimo, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		pannelloCommentiInterni.setLayout(gl_pannelloCommentiInterni);
 		
 		panelCommenti.add(espandi);
 		
