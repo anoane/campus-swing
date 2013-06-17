@@ -110,7 +110,7 @@ public class HomePage extends Pagina {
 		int colmax = (int) Math.ceil((float)corsi.size());
 		int altezza = 230*colmax;
 		panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),altezza);
-		panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),800);
+		//panel_corsi_seguiti.setBounds(panel_corsi_seguiti.getX(),panel_corsi_seguiti.getY(),panel_corsi_seguiti.getWidth(),800);
 		//panel.setSize(panel.getWidth(), altezza+71);
 
 		for(int i = 0;i < corsi.size();i++){
@@ -134,7 +134,7 @@ public class HomePage extends Pagina {
 		int colmax = (int) Math.ceil((float)docs.size());
 		int altezza = 230*colmax;
 		panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),altezza);
-		panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),800);
+		//panel_preferiti_recenti.setBounds(panel_preferiti_recenti.getX(),panel_preferiti_recenti.getY(),panel_preferiti_recenti.getWidth(),800);
 		//panel.setSize(panel.getWidth(), altezza+71);
 
 		for(int i = 0;i < docs.size();i++){
@@ -158,7 +158,7 @@ public class HomePage extends Pagina {
 		int colmax = (int) Math.ceil((float)docs.size());
 		int altezza = 230*colmax;
 		panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),altezza);
-		panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),800);
+		//panel_miei_doc.setBounds(panel_miei_doc.getX(),panel_miei_doc.getY(),panel_miei_doc.getWidth(),800);
 		//panel.setSize(panel.getWidth(), altezza+71);
 
 		for(int i = 0;i < docs.size();i++){

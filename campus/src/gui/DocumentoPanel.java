@@ -2,6 +2,7 @@ package gui;
 
 import gui.helpers.DocFlag;
 import gui.helpers.JTextFieldLimit;
+import gui.riquadri.RiquadroCommento;
 import gui.riquadri.RiquadroUtenteDoc;
 
 import java.awt.Color;
@@ -14,7 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
-
+import modello_di_dominio.Commento;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -46,6 +47,7 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 import javax.swing.JScrollPane;
@@ -77,6 +79,7 @@ public class DocumentoPanel extends Pagina {
 	private JLabel lblNewLabel_5 = new JLabel("txtEta");
 	private JLabel lblNewLabel_6 = new JLabel("txtUniv");
 	private JLabel imgUtente = new JLabel("");
+	private JPanel internissimo = new JPanel();
 	
 	
 	JLabel lblPreferiti = new JLabel();
@@ -460,7 +463,6 @@ public class DocumentoPanel extends Pagina {
 			}
 		});
 		
-		JPanel internissimo = new JPanel();
 		internissimo.setBounds(0, 0, 382, 800);
 		pannelloCommentiInterni.add(internissimo);
 		internissimo.setLayout(null);
@@ -884,6 +886,8 @@ public class DocumentoPanel extends Pagina {
 			Image resized = new ImageIcon("."+getDocumento().getProprietario().getImmagine()).getImage().getScaledInstance(92, 92,  java.awt.Image.SCALE_SMOOTH);  
 			imgUtente.setIcon(new ImageIcon(resized));
 			
+			adjustCommenti(getCommenti());
+			
 			if (flagModifica) {
 				lblPreferiti.setVisible(false);
 				tf_preferiti.setVisible(true);
@@ -953,4 +957,39 @@ public class DocumentoPanel extends Pagina {
 			stelle.add(stella, i);
 		}
 	}
+	
+	private ArrayList<Commento> getCommenti() {
+		return ControllerCommento.getInstance().getListAllCommenti();
+	}
+	
+	private void adjustCommenti(final ArrayList<Commento> commenti){
+		internissimo.removeAll();
+		internissimo.validate();
+		internissimo.repaint();
+		addCommenti(commenti);
+	}
+	
+	public void addCommenti(final ArrayList<Commento> commenti){
+		int num_commenti = commenti.size();
+		int colmax = (int) Math.ceil((float)commenti.size());
+		int altezza = 230*colmax;
+		internissimo.setBounds(internissimo.getX(),internissimo.getY(),internissimo.getWidth(),altezza);
+		//panel.setSize(panel.getWidth(), altezza+71);
+
+		for(int i = 0;i < commenti.size();i++){
+			final Commento comm = commenti.get(i);
+			final RiquadroCommento commento = new RiquadroCommento(comm);
+			commento.setLocation(0, (107*i));
+			internissimo.add(commento);
+		}
+		if (num_commenti == 0) {
+			JLabel lblNoCorsiSeg = new JLabel("Nessun commento inserito");
+			lblNoCorsiSeg.setFont(new Font("Arial", Font.BOLD, 20));
+			lblNoCorsiSeg.setBounds(0, 0, 310, 57);
+			lblNoCorsiSeg.setForeground(Color.LIGHT_GRAY);
+			internissimo.add(lblNoCorsiSeg);
+		}
+		
+	}
+	
 }

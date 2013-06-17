@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import gui.Home;
 
 import org.orm.PersistentException;
@@ -9,6 +11,7 @@ import modello_di_dominio.DAOFactory;
 import modello_di_dominio.Documento;
 import modello_di_dominio.Utente;
 import modello_di_dominio.dao.CommentoDAO;
+import modello_di_dominio.dao.DocumentoDAO;
 
 /**
  * 
@@ -59,6 +62,29 @@ public class ControllerCommento extends AbstractController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<Commento> getListAllCommenti() {
+		
+		DAOFactory factory = DAOFactory.getDAOFactory();
+		CommentoDAO documentoDAO = factory.getCommentoDAO();
+		
+		try {
+			
+			Commento[] temp = documentoDAO.listCommentoByQuery(null, null);
+			ArrayList<Commento> commenti = new ArrayList<Commento>();
+			
+			for (int i=0; temp.length > i; i++) {
+				commenti.add(temp[i]);
+			}
+			return commenti;
+			
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	/**
 	 * aggiungiCommento
