@@ -105,6 +105,7 @@ public class DocumentoPanel extends Pagina {
 	private final JScrollPane scrollPane = new JScrollPane();
 	private JTextArea txtScriviUnCommento = new JTextArea();
 	private JScrollPane scrollPane_1 = new JScrollPane(txtScriviUnCommento);
+	private final JButton btnNewButton_1 = new JButton("New button");
 	
 	public void setEliminate(boolean b) {
 		canEliminate = b;
@@ -165,7 +166,7 @@ public class DocumentoPanel extends Pagina {
 				"Elimina il documento", 759, 56, 218, 28, false, true);
 		panel.add(btnElimina);
 		btnInviaCommento = buttonCreator.createButton(
-				"Pubblica", 365, 4, 71, 36, false, true);
+				"Pubblica", 365, 4, 71, 28, false, true);
 		
 		btnAggiungiAiPreferiti.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
@@ -410,7 +411,7 @@ public class DocumentoPanel extends Pagina {
 		panel_7.setBounds(0, 36, 446, 160);
 		panelCommenti.add(panel_7);
 		panel_7.setLayout(null);
-		scrollPane.setBounds(0, 0, 446, 104);
+		scrollPane.setBounds(0, 0, 446, 84);
 		
 		panel_7.add(scrollPane);
 		
@@ -430,13 +431,13 @@ public class DocumentoPanel extends Pagina {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(new Color(237,239,244));
-		panel_8.setBounds(0, 105, 446, 54);
+		panel_8.setBounds(0, 97, 446, 62);
 		panel_7.add(panel_8);
 		panel_8.setLayout(null);
 		
 		JLabel imgMia = new JLabel("");
-		imgMia.setBounds(4, 4, 46, 46);
-		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(46, 46,  java.awt.Image.SCALE_SMOOTH);  
+		imgMia.setBounds(4, 4, 54, 54);
+		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
 		imgMia.setIcon(new ImageIcon(resized));
 		
 		panel_8.add(imgMia);
@@ -452,7 +453,7 @@ public class DocumentoPanel extends Pagina {
 			}
 		});
 		txtScriviUnCommento.setDocument(new JTextFieldLimit(254));
-		scrollPane_1.setBounds(60, 4, 295, 36);
+		scrollPane_1.setBounds(62, 4, 294, 54);
 		//scrollPane_1.setBorder(new EmptyBorder(0,0,0,0));
 		scrollPane_1.setBorder(new LineBorder(new Color(189,199,216),1));
 		panel_8.add(scrollPane_1);
@@ -469,7 +470,7 @@ public class DocumentoPanel extends Pagina {
 		
 		
 		btnInviaCommento.setFont(new Font("Arial", Font.BOLD, 14));
-		btnInviaCommento.setBounds(365, 4, 71, 36);
+		btnInviaCommento.setBounds(365, 31, 71, 26);
 		btnInviaCommento.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -483,6 +484,9 @@ public class DocumentoPanel extends Pagina {
 
 		});
 		panel_8.add(btnInviaCommento);
+		btnNewButton_1.setBounds(357, 11, 89, 23);
+		
+		panelCommenti.add(btnNewButton_1);
 		stelle = new JPanel();
 		stelle.setBounds(147, 56, 150, 30);
 		stelle.setLayout(null);
