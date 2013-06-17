@@ -104,6 +104,7 @@ public class CaricaMateriale extends Pagina  {
 	private JTextArea textArea_1 = new JTextArea();
 	final static JButton btnConfermaSelezione = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 	final JTextArea textArea = new JTextArea();
+	private JScrollPane scrollPane = new JScrollPane(textArea); 
 	
 	final static JButton btnAggiungiFacolt = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
 	final static JButton button = buttonCreator.createButton("Carica documento", 0, 0, 0, 0, false, true);// = new JButton("Carica materiale");
@@ -262,7 +263,7 @@ public class CaricaMateriale extends Pagina  {
 		textArea.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				textArea.setBorder(UIManager.getBorder("TextArea.border"));
+				scrollPane.setBorder(UIManager.getBorder("ScrollPane.border"));
 			}
 		});
 		textArea.setText("");
@@ -272,7 +273,6 @@ public class CaricaMateriale extends Pagina  {
 		//textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		textArea.setWrapStyleWord(true);
 		textArea.setDocument(new JTextFieldLimit(254));
-		JScrollPane scrollPane = new JScrollPane(textArea); 
 		panel_1.add(scrollPane, "4, 5, fill, fill");
 		
 		JLabel lblNewLabel_3 = new JLabel("Categoria");
@@ -447,7 +447,7 @@ public class CaricaMateriale extends Pagina  {
 				}
 				if (textArea.getText().matches("")) {
 					continua = false;
-					textArea.setBorder(new LineBorder(new Color(255,0,0),2));
+					scrollPane.setBorder(new LineBorder(new Color(255,0,0),2));
 					//JOptionPane.showMessageDialog(Home.getFrame(), "Nessuna descrizione immessa", "Attenzione", JOptionPane.WARNING_MESSAGE);
 				}
 				if (comboBox.getSelectedItem().toString().matches("")) {

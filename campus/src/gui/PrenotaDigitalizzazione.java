@@ -32,6 +32,8 @@ public class PrenotaDigitalizzazione extends Pagina {
 	private JPanel panel;
 	private ButtonStandard buttonCreator = new ButtonStandard();
 	private JButton inviaRichiesta = buttonCreator.createButton("Invia Richiesta", 0, 0, 0, 0, false, true);
+	private final JTextArea txtAreaDescrizione = new JTextArea();
+	private JScrollPane scrollPane = new JScrollPane(txtAreaDescrizione); 
 	
 	public PrenotaDigitalizzazione() {
 		setLayout(null);
@@ -136,7 +138,6 @@ public class PrenotaDigitalizzazione extends Pagina {
 		gbc_lblCopisteria.gridy = 5;
 		formPanel.add(lblCopisteria, gbc_lblCopisteria);
 		
-		final JTextArea txtAreaDescrizione = new JTextArea();
 		//txtAreaDescrizione.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		txtAreaDescrizione.setLineWrap(true);
 		txtAreaDescrizione.setWrapStyleWord(true);
@@ -150,7 +151,6 @@ public class PrenotaDigitalizzazione extends Pagina {
         txtAreaDescrizione.setLineWrap(true);
         txtAreaDescrizione.setRows(5);
         txtAreaDescrizione.setWrapStyleWord(true);
-		JScrollPane scrollPane = new JScrollPane(txtAreaDescrizione); 
 		formPanel.add(scrollPane, gbc_textarea);
         
         
@@ -305,7 +305,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 		txtAreaDescrizione.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				txtAreaDescrizione.setBorder(UIManager.getBorder("TextArea.border"));
+				scrollPane.setBorder(UIManager.getBorder("ScrollPane.border"));
 			}
 		});
 		
@@ -318,7 +318,7 @@ public class PrenotaDigitalizzazione extends Pagina {
 					txtNomeDoc.setBorder(new LineBorder(new Color(255,0,0),2));
 				}
 				if (txtAreaDescrizione.getText().matches("")) {
-					txtAreaDescrizione.setBorder(new LineBorder(new Color(255,0,0),2));
+					scrollPane.setBorder(new LineBorder(new Color(255,0,0),2));
 				}	
 				if (txtNumPag.getText().matches("")) {
 					txtNumPag.setBorder(new LineBorder(new Color(255,0,0),2));
