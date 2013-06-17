@@ -13,6 +13,7 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.font.TextAttribute;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultHighlighter;
 
@@ -44,6 +46,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.Calendar;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class DocumentoPanel extends Pagina {
@@ -218,6 +221,20 @@ public class DocumentoPanel extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openCorso(false,getDocumento().getCorso());
 			}
+		    Font original;
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        original = e.getComponent().getFont();
+		        Map attributes = original.getAttributes();
+		        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		        e.getComponent().setFont(original.deriveFont(attributes));
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        e.getComponent().setFont(original);
+		    }
 		});
 		JPanel doc = new JPanel();
 		doc.setBounds(0, 100, 521, 484);
@@ -258,18 +275,36 @@ public class DocumentoPanel extends Pagina {
 
 		riquadrodx.add(panel_3);
 
-		RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(Home.getUtenteLoggato());
+		final RiquadroUtenteDoc panel_4 = new RiquadroUtenteDoc(Home.getUtenteLoggato());
 		panel_4.setLayout(null);
-		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_4.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel_4.setBackground(Color.WHITE);
-		panel_4.setBounds(0, 147, 446, 92);
+		panel_4.setBounds(0, 145, 446, 96);
 		riquadrodx.add(panel_4);
 		panel_6.setBackground(Color.WHITE);
-		panel_6.setBounds(95, 0, 351, 92);
+		panel_6.setBounds(95, 2, 341, 92);
 		
 		panel_4.add(panel_6);
+		panel_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Home.openProfilo(getDocumento().getProprietario());
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				panel_4.setBorder(new LineBorder(Home.BLUE_SEARCH_BAR,2));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				//label_13.setBorder(new LineBorder(new Color(0x1B, 0x32, 0x80),2));
+				panel_4.setBorder(new EmptyBorder(0,0,0,0));
+			}
+		});
+		
+		
 		GridBagLayout gbl_panel_6 = new GridBagLayout();
-		gbl_panel_6.columnWidths = new int[]{120, 228, 0};
+		gbl_panel_6.columnWidths = new int[]{115, 223, 0};
 		gbl_panel_6.rowHeights = new int[]{30, 30, 30, 0};
 		gbl_panel_6.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -326,7 +361,7 @@ public class DocumentoPanel extends Pagina {
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(Color.WHITE);
-		panel_5.setBounds(0, 0, 97, 92);
+		panel_5.setBounds(2, 2, 97, 92);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
 		

@@ -12,8 +12,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -311,6 +313,25 @@ public class Profilo extends Pagina {
 		lblAppuntiDiFisica.setFont(new Font("Arial", Font.BOLD, 14));
 		lblAppuntiDiFisica.setForeground(Home.BLUE_BUTTON_PRESSED);
 		lblAppuntiDiFisica.setBounds(91, 11, 159, 14);
+		lblAppuntiDiFisica.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				//opendoc
+			}
+		    Font original;
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        original = e.getComponent().getFont();
+		        Map attributes = original.getAttributes();
+		        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		        e.getComponent().setFont(original.deriveFont(attributes));
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        e.getComponent().setFont(original);
+		    }
+		});
 		recenti.add(lblAppuntiDiFisica);
 		
 		JSeparator separator_5 = new JSeparator();
@@ -331,6 +352,25 @@ public class Profilo extends Pagina {
 		lblSlideMicroeconomia.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblSlideMicroeconomia.setForeground(Home.BLUE_BUTTON_PRESSED);
 		recenti.add(lblSlideMicroeconomia);
+		lblSlideMicroeconomia.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				//opendoc
+			}
+		    Font original;
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        original = e.getComponent().getFont();
+		        Map attributes = original.getAttributes();
+		        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		        e.getComponent().setFont(original.deriveFont(attributes));
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        e.getComponent().setFont(original);
+		    }
+		});
 		
 		JSeparator separator_6 = new JSeparator();
 		separator_6.setBounds(0, 73, 289, 1);
@@ -350,6 +390,25 @@ public class Profilo extends Pagina {
 		label.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		label.setBounds(10, 106, 205, 17);
 		recenti.add(label);
+		label.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				//opendoc
+			}
+		    Font original;
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        original = e.getComponent().getFont();
+		        Map attributes = original.getAttributes();
+		        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		        e.getComponent().setFont(original.deriveFont(attributes));
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        e.getComponent().setFont(original);
+		    }
+		});
 		
 		JSeparator separator_7 = new JSeparator();
 		separator_7.setForeground(Color.BLACK);
@@ -369,6 +428,25 @@ public class Profilo extends Pagina {
 		lblEserciziAnalisiIi.setForeground(Home.BLUE_BUTTON_PRESSED);
 		lblEserciziAnalisiIi.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		recenti.add(lblEserciziAnalisiIi);
+		lblEserciziAnalisiIi.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				//opendoc
+			}
+		    Font original;
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        original = e.getComponent().getFont();
+		        Map attributes = original.getAttributes();
+		        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		        e.getComponent().setFont(original.deriveFont(attributes));
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        e.getComponent().setFont(original);
+		    }
+		});
 		
 		JSeparator separator_8 = new JSeparator();
 		separator_8.setForeground(Color.BLACK);
