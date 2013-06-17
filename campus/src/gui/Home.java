@@ -710,10 +710,10 @@ public class Home {
 		Home.pulsantiNormali();
 		Home.unloadDocumento();
 		Home.loadPages(documento, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, documento.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
+		documento.reload(new DocFlag(doc,modificaAttiva));
 		
 		if (doc.getPath() != null && !doc.getPath().equals("/")) {
 			String strTipo = doc.getPath().split("\\.")[1];
-			documento.reload(new DocFlag(doc,modificaAttiva));
 			
 			switch(strTipo.toLowerCase()){
 				case "pdf":
