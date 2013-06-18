@@ -106,6 +106,7 @@ public class RiquadroStampa extends JPanel {
 			break;
 		case "Dispense":
 			lblNewLabel.setText("Dispense");
+			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
 			//lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;
@@ -116,6 +117,7 @@ public class RiquadroStampa extends JPanel {
 			break;
 		case "Slide":
 			lblNewLabel.setText("Slide");
+			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
 			//lblNewLabel.getParent().setBounds(10, 56, 58, 24);
 			break;

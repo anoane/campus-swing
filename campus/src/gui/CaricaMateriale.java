@@ -233,7 +233,11 @@ public class CaricaMateriale extends Pagina  {
 		            	Pdf2Image.pdf2img(new File("files/"+newname));
 		            }
 		        } else {
-		        	JOptionPane.showMessageDialog(Home.getFrame(), "Non riesco ad aprire questo file", "Errore", JOptionPane.ERROR_MESSAGE);
+		        	if (returnVal == JFileChooser.CANCEL_OPTION) {
+		        		
+		        	} else {
+		        		JOptionPane.showMessageDialog(Home.getFrame(), "Non riesco a salvare questo file", "Errore", JOptionPane.ERROR_MESSAGE);
+				    }
 		        }
 			}
 		});

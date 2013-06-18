@@ -18,6 +18,7 @@ import java.awt.font.TextAttribute;
 import modello_di_dominio.Commento;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -56,6 +57,13 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.FlowLayout;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
@@ -398,10 +406,47 @@ public class DocumentoPanel extends Pagina {
 		btnScarica = buttonCreator.createButton("Scarica", 0, 250, 218,
 				28, false, true);
 		riquadrodx.add(btnScarica);
+		btnScarica.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				JFileChooser fc = new JFileChooser();
+				//fc.setAcceptAllFileFilterUsed(false);
+				//fc.setFileFilter(new util.DocumentFilter());
+				//File def_file = new File(getDocumento().getPath());
+				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);//.DIRECTORIES_ONLY);
+		        //fc.setCurrentDirectory(def_file);
+	            File file = new File(getDocumento().getPath());
+				Path source = Paths.get(file.getAbsolutePath());
+		        fc.setSelectedFile(new File(fc.getCurrentDirectory()+file.getName()));
+				int returnVal = fc.showSaveDialog(btnScarica);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+					
+					Path target = Paths.get(fc.getSelectedFile().getAbsolutePath()+"/"+file.getName());
+					
+					try {
+						Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(Home.getFrame(), "Si è verificato un errore", "Errore", JOptionPane.ERROR_MESSAGE);
+					}
+		        } else {
+		        	if (returnVal == JFileChooser.CANCEL_OPTION) {
+		        		
+		        	} else {
+		        		JOptionPane.showMessageDialog(Home.getFrame(), "Non riesco a salvare questo file", "Errore", JOptionPane.ERROR_MESSAGE);
+				    }
+		        }
+			}
+		});
 		
 		btnPrenotaStampa = buttonCreator.createButton("Prenota stampa",
 				228, 250, 218, 28, false, true);
 		riquadrodx.add(btnPrenotaStampa);
+		btnPrenotaStampa.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
 
 		panelCommenti.setBackground(Color.WHITE);
 		panelCommenti.setBounds(0, 289, 446, 130);

@@ -198,7 +198,7 @@ public class RiquadroCommento extends JPanel {
 		Timestamp time = commento.getTimestamp();
 		Date inputDate = new Date(time.getTime());
 		DateFormat outputFormat = new SimpleDateFormat("dd/MM/yy");
-		DateFormat outputFormat2 = new SimpleDateFormat("hh:mm");
+		DateFormat outputFormat2 = new SimpleDateFormat("HH:mm");
 		String outputString = outputFormat.format(inputDate);
 		String outputString2 = outputFormat2.format(inputDate);
 		
