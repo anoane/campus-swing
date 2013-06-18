@@ -157,11 +157,7 @@ public class Home {
 	}
 
 	private void initialize() {
-		
-		
-		
 
-		
 		setFrame(new JFrame());
 
 		getFrame().addWindowStateListener(new WindowStateListener() {
@@ -597,6 +593,10 @@ public class Home {
 
 	protected static void pulsantiNormali() {
 		getRicercaTestuale().setText(" Cerca documenti o corsi");
+		servizi_esterni.setIcon(new ImageIcon("./newimage/servizi_esterni.png"));
+		Home.setOldButtonColor("servizi_esterni", Home.BLUE_BUTTON_UNPRESSED);
+		servizi_esterni.setBackground(Home.BLUE_BUTTON_UNPRESSED);
+		buttonCreatorSE.setOpened(false);
 		Home.resetMenuColors();
 		Home.resetMenu2Colors();
 		Home.resetPagina();

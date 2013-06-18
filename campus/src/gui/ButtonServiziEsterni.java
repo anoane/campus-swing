@@ -10,7 +10,15 @@ import javax.swing.GroupLayout.Alignment;
 public class ButtonServiziEsterni  {
 
 	private boolean opened = false;
+	
+	public boolean getOpened() {
+		return opened;
+	}
 
+	public void setOpened(boolean op) {
+		opened = op;
+	}
+	
 	public JButton createButton(final String action, int x, int y, int width,
 			int height, final String iconPath, final String iconPath2, Boolean focusPainted,
 			Boolean borderPainted, final Boolean altezzaDinamica, final Alignment hAlignment, final int hMinSize, final int hPrefSize, final int hMaxSize, final Alignment vAlignment, final int vMinSize, final int vPrefSize, final int vMaxSize) {
