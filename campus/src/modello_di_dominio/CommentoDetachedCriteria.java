@@ -22,12 +22,14 @@ public class CommentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression commento;
 	public final IntegerExpression rootID;
+	public final TimestampExpression timestamp;
 	
 	public CommentoDetachedCriteria() {
 		super(modello_di_dominio.Commento.class, modello_di_dominio.CommentoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		commento = new StringExpression("commento", this.getDetachedCriteria());
 		rootID = new IntegerExpression("rootID", this.getDetachedCriteria());
+		timestamp = new TimestampExpression("timestamp", this.getDetachedCriteria());
 	}
 	
 	public CommentoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -35,6 +37,7 @@ public class CommentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		commento = new StringExpression("commento", this.getDetachedCriteria());
 		rootID = new IntegerExpression("rootID", this.getDetachedCriteria());
+		timestamp = new TimestampExpression("timestamp", this.getDetachedCriteria());
 	}
 	
 	public DocumentoDetachedCriteria createDocumentoCriteria() {

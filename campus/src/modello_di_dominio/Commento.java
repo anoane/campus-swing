@@ -44,6 +44,8 @@ public class Commento {
 	
 	private modello_di_dominio.Utente utente;
 	
+	private java.sql.Timestamp timestamp;
+	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -70,6 +72,14 @@ public class Commento {
 	
 	public int getRootID() {
 		return rootID;
+	}
+	
+	public void setTimestamp(java.sql.Timestamp value) {
+		this.timestamp = value;
+	}
+	
+	public java.sql.Timestamp getTimestamp() {
+		return timestamp;
 	}
 	
 	public void setUtente(modello_di_dominio.Utente value) {

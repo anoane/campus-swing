@@ -523,6 +523,17 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="Timestamp">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>22</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
   </Entity>
   <Entity name="Corso_Utente">
     <Column name="ID">

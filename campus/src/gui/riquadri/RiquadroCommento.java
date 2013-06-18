@@ -120,7 +120,7 @@ public class RiquadroCommento extends JPanel {
 		button.setBounds(405, 4, 15, 15);
 		add(button);
 		
-		JLabel data = new JLabel("data");
+		JLabel data = new JLabel(commento.getTimestamp().toGMTString());
 		data.setForeground(Color.BLACK);
 		data.setFont(new Font("Arial", Font.PLAIN, 14));
 		data.setBounds(316, 4, 54, 17);

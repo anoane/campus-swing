@@ -1,6 +1,9 @@
 package controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import gui.Home;
 
@@ -55,7 +58,10 @@ public class ControllerCommento extends AbstractController {
 		c.setCommento(text);
 		c.setDocumento(d);
 		c.setUtente(u);
-		
+		Calendar cal = GregorianCalendar.getInstance();
+		Timestamp time = new Timestamp(cal.getTimeInMillis());
+		c.setTimestamp(time);
+	
 		try {
 			commentoDAO.save(c);
 		} catch (PersistentException e) {

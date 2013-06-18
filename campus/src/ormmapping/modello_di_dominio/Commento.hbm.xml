@@ -16,5 +16,6 @@ License Type: Purchased
 		</many-to-one>
 		<many-to-one name="ORM_Utente" cascade="lock" column="UtenteID" class="modello_di_dominio.Utente" not-null="true" lazy="false">
 		</many-to-one>
+		<property name="timestamp" column="Timestamp" type="timestamp" not-null="false" lazy="false"/>
 	</class>
 </hibernate-mapping>

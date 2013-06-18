@@ -22,12 +22,14 @@ public class CommentoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression commento;
 	public final IntegerExpression rootID;
+	public final TimestampExpression timestamp;
 	
 	public CommentoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		commento = new StringExpression("commento", this);
 		rootID = new IntegerExpression("rootID", this);
+		timestamp = new TimestampExpression("timestamp", this);
 	}
 	
 	public CommentoCriteria(PersistentSession session) {
