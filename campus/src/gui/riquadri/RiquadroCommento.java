@@ -27,6 +27,12 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -86,7 +92,7 @@ public class RiquadroCommento extends JPanel {
 		final JLabel nomeUtente = new JLabel(commento.getUtente().getNome()+" "+commento.getUtente().getCognome());
 		//nomeUtente.setFont(new Font("Arial", Font.PLAIN, 14));
 		//nomeUtente.setForeground(Home.BLUE_BUTTON_PRESSED);
-		nomeUtente.setBounds(62, 4, 244, 17);
+		nomeUtente.setBounds(62, 4, 166, 17);
 		
 		nomeUtente.setForeground(Home.BLUE_BUTTON_PRESSED);
 		nomeUtente.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -112,18 +118,32 @@ public class RiquadroCommento extends JPanel {
 		});
 		add(nomeUtente);
 		
-		JButton btnNewButton = new JButton("M");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon("./newimage/modifica_commento.png"));
 		btnNewButton.setBounds(380, 4, 15, 15);
 		add(btnNewButton);
 		
-		JButton button = new JButton("M");
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("./newimage/elimina_commento.png"));
 		button.setBounds(405, 4, 15, 15);
 		add(button);
 		
-		JLabel data = new JLabel(commento.getTimestamp().toGMTString());
-		data.setForeground(Color.BLACK);
+		button.setFocusPainted(false);
+		button.setBorderPainted(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setBorderPainted(false);
+		
+		Timestamp time = commento.getTimestamp();
+		Date inputDate = new Date(time.getTime());
+		DateFormat outputFormat = new SimpleDateFormat("dd/MM/yy");
+		DateFormat outputFormat2 = new SimpleDateFormat("hh:mm");
+		String outputString = outputFormat.format(inputDate);
+		String outputString2 = outputFormat2.format(inputDate);
+		
+		JLabel data = new JLabel("il "+outputString+" alle "+outputString2);
+		data.setForeground(Color.LIGHT_GRAY);
 		data.setFont(new Font("Arial", Font.PLAIN, 14));
-		data.setBounds(316, 4, 54, 17);
+		data.setBounds(238, 4, 132, 17);
 		add(data);
 		//descrizione.addMouseListener(comportamento);
 		//descrizione.setBackground(exitedColor);
