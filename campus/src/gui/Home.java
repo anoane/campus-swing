@@ -122,7 +122,6 @@ public class Home {
 	private final static TreeMap<String, Pagina> relazionePaginaBottone = new TreeMap<String, Pagina>();
 	private final static TreeMap<String, JButton> bottoniMenu = new TreeMap<String, JButton>();
 	
-	
 	public static void setAltezzaDinamica(int a) {
 		altezza = a;
 	}

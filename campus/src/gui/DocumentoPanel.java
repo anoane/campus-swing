@@ -220,10 +220,12 @@ public class DocumentoPanel extends Pagina {
 		});
 		btnAttivaModifica.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				reload(new DocFlag(getDocumento(),true,false));
+				/*
 				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+getDocumento().getNome()+"''?</font><br></html>","Attenzione",0);
 				if(n==0){
 					reload(new DocFlag(getDocumento(),true,false));
-				}
+				}*/
 			}
 		});
 		btnTerminaModifica.addMouseListener(new MouseAdapter() {
@@ -984,7 +986,6 @@ public class DocumentoPanel extends Pagina {
 			
 		}
 		
-		altezza = altezza -1;
 		
 		System.out.println(altezza);
 		

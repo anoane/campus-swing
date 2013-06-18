@@ -4,6 +4,8 @@ package gui.riquadri;
 import gui.Home;
 import gui.buttons.EliminaCommento;
 import gui.buttons.ModificaCommento;
+import gui.buttons.SalvaCommento;
+import gui.helpers.JTextFieldLimit;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,17 +14,20 @@ import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultCaret;
+import javax.swing.text.DefaultHighlighter;
 
 import modello_di_dominio.Commento;
 
@@ -48,7 +53,51 @@ import util.StringUtility;
  */
 public class RiquadroCommento extends JPanel {
 
-	JTextArea descrizione = new JTextArea();
+	private JTextArea descrizione = new JTextArea();
+	private ModificaCommento btnNewButton = new ModificaCommento(this);
+	private EliminaCommento button = new EliminaCommento(this);
+	private SalvaCommento salva = new SalvaCommento(this);
+	
+	
+	
+	public void setModifica(boolean modificaAttiva) {
+		if (modificaAttiva) {
+			String temp = descrizione.getText();
+			Rectangle temp_rect = descrizione.getBounds();
+			this.remove(descrizione);
+			JScrollPane scroll = new JScrollPane(descrizione);
+			scroll.setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED,1));
+			scroll.setBounds(temp_rect);
+			this.add(scroll);
+			descrizione.setHighlighter(new DefaultHighlighter());
+			descrizione.setEditable(true);
+			DefaultCaret caret2 = (DefaultCaret) descrizione.getCaret();
+			caret2.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+			descrizione.setCaretPosition(0);
+			//descrizione.setBounds(62,22,359,22*8);
+			//this.setSize(421, 62-36+22*8);
+			button.setVisible(false);
+			btnNewButton.setVisible(false);
+			salva.setVisible(true);
+			repaint();
+			revalidate();
+		} else {
+			this.add(descrizione);
+			DefaultCaret caret2 = (DefaultCaret) descrizione.getCaret();
+			caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+			descrizione.setCaretPosition(0);
+			descrizione.setHighlighter(null);
+			descrizione.setEditable(false);
+			button.setVisible(true);
+			btnNewButton.setVisible(true);
+			salva.setVisible(false);
+			repaint();
+			revalidate();
+		}
+
+		
+		
+	}
 	
 	public RiquadroCommento(final Commento commento) {
 		//Color c = new Color(0x1B, 0x32, 0x80);
@@ -82,15 +131,16 @@ public class RiquadroCommento extends JPanel {
 		
 		DefaultCaret caret2 = (DefaultCaret) descrizione.getCaret();
 		caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-		descrizione.setText(commento.getCommento());
 		descrizione.setCaretPosition(0);
+		descrizione.setDocument(new JTextFieldLimit(254));
+		descrizione.setText(commento.getCommento());
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 14));
 		descrizione.setEditable(false);
 		descrizione.setBounds(62,22,359,36);
 		int righe = StringUtility.countLines(descrizione);
 		if (righe>2) {
-			descrizione.setBounds(62,22,361,21*righe);
-			this.setSize(421, 62-36+21*righe);
+			descrizione.setBounds(62,22,359,22*righe);
+			this.setSize(421, 62-36+22*righe);
 		}
 		descrizione.setLineWrap(true);
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
@@ -128,38 +178,14 @@ public class RiquadroCommento extends JPanel {
 		add(nomeUtente);
 		
 		
-		final ModificaCommento btnNewButton = new ModificaCommento();
-		//btnNewButton.setIcon(new ImageIcon("./newimage/modifica_commento.png"));
+		
 		btnNewButton.setBounds(378, 4, 15, 15);
-		//btnNewButton.setFocusPainted(false);
-		//btnNewButton.setBorderPainted(false);
-		//btnNewButton.setBackground(new Color(237,239,244));
-		
-		final EliminaCommento button = new EliminaCommento();
-		//button.setIcon(new ImageIcon("./newimage/elimina_commento.png"));
 		button.setBounds(403, 4, 15, 15);
-		//button.setFocusPainted(false);
-		//button.setBorderPainted(false);
-		//button.setBackground(new Color(237,239,244));
+		salva.setBounds(403, 4, 15, 15);
+		btnNewButton.setVisible(false);
+		button.setVisible(false);
+		salva.setVisible(false);
 		
-
-		
-		button.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>L'eliminazione è irreversibile! Sei sicuro di voler eliminare definitivamente questo commento?</font><br><br><font color=000000 face=arial size=4></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
-				if(n==0){
-					//removecommento
-					//reloaddoc
-				}
-			}
-		});
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("gay");
-			}
-		});
 		
 		Timestamp time = commento.getTimestamp();
 		Date inputDate = new Date(time.getTime());
@@ -178,8 +204,8 @@ public class RiquadroCommento extends JPanel {
 			data.setBounds(236, 4, 132, 17);
 			add(btnNewButton);
 			add(button);
+			add(salva);
 		}
-		//descrizione.addMouseListener(comportamento);
-		//descrizione.setBackground(exitedColor);
+		setModifica(false);
 	}
 }

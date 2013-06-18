@@ -232,10 +232,12 @@ public class MieiDocumenti extends Pagina {
 			});		
 			documento.getModifica().addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0){
+					Home.openDocument(true,d,true, false);
+					/*
 					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+d.getNome()+"''?</font><br></html>","Attenzione",0);
 					if(n==0){
 						Home.openDocument(true,d,true, false);
-					}
+					}*/
 				}
 			});	
 		}

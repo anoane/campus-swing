@@ -3,6 +3,7 @@
  */
 package gui.buttons;
 import gui.Home;
+import gui.riquadri.RiquadroCommento;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -12,6 +13,8 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
+import modello_di_dominio.Commento;
 
 /**
  * @author mw
@@ -25,7 +28,7 @@ public class EliminaCommento extends CustomButton {
 	/**
 	 * 
 	 */
-	public EliminaCommento() {
+	public EliminaCommento(RiquadroCommento commento) {
 		
 		super();
 		

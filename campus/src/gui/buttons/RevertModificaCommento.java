@@ -20,7 +20,7 @@ import modello_di_dominio.Commento;
  * @author mw
  *
  */
-public class ModificaCommento extends CustomButton {
+public class RevertModificaCommento extends CustomButton {
 	/**
 	 * 
 	 */
@@ -28,7 +28,7 @@ public class ModificaCommento extends CustomButton {
 	/**
 	 * 
 	 */
-	public ModificaCommento(final RiquadroCommento commento) {
+	public RevertModificaCommento(final RiquadroCommento commento) {
 		
 		super();
 		

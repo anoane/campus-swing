@@ -20,21 +20,22 @@ import modello_di_dominio.Commento;
  * @author mw
  *
  */
-public class ModificaCommento extends CustomButton {
+public class SalvaCommento extends CustomButton {
 	/**
 	 * 
 	 */
-	protected static String iconPath = "./newimage/modifica_commento.png";
+	protected static String iconPath = "./newimage/salva_commento.png";
 	/**
 	 * 
 	 */
-	public ModificaCommento(final RiquadroCommento commento) {
+	public SalvaCommento(RiquadroCommento commento) {
 		
 		super();
 		
 		setSize(15,15);
 		setBackground(null);
 		setLayout(null);
+		//setBackground(new Color(237,239,244));
 		setBackground(new Color(255,255,255));
 		
 		final JLabel lblNewLabel = new JLabel();
@@ -56,14 +57,12 @@ public class ModificaCommento extends CustomButton {
 			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				commento.setModifica(true);
-				/*
 				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler eliminare definitivamente questo commento?</font><br><br><font color=000000 face=arial size=4></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
 				if(n==0){
-					
-				}*/
+					//removecommento
+					//reloaddoc
+				}
 			}
-			
 		});
 		
 	}
