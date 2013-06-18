@@ -2,6 +2,8 @@
 package gui.riquadri;
 
 import gui.Home;
+import gui.buttons.EliminaCommento;
+import gui.buttons.ModificaCommento;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -37,6 +39,8 @@ import java.util.Map;
 
 import javax.swing.JButton;
 
+import util.StringUtility;
+
 /**
  * @author mw
  * 
@@ -49,7 +53,7 @@ public class RiquadroCommento extends JPanel {
 		//Color c = new Color(0x1B, 0x32, 0x80);
 		//setBorder(new LineBorder(c));
 		this.setSize(428, 62);
-		//this.setBackground(new Color(0x43, 0x88, 0xCC));
+		this.setBackground(new Color(0xFF, 0xFF, 0xFF));
 		setLayout(null);
 		
 		final JLabel lblNewLabel = new JLabel("");
@@ -82,11 +86,15 @@ public class RiquadroCommento extends JPanel {
 		descrizione.setFont(new Font("Arial", Font.PLAIN, 14));
 		descrizione.setEditable(false);
 		descrizione.setBounds(62,22,361,36);
+		int righe = StringUtility.countLines(descrizione);
+		if (righe>2) {
+			descrizione.setBounds(62,22,361,21*righe);
+			this.setSize(428, 62-36+21*righe);
+		}
 		descrizione.setLineWrap(true);
 		descrizione.setBorder(new EmptyBorder(0,0,0,0));
 		descrizione.setWrapStyleWord(true);
 		descrizione.setHighlighter(null);
-		descrizione.setText(util.StringUtility.truncateLines(descrizione,3));
 		add(descrizione);
 		
 		final JLabel nomeUtente = new JLabel(commento.getUtente().getNome()+" "+commento.getUtente().getCognome());
@@ -96,7 +104,7 @@ public class RiquadroCommento extends JPanel {
 		
 		nomeUtente.setForeground(Home.BLUE_BUTTON_PRESSED);
 		nomeUtente.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		nomeUtente.setFont(new Font("Arial", Font.PLAIN, 14));
+		nomeUtente.setFont(new Font("Arial", Font.BOLD, 14));
 		nomeUtente.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				Home.openProfilo(commento.getUtente());
@@ -118,20 +126,35 @@ public class RiquadroCommento extends JPanel {
 		});
 		add(nomeUtente);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("./newimage/modifica_commento.png"));
+		
+		final ModificaCommento btnNewButton = new ModificaCommento();
+		//btnNewButton.setIcon(new ImageIcon("./newimage/modifica_commento.png"));
 		btnNewButton.setBounds(380, 4, 15, 15);
-		add(btnNewButton);
+		//btnNewButton.setFocusPainted(false);
+		//btnNewButton.setBorderPainted(false);
+		//btnNewButton.setBackground(new Color(237,239,244));
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("./newimage/elimina_commento.png"));
+		final EliminaCommento button = new EliminaCommento();
+		//button.setIcon(new ImageIcon("./newimage/elimina_commento.png"));
 		button.setBounds(405, 4, 15, 15);
-		add(button);
+		//button.setFocusPainted(false);
+		//button.setBorderPainted(false);
+		//button.setBackground(new Color(237,239,244));
 		
-		button.setFocusPainted(false);
-		button.setBorderPainted(false);
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setBorderPainted(false);
+
+		
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+
+			}
+		});
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+
+			}
+		});
 		
 		Timestamp time = commento.getTimestamp();
 		Date inputDate = new Date(time.getTime());
@@ -143,8 +166,14 @@ public class RiquadroCommento extends JPanel {
 		JLabel data = new JLabel("il "+outputString+" alle "+outputString2);
 		data.setForeground(Color.LIGHT_GRAY);
 		data.setFont(new Font("Arial", Font.PLAIN, 14));
-		data.setBounds(238, 4, 132, 17);
+		data.setBounds(286, 4, 132, 17);
 		add(data);
+		
+		if (commento.getDocumento().getProprietario().getID()==Home.getUtenteLoggato().getID() || commento.getUtente().getID()==Home.getUtenteLoggato().getID()) {
+			data.setBounds(238, 4, 132, 17);
+			add(btnNewButton);
+			add(button);
+		}
 		//descrizione.addMouseListener(comportamento);
 		//descrizione.setBackground(exitedColor);
 	}

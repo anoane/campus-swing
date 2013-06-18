@@ -422,6 +422,7 @@ public class DocumentoPanel extends Pagina {
 		pannelloCommentiInterni.setBackground(new Color(237,239,244));
 		
 		pannelloCommentiInterni.setBounds(0, 0, 446, 93);
+		
 		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
 		
 		
@@ -980,7 +981,7 @@ public class DocumentoPanel extends Pagina {
 		for(int i = 0;i < commenti.size();i++){
 			final Commento comm = commenti.get(i);
 			final RiquadroCommento commento = new RiquadroCommento(comm);
-			commento.setLocation(0, (107*i));
+			commento.setLocation(4, 4+(80*i));
 			internissimo.add(commento);
 		}
 		if (num_commenti == 0) {
