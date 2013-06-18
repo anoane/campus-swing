@@ -3,6 +3,8 @@ package controller;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 
 import gui.Home;
@@ -95,7 +97,7 @@ public class ControllerCommento extends AbstractController {
 		for (int i=0; listacommenti.length > i; i++) {
 			commenti.add(listacommenti[i]);
 		}
-		return commenti;
+		return ordina(commenti);
 	}
 	
 	public void eliminaCommentiByDoc(Documento d) {
@@ -118,6 +120,28 @@ public class ControllerCommento extends AbstractController {
 		} catch (PersistentException e) {
 
 		}
+	}
+	
+	public ArrayList<Commento> ordina(ArrayList<Commento> array) {
+		
+		Comparator timestamp = new Comparator<Commento>() {
+
+			@Override
+		    public int compare(Commento obj1, Commento obj2) {
+				if (obj1.getTimestamp()==null) {
+		        	return -1;
+		        }
+		        if (obj2.getTimestamp()==null) {
+		        	return 1;
+		        }
+				return obj1.getTimestamp().compareTo(obj2.getTimestamp());
+		    }
+		};
+		
+		Collections.sort(array, timestamp);
+		//Collections.reverse(array);
+		
+		return array;
 	}
 	
 	/**

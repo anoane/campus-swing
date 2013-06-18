@@ -696,7 +696,7 @@ public class DocumentoPanel extends Pagina {
 		if (o!=null) {
 			if (((DocFlag)o).getDoc()!=null) {
 
-				System.out.println(((DocFlag)o).getDoc().getID());
+				//System.out.println(((DocFlag)o).getDoc().getID());
 				setEliminate(true);
 				btnTerminaModifica.setVisible(false);
 				btnAnnullaModifica.setVisible(false);
