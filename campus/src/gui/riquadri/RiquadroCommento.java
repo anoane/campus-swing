@@ -86,7 +86,7 @@ public class RiquadroCommento extends JPanel {
 		final JLabel nomeUtente = new JLabel(commento.getUtente().getNome()+" "+commento.getUtente().getCognome());
 		//nomeUtente.setFont(new Font("Arial", Font.PLAIN, 14));
 		//nomeUtente.setForeground(Home.BLUE_BUTTON_PRESSED);
-		nomeUtente.setBounds(62, 4, 301, 17);
+		nomeUtente.setBounds(62, 4, 244, 17);
 		
 		nomeUtente.setForeground(Home.BLUE_BUTTON_PRESSED);
 		nomeUtente.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -113,12 +113,18 @@ public class RiquadroCommento extends JPanel {
 		add(nomeUtente);
 		
 		JButton btnNewButton = new JButton("M");
-		btnNewButton.setBounds(377, 2, 18, 18);
+		btnNewButton.setBounds(380, 4, 15, 15);
 		add(btnNewButton);
 		
 		JButton button = new JButton("M");
-		button.setBounds(405, 2, 18, 18);
+		button.setBounds(405, 4, 15, 15);
 		add(button);
+		
+		JLabel data = new JLabel("data");
+		data.setForeground(Color.BLACK);
+		data.setFont(new Font("Arial", Font.PLAIN, 14));
+		data.setBounds(316, 4, 54, 17);
+		add(data);
 		//descrizione.addMouseListener(comportamento);
 		//descrizione.setBackground(exitedColor);
 	}

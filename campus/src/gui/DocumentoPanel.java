@@ -220,7 +220,7 @@ public class DocumentoPanel extends Pagina {
 			public void mouseClicked(MouseEvent arg0) {
 				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler modificare ''"+getDocumento().getNome()+"''?</font><br></html>","Attenzione",0);
 				if(n==0){
-					reload(new DocFlag(getDocumento(),true,commentiEspansi));
+					reload(new DocFlag(getDocumento(),true,false));
 				}
 			}
 		});
@@ -416,6 +416,7 @@ public class DocumentoPanel extends Pagina {
 		separator_1.setForeground(new Color(27, 50, 128));
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 36, 446, 93);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 		panelCommenti.add(scrollPane);
 		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
 		pannelloCommentiInterni.setBackground(new Color(237,239,244));
