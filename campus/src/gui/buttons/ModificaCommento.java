@@ -3,6 +3,7 @@
  */
 package gui.buttons;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -35,7 +36,7 @@ public class ModificaCommento extends CustomButton {
 		lblNewLabel.setBounds(0, 0, 15, 15);
 		add(lblNewLabel);
 		
-		lblNewLabel.addMouseListener(new MouseListener() {
+		lblNewLabel.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -46,15 +47,6 @@ public class ModificaCommento extends CustomButton {
 			public void mouseExited(MouseEvent e) {
 				setBackground(new Color(255,255,255));
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {}
 			
 		});
 		

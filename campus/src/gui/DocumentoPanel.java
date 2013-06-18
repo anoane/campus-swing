@@ -109,6 +109,7 @@ public class DocumentoPanel extends Pagina {
 	private final JPanel panel_6 = new JPanel();
 	private JPanel pannelloCommentiInterni = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane(pannelloCommentiInterni);
+	private GroupLayout gl_pannelloCommentiInterni = new GroupLayout(pannelloCommentiInterni);
 	private JTextArea txtScriviUnCommento = new JTextArea();
 	private JScrollPane scrollPane_1 = new JScrollPane(txtScriviUnCommento);
 	private final JButton espandi = new JButton("");
@@ -117,6 +118,7 @@ public class DocumentoPanel extends Pagina {
 	private JButton btnScarica;
 	private JButton btnPrenotaStampa;
 	private JPanel panelCommenti = new JPanel();
+	private int altezza = 0;
 	
 	public void setEliminate(boolean b) {
 		canEliminate = b;
@@ -206,7 +208,7 @@ public class DocumentoPanel extends Pagina {
 		btnElimina.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				if (getEliminate()) {
-					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>L'eliminazione è irreversibile! Sei sicuro di voler eliminare definitivamente ''"+getDocumento().getNome()+"'' dal sistema?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso ricaricare il documento utilizzando la funzione ''Carica documento''</em></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler eliminare definitivamente ''"+getDocumento().getNome()+"'' dal sistema?</font><br><br><font color=000000 face=arial size=4><em>*Puoi in ogni caso ricaricare il documento utilizzando la funzione ''Carica documento''</em></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
 					if(n==0){
 						setEliminate(false);
 						ControllerDocumento cd = ControllerDocumento.getInstance();
@@ -415,13 +417,13 @@ public class DocumentoPanel extends Pagina {
 		panelCommenti.add(separator_1);
 		separator_1.setForeground(new Color(27, 50, 128));
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(0, 36, 446, 93);
+		scrollPane.setBounds(0, 36, 446, 94);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 		panelCommenti.add(scrollPane);
 		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
 		pannelloCommentiInterni.setBackground(new Color(237,239,244));
 		
-		pannelloCommentiInterni.setBounds(0, 0, 446, 93);
+		pannelloCommentiInterni.setBounds(0, 0, 446, 30);
 		
 		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
 		
@@ -465,16 +467,10 @@ public class DocumentoPanel extends Pagina {
 			}
 		});
 		
-		internissimo.setBounds(0, 0, 382, 800);
+		internissimo.setBounds(0, 0, 382, 30);
 		pannelloCommentiInterni.add(internissimo);
 		internissimo.setLayout(null);
-		
-		JLabel lblNewLabelNew = new JLabel("New labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew labelNew label");
-		lblNewLabelNew.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabelNew.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabelNew.setBounds(0, 0, 700, 700);
-		internissimo.add(lblNewLabelNew);
-		GroupLayout gl_pannelloCommentiInterni = new GroupLayout(pannelloCommentiInterni);
+		//pannelloCommentiInterni.setBackground(Color.YELLOW);
 		gl_pannelloCommentiInterni.setHorizontalGroup(
 			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pannelloCommentiInterni.createSequentialGroup()
@@ -484,8 +480,8 @@ public class DocumentoPanel extends Pagina {
 		gl_pannelloCommentiInterni.setVerticalGroup(
 			gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pannelloCommentiInterni.createSequentialGroup()
-					.addComponent(internissimo, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addComponent(internissimo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		pannelloCommentiInterni.setLayout(gl_pannelloCommentiInterni);
 		
@@ -936,7 +932,8 @@ public class DocumentoPanel extends Pagina {
 		espandi.setIcon(new ImageIcon("./newimage/riduci.png"));
 		commentiEspansi = true;
 		panelCommenti.setBounds(0, 0, 446, 419);
-		scrollPane.setBounds(0, 36, 446, 419);
+		scrollPane.setBounds(0, 36, 446, 383);
+
 	}
 	
 	private void mostraCommenti() {
@@ -947,6 +944,7 @@ public class DocumentoPanel extends Pagina {
 		espandi.setIcon(new ImageIcon("./newimage/espandi.png"));
 		commentiEspansi = false;
 		panelCommenti.setBounds(0, 289, 446, 130);
+		scrollPane.setBounds(0, 36, 446, 94);
 	}
 	
 	private void resetStelle() {
@@ -973,21 +971,43 @@ public class DocumentoPanel extends Pagina {
 	
 	public void addCommenti(final ArrayList<Commento> commenti){
 		int num_commenti = commenti.size();
-		int colmax = (int) Math.ceil((float)commenti.size());
-		int altezza = 230*colmax;
-		internissimo.setBounds(internissimo.getX(),internissimo.getY(),internissimo.getWidth(),altezza);
 		//panel.setSize(panel.getWidth(), altezza+71);
-
+		altezza = 0;
+		
 		for(int i = 0;i < commenti.size();i++){
 			final Commento comm = commenti.get(i);
 			final RiquadroCommento commento = new RiquadroCommento(comm);
-			commento.setLocation(4, 4+(80*i));
+			commento.setLocation(4, altezza+4);
+			System.out.println(commento.getHeight());
 			internissimo.add(commento);
+			altezza = altezza + commento.getHeight() + 4;
+			
 		}
+		
+		altezza = altezza -1;
+		
+		System.out.println(altezza);
+		
+		internissimo.setBounds(internissimo.getX(),internissimo.getY(),internissimo.getWidth(),altezza);
+		//internissimo.setBackground(Color.BLUE);
+		gl_pannelloCommentiInterni.setVerticalGroup(
+				gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_pannelloCommentiInterni.createSequentialGroup()
+						.addComponent(internissimo, GroupLayout.PREFERRED_SIZE, altezza, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(0, Short.MAX_VALUE))
+		);
+		
 		if (num_commenti == 0) {
+			gl_pannelloCommentiInterni.setVerticalGroup(
+					gl_pannelloCommentiInterni.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pannelloCommentiInterni.createSequentialGroup()
+							.addComponent(internissimo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(0, Short.MAX_VALUE))
+			);
+			internissimo.setBounds(internissimo.getX(),internissimo.getY(),internissimo.getWidth(),30);
 			JLabel lblNoCorsiSeg = new JLabel("Nessun commento inserito");
-			lblNoCorsiSeg.setFont(new Font("Arial", Font.BOLD, 20));
-			lblNoCorsiSeg.setBounds(0, 0, 310, 57);
+			lblNoCorsiSeg.setFont(new Font("Arial", Font.BOLD, 16));
+			lblNoCorsiSeg.setBounds(10, 0, 310, 30);
 			lblNoCorsiSeg.setForeground(Color.LIGHT_GRAY);
 			internissimo.add(lblNoCorsiSeg);
 		}
