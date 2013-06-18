@@ -24,7 +24,7 @@ public class RevertModificaCommento extends CustomButton {
 	/**
 	 * 
 	 */
-	protected static String iconPath = "./newimage/modifica_commento.png";
+	protected static String iconPath = "./newimage/elimina_commento.png";
 	/**
 	 * 
 	 */

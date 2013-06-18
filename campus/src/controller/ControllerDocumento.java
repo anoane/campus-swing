@@ -134,7 +134,7 @@ public class ControllerDocumento extends AbstractController{
 			ControllerVoto.getInstance().rimuoviVotiAssociatiADocumento(d);
 			//Rimuovo i preferiti
 			ControllerPreferiti.getInstance().rimuoviDocumentoDaTuttiPreferiti(d);
-			
+			ControllerCommento.getInstance().eliminaCommentiByDoc(d);
 			try {
 				d.getFacolta().documento.remove(d);
 			} catch(NullPointerException ex) {
@@ -150,6 +150,7 @@ public class ControllerDocumento extends AbstractController{
 			} catch(NullPointerException ex) {
 				
 			}
+			
 			documentoDAO.delete(d);
 		} catch (PersistentException e) {
 			e.printStackTrace();

@@ -984,6 +984,91 @@ public class DocumentoPanel extends Pagina {
 			internissimo.add(commento);
 			altezza = altezza + commento.getHeight() + 4;
 			
+			commento.getElimina().addMouseListener(new MouseAdapter() {
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					commento.getElimina().setBackground(new Color(237,239,244));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					commento.getElimina().setBackground(new Color(255,255,255));
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler eliminare definitivamente questo commento?</font><br><br><font color=000000 face=arial size=4></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
+					if(n==0){
+						ControllerCommento.getInstance().eliminaCommento(comm);
+						reload(new DocFlag(getDocumento(),false,commentiEspansi));
+					}
+				}
+				
+			});
+			
+			commento.getModifica().addMouseListener(new MouseAdapter() {
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					commento.getModifica().setBackground(new Color(237,239,244));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					commento.getModifica().setBackground(new Color(255,255,255));
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					commento.setModifica(true);
+					/*
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler eliminare definitivamente questo commento?</font><br><br><font color=000000 face=arial size=4></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
+					if(n==0){
+						
+					}*/
+				}
+				
+			});
+			
+			commento.getAnnulla().addMouseListener(new MouseAdapter() {
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					commento.getAnnulla().setBackground(new Color(237,239,244));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					commento.getAnnulla().setBackground(new Color(255,255,255));
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+
+				}
+				
+			});
+			
+			commento.getSalva().addMouseListener(new MouseAdapter() {
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					commento.getSalva().setBackground(new Color(237,239,244));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					commento.getSalva().setBackground(new Color(255,255,255));
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+
+				}
+				
+			});
+			
 		}
 		
 		

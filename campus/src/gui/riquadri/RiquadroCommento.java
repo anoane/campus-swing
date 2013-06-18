@@ -4,6 +4,7 @@ package gui.riquadri;
 import gui.Home;
 import gui.buttons.EliminaCommento;
 import gui.buttons.ModificaCommento;
+import gui.buttons.RevertModificaCommento;
 import gui.buttons.SalvaCommento;
 import gui.helpers.JTextFieldLimit;
 
@@ -45,6 +46,9 @@ import java.util.Map;
 
 import javax.swing.JButton;
 
+import controller.ControllerCommento;
+import controller.ControllerDocumento;
+
 import util.StringUtility;
 
 /**
@@ -57,6 +61,7 @@ public class RiquadroCommento extends JPanel {
 	private ModificaCommento btnNewButton = new ModificaCommento(this);
 	private EliminaCommento button = new EliminaCommento(this);
 	private SalvaCommento salva = new SalvaCommento(this);
+	private RevertModificaCommento annulla = new RevertModificaCommento(this);
 	
 	
 	
@@ -79,6 +84,7 @@ public class RiquadroCommento extends JPanel {
 			button.setVisible(false);
 			btnNewButton.setVisible(false);
 			salva.setVisible(true);
+			annulla.setVisible(true);
 			repaint();
 			revalidate();
 		} else {
@@ -91,6 +97,7 @@ public class RiquadroCommento extends JPanel {
 			button.setVisible(true);
 			btnNewButton.setVisible(true);
 			salva.setVisible(false);
+			annulla.setVisible(false);
 			repaint();
 			revalidate();
 		}
@@ -180,12 +187,13 @@ public class RiquadroCommento extends JPanel {
 		
 		
 		btnNewButton.setBounds(378, 4, 15, 15);
+		annulla.setBounds(378, 4, 15, 15);
 		button.setBounds(403, 4, 15, 15);
 		salva.setBounds(403, 4, 15, 15);
 		btnNewButton.setVisible(false);
 		button.setVisible(false);
 		salva.setVisible(false);
-		
+		annulla.setVisible(false);
 		
 		Timestamp time = commento.getTimestamp();
 		Date inputDate = new Date(time.getTime());
@@ -208,4 +216,25 @@ public class RiquadroCommento extends JPanel {
 		}
 		setModifica(false);
 	}
+
+	public ModificaCommento getModifica() {
+		// TODO Auto-generated method stub
+		return btnNewButton;
+	}
+
+	public EliminaCommento getElimina() {
+		// TODO Auto-generated method stub
+		return button;
+	}
+
+	public RevertModificaCommento getAnnulla() {
+		// TODO Auto-generated method stub
+		return annulla;
+	}
+
+	public SalvaCommento getSalva() {
+		// TODO Auto-generated method stub
+		return salva;
+	}
+
 }
