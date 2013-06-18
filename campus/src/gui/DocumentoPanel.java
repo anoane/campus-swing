@@ -424,6 +424,8 @@ public class DocumentoPanel extends Pagina {
 					Path target = Paths.get(fc.getSelectedFile().getAbsolutePath()+"/"+file.getName());
 					
 					try {
+						ControllerDocumento.getInstance().incrementaDownloadDocumento(getDocumento().getID());
+						
 						Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
