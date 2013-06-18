@@ -961,7 +961,7 @@ public class DocumentoPanel extends Pagina {
 	}
 	
 	private ArrayList<Commento> getCommenti() {
-		return ControllerCommento.getInstance().getListAllCommenti();
+		return ControllerCommento.getInstance().getListCommentiByDoc(getDocumento());
 	}
 	
 	private void adjustCommenti(final ArrayList<Commento> commenti){
@@ -980,10 +980,9 @@ public class DocumentoPanel extends Pagina {
 			final Commento comm = commenti.get(i);
 			final RiquadroCommento commento = new RiquadroCommento(comm);
 			commento.setLocation(4, altezza+4);
-			System.out.println(commento.getHeight());
 			internissimo.add(commento);
 			altezza = altezza + commento.getHeight() + 4;
-			
+			commento.getElimina().setToolTipText("Elimina commento");
 			commento.getElimina().addMouseListener(new MouseAdapter() {
 
 				@Override
@@ -1006,7 +1005,7 @@ public class DocumentoPanel extends Pagina {
 				}
 				
 			});
-			
+			commento.getModifica().setToolTipText("Modifica commento");
 			commento.getModifica().addMouseListener(new MouseAdapter() {
 
 				@Override
@@ -1030,7 +1029,7 @@ public class DocumentoPanel extends Pagina {
 				}
 				
 			});
-			
+			commento.getAnnulla().setToolTipText("Annulla modifiche commento");
 			commento.getAnnulla().addMouseListener(new MouseAdapter() {
 
 				@Override
@@ -1045,11 +1044,15 @@ public class DocumentoPanel extends Pagina {
 				
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler annullare tutte le modifiche apportate a questo commento?</font><br><br><font color=000000 face=arial size=4></font><br></html>","Attenzione",0,JOptionPane.QUESTION_MESSAGE);
+					if(n==0){
+						reload(new DocFlag(getDocumento(),false,commentiEspansi));
+					}
 				}
 				
 			});
 			
+			commento.getSalva().setToolTipText("Salva modifiche commento");
 			commento.getSalva().addMouseListener(new MouseAdapter() {
 
 				@Override
@@ -1064,7 +1067,11 @@ public class DocumentoPanel extends Pagina {
 				
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-
+					int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler salvare tutte le modifiche apportate a questo commento?</font><br><br><font color=000000 face=arial size=4></font><br></html>","Attenzione",0,JOptionPane.QUESTION_MESSAGE);
+					if(n==0){
+						ControllerCommento.getInstance().modificaCommento(comm,commento.getTextCommento());
+						reload(new DocFlag(getDocumento(),false,commentiEspansi));
+					}
 				}
 				
 			});
@@ -1072,7 +1079,6 @@ public class DocumentoPanel extends Pagina {
 		}
 		
 		
-		System.out.println(altezza);
 		
 		internissimo.setBounds(internissimo.getX(),internissimo.getY(),internissimo.getWidth(),altezza);
 		//internissimo.setBackground(Color.BLUE);

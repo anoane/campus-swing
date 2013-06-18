@@ -99,27 +99,10 @@ public class ControllerCommento extends AbstractController {
 	}
 	
 	public void eliminaCommentiByDoc(Documento d) {
-		DAOFactory factory = DAOFactory.getDAOFactory();
-		CommentoDAO commentoDAO = factory.getCommentoDAO();
-		Commento[] commento = null;
-		try {
-			commento = commentoDAO.listCommentoByQuery("DocumentoID = " + d.getID(), null);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+		Commento[] listacommenti = d.commentos.toArray();
+		for (int i=0; listacommenti.length > i; i++) {
+			eliminaCommento(listacommenti[i]);
 		}
-		if (commento.length!=0) {
-			for (int i=0; i<commento.length; i++) {
-				try {
-					commentoDAO.delete(commento[i]);
-				} catch (PersistentException e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-				}
-			}
-		}
-		
-	
 	}
 	
 	public void eliminaCommento(Commento comm) {
@@ -127,6 +110,8 @@ public class ControllerCommento extends AbstractController {
 		CommentoDAO commentoDAO = factory.getCommentoDAO();
 		try {
 			comm.getDocumento().commentos.remove(comm);
+			comm.getUtente().commentos.remove(comm);
+			
 			commentoDAO.delete(comm);
 		} catch(NullPointerException ex) {
 			
@@ -142,5 +127,16 @@ public class ControllerCommento extends AbstractController {
 	 */
 	public void aggiungiCommento(String text,Documento d){
 		this.aggiungiCommento(text, d, Home.getUtenteLoggato());
+	}
+	
+	public void modificaCommento(Commento comm, String textCommento) {
+		try {
+			DAOFactory factory = DAOFactory.getDAOFactory();
+			CommentoDAO commentoDAO = factory.getCommentoDAO();
+			comm.setCommento(textCommento);
+			commentoDAO.save(comm);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -213,6 +213,7 @@ public class RiquadroCommento extends JPanel {
 			add(btnNewButton);
 			add(button);
 			add(salva);
+			add(annulla);
 		}
 		setModifica(false);
 	}
@@ -235,6 +236,11 @@ public class RiquadroCommento extends JPanel {
 	public SalvaCommento getSalva() {
 		// TODO Auto-generated method stub
 		return salva;
+	}
+
+	public String getTextCommento() {
+		// TODO Auto-generated method stub
+		return descrizione.getText();
 	}
 
 }

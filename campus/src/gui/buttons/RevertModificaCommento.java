@@ -24,7 +24,7 @@ public class RevertModificaCommento extends CustomButton {
 	/**
 	 * 
 	 */
-	protected static String iconPath = "./newimage/elimina_commento.png";
+	protected static String iconPath = "./newimage/revert_commento.png";
 	/**
 	 * 
 	 */
@@ -41,30 +41,6 @@ public class RevertModificaCommento extends CustomButton {
 		lblNewLabel.setIcon(new ImageIcon(iconPath));
 		lblNewLabel.setBounds(0, 0, 15, 15);
 		add(lblNewLabel);
-		
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				setBackground(new Color(237,239,244));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				setBackground(new Color(255,255,255));
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				commento.setModifica(true);
-				/*
-				int n = JOptionPane.showConfirmDialog(Home.getFrame(),"<html><font color=000000 face=arial size=4>Sei sicuro di voler eliminare definitivamente questo commento?</font><br><br><font color=000000 face=arial size=4></font><br></html>","Attenzione",0,JOptionPane.WARNING_MESSAGE);
-				if(n==0){
-					
-				}*/
-			}
-			
-		});
 		
 	}
 }
