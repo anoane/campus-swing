@@ -754,16 +754,20 @@ public class Home {
 	public static void openProfilo(Utente u) {
 		// TODO Auto-generated method stub
 		//resetPagina();
-		if (u.getID()!=Home.getUtenteLoggato().getID()) {
-			Home.pulsantiNormali();
+		if (Home.getUtenteLoggato()!=null) {
+			if (u.getID()!=Home.getUtenteLoggato().getID()) {
+				Home.pulsantiNormali();
+			}
+			
+			if (u==null) {
+				u = Home.getUtenteLoggato();
+			}
+			pagina_profilo.reload(u);
+			
+			Home.loadPages(pagina_profilo, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
+		
 		}
 		
-		if (u==null) {
-			u = Home.getUtenteLoggato();
-		}
-		pagina_profilo.reload(u);
-		
-		Home.loadPages(pagina_profilo, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1008, GroupLayout.PREFERRED_SIZE, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, corso.getAltezzaPagina(), GroupLayout.PREFERRED_SIZE);	
 	}
 
 	public static JTextField getRicercaTestuale() {

@@ -472,7 +472,7 @@ public class DocumentoPanel extends Pagina {
 		
 		pannelloCommentiInterni.setBounds(0, 0, 446, 30);
 		
-		Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
+		
 		
 		
 		btnInviaCommento.setFont(new Font("Arial", Font.BOLD, 14));
@@ -542,7 +542,11 @@ public class DocumentoPanel extends Pagina {
 		
 		JLabel imgMia = new JLabel("");
 		imgMia.setBounds(4, 4, 54, 54);
-		imgMia.setIcon(new ImageIcon(resized));
+		if (Home.getUtenteLoggato()!=null) {
+			Image resized = new ImageIcon("."+Home.getUtenteLoggato().getImmagine()).getImage().getScaledInstance(54, 54,  java.awt.Image.SCALE_SMOOTH);  
+			imgMia.setIcon(new ImageIcon(resized));
+		}
+		
 		
 		panel_8.add(imgMia);
 		
@@ -688,273 +692,280 @@ public class DocumentoPanel extends Pagina {
 	@Override
 	public void reload(Object o) {
 		if (o!=null) {
-			setEliminate(true);
-			btnTerminaModifica.setVisible(false);
-			btnAnnullaModifica.setVisible(false);
-			//btnNewButton = new JButton(">");
-			//panel.add(btnNewButton);
-			//btnNewButton.setBounds(521, 165, 45, 45);
-			//menuSuggerimenti = new MenuSuggerimenti(false);
-			//menuSuggerimenti.setLocation(521, 100);
-			//panel.add(menuSuggerimenti);
-			txtScriviUnCommento.setText("Scrivi un commento...");
-			txtScriviUnCommento.setForeground(Color.GRAY);
-			
-			resetStelle();
-			ControllerVoto contrVoto = ControllerVoto.getInstance(); 
-			setDocumento(((DocFlag)o).getDoc());
-			final boolean flagModifica = ((DocFlag)o).getFlag();
-			riquadrodx.setVisible(true);
-			
+			if (((DocFlag)o).getDoc()!=null) {
 
-			
-
-			panel_3.setLayout(null);
-			panel_3.setBorder(null);
-			panel_3.setBackground(Color.WHITE);
-			panel_3.setBounds(0, 0, 446, 140);
-			panel_3.setWrapStyleWord(true);
-			panel_3.setLineWrap(true);
-			panel_3.setHighlighter(null);
-			//panel_3.setHighlighter(new DefaultHighlighter());
-			panel_3.setEditable(false);
-			
-			lblPreferiti.setVisible(true);
-			tf_preferiti.setVisible(false);
-			
-			
-			
-			//panel.remove(suggerimenti);
-			//suggerimenti = new Suggerimenti();
-			//suggerimenti.setLocation(519, 100);
-			//suggerimenti.load(getDocumento());
-			//panel.add(suggerimenti);
-			
-			
-			//suggerimenti.setPreferredSize(new Dimension(440, 400));
-			
-			
-			//suggerimenti.load(d);
-			
-			//adjustSuggerimenti();
-			
-			/*suggerimenti.getViewport().getComponent(0).addComponentListener(
-					new ComponentAdapter() {
-						@Override
-						public void componentResized(ComponentEvent arg0) {
-							adjustSuggerimenti();
-						}
-					});
-			
-			suggerimenti.setVisible(false);*/
-			//toggleInfo();
-			
-			
-			commentiEspansi = ((DocFlag)o).getCommentiAperti();
-			if (commentiEspansi) {
-				nascondiCommenti();
+				System.out.println(((DocFlag)o).getDoc().getID());
+				setEliminate(true);
+				btnTerminaModifica.setVisible(false);
+				btnAnnullaModifica.setVisible(false);
+				//btnNewButton = new JButton(">");
+				//panel.add(btnNewButton);
+				//btnNewButton.setBounds(521, 165, 45, 45);
+				//menuSuggerimenti = new MenuSuggerimenti(false);
+				//menuSuggerimenti.setLocation(521, 100);
+				//panel.add(menuSuggerimenti);
+				txtScriviUnCommento.setText("Scrivi un commento...");
+				txtScriviUnCommento.setForeground(Color.GRAY);
 				
-			} else {
-				mostraCommenti();
-			}
-			
-			validate();
-			repaint();
-			/*btnNewButton.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					if (suggestOpened) {
-						suggestOpened = false;
-						suggerimenti.setVisible(false);
-						btnNewButton.setText(">");
-					} else {
-						suggestOpened = true;
-						suggerimenti.setVisible(true);
-						btnNewButton.setText("<");
-					}
-					toggleInfo();
-					validate();
-					repaint();
+				resetStelle();
+				ControllerVoto contrVoto = ControllerVoto.getInstance(); 
+				setDocumento(((DocFlag)o).getDoc());
+				final boolean flagModifica = ((DocFlag)o).getFlag();
+				riquadrodx.setVisible(true);
+				
+
+				
+
+				panel_3.setLayout(null);
+				panel_3.setBorder(null);
+				panel_3.setBackground(Color.WHITE);
+				panel_3.setBounds(0, 0, 446, 140);
+				panel_3.setWrapStyleWord(true);
+				panel_3.setLineWrap(true);
+				panel_3.setHighlighter(null);
+				//panel_3.setHighlighter(new DefaultHighlighter());
+				panel_3.setEditable(false);
+				
+				lblPreferiti.setVisible(true);
+				tf_preferiti.setVisible(false);
+				
+				
+				
+				//panel.remove(suggerimenti);
+				//suggerimenti = new Suggerimenti();
+				//suggerimenti.setLocation(519, 100);
+				//suggerimenti.load(getDocumento());
+				//panel.add(suggerimenti);
+				
+				
+				//suggerimenti.setPreferredSize(new Dimension(440, 400));
+				
+				
+				//suggerimenti.load(d);
+				
+				//adjustSuggerimenti();
+				
+				/*suggerimenti.getViewport().getComponent(0).addComponentListener(
+						new ComponentAdapter() {
+							@Override
+							public void componentResized(ComponentEvent arg0) {
+								adjustSuggerimenti();
+							}
+						});
+				
+				suggerimenti.setVisible(false);*/
+				//toggleInfo();
+				
+				
+				commentiEspansi = ((DocFlag)o).getCommentiAperti();
+				if (commentiEspansi) {
+					nascondiCommenti();
+					
+				} else {
+					mostraCommenti();
 				}
-
-			});*/
-
-			if (getDocumento() != null) {
-				if (ControllerUtente.getInstance().containDocumentoPreferito(
-						Home.getUtenteLoggato(), getDocumento())) {
-						btnAggiungiAiPreferiti.setVisible(false);
-						btnRimuoviDaiPreferiti.setVisible(true);
-					} else {
-						btnAggiungiAiPreferiti.setVisible(true);
-						btnRimuoviDaiPreferiti.setVisible(false);
-				}
-				if (getDocumento().getProprietario().getID()==Home.getUtenteLoggato().getID()) {
-						lblFac.setBounds(307, 59, 214, 23);
-						//separator_2.setBounds(442, 59, 1, 23);
-						//lblUniversit.setBounds(453, 59, 120, 23);
-						separator_2.setVisible(false);
-						lblUniversit.setVisible(false);
-						lblPreferiti.setBounds(10, 10, 511, 25);
-						btnElimina.setVisible(true);
-						btnAttivaModifica.setVisible(true);
-						btnTerminaModifica.setVisible(false);
-						btnAnnullaModifica.setVisible(false);
-						
-					} else {
-						lblFac.setBounds(307, 59, 325, 23);
-						separator_2.setVisible(true);
-						lblUniversit.setVisible(true);
-						separator_2.setBounds(643, 59, 1, 23);
-						lblUniversit.setBounds(653, 59, 325, 23);
-						lblPreferiti.setBounds(10, 10, 740, 25);
-						btnElimina.setVisible(false);
-						btnAttivaModifica.setVisible(false);
-						btnTerminaModifica.setVisible(false);
-						btnAnnullaModifica.setVisible(false);
-				}
-				panel.validate();
-				panel.repaint();
-			}
-			if (getDocumento().getPath() != null && !getDocumento().getPath().equals("/")) {
-				String strTipo = getDocumento().getPath().split("\\.")[1];
-				switch (strTipo) {
-				case "pdf":
-					lbltipo.setIcon(new ImageIcon("./newimage/pdf.png"));
-					break;
-				case "ppt":
-					lbltipo.setIcon(new ImageIcon("./newimage/ppt.png"));
-					break;
-				case "doc":
-					lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
-					break;
-				default:
-					lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
-					break;
-				}
-			} else
-				lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
-			lblPreferiti.setText(getDocumento().getNome());
-			final int backup_colore = (int) (stelle.getWidth() * contrVoto
-					.calcolaVoto(getDocumento()));
-			colore.setSize(backup_colore, 30);
-			lblFac.setText(getDocumento().getCorso().getNome());
-			switch (getDocumento().getDiscriminator()) {
-			case "Appunti":
-				lblNewLabel.setText("Appunti");
-				lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
-				break;
-			case "Dispense":
-				lblNewLabel.setText("Dispense");
-				lblNewLabel.setForeground(Color.WHITE);
-				lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
-				break;
-			case "Esercizi":
-				lblNewLabel.setText("Esercizi");
-				lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
-				break;
-			case "Slide":
-				lblNewLabel.setText("Slide");
-				lblNewLabel.setForeground(Color.WHITE);
-				lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
-				break;
-			default:
-				lblNewLabel.setText("Documento");
-				lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
-				break;
-			}
-			lblUniversit.setText(getDocumento().getFacolta().getNome());
-			panel_3.setText(getDocumento().getDescrizione());
-			//gui.helpers.ListenerHelper.removeListeners(btnAggiungiAiPreferiti);
-			//gui.helpers.ListenerHelper.removeListeners(btnRimuoviDaiPreferiti);
-			//gui.helpers.ListenerHelper.removeListeners(btnElimina);
-			//gui.helpers.ListenerHelper.removeListeners(btnAttivaModifica);
-			//gui.helpers.ListenerHelper.removeListeners(btnTerminaModifica);
-			//gui.helpers.ListenerHelper.removeListeners(btnAnnullaModifica);
-			
-			lblVoti.setText(Integer.toString(getDocumento().votos.size()));
-
-			boolean giaVotato = ControllerDocumento.getInstance().controlloVotato(
-					getDocumento(), Home.getUtenteLoggato());
-			for (int i = 0; i < 5; ++i) {
-				final int j = i + 1;
-				MouseListener m = new MouseListener() {
-					@Override
-					public void mouseReleased(MouseEvent arg0) {
-					}
-
-					@Override
-					public void mousePressed(MouseEvent arg0) {
-					}
-
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-						colore.setSize(backup_colore, 30);
-						colore.validate();
-						colore.repaint();
-						stelle.validate();
-						stelle.repaint();
-					}
-
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-						colore.setSize(30 * j, 30);
-						colore.validate();
-						colore.repaint();
-						stelle.validate();
-						stelle.repaint();
-					}
-
+				
+				validate();
+				repaint();
+				/*btnNewButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						ControllerDocumento.getInstance().votaDocumento(getDocumento(),
-								Home.getUtenteLoggato(), j * 2);
-						resetStelle();
-						//JOptionPane.showMessageDialog(null, "Voto salvato!");
-						reload(new DocFlag(getDocumento(),false,commentiEspansi));
+						if (suggestOpened) {
+							suggestOpened = false;
+							suggerimenti.setVisible(false);
+							btnNewButton.setText(">");
+						} else {
+							suggestOpened = true;
+							suggerimenti.setVisible(true);
+							btnNewButton.setText("<");
+						}
+						toggleInfo();
+						validate();
+						repaint();
 					}
-				};
-				if (!giaVotato) {
-					stelle.getComponent(i).setCursor(
-							Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-					gui.helpers.ListenerHelper.removeListeners(stelle.getComponent(i));
-					stelle.getComponent(i).addMouseListener(m);
-				} else {
-					stelle.setToolTipText("Hai già votato questo documento");
+
+				});*/
+
+				if (getDocumento() != null) {
+					if (ControllerUtente.getInstance().containDocumentoPreferito(
+							Home.getUtenteLoggato(), getDocumento())) {
+							btnAggiungiAiPreferiti.setVisible(false);
+							btnRimuoviDaiPreferiti.setVisible(true);
+						} else {
+							btnAggiungiAiPreferiti.setVisible(true);
+							btnRimuoviDaiPreferiti.setVisible(false);
+					}
+					if (getDocumento().getProprietario().getID()==Home.getUtenteLoggato().getID()) {
+							lblFac.setBounds(307, 59, 214, 23);
+							//separator_2.setBounds(442, 59, 1, 23);
+							//lblUniversit.setBounds(453, 59, 120, 23);
+							separator_2.setVisible(false);
+							lblUniversit.setVisible(false);
+							lblPreferiti.setBounds(10, 10, 511, 25);
+							btnElimina.setVisible(true);
+							btnAttivaModifica.setVisible(true);
+							btnTerminaModifica.setVisible(false);
+							btnAnnullaModifica.setVisible(false);
+							
+						} else {
+							lblFac.setBounds(307, 59, 325, 23);
+							separator_2.setVisible(true);
+							lblUniversit.setVisible(true);
+							separator_2.setBounds(643, 59, 1, 23);
+							lblUniversit.setBounds(653, 59, 325, 23);
+							lblPreferiti.setBounds(10, 10, 740, 25);
+							btnElimina.setVisible(false);
+							btnAttivaModifica.setVisible(false);
+							btnTerminaModifica.setVisible(false);
+							btnAnnullaModifica.setVisible(false);
+					}
+					panel.validate();
+					panel.repaint();
 				}
-			}
-			Calendar rightNow = Calendar.getInstance();
-			Calendar dataNascita = Calendar.getInstance();
-			dataNascita.setTime(getDocumento().getProprietario().getDatadinascita());
-			lblNewLabel_5.setText(rightNow.get(Calendar.YEAR)-dataNascita.get(Calendar.YEAR)+"");
-			lblNewLabel_6.setText(getDocumento().getProprietario().getFacolta().getUniversita().getNome());
-			lblNewLabel_7.setText(getDocumento().getProprietario().getFacolta().getNome());
-			Image resized = new ImageIcon("."+getDocumento().getProprietario().getImmagine()).getImage().getScaledInstance(92, 92,  java.awt.Image.SCALE_SMOOTH);  
-			imgUtente.setIcon(new ImageIcon(resized));
+				if (getDocumento().getPath() != null && !getDocumento().getPath().equals("/")) {
+					String strTipo = getDocumento().getPath().split("\\.")[1];
+					switch (strTipo) {
+					case "pdf":
+						lbltipo.setIcon(new ImageIcon("./newimage/pdf.png"));
+						break;
+					case "ppt":
+						lbltipo.setIcon(new ImageIcon("./newimage/ppt.png"));
+						break;
+					case "doc":
+						lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+						break;
+					default:
+						lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+						break;
+					}
+				} else
+					lbltipo.setIcon(new ImageIcon("./newimage/doc.png"));
+				lblPreferiti.setText(getDocumento().getNome());
+				final int backup_colore = (int) (stelle.getWidth() * contrVoto
+						.calcolaVoto(getDocumento()));
+				colore.setSize(backup_colore, 30);
+				lblFac.setText(getDocumento().getCorso().getNome());
+				switch (getDocumento().getDiscriminator()) {
+				case "Appunti":
+					lblNewLabel.setText("Appunti");
+					lblNewLabel.getParent().setBackground(new Color(0xFF, 0x99, 0x00));
+					break;
+				case "Dispense":
+					lblNewLabel.setText("Dispense");
+					lblNewLabel.setForeground(Color.WHITE);
+					lblNewLabel.getParent().setBackground(new Color(0xCC, 0x33, 0xCC));
+					break;
+				case "Esercizi":
+					lblNewLabel.setText("Esercizi");
+					lblNewLabel.getParent().setBackground(new Color(0x00, 0x99, 0x00));
+					break;
+				case "Slide":
+					lblNewLabel.setText("Slide");
+					lblNewLabel.setForeground(Color.WHITE);
+					lblNewLabel.getParent().setBackground(new Color(0xFF, 0x00, 0x00));
+					break;
+				default:
+					lblNewLabel.setText("Documento");
+					lblNewLabel.getParent().setBackground(new Color(0xFF, 0xFF, 0xFF));
+					break;
+				}
+				lblUniversit.setText(getDocumento().getFacolta().getNome());
+				panel_3.setText(getDocumento().getDescrizione());
+				//gui.helpers.ListenerHelper.removeListeners(btnAggiungiAiPreferiti);
+				//gui.helpers.ListenerHelper.removeListeners(btnRimuoviDaiPreferiti);
+				//gui.helpers.ListenerHelper.removeListeners(btnElimina);
+				//gui.helpers.ListenerHelper.removeListeners(btnAttivaModifica);
+				//gui.helpers.ListenerHelper.removeListeners(btnTerminaModifica);
+				//gui.helpers.ListenerHelper.removeListeners(btnAnnullaModifica);
+				
+				lblVoti.setText(Integer.toString(getDocumento().votos.size()));
+
+				boolean giaVotato = ControllerDocumento.getInstance().controlloVotato(
+						getDocumento(), Home.getUtenteLoggato());
+				for (int i = 0; i < 5; ++i) {
+					final int j = i + 1;
+					MouseListener m = new MouseListener() {
+						@Override
+						public void mouseReleased(MouseEvent arg0) {
+						}
+
+						@Override
+						public void mousePressed(MouseEvent arg0) {
+						}
+
+						@Override
+						public void mouseExited(MouseEvent arg0) {
+							colore.setSize(backup_colore, 30);
+							colore.validate();
+							colore.repaint();
+							stelle.validate();
+							stelle.repaint();
+						}
+
+						@Override
+						public void mouseEntered(MouseEvent arg0) {
+							colore.setSize(30 * j, 30);
+							colore.validate();
+							colore.repaint();
+							stelle.validate();
+							stelle.repaint();
+						}
+
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+							ControllerDocumento.getInstance().votaDocumento(getDocumento(),
+									Home.getUtenteLoggato(), j * 2);
+							resetStelle();
+							//JOptionPane.showMessageDialog(null, "Voto salvato!");
+							reload(new DocFlag(getDocumento(),false,commentiEspansi));
+						}
+					};
+					if (!giaVotato) {
+						stelle.getComponent(i).setCursor(
+								Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						gui.helpers.ListenerHelper.removeListeners(stelle.getComponent(i));
+						stelle.getComponent(i).addMouseListener(m);
+					} else {
+						stelle.setToolTipText("Hai già votato questo documento");
+					}
+				}
+				Calendar rightNow = Calendar.getInstance();
+				Calendar dataNascita = Calendar.getInstance();
+				dataNascita.setTime(getDocumento().getProprietario().getDatadinascita());
+				lblNewLabel_5.setText(rightNow.get(Calendar.YEAR)-dataNascita.get(Calendar.YEAR)+"");
+				lblNewLabel_6.setText(getDocumento().getProprietario().getFacolta().getUniversita().getNome());
+				lblNewLabel_7.setText(getDocumento().getProprietario().getFacolta().getNome());
+				
+				Image resized = new ImageIcon("."+getDocumento().getProprietario().getImmagine()).getImage().getScaledInstance(92, 92,  java.awt.Image.SCALE_SMOOTH);  
+				imgUtente.setIcon(new ImageIcon(resized));
+				
+				adjustCommenti(getCommenti());
+				
+				if (flagModifica) {
+					lblPreferiti.setVisible(false);
+					tf_preferiti.setVisible(true);
+					tf_preferiti.setDocument(new JTextFieldLimit(254));
+					tf_preferiti.setText(getDocumento().getNome());
+					tf_preferiti.setForeground(new Color(6, 121, 159));
+					tf_preferiti.setFont(new Font("Arial", Font.BOLD, 18));
+					tf_preferiti.setBounds(10, 10, 511, 28);
+					//tf_preferiti.setBorder(new LineBorder(new Color(0,255,0),2));
+					tf_preferiti.setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED,1));
+					panel.add(tf_preferiti);
+					btnAttivaModifica.setVisible(false);
+					btnTerminaModifica.setVisible(true);
+					btnAnnullaModifica.setVisible(true);
+					String tempText = panel_3.getText();
+					panel_3.setEditable(true);
+					//panel_3.setBorder(new LineBorder(new Color(0,255,0),2));
+					panel_3.setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED,1));
+					panel_3.setDocument(new JTextFieldLimit(254));
+					panel_3.setHighlighter(new DefaultHighlighter());
+					panel_3.setText(tempText);
+				}
 			
-			adjustCommenti(getCommenti());
-			
-			if (flagModifica) {
-				lblPreferiti.setVisible(false);
-				tf_preferiti.setVisible(true);
-				tf_preferiti.setDocument(new JTextFieldLimit(254));
-				tf_preferiti.setText(getDocumento().getNome());
-				tf_preferiti.setForeground(new Color(6, 121, 159));
-				tf_preferiti.setFont(new Font("Arial", Font.BOLD, 18));
-				tf_preferiti.setBounds(10, 10, 511, 28);
-				//tf_preferiti.setBorder(new LineBorder(new Color(0,255,0),2));
-				tf_preferiti.setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED,1));
-				panel.add(tf_preferiti);
-				btnAttivaModifica.setVisible(false);
-				btnTerminaModifica.setVisible(true);
-				btnAnnullaModifica.setVisible(true);
-				String tempText = panel_3.getText();
-				panel_3.setEditable(true);
-				//panel_3.setBorder(new LineBorder(new Color(0,255,0),2));
-				panel_3.setBorder(new LineBorder(Home.BLUE_BUTTON_PRESSED,1));
-				panel_3.setDocument(new JTextFieldLimit(254));
-				panel_3.setHighlighter(new DefaultHighlighter());
-				panel_3.setText(tempText);
 			}
+			
 		}		
 	}
 
